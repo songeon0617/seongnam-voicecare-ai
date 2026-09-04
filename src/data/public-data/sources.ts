@@ -14,7 +14,7 @@ export const PUBLIC_DATA_SOURCES = [
     priority: "highest",
     description:
       "성남시 복지, 행정복지센터, 복지시설, 담당 부서와 신청 안내의 우선 공식 출처",
-    lastCheckedAt: null,
+    lastCheckedAt: "2026-09-05T00:49:35+09:00",
     enabled: true,
   },
 ] as const satisfies readonly PublicDataSource[];

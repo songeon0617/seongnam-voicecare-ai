@@ -35,7 +35,7 @@ src/
 │     └─ question-panel.module.css
 ├─ data/
 │  └─ public-data/
-│     ├─ documents.ts           # 검증용 개발 문서 데이터
+│     ├─ documents.ts           # MVP용 성남시 공식 원문 데이터
 │     └─ sources.ts             # 허용된 공식 데이터 출처 목록
 ├─ lib/
 │  └─ example-questions.ts      # 예시 질문 목록
@@ -64,6 +64,8 @@ src/
 `PublicDataSource`는 허용된 공식 출처와 우선순위를 관리하고, `PublicInformationDocument`는 검색·RAG에 투입할 원자료를 나타냅니다. 원자료 문서와 사용자용 `PublicInformationAnswer`를 분리해 수집된 원문이 검증 없이 그대로 답변으로 표시되지 않도록 합니다.
 
 초기 데이터는 `src/data/public-data`에서 TypeScript 파일로 관리합니다. 실제 검색이나 Vector DB는 아직 연결하지 않았습니다.
+
+현재 데이터셋에는 2026년 9월 5일에 성남시청 공식 페이지에서 직접 확인한 문서 4건이 들어 있습니다. 범위는 특별교통수단, 장애인 택시바우처, 노인맞춤돌봄서비스, 분당노인종합복지관 안내입니다. 이는 MVP 질문 검증을 위한 제한된 범위이며 성남시의 전체 복지정책이나 시설을 포괄하지 않습니다.
 
 ### 데이터 원칙
 
