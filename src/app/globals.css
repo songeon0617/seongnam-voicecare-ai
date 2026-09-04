@@ -1,0 +1,60 @@
+:root {
+  --background: #f3f8f8;
+  --surface: #ffffff;
+  --surface-soft: #e9f5f3;
+  --foreground: #142b33;
+  --muted: #536970;
+  --primary: #007c72;
+  --primary-strong: #005e57;
+  --primary-soft: #d7efec;
+  --border: #bfd3d2;
+  --focus: #ffbf47;
+  --shadow: 0 18px 50px rgba(23, 66, 70, 0.1);
+}
+
+html {
+  height: 100%;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: "Pretendard Variable", "Noto Sans KR", "Apple SD Gothic Neo",
+    "Malgun Gothic", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+::selection {
+  color: #ffffff;
+  background: var(--primary);
+}
