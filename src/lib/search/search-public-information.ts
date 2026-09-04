@@ -4,6 +4,15 @@ import type {
   PublicInformationCategory,
   PublicInformationDocument,
 } from "@/types/public-data";
+import type {
+  PublicInformationSearchOptions,
+  PublicInformationSearchResult,
+} from "@/types/public-information-search";
+
+export type {
+  PublicInformationSearchOptions,
+  PublicInformationSearchResult,
+} from "@/types/public-information-search";
 
 export const DEFAULT_PUBLIC_INFORMATION_TOP_K = 3;
 
@@ -12,17 +21,6 @@ export const DEFAULT_PUBLIC_INFORMATION_TOP_K = 3;
  * 인정한다. 단순히 "신청" 같은 일반 표현 하나만 맞는 문서는 제외하기 위한 값이다.
  */
 export const DEFAULT_PUBLIC_INFORMATION_THRESHOLD = 10;
-
-export interface PublicInformationSearchResult {
-  document: PublicInformationDocument;
-  score: number;
-  matchedTerms: string[];
-}
-
-export interface PublicInformationSearchOptions {
-  topK?: number;
-  threshold?: number;
-}
 
 interface SearchConcept {
   label: string;
@@ -243,6 +241,28 @@ export function searchPublicInformation(
   query: string,
   options: PublicInformationSearchOptions = {},
 ): PublicInformationSearchResult[] {
+  const officialSourceIds = new Set(
+    PUBLIC_DATA_SOURCES.filter(
+      (source) => source.enabled && source.isOfficial,
+    ).map((source) => source.id),
+  );
+  const registeredOfficialDocuments = PUBLIC_INFORMATION_DOCUMENTS.filter(
+    (document) => officialSourceIds.has(document.sourceId),
+  );
+
+  return searchPublicInformationDocuments(
+    query,
+    registeredOfficialDocuments,
+    options,
+  );
+}
+
+/** 활성 상태 필터를 포함한 순수 문서 검색 코어다. */
+export function searchPublicInformationDocuments(
+  query: string,
+  documents: readonly PublicInformationDocument[],
+  options: PublicInformationSearchOptions = {},
+): PublicInformationSearchResult[] {
   if (!normalizeText(query)) {
     return [];
   }
@@ -260,17 +280,10 @@ export function searchPublicInformation(
     return [];
   }
 
-  const officialSourceIds = new Set(
-    PUBLIC_DATA_SOURCES.filter(
-      (source) => source.enabled && source.isOfficial,
-    ).map((source) => source.id),
-  );
   const features = buildSearchFeatures(query);
 
-  return PUBLIC_INFORMATION_DOCUMENTS.filter(
-    (document) =>
-      document.status === "active" && officialSourceIds.has(document.sourceId),
-  )
+  return documents
+    .filter((document) => document.status === "active")
     .map((document) => scoreDocument(document, query, features))
     .filter((result) => result.score > 0 && result.score >= threshold)
     .sort(

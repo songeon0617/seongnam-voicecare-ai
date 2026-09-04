@@ -1,3 +1,9 @@
+import type {
+  PublicDataSource,
+  PublicDocumentFreshnessStatus,
+  PublicDocumentStatus,
+} from "@/types/public-data";
+
 /**
  * 공식 자료를 얼마나 충분히 확인했는지 나타낸다.
  * 상태가 `verified`가 아니면 UI에서 제한 사항을 함께 알려야 한다.
@@ -11,9 +17,17 @@ export type InformationVerificationStatus =
 export interface SourceReference {
   /** 답변 안에서 출처를 연결할 때 사용하는 고유 식별자 */
   id: string;
+  /** 공식 출처 목록의 PublicDataSource id */
+  sourceId: PublicDataSource["id"];
   organizationName: string;
   title: string;
   url: string;
+  /** 원문을 마지막으로 확인한 ISO 8601 날짜·시각. 미확인 시 null */
+  checkedAt: string | null;
+  /** 답변 생성에 사용된 원문 문서의 검토 상태 */
+  documentStatus: PublicDocumentStatus;
+  /** 답변 생성에 사용된 원문 문서의 최신성 상태 */
+  freshnessStatus: PublicDocumentFreshnessStatus;
   /** 이 출처가 답변의 어떤 내용을 뒷받침하는지에 대한 짧은 설명 */
   evidenceSummary?: string;
 }

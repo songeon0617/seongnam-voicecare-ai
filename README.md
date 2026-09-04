@@ -30,7 +30,8 @@ src/
 │  ├─ globals.css               # 전역 디자인 토큰과 기본 스타일
 │  ├─ layout.tsx                # 문서 메타데이터와 공통 레이아웃
 │  ├─ page.module.css           # 메인 화면 레이아웃
-│  └─ page.tsx                  # 메인 화면
+│  ├─ page.tsx                  # 메인 화면
+│  └─ api/public-information/search/route.ts # 공공정보 검색 API
 ├─ components/
 │  └─ question-panel/
 │     ├─ question-panel.tsx     # 음성·텍스트 질문 및 답변 UI
@@ -41,11 +42,15 @@ src/
 │     └─ sources.ts             # 허용된 공식 데이터 출처 목록
 ├─ lib/
 │  ├─ example-questions.ts      # 예시 질문 목록
+│  ├─ public-information/
+│  │  └─ map-documents-to-answer.ts # 원문 문서의 안전한 답변 매핑
 │  └─ search/
+│     ├─ create-public-information-search-response.ts # API 검증·응답 구성
 │     ├─ search-public-information.ts      # 로컬 공식 문서 검색
 │     └─ search-public-information.test.ts # 검색 동작 자동 테스트
 └─ types/
    ├─ public-data.ts            # 공식 출처와 RAG 원문 문서 타입
+   ├─ public-information-search.ts # 검색 API 요청·응답 타입
    └─ public-information.ts     # 사용자에게 표시할 최종 답변 타입
 ```
 
@@ -86,6 +91,8 @@ src/
 텍스트 질문을 제출하면 `status`가 `active`이고 허용된 공식 출처에 등록된 문서만 대상으로 검색합니다. 제목, 검색 태그, 대상자, 지역, 본문, 범주를 순서대로 가중해 점수를 계산하며, MVP 범위의 한국어 동의어를 정규화합니다. 기본 결과 수는 최대 3건이고 최소 관련성 점수 10 미만은 제외하므로 관련 문서가 없으면 빈 결과를 반환합니다.
 
 이 기능은 향후 RAG의 retrieval 단계를 검증하기 위한 로컬 구현입니다. 화면에는 검색된 원문 제목·출처·점수만 개발용으로 표시하며, AI가 답변을 생성하거나 원문 내용을 재작성하지 않습니다.
+
+텍스트 질문 UI는 `POST /api/public-information/search`를 호출합니다. API는 빈 질문, 잘못된 JSON, 300자를 넘는 질문을 구분해 처리하고 검색 결과와 공식 원문 기반 `PublicInformationAnswer` 매핑 결과를 반환합니다. 매핑 단계는 문서에 이미 구조화된 값만 옮기며 전화번호, 준비물, 단계, 장소를 본문에서 임의로 추출하거나 생성하지 않습니다.
 
 ## 아직 구현하지 않은 기능
 

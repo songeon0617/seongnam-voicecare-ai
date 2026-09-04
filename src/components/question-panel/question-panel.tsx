@@ -1,17 +1,29 @@
 "use client";
 
-import { type FormEvent, useState } from "react";
+import { type FormEvent, useRef, useState } from "react";
 import { EXAMPLE_QUESTIONS } from "@/lib/example-questions";
 import {
-  searchPublicInformation,
+  PUBLIC_INFORMATION_SEARCH_MAX_QUERY_LENGTH,
+  type PublicInformationSearchApiResponse,
+  type PublicInformationSearchRequest,
+  type PublicInformationSearchResponse,
   type PublicInformationSearchResult,
-} from "@/lib/search/search-public-information";
+} from "@/types/public-information-search";
 import styles from "./question-panel.module.css";
 
 const NOT_CONNECTED_MESSAGE =
   "음성 기능은 아직 연결되지 않았습니다.";
 const NO_RESULTS_MESSAGE =
   "현재 등록된 공식 자료에서 관련 정보를 찾지 못했습니다.";
+const SEARCH_ERROR_MESSAGE =
+  "검색 중 문제가 생겼습니다. 잠시 후 다시 시도해 주세요.";
+const SEARCHING_MESSAGE = "공식 자료를 찾고 있습니다.";
+
+function isSearchResponse(
+  value: PublicInformationSearchApiResponse,
+): value is PublicInformationSearchResponse {
+  return "results" in value;
+}
 
 export function QuestionPanel() {
   const [question, setQuestion] = useState("");
@@ -19,8 +31,10 @@ export function QuestionPanel() {
   const [results, setResults] = useState<
     PublicInformationSearchResult[] | null
   >(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const activeRequest = useRef<AbortController | null>(null);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const normalizedQuestion = question.trim();
 
@@ -30,15 +44,51 @@ export function QuestionPanel() {
       return;
     }
 
-    const searchResults = searchPublicInformation(normalizedQuestion);
-    setResults(searchResults);
-    setNotice(searchResults.length === 0 ? NO_RESULTS_MESSAGE : "");
+    activeRequest.current?.abort();
+    const controller = new AbortController();
+    activeRequest.current = controller;
+    setIsLoading(true);
+    setResults(null);
+    setNotice(SEARCHING_MESSAGE);
+
+    try {
+      const response = await fetch("/api/public-information/search", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          query: normalizedQuestion,
+        } satisfies PublicInformationSearchRequest),
+        cache: "no-store",
+        signal: controller.signal,
+      });
+      const body = (await response.json()) as PublicInformationSearchApiResponse;
+
+      if (!response.ok || !isSearchResponse(body)) {
+        throw new Error("Public information search request failed");
+      }
+
+      setResults(body.results);
+      setNotice(body.hasResults ? "" : NO_RESULTS_MESSAGE);
+    } catch {
+      if (!controller.signal.aborted) {
+        setResults(null);
+        setNotice(SEARCH_ERROR_MESSAGE);
+      }
+    } finally {
+      if (activeRequest.current === controller) {
+        activeRequest.current = null;
+        setIsLoading(false);
+      }
+    }
   }
 
   function selectExample(example: string) {
+    activeRequest.current?.abort();
+    activeRequest.current = null;
     setQuestion(example);
     setNotice("");
     setResults(null);
+    setIsLoading(false);
   }
 
   return (
@@ -48,8 +98,11 @@ export function QuestionPanel() {
           className={styles.voiceButton}
           type="button"
           onClick={() => {
+            activeRequest.current?.abort();
+            activeRequest.current = null;
             setResults(null);
             setNotice(NOT_CONNECTED_MESSAGE);
+            setIsLoading(false);
           }}
           aria-label="말로 질문하기. 음성 기능은 아직 연결되지 않았습니다."
         >
@@ -69,7 +122,11 @@ export function QuestionPanel() {
         <span>또는</span>
       </div>
 
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form
+        className={styles.form}
+        onSubmit={handleSubmit}
+        aria-busy={isLoading}
+      >
         <label htmlFor="question">글자로 질문하기</label>
         <div className={styles.inputRow}>
           <input
@@ -78,15 +135,23 @@ export function QuestionPanel() {
             type="text"
             value={question}
             onChange={(event) => {
+              activeRequest.current?.abort();
+              activeRequest.current = null;
               setQuestion(event.target.value);
               setNotice("");
               setResults(null);
+              setIsLoading(false);
             }}
             placeholder="궁금한 내용을 입력해 주세요"
             autoComplete="off"
+            maxLength={PUBLIC_INFORMATION_SEARCH_MAX_QUERY_LENGTH}
           />
-          <button type="submit" aria-label="질문 보내기">
-            <span>질문하기</span>
+          <button
+            type="submit"
+            aria-label={isLoading ? "공식 자료 검색 중" : "질문 보내기"}
+            disabled={isLoading}
+          >
+            <span>{isLoading ? "검색 중..." : "질문하기"}</span>
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="m8 5 7 7-7 7" />
             </svg>
