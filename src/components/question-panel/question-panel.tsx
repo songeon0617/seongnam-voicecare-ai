@@ -2,27 +2,43 @@
 
 import { type FormEvent, useState } from "react";
 import { EXAMPLE_QUESTIONS } from "@/lib/example-questions";
+import {
+  searchPublicInformation,
+  type PublicInformationSearchResult,
+} from "@/lib/search/search-public-information";
 import styles from "./question-panel.module.css";
 
 const NOT_CONNECTED_MESSAGE =
-  "현재는 화면 구성 단계입니다. AI 답변 기능은 다음 단계에서 연결할 예정입니다.";
+  "음성 기능은 아직 연결되지 않았습니다.";
+const NO_RESULTS_MESSAGE =
+  "현재 등록된 공식 자료에서 관련 정보를 찾지 못했습니다.";
 
 export function QuestionPanel() {
   const [question, setQuestion] = useState("");
   const [notice, setNotice] = useState("");
+  const [results, setResults] = useState<
+    PublicInformationSearchResult[] | null
+  >(null);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setNotice(
-      question.trim()
-        ? NOT_CONNECTED_MESSAGE
-        : "질문을 입력하거나 아래 예시 질문을 선택해 주세요.",
-    );
+    const normalizedQuestion = question.trim();
+
+    if (!normalizedQuestion) {
+      setResults(null);
+      setNotice("질문을 입력하거나 아래 예시 질문을 선택해 주세요.");
+      return;
+    }
+
+    const searchResults = searchPublicInformation(normalizedQuestion);
+    setResults(searchResults);
+    setNotice(searchResults.length === 0 ? NO_RESULTS_MESSAGE : "");
   }
 
   function selectExample(example: string) {
     setQuestion(example);
     setNotice("");
+    setResults(null);
   }
 
   return (
@@ -31,7 +47,10 @@ export function QuestionPanel() {
         <button
           className={styles.voiceButton}
           type="button"
-          onClick={() => setNotice(NOT_CONNECTED_MESSAGE)}
+          onClick={() => {
+            setResults(null);
+            setNotice(NOT_CONNECTED_MESSAGE);
+          }}
           aria-label="말로 질문하기. 음성 기능은 아직 연결되지 않았습니다."
         >
           <span className={styles.micIcon} aria-hidden="true">
@@ -61,6 +80,7 @@ export function QuestionPanel() {
             onChange={(event) => {
               setQuestion(event.target.value);
               setNotice("");
+              setResults(null);
             }}
             placeholder="궁금한 내용을 입력해 주세요"
             autoComplete="off"
@@ -102,11 +122,37 @@ export function QuestionPanel() {
               <path d="M9 9h6m-6 3h4" />
             </svg>
           </span>
-          <h2 id="answer-title">답변</h2>
+          <h2 id="answer-title">공식 자료 검색 결과</h2>
         </div>
-        <p className={notice ? styles.notice : styles.answerPlaceholder}>
-          {notice || "질문하면 쉬운 설명과 단계별 안내가 여기에 표시됩니다."}
-        </p>
+        {results && results.length > 0 ? (
+          <div className={styles.searchResults}>
+            <p className={styles.developmentLabel}>
+              개발용 검색 결과 · AI 답변 아님
+            </p>
+            <ol>
+              {results.map((result) => (
+                <li key={result.document.id}>
+                  <a
+                    href={result.document.originalUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {result.document.title}
+                  </a>
+                  <p>출처: {result.document.sourceOrganizationName}</p>
+                  <p>
+                    검색 점수 {result.score} · 일치 표현{" "}
+                    {result.matchedTerms.join(", ")}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        ) : (
+          <p className={notice ? styles.notice : styles.answerPlaceholder}>
+            {notice || "질문하면 관련 공식 자료가 여기에 표시됩니다."}
+          </p>
+        )}
       </section>
     </section>
   );
