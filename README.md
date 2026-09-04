@@ -33,8 +33,15 @@ src/
 │  └─ question-panel/
 │     ├─ question-panel.tsx     # 음성·텍스트 질문 및 답변 UI
 │     └─ question-panel.module.css
-└─ lib/
-   └─ example-questions.ts      # 예시 질문 목록
+├─ data/
+│  └─ public-data/
+│     ├─ documents.ts           # 검증용 개발 문서 데이터
+│     └─ sources.ts             # 허용된 공식 데이터 출처 목록
+├─ lib/
+│  └─ example-questions.ts      # 예시 질문 목록
+└─ types/
+   ├─ public-data.ts            # 공식 출처와 RAG 원문 문서 타입
+   └─ public-information.ts     # 사용자에게 표시할 최종 답변 타입
 ```
 
 현재 화면 로직을 질문 패널로 분리해 두었으므로, 다음 단계에서 API Route 또는 Server Action과 연결할 수 있습니다. 실제 기능을 추가할 때는 역할별로 `src/services/ai`, `src/services/retrieval`, `src/services/speech` 등을 추가하는 방식을 권장합니다.
@@ -51,6 +58,21 @@ src/
 - 자료 부족, 일부 확인, 미확인 상태를 사용자에게 명확히 알릴 수 있습니다.
 
 현재는 타입과 개발용 예시 객체만 있으며 AI 호출이나 실제 공공정보는 연결되어 있지 않습니다. 다음 단계에서 성남시 공식 자료 기반 검색과 RAG 결과를 이 구조로 변환할 예정입니다.
+
+## 공식 데이터와 RAG 원문 구조
+
+`PublicDataSource`는 허용된 공식 출처와 우선순위를 관리하고, `PublicInformationDocument`는 검색·RAG에 투입할 원자료를 나타냅니다. 원자료 문서와 사용자용 `PublicInformationAnswer`를 분리해 수집된 원문이 검증 없이 그대로 답변으로 표시되지 않도록 합니다.
+
+초기 데이터는 `src/data/public-data`에서 TypeScript 파일로 관리합니다. 실제 검색이나 Vector DB는 아직 연결하지 않았습니다.
+
+### 데이터 원칙
+
+- 공식 출처를 우선하며 출처 없는 정책 정보는 사용하지 않습니다.
+- 오래된 자료와 최신 자료가 충돌하면 최신 공식 자료를 우선합니다.
+- 게시일, 수정일, 수집일, 마지막 확인일을 가능한 범위에서 기록합니다.
+- 최신성은 고정된 불리언 값이 아니라 날짜, 문서 상태, 출처 우선순위를 바탕으로 판단합니다.
+- 확인되지 않은 값은 AI가 추정하거나 임의로 채우지 않습니다.
+- 최종 답변에는 근거가 된 원문 출처를 표시합니다.
 
 ## 아직 구현하지 않은 기능
 
