@@ -1,0 +1,13 @@
+# Local credentials are configured separately in Vercel's environment settings.
+.env*
+.git
+.next
+.vercel
+node_modules
+test-results
+playwright-report
+coverage
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*

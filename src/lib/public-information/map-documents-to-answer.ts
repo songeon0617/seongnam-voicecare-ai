@@ -51,7 +51,7 @@ function mapVerification(
       status: "verified",
       checkedAt,
       details:
-        "사용된 모든 문서가 active 상태이며 최신성 확인일이 기록되어 있습니다.",
+        "사용된 모든 문서가 안내에 사용 가능한 상태이며 최신성 확인일이 기록되어 있습니다.",
     };
   }
 
@@ -65,7 +65,7 @@ function mapVerification(
       status: "partially_verified",
       checkedAt,
       details:
-        "공식 문서를 확인했지만 일부 문서의 최신성 상태가 current로 확인되지 않았습니다.",
+        "공식 문서를 확인했지만 일부 문서가 최신 자료인지 확인되지 않았습니다.",
     };
   }
 
@@ -118,9 +118,10 @@ export function mapDocumentsToPublicInformationAnswer(
     userQuestion,
     title: documents[0].title,
     plainLanguageSummary: documents
-      .map((document) => document.content)
+      .map((document) => documents.length > 1 ? `「${document.title}」\n${document.content}` : document.content)
       .join("\n\n"),
-    ...(eligibility.length > 0 ? { eligibility } : {}),
+    // 여러 서비스의 대상을 합쳐 첫 서비스의 신청 자격처럼 표시하지 않는다.
+    ...(documents.length === 1 && eligibility.length > 0 ? { eligibility } : {}),
     steps: [],
     nextAction: null,
     sources: documents.map(mapSource),

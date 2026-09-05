@@ -154,3 +154,11 @@ test("답변 매핑은 문서에 구조화되지 않은 값을 생성하지 않�
   assert.deepEqual(answer.steps, []);
   assert.equal(answer.nextAction, null);
 });
+
+test("여러 문서의 대상을 한 서비스 자격으로 합치지 않고 본문마다 문서명을 붙인다", () => {
+  const documents = [PUBLIC_INFORMATION_DOCUMENTS[2], PUBLIC_INFORMATION_DOCUMENTS[3]];
+  const answer = mapDocumentsToPublicInformationAnswer("노인맞춤돌봄서비스 신청하려면 어떻게 해야 하나요?", documents);
+  assert.equal(answer.eligibility, undefined);
+  assert.equal(answer.plainLanguageSummary, documents.map((document) => `「${document.title}」\n${document.content}`).join("\n\n"));
+  assert.equal(answer.sources.length, 2);
+});

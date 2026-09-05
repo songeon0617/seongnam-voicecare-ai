@@ -1,4 +1,5 @@
 .panel {
+  min-width: 0;
   padding: clamp(24px, 4vw, 42px);
   background: var(--surface);
   border: 1px solid rgba(24, 79, 82, 0.12);
@@ -44,6 +45,7 @@
 }
 
 .voiceButton:focus-visible,
+.speechControls button:focus-visible,
 .inputRow input:focus-visible,
 .inputRow button:focus-visible,
 .exampleList button:focus-visible {
@@ -89,6 +91,55 @@
   border-radius: 999px;
   font-size: 0.85rem;
   font-weight: 700;
+}
+
+.voiceButton[aria-pressed="true"] {
+  background: #9b3128;
+  border-color: #f6d8d3;
+  box-shadow: 0 0 0 3px #9b3128;
+}
+
+.voiceHelp,
+.voicePreview {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.voicePreview {
+  color: var(--foreground);
+  font-weight: 700;
+}
+
+.speechControls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.speechControls button {
+  min-height: 48px;
+  padding: 10px 18px;
+  border: 2px solid var(--primary-strong);
+  border-radius: 12px;
+  color: var(--primary-strong);
+  background: var(--primary-soft);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.speechControls span {
+  flex: 1;
+  flex-basis: 160px;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
 .divider {
@@ -271,9 +322,10 @@
 
 .searchResults {
   margin-top: 14px;
+  overflow-wrap: anywhere;
 }
 
-.developmentLabel {
+.evidenceLabel {
   display: inline-block;
   padding: 5px 9px;
   color: var(--primary-strong);
@@ -299,6 +351,15 @@
   font-size: 1.05rem;
   font-weight: 900;
   text-underline-offset: 3px;
+  text-decoration: underline;
+}
+
+.searchResults .sourceShortcut {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 8px;
+  color: var(--primary-strong);
 }
 
 .searchResults a:focus-visible {
@@ -306,12 +367,37 @@
   outline-offset: 4px;
 }
 
-.searchResults p:not(.developmentLabel) {
+.searchResults p:not(.evidenceLabel) {
   margin-top: 4px;
   color: var(--muted);
-  font-size: 0.92rem;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 1.5;
+}
+
+.searchResults h3 {
+  margin-top: 20px;
+  font-size: 1.05rem;
+}
+
+.searchResults p.summary {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin-top: 12px;
+  color: var(--foreground);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.searchResults ul {
+  padding-left: 1.4rem;
+  margin-top: 8px;
+  line-height: 1.7;
+}
+
+.verification {
+  border-top: 1px solid var(--border);
+  margin-top: 20px;
 }
 
 @media (max-width: 640px) {
@@ -326,6 +412,11 @@
 
   .inputRow {
     flex-direction: column;
+  }
+
+  .inputRow input {
+    flex: none;
+    width: 100%;
   }
 
   .inputRow button {

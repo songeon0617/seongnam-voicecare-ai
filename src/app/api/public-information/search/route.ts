@@ -1,23 +1,5 @@
-import {
-  createPublicInformationSearchError,
-  createPublicInformationSearchResponse,
-} from "@/lib/search/create-public-information-search-response";
+import { createPublicInformationSearchHandler } from "@/lib/search/handle-public-information-search";
 
-export async function POST(request: Request) {
-  let payload: unknown;
-
-  try {
-    payload = await request.json();
-  } catch {
-    return Response.json(
-      createPublicInformationSearchError(
-        "invalid_json",
-        "올바른 JSON 요청 본문이 필요합니다.",
-      ),
-      { status: 400 },
-    );
-  }
-
-  const response = createPublicInformationSearchResponse(payload);
-  return Response.json(response.body, { status: response.status });
-}
+export const runtime = "nodejs";
+// 모듈당 하나의 제한기를 공유한다. 요청마다 재생성하지 않는다.
+export const POST = createPublicInformationSearchHandler();

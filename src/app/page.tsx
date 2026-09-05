@@ -28,21 +28,21 @@ export default function Home() {
             <span>편하게 물어보세요</span>
           </h1>
           <p className={styles.description}>
-            복잡한 행정 표현을 쉬운 말로 풀고, 다음에 무엇을 해야 하는지
-            차근차근 안내하는 서비스를 준비하고 있습니다.
+            궁금한 내용을 말하거나 글자로 질문하면 등록된 성남시 공식 자료를
+            찾아 안내합니다. 답변과 함께 출처와 확인 상태를 살펴보세요.
           </p>
           <div className={styles.guide}>
             <span aria-hidden="true">1</span>
             <p>
               <strong>말하거나 입력하세요</strong>
-              궁금한 내용을 평소 쓰는 말로 질문해 주세요.
+              마이크 버튼으로 질문하거나 글자로 적어 주세요.
             </p>
           </div>
           <div className={styles.guide}>
             <span aria-hidden="true">2</span>
             <p>
-              <strong>쉬운 안내를 확인하세요</strong>
-              답변과 해야 할 일, 공식 출처가 함께 표시될 예정입니다.
+              <strong>공식 자료 안내를 확인하세요</strong>
+              답변 듣기로 내용을 듣고, 출처와 확인일도 함께 확인하세요.
             </p>
           </div>
         </section>
