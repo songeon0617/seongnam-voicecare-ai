@@ -65,7 +65,7 @@ export function readSearchAnswer(value: unknown): {
       const links=official.links;
       if(!official.links.every(link=>record(link)&&safeUrl(link.url)&&string(link.title)))return null;
       if(!official.evidence.every(e=>record(e)&&string(e.id)&&safeUrl(e.url)&&string(e.title)&&e.publisher==="성남시청"&&e.region==="성남시"&&
-        string(e.excerpt)&&e.excerpt.length>=20&&e.excerpt.length<=900&&string(e.checkedAt)&&date(e.checkedAt)&&date(e.publishedAt)&&date(e.updatedAt)&&
+        string(e.excerpt)&&e.excerpt.length>=20&&e.excerpt.length<=6000&&string(e.checkedAt)&&date(e.checkedAt)&&date(e.publishedAt)&&date(e.updatedAt)&&
         e.applicationPeriod===null&&e.effectivePeriod===null&&e.freshness==="unknown"&&typeof e.fromCache==="boolean"&&e.collection==="openai_web_search+https_original"&&
         links.some(link=>record(link)&&link.url===e.url)))return null;
       if((value.kind==="partial_answer"||value.kind==="official_answer")&&(!official.searched||official.evidence.length===0||!["evidence","partial"].includes(String(official.status))))return null;

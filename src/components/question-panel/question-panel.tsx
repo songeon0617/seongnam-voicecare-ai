@@ -290,6 +290,7 @@ export function QuestionPanel() {
             {search.officialSearch.evidence.map(evidence => <article key={evidence.id} className={styles.detailSection}>
               <h3><a href={evidence.url} target="_blank" rel="noreferrer">{evidence.title} (공식 원문)</a></h3>
               <blockquote className={styles.excerpt}>{evidence.excerpt}</blockquote>
+              <div className={styles.speechControls}><button type="button" onClick={() => { voice.cancel(); speech.play(evidence.excerpt); }}>공식 원문 듣기</button></div>
               <p>발행기관: {evidence.publisher} · 적용 지역: {evidence.region}</p>
               <p>원문 대조: <time dateTime={evidence.checkedAt}>{evidence.checkedAt.replace("T", " ").slice(0, 19)} UTC</time>{evidence.fromCache ? " (이전에 확인한 문서 캐시)" : ""}</p>
               <p>게시·수정일: 미확인 · 시행·신청기간: 미확인 · 최신성: 미확인</p>

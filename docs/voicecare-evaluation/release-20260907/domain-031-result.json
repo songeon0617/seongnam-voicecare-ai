@@ -1,0 +1,114 @@
+{
+  "id": "domain-031",
+  "mode": "LIVE",
+  "domain": "청년",
+  "question": "성남 청년들이 모임하는 공공 공간 찾아줘",
+  "expectedBehavior": "검증된 청년 공간 위치·이용 안내를 찾는다",
+  "at": "2026-09-06T15:50:00.920Z",
+  "schemaPass": true,
+  "response": {
+    "query": "성남 청년들이 모임하는 공공 공간 찾아줘",
+    "kind": "partial_answer",
+    "results": [],
+    "hasResults": false,
+    "answer": {
+      "userQuestion": "성남 청년들이 모임하는 공공 공간 찾아줘",
+      "title": "확인한 공식 원문과 남은 확인 사항",
+      "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+      "steps": [],
+      "nextAction": null,
+      "sources": [],
+      "verification": {
+        "status": "insufficient_data",
+        "checkedAt": null,
+        "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+      }
+    },
+    "officialSearch": {
+      "status": "partial",
+      "evidence": [
+        {
+          "id": "web-1",
+          "url": "https://www.seongnam.go.kr/sn030105",
+          "title": "공공데이터개방 - 정보공개 안내 - 정보공개 - 성남시청",
+          "publisher": "성남시청",
+          "region": "성남시",
+          "checkedAt": "2026-09-06T15:50:00.898Z",
+          "publishedAt": null,
+          "updatedAt": null,
+          "applicationPeriod": null,
+          "effectivePeriod": null,
+          "excerpt": "성남시 공공개방데이터는 행정안전부 공공데이터포털(https://www.data.go.kr)을 통해 제공됩니다. 공공데이터포털 https://www.data.go.kr 바로가기 행정안전부 공공데이터 포털을 통해 필요한 공공데이터를 신청하세요 성남 데이터넷 https://data.seongnam.go.kr 바로가기 성남시에서 활용하는 행정용 데이터 및 통계자료 등을 시각화 ·목록화하여 제공합니다. 공공데이터 제공 책임관 및 실무담당자 근거: 공공데이터의 제공 및 이용활성화에 관한 법률 제12조 공공데이터 제공 책임관: 구분,직위,성명,전화번호로 구성 구분 직위 성명 전화번호 제공책임관 행정기획조정실장 전재환 031-729-2200 제공실무자 주무관 김동진 031-729-8803 주무관 지해성 031-729-8802",
+          "collection": "openai_web_search+https_original",
+          "freshness": "unknown",
+          "fromCache": false
+        }
+      ],
+      "links": [
+        {
+          "url": "https://www.seongnam.go.kr/sn030105",
+          "title": "공공데이터개방 - 정보공개 안내 - 정보공개 - 성남시청"
+        },
+        {
+          "url": "https://www.seongnam.go.kr/ct-cn090301",
+          "title": "청년희망도시 - 도시인증 - 도시·주택 - 분야별정보 - 성남시청"
+        },
+        {
+          "url": "https://www.seongnam.go.kr/cn030507",
+          "title": "지방공공기관 경영정보 - 재정정보 - 정보공개 - 성남시청"
+        }
+      ],
+      "usage": {
+        "model": "gpt-5.6-terra",
+        "inputTokens": 13129,
+        "outputTokens": 513,
+        "toolCalls": 1,
+        "estimatedUsd": 0.0342762,
+        "durationMs": 9960
+      },
+      "diagnostics": {
+        "phase": "complete",
+        "discovered": 6,
+        "rejected": 11,
+        "findings": 2,
+        "pages": [
+          {
+            "url": "https://www.seongnam.go.kr/city/1001740/11373/contents.do",
+            "status": "failed",
+            "errorCode": "source_http_404"
+          },
+          {
+            "url": "https://www.seongnam.go.kr/ct-cn090301",
+            "status": "fetched",
+            "textLength": 4747,
+            "sections": 1,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://www.seongnam.go.kr/apply/event.do",
+            "status": "failed",
+            "errorCode": "source_http_404"
+          },
+          {
+            "url": "https://www.seongnam.go.kr/sn030105",
+            "status": "fetched",
+            "textLength": 402,
+            "sections": 1,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://www.seongnam.go.kr/cn030507",
+            "status": "fetched",
+            "textLength": 273,
+            "sections": 1,
+            "omittedSections": 0
+          }
+        ]
+      },
+      "region": "성남시",
+      "searched": true
+    }
+  },
+  "semanticReview": "PENDING",
+  "actualAnswerSuccess": null
+}

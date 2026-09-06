@@ -1,0 +1,71 @@
+{
+  "id": "domain-053",
+  "mode": "LIVE",
+  "domain": "건강·보건소",
+  "question": "담배 끊고 싶은데 무료 상담 있어요",
+  "expectedBehavior": "성남 금연클리닉의 공공 안내를 찾는다",
+  "at": "2026-09-06T15:49:22.723Z",
+  "schemaPass": true,
+  "response": {
+    "query": "담배 끊고 싶은데 무료 상담 있어요",
+    "kind": "official_links",
+    "results": [],
+    "hasResults": false,
+    "answer": {
+      "userQuestion": "담배 끊고 싶은데 무료 상담 있어요",
+      "title": "공식 페이지에서 확인해 주세요",
+      "plainLanguageSummary": "관련 공식 페이지를 확인했습니다. 질문의 상세 내용은 원문과 충분히 대조하지 못했습니다. 아래 링크에서 확인해 주세요.",
+      "steps": [],
+      "nextAction": null,
+      "sources": [],
+      "verification": {
+        "status": "insufficient_data",
+        "checkedAt": null,
+        "details": "관련 공식 페이지를 확인했습니다. 질문의 상세 내용은 원문과 충분히 대조하지 못했습니다. 아래 링크에서 확인해 주세요."
+      }
+    },
+    "officialSearch": {
+      "status": "links",
+      "evidence": [],
+      "links": [
+        {
+          "url": "https://www.seongnam.go.kr/apply/integration/step1?instiCode=INST_CITY_01&facilityId=I0588",
+          "title": "행정복지 - 행정복지 - 성남시 통합예약"
+        }
+      ],
+      "usage": {
+        "model": "gpt-5.6-terra",
+        "inputTokens": 13235,
+        "outputTokens": 267,
+        "toolCalls": 1,
+        "estimatedUsd": 0.0315352,
+        "durationMs": 8762
+      },
+      "diagnostics": {
+        "phase": "extraction",
+        "discovered": 1,
+        "rejected": 16,
+        "findings": 0,
+        "pages": [
+          {
+            "url": "https://www.seongnam.go.kr/city/1000098/10299/contents.do",
+            "status": "failed",
+            "errorCode": "source_http_404"
+          },
+          {
+            "url": "https://www.seongnam.go.kr/apply/integration/step1?instiCode=INST_CITY_01&facilityId=I0588",
+            "status": "fetched",
+            "textLength": 137,
+            "sections": 1,
+            "omittedSections": 0
+          }
+        ],
+        "reason": "no_matching_evidence"
+      },
+      "region": "성남시",
+      "searched": true
+    }
+  },
+  "semanticReview": "PENDING",
+  "actualAnswerSuccess": null
+}

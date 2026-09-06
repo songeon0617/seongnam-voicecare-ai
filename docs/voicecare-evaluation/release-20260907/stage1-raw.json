@@ -1,0 +1,121 @@
+{
+  "selectedIds": [
+    "domain-097",
+    "domain-098",
+    "domain-009",
+    "domain-068",
+    "domain-113",
+    "domain-115",
+    "domain-081",
+    "domain-083",
+    "domain-052",
+    "domain-053",
+    "domain-066",
+    "domain-071",
+    "domain-027",
+    "domain-031",
+    "domain-138",
+    "domain-140",
+    "domain-073",
+    "domain-075",
+    "domain-130",
+    "domain-134"
+  ],
+  "evaluationSha256": "1bd0751e00168b2d38831359c734c2dd1cd9d712943fdc3563f389a50e4df643",
+  "results": [
+    {
+      "id": "domain-097",
+      "mode": "LIVE",
+      "domain": "여권",
+      "question": "성남시 여권 어디서 만들어",
+      "expectedBehavior": "성남시청 1층 종합민원실의 확인된 접수 장소를 안내한다",
+      "at": "2026-09-06T16:03:32.662Z",
+      "schemaPass": true,
+      "response": {
+        "query": "성남시 여권 어디서 만들어",
+        "kind": "partial_answer",
+        "results": [],
+        "hasResults": false,
+        "answer": {
+          "userQuestion": "성남시 여권 어디서 만들어",
+          "title": "확인한 공식 원문과 남은 확인 사항",
+          "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+          "steps": [],
+          "nextAction": null,
+          "sources": [],
+          "verification": {
+            "status": "insufficient_data",
+            "checkedAt": null,
+            "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+          }
+        },
+        "officialSearch": {
+          "status": "partial",
+          "evidence": [
+            {
+              "id": "web-1",
+              "url": "https://www.seongnam.go.kr/apply/integration/step1?facilityId=I0681&instiCode=INST_CITY_01",
+              "title": "행정복지 - 행정복지 - 성남시 통합예약",
+              "publisher": "성남시청",
+              "region": "성남시",
+              "checkedAt": "2026-09-06T16:03:32.659Z",
+              "publishedAt": null,
+              "updatedAt": null,
+              "applicationPeriod": null,
+              "effectivePeriod": null,
+              "excerpt": "홈 행정복지 야간여권 사전접수 링크복사 공유 닫기 QR코드 저장 방법 QR코드 > 마우스 우측버튼 > 이미지를 다른 이름으로 저장 단축주소 프린트 1단계 예약일자 선택 2단계 개인정보수집 동의 3단계 예약정보 입력 4단계 예약 완료 상단으로 이동",
+              "collection": "openai_web_search+https_original",
+              "freshness": "unknown",
+              "fromCache": false
+            }
+          ],
+          "links": [
+            {
+              "url": "https://www.seongnam.go.kr/apply/integration/step1?facilityId=I0681&instiCode=INST_CITY_01",
+              "title": "행정복지 - 행정복지 - 성남시 통합예약"
+            }
+          ],
+          "usage": {
+            "model": "gpt-5.6-terra",
+            "inputTokens": 13162,
+            "outputTokens": 250,
+            "toolCalls": 1,
+            "estimatedUsd": 0.0311124,
+            "durationMs": 10173
+          },
+          "diagnostics": {
+            "phase": "complete",
+            "discovered": 8,
+            "rejected": 10,
+            "findings": 1,
+            "pages": [
+              {
+                "url": "https://www.seongnam.go.kr/apply/integration/step1?facilityId=I0681&instiCode=INST_CITY_01",
+                "status": "fetched",
+                "textLength": 137,
+                "sections": 1,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.seongnam.go.kr/city/1000083/10056/contents.do",
+                "status": "failed",
+                "errorCode": "source_http_404"
+              },
+              {
+                "url": "https://seongnam.go.kr/city/1000080/10053/contents.do",
+                "status": "failed",
+                "errorCode": "source_unavailable"
+              }
+            ]
+          },
+          "region": "성남시",
+          "searched": true
+        }
+      },
+      "semanticReview": "PENDING",
+      "actualAnswerSuccess": null
+    }
+  ],
+  "gate": "SEMANTIC_REVIEW_REQUIRED; fallback/links are not answer success",
+  "paidAttempts": 20
+}

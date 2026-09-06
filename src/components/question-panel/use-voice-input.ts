@@ -10,7 +10,8 @@ export function useVoiceInput(onTranscript: (text: string) => void, onNotice: (m
   const effectGeneration = useRef(0);
 
   useEffect(() => {
-    const generation = ++effectGeneration.current;
+    const generationRef = effectGeneration;
+    const generation = ++generationRef.current;
     const hidden = () => { if (document.hidden) { session.current?.dispose(); setState("idle"); setPreview(""); } };
     document.addEventListener("visibilitychange", hidden);
     return () => {
@@ -19,7 +20,7 @@ export function useVoiceInput(onTranscript: (text: string) => void, onNotice: (m
       // React can disconnect/reconnect passive effects during hydration. A same-turn
       // reconnect must not destroy a microphone session started by a replayed event.
       queueMicrotask(() => {
-        if (effectGeneration.current === generation && session.current === capturedSession) capturedSession?.dispose();
+        if (generationRef.current === generation && session.current === capturedSession) capturedSession?.dispose();
       });
     };
   }, []);

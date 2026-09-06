@@ -1,0 +1,82 @@
+{
+  "id": "domain-130",
+  "mode": "CAPTURED_PROVIDER_LIVE_HTTPS",
+  "domain": "문화·행사",
+  "question": "시에서 하는 무료 공연 어디서 찾아요",
+  "expectedBehavior": "공식 공연 목록과 유·무료 여부를 구분한다",
+  "at": "2026-09-06T15:56:00.710Z",
+  "schemaPass": true,
+  "response": {
+    "query": "시에서 하는 무료 공연 어디서 찾아요",
+    "kind": "official_links",
+    "results": [],
+    "hasResults": false,
+    "answer": {
+      "userQuestion": "시에서 하는 무료 공연 어디서 찾아요",
+      "title": "공식 페이지에서 확인해 주세요",
+      "plainLanguageSummary": "관련 공식 페이지를 확인했습니다. 질문의 상세 내용은 원문과 충분히 대조하지 못했습니다. 아래 링크에서 확인해 주세요.",
+      "steps": [],
+      "nextAction": null,
+      "sources": [],
+      "verification": {
+        "status": "insufficient_data",
+        "checkedAt": null,
+        "details": "관련 공식 페이지를 확인했습니다. 질문의 상세 내용은 원문과 충분히 대조하지 못했습니다. 아래 링크에서 확인해 주세요."
+      }
+    },
+    "officialSearch": {
+      "status": "links",
+      "evidence": [],
+      "links": [
+        {
+          "url": "https://www.seongnam.go.kr/tour/tu-pm020101/6228",
+          "title": "이달의 행사 - 요즘성남 - 성남문화관광"
+        },
+        {
+          "url": "https://www.seongnam.go.kr/tour/index",
+          "title": "성남문화관광"
+        }
+      ],
+      "usage": {
+        "model": "gpt-5.6-terra",
+        "inputTokens": 12811,
+        "outputTokens": 579,
+        "toolCalls": 1,
+        "estimatedUsd": 0.0344302,
+        "durationMs": 808
+      },
+      "diagnostics": {
+        "phase": "extraction",
+        "discovered": 9,
+        "rejected": 8,
+        "findings": 3,
+        "pages": [
+          {
+            "url": "https://www.seongnam.go.kr/tour/tu-pm020101/6228",
+            "status": "fetched",
+            "textLength": 1287,
+            "sections": 1,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://www.seongnam.go.kr/apply/",
+            "status": "failed",
+            "errorCode": "source_http_404"
+          },
+          {
+            "url": "https://www.seongnam.go.kr/tour/index",
+            "status": "fetched",
+            "textLength": 8210,
+            "sections": 4,
+            "omittedSections": 1
+          }
+        ],
+        "reason": "no_matching_evidence"
+      },
+      "region": "성남시",
+      "searched": true
+    }
+  },
+  "semanticReview": "PENDING",
+  "actualAnswerSuccess": null
+}

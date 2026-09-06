@@ -1,0 +1,365 @@
+{
+  "day": "2026-09-06",
+  "attempts": [
+    {
+      "id": "domain-097",
+      "at": "2026-09-06T15:43:10.928Z",
+      "reservationUsd": 0.15,
+      "status": 200,
+      "usage": {
+        "input_tokens": 13008,
+        "input_tokens_details": {
+          "cache_write_tokens": 4539,
+          "cached_tokens": 0
+        },
+        "output_tokens": 351,
+        "output_tokens_details": {
+          "reasoning_tokens": 280
+        },
+        "total_tokens": 13359
+      }
+    },
+    {
+      "id": "domain-097",
+      "at": "2026-09-06T15:47:09.118Z",
+      "reservationUsd": 0.15,
+      "status": 200,
+      "usage": {
+        "input_tokens": 12882,
+        "input_tokens_details": {
+          "cache_write_tokens": 4562,
+          "cached_tokens": 0
+        },
+        "output_tokens": 483,
+        "output_tokens_details": {
+          "reasoning_tokens": 441
+        },
+        "total_tokens": 13365
+      }
+    },
+    {
+      "id": "domain-098",
+      "at": "2026-09-06T15:48:17.363Z",
+      "reservationUsd": 0.15,
+      "status": 200,
+      "usage": {
+        "input_tokens": 10913,
+        "input_tokens_details": {
+          "cache_write_tokens": 32,
+          "cached_tokens": 4531
+        },
+        "output_tokens": 47,
+        "output_tokens_details": {
+          "reasoning_tokens": 38
+        },
+        "total_tokens": 10960
+      }
+    },
+    {
+      "id": "domain-113",
+      "at": "2026-09-06T15:48:31.951Z",
+      "reservationUsd": 0.15,
+      "status": 200,
+      "usage": {
+        "input_tokens": 13178,
+        "input_tokens_details": {
+          "cache_write_tokens": 33,
+          "cached_tokens": 4531
+        },
+        "output_tokens": 123,
+        "output_tokens_details": {
+          "reasoning_tokens": 123
+        },
+        "total_tokens": 13301
+      }
+    },
+    {
+      "id": "domain-115",
+      "at": "2026-09-06T15:48:40.886Z",
+      "reservationUsd": 0.15,
+      "status": 200,
+      "usage": {
+        "input_tokens": 10105,
+        "input_tokens_details": {
+          "cache_write_tokens": 35,
+          "cached_tokens": 4531
+        },
+        "output_tokens": 92,
+        "output_tokens_details": {
+          "reasoning_tokens": 92
+        },
+        "total_tokens": 10197
+      }
+    },
+    {
+      "id": "domain-081",
+      "at": "2026-09-06T15:48:49.019Z",
+      "reservationUsd": 0.15,
+      "status": 200,
+      "usage": {
+        "input_tokens": 12999,
+        "input_tokens_details": {
+          "cache_write_tokens": 39,
+          "cached_tokens": 4531
+        },
+        "output_tokens": 226,
+        "output_tokens_details": {
+          "reasoning_tokens": 136
+        },
+        "total_tokens": 13225
+      }
+    },
+    {
+      "id": "domain-083",
+      "at": "2026-09-06T15:48:57.818Z",
+      "reservationUsd": 0.15,
+      "status": 200,
+      "usage": {
+        "input_tokens": 10879,
+        "input_tokens_details": {
+          "cache_write_tokens": 33,
+          "cached_tokens": 4531
+        },
+        "output_tokens": 171,
+        "output_tokens_details": {
+          "reasoning_tokens": 35
+        },
+        "total_tokens": 11050
+      }
+    },
+    {
+      "id": "domain-052",
+      "at": "2026-09-06T15:49:05.036Z",
+      "reservationUsd": 0.15,
+      "status": 200,
+      "usage": {
+        "input_tokens": 12897,
+        "input_tokens_details": {
+          "cache_write_tokens": 38,
+          "cached_tokens": 4531
+        },
+        "output_tokens": 368,
+        "output_tokens_details": {
+          "reasoning_tokens": 38
+        },
+        "total_tokens": 13265
+      }
+    },
+    {
+      "id": "domain-053",
+      "at": "2026-09-06T15:49:13.961Z",
+      "reservationUsd": 0.15,
+      "status": 200,
+      "usage": {
+        "input_tokens": 13235,
+        "input_tokens_details": {
+          "cache_write_tokens": 34,
+          "cached_tokens": 4531
+        },
+        "output_tokens": 267,
+        "output_tokens_details": {
+          "reasoning_tokens": 267
+        },
+        "total_tokens": 13502
+      }
+    },
+    {
+      "id": "domain-066",
+      "at": "2026-09-06T15:49:24.835Z",
+      "reservationUsd": 0.15,
+      "status": 200,
+      "usage": {
+        "input_tokens": 13113,
+        "input_tokens_details": {
+          "cache_write_tokens": 31,
+          "cached_tokens": 4531
+        },
+        "output_tokens": 154,
+        "output_tokens_details": {
+          "reasoning_tokens": 84
+        },
+        "total_tokens": 13267
+      }
+    },
+    {
+      "id": "domain-071",
+      "at": "2026-09-06T15:49:33.786Z",
+      "reservationUsd": 0.15,
+      "status": 200,
+      "usage": {
+        "input_tokens": 10979,
+        "input_tokens_details": {
+          "cache_write_tokens": 39,
+          "cached_tokens": 4531
+        },
+        "output_tokens": 140,
+        "output_tokens_details": {
+          "reasoning_tokens": 129
+        },
+        "total_tokens": 11119
+      }
+    },
+    {
+      "id": "domain-027",
+      "at": "2026-09-06T15:49:41.167Z",
+      "reservationUsd": 0.15,
+      "status": 200,
+      "usage": {
+        "input_tokens": 12972,
+        "input_tokens_details": {
+          "cache_write_tokens": 39,
+          "cached_tokens": 4531
+        },
+        "output_tokens": 391,
+        "output_tokens_details": {
+          "reasoning_tokens": 218
+        },
+        "total_tokens": 13363
+      }
+    },
+    {
+      "id": "domain-031",
+      "at": "2026-09-06T15:49:50.960Z",
+      "reservationUsd": 0.15,
+      "status": 200,
+      "usage": {
+        "input_tokens": 13129,
+        "input_tokens_details": {
+          "cache_write_tokens": 36,
+          "cached_tokens": 4531
+        },
+        "output_tokens": 513,
+        "output_tokens_details": {
+          "reasoning_tokens": 269
+        },
+        "total_tokens": 13642
+      }
+    },
+    {
+      "id": "domain-138",
+      "at": "2026-09-06T15:50:03.023Z",
+      "reservationUsd": 0.15,
+      "status": 200,
+      "usage": {
+        "input_tokens": 10893,
+        "input_tokens_details": {
+          "cache_write_tokens": 33,
+          "cached_tokens": 4531
+        },
+        "output_tokens": 141,
+        "output_tokens_details": {
+          "reasoning_tokens": 130
+        },
+        "total_tokens": 11034
+      }
+    },
+    {
+      "id": "domain-140",
+      "at": "2026-09-06T15:50:10.130Z",
+      "reservationUsd": 0.15,
+      "status": 200,
+      "usage": {
+        "input_tokens": 10978,
+        "input_tokens_details": {
+          "cache_write_tokens": 34,
+          "cached_tokens": 4531
+        },
+        "output_tokens": 81,
+        "output_tokens_details": {
+          "reasoning_tokens": 70
+        },
+        "total_tokens": 11059
+      }
+    },
+    {
+      "id": "domain-073",
+      "at": "2026-09-06T15:50:15.955Z",
+      "reservationUsd": 0.15,
+      "status": 200,
+      "usage": {
+        "input_tokens": 12839,
+        "input_tokens_details": {
+          "cache_write_tokens": 38,
+          "cached_tokens": 4531
+        },
+        "output_tokens": 298,
+        "output_tokens_details": {
+          "reasoning_tokens": 56
+        },
+        "total_tokens": 13137
+      }
+    },
+    {
+      "id": "domain-075",
+      "at": "2026-09-06T15:50:25.195Z",
+      "reservationUsd": 0.15,
+      "status": 200,
+      "usage": {
+        "input_tokens": 13134,
+        "input_tokens_details": {
+          "cache_write_tokens": 35,
+          "cached_tokens": 4531
+        },
+        "output_tokens": 80,
+        "output_tokens_details": {
+          "reasoning_tokens": 80
+        },
+        "total_tokens": 13214
+      }
+    },
+    {
+      "id": "domain-130",
+      "at": "2026-09-06T15:50:32.244Z",
+      "reservationUsd": 0.15,
+      "status": 200,
+      "usage": {
+        "input_tokens": 12811,
+        "input_tokens_details": {
+          "cache_write_tokens": 32,
+          "cached_tokens": 4531
+        },
+        "output_tokens": 579,
+        "output_tokens_details": {
+          "reasoning_tokens": 216
+        },
+        "total_tokens": 13390
+      }
+    },
+    {
+      "id": "domain-134",
+      "at": "2026-09-06T15:50:47.730Z",
+      "reservationUsd": 0.15,
+      "status": 200,
+      "usage": {
+        "input_tokens": 12945,
+        "input_tokens_details": {
+          "cache_write_tokens": 37,
+          "cached_tokens": 4531
+        },
+        "output_tokens": 249,
+        "output_tokens_details": {
+          "reasoning_tokens": 181
+        },
+        "total_tokens": 13194
+      }
+    },
+    {
+      "id": "domain-097",
+      "at": "2026-09-06T16:03:22.488Z",
+      "reservationUsd": 0.15,
+      "status": 200,
+      "usage": {
+        "input_tokens": 13162,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 4562
+        },
+        "output_tokens": 250,
+        "output_tokens_details": {
+          "reasoning_tokens": 168
+        },
+        "total_tokens": 13412
+      }
+    }
+  ]
+}

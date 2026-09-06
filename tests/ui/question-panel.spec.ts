@@ -137,6 +137,7 @@ test("생성 답변을 키보드로 요청하고 원문·출처·확인일·상�
   await page.goto("/");
   await submit(page);
   const answer = page.getByRole("region", { name: "공식 자료 안내", exact: true });
+  await expect(answer.getByRole("status")).toContainText("안내가 준비되었습니다");
   if (await page.locator("details:not([open]) > summary").count()) await page.locator("details:not([open]) > summary").click();
   await expect(answer.getByText(generated.answer.plainLanguageSummary, { exact: true })).toBeVisible();
   await expect(answer.getByRole("status")).toContainText("안내가 준비되었습니다");

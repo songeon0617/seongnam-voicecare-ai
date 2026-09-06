@@ -1,0 +1,76 @@
+{
+  "id": "domain-075",
+  "mode": "LIVE",
+  "domain": "주차",
+  "question": "성남 거주자우선주차 신청하는 법",
+  "expectedBehavior": "공식 신청·배정·대기 절차를 찾는다",
+  "at": "2026-09-06T15:50:30.110Z",
+  "schemaPass": true,
+  "response": {
+    "query": "성남 거주자우선주차 신청하는 법",
+    "kind": "official_links",
+    "results": [],
+    "hasResults": false,
+    "answer": {
+      "userQuestion": "성남 거주자우선주차 신청하는 법",
+      "title": "공식 페이지에서 확인해 주세요",
+      "plainLanguageSummary": "관련 공식 페이지를 확인했습니다. 질문의 상세 내용은 원문과 충분히 대조하지 못했습니다. 아래 링크에서 확인해 주세요.",
+      "steps": [],
+      "nextAction": null,
+      "sources": [],
+      "verification": {
+        "status": "insufficient_data",
+        "checkedAt": null,
+        "details": "관련 공식 페이지를 확인했습니다. 질문의 상세 내용은 원문과 충분히 대조하지 못했습니다. 아래 링크에서 확인해 주세요."
+      }
+    },
+    "officialSearch": {
+      "status": "links",
+      "evidence": [],
+      "links": [
+        {
+          "url": "https://www.seongnam.go.kr/sn02030601",
+          "title": "어디서나 민원(fax민원) - 편리한 서비스 - 종합민원안내 - 민원참여 - 성남시청"
+        }
+      ],
+      "usage": {
+        "model": "gpt-5.6-terra",
+        "inputTokens": 13134,
+        "outputTokens": 80,
+        "toolCalls": 1,
+        "estimatedUsd": 0.029089700000000003,
+        "durationMs": 4914
+      },
+      "diagnostics": {
+        "phase": "extraction",
+        "discovered": 12,
+        "rejected": 4,
+        "findings": 0,
+        "pages": [
+          {
+            "url": "https://www.seongnam.go.kr/sn02030601",
+            "status": "fetched",
+            "textLength": 2208,
+            "sections": 5,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://www.seongnam.go.kr/city/1000071/10046/contents.do",
+            "status": "failed",
+            "errorCode": "source_http_404"
+          },
+          {
+            "url": "https://seongnam.go.kr/city/1000071/10046/contents.do",
+            "status": "failed",
+            "errorCode": "source_unavailable"
+          }
+        ],
+        "reason": "no_matching_evidence"
+      },
+      "region": "성남시",
+      "searched": true
+    }
+  },
+  "semanticReview": "PENDING",
+  "actualAnswerSuccess": null
+}

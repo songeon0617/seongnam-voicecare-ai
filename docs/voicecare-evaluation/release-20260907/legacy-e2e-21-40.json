@@ -1,0 +1,485 @@
+{
+  "generatedAt": "2026-09-06T16:11:05.209Z",
+  "baseUrl": "http://127.0.0.1:3101",
+  "from": 21,
+  "to": 40,
+  "totalDefinedCases": 61,
+  "results": [
+    {
+      "id": "developmental-situation",
+      "group": "발달장애인 지원",
+      "question": "성인 발달장애인 가족인데 낮 활동과 부모상담을 함께 알아보고 싶어요.",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-developmental-disability-support"
+      ],
+      "httpStatus": 200,
+      "actualRoute": null,
+      "actualServiceIds": [],
+      "actualClarificationId": null,
+      "routingSource": null,
+      "routingReason": null,
+      "answerTitle": "공식 검색을 완료하지 못했습니다",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": false,
+      "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+    },
+    {
+      "id": "medical-name",
+      "group": "장애인 보건·의료서비스 지원",
+      "question": "장애인 보건·의료서비스 지원에는 어떤 항목이 있나요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-disabled-medical-support"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-disabled-medical-support"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "장애인 보건·의료서비스 지원",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "medical-colloquial",
+      "group": "장애인 보건·의료서비스 지원",
+      "question": "장애검사비 지원받는 제도 있어요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-disabled-medical-support"
+      ],
+      "httpStatus": 200,
+      "actualRoute": null,
+      "actualServiceIds": [],
+      "actualClarificationId": null,
+      "routingSource": null,
+      "routingReason": null,
+      "answerTitle": "공식 검색을 완료하지 못했습니다",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": false,
+      "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+    },
+    {
+      "id": "medical-situation",
+      "group": "장애인 보건·의료서비스 지원",
+      "question": "등록장애인인데 진단 검사와 의료비가 부담돼요.",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-disabled-medical-support"
+      ],
+      "httpStatus": 200,
+      "actualRoute": null,
+      "actualServiceIds": [],
+      "actualClarificationId": null,
+      "routingSource": null,
+      "routingReason": null,
+      "answerTitle": "공식 검색을 완료하지 못했습니다",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": false,
+      "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+    },
+    {
+      "id": "dementia-name",
+      "group": "중원구보건소 치매안심센터",
+      "question": "중원구보건소 치매안심센터 연락처가 어떻게 되나요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-dementia-center"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-dementia-center"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "중원구보건소 치매안심센터",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "dementia-colloquial",
+      "group": "중원구보건소 치매안심센터",
+      "question": "기억력 검사 어디서 받을 수 있어요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-dementia-center"
+      ],
+      "httpStatus": 200,
+      "actualRoute": null,
+      "actualServiceIds": [],
+      "actualClarificationId": null,
+      "routingSource": null,
+      "routingReason": null,
+      "answerTitle": "공식 검색을 완료하지 못했습니다",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": false,
+      "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+    },
+    {
+      "id": "dementia-situation",
+      "group": "중원구보건소 치매안심센터",
+      "question": "요즘 자꾸 깜빡해서 치매 검사와 상담을 받아보고 싶어요.",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-dementia-center"
+      ],
+      "httpStatus": 200,
+      "actualRoute": null,
+      "actualServiceIds": [],
+      "actualClarificationId": null,
+      "routingSource": null,
+      "routingReason": null,
+      "answerTitle": "공식 검색을 완료하지 못했습니다",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": false,
+      "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+    },
+    {
+      "id": "home-health-name",
+      "group": "맞춤형 방문건강관리",
+      "question": "맞춤형 방문건강관리 대상과 비용을 알려주세요.",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-home-health-care"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-home-health-care"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "맞춤형 방문건강관리",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "home-health-colloquial",
+      "group": "맞춤형 방문건강관리",
+      "question": "간호사가 집에 와서 건강 봐주는 거 있나요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-home-health-care"
+      ],
+      "httpStatus": 200,
+      "actualRoute": null,
+      "actualServiceIds": [],
+      "actualClarificationId": null,
+      "routingSource": null,
+      "routingReason": null,
+      "answerTitle": "공식 검색을 완료하지 못했습니다",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": false,
+      "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+    },
+    {
+      "id": "home-health-situation",
+      "group": "맞춤형 방문건강관리",
+      "question": "성남에 사는 차상위 만성질환자인데 집에서 건강상담을 받고 싶어요.",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-home-health-care"
+      ],
+      "httpStatus": 200,
+      "actualRoute": null,
+      "actualServiceIds": [],
+      "actualClarificationId": null,
+      "routingSource": null,
+      "routingReason": null,
+      "answerTitle": "공식 검색을 완료하지 못했습니다",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": false,
+      "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+    },
+    {
+      "id": "kiosk-name",
+      "group": "무인민원발급기 이용 안내",
+      "question": "무인민원발급기 이용 안내와 설치 장소를 알려주세요.",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-unmanned-civil-service-kiosk"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-unmanned-civil-service-kiosk"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "무인민원발급기 이용 안내",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "kiosk-colloquial",
+      "group": "무인민원발급기 이용 안내",
+      "question": "등본을 기계로 뽑으려면 어디서 확인해요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-unmanned-civil-service-kiosk"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-unmanned-civil-service-kiosk"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "무인민원발급기 이용 안내",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "kiosk-situation",
+      "group": "무인민원발급기 이용 안내",
+      "question": "주민센터가 닫았는데 무인으로 가족관계증명서를 발급하고 싶어요.",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-unmanned-civil-service-kiosk"
+      ],
+      "httpStatus": 200,
+      "actualRoute": null,
+      "actualServiceIds": [],
+      "actualClarificationId": null,
+      "routingSource": null,
+      "routingReason": null,
+      "answerTitle": "공식 검색을 완료하지 못했습니다",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": false,
+      "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+    },
+    {
+      "id": "emergency-name",
+      "group": "긴급복지지원 사업",
+      "question": "긴급복지지원 사업은 어디서 신청하나요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-emergency-welfare-support"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-emergency-welfare-support"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "긴급복지지원 사업",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "emergency-colloquial",
+      "group": "긴급복지지원 사업",
+      "question": "실직해서 당장 생계비가 없는데 받을 수 있는 도움 있나요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-emergency-welfare-support"
+      ],
+      "httpStatus": 200,
+      "actualRoute": null,
+      "actualServiceIds": [],
+      "actualClarificationId": null,
+      "routingSource": null,
+      "routingReason": null,
+      "answerTitle": "공식 검색을 완료하지 못했습니다",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": false,
+      "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+    },
+    {
+      "id": "emergency-situation",
+      "group": "긴급복지지원 사업",
+      "question": "가장의 수입이 끊겨서 월세와 의료비를 감당하기 막막해요.",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-emergency-welfare-support"
+      ],
+      "httpStatus": 200,
+      "actualRoute": null,
+      "actualServiceIds": [],
+      "actualClarificationId": null,
+      "routingSource": null,
+      "routingReason": null,
+      "answerTitle": "공식 검색을 완료하지 못했습니다",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": false,
+      "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+    },
+    {
+      "id": "bus-name",
+      "group": "장애인 버스요금 지원",
+      "question": "장애인 버스요금 지원 한도가 얼마예요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-disabled-bus-fare-support"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-disabled-bus-fare-support"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "장애인 버스요금 지원",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "bus-colloquial",
+      "group": "장애인 버스요금 지원",
+      "question": "장애인 버스비 환급받을 수 있어요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-disabled-bus-fare-support"
+      ],
+      "httpStatus": 200,
+      "actualRoute": null,
+      "actualServiceIds": [],
+      "actualClarificationId": null,
+      "routingSource": null,
+      "routingReason": null,
+      "answerTitle": "공식 검색을 완료하지 못했습니다",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": false,
+      "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+    },
+    {
+      "id": "bus-situation",
+      "group": "장애인 버스요금 지원",
+      "question": "성남 등록장애인인데 버스 타고 다닌 비용을 지원받고 싶어요.",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-disabled-bus-fare-support"
+      ],
+      "httpStatus": 200,
+      "actualRoute": null,
+      "actualServiceIds": [],
+      "actualClarificationId": null,
+      "routingSource": null,
+      "routingReason": null,
+      "answerTitle": "공식 검색을 완료하지 못했습니다",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": false,
+      "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+    },
+    {
+      "id": "edge-mobility-clarify",
+      "group": "경계: 복수 후보",
+      "question": "장애인이 이동할 때 차량을 불러야 할지 택시비 지원을 받아야 할지 모르겠어요.",
+      "expectedRoute": "CLARIFY",
+      "expectedServiceIds": [
+        "seongnam-special-transportation",
+        "seongnam-disabled-taxi-voucher"
+      ],
+      "expectedClarificationId": "mobility_vehicle_or_fare",
+      "httpStatus": 200,
+      "actualRoute": null,
+      "actualServiceIds": [],
+      "actualClarificationId": null,
+      "routingSource": null,
+      "routingReason": null,
+      "answerTitle": "공식 검색을 완료하지 못했습니다",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": true,
+      "wrongService": false,
+      "wrongClarification": true,
+      "pass": false,
+      "failureReason": "wrong_route: expected CLARIFY, got HTTP 200; wrong_clarification: expected mobility_vehicle_or_fare, got none"
+    }
+  ]
+}

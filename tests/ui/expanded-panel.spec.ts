@@ -44,6 +44,7 @@ test("real offline API: wheelchair purpose selection preserves question and reac
   await expect(page.getByRole("heading",{name:"특별교통수단 운영",exact:true})).toBeVisible();
 });
 test("search evidence is shown only after a complete validated response with source and unknown dates",async({page})=>{
+  await installSpeechMock(page);
   const quote="공공시설마다 이용 대상과 방법이 다르므로 해당 시설의 공식 안내를 확인하세요. 이 문장은 오프라인 UI 시험용입니다.";
   const url="https://www.seongnam.go.kr/cn020101";
   await page.route("**/api/public-information/search",route=>route.fulfill({json:{query:"시설",kind:"partial_answer",results:[],hasResults:false,
@@ -53,8 +54,11 @@ test("search evidence is shown only after a complete validated response with sou
   await expect(page.getByRole("blockquote")).toHaveText(quote);
   await expect(page.getByRole("link",{name:"시설 안내 (공식 원문)"})).toHaveAttribute("href",url);
   await expect(page.getByText(/게시·수정일: 미확인/)).toBeVisible();
+  await page.getByRole("button",{name:"공식 원문 듣기",exact:true}).click();
+  expect(await page.evaluate(()=>window.voiceTest.spoken.map(s=>s.text).join(""))).toBe(quote);
 });
-for(const width of [360,390,768,1440])test(`layout ${width}px, focus, clarification/recovery and 200 percent text`,async({page})=>{
+for(const width of [320,360,390,768,1440])test(`layout ${width}px, focus, clarification/recovery and 200 percent text`,async({page})=>{
+  await installSpeechMock(page);
   // Layout checks use fixtures; the two tests above cover the real offline API.
   // Repeating all viewport requests would intentionally exceed its 30/minute limit.
   await page.route("**/api/public-information/search",route=>{
@@ -69,9 +73,19 @@ for(const width of [360,390,768,1440])test(`layout ${width}px, focus, clarificat
   await page.getByRole("textbox").focus();await expect(page.getByRole("textbox")).toBeFocused();
   await page.getByRole("textbox").fill("이동수단 알려줘");await page.getByRole("button",{name:"질문 보내기"}).click();
   await expect(page.getByRole("button",{name:"일반 버스·지하철 이용",exact:true})).toBeVisible();
+  if(width===320||width===390){
+    for(const name of ["질문 보내기","마이크로 질문하기","일반 버스·지하철 이용"]){
+      const button=page.getByRole("button",{name,exact:true});await expect(button).toBeVisible();
+      const box=await button.boundingBox();expect(box!.height).toBeGreaterThanOrEqual(44);expect(box!.width).toBeGreaterThanOrEqual(44);
+    }
+  }
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
   mkdirSync("docs/voicecare-visual",{recursive:true});await page.screenshot({path:`docs/voicecare-visual/clarify-${width}.png`,fullPage:true});
   await page.getByRole("button",{name:"일반 버스·지하철 이용",exact:true}).click();await expect(page.getByRole("status")).toContainText("검색이 현재 꺼져");
+  if(width===320||width===390){
+    const listen=page.getByRole("button",{name:"답변 듣기",exact:true});await expect(listen).toBeVisible();
+    const box=await listen.boundingBox();expect(box!.height).toBeGreaterThanOrEqual(44);expect(box!.width).toBeGreaterThanOrEqual(44);
+  }
   await page.addStyleTag({content:"html{font-size:200% !important}"});
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
   await page.screenshot({path:`docs/voicecare-visual/recovery-text200-${width}.png`,fullPage:true});

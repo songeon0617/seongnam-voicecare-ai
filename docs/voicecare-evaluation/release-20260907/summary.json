@@ -1,0 +1,2977 @@
+{
+  "generatedAt": "2026-09-06T16:11:06.564Z",
+  "baseline": "8f5436d",
+  "codeState": "UNCOMMITTED_LOCAL_RELEASE_FIXES_NO_PUSH",
+  "evaluationSha256": "1bd0751e00168b2d38831359c734c2dd1cd9d712943fdc3563f389a50e4df643",
+  "disabled206": {
+    "causes": {
+      "feature_disabled": 206,
+      "api_provider_not_configured": 0,
+      "tls_network_failure": 0,
+      "official_fetch_failure": 0,
+      "zero_search_results": 0,
+      "official_validation_failure": 0,
+      "source_length_exceeded": 0,
+      "answer_extraction_failure": 0,
+      "timeout": 0,
+      "cost_rate_limit": 0,
+      "other": 0
+    },
+    "note": "An injected disabled provider short-circuited all 206. Zero counts in other categories mean NOT EXECUTED, not proven healthy."
+  },
+  "stage1": {
+    "mode": "ORIGINAL_20_CASE_STAGE1_LIVE_PROVIDER_RESULTS",
+    "total": 20,
+    "contractPass": 20,
+    "counts": {
+      "structured_direct_success": 2,
+      "web_search_grounded_success": 4,
+      "clarification_success": 0,
+      "unsupported_correct": 0,
+      "safe_fallback": 11,
+      "provider_network_failure": 0,
+      "wrong_answer": 0,
+      "wrong_source": 2,
+      "no_answer_despite_official_evidence": 1
+    },
+    "actualAnswerCompletion": {
+      "count": 6,
+      "denominator": 20,
+      "rate": 0.3
+    },
+    "safeFallbackRate": 0.55,
+    "rows": [
+      {
+        "id": "domain-009",
+        "question": "장애인 보조기구 지원 신청 방법",
+        "domain": "장애인",
+        "kind": "answer",
+        "schemaPass": true,
+        "classification": "structured_direct_success",
+        "rationale": "기존 보조기구 원문·신청처 매핑 보존",
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/wf-pm020101/23003"
+        ]
+      },
+      {
+        "id": "domain-027",
+        "question": "취업 면접 보러 가는데 정장 빌릴 수 있어요",
+        "domain": "청년",
+        "kind": "search_unavailable",
+        "schemaPass": true,
+        "classification": "safe_fallback",
+        "rationale": "정장 대여 질문에서 검색된 과거 신청 주소 404; 현재 대여 경로 미답변",
+        "sourceUrls": [],
+        "diagnostics": {
+          "phase": "sources",
+          "discovered": 1,
+          "rejected": 16,
+          "findings": 0,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/apply/view.do?appIdx=3669",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            }
+          ]
+        }
+      },
+      {
+        "id": "domain-031",
+        "question": "성남 청년들이 모임하는 공공 공간 찾아줘",
+        "domain": "청년",
+        "kind": "partial_answer",
+        "schemaPass": true,
+        "classification": "wrong_source",
+        "rationale": "실평가: 청년 공간 대신 공공데이터 담당자. 수정 재생: 청년 사업표는 찾았으나 공간 위치/이용 방법 미완수",
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/sn030105"
+        ],
+        "diagnostics": {
+          "phase": "complete",
+          "discovered": 6,
+          "rejected": 11,
+          "findings": 2,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/city/1001740/11373/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/ct-cn090301",
+              "status": "fetched",
+              "textLength": 4747,
+              "sections": 1,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/apply/event.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/sn030105",
+              "status": "fetched",
+              "textLength": 402,
+              "sections": 1,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/cn030507",
+              "status": "fetched",
+              "textLength": 273,
+              "sections": 1,
+              "omittedSections": 0
+            }
+          ]
+        }
+      },
+      {
+        "id": "domain-052",
+        "question": "보건증 발급받으려면 성남 어디로 가요",
+        "domain": "건강·보건소",
+        "kind": "partial_answer",
+        "schemaPass": true,
+        "classification": "web_search_grounded_success",
+        "rationale": "구별 보건소 민원실·발급 방법·인터넷 발급 조건이 원문에 있음",
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/health/ht-pm020101/6010?curPage=1&cvlcptBizSn=6010&srchText=%EA%B1%B4%EA%B0%95%EC%A7%84%EB%8B%A8%EA%B2%B0%EA%B3%BC%EC%84%9C"
+        ],
+        "diagnostics": {
+          "phase": "complete",
+          "discovered": 12,
+          "rejected": 5,
+          "findings": 2,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/health/ht-pm020101/6010?curPage=1&cvlcptBizSn=6010&srchText=%EA%B1%B4%EA%B0%95%EC%A7%84%EB%8B%A8%EA%B2%B0%EA%B3%BC%EC%84%9C",
+              "status": "fetched",
+              "textLength": 821,
+              "sections": 1,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/health/index",
+              "status": "fetched",
+              "textLength": 796,
+              "sections": 7,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/health/index",
+              "status": "fetched",
+              "textLength": 796,
+              "sections": 7,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/health/ht-pm020101/6010?curPage=1&sortType=&cvlcptBizSn=6010&srchWlfPvsnTypeCd=&srchType=&srchText=%EA%B1%B4%EA%B0%95%EC%A7%84%EB%8B%A8%EA%B2%B0%EA%B3%BC%EC%84%9C",
+              "status": "fetched",
+              "textLength": 821,
+              "sections": 1,
+              "omittedSections": 0
+            }
+          ]
+        }
+      },
+      {
+        "id": "domain-053",
+        "question": "담배 끊고 싶은데 무료 상담 있어요",
+        "domain": "건강·보건소",
+        "kind": "official_links",
+        "schemaPass": true,
+        "classification": "safe_fallback",
+        "rationale": "금연 상담 안내 미답변",
+        "sourceUrls": [],
+        "diagnostics": {
+          "phase": "extraction",
+          "discovered": 1,
+          "rejected": 16,
+          "findings": 0,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/city/1000098/10299/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/apply/integration/step1?instiCode=INST_CITY_01&facilityId=I0588",
+              "status": "fetched",
+              "textLength": 137,
+              "sections": 1,
+              "omittedSections": 0
+            }
+          ],
+          "reason": "no_matching_evidence"
+        }
+      },
+      {
+        "id": "domain-066",
+        "question": "성남에서 버스 타려면",
+        "domain": "대중교통·이동지원",
+        "kind": "partial_answer",
+        "schemaPass": true,
+        "classification": "web_search_grounded_success",
+        "rationale": "일반 버스 노선/경로 확인과 예매 경로가 원문에 있음",
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/tr010200"
+        ],
+        "diagnostics": {
+          "phase": "complete",
+          "discovered": 1,
+          "rejected": 17,
+          "findings": 1,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/tr010200",
+              "status": "fetched",
+              "textLength": 658,
+              "sections": 1,
+              "omittedSections": 0
+            }
+          ]
+        }
+      },
+      {
+        "id": "domain-068",
+        "question": "특별교통수단 신청 방법",
+        "domain": "대중교통·이동지원",
+        "kind": "answer",
+        "schemaPass": true,
+        "classification": "structured_direct_success",
+        "rationale": "기존 특별교통수단 원문·신청 조건 매핑 보존",
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/wf-pm020101/23018"
+        ]
+      },
+      {
+        "id": "domain-071",
+        "question": "판교역에서 성남시청 가는 대중교통 알려줘",
+        "domain": "대중교통·이동지원",
+        "kind": "search_unavailable",
+        "schemaPass": true,
+        "classification": "safe_fallback",
+        "rationale": "판교역-시청 이동 경로 미답변",
+        "sourceUrls": [],
+        "diagnostics": {
+          "phase": "sources",
+          "discovered": 4,
+          "rejected": 14,
+          "findings": 0,
+          "pages": [
+            {
+              "url": "https://seongnam.go.kr/apply/view.do?appIdx=3679",
+              "status": "failed",
+              "errorCode": "source_unavailable"
+            },
+            {
+              "url": "https://seongnam.go.kr/snursc/images/content/b_sansung2.png",
+              "status": "failed",
+              "errorCode": "source_http_200"
+            },
+            {
+              "url": "https://seongnam.go.kr/apply/view.do?appIdx=3598",
+              "status": "failed",
+              "errorCode": "source_unavailable"
+            }
+          ]
+        }
+      },
+      {
+        "id": "domain-073",
+        "question": "성남 시청에 차 가져가면 주차할 수 있어요",
+        "domain": "주차",
+        "kind": "official_links",
+        "schemaPass": true,
+        "classification": "safe_fallback",
+        "rationale": "수정 재생에서 청사에 주차장이 있음을 확인했으나 실제 주차 이용 조건 미완수",
+        "sourceUrls": [],
+        "diagnostics": {
+          "phase": "extraction",
+          "discovered": 5,
+          "rejected": 12,
+          "findings": 2,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/city/1000050/10040/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/city/1002241/11467/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/sn04050101",
+              "status": "fetched",
+              "textLength": 1744,
+              "sections": 3,
+              "omittedSections": 0
+            }
+          ],
+          "reason": "no_matching_evidence"
+        }
+      },
+      {
+        "id": "domain-075",
+        "question": "성남 거주자우선주차 신청하는 법",
+        "domain": "주차",
+        "kind": "official_links",
+        "schemaPass": true,
+        "classification": "safe_fallback",
+        "rationale": "거주자우선주차 신청 미답변",
+        "sourceUrls": [],
+        "diagnostics": {
+          "phase": "extraction",
+          "discovered": 12,
+          "rejected": 4,
+          "findings": 0,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/sn02030601",
+              "status": "fetched",
+              "textLength": 2208,
+              "sections": 5,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/city/1000071/10046/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://seongnam.go.kr/city/1000071/10046/contents.do",
+              "status": "failed",
+              "errorCode": "source_unavailable"
+            }
+          ],
+          "reason": "no_matching_evidence"
+        }
+      },
+      {
+        "id": "domain-081",
+        "question": "성남시청에 민원 넣고 싶은데 어디서 시작해요",
+        "domain": "민원",
+        "kind": "partial_answer",
+        "schemaPass": true,
+        "classification": "web_search_grounded_success",
+        "rationale": "성남시에 바란다/국민신문고 및 공식 상담 경로가 원문에 있음",
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/VFVhtEc",
+          "https://www.seongnam.go.kr/sn02030601"
+        ],
+        "diagnostics": {
+          "phase": "complete",
+          "discovered": 10,
+          "rejected": 7,
+          "findings": 1,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/city/1001126/10798/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/VFVhtEc",
+              "status": "fetched",
+              "textLength": 495,
+              "sections": 1,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/sn02030601",
+              "status": "fetched",
+              "textLength": 2208,
+              "sections": 5,
+              "omittedSections": 0
+            }
+          ]
+        }
+      },
+      {
+        "id": "domain-083",
+        "question": "전입신고 온라인으로 할 수 있나요",
+        "domain": "민원",
+        "kind": "official_links",
+        "schemaPass": true,
+        "classification": "safe_fallback",
+        "rationale": "전입신고 온라인 가능 여부 미답변",
+        "sourceUrls": [],
+        "diagnostics": {
+          "phase": "extraction",
+          "discovered": 4,
+          "rejected": 12,
+          "findings": 1,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/city/1000094/10063/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/apply/online/view?appIdx=3609&menuType=welfare",
+              "status": "fetched",
+              "textLength": 84,
+              "sections": 1,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/pm04041101?deptCode=38000000000&orgSelect=orgSelect02",
+              "status": "fetched",
+              "textLength": 24545,
+              "sections": 0,
+              "omittedSections": 1
+            }
+          ],
+          "reason": "no_matching_evidence"
+        }
+      },
+      {
+        "id": "domain-097",
+        "question": "성남시 여권 어디서 만들어",
+        "domain": "여권",
+        "kind": "partial_answer",
+        "schemaPass": true,
+        "classification": "web_search_grounded_success",
+        "rationale": "여권 접수 장소·층·주소와 휴무 조건이 원문에 있음",
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/cn02040801"
+        ],
+        "diagnostics": {
+          "phase": "complete",
+          "discovered": 6,
+          "rejected": 12,
+          "findings": 1,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/apply/integration/step1?facilityId=I0681&instiCode=INST_CITY_01",
+              "status": "fetched",
+              "textLength": 137,
+              "sections": 1,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/city/1000079/10052/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://seongnam.go.kr/city/1000080/10053/contents.do",
+              "status": "failed",
+              "errorCode": "source_unavailable"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/cn02040801",
+              "status": "fetched",
+              "textLength": 865,
+              "sections": 1,
+              "omittedSections": 2
+            },
+            {
+              "url": "https://www.seongnam.go.kr/apply/integration/step1?instiCode=INST_CITY_01&facilityId=I0681",
+              "status": "fetched",
+              "textLength": 137,
+              "sections": 1,
+              "omittedSections": 0
+            }
+          ]
+        }
+      },
+      {
+        "id": "domain-098",
+        "question": "성남에서 여권 만들 때 준비물",
+        "domain": "여권",
+        "kind": "partial_answer",
+        "schemaPass": true,
+        "classification": "no_answer_despite_official_evidence",
+        "rationale": "접수 안내만 반환; 질문한 준비물 목록은 완수하지 못함",
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/cn02040801"
+        ],
+        "diagnostics": {
+          "phase": "complete",
+          "discovered": 6,
+          "rejected": 11,
+          "findings": 0,
+          "pages": [
+            {
+              "url": "https://seongnam.go.kr/city/1000081/10054/contents.do",
+              "status": "failed",
+              "errorCode": "source_unavailable"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/city/1000013/10010/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/VFVhtEc",
+              "status": "fetched",
+              "textLength": 495,
+              "sections": 1,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/cn02040801",
+              "status": "fetched",
+              "textLength": 865,
+              "sections": 1,
+              "omittedSections": 2
+            },
+            {
+              "url": "https://www.seongnam.go.kr/apply/integration/step1?instiCode=INST_CITY_01&facilityId=I0681",
+              "status": "fetched",
+              "textLength": 137,
+              "sections": 1,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/pm010201/6306",
+              "status": "fetched",
+              "textLength": 671,
+              "sections": 1,
+              "omittedSections": 0
+            }
+          ]
+        }
+      },
+      {
+        "id": "domain-113",
+        "question": "성남 음식물쓰레기 버리는 법",
+        "domain": "쓰레기·환경",
+        "kind": "official_links",
+        "schemaPass": true,
+        "classification": "safe_fallback",
+        "rationale": "음식물 배출 방법 미답변",
+        "sourceUrls": [],
+        "diagnostics": {
+          "phase": "extraction",
+          "discovered": 6,
+          "rejected": 12,
+          "findings": 0,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/sn02030601",
+              "status": "fetched",
+              "textLength": 2208,
+              "sections": 5,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/city/1000071/10046/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/pm02020101?curPage=1",
+              "status": "fetched",
+              "textLength": 121,
+              "sections": 1,
+              "omittedSections": 0
+            }
+          ],
+          "reason": "no_matching_evidence"
+        }
+      },
+      {
+        "id": "domain-115",
+        "question": "낡은 소파 버릴 때 어떻게 신고해요",
+        "domain": "쓰레기·환경",
+        "kind": "search_unavailable",
+        "schemaPass": true,
+        "classification": "safe_fallback",
+        "rationale": "공식성 필터 밖 폐기물 출처; 배출 신고 방법 미답변",
+        "sourceUrls": [],
+        "diagnostics": {
+          "phase": "sources",
+          "discovered": 0,
+          "rejected": 3,
+          "reason": "official_validation_failed"
+        }
+      },
+      {
+        "id": "domain-130",
+        "question": "시에서 하는 무료 공연 어디서 찾아요",
+        "domain": "문화·행사",
+        "kind": "official_links",
+        "schemaPass": true,
+        "classification": "safe_fallback",
+        "rationale": "수정 재생에서 시 공식 행사 목록의 무료 공연·장소·일정·우천 조건을 함께 보존",
+        "sourceUrls": [],
+        "diagnostics": {
+          "phase": "extraction",
+          "discovered": 9,
+          "rejected": 8,
+          "findings": 3,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/tour/tu-pm020101/6228",
+              "status": "fetched",
+              "textLength": 1287,
+              "sections": 1,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/apply/",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/tour/index",
+              "status": "fetched",
+              "textLength": 8210,
+              "sections": 4,
+              "omittedSections": 1
+            },
+            {
+              "url": "https://www.seongnam.go.kr/apply/integration/step1?instiCode=INST_CITY_01&facilityId=I0588",
+              "status": "fetched",
+              "textLength": 137,
+              "sections": 1,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/pm010201/6228",
+              "status": "fetched",
+              "textLength": 1291,
+              "sections": 1,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/apply/lecture/step1?instiCode=INST_CITY_01&facilityId=L0720",
+              "status": "fetched",
+              "textLength": 167,
+              "sections": 1,
+              "omittedSections": 0
+            }
+          ],
+          "reason": "no_matching_evidence"
+        }
+      },
+      {
+        "id": "domain-134",
+        "question": "성남문화재단 공연표 신청하는데 공식 사이트 알려줘",
+        "domain": "문화·행사",
+        "kind": "partial_answer",
+        "schemaPass": true,
+        "classification": "wrong_source",
+        "rationale": "문화재단 공연표 대신 문화원 등이 나열된 일반 관련사이트를 근거로 표시하던 오류 차단",
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/pm050501"
+        ],
+        "diagnostics": {
+          "phase": "complete",
+          "discovered": 7,
+          "rejected": 11,
+          "findings": 1,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/oa/kOiJeeb.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/oa/qqBf8ia.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://seongnam.go.kr/apply/view.do?appIdx=3598",
+              "status": "failed",
+              "errorCode": "source_unavailable"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/pm050501",
+              "status": "fetched",
+              "textLength": 188,
+              "sections": 1,
+              "omittedSections": 0
+            }
+          ]
+        }
+      },
+      {
+        "id": "domain-138",
+        "question": "성남 도서관 회원증 처음 만드는 방법",
+        "domain": "도서관",
+        "kind": "official_links",
+        "schemaPass": true,
+        "classification": "safe_fallback",
+        "rationale": "도서관 회원증 발급 미답변",
+        "sourceUrls": [],
+        "diagnostics": {
+          "phase": "extraction",
+          "discovered": 8,
+          "rejected": 10,
+          "findings": 0,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/mulga/mulgaDongMain.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/sn02030601",
+              "status": "fetched",
+              "textLength": 2208,
+              "sections": 5,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/city/1000071/10046/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            }
+          ],
+          "reason": "no_matching_evidence"
+        }
+      },
+      {
+        "id": "domain-140",
+        "question": "전자책은 집에서 빌릴 수 있나요",
+        "domain": "도서관",
+        "kind": "search_unavailable",
+        "schemaPass": true,
+        "classification": "safe_fallback",
+        "rationale": "전자책 이용 미답변",
+        "sourceUrls": [],
+        "diagnostics": {
+          "phase": "sources",
+          "discovered": 0,
+          "rejected": 18,
+          "reason": "official_validation_failed"
+        }
+      }
+    ]
+  },
+  "finalReplay": {
+    "mode": "SAVED_PROVIDER_RESPONSES_PLUS_FRESH_HTTPS_NOT_NEW_LIVE_API_EVALUATION",
+    "total": 20,
+    "contractPass": 20,
+    "counts": {
+      "structured_direct_success": 2,
+      "web_search_grounded_success": 5,
+      "clarification_success": 0,
+      "unsupported_correct": 0,
+      "safe_fallback": 10,
+      "provider_network_failure": 0,
+      "wrong_answer": 0,
+      "wrong_source": 0,
+      "no_answer_despite_official_evidence": 3
+    },
+    "actualAnswerCompletion": {
+      "count": 7,
+      "denominator": 20,
+      "rate": 0.35
+    },
+    "safeFallbackRate": 0.5,
+    "rows": [
+      {
+        "id": "domain-009",
+        "question": "장애인 보조기구 지원 신청 방법",
+        "domain": "장애인",
+        "kind": "answer",
+        "schemaPass": true,
+        "classification": "structured_direct_success",
+        "rationale": "기존 보조기구 원문·신청처 매핑 보존",
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/wf-pm020101/23003"
+        ]
+      },
+      {
+        "id": "domain-027",
+        "question": "취업 면접 보러 가는데 정장 빌릴 수 있어요",
+        "domain": "청년",
+        "kind": "search_unavailable",
+        "schemaPass": true,
+        "classification": "safe_fallback",
+        "rationale": "정장 대여 질문에서 검색된 과거 신청 주소 404; 현재 대여 경로 미답변",
+        "sourceUrls": [],
+        "diagnostics": {
+          "phase": "sources",
+          "discovered": 1,
+          "rejected": 16,
+          "findings": 0,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/apply/view.do?appIdx=3669",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            }
+          ],
+          "reason": "original_fetch_failed"
+        }
+      },
+      {
+        "id": "domain-031",
+        "question": "성남 청년들이 모임하는 공공 공간 찾아줘",
+        "domain": "청년",
+        "kind": "partial_answer",
+        "schemaPass": true,
+        "classification": "no_answer_despite_official_evidence",
+        "rationale": "실평가: 청년 공간 대신 공공데이터 담당자. 수정 재생: 청년 사업표는 찾았으나 공간 위치/이용 방법 미완수",
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/ct-cn090301"
+        ],
+        "diagnostics": {
+          "phase": "complete",
+          "discovered": 6,
+          "rejected": 11,
+          "findings": 2,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/city/1001740/11373/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/ct-cn090301",
+              "status": "fetched",
+              "textLength": 4747,
+              "sections": 1,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/apply/event.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            }
+          ]
+        }
+      },
+      {
+        "id": "domain-052",
+        "question": "보건증 발급받으려면 성남 어디로 가요",
+        "domain": "건강·보건소",
+        "kind": "partial_answer",
+        "schemaPass": true,
+        "classification": "web_search_grounded_success",
+        "rationale": "구별 보건소 민원실·발급 방법·인터넷 발급 조건이 원문에 있음",
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/health/ht-pm020101/6010?curPage=1&cvlcptBizSn=6010&srchText=%EA%B1%B4%EA%B0%95%EC%A7%84%EB%8B%A8%EA%B2%B0%EA%B3%BC%EC%84%9C"
+        ],
+        "diagnostics": {
+          "phase": "complete",
+          "discovered": 12,
+          "rejected": 5,
+          "findings": 2,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/health/ht-pm020101/6010?curPage=1&cvlcptBizSn=6010&srchText=%EA%B1%B4%EA%B0%95%EC%A7%84%EB%8B%A8%EA%B2%B0%EA%B3%BC%EC%84%9C",
+              "status": "fetched",
+              "textLength": 821,
+              "sections": 1,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/health/index",
+              "status": "fetched",
+              "textLength": 796,
+              "sections": 0,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/health/index",
+              "status": "fetched",
+              "textLength": 796,
+              "sections": 0,
+              "omittedSections": 0
+            }
+          ]
+        }
+      },
+      {
+        "id": "domain-053",
+        "question": "담배 끊고 싶은데 무료 상담 있어요",
+        "domain": "건강·보건소",
+        "kind": "search_unavailable",
+        "schemaPass": true,
+        "classification": "safe_fallback",
+        "rationale": "금연 상담 안내 미답변",
+        "sourceUrls": [],
+        "diagnostics": {
+          "phase": "sources",
+          "discovered": 1,
+          "rejected": 16,
+          "findings": 0,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/city/1000098/10299/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            }
+          ],
+          "reason": "original_fetch_failed"
+        }
+      },
+      {
+        "id": "domain-066",
+        "question": "성남에서 버스 타려면",
+        "domain": "대중교통·이동지원",
+        "kind": "partial_answer",
+        "schemaPass": true,
+        "classification": "web_search_grounded_success",
+        "rationale": "일반 버스 노선/경로 확인과 예매 경로가 원문에 있음",
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/tr010200"
+        ],
+        "diagnostics": {
+          "phase": "complete",
+          "discovered": 1,
+          "rejected": 17,
+          "findings": 1,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/tr010200",
+              "status": "fetched",
+              "textLength": 658,
+              "sections": 1,
+              "omittedSections": 0
+            }
+          ]
+        }
+      },
+      {
+        "id": "domain-068",
+        "question": "특별교통수단 신청 방법",
+        "domain": "대중교통·이동지원",
+        "kind": "answer",
+        "schemaPass": true,
+        "classification": "structured_direct_success",
+        "rationale": "기존 특별교통수단 원문·신청 조건 매핑 보존",
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/wf-pm020101/23018"
+        ]
+      },
+      {
+        "id": "domain-071",
+        "question": "판교역에서 성남시청 가는 대중교통 알려줘",
+        "domain": "대중교통·이동지원",
+        "kind": "search_unavailable",
+        "schemaPass": true,
+        "classification": "safe_fallback",
+        "rationale": "판교역-시청 이동 경로 미답변",
+        "sourceUrls": [],
+        "diagnostics": {
+          "phase": "sources",
+          "discovered": 4,
+          "rejected": 14,
+          "findings": 0,
+          "pages": [
+            {
+              "url": "https://seongnam.go.kr/apply/view.do?appIdx=3679",
+              "status": "failed",
+              "errorCode": "source_unavailable"
+            },
+            {
+              "url": "https://seongnam.go.kr/snursc/images/content/b_sansung2.png",
+              "status": "failed",
+              "errorCode": "source_http_200"
+            },
+            {
+              "url": "https://seongnam.go.kr/apply/view.do?appIdx=3598",
+              "status": "failed",
+              "errorCode": "source_unavailable"
+            }
+          ],
+          "reason": "original_fetch_failed"
+        }
+      },
+      {
+        "id": "domain-073",
+        "question": "성남 시청에 차 가져가면 주차할 수 있어요",
+        "domain": "주차",
+        "kind": "partial_answer",
+        "schemaPass": true,
+        "classification": "no_answer_despite_official_evidence",
+        "rationale": "수정 재생에서 청사에 주차장이 있음을 확인했으나 실제 주차 이용 조건 미완수",
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/sn04050101"
+        ],
+        "diagnostics": {
+          "phase": "complete",
+          "discovered": 5,
+          "rejected": 12,
+          "findings": 2,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/city/1000050/10040/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/city/1002241/11467/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/sn04050101",
+              "status": "fetched",
+              "textLength": 1744,
+              "sections": 3,
+              "omittedSections": 0
+            }
+          ]
+        }
+      },
+      {
+        "id": "domain-075",
+        "question": "성남 거주자우선주차 신청하는 법",
+        "domain": "주차",
+        "kind": "search_unavailable",
+        "schemaPass": true,
+        "classification": "safe_fallback",
+        "rationale": "거주자우선주차 신청 미답변",
+        "sourceUrls": [],
+        "diagnostics": {
+          "phase": "extraction",
+          "discovered": 12,
+          "rejected": 4,
+          "findings": 0,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/sn02030601",
+              "status": "fetched",
+              "textLength": 2208,
+              "sections": 5,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/city/1000071/10046/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://seongnam.go.kr/city/1000071/10046/contents.do",
+              "status": "failed",
+              "errorCode": "source_unavailable"
+            }
+          ],
+          "reason": "no_relevant_evidence"
+        }
+      },
+      {
+        "id": "domain-081",
+        "question": "성남시청에 민원 넣고 싶은데 어디서 시작해요",
+        "domain": "민원",
+        "kind": "partial_answer",
+        "schemaPass": true,
+        "classification": "web_search_grounded_success",
+        "rationale": "성남시에 바란다/국민신문고 및 공식 상담 경로가 원문에 있음",
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/VFVhtEc",
+          "https://www.seongnam.go.kr/sn02030601"
+        ],
+        "diagnostics": {
+          "phase": "complete",
+          "discovered": 10,
+          "rejected": 7,
+          "findings": 1,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/city/1001126/10798/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/VFVhtEc",
+              "status": "fetched",
+              "textLength": 495,
+              "sections": 1,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/sn02030601",
+              "status": "fetched",
+              "textLength": 2208,
+              "sections": 5,
+              "omittedSections": 0
+            }
+          ]
+        }
+      },
+      {
+        "id": "domain-083",
+        "question": "전입신고 온라인으로 할 수 있나요",
+        "domain": "민원",
+        "kind": "search_unavailable",
+        "schemaPass": true,
+        "classification": "safe_fallback",
+        "rationale": "전입신고 온라인 가능 여부 미답변",
+        "sourceUrls": [],
+        "diagnostics": {
+          "phase": "extraction",
+          "discovered": 4,
+          "rejected": 12,
+          "findings": 1,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/city/1000094/10063/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/apply/online/view?appIdx=3609&menuType=welfare",
+              "status": "fetched",
+              "textLength": 84,
+              "sections": 0,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/pm04041101?deptCode=38000000000&orgSelect=orgSelect02",
+              "status": "fetched",
+              "textLength": 24545,
+              "sections": 0,
+              "omittedSections": 1
+            }
+          ],
+          "reason": "no_relevant_evidence"
+        }
+      },
+      {
+        "id": "domain-097",
+        "question": "성남시 여권 어디서 만들어",
+        "domain": "여권",
+        "kind": "partial_answer",
+        "schemaPass": true,
+        "classification": "web_search_grounded_success",
+        "rationale": "여권 접수 장소·층·주소와 휴무 조건이 원문에 있음",
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/cn02040801"
+        ],
+        "diagnostics": {
+          "phase": "complete",
+          "discovered": 8,
+          "rejected": 10,
+          "findings": 1,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/apply/integration/step1?facilityId=I0681&instiCode=INST_CITY_01",
+              "status": "fetched",
+              "textLength": 137,
+              "sections": 0,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/city/1000083/10056/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://seongnam.go.kr/city/1000080/10053/contents.do",
+              "status": "failed",
+              "errorCode": "source_unavailable"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/cn02040801",
+              "status": "fetched",
+              "textLength": 865,
+              "sections": 1,
+              "omittedSections": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "domain-098",
+        "question": "성남에서 여권 만들 때 준비물",
+        "domain": "여권",
+        "kind": "partial_answer",
+        "schemaPass": true,
+        "classification": "no_answer_despite_official_evidence",
+        "rationale": "접수 안내만 반환; 질문한 준비물 목록은 완수하지 못함",
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/cn02040801"
+        ],
+        "diagnostics": {
+          "phase": "complete",
+          "discovered": 6,
+          "rejected": 11,
+          "findings": 0,
+          "pages": [
+            {
+              "url": "https://seongnam.go.kr/city/1000081/10054/contents.do",
+              "status": "failed",
+              "errorCode": "source_unavailable"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/city/1000013/10010/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/VFVhtEc",
+              "status": "fetched",
+              "textLength": 495,
+              "sections": 1,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/cn02040801",
+              "status": "fetched",
+              "textLength": 865,
+              "sections": 1,
+              "omittedSections": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "domain-113",
+        "question": "성남 음식물쓰레기 버리는 법",
+        "domain": "쓰레기·환경",
+        "kind": "search_unavailable",
+        "schemaPass": true,
+        "classification": "safe_fallback",
+        "rationale": "음식물 배출 방법 미답변",
+        "sourceUrls": [],
+        "diagnostics": {
+          "phase": "extraction",
+          "discovered": 6,
+          "rejected": 12,
+          "findings": 0,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/sn02030601",
+              "status": "fetched",
+              "textLength": 2208,
+              "sections": 5,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/city/1000071/10046/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/pm02020101?curPage=1",
+              "status": "fetched",
+              "textLength": 121,
+              "sections": 1,
+              "omittedSections": 0
+            }
+          ],
+          "reason": "no_relevant_evidence"
+        }
+      },
+      {
+        "id": "domain-115",
+        "question": "낡은 소파 버릴 때 어떻게 신고해요",
+        "domain": "쓰레기·환경",
+        "kind": "search_unavailable",
+        "schemaPass": true,
+        "classification": "safe_fallback",
+        "rationale": "공식성 필터 밖 폐기물 출처; 배출 신고 방법 미답변",
+        "sourceUrls": [],
+        "diagnostics": {
+          "phase": "sources",
+          "discovered": 0,
+          "rejected": 3,
+          "findings": 0,
+          "pages": [],
+          "reason": "official_validation_failed"
+        }
+      },
+      {
+        "id": "domain-130",
+        "question": "시에서 하는 무료 공연 어디서 찾아요",
+        "domain": "문화·행사",
+        "kind": "partial_answer",
+        "schemaPass": true,
+        "classification": "web_search_grounded_success",
+        "rationale": "수정 재생에서 시 공식 행사 목록의 무료 공연·장소·일정·우천 조건을 함께 보존",
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/tour/tu-pm020101/6228"
+        ],
+        "diagnostics": {
+          "phase": "complete",
+          "discovered": 9,
+          "rejected": 8,
+          "findings": 3,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/tour/tu-pm020101/6228",
+              "status": "fetched",
+              "textLength": 1287,
+              "sections": 1,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/apply/",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/tour/index",
+              "status": "fetched",
+              "textLength": 8210,
+              "sections": 0,
+              "omittedSections": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "domain-134",
+        "question": "성남문화재단 공연표 신청하는데 공식 사이트 알려줘",
+        "domain": "문화·행사",
+        "kind": "search_unavailable",
+        "schemaPass": true,
+        "classification": "safe_fallback",
+        "rationale": "문화재단 공연표 대신 문화원 등이 나열된 일반 관련사이트를 근거로 표시하던 오류 차단",
+        "sourceUrls": [],
+        "diagnostics": {
+          "phase": "sources",
+          "discovered": 7,
+          "rejected": 11,
+          "findings": 1,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/oa/kOiJeeb.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/oa/qqBf8ia.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://seongnam.go.kr/apply/view.do?appIdx=3598",
+              "status": "failed",
+              "errorCode": "source_unavailable"
+            }
+          ],
+          "reason": "original_fetch_failed"
+        }
+      },
+      {
+        "id": "domain-138",
+        "question": "성남 도서관 회원증 처음 만드는 방법",
+        "domain": "도서관",
+        "kind": "search_unavailable",
+        "schemaPass": true,
+        "classification": "safe_fallback",
+        "rationale": "도서관 회원증 발급 미답변",
+        "sourceUrls": [],
+        "diagnostics": {
+          "phase": "extraction",
+          "discovered": 8,
+          "rejected": 10,
+          "findings": 0,
+          "pages": [
+            {
+              "url": "https://www.seongnam.go.kr/mulga/mulgaDongMain.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            },
+            {
+              "url": "https://www.seongnam.go.kr/sn02030601",
+              "status": "fetched",
+              "textLength": 2208,
+              "sections": 5,
+              "omittedSections": 0
+            },
+            {
+              "url": "https://www.seongnam.go.kr/city/1000071/10046/contents.do",
+              "status": "failed",
+              "errorCode": "source_http_404"
+            }
+          ],
+          "reason": "no_relevant_evidence"
+        }
+      },
+      {
+        "id": "domain-140",
+        "question": "전자책은 집에서 빌릴 수 있나요",
+        "domain": "도서관",
+        "kind": "search_unavailable",
+        "schemaPass": true,
+        "classification": "safe_fallback",
+        "rationale": "전자책 이용 미답변",
+        "sourceUrls": [],
+        "diagnostics": {
+          "phase": "sources",
+          "discovered": 0,
+          "rejected": 18,
+          "findings": 0,
+          "pages": [],
+          "reason": "official_validation_failed"
+        }
+      }
+    ]
+  },
+  "stage2": {
+    "status": "NOT_RUN",
+    "reason": "Stage 1 gate failed"
+  },
+  "stage3": {
+    "status": "NOT_RUN",
+    "reason": "Stage 2 not passed; 20-call cap kept"
+  },
+  "finalLiveProbe": {
+    "id": "domain-097",
+    "at": "2026-09-06T16:03:32.662Z",
+    "status": "partial",
+    "actualAnswerSuccess": false,
+    "classification": "no_answer_despite_official_evidence",
+    "reason": "Reservation steps selected instead of passport application location. Subsequently excluded reservation pages from evidence; latest capture replay succeeds, no additional paid call."
+  },
+  "costs": {
+    "paidResponses": 20,
+    "webSearchCalls": 20,
+    "inputTokens": 247051,
+    "outputTokens": 5004,
+    "cacheWrites": 9699,
+    "cached": 81589,
+    "estimatedUsd": 0.6121393,
+    "reservedUsd": 3,
+    "billingActual": null,
+    "estimateSource": "https://developers.openai.com/api/docs/pricing",
+    "replayPaidCalls": 0,
+    "stage2PaidCalls": 0,
+    "stage3PaidCalls": 0,
+    "billingSettingsChanged": false
+  },
+  "verification": {
+    "server": {
+      "total": 176,
+      "pass": 176
+    },
+    "ui": {
+      "total": 53,
+      "pass": 53
+    },
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "build": "PASS",
+    "logSha256": "64a651100030c92fc98fd795997427b304a78fc464bee9c24341f4d10f4fedc8",
+    "legacy61": {
+      "mode": "BUILT_NEXT_HTTP_AI_AND_SEARCH_OFF_ORIGINAL_EXPECTATIONS_UNCHANGED",
+      "total": 61,
+      "pass": 24,
+      "fail": 37,
+      "httpErrors": 0,
+      "note": "Legacy strict route/document contract differs from expanded clarification/search contract. Its hallucination flag is a structural mapping check, not semantic adjudication.",
+      "results": [
+        {
+          "id": "special-name",
+          "group": "특별교통수단 운영",
+          "question": "특별교통수단 운영 신청에 필요한 서류가 뭐예요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-special-transportation"
+          ],
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-special-transportation"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "특별교통수단 운영",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "special-colloquial",
+          "group": "특별교통수단 운영",
+          "question": "휠체어 타는데 부를 수 있는 차 있어요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-special-transportation"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "special-situation",
+          "group": "특별교통수단 운영",
+          "question": "버스를 타기 어려운 휠체어 이용자가 이동할 차량이 필요해요.",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-special-transportation"
+          ],
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-special-transportation"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "특별교통수단 운영",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "taxi-name",
+          "group": "장애인 택시바우처",
+          "question": "장애인 택시바우처 신청하려면 어떻게 해요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-disabled-taxi-voucher"
+          ],
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-disabled-taxi-voucher"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "장애인 택시바우처",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "taxi-colloquial",
+          "group": "장애인 택시바우처",
+          "question": "장애인이 택시비 할인받는 거 있어요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-disabled-taxi-voucher"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "taxi-situation",
+          "group": "장애인 택시바우처",
+          "question": "장애가 심한데 택시 탈 때 요금 지원받고 싶어요.",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-disabled-taxi-voucher"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "care-name",
+          "group": "노인맞춤돌봄서비스",
+          "question": "노인맞춤돌봄서비스는 어디서 신청하나요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-senior-tailored-care"
+          ],
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-senior-tailored-care"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "노인맞춤돌봄서비스",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "care-colloquial",
+          "group": "노인맞춤돌봄서비스",
+          "question": "혼자 사는 어머니 안부를 챙겨주는 도움 있나요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-senior-tailored-care"
+          ],
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-senior-tailored-care"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "노인맞춤돌봄서비스",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "care-situation",
+          "group": "노인맞춤돌봄서비스",
+          "question": "70세 기초연금 수급자인 아버지가 병원 갈 때 동행이 필요해요.",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-senior-tailored-care"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "center-name",
+          "group": "분당노인종합복지관",
+          "question": "분당노인종합복지관 주소와 연락처 알려주세요.",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-bundang-senior-welfare-center"
+          ],
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-bundang-senior-welfare-center"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "분당노인종합복지관",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "center-colloquial",
+          "group": "분당노인종합복지관",
+          "question": "정자동에 어르신 교육이랑 상담하는 복지관 있어요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-bundang-senior-welfare-center"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "center-situation",
+          "group": "분당노인종합복지관",
+          "question": "부모님이 분당에서 프로그램에 참여할 만한 노인복지시설을 찾고 있어요.",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-bundang-senior-welfare-center"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "iot-name",
+          "group": "AI·IoT 기반 어르신 건강관리",
+          "question": "AI·IoT 기반 어르신 건강관리 신청 대상이 누구예요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-senior-ai-iot-health-care"
+          ],
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-senior-ai-iot-health-care"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "AI·IoT 기반 어르신 건강관리",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "iot-colloquial",
+          "group": "AI·IoT 기반 어르신 건강관리",
+          "question": "스마트폰으로 어르신 건강 챙겨주는 서비스 있나요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-senior-ai-iot-health-care"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "iot-situation",
+          "group": "AI·IoT 기반 어르신 건강관리",
+          "question": "70세이고 만성질환이 있는데 앱이랑 스마트기기로 건강관리를 받고 싶어요.",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-senior-ai-iot-health-care"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "device-name",
+          "group": "장애인 보조기구·보장구 지원",
+          "question": "장애인 보조기구·보장구 지원은 어디서 신청해요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-disabled-assistive-devices"
+          ],
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-disabled-assistive-devices"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "장애인 보조기구·보장구 지원",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "device-colloquial",
+          "group": "장애인 보조기구·보장구 지원",
+          "question": "장애인 보행차 지원받을 수 있나요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-disabled-assistive-devices"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "device-situation",
+          "group": "장애인 보조기구·보장구 지원",
+          "question": "차상위 등록장애인인데 욕창 방석을 마련할 때 도움받을 수 있을까요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-disabled-assistive-devices"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "developmental-name",
+          "group": "발달장애인 지원",
+          "question": "발달장애인 지원 서비스 신청 방법을 알려주세요.",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-developmental-disability-support"
+          ],
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-developmental-disability-support"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "발달장애인 지원",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "developmental-colloquial",
+          "group": "발달장애인 지원",
+          "question": "발달장애 자녀가 방과 후에 도움받을 곳이 있나요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-developmental-disability-support"
+          ],
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-developmental-disability-support"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "발달장애인 지원",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "developmental-situation",
+          "group": "발달장애인 지원",
+          "question": "성인 발달장애인 가족인데 낮 활동과 부모상담을 함께 알아보고 싶어요.",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-developmental-disability-support"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "medical-name",
+          "group": "장애인 보건·의료서비스 지원",
+          "question": "장애인 보건·의료서비스 지원에는 어떤 항목이 있나요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-disabled-medical-support"
+          ],
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-disabled-medical-support"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "장애인 보건·의료서비스 지원",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "medical-colloquial",
+          "group": "장애인 보건·의료서비스 지원",
+          "question": "장애검사비 지원받는 제도 있어요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-disabled-medical-support"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "medical-situation",
+          "group": "장애인 보건·의료서비스 지원",
+          "question": "등록장애인인데 진단 검사와 의료비가 부담돼요.",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-disabled-medical-support"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "dementia-name",
+          "group": "중원구보건소 치매안심센터",
+          "question": "중원구보건소 치매안심센터 연락처가 어떻게 되나요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-dementia-center"
+          ],
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-dementia-center"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "중원구보건소 치매안심센터",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "dementia-colloquial",
+          "group": "중원구보건소 치매안심센터",
+          "question": "기억력 검사 어디서 받을 수 있어요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-dementia-center"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "dementia-situation",
+          "group": "중원구보건소 치매안심센터",
+          "question": "요즘 자꾸 깜빡해서 치매 검사와 상담을 받아보고 싶어요.",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-dementia-center"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "home-health-name",
+          "group": "맞춤형 방문건강관리",
+          "question": "맞춤형 방문건강관리 대상과 비용을 알려주세요.",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-home-health-care"
+          ],
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-home-health-care"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "맞춤형 방문건강관리",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "home-health-colloquial",
+          "group": "맞춤형 방문건강관리",
+          "question": "간호사가 집에 와서 건강 봐주는 거 있나요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-home-health-care"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "home-health-situation",
+          "group": "맞춤형 방문건강관리",
+          "question": "성남에 사는 차상위 만성질환자인데 집에서 건강상담을 받고 싶어요.",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-home-health-care"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "kiosk-name",
+          "group": "무인민원발급기 이용 안내",
+          "question": "무인민원발급기 이용 안내와 설치 장소를 알려주세요.",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-unmanned-civil-service-kiosk"
+          ],
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-unmanned-civil-service-kiosk"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "무인민원발급기 이용 안내",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "kiosk-colloquial",
+          "group": "무인민원발급기 이용 안내",
+          "question": "등본을 기계로 뽑으려면 어디서 확인해요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-unmanned-civil-service-kiosk"
+          ],
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-unmanned-civil-service-kiosk"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "무인민원발급기 이용 안내",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "kiosk-situation",
+          "group": "무인민원발급기 이용 안내",
+          "question": "주민센터가 닫았는데 무인으로 가족관계증명서를 발급하고 싶어요.",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-unmanned-civil-service-kiosk"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "emergency-name",
+          "group": "긴급복지지원 사업",
+          "question": "긴급복지지원 사업은 어디서 신청하나요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-emergency-welfare-support"
+          ],
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-emergency-welfare-support"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "긴급복지지원 사업",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "emergency-colloquial",
+          "group": "긴급복지지원 사업",
+          "question": "실직해서 당장 생계비가 없는데 받을 수 있는 도움 있나요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-emergency-welfare-support"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "emergency-situation",
+          "group": "긴급복지지원 사업",
+          "question": "가장의 수입이 끊겨서 월세와 의료비를 감당하기 막막해요.",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-emergency-welfare-support"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "bus-name",
+          "group": "장애인 버스요금 지원",
+          "question": "장애인 버스요금 지원 한도가 얼마예요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-disabled-bus-fare-support"
+          ],
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-disabled-bus-fare-support"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "장애인 버스요금 지원",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "bus-colloquial",
+          "group": "장애인 버스요금 지원",
+          "question": "장애인 버스비 환급받을 수 있어요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-disabled-bus-fare-support"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "bus-situation",
+          "group": "장애인 버스요금 지원",
+          "question": "성남 등록장애인인데 버스 타고 다닌 비용을 지원받고 싶어요.",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-disabled-bus-fare-support"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "edge-mobility-clarify",
+          "group": "경계: 복수 후보",
+          "question": "장애인이 이동할 때 차량을 불러야 할지 택시비 지원을 받아야 할지 모르겠어요.",
+          "expectedRoute": "CLARIFY",
+          "expectedServiceIds": [
+            "seongnam-special-transportation",
+            "seongnam-disabled-taxi-voucher"
+          ],
+          "expectedClarificationId": "mobility_vehicle_or_fare",
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": true,
+          "pass": false,
+          "failureReason": "wrong_route: expected CLARIFY, got HTTP 200; wrong_clarification: expected mobility_vehicle_or_fare, got none"
+        },
+        {
+          "id": "edge-mobility-followup",
+          "group": "경계: clarification 후속",
+          "question": "휠체어로 탈 수 있는 차량이 필요해요.",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-special-transportation"
+          ],
+          "context": {
+            "question": "장애인이 이동할 때 차량을 불러야 할지 택시비 지원을 받아야 할지 모르겠어요.",
+            "clarificationId": "mobility_vehicle_or_fare"
+          },
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-special-transportation"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "특별교통수단 운영",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "edge-region-missing",
+          "group": "경계: 지역 필요",
+          "question": "가까운 노인복지관이 어디예요?",
+          "expectedRoute": "CLARIFY",
+          "expectedServiceIds": [],
+          "expectedClarificationId": "region_required",
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "안내를 위해 확인해 주세요",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": true,
+          "pass": false,
+          "failureReason": "wrong_route: expected CLARIFY, got HTTP 200; wrong_clarification: expected region_required, got none"
+        },
+        {
+          "id": "edge-too-broad",
+          "group": "경계: 너무 넓음",
+          "question": "성남시 복지 지원은 뭐가 있어요?",
+          "expectedRoute": "CLARIFY",
+          "expectedServiceIds": [],
+          "expectedClarificationId": "service_required",
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "안내를 위해 확인해 주세요",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": true,
+          "pass": false,
+          "failureReason": "wrong_route: expected CLARIFY, got HTTP 200; wrong_clarification: expected service_required, got none"
+        },
+        {
+          "id": "edge-nonexistent",
+          "group": "경계: 존재하지 않는 지원",
+          "question": "성남시에서 반려동물 수술비를 지원받고 싶어요.",
+          "expectedRoute": "UNSUPPORTED",
+          "expectedServiceIds": [],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected UNSUPPORTED, got HTTP 200"
+        },
+        {
+          "id": "edge-unregistered-phone",
+          "group": "경계: 미등록 전화번호",
+          "question": "장애인 버스요금 지원 담당 전화번호 알려주세요.",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-disabled-bus-fare-support"
+          ],
+          "asksForUnregisteredInformation": true,
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-disabled-bus-fare-support"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "장애인 버스요금 지원",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "edge-unregistered-documents",
+          "group": "경계: 미등록 서류",
+          "question": "맞춤형 방문건강관리 신청 서류를 전부 알려주세요.",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-home-health-care"
+          ],
+          "asksForUnregisteredInformation": true,
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-home-health-care"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "맞춤형 방문건강관리",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "edge-unregistered-amount",
+          "group": "경계: 미등록 금액",
+          "question": "발달장애인 지원은 매달 얼마를 지급해요?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-developmental-disability-support"
+          ],
+          "asksForUnregisteredInformation": true,
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-developmental-disability-support"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "발달장애인 지원",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "edge-typo",
+          "group": "경계: 오타·구어체",
+          "question": "장애인 택시바우쳐 어케 신청해?",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-disabled-taxi-voucher"
+          ],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "edge-unrelated",
+          "group": "경계: 무관 질문",
+          "question": "오늘 성남 날씨 어때?",
+          "expectedRoute": "UNSUPPORTED",
+          "expectedServiceIds": [],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected UNSUPPORTED, got HTTP 200"
+        },
+        {
+          "id": "edge-region-unavailable",
+          "group": "경계: 지역 범위 밖",
+          "question": "수정구에서 가까운 치매안심센터가 어디예요?",
+          "expectedRoute": "UNSUPPORTED",
+          "expectedServiceIds": [],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected UNSUPPORTED, got HTTP 200"
+        },
+        {
+          "id": "edge-elderly-clarify",
+          "group": "경계: 복수 후보",
+          "question": "혼자 사는 아버지가 돌봄을 받을지 복지관 프로그램을 다닐지 모르겠어요.",
+          "expectedRoute": "CLARIFY",
+          "expectedServiceIds": [
+            "seongnam-senior-tailored-care",
+            "seongnam-bundang-senior-welfare-center"
+          ],
+          "expectedClarificationId": "elderly_care_type",
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": true,
+          "pass": false,
+          "failureReason": "wrong_route: expected CLARIFY, got HTTP 200; wrong_clarification: expected elderly_care_type, got none"
+        },
+        {
+          "id": "edge-elderly-followup",
+          "group": "경계: clarification 후속",
+          "question": "안부를 확인해 주고 병원 갈 때 동행해 주는 쪽이요.",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-senior-tailored-care"
+          ],
+          "context": {
+            "question": "혼자 사는 아버지가 돌봄을 받을지 복지관 프로그램을 다닐지 모르겠어요.",
+            "clarificationId": "elderly_care_type"
+          },
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "edge-health-clarify",
+          "group": "경계: 복수 후보",
+          "question": "집으로 와서 건강관리를 받는 것과 기억력 검사를 어디서 받을지 둘 다 궁금해요.",
+          "expectedRoute": "CLARIFY",
+          "expectedServiceIds": [
+            "seongnam-home-health-care",
+            "seongnam-dementia-center"
+          ],
+          "expectedClarificationId": "health_visit_or_dementia",
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": true,
+          "pass": false,
+          "failureReason": "wrong_route: expected CLARIFY, got HTTP 200; wrong_clarification: expected health_visit_or_dementia, got none"
+        },
+        {
+          "id": "edge-health-followup",
+          "group": "경계: clarification 후속",
+          "question": "간호사가 집에 와서 건강 상태를 봐주는 쪽이요.",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-home-health-care"
+          ],
+          "context": {
+            "question": "집으로 와서 건강관리를 받는 것과 기억력 검사를 어디서 받을지 둘 다 궁금해요.",
+            "clarificationId": "health_visit_or_dementia"
+          },
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "공식 검색을 완료하지 못했습니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected DIRECT, got HTTP 200"
+        },
+        {
+          "id": "region-bucheon",
+          "group": "추가: 지역 경계",
+          "question": "부천시 노인맞춤돌봄서비스 신청하는 곳 알려주세요",
+          "expectedRoute": "UNSUPPORTED",
+          "expectedServiceIds": [],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "성남 지역 안내 서비스입니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected UNSUPPORTED, got HTTP 200"
+        },
+        {
+          "id": "region-suwon",
+          "group": "추가: 지역 경계",
+          "question": "수원시 장애인 택시",
+          "expectedRoute": "UNSUPPORTED",
+          "expectedServiceIds": [],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "성남 지역 안내 서비스입니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected UNSUPPORTED, got HTTP 200"
+        },
+        {
+          "id": "region-seoul",
+          "group": "추가: 지역 경계",
+          "question": "서울에서 노인 돌봄",
+          "expectedRoute": "UNSUPPORTED",
+          "expectedServiceIds": [],
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "성남 지역 안내 서비스입니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected UNSUPPORTED, got HTTP 200"
+        },
+        {
+          "id": "region-unspecified",
+          "group": "추가: 지역 경계",
+          "question": "노인맞춤돌봄서비스 신청",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-senior-tailored-care"
+          ],
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-senior-tailored-care"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "노인맞춤돌봄서비스",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "region-seongnam",
+          "group": "추가: 지역 경계",
+          "question": "성남시 노인맞춤돌봄서비스 신청",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-senior-tailored-care"
+          ],
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-senior-tailored-care"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "노인맞춤돌봄서비스",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "region-bundang",
+          "group": "추가: 지역 경계",
+          "question": "분당구 장애인 이동지원 특별교통수단 안내",
+          "expectedRoute": "DIRECT",
+          "expectedServiceIds": [
+            "seongnam-special-transportation"
+          ],
+          "httpStatus": 200,
+          "actualRoute": "DIRECT",
+          "actualServiceIds": [
+            "seongnam-special-transportation"
+          ],
+          "actualClarificationId": null,
+          "routingSource": "keyword",
+          "routingReason": null,
+          "answerTitle": "특별교통수단 운영",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": false,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": true,
+          "failureReason": ""
+        },
+        {
+          "id": "region-followup",
+          "group": "추가: 지역 경계",
+          "question": "부천시요",
+          "expectedRoute": "UNSUPPORTED",
+          "expectedServiceIds": [],
+          "context": {
+            "question": "가까운 노인복지관이 어디예요?",
+            "clarificationId": "region_required"
+          },
+          "httpStatus": 200,
+          "actualRoute": null,
+          "actualServiceIds": [],
+          "actualClarificationId": null,
+          "routingSource": null,
+          "routingReason": null,
+          "answerTitle": "성남 지역 안내 서비스입니다",
+          "hallucination": false,
+          "unsupportedInformation": false,
+          "wrongRoute": true,
+          "wrongService": false,
+          "wrongClarification": false,
+          "pass": false,
+          "failureReason": "wrong_route: expected UNSUPPORTED, got HTTP 200"
+        }
+      ]
+    },
+    "baselineRouteChanges": [
+      {
+        "id": "edge-too-broad",
+        "before": "search_unavailable",
+        "after": "clarification"
+      }
+    ],
+    "offline240": {
+      "generatedAt": "2026-09-06T15:58:50.660Z",
+      "mode": "OFFLINE_SEARCH_DISABLED_NO_MODEL_CALLS",
+      "codeBase": "8f5436dc5582549b0b807e57a964b282169ef50a",
+      "evaluationSha256": "1bd0751e00168b2d38831359c734c2dd1cd9d712943fdc3563f389a50e4df643",
+      "holdoutExposure": "All 60 used in this run; any subsequent tuning makes them development-exposed.",
+      "cases": 240,
+      "schemaPass": 240,
+      "allowedOutcome": 27,
+      "wrongServiceDetected": 0,
+      "failures": 213,
+      "outcomes": {
+        "RECOVERY": 206,
+        "STRUCTURED_ANSWER": 15,
+        "CLARIFY": 6,
+        "OUT_OF_SCOPE": 8,
+        "HELP": 2,
+        "SAFETY": 3
+      },
+      "realAnswerSuccessRate": null,
+      "citationAccuracy": null,
+      "unnecessaryRefusalRate": null,
+      "paidCalls": 0,
+      "paidUsd": 0,
+      "latencyMs": {
+        "median": 5.381200000000035,
+        "p95": 11.43689999999998
+      },
+      "legacy61Offline": {
+        "total": 61,
+        "pass": 28,
+        "note": "AI disabled; differs from historical real-model 61/61. Original expectations retained."
+      },
+      "releaseGate": "NOT_MET: real evidence/semantic evaluation, per-domain thresholds, and production verification not completed."
+    }
+  },
+  "release": {
+    "production": false,
+    "push": false,
+    "knownRemainingP0": 0,
+    "p0Limit": "Two wrong-source evidence cases in live run (plus a transient replay relevance error) are blocked in final replay; fresh paid 20-case confirmation not performed.",
+    "p1Blockers": [
+      "Current official URLs/institution sources not recovered across required topics",
+      "Relevant evidence does not yet complete requested fields; indivisible sections above 6000 characters still omitted",
+      "Shared production budget credentials and live atomic admission validation missing"
+    ],
+    "phone": "NOT_PHYSICALLY_TESTED",
+    "submissionChanged": false
+  }
+}

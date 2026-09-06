@@ -1,0 +1,82 @@
+{
+  "id": "domain-083",
+  "mode": "CAPTURED_PROVIDER_LIVE_HTTPS",
+  "domain": "민원",
+  "question": "전입신고 온라인으로 할 수 있나요",
+  "expectedBehavior": "공식 신청 방법과 본인 확인 절차를 안내한다",
+  "at": "2026-09-06T15:55:34.226Z",
+  "schemaPass": true,
+  "response": {
+    "query": "전입신고 온라인으로 할 수 있나요",
+    "kind": "official_links",
+    "results": [],
+    "hasResults": false,
+    "answer": {
+      "userQuestion": "전입신고 온라인으로 할 수 있나요",
+      "title": "공식 페이지에서 확인해 주세요",
+      "plainLanguageSummary": "관련 공식 페이지를 확인했습니다. 질문의 상세 내용은 원문과 충분히 대조하지 못했습니다. 아래 링크에서 확인해 주세요.",
+      "steps": [],
+      "nextAction": null,
+      "sources": [],
+      "verification": {
+        "status": "insufficient_data",
+        "checkedAt": null,
+        "details": "관련 공식 페이지를 확인했습니다. 질문의 상세 내용은 원문과 충분히 대조하지 못했습니다. 아래 링크에서 확인해 주세요."
+      }
+    },
+    "officialSearch": {
+      "status": "links",
+      "evidence": [],
+      "links": [
+        {
+          "url": "https://www.seongnam.go.kr/apply/online/view?appIdx=3609&menuType=welfare",
+          "title": "행정복지 - 성남시 통합예약"
+        },
+        {
+          "url": "https://www.seongnam.go.kr/pm04041101?deptCode=38000000000&orgSelect=orgSelect02",
+          "title": "조직도 - 총괄 조직도 - 성남소개 - 성남시청"
+        }
+      ],
+      "usage": {
+        "model": "gpt-5.6-terra",
+        "inputTokens": 10879,
+        "outputTokens": 171,
+        "toolCalls": 1,
+        "estimatedUsd": 0.025670699999999998,
+        "durationMs": 1222
+      },
+      "diagnostics": {
+        "phase": "extraction",
+        "discovered": 4,
+        "rejected": 12,
+        "findings": 1,
+        "pages": [
+          {
+            "url": "https://www.seongnam.go.kr/city/1000094/10063/contents.do",
+            "status": "failed",
+            "errorCode": "source_http_404"
+          },
+          {
+            "url": "https://www.seongnam.go.kr/apply/online/view?appIdx=3609&menuType=welfare",
+            "status": "fetched",
+            "textLength": 84,
+            "sections": 1,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://www.seongnam.go.kr/pm04041101?deptCode=38000000000&orgSelect=orgSelect02",
+            "status": "fetched",
+            "textLength": 24545,
+            "sections": 0,
+            "omittedSections": 1
+          }
+        ],
+        "reason": "no_matching_evidence"
+      },
+      "region": "성남시",
+      "searched": true
+    }
+  },
+  "semanticReview": "PENDING",
+  "actualAnswerSuccess": null
+}

@@ -4,6 +4,8 @@ import { request } from "node:https";
 import { isIP } from "node:net";
 import { officialUrl } from "./official-source-policy";
 import { abortable } from "./bounded-io";
+import { officialSourceCa } from "./official-source-ca";
+import { extractOfficialDocument } from "./extract-official-document";
 
 export const normalizeEvidence = (s: string) => s.normalize("NFKC").replace(/\s+/g," ").trim();
 export function publicAddress(ip: string): boolean {
@@ -30,7 +32,7 @@ export function extractPage(html:string): { title:string; paragraphs:string[] } 
   const paragraphs=complete.length>=20&&complete.length<=900?[complete]:[];
   return {title,paragraphs};
 }
-export interface OriginalPage {url:string;title:string;paragraphs:string[];checkedAt:string;fromCache:boolean}
+export interface OriginalPage {url:string;title:string;paragraphs:string[];sections?:string[];navigation?:{url:string;title:string}[];textLength?:number;omittedSections?:number;checkedAt:string;fromCache:boolean}
 const cache=new Map<string,{expires:number;page:OriginalPage}>();
 /** DNS is checked and pinned into the HTTPS socket; every redirect is revalidated. */
 export async function fetchOfficialSource(input:string, signal:AbortSignal):Promise<OriginalPage> {
@@ -45,13 +47,16 @@ export async function fetchOfficialSource(input:string, signal:AbortSignal):Prom
     if(!addresses.length||addresses.some(x=>!publicAddress(x.address))) throw new Error("source_unverified");
     const pinned=addresses[0];
     const response=await new Promise<{status:number;location?:string;html:string}>((resolve,reject)=>{
-      const req=request(url,{signal,timeout:5000,lookup:(_host,options,callback)=>{
+      const req=request(url,{signal,timeout:5000,ca:officialSourceCa(),rejectUnauthorized:true,lookup:(_host,options,callback)=>{
         if(options.all) callback(null,[pinned]); else callback(null,pinned.address,pinned.family);
       },headers:{Accept:"text/html","User-Agent":"VoiceCare/1.0 official-evidence-verification"}},res=>{
         if(res.statusCode&&res.statusCode>=300&&res.statusCode<400) {res.resume();resolve({status:res.statusCode,location:res.headers.location,html:""});return;}
-        if(res.statusCode!==200||!res.headers["content-type"]?.includes("text/html")) {res.resume();reject(new Error("source_unavailable"));return;}
+        if(res.statusCode!==200||!res.headers["content-type"]?.includes("text/html")) {res.resume();reject(new Error(`source_http_${res.statusCode??0}`));return;}
         let size=0;const chunks:Buffer[]=[];
-        res.on("data",(chunk:Buffer)=>{size+=chunk.length;if(size>600_000){req.destroy(new Error("source_unverified"));return;}chunks.push(chunk);});
+        // The current official sitemap is 2.3 MB of markup. Only that exact path
+        // gets the larger bounded envelope; none of this HTML is sent to a model.
+        const maxBytes=url.pathname==="/sitemap"?3_000_000:600_000;
+        res.on("data",(chunk:Buffer)=>{size+=chunk.length;if(size>maxBytes){req.destroy(new Error("source_too_large"));return;}chunks.push(chunk);});
         res.on("error",reject);
         res.on("end",()=>resolve({status:200,html:Buffer.concat(chunks).toString("utf8")}));
       });
@@ -62,13 +67,23 @@ export async function fetchOfficialSource(input:string, signal:AbortSignal):Prom
       if(!current) throw new Error("source_unverified");
       continue;
     }
-    const parsed=extractPage(response.html);
+    const parsed=extractOfficialDocument(response.html);
     const page={url:current,...parsed,checkedAt:new Date().toISOString(),fromCache:false};
+    // Portal home/sitemap widgets and navigation are discovery, not policy evidence.
+    if(isNavigationSource(current)){
+      page.paragraphs=[];page.sections=[];
+    }
     // No complete page or personal roster in cache. Exclude mobile/ID-looking paragraphs.
     page.paragraphs=page.paragraphs.filter(s=>!/\b\d{6}-[1-8]\d{6}|01[016789][- ]?\d{3,4}[- ]?\d{4}|명단|주민등록번호/.test(s));
+    page.sections=page.sections.filter(s=>!/\b\d{6}-[1-8]\d{6}|01[016789][- ]?\d{3,4}[- ]?\d{4}|명단|주민등록번호/.test(s));
     if(cache.size>=30) cache.delete(cache.keys().next().value!);
     cache.set(current,{expires:Date.now()+300_000,page});
     return page;
   }
   throw new Error("source_unavailable");
+}
+
+export function isNavigationSource(url:string):boolean {
+  const path=new URL(url).pathname;
+  return /\/(?:index|sitemap)\/?$/.test(path)||path==="/"||path.startsWith("/apply/");
 }

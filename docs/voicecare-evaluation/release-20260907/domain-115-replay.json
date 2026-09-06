@@ -1,0 +1,53 @@
+{
+  "id": "domain-115",
+  "mode": "CAPTURED_PROVIDER_LIVE_HTTPS",
+  "domain": "쓰레기·환경",
+  "question": "낡은 소파 버릴 때 어떻게 신고해요",
+  "expectedBehavior": "성남 대형폐기물 신고·배출 절차를 찾는다",
+  "at": "2026-09-06T16:06:48.781Z",
+  "schemaPass": true,
+  "response": {
+    "query": "낡은 소파 버릴 때 어떻게 신고해요",
+    "kind": "search_unavailable",
+    "results": [],
+    "hasResults": false,
+    "answer": {
+      "userQuestion": "낡은 소파 버릴 때 어떻게 신고해요",
+      "title": "공식 검색을 완료하지 못했습니다",
+      "plainLanguageSummary": "이번 공식 검색에서 사용할 수 있는 근거를 찾지 못했습니다. 제도가 없다는 뜻은 아닙니다. 질문을 더 구체적으로 적어 주세요.",
+      "steps": [],
+      "nextAction": null,
+      "sources": [],
+      "verification": {
+        "status": "insufficient_data",
+        "checkedAt": null,
+        "details": "이번 공식 검색에서 사용할 수 있는 근거를 찾지 못했습니다. 제도가 없다는 뜻은 아닙니다. 질문을 더 구체적으로 적어 주세요."
+      }
+    },
+    "officialSearch": {
+      "status": "no_results",
+      "evidence": [],
+      "links": [],
+      "usage": {
+        "model": "gpt-5.6-terra",
+        "inputTokens": 10105,
+        "outputTokens": 92,
+        "toolCalls": 1,
+        "estimatedUsd": 0.0231757,
+        "durationMs": 2
+      },
+      "diagnostics": {
+        "phase": "sources",
+        "discovered": 0,
+        "rejected": 3,
+        "findings": 0,
+        "pages": [],
+        "reason": "official_validation_failed"
+      },
+      "region": "성남시",
+      "searched": true
+    }
+  },
+  "semanticReview": "PENDING",
+  "actualAnswerSuccess": null
+}

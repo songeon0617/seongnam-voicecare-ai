@@ -1,0 +1,92 @@
+{
+  "id": "domain-098",
+  "mode": "CAPTURED_PROVIDER_LIVE_HTTPS",
+  "domain": "여권",
+  "question": "성남에서 여권 만들 때 준비물",
+  "expectedBehavior": "신규·재발급 등 필요 구분과 공식 준비물 안내를 찾는다",
+  "at": "2026-09-06T15:57:10.041Z",
+  "schemaPass": true,
+  "response": {
+    "query": "성남에서 여권 만들 때 준비물",
+    "kind": "partial_answer",
+    "results": [],
+    "hasResults": false,
+    "answer": {
+      "userQuestion": "성남에서 여권 만들 때 준비물",
+      "title": "확인한 공식 원문과 남은 확인 사항",
+      "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+      "steps": [],
+      "nextAction": null,
+      "sources": [],
+      "verification": {
+        "status": "insufficient_data",
+        "checkedAt": null,
+        "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+      }
+    },
+    "officialSearch": {
+      "status": "partial",
+      "evidence": [
+        {
+          "id": "web-1",
+          "url": "https://www.seongnam.go.kr/VFVhtEc",
+          "title": "민원/제안/신고 - 민원참여 - 성남시청",
+          "publisher": "성남시청",
+          "region": "성남시",
+          "checkedAt": "2026-09-06T15:57:10.040Z",
+          "publishedAt": null,
+          "updatedAt": null,
+          "applicationPeriod": null,
+          "effectivePeriod": null,
+          "excerpt": "제안 신청 행정의 능률화, 경제화 및 행정서비스의 질적 향상을 도모하기 위하여 창의적이고 참신한 시민 제안 상시 접수 「 제안제도 운영 조례」제3조 규정에 따라 행정의 능률화, 경제화 및 행정서비스의 질적 향상을 도모하기 위하여 창의적이고 참신한 제안을 상시 접수합니다. 제안이란 시민 또는 공무원이 시장에게 제출하는 행정제도, 행정서비스, 행정문화 및 행정운영의 개선과 관련된 창의적 의견 또는 고안을 말하며, 특정한 행위를 요구하는 민원사무, 단순한 건의, 주의환기, 진정 비판 등은 “성남시에 바란다”를 이용하시기 바랍니다. 본 제안신청은 국민권익위원회에서 운영하는 국민신문고와 통합운영됩니다. 본 화면에서 민원신청 시 정부통합인증이 안되니 정부통합인증 통합로그인을 하실 분은 국민신문고 를 이용하시기 바랍니다. 인증오류 문의: 국민신문고 헬프데스크 1600-8172 민원상담 문의: 성남시 콜센터 1577-3100 담당부서 소통관>소통혁신팀 전화번호 031-729-4205 목록",
+          "collection": "openai_web_search+https_original",
+          "freshness": "unknown",
+          "fromCache": false
+        }
+      ],
+      "links": [
+        {
+          "url": "https://www.seongnam.go.kr/VFVhtEc",
+          "title": "민원/제안/신고 - 민원참여 - 성남시청"
+        }
+      ],
+      "usage": {
+        "model": "gpt-5.6-terra",
+        "inputTokens": 10913,
+        "outputTokens": 47,
+        "toolCalls": 1,
+        "estimatedUsd": 0.0242502,
+        "durationMs": 518
+      },
+      "diagnostics": {
+        "phase": "complete",
+        "discovered": 6,
+        "rejected": 11,
+        "findings": 0,
+        "pages": [
+          {
+            "url": "https://seongnam.go.kr/city/1000081/10054/contents.do",
+            "status": "failed",
+            "errorCode": "source_unavailable"
+          },
+          {
+            "url": "https://www.seongnam.go.kr/city/1000013/10010/contents.do",
+            "status": "failed",
+            "errorCode": "source_http_404"
+          },
+          {
+            "url": "https://www.seongnam.go.kr/VFVhtEc",
+            "status": "fetched",
+            "textLength": 495,
+            "sections": 1,
+            "omittedSections": 0
+          }
+        ]
+      },
+      "region": "성남시",
+      "searched": true
+    }
+  },
+  "semanticReview": "PENDING",
+  "actualAnswerSuccess": null
+}

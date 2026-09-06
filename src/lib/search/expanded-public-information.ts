@@ -65,7 +65,8 @@ export function curatedMatch(query:string) {
   return result;
 }
 
-export async function createExpandedPublicInformationResponse(payload:unknown,provider:OfficialSearchProvider=createOfficialSearchProvider()):Promise<PublicInformationSearchServiceResult> {
+const defaultProvider=createOfficialSearchProvider();
+export async function createExpandedPublicInformationResponse(payload:unknown,provider:OfficialSearchProvider=defaultProvider):Promise<PublicInformationSearchServiceResult> {
   const validation=validatePublicInformationSearchRequest(payload);if(!validation.valid)return validation.response;
   const original=validation.request.query;
   if(matchSafetyBoundary(original))return legacy({query:original},()=>({status:"disabled"}));
@@ -87,6 +88,8 @@ export async function createExpandedPublicInformationResponse(payload:unknown,pr
     return clarify(original,"referent_required");
   }
   if(!follow.continued) {
+    if(/^(?:성남(?:시)?\s*)?(?:복지|복지\s*지원)(?:는|가|은)?\s*(?:뭐\s*있어(?:요)?|뭐가\s*있어(?:요)?|알려\s*줘|종류|안내)[?.!\s]*$/.test(query))return clarify(original,"service_required");
+    if(/^(?:성남(?:시)?\s*)?교통\s*지원\s*(?:알려\s*줘|뭐\s*있어(?:요)?|종류|안내)[?.!\s]*$/.test(query))return clarify(original,"mobility_general");
     if(/이동\s*수단|교통\s*수단|이동할\s*때.{0,10}도움/.test(query)&&!/특별교통|장애인|휠체어|버스|지하철/.test(query))return clarify(original,"mobility_general");
     if(/휠체어/.test(query)&&/병원/.test(query)&&!/차량|탈\s*차|비용|요금|특별교통/.test(query))return clarify(original,"mobility_purpose");
     if(/청년\s*지원/.test(query)&&/뭐|어떤|종류/.test(query)&&!/일자리|주거|생활비|교육/.test(query))return clarify(original,"youth_purpose");
@@ -107,6 +110,6 @@ export async function createExpandedPublicInformationResponse(payload:unknown,pr
   const kind=hasEvidence?"partial_answer":result.links.length?"official_links":"search_unavailable";
   const message=hasEvidence?"질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.":result.links.length?"관련 공식 페이지를 확인했습니다. 질문의 상세 내용은 원문과 충분히 대조하지 못했습니다. 아래 링크에서 확인해 주세요.":MESSAGES[result.status as SearchFailure]??MESSAGES.source_unverified;
   const response=state(original,kind,hasEvidence?"확인한 공식 원문과 남은 확인 사항":result.links.length?"공식 페이지에서 확인해 주세요":"공식 검색을 완료하지 못했습니다",message);
-  if("answer" in response.body)response.body.officialSearch={...result,region:"성남시",searched:(result.usage?.toolCalls??0)>0};
+  if("answer" in response.body)response.body.officialSearch={...result,region:"성남시",searched:result.usage?.cacheHit===true||(result.usage?.toolCalls??0)>0};
   return response;
 }
