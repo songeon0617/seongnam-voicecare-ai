@@ -1,5 +1,6 @@
 import type { PublicInformationSearchResult } from "@/types/public-information-search";
 import type { IntentRoute, PublicInformationIntent, ServiceId } from "@/types/public-information-router";
+import { getRoutingDocuments } from "@/lib/ai/service-catalog";
 
 export function inferKeywordIntent(query: string): PublicInformationIntent {
   if (/서류|준비물/.test(query)) return "documents";
@@ -36,7 +37,9 @@ const compact = (value: string) => value.normalize("NFKC").replace(/[^0-9a-zA-Z�
 export function confidentKeywordResult(query: string, results: readonly PublicInformationSearchResult[]) {
   if (locationGuard(query)) return undefined;
   const text = compact(query);
-  const named = results.filter(({ document, matchedTerms }) => {
+  // top-K 밖으로 밀린 명시적 서비스도 복수 후보 판단에 포함한다.
+  const named = getRoutingDocuments().filter((document) => {
+    const matchedTerms = results.find((result) => result.document.id === document.id)?.matchedTerms ?? [];
     const title = compact(document.title);
     const stem = compact(document.title.replace(/서비스$| 운영$| 이용 안내$| 사업$/, ""));
     // 기존 태그 중 공식 이름의 일부인 충분히 긴 표현만 인정한다. alias 추가 없음.
@@ -48,7 +51,8 @@ export function confidentKeywordResult(query: string, results: readonly PublicIn
       (document.id === "seongnam-special-transportation" && matchedTerms.includes("특별교통수단"));
   });
   if (named.length !== 1) return undefined;
-  const result = named[0];
+  const result = results.find((result) => result.document.id === named[0].id);
+  if (!result) return undefined;
   if (/말고|아닌|아니|제외|무시|추천|진단|확정|서울|부산|수원|용인|광주|경기도 외/.test(query)) return undefined;
   if (result.document.id === "seongnam-bundang-senior-welfare-center" && /수정|중원/.test(query)) return undefined;
   return result;

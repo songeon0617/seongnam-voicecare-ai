@@ -41,8 +41,8 @@ test("명확한 keyword는 AI 구성조차 하지 않고 안전 매핑 한 건�
   }
 });
 
-test("명시적 제도명이 있어도 부정·타지역·복수 서비스 조건은 AI로 분기한다", async () => {
-  for (const query of ["노인맞춤돌봄 말고 다른 도움", "서울 노인맞춤돌봄 신청", "방문건강관리와 노인맞춤돌봄 중 어떤 것?"]) {
+test("명시적 제도명이 있어도 부정·복수 서비스 조건은 AI로 분기한다", async () => {
+  for (const query of ["노인맞춤돌봄 말고 다른 도움", "방문건강관리와 노인맞춤돌봄 중 어떤 것?"]) {
     let calls = 0;
     await run({ query }, () => ({ status: "ready", route: async () => { calls++; return { route: "CLARIFY", serviceIds: [], intent: "other", clarificationId: "service_required" }; } }));
     assert.equal(calls, 1);

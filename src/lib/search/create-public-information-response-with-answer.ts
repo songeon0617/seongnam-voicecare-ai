@@ -9,6 +9,7 @@ import { getSafetyGuidance, matchSafetyBoundary } from "@/lib/safety/safety-boun
 import type { SafetyCategory } from "@/types/public-information-safety";
 import { searchPublicInformation } from "./search-public-information";
 import { confidentKeywordResult, keywordDecision, locationGuard, serviceScopeGuard } from "./keyword-routing";
+import { regionBoundaryGuard } from "./region-boundary";
 import { createPublicInformationSearchResponse, validatePublicInformationSearchRequest, type PublicInformationSearchServiceResult } from "./create-public-information-search-response";
 
 function finishSafety(query: string, category: SafetyCategory): PublicInformationSearchServiceResult {
@@ -72,6 +73,9 @@ export async function createPublicInformationResponseWithAnswer(
   if (response.status !== 200 || !("results" in response.body)) return response;
   const search = response.body;
   const context = (payload as { context?: ClarificationContext }).context;
+  const regionGuard = regionBoundaryGuard(search.query)
+    ?? (context ? regionBoundaryGuard(context.question) : null);
+  if (regionGuard) return finish(search, regionGuard, "guard");
   const guard = locationGuard(search.query) ?? (context?.clarificationId === "region_required"
     && !confidentKeywordResult(search.query, search.results) ? locationGuard(`${context.question} ${search.query}`) : null);
   const confident = !context && confidentKeywordResult(search.query, search.results);

@@ -84,6 +84,7 @@ function mapSource(document: PublicInformationDocument): SourceReference {
     organizationName: document.sourceOrganizationName,
     title: document.title,
     url: document.originalUrl,
+    ...(document.supportingSources ? { supportingSources: document.supportingSources.map((source) => ({ ...source })) } : {}),
     checkedAt: document.lastVerifiedAt,
     documentStatus: document.status,
     freshnessStatus: document.freshness.status,

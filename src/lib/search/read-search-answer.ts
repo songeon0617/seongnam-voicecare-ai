@@ -31,6 +31,7 @@ function isAnswer(value: unknown): value is PublicInformationAnswer {
       && string(value.nextAction.description) && optional(value.nextAction.url, url)))
     && list(value.sources, (source) => record(source) && string(source.id) && string(source.sourceId)
       && string(source.organizationName) && string(source.title) && url(source.url) && date(source.checkedAt)
+      && optional(source.supportingSources, (items) => list(items, (item) => record(item) && string(item.title) && url(item.url)))
       && oneOf(source.documentStatus, ["active", "review_required", "expired", "superseded", "excluded"])
       && oneOf(source.freshnessStatus, ["current", "possibly_outdated", "superseded", "unknown"])
       && optional(source.evidenceSummary, string))

@@ -108,6 +108,13 @@ const cases: Case[] = [
   { id: "edge-elderly-followup", group: "경계: clarification 후속", question: "안부를 확인해 주고 병원 갈 때 동행해 주는 쪽이요.", expectedRoute: "DIRECT", expectedServiceIds: ["seongnam-senior-tailored-care"], context: { question: "혼자 사는 아버지가 돌봄을 받을지 복지관 프로그램을 다닐지 모르겠어요.", clarificationId: "elderly_care_type" } },
   { id: "edge-health-clarify", group: "경계: 복수 후보", question: "집으로 와서 건강관리를 받는 것과 기억력 검사를 어디서 받을지 둘 다 궁금해요.", expectedRoute: "CLARIFY", expectedServiceIds: ["seongnam-home-health-care", "seongnam-dementia-center"], expectedClarificationId: "health_visit_or_dementia" },
   { id: "edge-health-followup", group: "경계: clarification 후속", question: "간호사가 집에 와서 건강 상태를 봐주는 쪽이요.", expectedRoute: "DIRECT", expectedServiceIds: ["seongnam-home-health-care"], context: { question: "집으로 와서 건강관리를 받는 것과 기억력 검사를 어디서 받을지 둘 다 궁금해요.", clarificationId: "health_visit_or_dementia" } },
+  { id: "region-bucheon", group: "추가: 지역 경계", question: "부천시 노인맞춤돌봄서비스 신청하는 곳 알려주세요", expectedRoute: "UNSUPPORTED", expectedServiceIds: [] },
+  { id: "region-suwon", group: "추가: 지역 경계", question: "수원시 장애인 택시", expectedRoute: "UNSUPPORTED", expectedServiceIds: [] },
+  { id: "region-seoul", group: "추가: 지역 경계", question: "서울에서 노인 돌봄", expectedRoute: "UNSUPPORTED", expectedServiceIds: [] },
+  { id: "region-unspecified", group: "추가: 지역 경계", question: "노인맞춤돌봄서비스 신청", expectedRoute: "DIRECT", expectedServiceIds: ["seongnam-senior-tailored-care"] },
+  { id: "region-seongnam", group: "추가: 지역 경계", question: "성남시 노인맞춤돌봄서비스 신청", expectedRoute: "DIRECT", expectedServiceIds: ["seongnam-senior-tailored-care"] },
+  { id: "region-bundang", group: "추가: 지역 경계", question: "분당구 장애인 이동지원 특별교통수단 안내", expectedRoute: "DIRECT", expectedServiceIds: ["seongnam-special-transportation"] },
+  { id: "region-followup", group: "추가: 지역 경계", question: "부천시요", expectedRoute: "UNSUPPORTED", expectedServiceIds: [], context: { question: "가까운 노인복지관이 어디예요?", clarificationId: "region_required" } },
 ];
 
 function argument(name: string) {
@@ -203,6 +210,8 @@ async function main() {
   const json = `${JSON.stringify(payload, null, 2)}\n`;
   if (output) await writeFile(output, json, "utf8");
   else process.stdout.write(json);
+  // 실패한 평가를 CI/셸에서 성공으로 오인하지 않도록 한다.
+  if (results.some((result) => !result.pass)) process.exitCode = 1;
 }
 
 void main().catch((error: unknown) => {

@@ -77,6 +77,9 @@ export function PublicInformationAnswerView({ answer }: { answer: PublicInformat
         <h3>출처</h3>
         <ol>{answer.sources.map((source) => <li key={source.id}>
           <a href={source.url} target="_blank" rel="noreferrer">{source.title} (새 창)</a>
+          {source.supportingSources?.map((support) => <p key={support.url}>
+            <a href={support.url} target="_blank" rel="noreferrer">추가 근거: {support.title} (새 창)</a>
+          </p>)}
           <p>출처: {source.organizationName}</p>
           <p>확인일: <CheckedDate value={source.checkedAt} /></p>
           <p>최신성: {FRESHNESS[source.freshnessStatus]}</p>

@@ -291,7 +291,7 @@ test("최신성이 current가 아닌 확인 문서는 partially_verified로 매�
   ]);
 
   assert.equal(answer.verification.status, "partially_verified");
-  assert.equal(answer.verification.checkedAt, "2026-09-05");
+  assert.equal(answer.verification.checkedAt, PUBLIC_INFORMATION_DOCUMENTS[0].lastVerifiedAt.slice(0, 10));
 });
 
 test("답변 매핑은 문서에 구조화되지 않은 값을 생성하지 않는다", () => {

@@ -22,6 +22,7 @@ export interface SourceReference {
   organizationName: string;
   title: string;
   url: string;
+  supportingSources?: readonly { title: string; url: string }[];
   /** 원문을 마지막으로 확인한 ISO 8601 날짜·시각. 미확인 시 null */
   checkedAt: string | null;
   /** 답변 생성에 사용된 원문 문서의 검토 상태 */

@@ -70,6 +70,8 @@ export interface PublicInformationDocument {
   sourceId: PublicDataSource["id"];
   sourceOrganizationName: string;
   originalUrl: string;
+  /** 공식 사이트가 종합 안내를 개별 사업 페이지로 나눈 경우 함께 검토한 근거. */
+  supportingSources?: readonly { title: string; url: string }[];
   /** 원문 게시일. 원문에 날짜가 없으면 null */
   publishedAt: string | null;
   /** 원문 수정일. 원문에 날짜가 없으면 null */

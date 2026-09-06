@@ -6,6 +6,12 @@ import { CLARIFICATIONS, type ClarificationId } from "../../src/types/public-inf
 import { SAFETY_GUIDANCE } from "../../src/types/public-information-safety";
 
 const QUERY = "장애인 콜택시 이용하려면 어떻게 해야 해?";
+test("종합 안내의 분리된 공식 근거도 실제 API에서 링크로 표시한다", async ({ page }) => {
+  await page.goto("/");
+  await submit(page, "장애인 보조기구·보장구 지원");
+  await expect(page.getByRole("link", { name: "추가 근거: 장애인 보장구 지원 (새 창)" }))
+    .toHaveAttribute("href", "https://www.seongnam.go.kr/wf-pm020101/23004");
+});
 function fixture(query = QUERY): PublicInformationSearchResponse {
   const response = createPublicInformationSearchResponse({ query });
   if (!("results" in response.body)) throw new Error("Invalid fixture");

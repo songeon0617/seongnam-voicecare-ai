@@ -33,6 +33,7 @@ test("누락·잘못된 중첩 필드·실행 URL을 가진 응답은 렌더링 
     { sources: [{ ...search.answer.sources[0], checkedAt: "not-a-date" }] },
     { sources: [{ ...search.answer.sources[0], freshnessStatus: "invented" }] },
     { sources: [{ ...search.answer.sources[0], url: "javascript:alert(1)" }] },
+    { sources: [{ ...search.answer.sources[0], supportingSources: [{ title: "추가 근거", url: "javascript:alert(1)" }] }] },
     { contacts: [{ url: "data:text/html,test" }] },
     { locations: [{ organizationName: "기관", url: "javascript:alert(1)" }] },
     { nextAction: { title: "안내", description: "안내", url: "javascript:alert(1)" } },

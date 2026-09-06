@@ -1,0 +1,441 @@
+{
+  "note": "Known 54-case set; not blind, not population accuracy. top1 is candidate retrieval only; disabled preserves guards and fallback.",
+  "directTotal": 46,
+  "top1Correct": 38,
+  "disabledContractPass": 21,
+  "total": 54,
+  "rows": [
+    {
+      "id": "special-name",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-special-transportation",
+      "top1Correct": true,
+      "disabledRoute": "DIRECT",
+      "disabledPass": true
+    },
+    {
+      "id": "special-colloquial",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-special-transportation",
+      "top1Correct": true,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "special-situation",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-special-transportation",
+      "top1Correct": true,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "taxi-name",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-disabled-taxi-voucher",
+      "top1Correct": true,
+      "disabledRoute": "DIRECT",
+      "disabledPass": true
+    },
+    {
+      "id": "taxi-colloquial",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-disabled-medical-support",
+      "top1Correct": false,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "taxi-situation",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-disabled-taxi-voucher",
+      "top1Correct": true,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "care-name",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-senior-tailored-care",
+      "top1Correct": true,
+      "disabledRoute": "DIRECT",
+      "disabledPass": true
+    },
+    {
+      "id": "care-colloquial",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-senior-tailored-care",
+      "top1Correct": true,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "care-situation",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-senior-tailored-care",
+      "top1Correct": true,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "center-name",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-bundang-senior-welfare-center",
+      "top1Correct": true,
+      "disabledRoute": "DIRECT",
+      "disabledPass": true
+    },
+    {
+      "id": "center-colloquial",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-bundang-senior-welfare-center",
+      "top1Correct": true,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "center-situation",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-bundang-senior-welfare-center",
+      "top1Correct": true,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "iot-name",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-senior-ai-iot-health-care",
+      "top1Correct": true,
+      "disabledRoute": "DIRECT",
+      "disabledPass": true
+    },
+    {
+      "id": "iot-colloquial",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-senior-ai-iot-health-care",
+      "top1Correct": true,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "iot-situation",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-senior-ai-iot-health-care",
+      "top1Correct": true,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "device-name",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-disabled-assistive-devices",
+      "top1Correct": true,
+      "disabledRoute": "DIRECT",
+      "disabledPass": true
+    },
+    {
+      "id": "device-colloquial",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-disabled-assistive-devices",
+      "top1Correct": true,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "device-situation",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-disabled-assistive-devices",
+      "top1Correct": true,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "developmental-name",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-developmental-disability-support",
+      "top1Correct": true,
+      "disabledRoute": "DIRECT",
+      "disabledPass": true
+    },
+    {
+      "id": "developmental-colloquial",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-developmental-disability-support",
+      "top1Correct": true,
+      "disabledRoute": "DIRECT",
+      "disabledPass": true
+    },
+    {
+      "id": "developmental-situation",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-developmental-disability-support",
+      "top1Correct": true,
+      "disabledRoute": "DIRECT",
+      "disabledPass": true
+    },
+    {
+      "id": "medical-name",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-disabled-medical-support",
+      "top1Correct": true,
+      "disabledRoute": "DIRECT",
+      "disabledPass": true
+    },
+    {
+      "id": "medical-colloquial",
+      "expectedRoute": "DIRECT",
+      "top1": null,
+      "top1Correct": false,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "medical-situation",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-disabled-medical-support",
+      "top1Correct": true,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "dementia-name",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-dementia-center",
+      "top1Correct": true,
+      "disabledRoute": "DIRECT",
+      "disabledPass": true
+    },
+    {
+      "id": "dementia-colloquial",
+      "expectedRoute": "DIRECT",
+      "top1": null,
+      "top1Correct": false,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "dementia-situation",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-dementia-center",
+      "top1Correct": true,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "home-health-name",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-home-health-care",
+      "top1Correct": true,
+      "disabledRoute": "DIRECT",
+      "disabledPass": true
+    },
+    {
+      "id": "home-health-colloquial",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-home-health-care",
+      "top1Correct": true,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "home-health-situation",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-home-health-care",
+      "top1Correct": true,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "kiosk-name",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-unmanned-civil-service-kiosk",
+      "top1Correct": true,
+      "disabledRoute": "DIRECT",
+      "disabledPass": true
+    },
+    {
+      "id": "kiosk-colloquial",
+      "expectedRoute": "DIRECT",
+      "top1": null,
+      "top1Correct": false,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "kiosk-situation",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-unmanned-civil-service-kiosk",
+      "top1Correct": true,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "emergency-name",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-emergency-welfare-support",
+      "top1Correct": true,
+      "disabledRoute": "DIRECT",
+      "disabledPass": true
+    },
+    {
+      "id": "emergency-colloquial",
+      "expectedRoute": "DIRECT",
+      "top1": null,
+      "top1Correct": false,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "emergency-situation",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-disabled-medical-support",
+      "top1Correct": false,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "bus-name",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-disabled-bus-fare-support",
+      "top1Correct": true,
+      "disabledRoute": "DIRECT",
+      "disabledPass": true
+    },
+    {
+      "id": "bus-colloquial",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-disabled-medical-support",
+      "top1Correct": false,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "bus-situation",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-disabled-bus-fare-support",
+      "top1Correct": true,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "edge-mobility-clarify",
+      "expectedRoute": "CLARIFY",
+      "top1": "seongnam-disabled-medical-support",
+      "top1Correct": false,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "edge-mobility-followup",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-special-transportation",
+      "top1Correct": true,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "edge-region-missing",
+      "expectedRoute": "CLARIFY",
+      "top1": "seongnam-bundang-senior-welfare-center",
+      "top1Correct": false,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": true
+    },
+    {
+      "id": "edge-too-broad",
+      "expectedRoute": "CLARIFY",
+      "top1": "seongnam-bundang-senior-welfare-center",
+      "top1Correct": false,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": true
+    },
+    {
+      "id": "edge-nonexistent",
+      "expectedRoute": "UNSUPPORTED",
+      "top1": null,
+      "top1Correct": false,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "edge-unregistered-phone",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-disabled-bus-fare-support",
+      "top1Correct": true,
+      "disabledRoute": "DIRECT",
+      "disabledPass": true
+    },
+    {
+      "id": "edge-unregistered-documents",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-home-health-care",
+      "top1Correct": true,
+      "disabledRoute": "DIRECT",
+      "disabledPass": true
+    },
+    {
+      "id": "edge-unregistered-amount",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-developmental-disability-support",
+      "top1Correct": true,
+      "disabledRoute": "DIRECT",
+      "disabledPass": true
+    },
+    {
+      "id": "edge-typo",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-disabled-assistive-devices",
+      "top1Correct": false,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "edge-unrelated",
+      "expectedRoute": "UNSUPPORTED",
+      "top1": null,
+      "top1Correct": false,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "edge-region-unavailable",
+      "expectedRoute": "UNSUPPORTED",
+      "top1": "seongnam-dementia-center",
+      "top1Correct": false,
+      "disabledRoute": "UNSUPPORTED",
+      "disabledPass": true
+    },
+    {
+      "id": "edge-elderly-clarify",
+      "expectedRoute": "CLARIFY",
+      "top1": "seongnam-senior-tailored-care",
+      "top1Correct": false,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "edge-elderly-followup",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-senior-tailored-care",
+      "top1Correct": true,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "edge-health-clarify",
+      "expectedRoute": "CLARIFY",
+      "top1": "seongnam-home-health-care",
+      "top1Correct": false,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    },
+    {
+      "id": "edge-health-followup",
+      "expectedRoute": "DIRECT",
+      "top1": "seongnam-home-health-care",
+      "top1Correct": true,
+      "disabledRoute": "CLARIFY",
+      "disabledPass": false
+    }
+  ]
+}
