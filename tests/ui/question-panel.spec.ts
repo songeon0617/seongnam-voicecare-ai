@@ -2,6 +2,8 @@ import { expect, test, type Page } from "@playwright/test";
 import { createPublicInformationSearchResponse } from "../../src/lib/search/create-public-information-search-response";
 import { generatePublicInformationAnswer } from "../../src/lib/ai/generate-public-information-answer";
 import type { PublicInformationSearchResponse } from "../../src/types/public-information-search";
+import { CLARIFICATIONS, type ClarificationId } from "../../src/types/public-information-router";
+import { SAFETY_GUIDANCE } from "../../src/types/public-information-safety";
 
 const QUERY = "장애인 콜택시 이용하려면 어떻게 해야 해?";
 function fixture(query = QUERY): PublicInformationSearchResponse {
@@ -9,6 +11,110 @@ function fixture(query = QUERY): PublicInformationSearchResponse {
   if (!("results" in response.body)) throw new Error("Invalid fixture");
   return response.body;
 }
+
+function clarificationFixture(id: ClarificationId = "mobility_vehicle_or_fare"): PublicInformationSearchResponse {
+  const search = fixture("자료 없는 질문");
+  return { ...search, results: [], hasResults: false, kind: "clarification", clarification: { id },
+    answer: { ...search.answer, plainLanguageSummary: CLARIFICATIONS[id].question,
+      sources: [], steps: [], nextAction: null, eligibility: undefined,
+      verification: { status: "insufficient_data", checkedAt: null } } };
+}
+
+test("확인 질문은 사실 없이 표시하고 짧은 후속 답에 직전 문맥을 전달한다", async ({ page }) => {
+  let calls = 0;
+  await page.route("**/api/public-information/search", async (route) => {
+    calls++;
+    if (calls === 1) await route.fulfill({ json: clarificationFixture() });
+    else {
+      expect(route.request().postDataJSON()).toEqual({ query: "차량이 필요해요", context: { question: "장애인 택시 지원 있어?", clarificationId: "mobility_vehicle_or_fare" } });
+      await route.fulfill({ json: fixture() });
+    }
+  });
+  await page.goto("/");
+  await submit(page, "장애인 택시 지원 있어?");
+  await expect(page.getByText(CLARIFICATIONS.mobility_vehicle_or_fare.question, { exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: "특별교통수단 운영 안내", exact: true })).toBeVisible();
+  await expect(page.getByRole("textbox")).toHaveValue("");
+  const clarification = page.getByRole("region", { name: "공식 자료 안내", exact: true });
+  await expect(clarification.getByRole("button", { name: "답변 듣기" })).toHaveCount(0);
+  await expect(clarification.getByRole("link")).toHaveCount(0);
+  await expect(clarification.getByText(/출처/)).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "자료에 안내된 대상" })).toHaveCount(0);
+  await submit(page, "차량이 필요해요");
+  await expect(page.getByRole("status")).toContainText("안내가 준비되었습니다");
+  expect(calls).toBe(2);
+});
+
+test("선택지가 없는 확인 질문은 선택지 안내·답변 듣기·출처를 표시하지 않는다", async ({ page }) => {
+  await page.route("**/api/public-information/search", (route) => route.fulfill({ json: clarificationFixture("service_required") }));
+  await page.goto("/");
+  await submit(page, "성남시 복지 지원은 뭐가 있어요?");
+  await expect(page.getByRole("status")).toHaveText("도움의 종류를 확인해 주세요. 입력란에 답해 주세요.");
+  const question = page.getByText(CLARIFICATIONS.service_required.question, { exact: true });
+  await expect(question).toBeVisible();
+  await expect(question.locator("..").getByRole("button")).toHaveCount(1);
+  const clarification = page.getByRole("region", { name: "공식 자료 안내", exact: true });
+  await expect(clarification.getByRole("button", { name: "답변 듣기" })).toHaveCount(0);
+  await expect(clarification.getByRole("link")).toHaveCount(0);
+  await expect(clarification.getByText(/출처/)).toHaveCount(0);
+});
+
+test("고정 선택지는 새 제도명 질문으로 보내고 새 질문 버튼은 이전 문맥을 비운다", async ({ page }) => {
+  const payloads: unknown[] = [];
+  await page.route("**/api/public-information/search", async (route) => {
+    payloads.push(route.request().postDataJSON());
+    await route.fulfill({ json: clarificationFixture() });
+  });
+  await page.goto("/");
+  await submit(page, "장애인 택시 지원 있어?");
+  await page.getByRole("button", { name: "특별교통수단 운영 안내", exact: true }).click();
+  await expect.poll(() => payloads.length).toBe(2);
+  expect(payloads[1]).toEqual({ query: "특별교통수단 운영 안내" });
+  await page.getByRole("button", { name: "새 질문하기" }).click();
+  await submit(page, "긴급복지지원 신청");
+  await expect.poll(() => payloads.length).toBe(3);
+  expect(payloads[2]).toEqual({ query: "긴급복지지원 신청" });
+});
+
+test("미지원 안내는 사실·출처 없이 표시하고 다시 질문할 수 있다", async ({ page }) => {
+  const search = clarificationFixture();
+  const message = "현재 등록된 성남시 공식 서비스 자료 범위에서는 이 요청을 지원하지 않습니다. 다른 도움이 필요하면 다시 질문해 주세요.";
+  await page.route("**/api/public-information/search", (route) => route.fulfill({ json: {
+    ...search, kind: "unsupported", clarification: undefined, answer: { ...search.answer, plainLanguageSummary: message },
+  } }));
+  await page.goto("/");
+  await submit(page, "오늘 점심 메뉴 추천해줘");
+  await expect(page.getByRole("status")).toHaveText(message);
+  const unsupported = page.getByRole("region", { name: "공식 자료 안내", exact: true });
+  await expect(unsupported.getByText(message, { exact: true })).toHaveCount(1);
+  await expect(unsupported.getByRole("button", { name: "답변 듣기" })).toHaveCount(0);
+  await expect(unsupported.getByRole("link")).toHaveCount(0);
+  await expect(unsupported.getByText(/출처/)).toHaveCount(0);
+  await page.unroute("**/api/public-information/search");
+  await submit(page, "노인맞춤돌봄 신청하고 싶어요");
+  await expect(page.getByRole("status")).toContainText("안내가 준비되었습니다");
+});
+
+test("safety 응답은 일반 카드와 구분하고 직접 전화 링크를 표시한다", async ({ page }) => {
+  const search = fixture("자료 없는 질문");
+  const guidance = SAFETY_GUIDANCE.self_harm_immediate;
+  await page.route("**/api/public-information/search", (route) => route.fulfill({ json: {
+    ...search, results: [], hasResults: false, kind: "safety",
+    safety: { category: "self_harm_immediate", phoneNumbers: [...guidance.phoneNumbers], requiresUserAction: true },
+    answer: { ...search.answer, title: guidance.title, plainLanguageSummary: guidance.summary,
+      sources: [], steps: [], nextAction: null, eligibility: undefined,
+      verification: { status: "insufficient_data", checkedAt: null } },
+  } }));
+  await page.goto("/");
+  await submit(page, "죽고 싶어요");
+  const answer = page.getByRole("region", { name: "긴급 안전 안내", exact: true });
+  await expect(answer.getByRole("alert")).toContainText(guidance.summary);
+  for (const phone of guidance.phoneNumbers) {
+    await expect(answer.getByRole("link", { name: `${phone} 전화하기` })).toHaveAttribute("href", `tel:${phone}`);
+  }
+  await expect(answer).toContainText("자동으로 전화하거나 신고하지 않습니다");
+  await expect(answer.getByRole("button", { name: "답변 듣기" })).toBeVisible();
+});
 async function submit(page: Page, query = QUERY) {
   await page.getByRole("textbox", { name: "글자로 질문하기" }).fill(query);
   await page.getByRole("textbox", { name: "글자로 질문하기" }).press("Enter");
@@ -26,6 +132,8 @@ test("생성 답변을 키보드로 요청하고 원문·출처·확인일·상�
   const answer = page.getByRole("region", { name: "공식 자료 안내", exact: true });
   await expect(answer.getByText(generated.answer.plainLanguageSummary, { exact: true })).toBeVisible();
   await expect(answer.getByRole("status")).toContainText("안내가 준비되었습니다");
+  await expect(answer.getByRole("button", { name: "답변 듣기" })).toBeVisible();
+  await expect(answer).toContainText("출처와 확인 상태는 아래에서 확인해 주세요");
   await expect(answer).not.toContainText("constrained_presentation");
   await expect(answer).not.toContainText("answerGeneration");
   await expect(answer).not.toContainText("검색 점수");
@@ -43,12 +151,13 @@ test("생성 답변을 키보드로 요청하고 원문·출처·확인일·상�
   await expect(answer).toContainText("일부 정보의 최신성을 추가로 확인해야 합니다");
 });
 
-test("AI 비활성 상태의 실제 API 답변도 UI에 표시한다", async ({ page }) => {
+test("명확한 keyword의 실제 API는 AI 호출 없이 UI에 표시한다", async ({ page }) => {
   await page.goto("/");
   const response = page.waitForResponse("**/api/public-information/search");
   await submit(page);
   const body = await (await response).json();
-  expect(body.answerGeneration).toEqual({ status: "skipped", reason: "disabled" });
+  expect(body.answerGeneration).toEqual({ status: "skipped", reason: "deterministic" });
+  expect(body.routing.source).toBe("keyword");
   await expect(page.getByText(body.answer.plainLanguageSummary, { exact: true })).toBeVisible();
 });
 
@@ -232,4 +341,17 @@ test("대표 돌봄 질문의 실제 API·출처 바로가기·모바일 표시�
     expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(width);
   }
   expect(errors).toEqual([]);
+});
+
+test("1265px 제목 줄바꿈과 첫 화면 프로토타입·AI 개인정보 안내를 확인한다", async ({ page }) => {
+  await page.setViewportSize({ width: 1265, height: 900 });
+  await page.goto("/");
+  await expect(page.getByText("성남시 공식자료 기반 경진대회 프로토타입", { exact: true })).toBeVisible();
+  await expect(page.getByText(/질문 내용 일부는 서비스 분류를 위해 AI로 처리될 수 있습니다/)).toBeVisible();
+  await expect(page.getByText(/주민등록번호, 연락처 등 민감한 개인정보는 입력하지 마세요/)).toBeVisible();
+  const titleLine = page.locator("#page-title span");
+  expect(await titleLine.evaluate((element) => element.getClientRects().length)).toBe(1);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  await page.setViewportSize({ width: 320, height: 844 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });

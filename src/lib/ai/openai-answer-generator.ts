@@ -41,7 +41,7 @@ function readOutput(value: unknown): unknown {
   return JSON.parse(content.text) as unknown;
 }
 
-/** 환경변수는 서버에서만 읽으며, 기본적으로 외부 호출을 하지 않는다. */
+/** @deprecated 이전 표현 생성 회귀 테스트용. 공개 API는 openai-intent-router만 호출한다. */
 export function createOpenAIAnswerGenerator(
   env: Readonly<Record<string, string | undefined>> = process.env,
   fetcher: typeof fetch = fetch,

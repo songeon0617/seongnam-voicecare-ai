@@ -1,12 +1,19 @@
 import { expect, test, type Page } from "@playwright/test";
 import { createPublicInformationSearchResponse } from "../../src/lib/search/create-public-information-search-response";
+import { mapDocumentsToPublicInformationAnswer } from "../../src/lib/public-information/map-documents-to-answer";
 import { installSpeechMock } from "./speech-mock";
+import { SAFETY_GUIDANCE } from "../../src/types/public-information-safety";
 
 const QUERY = "장애인 콜택시 이용하려면 어떻게 해야 해?";
 function fixture() {
   const response = createPublicInformationSearchResponse({ query: QUERY });
   if (!("results" in response.body)) throw new Error("Invalid fixture");
   return response.body;
+}
+
+// 명확한 서비스 질문의 새 API는 한 문서를 선택한다. 원문 완전성 검증은 유지한다.
+function keywordAnswer() {
+  return mapDocumentsToPublicInformationAnswer(QUERY, [fixture().results[0].document]);
 }
 
 async function textQuestion(page: Page) {
@@ -161,10 +168,30 @@ test("TTS는 한국어로 원문 전체를 순서대로 읽고 자동 재생하�
     return window.voiceTest.spoken.map((item) => ({ text: item.text, lang: item.lang, voice: item.voice?.lang }));
   });
   expect(spoken.length).toBeGreaterThan(1);
-  expect(spoken.map((item) => item.text).join("")).toBe(fixture().answer.plainLanguageSummary);
+  expect(spoken.map((item) => item.text).join("")).toBe(keywordAnswer().plainLanguageSummary);
   expect(spoken.every((item) => item.lang === "ko-KR" && item.voice === "ko-KR")).toBe(true);
   await expect(page.getByRole("status")).toContainText("읽기를 마쳤습니다");
   await expect(page.getByRole("status")).toHaveAttribute("aria-live", "polite");
+});
+
+test("safety 고정 안내도 자동 재생 없이 TTS로 전체를 읽는다", async ({ page }) => {
+  await installSpeechMock(page);
+  await page.goto("/");
+  const response = page.waitForResponse("**/api/public-information/search");
+  await page.getByRole("textbox").fill("사람이 의식이 없어요");
+  await page.getByRole("textbox").press("Enter");
+  expect((await (await response).json()).kind).toBe("safety");
+  expect(await page.evaluate(() => window.voiceTest.spoken.length)).toBe(0);
+  await page.getByRole("button", { name: "답변 듣기" }).click();
+  const spoken = await page.evaluate(() => {
+    let previousLength = 0;
+    while (window.voiceTest.spoken.length > previousLength && previousLength < 100) {
+      previousLength = window.voiceTest.spoken.length;
+      window.voiceTest.finishSpeech();
+    }
+    return window.voiceTest.spoken.map((item) => item.text).join("");
+  });
+  expect(spoken).toBe(SAFETY_GUIDANCE.immediate_emergency.summary);
 });
 
 for (const action of ["stop", "type", "microphone", "example", "submit"] as const) {
@@ -204,7 +231,7 @@ test("TTS 미지원에도 본문과 텍스트 기능을 유지한다", async ({ 
   await textQuestion(page);
   await page.getByRole("button", { name: "답변 듣기" }).click();
   await expect(page.getByRole("status")).toContainText("답변 듣기를 지원하지 않습니다");
-  await expect(page.getByText(fixture().answer.plainLanguageSummary, { exact: true })).toBeVisible();
+  await expect(page.getByText(keywordAnswer().plainLanguageSummary, { exact: true })).toBeVisible();
 });
 
 test("TTS 재생 오류와 엔진 무응답에서 중지 상태를 복구한다", async ({ page }) => {

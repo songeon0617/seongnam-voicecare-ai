@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { createPublicInformationSearchResponse } from "./create-public-information-search-response";
 import { readSearchAnswer } from "./read-search-answer";
+import { CLARIFICATIONS } from "@/types/public-information-router";
+import { SAFETY_GUIDANCE } from "@/types/public-information-safety";
 
 function fixture() {
   const response = createPublicInformationSearchResponse({ query: "노인맞춤돌봄서비스 신청하려면 어떻게 해야 하나요?" });
@@ -50,4 +52,40 @@ test("서버가 보낸 선택 구조화 필드와 미확인 날짜는 그대로 
     verification: { status: "unverified", checkedAt: null },
   });
   assert.deepEqual(readSearchAnswer(search)?.answer, search.answer);
+});
+
+test("확인 질문·미지원 판별과 무결성: 허용 ID/고정 문장 외 응답 및 사실 혼입 거부", () => {
+  const response = createPublicInformationSearchResponse({ query: "자료 없는 질문" });
+  assert.ok("results" in response.body);
+  const clean = { ...response.body, results: [], hasResults: false,
+    answer: { ...response.body.answer, sources: [], eligibility: undefined, plainLanguageSummary: CLARIFICATIONS.service_required.question } };
+  const clarify = { ...clean, kind: "clarification", clarification: { id: "service_required" } };
+  assert.equal(readSearchAnswer(clarify)?.kind, "clarification");
+  assert.equal(readSearchAnswer({ ...clean, kind: "unsupported" })?.kind, "unsupported");
+  for (const invalid of [
+    { ...clarify, kind: "invented" }, { ...clarify, clarification: { id: "invented" } },
+    { ...clarify, clarification: undefined }, { ...clarify, kind: "answer" },
+    { ...clarify, answer: { ...clean.answer, plainLanguageSummary: "가짜 연락처" } },
+    { ...clarify, answer: { ...clean.answer, contacts: [{ phone: "010-9999-9999" }] } },
+    { ...clarify, answer: { ...clean.answer, sources: fixture().answer.sources } },
+    { ...clarify, answer: { ...clean.answer, verification: { status: "verified", checkedAt: null } } },
+  ]) assert.equal(readSearchAnswer(invalid), null);
+});
+
+test("safety는 검토된 category·번호·고정 문구만 표시 대상으로 허용한다", () => {
+  const search = fixture();
+  const guidance = SAFETY_GUIDANCE.immediate_emergency;
+  const clean = { ...search, results: [], hasResults: false, kind: "safety",
+    safety: { category: "immediate_emergency", phoneNumbers: [...guidance.phoneNumbers], requiresUserAction: true },
+    answer: { ...search.answer, title: guidance.title, plainLanguageSummary: guidance.summary,
+      sources: [], steps: [], nextAction: null, eligibility: undefined,
+      verification: { status: "insufficient_data", checkedAt: null } } };
+  assert.equal(readSearchAnswer(clean)?.kind, "safety");
+  for (const invalid of [
+    { ...clean, safety: { ...clean.safety, category: "invented" } },
+    { ...clean, safety: { ...clean.safety, phoneNumbers: ["010-9999-9999"] } },
+    { ...clean, safety: { ...clean.safety, requiresUserAction: false } },
+    { ...clean, answer: { ...clean.answer, plainLanguageSummary: "임의 안전 문구" } },
+    { ...clean, kind: "unsupported" },
+  ]) assert.equal(readSearchAnswer(invalid), null);
 });

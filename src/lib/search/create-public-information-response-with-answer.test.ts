@@ -1,159 +1,216 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { POST } from "@/app/api/public-information/search/route";
+import { createPublicInformationSearchHandler } from "./handle-public-information-search";
 import { createPublicInformationSearchResponse } from "./create-public-information-search-response";
-import { createPublicInformationResponseWithAnswer } from "./create-public-information-response-with-answer";
-import { createOpenAIAnswerGenerator } from "@/lib/ai/openai-answer-generator";
+import { createPublicInformationResponseWithAnswer as run } from "./create-public-information-response-with-answer";
+import { createOpenAIIntentRouter } from "@/lib/ai/openai-intent-router";
+import { createServiceCatalog, getRoutingDocuments } from "@/lib/ai/service-catalog";
+import { ROUTER_EVALUATION_CASES, matchesExpectedRoute } from "@/lib/ai/intent-router-evaluation";
+import { mapDocumentsToPublicInformationAnswer as map } from "@/lib/public-information/map-documents-to-answer";
+import { CLARIFICATIONS, type IntentRoute } from "@/types/public-information-router";
+import type { PublicInformationSearchResponse } from "@/types/public-information-search";
 
-const QUERY = "장애인 택시 지원받으려면 어떻게 해야 해?";
-const PLAN = { introduction: "friendly", layout: "document_sections" };
-
-test("실제 어댑터의 8초 timeout도 HTTP 200의 원본 답변 fallback으로 연결된다", async (context) => {
-  context.mock.timers.enable({ apis: ["setTimeout"] });
-  let signal: AbortSignal | null | undefined;
-  let calls = 0;
-  const result = createPublicInformationResponseWithAnswer({ query: QUERY }, () => createOpenAIAnswerGenerator({
-    PUBLIC_INFORMATION_AI_ENABLED: "true", OPENAI_API_KEY: "test-only-key", OPENAI_MODEL: "test-model",
-  }, async (_, init) => {
-    calls++;
-    signal = init?.signal;
-    return new Promise(() => {});
-  }));
-  context.mock.timers.tick(8_000);
-  const response = await result;
-  const baseline = createPublicInformationSearchResponse({ query: QUERY });
+const QUERY = ROUTER_EVALUATION_CASES[0].question;
+const DIRECT = ROUTER_EVALUATION_CASES[0].expected;
+const ENV = { PUBLIC_INFORMATION_AI_ENABLED: "true", OPENAI_API_KEY: "test-only-key", OPENAI_MODEL: "test-model" };
+const result = (response: Awaited<ReturnType<typeof run>>): PublicInformationSearchResponse => {
   assert.equal(response.status, 200);
-  assert.ok("results" in response.body && "results" in baseline.body);
-  assert.deepEqual(response.body.answer, baseline.body.answer);
-  assert.deepEqual(response.body.answerGeneration, { status: "fallback", reason: "provider_error" });
-  assert.equal(calls, 1);
-  assert.equal(signal?.aborted, true);
+  assert.ok("results" in response.body);
+  return response.body;
+};
+
+test("13개 공식 문서와 카탈로그는 일대일이며 본문·전화·자격 세부를 보내지 않는다", () => {
+  const documents = getRoutingDocuments();
+  const catalog = createServiceCatalog();
+  assert.equal(catalog.length, 13);
+  assert.deepEqual(catalog.map((entry) => entry.serviceId), documents.map((doc) => doc.id));
+  const text = JSON.stringify(catalog);
+  for (const document of documents) assert.ok(!text.includes(document.content));
+  assert.doesNotMatch(text, /\d{2,4}-\d{3,4}-\d{4}|originalUrl|targetAudiences|lastVerifiedAt/);
+  assert.throws(() => createServiceCatalog([documents[0], documents[0]]));
+  assert.throws(() => createServiceCatalog([{ ...documents[0], id: "invented" }]));
 });
 
-test("입력 오류와 빈 검색은 제공자 구성 단계에도 도달하지 않는다", async () => {
-  const payloads = [null, {}, { query: 123 }, { query: " " }, { query: "가".repeat(301) }, { query: "프로야구 경기 일정" }];
-  for (const payload of payloads) {
-    const baseline = createPublicInformationSearchResponse(payload);
-    const result = await createPublicInformationResponseWithAnswer(payload, () => {
-      assert.fail("입력 오류/빈 결과에서 제공자 구성 금지");
-    });
-    assert.equal(result.status, baseline.status);
-    if ("results" in result.body && "results" in baseline.body) {
-      assert.deepEqual(result.body.answer, baseline.body.answer);
-      assert.deepEqual(result.body.answerGeneration, { status: "skipped", reason: "no_results" });
-    } else {
-      assert.deepEqual(result, baseline);
-    }
+test("명확한 keyword는 AI 구성조차 하지 않고 안전 매핑 한 건만 반환한다", async () => {
+  for (const query of ["노인맞춤돌봄 신청하고 싶어요", "장애인 콜택시 이용하려면 어떻게 해야 해?", "장애인 택시바우처 신청", "방문건강관리 신청", "치매안심센터 문의", "긴급복지 신청", ...getRoutingDocuments().map((doc) => `${doc.title} 안내`)]) {
+    const body = result(await run({ query }, () => { assert.fail(`AI 호출 금지: ${query}`); }));
+    assert.equal(body.routing?.source, "keyword");
+    assert.equal(body.results.length, 1);
+    assert.deepEqual(body.answer, map(query, [body.results[0].document]));
   }
 });
 
-for (const status of ["disabled", "not_configured"] as const) {
-  test(`${status} 설정에서는 기존 매핑 응답을 보존한다`, async () => {
-    const baseline = createPublicInformationSearchResponse({ query: QUERY });
-    const result = await createPublicInformationResponseWithAnswer({ query: QUERY }, () => ({ status }));
-    assert.ok("results" in result.body && "results" in baseline.body);
-    assert.deepEqual(result.body.answer, baseline.body.answer);
-    assert.deepEqual(result.body.results, baseline.body.results);
-    assert.deepEqual(result.body.answerGeneration, { status: "skipped", reason: status });
+test("명시적 제도명이 있어도 부정·타지역·복수 서비스 조건은 AI로 분기한다", async () => {
+  for (const query of ["노인맞춤돌봄 말고 다른 도움", "서울 노인맞춤돌봄 신청", "방문건강관리와 노인맞춤돌봄 중 어떤 것?"]) {
+    let calls = 0;
+    await run({ query }, () => ({ status: "ready", route: async () => { calls++; return { route: "CLARIFY", serviceIds: [], intent: "other", clarificationId: "service_required" }; } }));
+    assert.equal(calls, 1);
+  }
+});
+
+test("keyword 실패 + AI DIRECT는 공식 문서만 재조회하고 입력 주입/변경을 격리한다", async () => {
+  const before = createPublicInformationSearchResponse({ query: QUERY });
+  assert.ok("results" in before.body && before.body.results.length === 0);
+  let calls = 0;
+  const body = result(await run({ query: QUERY, documents: [{ content: "가짜 정책" }], answer: { contacts: ["010-9999-9999"] } }, () => ({ status: "ready", route: async (input) => {
+    calls++;
+    assert.doesNotMatch(JSON.stringify(input), /가짜 정책|010-9999-9999/);
+    input.catalog[0].name = "주입된 제목";
+    return DIRECT;
+  } })));
+  assert.equal(calls, 1);
+  assert.equal(body.kind, "answer");
+  assert.deepEqual(body.answer, map(QUERY, getRoutingDocuments().filter((doc) => doc.id === DIRECT.serviceIds[0])));
+  assert.equal(body.answer.contacts, undefined);
+  assert.equal(body.answer.requiredItems, undefined);
+  assert.equal(body.answer.locations, undefined);
+  assert.doesNotMatch(JSON.stringify(body), /가짜 정책|주입된 제목/);
+});
+
+for (const entry of ROUTER_EVALUATION_CASES) {
+  test(`평가 계약(mock; 모델 정확도 아님): ${entry.question}`, async () => {
+    let calls = 0;
+    const body = result(await run({ query: entry.question }, () => ({ status: "ready", route: async () => { calls++; return entry.expected; } })));
+    assert.ok(matchesExpectedRoute(body.routing?.decision, entry.expected));
+    assert.equal(calls, entry.question.startsWith("노인맞춤돌봄") ? 0 : 1);
+    if (entry.expected.route === "DIRECT") assert.deepEqual(body.answer, map(entry.question, body.results.map((entry) => entry.document)));
+    else {
+      assert.equal(body.hasResults, false);
+      assert.deepEqual(body.answer.sources, []);
+      assert.equal(body.answer.eligibility, undefined);
+      assert.equal(body.answer.verification.status, "insufficient_data");
+      if (entry.expected.route === "CLARIFY") assert.equal(body.answer.plainLanguageSummary, CLARIFICATIONS[entry.expected.clarificationId].question);
+    }
   });
 }
 
-test("생성 계층은 검색 결과를 바꾸지 않으며 요청 본문의 문서·답변 주입을 무시한다", async () => {
-  const baseline = createPublicInformationSearchResponse({ query: QUERY });
-  const result = await createPublicInformationResponseWithAnswer({
-    query: QUERY,
-    documents: [{ content: "주입된 가짜 문서" }],
-    answer: { sources: [{ url: "https://fake.example" }], contacts: [{ phone: "010-9999-9999" }] },
-  }, () => ({ status: "ready", generate: async (input) => {
-    assert.ok(!JSON.stringify(input).includes("주입된 가짜 문서"));
-    return PLAN;
-  } }));
-  assert.equal(result.status, 200);
-  assert.ok("results" in result.body && "results" in baseline.body);
-  assert.deepEqual(result.body.results, baseline.body.results);
-  assert.deepEqual(result.body.answer.sources, baseline.body.answer.sources);
-  assert.deepEqual(result.body.answer.verification, baseline.body.answer.verification);
-  assert.equal(result.body.answer.contacts, undefined);
-  assert.equal(result.body.answerGeneration?.status, "generated");
-});
-
-test("설정과 생성의 예외 모두 검색 성공 응답으로 복귀한다", async () => {
-  for (const configure of [
-    () => { throw new Error("private configuration"); },
-    () => ({ status: "ready" as const, generate: async () => { throw new Error("private provider"); } }),
-  ]) {
-    const result = await createPublicInformationResponseWithAnswer({ query: QUERY }, configure);
-    const baseline = createPublicInformationSearchResponse({ query: QUERY });
-    assert.equal(result.status, 200);
-    assert.ok("results" in result.body && "results" in baseline.body);
-    assert.deepEqual(result.body.answer, baseline.body.answer);
-    assert.deepEqual(result.body.answerGeneration, { status: "fallback", reason: "provider_error" });
-    assert.ok(!JSON.stringify(result).includes("private"));
+test("invalid ID·모양·enum·추가 사실·조합·중복은 모두 거부한다", async () => {
+  for (const output of [null, [], "DIRECT", {}, { ...DIRECT, serviceIds: ["invented"] }, { ...DIRECT, serviceIds: [] },
+    { ...DIRECT, intent: "diagnosis" }, { ...DIRECT, answer: "무조건 지원, 전화 010-9999-9999" },
+    { ...DIRECT, serviceIds: [DIRECT.serviceIds[0], DIRECT.serviceIds[0]] }, { ...DIRECT, route: "UNSUPPORTED" },
+    { ...DIRECT, route: "CLARIFY", clarificationId: "invented" }, { ...DIRECT, clarificationId: "service_required" }]) {
+    const body = result(await run({ query: QUERY }, () => ({ status: "ready", route: async () => output })));
+    assert.equal(body.routing?.reason, "invalid_output");
+    assert.equal(body.clarification?.id, "service_required");
+    assert.deepEqual(body.answer.sources, []);
+    assert.doesNotMatch(JSON.stringify(body), /010-9999-9999|무조건 지원|invented/);
   }
 });
 
-test("Route Handler 통합: 정상 생성·변조·HTTP 실패·빈 검색·입력 오류", async (context) => {
-  const previous = {
-    PUBLIC_INFORMATION_AI_ENABLED: process.env.PUBLIC_INFORMATION_AI_ENABLED,
-    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
-    OPENAI_MODEL: process.env.OPENAI_MODEL,
-  };
-  Object.assign(process.env, { PUBLIC_INFORMATION_AI_ENABLED: "true", OPENAI_API_KEY: "test-only-key", OPENAI_MODEL: "test-model" });
-  context.after(() => {
-    for (const [key, value] of Object.entries(previous)) {
-      if (value === undefined) delete process.env[key];
-      else process.env[key] = value;
-    }
-  });
+test("현재 카탈로그 밖 ID는 이전에 존재했던 ID여도 거부한다", async () => {
+  const { isIntentRoute } = await import("@/lib/ai/intent-router");
+  assert.equal(isIntentRoute(DIRECT, ["seongnam-disabled-taxi-voucher"]), false);
+});
 
+test("CLARIFY 후 짧은 답에 직전 문맥을 제공하며 공식 답변을 생성한다", async () => {
+  const context = { question: "병원에 동행할 사람이 없어요", clarificationId: "elderly_care_type" as const };
+  const body = result(await run({ query: "어르신이에요", context }, () => ({ status: "ready", route: async (input) => {
+    assert.deepEqual(input.context, context);
+    return DIRECT;
+  } })));
+  assert.equal(body.kind, "answer");
+});
+
+test("확인 질문에 해당하지 않는 과잉 후보는 제거하되 새로운 후보를 만들지 않는다", async () => {
+  const expected = ROUTER_EVALUATION_CASES[1].expected;
+  const body = result(await run({ query: ROUTER_EVALUATION_CASES[1].question }, () => ({ status: "ready", route: async () => ({
+    ...expected, serviceIds: ["seongnam-senior-tailored-care", "seongnam-home-health-care"],
+  }) })));
+  assert.deepEqual(body.routing?.decision, expected);
+  assert.deepEqual(body.answer.sources, []);
+});
+
+test("지역 후속 답변과 시설의 다른 구 요청에서도 잘못된 DIRECT를 차단한다", async () => {
+  for (const payload of [
+    { query: "수정구요", context: { question: "가까운 복지관 알려줘", clarificationId: "region_required" } },
+    { query: "수정구 복지관 알려줘" },
+  ]) {
+    const body = result(await run(payload, () => ({ status: "ready", route: async () => ({ ...DIRECT, serviceIds: ["seongnam-bundang-senior-welfare-center"] }) })));
+    assert.equal(body.kind, "unsupported");
+    assert.deepEqual(body.answer.sources, []);
+  }
+});
+
+test("입력/문맥 오류는 AI를 호출하지 않는다", async () => {
+  for (const payload of [null, {}, { query: 123 }, { query: " " }, { query: "가".repeat(301) },
+    { query: QUERY, context: {} }, { query: QUERY, context: { question: "x", clarificationId: "invented" } },
+    { query: QUERY, context: { question: "가".repeat(301), clarificationId: "service_required" } }]) {
+    const response = await run(payload, () => { assert.fail("invalid input must not invoke AI"); });
+    assert.ok(response.status === 400 || response.status === 413);
+  }
+});
+
+test("비활성·미설정·설정/제공자 실패는 사실 없는 확인 질문으로 복귀한다", async () => {
+  for (const status of ["disabled", "not_configured"] as const) {
+    assert.equal(result(await run({ query: QUERY }, () => ({ status }))).routing?.reason, status);
+  }
+  for (const configure of [() => { throw new Error("private key"); }, () => ({ status: "ready" as const, route: async () => { throw new Error("private provider"); } })]) {
+    const body = result(await run({ query: QUERY }, configure));
+    assert.equal(body.routing?.reason, "provider_error");
+    assert.equal(body.kind, "clarification");
+    assert.doesNotMatch(JSON.stringify(body), /private/);
+  }
+});
+
+test("기존 keyword fallback: 문맥 때문에 AI를 시도한 명시적 제도명은 실패해도 복구한다", async () => {
+  const query = "노인맞춤돌봄 신청하고 싶어요";
+  const body = result(await run({ query, context: { question: "돌봄", clarificationId: "service_required" } }, () => ({ status: "ready", route: async () => { throw new Error(); } })));
+  assert.equal(body.routing?.source, "fallback");
+  assert.equal(body.kind, "answer");
+  assert.deepEqual(body.answer, map(query, body.results.map((entry) => entry.document)));
+});
+
+test("애매한 keyword를 fallback에서 확정하지 않으며 거리 제한은 잘못된 DIRECT도 막는다", async () => {
+  const body = result(await run({ query: "다리가 불편해서 버스를 못 타요" }, () => ({ status: "disabled" })));
+  assert.equal(body.kind, "clarification");
+  assert.deepEqual(body.answer.sources, []);
+  for (const query of ["수정구에 가까운 복지관 알려줘", "가까운 복지관 알려줘"]) {
+    const guarded = result(await run({ query }, () => ({ status: "ready", route: async () => ({ ...DIRECT, serviceIds: ["seongnam-bundang-senior-welfare-center"] }) })));
+    assert.equal(guarded.routing?.source, "guard");
+    assert.equal(guarded.kind, query.startsWith("수정") ? "unsupported" : "clarification");
+    assert.deepEqual(guarded.answer.sources, []);
+  }
+});
+
+test("8초 timeout은 abort 후 HTTP 200의 확인 질문으로 연결된다", async (context) => {
+  context.mock.timers.enable({ apis: ["setTimeout"] });
+  let signal: AbortSignal | null | undefined;
   let calls = 0;
-  let output: unknown = PLAN;
-  let providerStatus = 200;
-  context.mock.method(globalThis, "fetch", async () => {
-    calls++;
-    return Response.json({
-      status: "completed",
-      output: [{ type: "message", role: "assistant", status: "completed", content: [{ type: "output_text", text: JSON.stringify(output) }] }],
-    }, { status: providerStatus });
-  });
-  const send = (body: string) => POST(new Request("http://localhost/api/public-information/search", {
-    method: "POST", headers: { "Content-Type": "application/json" }, body,
+  const pending = run({ query: QUERY }, () => createOpenAIIntentRouter(ENV, async (_, init) => {
+    calls++; signal = init?.signal; return new Promise(() => {});
   }));
-  const baseline = createPublicInformationSearchResponse({ query: QUERY });
-  assert.ok("results" in baseline.body);
-
-  const success = await send(JSON.stringify({ query: QUERY }));
-  assert.equal(success.status, 200);
-  const successBody = await success.json();
-  assert.equal(successBody.answerGeneration.status, "generated");
-  assert.deepEqual(successBody.answer.sources, baseline.body.answer.sources);
-  assert.deepEqual(successBody.answer.verification, baseline.body.answer.verification);
+  context.mock.timers.tick(8_000);
+  const body = result(await pending);
+  assert.equal(body.routing?.reason, "timeout");
+  assert.equal(body.kind, "clarification");
+  assert.equal(signal?.aborted, true);
   assert.equal(calls, 1);
+});
 
-  output = { ...PLAN, plainLanguageSummary: "문의 010-9999-9999" };
-  const invalid = await send(JSON.stringify({ query: QUERY }));
-  const invalidBody = await invalid.json();
-  assert.equal(invalid.status, 200);
-  assert.deepEqual(invalidBody.answer, baseline.body.answer);
-  assert.equal(invalidBody.answerGeneration.reason, "invalid_output");
-
-  providerStatus = 429;
-  const failed = await send(JSON.stringify({ query: QUERY }));
-  const failedBody = await failed.json();
-  assert.equal(failed.status, 200);
-  assert.deepEqual(failedBody.answer, baseline.body.answer);
-  assert.equal(failedBody.answerGeneration.reason, "provider_error");
-  assert.equal(calls, 3);
-
-  const empty = await send(JSON.stringify({ query: "프로야구 경기 일정" }));
-  const emptyBody = await empty.json();
-  assert.equal(emptyBody.answerGeneration.reason, "no_results");
-  assert.deepEqual(emptyBody.answer.sources, []);
-  assert.equal(emptyBody.answer.verification.status, "insufficient_data");
-  const invalidJSON = await send("{");
-  assert.equal(invalidJSON.status, 400);
-  assert.equal((await invalidJSON.json()).error.code, "invalid_json");
-  const tooLong = await send(JSON.stringify({ query: "가".repeat(301) }));
-  assert.equal(tooLong.status, 413);
-  assert.equal(calls, 3);
+test("Route Handler 통합: DIRECT·CLARIFY·UNSUPPORTED·변조·실패·입력 오류", async () => {
+  let output: unknown = DIRECT;
+  let status = 200;
+  let calls = 0;
+  const handler = createPublicInformationSearchHandler((payload) => run(payload, () => createOpenAIIntentRouter(ENV, async () => {
+    calls++;
+    return Response.json({ status: "completed", output: [{ type: "message", role: "assistant", status: "completed", content: [{ type: "output_text", text: JSON.stringify(output) }] }] }, { status });
+  })));
+  const send = (body: string) => handler(new Request("http://localhost/api/public-information/search", { method: "POST", headers: { "Content-Type": "application/json" }, body }));
+  for (const entry of [DIRECT, ROUTER_EVALUATION_CASES[1].expected, ROUTER_EVALUATION_CASES[8].expected] satisfies IntentRoute[]) {
+    output = entry;
+    const response = await send(JSON.stringify({ query: QUERY }));
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get("Cache-Control"), "no-store");
+    assert.equal((await response.json()).routing.decision.route, entry.route);
+  }
+  output = { ...DIRECT, serviceIds: ["invented"] };
+  assert.equal((await (await send(JSON.stringify({ query: QUERY }))).json()).routing.reason, "invalid_output");
+  status = 500;
+  assert.equal((await (await send(JSON.stringify({ query: QUERY }))).json()).routing.reason, "provider_error");
+  assert.equal((await send("{")).status, 400);
+  assert.equal(calls, 5);
+  // 실제 route export도 명확한 keyword에서는 외부 통신하지 않는다.
+  const actual = await POST(new Request("http://localhost/api/public-information/search", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ query: "노인맞춤돌봄 신청" }) }));
+  assert.equal((await actual.json()).routing.source, "keyword");
 });

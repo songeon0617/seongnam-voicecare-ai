@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Seongnam VoiceCare AI",
-  description: "음성으로 묻고 쉬운 말로 안내받는 성남 생활정보 도우미",
+  description: "성남시 공식 공공정보를 질문으로 찾아 안내하는 경진대회 프로토타입",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

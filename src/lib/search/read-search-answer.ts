@@ -1,4 +1,6 @@
 import type { PublicInformationAnswer } from "@/types/public-information";
+import { CLARIFICATIONS, isClarificationId, type ClarificationId } from "@/types/public-information-router";
+import { SAFETY_GUIDANCE, type PublicInformationSafetyResponse, type SafetyCategory } from "@/types/public-information-safety";
 
 type RecordValue = Record<string, unknown>;
 const record = (value: unknown): value is RecordValue => typeof value === "object" && value !== null && !Array.isArray(value);
@@ -38,8 +40,39 @@ function isAnswer(value: unknown): value is PublicInformationAnswer {
 }
 
 /** 결과 문서를 클라이언트에서 재조합하지 않고 승인된 answer만 사용한다. */
-export function readSearchAnswer(value: unknown): { answer: PublicInformationAnswer; hasResults: boolean } | null {
+export function readSearchAnswer(value: unknown): {
+  answer: PublicInformationAnswer; hasResults: boolean;
+  kind?: "answer" | "clarification" | "unsupported" | "safety";
+  clarification?: { id: ClarificationId };
+  safety?: PublicInformationSafetyResponse;
+} | null {
   if (!record(value) || !Array.isArray(value.results) || typeof value.hasResults !== "boolean"
     || value.hasResults !== (value.results.length > 0) || !isAnswer(value.answer)) return null;
+  if (value.kind !== undefined) {
+    if (!oneOf(value.kind, ["answer", "clarification", "unsupported", "safety"])) return null;
+    if ((value.kind === "answer") !== value.hasResults) return null;
+    if (value.kind !== "answer" && (value.answer.sources.length > 0 || value.answer.steps.length > 0 ||
+      value.answer.eligibility?.length || value.answer.requiredItems?.length || value.answer.contacts?.length ||
+      value.answer.locations?.length || value.answer.nextAction !== null || value.answer.verification.status !== "insufficient_data")) return null;
+    if (value.kind === "clarification") {
+      if (!record(value.clarification) || !isClarificationId(value.clarification.id) ||
+        value.answer.plainLanguageSummary !== CLARIFICATIONS[value.clarification.id].question) return null;
+      return { answer: value.answer, hasResults: false, kind: "clarification", clarification: { id: value.clarification.id } };
+    }
+    if (value.kind === "safety") {
+      if (value.clarification !== undefined || !record(value.safety) || Object.keys(value.safety).length !== 3 ||
+        !string(value.safety.category) || !Object.hasOwn(SAFETY_GUIDANCE, value.safety.category) ||
+        value.safety.requiresUserAction !== true || !strings(value.safety.phoneNumbers)) return null;
+      const category = value.safety.category as SafetyCategory;
+      const guidance = SAFETY_GUIDANCE[category];
+      if (value.answer.title !== guidance.title || value.answer.plainLanguageSummary !== guidance.summary ||
+        JSON.stringify(value.safety.phoneNumbers) !== JSON.stringify(guidance.phoneNumbers)) return null;
+      return { answer: value.answer, hasResults: false, kind: "safety",
+        safety: { category, phoneNumbers: [...guidance.phoneNumbers], requiresUserAction: true } };
+    }
+    if (value.clarification !== undefined || value.safety !== undefined) return null;
+    return { answer: value.answer, hasResults: value.hasResults, kind: value.kind as "answer" | "unsupported" };
+  }
+  if (value.safety !== undefined || value.clarification !== undefined) return null;
   return { answer: value.answer, hasResults: value.hasResults };
 }

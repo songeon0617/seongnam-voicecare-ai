@@ -16,7 +16,7 @@ export default function Home() {
             <small>성남 생활정보 음성 도우미</small>
           </span>
         </div>
-        <span className={styles.badge}>성남시 공식자료 안내</span>
+        <span className={styles.badge}>성남시 공식자료 기반 경진대회 프로토타입</span>
       </header>
 
       <main className={styles.main}>

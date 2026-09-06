@@ -66,6 +66,8 @@
   border-radius: 999px;
   font-size: 0.9rem;
   font-weight: 800;
+  line-height: 1.4;
+  text-align: center;
 }
 
 .main {
@@ -98,6 +100,7 @@
 
 .intro h1 span {
   color: var(--primary);
+  white-space: nowrap;
 }
 
 .description {

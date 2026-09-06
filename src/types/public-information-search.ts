@@ -1,10 +1,13 @@
 import type { PublicInformationDocument } from "@/types/public-data";
 import type { PublicInformationAnswer } from "@/types/public-information";
+import type { ClarificationContext, ClarificationId, RoutingMetadata } from "@/types/public-information-router";
+import type { PublicInformationSafetyResponse } from "@/types/public-information-safety";
 
 export const PUBLIC_INFORMATION_SEARCH_MAX_QUERY_LENGTH = 300;
 
 export interface PublicInformationSearchRequest {
   query: string;
+  context?: ClarificationContext;
 }
 
 export interface PublicInformationSearchResult {
@@ -20,15 +23,20 @@ export interface PublicInformationSearchOptions {
 
 export type AnswerGenerationMetadata =
   | { status: "generated"; mode: "constrained_presentation" }
-  | { status: "skipped"; reason: "no_results" | "disabled" | "not_configured" }
+  | { status: "skipped"; reason: "no_results" | "disabled" | "not_configured" | "deterministic" }
   | { status: "fallback"; reason: "invalid_output" | "provider_error" };
 
 export interface PublicInformationSearchResponse {
   query: string;
   results: PublicInformationSearchResult[];
   hasResults: boolean;
-  /** 공식 원문 기반 매핑. AI는 요약의 안내 표현·문단 형식만 변경할 수 있다. */
+  /** 사실은 공식 데이터에서만 매핑. 비답변 상태에서는 사실 없는 호환 객체다. */
   answer: PublicInformationAnswer;
+  /** 기존 동기 검색/클라이언트 호환을 위한 점진적 응답 확장. */
+  kind?: "answer" | "clarification" | "unsupported" | "safety";
+  clarification?: { id: ClarificationId };
+  safety?: PublicInformationSafetyResponse;
+  routing?: RoutingMetadata;
   /** 동기 검색 서비스와 기존 클라이언트의 호환성을 위해 선택 필드로 유지한다. */
   answerGeneration?: AnswerGenerationMetadata;
 }

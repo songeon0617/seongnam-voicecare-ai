@@ -54,6 +54,7 @@ export function isAnswerPresentationPlan(
  * 서버 검색 결과만 입력한다. LLM 문자열을 답변에 복사/병합하지 않는다.
  * 문서별 전체 본문과 순서를 보존해 조건·예외의 생략이나 문서 간 혼합을 막는다.
  */
+/** @deprecated 이전 표현 생성의 호환/회귀 테스트용. 현재 API 답변은 항상 deterministic 매핑이다. */
 export async function generatePublicInformationAnswer(
   search: PublicInformationSearchResponse,
   generate: AnswerPresentationGenerator,

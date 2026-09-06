@@ -3,6 +3,7 @@
 import { type FormEvent, useEffect, useRef, useState } from "react";
 import { EXAMPLE_QUESTIONS } from "@/lib/example-questions";
 import { readSearchAnswer } from "@/lib/search/read-search-answer";
+import { CLARIFICATIONS, type ClarificationContext } from "@/types/public-information-router";
 import {
   PUBLIC_INFORMATION_SEARCH_MAX_QUERY_LENGTH,
   type PublicInformationSearchRequest,
@@ -23,6 +24,7 @@ export function QuestionPanel() {
   const [notice, setNotice] = useState("");
   const [search, setSearch] = useState<ReturnType<typeof readSearchAnswer>>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [clarificationContext, setClarificationContext] = useState<ClarificationContext>();
   const activeRequest = useRef<AbortController | null>(null);
   const requestTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const speech = useAnswerSpeech(setNotice);
@@ -32,7 +34,7 @@ export function QuestionPanel() {
     clearTimeout(requestTimeout.current);
   }, []);
 
-  async function submitQuestion(text: string) {
+  async function submitQuestion(text: string, fresh = false) {
     // disabled 렌더 전 같은 이벤트 턴의 중복 제출도 막는다.
     if (activeRequest.current) return;
     speech.stop();
@@ -69,6 +71,7 @@ export function QuestionPanel() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           query: normalizedQuestion,
+          ...(!fresh && clarificationContext ? { context: clarificationContext } : {}),
         } satisfies PublicInformationSearchRequest),
         cache: "no-store",
         signal: controller.signal,
@@ -90,7 +93,14 @@ export function QuestionPanel() {
       }
 
       setSearch(body);
-      setNotice(body.hasResults ? "공식 자료 안내가 준비되었습니다. 아래에서 답변과 출처를 확인해 주세요." : NO_RESULTS_MESSAGE);
+      setClarificationContext(body.clarification ? { question: normalizedQuestion, clarificationId: body.clarification.id } : undefined);
+      setNotice(body.kind === "clarification" ? (body.clarification && CLARIFICATIONS[body.clarification.id].options.length > 0
+        ? "도움의 종류를 확인해 주세요. 아래 선택지를 고르거나 입력란에 답해 주세요."
+        : "도움의 종류를 확인해 주세요. 입력란에 답해 주세요.")
+        : body.kind === "unsupported" ? body.answer.plainLanguageSummary
+        : body.kind === "safety" ? "긴급 상황이라면 아래 번호로 사용자가 직접 연락해 주세요."
+        : body.hasResults ? "공식 자료 안내가 준비되었습니다. 아래에서 답변과 출처를 확인해 주세요." : NO_RESULTS_MESSAGE);
+      if (body.kind === "clarification") setQuestion("");
     } catch {
       if (activeRequest.current === controller && (!controller.signal.aborted || timedOut)) {
         setSearch(null);
@@ -117,7 +127,7 @@ export function QuestionPanel() {
     await submitQuestion(question);
   }
 
-  function selectExample(example: string) {
+  function selectExample(example: string, preserveContext = false) {
     voice.cancel();
     speech.stop();
     activeRequest.current?.abort();
@@ -126,6 +136,7 @@ export function QuestionPanel() {
     setNotice("");
     setSearch(null);
     setIsLoading(false);
+    if (!preserveContext) setClarificationContext(undefined);
   }
 
   return (
@@ -184,7 +195,7 @@ export function QuestionPanel() {
             name="question"
             type="text"
             value={question}
-            onChange={(event) => selectExample(event.target.value)}
+            onChange={(event) => selectExample(event.target.value, true)}
             placeholder="궁금한 내용을 입력해 주세요"
             autoComplete="off"
             maxLength={PUBLIC_INFORMATION_SEARCH_MAX_QUERY_LENGTH}
@@ -200,7 +211,18 @@ export function QuestionPanel() {
             </svg>
           </button>
         </div>
+        <p className={styles.privacyNotice}>
+          질문 내용 일부는 서비스 분류를 위해 AI로 처리될 수 있습니다. 주민등록번호, 연락처 등 민감한 개인정보는 입력하지 마세요.
+        </p>
       </form>
+      {clarificationContext && <div className={styles.examples}>
+        <p>{CLARIFICATIONS[clarificationContext.clarificationId].question}</p>
+        <div className={styles.exampleList}>
+          {CLARIFICATIONS[clarificationContext.clarificationId].options.map((option) => <button key={option} type="button" disabled={isLoading}
+            onClick={() => { voice.cancel(); setQuestion(option); void submitQuestion(option, true); }}>{option}</button>)}
+          <button type="button" onClick={() => selectExample("")}>새 질문하기</button>
+        </div>
+      </div>}
 
       <div className={styles.examples}>
         <p>이렇게 물어보세요</p>
@@ -219,7 +241,7 @@ export function QuestionPanel() {
       </div>
 
       <section
-        className={styles.answer}
+        className={`${styles.answer} ${search?.kind === "safety" ? styles.safetyAnswer : ""}`}
         aria-labelledby="answer-title"
       >
         <div className={styles.answerHeading}>
@@ -229,12 +251,12 @@ export function QuestionPanel() {
               <path d="M9 9h6m-6 3h4" />
             </svg>
           </span>
-          <h2 id="answer-title">공식 자료 안내</h2>
+          <h2 id="answer-title">{search?.kind === "safety" ? "긴급 안전 안내" : "공식 자료 안내"}</h2>
         </div>
         <p className={notice ? styles.notice : styles.answerPlaceholder} role="status" aria-live={speech.isSpeaking ? "off" : "polite"} aria-atomic="true">
           {notice || "질문하면 관련 공식 자료와 출처가 여기에 표시됩니다."}
         </p>
-        {search && <div className={styles.speechControls}>
+        {search && search.kind !== "clarification" && search.kind !== "unsupported" && Boolean(search.answer.plainLanguageSummary.trim()) && <div className={styles.speechControls}>
           <button type="button" onClick={() => {
             if (speech.isSpeaking) {
               speech.stop();
@@ -246,10 +268,20 @@ export function QuestionPanel() {
           }} aria-label={speech.isSpeaking ? "답변 읽기 중지" : "답변 듣기"} aria-pressed={speech.isSpeaking}>
             {speech.isSpeaking ? "중지" : "답변 듣기"}
           </button>
-          <span>답변 본문만 읽습니다. 출처와 확인 상태는 아래에서 확인해 주세요.</span>
+          <span>{search.kind === "safety" ? "고정 안전 안내를 읽습니다. 전화나 신고는 자동으로 실행되지 않습니다."
+            : search.answer.sources.length > 0 ? "답변 본문만 읽습니다. 출처와 확인 상태는 아래에서 확인해 주세요."
+            : "답변 본문만 읽습니다."}</span>
         </div>}
         <div aria-busy={isLoading}>
-          {search && <PublicInformationAnswerView answer={search.answer} />}
+          {search?.kind === "safety" && search.safety && <div className={styles.safetyCard} role="alert">
+            <h3>{search.answer.title}</h3>
+            <p>{search.answer.plainLanguageSummary}</p>
+            <div className={styles.safetyPhones} aria-label="긴급 연락처">
+              {search.safety.phoneNumbers.map((phone) => <a key={phone} href={`tel:${phone}`}>{phone} 전화하기</a>)}
+            </div>
+            <strong>이 서비스는 자동으로 전화하거나 신고하지 않습니다. 사용자가 직접 연락해 주세요.</strong>
+          </div>}
+          {search && search.kind !== "clarification" && search.kind !== "unsupported" && search.kind !== "safety" && <PublicInformationAnswerView answer={search.answer} />}
         </div>
       </section>
     </section>

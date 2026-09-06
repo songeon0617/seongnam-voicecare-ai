@@ -230,6 +230,15 @@
   stroke-linejoin: round;
 }
 
+.privacyNotice {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.55;
+  word-break: keep-all;
+}
+
 .examples {
   margin-top: 28px;
 }
@@ -275,6 +284,69 @@
   background: #f7fafb;
   border: 2px dashed var(--border);
   border-radius: 18px;
+}
+
+.safetyAnswer {
+  background: #fff7f5;
+  border-style: solid;
+  border-color: #b42318;
+}
+
+.safetyAnswer .answerIcon {
+  color: #8f1d14;
+  background: #fee4e2;
+}
+
+.safetyCard {
+  margin-top: 16px;
+  padding: 18px;
+  color: #5f160f;
+  background: #fff;
+  border: 2px solid #d92d20;
+  border-radius: 14px;
+}
+
+.safetyCard h3 {
+  font-size: 1.15rem;
+}
+
+.safetyCard p {
+  margin-top: 10px;
+  color: #3d1612;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.safetyCard > strong {
+  display: block;
+  margin-top: 14px;
+  line-height: 1.5;
+}
+
+.safetyPhones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.safetyPhones a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 9px 14px;
+  color: #fff;
+  background: #b42318;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.safetyPhones a:focus-visible {
+  outline: 4px solid var(--focus);
+  outline-offset: 3px;
 }
 
 .answerHeading {
