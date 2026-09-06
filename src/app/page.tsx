@@ -16,7 +16,7 @@ export default function Home() {
             <small>성남 생활정보 음성 도우미</small>
           </span>
         </div>
-        <span className={styles.badge}>경진대회 MVP</span>
+        <span className={styles.badge}>성남시 공식자료 안내</span>
       </header>
 
       <main className={styles.main}>
@@ -51,7 +51,7 @@ export default function Home() {
       </main>
 
       <footer className={styles.footer}>
-        Seongnam VoiceCare AI · 2026 성남×KAIST AI 경진대회 일반부 MVP
+        Seongnam VoiceCare AI · 성남 생활정보 음성 도우미
       </footer>
     </div>
   );

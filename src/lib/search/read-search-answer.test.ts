@@ -12,7 +12,7 @@ function fixture() {
 test("실제 답변과 빈 결과를 변경 없이 읽는다", () => {
   const search = fixture();
   assert.strictEqual(readSearchAnswer(search)?.answer, search.answer);
-  const empty = createPublicInformationSearchResponse({ query: "여권 발급" });
+  const empty = createPublicInformationSearchResponse({ query: "프로야구 경기 일정" });
   assert.equal(readSearchAnswer(empty.body)?.hasResults, false);
 });
 

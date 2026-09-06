@@ -52,7 +52,7 @@ test("모든 허용 표현에서 전체 원문·순서·메타데이터와 구�
 });
 
 test("빈 결과는 hasResults 값과 관계없이 제공자를 호출하지 않는다", async () => {
-  const response = createPublicInformationSearchResponse({ query: "여권 발급" });
+  const response = createPublicInformationSearchResponse({ query: "프로야구 경기 일정" });
   assert.ok("results" in response.body);
   const result = await generatePublicInformationAnswer({ ...response.body, hasResults: true }, async () => {
     assert.fail("빈 결과에서 LLM 호출 금지");

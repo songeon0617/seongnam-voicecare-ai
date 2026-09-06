@@ -31,7 +31,7 @@ test("실제 어댑터의 8초 timeout도 HTTP 200의 원본 답변 fallback으�
 });
 
 test("입력 오류와 빈 검색은 제공자 구성 단계에도 도달하지 않는다", async () => {
-  const payloads = [null, {}, { query: 123 }, { query: " " }, { query: "가".repeat(301) }, { query: "여권 발급 방법" }];
+  const payloads = [null, {}, { query: 123 }, { query: " " }, { query: "가".repeat(301) }, { query: "프로야구 경기 일정" }];
   for (const payload of payloads) {
     const baseline = createPublicInformationSearchResponse(payload);
     const result = await createPublicInformationResponseWithAnswer(payload, () => {
@@ -145,7 +145,7 @@ test("Route Handler 통합: 정상 생성·변조·HTTP 실패·빈 검색·입�
   assert.equal(failedBody.answerGeneration.reason, "provider_error");
   assert.equal(calls, 3);
 
-  const empty = await send(JSON.stringify({ query: "여권 발급 방법" }));
+  const empty = await send(JSON.stringify({ query: "프로야구 경기 일정" }));
   const emptyBody = await empty.json();
   assert.equal(emptyBody.answerGeneration.reason, "no_results");
   assert.deepEqual(emptyBody.answer.sources, []);

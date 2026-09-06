@@ -63,10 +63,10 @@ test("AI 실패 fallback을 정상 안내로 표시하며 내부 오류를 노�
 });
 
 test("빈 결과, 확인일 null 및 알 수 없는 최신성을 분명히 안내한다", async ({ page }) => {
-  const search = fixture("여권 발급 방법");
+  const search = fixture("프로야구 경기 일정");
   await page.route("**/api/public-information/search", (route) => route.fulfill({ json: search }));
   await page.goto("/");
-  await submit(page, "여권 발급 방법");
+  await submit(page, "프로야구 경기 일정");
   await expect(page.getByRole("status")).toContainText("관련 정보를 찾지 못했습니다");
   await expect(page.getByText("확인일: 미확인", { exact: true })).toBeVisible();
   await expect(page.getByRole("region", { name: "공식 자료 안내", exact: true }).getByRole("link")).toHaveCount(0);
