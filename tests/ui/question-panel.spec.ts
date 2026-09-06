@@ -51,21 +51,22 @@ test("확인 질문은 사실 없이 표시하고 짧은 후속 답에 직전 �
   expect(calls).toBe(2);
 });
 
-test("선택지가 없는 확인 질문은 선택지 안내·답변 듣기·출처를 표시하지 않는다", async ({ page }) => {
+test("자유입력 확인 질문은 모름·새 질문 선택과 사실 없는 상태를 제공한다", async ({ page }) => {
   await page.route("**/api/public-information/search", (route) => route.fulfill({ json: clarificationFixture("service_required") }));
   await page.goto("/");
   await submit(page, "성남시 복지 지원은 뭐가 있어요?");
   await expect(page.getByRole("status")).toHaveText("도움의 종류를 확인해 주세요. 입력란에 답해 주세요.");
   const question = page.getByText(CLARIFICATIONS.service_required.question, { exact: true });
   await expect(question).toBeVisible();
-  await expect(question.locator("..").getByRole("button")).toHaveCount(1);
+  await expect(question.locator("..").getByRole("button")).toHaveCount(2);
+  await expect(question.locator("..").getByRole("button", {name:"잘 모르겠어요"})).toBeVisible();
   const clarification = page.getByRole("region", { name: "공식 자료 안내", exact: true });
   await expect(clarification.getByRole("button", { name: "답변 듣기" })).toHaveCount(0);
   await expect(clarification.getByRole("link")).toHaveCount(0);
   await expect(clarification.getByText(/출처/)).toHaveCount(0);
 });
 
-test("고정 선택지는 새 제도명 질문으로 보내고 새 질문 버튼은 이전 문맥을 비운다", async ({ page }) => {
+test("고정 선택지는 직전 문맥을 보내고 새 질문 버튼은 이전 문맥을 비운다", async ({ page }) => {
   const payloads: unknown[] = [];
   await page.route("**/api/public-information/search", async (route) => {
     payloads.push(route.request().postDataJSON());
@@ -75,7 +76,7 @@ test("고정 선택지는 새 제도명 질문으로 보내고 새 질문 버튼
   await submit(page, "장애인 택시 지원 있어?");
   await page.getByRole("button", { name: "특별교통수단 운영 안내", exact: true }).click();
   await expect.poll(() => payloads.length).toBe(2);
-  expect(payloads[1]).toEqual({ query: "특별교통수단 운영 안내" });
+  expect(payloads[1]).toEqual({ query: "특별교통수단 운영 안내", context: {question:"장애인 택시 지원 있어?",clarificationId:"mobility_vehicle_or_fare"} });
   await page.getByRole("button", { name: "새 질문하기" }).click();
   await submit(page, "긴급복지지원 신청");
   await expect.poll(() => payloads.length).toBe(3);
@@ -136,10 +137,11 @@ test("생성 답변을 키보드로 요청하고 원문·출처·확인일·상�
   await page.goto("/");
   await submit(page);
   const answer = page.getByRole("region", { name: "공식 자료 안내", exact: true });
+  if (await page.locator("details:not([open]) > summary").count()) await page.locator("details:not([open]) > summary").click();
   await expect(answer.getByText(generated.answer.plainLanguageSummary, { exact: true })).toBeVisible();
   await expect(answer.getByRole("status")).toContainText("안내가 준비되었습니다");
   await expect(answer.getByRole("button", { name: "답변 듣기" })).toBeVisible();
-  await expect(answer).toContainText("출처와 확인 상태는 아래에서 확인해 주세요");
+  await expect(answer).toContainText("출처와 확인 상태도 확인해 주세요");
   await expect(answer).not.toContainText("constrained_presentation");
   await expect(answer).not.toContainText("answerGeneration");
   await expect(answer).not.toContainText("검색 점수");
@@ -164,6 +166,7 @@ test("명확한 keyword의 실제 API는 AI 호출 없이 UI에 표시한다", a
   const body = await (await response).json();
   expect(body.answerGeneration).toEqual({ status: "skipped", reason: "deterministic" });
   expect(body.routing.source).toBe("keyword");
+  if (await page.locator("details:not([open]) > summary").count()) await page.locator("details:not([open]) > summary").click();
   await expect(page.getByText(body.answer.plainLanguageSummary, { exact: true })).toBeVisible();
 });
 
@@ -173,6 +176,7 @@ test("AI 실패 fallback을 정상 안내로 표시하며 내부 오류를 노�
   await page.route("**/api/public-information/search", (route) => route.fulfill({ json: { ...search, ...fallback } }));
   await page.goto("/");
   await submit(page);
+  if (await page.locator("details:not([open]) > summary").count()) await page.locator("details:not([open]) > summary").click();
   await expect(page.getByText(search.answer.plainLanguageSummary, { exact: true })).toBeVisible();
   await expect(page.getByRole("region", { name: "공식 자료 안내", exact: true })).not.toContainText(/provider_error|private-provider-error|fallback/);
 });
@@ -229,6 +233,7 @@ test("본문의 HTML을 실행하지 않고 텍스트로 표시한다", async ({
   await page.route("**/api/public-information/search", (route) => route.fulfill({ json: search }));
   await page.goto("/");
   await submit(page);
+  if (await page.locator("details:not([open]) > summary").count()) await page.locator("details:not([open]) > summary").click();
   await expect(page.getByText(search.answer.plainLanguageSummary, { exact: true })).toBeVisible();
   await expect(page.getByRole("region", { name: "공식 자료 안내", exact: true }).locator("img")).toHaveCount(0);
 });
@@ -249,13 +254,13 @@ test("생성 상태라도 미확인 날짜와 재검토·변경 가능성 표시
   await expect(answer).not.toContainText("공식 자료 확인됨");
 });
 
-test("15초 네트워크 지연 후 로딩을 해제하고 재시도를 안내한다", async ({ page }) => {
+test("30초 네트워크 지연 후 로딩을 해제하고 재시도를 안내한다", async ({ page }) => {
   await page.goto("/");
   await page.clock.install();
   await page.route("**/api/public-information/search", () => {});
   await submit(page);
   await expect(page.getByRole("status")).toContainText("안내를 준비하고 있습니다");
-  await page.clock.fastForward(15_000);
+  await page.clock.fastForward(30_000);
   await expect(page.getByRole("status")).toContainText("응답이 지연되고 있습니다");
   await expect(page.getByRole("button", { name: "질문 보내기" })).toBeEnabled();
 });
@@ -297,7 +302,7 @@ test("네트워크 실패 후 동일 텍스트 질문을 다시 보낼 수 있�
   await expect(page.getByRole("status")).toContainText("안내가 준비되었습니다");
 });
 
-test("응답 헤더 뒤 본문이 멈춰도 15초 후 텍스트 재시도가 가능하다", async ({ page }) => {
+test("응답 헤더 뒤 본문이 멈춰도 30초 후 텍스트 재시도가 가능하다", async ({ page }) => {
   await page.goto("/");
   await page.clock.install();
   await page.evaluate(() => {
@@ -315,7 +320,7 @@ test("응답 헤더 뒤 본문이 멈춰도 15초 후 텍스트 재시도가 가
     };
   });
   await submit(page);
-  await page.clock.fastForward(15_000);
+  await page.clock.fastForward(30_000);
   await expect(page.getByRole("status")).toContainText("응답이 지연되고 있습니다");
   await page.getByRole("button", { name: "질문 보내기" }).click();
   await expect(page.getByRole("status")).toContainText("안내가 준비되었습니다");
@@ -334,6 +339,7 @@ test("대표 돌봄 질문의 실제 API·출처 바로가기·모바일 표시�
   await submit(page, query);
   const body = await (await response).json();
   expect(body.results[0].document.id).toBe("seongnam-senior-tailored-care");
+  if (await page.locator("details:not([open]) > summary").count()) await page.locator("details:not([open]) > summary").click();
   await expect(page.getByText(body.answer.plainLanguageSummary, { exact: true })).toBeVisible();
   await page.getByRole("link", { name: /출처 .*건과 확인 상태 보기/ }).click();
   await expect(page.locator("#answer-sources")).toBeInViewport();
@@ -352,9 +358,10 @@ test("대표 돌봄 질문의 실제 API·출처 바로가기·모바일 표시�
 test("1265px 제목 줄바꿈과 첫 화면 프로토타입·AI 개인정보 안내를 확인한다", async ({ page }) => {
   await page.setViewportSize({ width: 1265, height: 900 });
   await page.goto("/");
-  await expect(page.getByText("성남시 공식자료 기반 경진대회 프로토타입", { exact: true })).toBeVisible();
-  await expect(page.getByText(/질문 내용 일부는 서비스 분류를 위해 AI로 처리될 수 있습니다/)).toBeVisible();
-  await expect(page.getByText(/주민등록번호, 연락처 등 민감한 개인정보는 입력하지 마세요/)).toBeVisible();
+  await expect(page.getByText("Astra · 공식 자료 기반 시민 프로젝트", { exact: true })).toBeVisible();
+  await expect(page.getByText(/OpenAI의 공식 웹 검색으로 처리될 수 있습니다/)).toBeVisible();
+  await expect(page.getByText(/주민등록번호, 연락처 등 개인정보는 입력하지 마세요/)).toBeVisible();
+  await expect(page.getByText(/성남시가 운영하는 공식 서비스가 아닙니다/)).toBeVisible();
   const titleLine = page.locator("#page-title span");
   expect(await titleLine.evaluate((element) => element.getClientRects().length)).toBe(1);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);

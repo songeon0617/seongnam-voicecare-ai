@@ -14,6 +14,7 @@ export class InvalidRouterOutputError extends Error {}
 
 /** 확인 질문의 의미와 관계없는 후보를 버린다. 새 후보/사실을 추가하지 않는다. */
 const CLARIFICATION_SERVICES: Record<ClarificationId, readonly ServiceId[]> = {
+  mobility_general: [], mobility_purpose: [], youth_purpose: [], library_required: [], referent_required: [],
   mobility_vehicle_or_fare: ["seongnam-special-transportation", "seongnam-disabled-taxi-voucher", "seongnam-disabled-bus-fare-support"],
   elderly_care_type: ["seongnam-senior-tailored-care", "seongnam-bundang-senior-welfare-center"],
   health_visit_or_dementia: ["seongnam-home-health-care", "seongnam-dementia-center"],

@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-09-06T15:11:12.019Z",
+  "url": "https://www.seongnam.go.kr/cn02040801",
+  "ms": 66,
+  "fetch": "FAIL",
+  "error": "unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca",
+  "paidCalls": 0
+}

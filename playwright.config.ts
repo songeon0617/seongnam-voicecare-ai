@@ -12,6 +12,6 @@ export default defineConfig({
     reuseExistingServer: false,
     timeout: 120_000,
     // 로컬 키가 있더라도 자동 테스트는 실제 API를 호출하지 않는다.
-    env: { PUBLIC_INFORMATION_AI_ENABLED: "false", OPENAI_API_KEY: "", OPENAI_MODEL: "" },
+    env: { PUBLIC_INFORMATION_AI_ENABLED: "false", PUBLIC_INFORMATION_WEB_SEARCH_ENABLED: "false", OPENAI_API_KEY: "", OPENAI_MODEL: "" },
   },
 });

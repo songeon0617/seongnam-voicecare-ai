@@ -1,0 +1,220 @@
+{
+  "checkedAt": "2026-09-06T14:38:43.553Z",
+  "status": 200,
+  "ms": 4269,
+  "body": {
+    "id": "resp_0bcd7a873cc1064f016a9d7aef6c5c87d0b873565ceebcf5e5",
+    "object": "response",
+    "created_at": 1788705519,
+    "status": "completed",
+    "background": false,
+    "billing": {
+      "payer": "developer"
+    },
+    "completed_at": 1788705523,
+    "error": null,
+    "frequency_penalty": 0,
+    "incomplete_details": null,
+    "instructions": null,
+    "max_output_tokens": 1800,
+    "max_tool_calls": 1,
+    "model": "gpt-5.6-terra",
+    "moderation": null,
+    "output": [
+      {
+        "id": "ws_0bcd7a873cc1064f016a9d7af05f2887d0b2798c958c418d9f",
+        "type": "web_search_call",
+        "status": "completed",
+        "action": {
+          "type": "search",
+          "queries": [
+            "site:seongnam.go.kr 성남시 여권 신청 장소"
+          ],
+          "query": "site:seongnam.go.kr 성남시 여권 신청 장소",
+          "sources": [
+            {
+              "type": "url",
+              "url": "https://www.seongnam.go.kr/passport/passportAcceptState.do?menuIdx=1001148&returnURL=%2Fmain.do"
+            },
+            {
+              "type": "url",
+              "url": "https://seongnam.go.kr/city/1000081/10054/contents.do"
+            },
+            {
+              "type": "url",
+              "url": "https://www.seongnam.go.kr/city/1000083/10056/contents.do"
+            },
+            {
+              "type": "url",
+              "url": "https://www.seongnam.go.kr/city/1000071/10046/contents.do"
+            },
+            {
+              "type": "url",
+              "url": "https://www.seongnam.go.kr/apply/integration/step1?facilityId=I0681&instiCode=INST_CITY_01"
+            },
+            {
+              "type": "url",
+              "url": "https://www.seongnam.go.kr/apply/"
+            },
+            {
+              "type": "url",
+              "url": "https://snvision.seongnam.go.kr/22052"
+            },
+            {
+              "type": "url",
+              "url": "https://www.seongnam.go.kr/VFVhtEc"
+            },
+            {
+              "type": "url",
+              "url": "https://www.seongnam.go.kr/organ/staffChartList.do?menuIdx=1000043&searchOrganCd=37802980000"
+            },
+            {
+              "type": "url",
+              "url": "https://www.seongnam.go.kr/cn020403"
+            },
+            {
+              "type": "url",
+              "url": "https://www.seongnam.go.kr/pm04041101?deptCode=37802890000&orgSelect=orgSelect01"
+            },
+            {
+              "type": "url",
+              "url": "https://www.seongnam.go.kr/search/search.jsp"
+            },
+            {
+              "type": "url",
+              "url": "https://snvision.seongnam.go.kr/data/snvision/pdf/202405/2024053118213565.pdf"
+            },
+            {
+              "type": "url",
+              "url": "https://snvision.seongnam.go.kr/data/snvision/pdf/201212/2013_1_vision.pdf"
+            },
+            {
+              "type": "url",
+              "url": "https://snvision.seongnam.go.kr/data/snvision/pdf/201210/2013120940353157.pdf"
+            },
+            {
+              "type": "url",
+              "url": "https://snvision.seongnam.go.kr/data/snvision/pdf/200607/2006_07_vision.pdf"
+            },
+            {
+              "type": "url",
+              "url": "https://snvision.seongnam.go.kr/data/snvision/pdf/202511/2025120340069458.pdf"
+            },
+            {
+              "type": "url",
+              "url": "https://snvision.seongnam.go.kr/data/snvision/pdf/202503/2025040150447671.pdf"
+            },
+            {
+              "type": "url",
+              "url": "https://www.seongnam.go.kr/apply/integration/step1?facilityId=I0681&instiCode=INST_CITY_01&utm_source=openai"
+            }
+          ]
+        }
+      },
+      {
+        "id": "msg_0bcd7a873cc1064f016a9d7af2780487d08bd9c218798e37e7",
+        "type": "message",
+        "status": "completed",
+        "content": [
+          {
+            "type": "output_text",
+            "annotations": [
+              {
+                "type": "url_citation",
+                "end_index": 209,
+                "start_index": 81,
+                "title": "행정복지 - 행정복지 - 성남시 통합예약",
+                "url": "https://www.seongnam.go.kr/apply/integration/step1?facilityId=I0681&instiCode=INST_CITY_01&utm_source=openai"
+              }
+            ],
+            "logprobs": [],
+            "text": "성남시 여권 신청 장소는 **성남시청 1층 종합민원실 여권 발급 창구**입니다.  \n주소: **경기 성남시 중원구 성남대로 997(여수동)**. ([seongnam.go.kr](https://www.seongnam.go.kr/apply/integration/step1?facilityId=I0681&instiCode=INST_CITY_01&utm_source=openai))"
+          }
+        ],
+        "phase": "final_answer",
+        "role": "assistant"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "presence_penalty": 0,
+    "previous_response_id": null,
+    "prompt_cache_key": null,
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "all_turns",
+      "effort": "low",
+      "mode": "standard",
+      "summary": null
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "store": false,
+    "temperature": 1,
+    "text": {
+      "format": {
+        "type": "text"
+      },
+      "verbosity": "medium"
+    },
+    "tool_choice": {
+      "type": "web_search_preview"
+    },
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 1
+      }
+    },
+    "tools": [
+      {
+        "type": "web_search",
+        "filters": {
+          "allowed_domains": [
+            "seongnam.go.kr"
+          ]
+        },
+        "return_token_budget": "default",
+        "search_content_types": [
+          "text"
+        ],
+        "search_context_size": "low",
+        "user_location": {
+          "type": "approximate",
+          "city": null,
+          "country": "US",
+          "region": null,
+          "timezone": null
+        }
+      }
+    ],
+    "top_logprobs": 0,
+    "top_p": 0.98,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 10633,
+      "input_tokens_details": {
+        "cache_write_tokens": 4270,
+        "cached_tokens": 0
+      },
+      "output_tokens": 108,
+      "output_tokens_details": {
+        "reasoning_tokens": 37
+      },
+      "total_tokens": 10741
+    },
+    "user": null,
+    "metadata": {}
+  }
+}

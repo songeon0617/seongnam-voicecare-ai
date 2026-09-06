@@ -1,6 +1,7 @@
 import type { PublicDocumentFreshnessStatus, PublicDocumentStatus } from "@/types/public-data";
 import type { InformationVerificationStatus, PublicInformationAnswer } from "@/types/public-information";
 import styles from "./question-panel.module.css";
+import { conciseAnswer } from "@/lib/public-information/concise-answer";
 
 const VERIFICATION: Record<InformationVerificationStatus, string> = {
   verified: "공식 자료 확인됨",
@@ -22,17 +23,24 @@ function CheckedDate({ value }: { value: string | null }) {
 }
 
 /** 서버가 승인한 답변만 렌더링한다. AI 상태로 검증 수준을 바꾸지 않는다. */
-export function PublicInformationAnswerView({ answer }: { answer: PublicInformationAnswer }) {
+export function PublicInformationAnswerView({ answer, onReadFull }: { answer: PublicInformationAnswer; onReadFull?: () => void }) {
+  const concise = conciseAnswer(answer);
+  const expanded = concise !== answer.plainLanguageSummary;
   return (
     <div className={styles.searchResults}>
       <h3 className={styles.serviceTitle}>{answer.title}</h3>
       {answer.sources.length > 0 && <p className={styles.evidenceLabel}>공식 성남시 자료를 바탕으로 안내합니다.</p>}
       {answer.sources.length > 0 && <a className={styles.sourceShortcut} href="#answer-sources">출처 {answer.sources.length}건과 확인 상태 보기</a>}
+      {expanded && <p className={styles.summary}>{concise}</p>}
+      <details open={!expanded} className={styles.detailSection}>
+      <summary>상세 안내 펼치기</summary>
       <p className={styles.summary}>
         {answer.plainLanguageSummary.split(/(?<=[.!?])(?=\s)/u).map((paragraph, index) => (
           <span className={styles.summaryParagraph} key={index}>{paragraph}</span>
         ))}
       </p>
+      {expanded && onReadFull && <button type="button" onClick={onReadFull}>상세 안내 전체 듣기</button>}
+      </details>
 
       {answer.eligibility && answer.eligibility.length > 0 && <div className={styles.detailSection}>
         <h3>자료에 안내된 대상</h3>

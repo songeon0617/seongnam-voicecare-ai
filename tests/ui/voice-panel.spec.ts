@@ -51,6 +51,7 @@ test("한국어 STT 확정 결과를 입력란과 기존 API에 한 번 전달�
     window.voiceTest.end();
   }, QUERY);
   await expect(page.getByRole("textbox")).toHaveValue(QUERY);
+  if (await page.locator("details:not([open]) > summary").count()) await page.locator("details:not([open]) > summary").click();
   await expect(page.getByText(search.answer.plainLanguageSummary, { exact: true })).toBeVisible();
   expect(requests).toBe(1);
   expect(await page.evaluate(() => window.voiceTest.spoken.length)).toBe(0);
@@ -151,12 +152,13 @@ test("300자 초과 인식은 자르거나 전송하지 않고 수정할 수 있
   expect(requests).toBe(0);
 });
 
-test("TTS는 한국어로 원문 전체를 순서대로 읽고 자동 재생하지 않는다", async ({ page }) => {
+test("상세 듣기는 한국어로 원문 전체를 순서대로 읽고 자동 재생하지 않는다", async ({ page }) => {
   await installSpeechMock(page);
   await page.goto("/");
   await textQuestion(page);
   expect(await page.evaluate(() => window.voiceTest.spoken.length)).toBe(0);
-  await page.getByRole("button", { name: "답변 듣기" }).press("Enter");
+  await page.locator("details > summary").click();
+  await page.getByRole("button", { name: "상세 안내 전체 듣기" }).press("Enter");
   await expect(page.getByRole("button", { name: "답변 읽기 중지" })).toBeVisible();
   await expect(page.getByRole("status")).toHaveAttribute("aria-live", "off");
   const spoken = await page.evaluate(() => {
@@ -204,7 +206,7 @@ for (const action of ["stop", "type", "microphone", "example", "submit"] as cons
     if (action === "stop") await page.getByRole("button", { name: "답변 읽기 중지" }).press("Space");
     if (action === "type") await page.getByRole("textbox").fill("다음 질문");
     if (action === "microphone") await page.getByRole("button", { name: "마이크로 질문하기" }).click();
-    if (action === "example") await page.getByRole("button", { name: /분당구에서 이용할 수 있는 복지시설/ }).click();
+    if (action === "example") await page.getByRole("button", { name: /이동수단 알려줘/ }).click();
     if (action === "submit") await page.getByRole("button", { name: "질문 보내기" }).click();
     await oldEnd.evaluate((callback) => callback?.call(new SpeechSynthesisUtterance(), new Event("end") as SpeechSynthesisEvent));
     expect(await page.evaluate(() => window.voiceTest.cancels)).toBe(1);
@@ -231,6 +233,7 @@ test("TTS 미지원에도 본문과 텍스트 기능을 유지한다", async ({ 
   await textQuestion(page);
   await page.getByRole("button", { name: "답변 듣기" }).click();
   await expect(page.getByRole("status")).toContainText("답변 듣기를 지원하지 않습니다");
+  if (await page.locator("details:not([open]) > summary").count()) await page.locator("details:not([open]) > summary").click();
   await expect(page.getByText(keywordAnswer().plainLanguageSummary, { exact: true })).toBeVisible();
 });
 
@@ -253,7 +256,8 @@ test("이전 TTS 조각의 중복 종료·오류는 다음 조각과 제한 시�
   await page.goto("/");
   await textQuestion(page);
   await page.clock.install();
-  await page.getByRole("button", { name: "답변 듣기" }).click();
+  await page.locator("details > summary").click();
+  await page.getByRole("button", { name: "상세 안내 전체 듣기" }).click();
   await page.evaluate(() => {
     const first = window.voiceTest.spoken[0];
     const end = first.onend;

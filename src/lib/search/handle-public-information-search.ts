@@ -1,7 +1,7 @@
 import "server-only";
 import type { PublicInformationSearchErrorCode } from "@/types/public-information-search";
 import { createPublicInformationSearchError } from "./create-public-information-search-response";
-import { createPublicInformationResponseWithAnswer } from "./create-public-information-response-with-answer";
+import { createExpandedPublicInformationResponse } from "./expanded-public-information";
 import { createSearchRequestLimit } from "./search-request-limit";
 
 const MAX_BODY_BYTES = 4096;
@@ -53,7 +53,7 @@ async function readPayload(request: Request): Promise<unknown> {
 }
 
 export function createPublicInformationSearchHandler(
-  service = createPublicInformationResponseWithAnswer,
+  service = createExpandedPublicInformationResponse,
   limit = createSearchRequestLimit(),
 ) {
   return async (request: Request) => {

@@ -16,7 +16,7 @@ export default function Home() {
             <small>성남 생활정보 음성 도우미</small>
           </span>
         </div>
-        <span className={styles.badge}>성남시 공식자료 기반 경진대회 프로토타입</span>
+        <span className={styles.badge}>Astra · 공식 자료 기반 시민 프로젝트</span>
       </header>
 
       <main className={styles.main}>
@@ -29,7 +29,7 @@ export default function Home() {
           </h1>
           <p className={styles.description}>
             제도명을 몰라도 괜찮아요. 필요한 도움을 말하거나 글로 적어 주세요.
-            등록된 성남시 공식 자료를 찾아 출처와 함께 안내합니다.
+            성남시를 기본 지역으로 공공·생활정보의 공식 근거를 찾습니다. 검색 연결과 자료 확인 상태를 함께 안내합니다.
           </p>
           <div className={styles.guideList}>
             <div className={styles.guide}>
@@ -52,7 +52,7 @@ export default function Home() {
 
       <footer className={styles.footer}>
         <strong>Seongnam VoiceCare AI</strong>
-        <span>성남시 공식자료 기반 경진대회 프로토타입 · 현재 13개 안내 제공</span>
+        <span>Astra 팀의 경진대회 프로토타입 · 성남시가 운영하는 공식 서비스가 아닙니다.</span>
       </footer>
     </div>
   );

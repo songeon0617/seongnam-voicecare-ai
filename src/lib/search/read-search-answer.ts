@@ -1,6 +1,10 @@
 import type { PublicInformationAnswer } from "@/types/public-information";
 import { CLARIFICATIONS, isClarificationId, type ClarificationId } from "@/types/public-information-router";
 import { SAFETY_GUIDANCE, type PublicInformationSafetyResponse, type SafetyCategory } from "@/types/public-information-safety";
+import { SEARCH_FAILURES, type OfficialSearchPresentation } from "@/types/official-search";
+import type { PublicInformationSearchResponse } from "@/types/public-information-search";
+import { officialUrl } from "./official-source-policy";
+import { SEARCH_MESSAGES } from "@/types/search-messages";
 
 type RecordValue = Record<string, unknown>;
 const record = (value: unknown): value is RecordValue => typeof value === "object" && value !== null && !Array.isArray(value);
@@ -43,13 +47,34 @@ function isAnswer(value: unknown): value is PublicInformationAnswer {
 /** 결과 문서를 클라이언트에서 재조합하지 않고 승인된 answer만 사용한다. */
 export function readSearchAnswer(value: unknown): {
   answer: PublicInformationAnswer; hasResults: boolean;
-  kind?: "answer" | "clarification" | "unsupported" | "safety";
+  kind?: PublicInformationSearchResponse["kind"];
+  officialSearch?: OfficialSearchPresentation;
   clarification?: { id: ClarificationId };
   safety?: PublicInformationSafetyResponse;
 } | null {
   if (!record(value) || !Array.isArray(value.results) || typeof value.hasResults !== "boolean"
     || value.hasResults !== (value.results.length > 0) || !isAnswer(value.answer)) return null;
   if (value.kind !== undefined) {
+    if(oneOf(value.kind,["guidance","official_answer","partial_answer","official_links","search_unavailable"])) {
+      if(value.hasResults||value.results.length||value.answer.sources.length||value.answer.steps.length||value.answer.nextAction!==null||value.answer.contacts?.length||value.answer.locations?.length||value.answer.eligibility?.length||value.answer.requiredItems?.length||value.clarification!==undefined||value.safety!==undefined||value.answer.verification.status!=="insufficient_data"||value.answer.verification.checkedAt!==null)return null;
+      if(value.kind==="guidance")return value.officialSearch===undefined?{answer:value.answer,hasResults:false,kind:"guidance"}:null;
+      const official=value.officialSearch;
+      if(!record(official)||official.region!=="성남시"||typeof official.searched!=="boolean"||!oneOf(official.status,["evidence","partial","links",...SEARCH_FAILURES])||
+        !Array.isArray(official.evidence)||official.evidence.length>3||!Array.isArray(official.links)||official.links.length>3)return null;
+      const safeUrl=(v:unknown)=>string(v)&&officialUrl(v)===v;
+      const links=official.links;
+      if(!official.links.every(link=>record(link)&&safeUrl(link.url)&&string(link.title)))return null;
+      if(!official.evidence.every(e=>record(e)&&string(e.id)&&safeUrl(e.url)&&string(e.title)&&e.publisher==="성남시청"&&e.region==="성남시"&&
+        string(e.excerpt)&&e.excerpt.length>=20&&e.excerpt.length<=900&&string(e.checkedAt)&&date(e.checkedAt)&&date(e.publishedAt)&&date(e.updatedAt)&&
+        e.applicationPeriod===null&&e.effectivePeriod===null&&e.freshness==="unknown"&&typeof e.fromCache==="boolean"&&e.collection==="openai_web_search+https_original"&&
+        links.some(link=>record(link)&&link.url===e.url)))return null;
+      if((value.kind==="partial_answer"||value.kind==="official_answer")&&(!official.searched||official.evidence.length===0||!["evidence","partial"].includes(String(official.status))))return null;
+      if(value.kind==="official_links"&&(official.evidence.length||!official.links.length||official.status!=="links"||!official.searched))return null;
+      if(value.kind==="search_unavailable"&&(official.evidence.length||official.links.length||!SEARCH_FAILURES.includes(official.status as typeof SEARCH_FAILURES[number])))return null;
+      if(value.kind==="search_unavailable"&&value.answer.plainLanguageSummary!==SEARCH_MESSAGES[official.status as keyof typeof SEARCH_MESSAGES])return null;
+      return {answer:value.answer,hasResults:false,kind:value.kind as PublicInformationSearchResponse["kind"],officialSearch:official as unknown as OfficialSearchPresentation};
+    }
+    if(value.officialSearch!==undefined)return null;
     if (!oneOf(value.kind, ["answer", "clarification", "unsupported", "safety"])) return null;
     if ((value.kind === "answer") !== value.hasResults) return null;
     if (value.kind !== "answer" && (value.answer.sources.length > 0 || value.answer.steps.length > 0 ||

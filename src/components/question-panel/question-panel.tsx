@@ -3,6 +3,7 @@
 import { type FormEvent, useEffect, useRef, useState } from "react";
 import { EXAMPLE_QUESTIONS } from "@/lib/example-questions";
 import { readSearchAnswer } from "@/lib/search/read-search-answer";
+import { conciseAnswer } from "@/lib/public-information/concise-answer";
 import { CLARIFICATIONS, type ClarificationContext } from "@/types/public-information-router";
 import {
   PUBLIC_INFORMATION_SEARCH_MAX_QUERY_LENGTH,
@@ -62,7 +63,7 @@ export function QuestionPanel() {
     const timeout = setTimeout(() => {
       timedOut = true;
       controller.abort();
-    }, 15_000);
+    }, 30_000);
     requestTimeout.current = timeout;
 
     try {
@@ -99,6 +100,7 @@ export function QuestionPanel() {
         : "도움의 종류를 확인해 주세요. 입력란에 답해 주세요.")
         : body.kind === "unsupported" ? body.answer.plainLanguageSummary
         : body.kind === "safety" ? "긴급 상황이라면 아래 번호로 사용자가 직접 연락해 주세요."
+        : body.officialSearch || body.kind === "guidance" ? body.answer.plainLanguageSummary
         : body.hasResults ? "공식 자료 안내가 준비되었습니다. 아래에서 답변과 출처를 확인해 주세요." : NO_RESULTS_MESSAGE);
       if (body.kind === "clarification") setQuestion("");
     } catch {
@@ -178,7 +180,7 @@ export function QuestionPanel() {
             </button>
           </div>
           <p className={styles.privacyNotice}>
-            질문 내용 일부는 서비스 분류를 위해 AI로 처리될 수 있습니다. 주민등록번호, 연락처 등 민감한 개인정보는 입력하지 마세요.
+            질문과 직전 확인 답변은 OpenAI의 공식 웹 검색으로 처리될 수 있습니다. 번호·이메일 자동 가림에는 한계가 있으니 이름, 주민등록번호, 연락처 등 개인정보는 입력하지 마세요. 앱은 질문·음성 원본을 DB에 저장하지 않습니다.
           </p>
         </form>
         <div className={styles.voiceArea}>
@@ -215,6 +217,7 @@ export function QuestionPanel() {
           <p id="voice-help" className={styles.voiceHelp}>
             말씀이 끝나면 인식한 질문을 자동으로 보냅니다. 인식 결과는 질문 입력란에서 수정할 수 있습니다.
             브라우저에 따라 음성이 음성 인식 서비스로 전송될 수 있습니다.
+            마이크를 사용할 수 없다면 글자 입력이나 휴대폰 키보드의 음성 입력을 이용하세요.
           </p>
           {voice.preview && <p className={styles.voicePreview} aria-live="off">인식 중: {voice.preview}</p>}
         </div>
@@ -224,7 +227,8 @@ export function QuestionPanel() {
         <p>{CLARIFICATIONS[clarificationContext.clarificationId].question}</p>
         <div className={styles.exampleList}>
           {CLARIFICATIONS[clarificationContext.clarificationId].options.map((option) => <button key={option} type="button" disabled={isLoading}
-            onClick={() => { voice.cancel(); setQuestion(option); void submitQuestion(option, true); }}>{option}</button>)}
+            onClick={() => { voice.cancel(); setQuestion(option); void submitQuestion(option); }}>{option}</button>)}
+          {!CLARIFICATIONS[clarificationContext.clarificationId].options.some(option => option === "잘 모르겠어요") && <button type="button" disabled={isLoading} onClick={() => { setQuestion("잘 모르겠어요"); void submitQuestion("잘 모르겠어요"); }}>잘 모르겠어요</button>}
           <button type="button" onClick={() => selectExample("")}>새 질문하기</button>
         </div>
       </div>}
@@ -270,16 +274,30 @@ export function QuestionPanel() {
               setNotice("답변 읽기를 중지했습니다.");
             } else {
               voice.cancel();
-              speech.play(search.answer.plainLanguageSummary);
+              speech.play(search.kind === "safety" ? search.answer.plainLanguageSummary : conciseAnswer(search.answer));
             }
           }} aria-label={speech.isSpeaking ? "답변 읽기 중지" : "답변 듣기"} aria-pressed={speech.isSpeaking}>
             {speech.isSpeaking ? "중지" : "답변 듣기"}
           </button>
           <span>{search.kind === "safety" ? "고정 안전 안내를 읽습니다. 전화나 신고는 자동으로 실행되지 않습니다."
-            : search.answer.sources.length > 0 ? "답변 본문만 읽습니다. 출처와 확인 상태는 아래에서 확인해 주세요."
+            : search.answer.sources.length > 0 ? "화면의 짧은 안내를 읽습니다. 긴 본문은 상세 안내를 펼쳐 따로 들을 수 있습니다. 출처와 확인 상태도 확인해 주세요."
             : "답변 본문만 읽습니다."}</span>
         </div>}
         <div aria-busy={isLoading}>
+          {search?.officialSearch && <div className={styles.searchResults}>
+            <h3 className={styles.serviceTitle}>{search.answer.title}</h3>
+            <p>안내 지역: 성남시 · {search.officialSearch.searched ? "검색 실행 확인" : "검색 완료 미확인"}</p>
+            {search.officialSearch.evidence.map(evidence => <article key={evidence.id} className={styles.detailSection}>
+              <h3><a href={evidence.url} target="_blank" rel="noreferrer">{evidence.title} (공식 원문)</a></h3>
+              <blockquote className={styles.excerpt}>{evidence.excerpt}</blockquote>
+              <p>발행기관: {evidence.publisher} · 적용 지역: {evidence.region}</p>
+              <p>원문 대조: <time dateTime={evidence.checkedAt}>{evidence.checkedAt.replace("T", " ").slice(0, 19)} UTC</time>{evidence.fromCache ? " (이전에 확인한 문서 캐시)" : ""}</p>
+              <p>게시·수정일: 미확인 · 시행·신청기간: 미확인 · 최신성: 미확인</p>
+            </article>)}
+            {search.officialSearch.links.length > 0 && <div className={styles.detailSection}><h3>공식 근거</h3><ul>{search.officialSearch.links.map(link => <li key={link.url}><a href={link.url} target="_blank" rel="noreferrer">{link.title} (새 창)</a></li>)}</ul></div>}
+            {search.kind === "search_unavailable" && <button type="button" disabled={isLoading} onClick={() => { void submitQuestion(question); }}>다시 시도</button>}
+            <p><a href="https://www.seongnam.go.kr/" target="_blank" rel="noreferrer">성남시 공식 홈페이지 (새 창)</a></p>
+          </div>}
           {search?.kind === "safety" && search.safety && <div className={styles.safetyCard} role="alert">
             <h3>{search.answer.title}</h3>
             <p>{search.answer.plainLanguageSummary}</p>
@@ -288,7 +306,7 @@ export function QuestionPanel() {
             </div>
             <strong>이 서비스는 자동으로 전화하거나 신고하지 않습니다. 사용자가 직접 연락해 주세요.</strong>
           </div>}
-          {search && search.kind !== "clarification" && search.kind !== "unsupported" && search.kind !== "safety" && <PublicInformationAnswerView answer={search.answer} />}
+          {search && !search.officialSearch && search.kind !== "guidance" && search.kind !== "clarification" && search.kind !== "unsupported" && search.kind !== "safety" && <PublicInformationAnswerView answer={search.answer} onReadFull={() => { voice.cancel(); speech.play(search.answer.plainLanguageSummary); }} />}
         </div>
       </section>
     </section>

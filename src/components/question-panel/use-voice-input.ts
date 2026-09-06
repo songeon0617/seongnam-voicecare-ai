@@ -7,8 +7,22 @@ export function useVoiceInput(onTranscript: (text: string) => void, onNotice: (m
   const [state, setState] = useState<"idle" | "starting" | "listening" | "processing">("idle");
   const [preview, setPreview] = useState("");
   const session = useRef<{ dispose: () => void } | null>(null);
+  const effectGeneration = useRef(0);
 
-  useEffect(() => () => session.current?.dispose(), []);
+  useEffect(() => {
+    const generation = ++effectGeneration.current;
+    const hidden = () => { if (document.hidden) { session.current?.dispose(); setState("idle"); setPreview(""); } };
+    document.addEventListener("visibilitychange", hidden);
+    return () => {
+      document.removeEventListener("visibilitychange", hidden);
+      const capturedSession = session.current;
+      // React can disconnect/reconnect passive effects during hydration. A same-turn
+      // reconnect must not destroy a microphone session started by a replayed event.
+      queueMicrotask(() => {
+        if (effectGeneration.current === generation && session.current === capturedSession) capturedSession?.dispose();
+      });
+    };
+  }, []);
 
   function cancel() {
     session.current?.dispose();

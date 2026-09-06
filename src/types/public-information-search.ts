@@ -2,6 +2,7 @@ import type { PublicInformationDocument } from "@/types/public-data";
 import type { PublicInformationAnswer } from "@/types/public-information";
 import type { ClarificationContext, ClarificationId, RoutingMetadata } from "@/types/public-information-router";
 import type { PublicInformationSafetyResponse } from "@/types/public-information-safety";
+import type { OfficialSearchPresentation } from "@/types/official-search";
 
 export const PUBLIC_INFORMATION_SEARCH_MAX_QUERY_LENGTH = 300;
 
@@ -33,7 +34,8 @@ export interface PublicInformationSearchResponse {
   /** 사실은 공식 데이터에서만 매핑. 비답변 상태에서는 사실 없는 호환 객체다. */
   answer: PublicInformationAnswer;
   /** 기존 동기 검색/클라이언트 호환을 위한 점진적 응답 확장. */
-  kind?: "answer" | "clarification" | "unsupported" | "safety";
+  kind?: "answer" | "clarification" | "unsupported" | "safety" | "guidance" | "official_answer" | "partial_answer" | "official_links" | "search_unavailable";
+  officialSearch?: OfficialSearchPresentation;
   clarification?: { id: ClarificationId };
   safety?: PublicInformationSafetyResponse;
   routing?: RoutingMetadata;

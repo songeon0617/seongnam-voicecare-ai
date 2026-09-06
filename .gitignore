@@ -42,3 +42,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local submission originals/revisions may contain personal information or signatures.
+/docs/submission-2026/
+/*.log
