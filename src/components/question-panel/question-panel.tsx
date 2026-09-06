@@ -141,81 +141,86 @@ export function QuestionPanel() {
 
   return (
     <section className={styles.panel} aria-label="질문하기">
-      <div className={styles.voiceArea}>
-        <button
-          className={styles.voiceButton}
-          type="button"
-          onClick={() => {
-            speech.stop();
-            if (isRecognizing) {
-              voice.cancel();
-              setNotice("음성 입력을 취소했습니다. 글자로도 질문할 수 있습니다.");
-              return;
-            }
-            activeRequest.current?.abort();
-            activeRequest.current = null;
-            setSearch(null);
-            setIsLoading(false);
-            voice.start();
-          }}
-          aria-label={isRecognizing ? "음성 입력 취소" : "마이크로 질문하기"}
-          aria-pressed={isRecognizing}
-          aria-describedby="voice-help"
-        >
-          <span className={styles.micIcon} aria-hidden="true">
-            <svg viewBox="0 0 40 40" role="img">
-              <rect x="14" y="6" width="12" height="20" rx="6" />
-              <path d="M9.5 20.5a10.5 10.5 0 0 0 21 0M20 31v5m-6 0h12" />
-            </svg>
-          </span>
-          <strong>{isRecognizing ? "음성 입력 취소" : "말로 질문하기"}</strong>
-          <small>{voice.state === "starting" ? "마이크 연결 중" : voice.state === "listening" ? "듣고 있습니다" : voice.state === "processing" ? "음성 인식 중" : "누르고 질문을 말씀하세요"}</small>
-        </button>
-        <span className={styles.status}>{isRecognizing ? "다시 누르면 취소합니다" : "한국어 음성 질문"}</span>
-        <p id="voice-help" className={styles.voiceHelp}>
-          말씀이 끝나면 인식한 질문을 자동으로 보냅니다. 인식 결과는 아래 입력란에서 수정할 수 있습니다.
-          브라우저에 따라 음성이 음성 인식 서비스로 전송될 수 있습니다.
-        </p>
-        {voice.preview && <p className={styles.voicePreview} aria-live="off">인식 중: {voice.preview}</p>}
-      </div>
-
-      <div className={styles.divider} aria-hidden="true">
-        <span>또는</span>
-      </div>
-
-      <form
-        className={styles.form}
-        onSubmit={handleSubmit}
-        aria-busy={isLoading}
-      >
-        <label htmlFor="question">글자로 질문하기</label>
-        <div className={styles.inputRow}>
-          <input
-            id="question"
-            name="question"
-            type="text"
-            value={question}
-            onChange={(event) => selectExample(event.target.value, true)}
-            placeholder="궁금한 내용을 입력해 주세요"
-            autoComplete="off"
-            maxLength={PUBLIC_INFORMATION_SEARCH_MAX_QUERY_LENGTH}
-          />
-          <button
-            type="submit"
-            aria-label={isLoading ? "공식 자료 검색 중" : "질문 보내기"}
-            disabled={isLoading}
-          >
-            <span>{isLoading ? "검색 중..." : "질문하기"}</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="m8 5 7 7-7 7" />
-            </svg>
-          </button>
+      <div className={styles.panelHeading}>
+        <div>
+          <p className={styles.panelEyebrow}>질문 입력</p>
+          <h2>어떤 도움이 필요하세요?</h2>
         </div>
-        <p className={styles.privacyNotice}>
-          질문 내용 일부는 서비스 분류를 위해 AI로 처리될 수 있습니다. 주민등록번호, 연락처 등 민감한 개인정보는 입력하지 마세요.
-        </p>
-      </form>
-      {clarificationContext && <div className={styles.examples}>
+        <span className={styles.inputHint}>글자 또는 음성으로 질문하세요</span>
+      </div>
+      <div className={styles.questionWorkspace}>
+        <form
+          className={styles.form}
+          onSubmit={handleSubmit}
+          aria-busy={isLoading}
+        >
+          <label htmlFor="question">글자로 질문하기</label>
+          <div className={styles.inputRow}>
+            <input
+              id="question"
+              name="question"
+              type="text"
+              value={question}
+              onChange={(event) => selectExample(event.target.value, true)}
+              placeholder="궁금한 내용을 입력해 주세요"
+              autoComplete="off"
+              maxLength={PUBLIC_INFORMATION_SEARCH_MAX_QUERY_LENGTH}
+            />
+            <button
+              type="submit"
+              aria-label={isLoading ? "공식 자료 검색 중" : "질문 보내기"}
+              disabled={isLoading}
+            >
+              <span>{isLoading ? "검색 중..." : "질문하기"}</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m8 5 7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+          <p className={styles.privacyNotice}>
+            질문 내용 일부는 서비스 분류를 위해 AI로 처리될 수 있습니다. 주민등록번호, 연락처 등 민감한 개인정보는 입력하지 마세요.
+          </p>
+        </form>
+        <div className={styles.voiceArea}>
+          <button
+            className={styles.voiceButton}
+            type="button"
+            onClick={() => {
+              speech.stop();
+              if (isRecognizing) {
+                voice.cancel();
+                setNotice("음성 입력을 취소했습니다. 글자로도 질문할 수 있습니다.");
+                return;
+              }
+              activeRequest.current?.abort();
+              activeRequest.current = null;
+              setSearch(null);
+              setIsLoading(false);
+              voice.start();
+            }}
+            aria-label={isRecognizing ? "음성 입력 취소" : "마이크로 질문하기"}
+            aria-pressed={isRecognizing}
+            aria-describedby="voice-help"
+          >
+            <span className={styles.micIcon} aria-hidden="true">
+              <svg viewBox="0 0 40 40" role="img">
+                <rect x="14" y="6" width="12" height="20" rx="6" />
+                <path d="M9.5 20.5a10.5 10.5 0 0 0 21 0M20 31v5m-6 0h12" />
+              </svg>
+            </span>
+            <strong>{isRecognizing ? "음성 입력 취소" : "말로 질문하기"}</strong>
+            <small>{voice.state === "starting" ? "마이크 연결 중" : voice.state === "listening" ? "듣고 있습니다" : voice.state === "processing" ? "음성 인식 중" : "누르고 질문을 말씀하세요"}</small>
+          </button>
+          <span className={styles.status}>{isRecognizing ? "다시 누르면 취소합니다" : "한국어 음성 질문"}</span>
+          <p id="voice-help" className={styles.voiceHelp}>
+            말씀이 끝나면 인식한 질문을 자동으로 보냅니다. 인식 결과는 질문 입력란에서 수정할 수 있습니다.
+            브라우저에 따라 음성이 음성 인식 서비스로 전송될 수 있습니다.
+          </p>
+          {voice.preview && <p className={styles.voicePreview} aria-live="off">인식 중: {voice.preview}</p>}
+        </div>
+      </div>
+      {clarificationContext && <div className={styles.clarification}>
+        <h3>알맞은 안내를 위해 하나만 더 확인할게요</h3>
         <p>{CLARIFICATIONS[clarificationContext.clarificationId].question}</p>
         <div className={styles.exampleList}>
           {CLARIFICATIONS[clarificationContext.clarificationId].options.map((option) => <button key={option} type="button" disabled={isLoading}
@@ -242,6 +247,7 @@ export function QuestionPanel() {
 
       <section
         className={`${styles.answer} ${search?.kind === "safety" ? styles.safetyAnswer : ""}`}
+        data-state={isLoading ? "loading" : search?.kind ?? (notice ? "notice" : "empty")}
         aria-labelledby="answer-title"
       >
         <div className={styles.answerHeading}>
@@ -253,6 +259,7 @@ export function QuestionPanel() {
           </span>
           <h2 id="answer-title">{search?.kind === "safety" ? "긴급 안전 안내" : "공식 자료 안내"}</h2>
         </div>
+        {search?.kind === "unsupported" && <h3 className={styles.stateHeading}>지금 안내할 수 있는 범위를 확인해 주세요</h3>}
         <p className={notice ? styles.notice : styles.answerPlaceholder} role="status" aria-live={speech.isSpeaking ? "off" : "polite"} aria-atomic="true">
           {notice || "질문하면 관련 공식 자료와 출처가 여기에 표시됩니다."}
         </p>

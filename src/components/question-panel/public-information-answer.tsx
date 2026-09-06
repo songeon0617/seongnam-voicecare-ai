@@ -25,26 +25,30 @@ function CheckedDate({ value }: { value: string | null }) {
 export function PublicInformationAnswerView({ answer }: { answer: PublicInformationAnswer }) {
   return (
     <div className={styles.searchResults}>
+      <h3 className={styles.serviceTitle}>{answer.title}</h3>
       {answer.sources.length > 0 && <p className={styles.evidenceLabel}>공식 성남시 자료를 바탕으로 안내합니다.</p>}
       {answer.sources.length > 0 && <a className={styles.sourceShortcut} href="#answer-sources">출처 {answer.sources.length}건과 확인 상태 보기</a>}
-      <h3>{answer.title}</h3>
-      <p className={styles.summary}>{answer.plainLanguageSummary}</p>
+      <p className={styles.summary}>
+        {answer.plainLanguageSummary.split(/(?<=[.!?])(?=\s)/u).map((paragraph, index) => (
+          <span className={styles.summaryParagraph} key={index}>{paragraph}</span>
+        ))}
+      </p>
 
-      {answer.eligibility && answer.eligibility.length > 0 && <div>
+      {answer.eligibility && answer.eligibility.length > 0 && <div className={styles.detailSection}>
         <h3>자료에 안내된 대상</h3>
         <ul>{answer.eligibility.map((item) => <li key={item}>{item}</li>)}</ul>
       </div>}
-      {answer.requiredItems && answer.requiredItems.length > 0 && <div>
+      {answer.requiredItems && answer.requiredItems.length > 0 && <div className={styles.detailSection}>
         <h3>준비할 서류·물품</h3>
         <ul>{answer.requiredItems.map((item) => <li key={item}>{item}</li>)}</ul>
       </div>}
-      {answer.steps.length > 0 && <div>
+      {answer.steps.length > 0 && <div className={styles.detailSection}>
         <h3>진행 순서</h3>
         <ol>{answer.steps.map((step) => <li key={step.order} value={step.order}>
           <strong>{step.title}</strong><p>{step.description}</p>
         </li>)}</ol>
       </div>}
-      {answer.contacts && answer.contacts.length > 0 && <div>
+      {answer.contacts && answer.contacts.length > 0 && <div className={styles.detailSection}>
         <h3>문의</h3>
         <ul>{answer.contacts.map((contact, index) => <li key={index}>
           {contact.label && <strong>{contact.label}</strong>}
@@ -53,7 +57,7 @@ export function PublicInformationAnswerView({ answer }: { answer: PublicInformat
           {contact.availableHours && <p>{contact.availableHours}</p>}
         </li>)}</ul>
       </div>}
-      {answer.locations && answer.locations.length > 0 && <div>
+      {answer.locations && answer.locations.length > 0 && <div className={styles.detailSection}>
         <h3>장소</h3>
         <ul>{answer.locations.map((location, index) => <li key={index}>
           <strong>{location.organizationName}</strong>
@@ -61,7 +65,7 @@ export function PublicInformationAnswerView({ answer }: { answer: PublicInformat
           {location.url && <a href={location.url} target="_blank" rel="noreferrer">장소 안내 (새 창)</a>}
         </li>)}</ul>
       </div>}
-      {answer.nextAction && <div>
+      {answer.nextAction && <div className={styles.detailSection}>
         <h3>다음 행동: {answer.nextAction.title}</h3>
         <p>{answer.nextAction.description}</p>
         {answer.nextAction.url && <a href={answer.nextAction.url} target="_blank" rel="noreferrer">공식 안내 열기 (새 창)</a>}
@@ -73,9 +77,10 @@ export function PublicInformationAnswerView({ answer }: { answer: PublicInformat
         <p>확인일: <CheckedDate value={answer.verification.checkedAt} /></p>
         {answer.verification.details && <p>{answer.verification.details}</p>}
       </div>
-      {answer.sources.length > 0 && <div>
+      {answer.sources.length > 0 && <div className={styles.detailSection}>
         <h3>출처</h3>
-        <ol>{answer.sources.map((source) => <li key={source.id}>
+        <p className={styles.sourcesIntro}>성남시 공식 출처에서 자세한 내용을 확인하세요.</p>
+        <ol className={styles.sourceList}>{answer.sources.map((source) => <li key={source.id}>
           <a href={source.url} target="_blank" rel="noreferrer">{source.title} (새 창)</a>
           {source.supportingSources?.map((support) => <p key={support.url}>
             <a href={support.url} target="_blank" rel="noreferrer">추가 근거: {support.title} (새 창)</a>

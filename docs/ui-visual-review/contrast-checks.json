@@ -1,0 +1,44 @@
+[
+  {
+    "label": "본문",
+    "foreground": "#142b33",
+    "background": "#ffffff",
+    "contrast": 14.76
+  },
+  {
+    "label": "보조 본문",
+    "foreground": "#4e656b",
+    "background": "#f4f7f7",
+    "contrast": 5.74
+  },
+  {
+    "label": "전송 버튼",
+    "foreground": "#ffffff",
+    "background": "#006d65",
+    "contrast": 6.22
+  },
+  {
+    "label": "음성 버튼",
+    "foreground": "#005e57",
+    "background": "#e6f3ef",
+    "contrast": 6.73
+  },
+  {
+    "label": "입력 안내",
+    "foreground": "#5e7378",
+    "background": "#ffffff",
+    "contrast": 5
+  },
+  {
+    "label": "포커스",
+    "foreground": "#245bba",
+    "background": "#ffffff",
+    "contrast": 6.4
+  },
+  {
+    "label": "입력 테두리",
+    "foreground": "#738f8d",
+    "background": "#ffffff",
+    "contrast": 3.48
+  }
+]
