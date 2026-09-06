@@ -111,23 +111,29 @@ ESLint, TypeScript noEmit, Next.js Production build, git diff --check PASS. 헤�
 
 ## 12. secret 검사
 
-커밋 전 추적·추적 예정 파일, 로컬 참조의 Git history blob, 클라이언트 JS를 실제 환경 비밀값과 키 패턴으로 검사한다. 값은 출력하지 않는다. `.env.local`, `.vercel`, `.next`, coverage, Playwright 산출물은 커밋에서 제외한다. `.env.example`은 자리표시자이고 공식 기관 전화번호와 합성 테스트 값은 개인정보 유출로 분류하지 않는다. 원격 호스팅 내부 로그나 접근할 수 없는 과거 삭제 참조는 이 검사 범위에 포함되지 않는다.
+커밋 전 파일 71개, 로컬 참조의 Git history blob 177개, 클라이언트 JS 10개를 실제 환경 비밀값과 키 패턴으로 검사했고 일치 0건이었다. 이후 최종 staged 22개 파일을 다시 검사하여 비밀키·사용자 로컬 절대경로 0건을 확인했다. 값은 출력하지 않았다. `.env.local`, `.vercel`, `.next`, coverage, Playwright 산출물은 커밋에서 제외한다. `.env.example`은 자리표시자이고 공식 기관 전화번호와 합성 테스트 값은 개인정보 유출로 분류하지 않는다. 원격 호스팅 내부 로그나 접근할 수 없는 과거 삭제 참조는 이 검사 범위에 포함되지 않는다.
 
 ## 13. commit SHA
 
-코드 마감 커밋 생성 전. 최초 기준은 `935150ef1b6edea16b65faa2d830dc044e9f866f`이며, 최종 검증 후 이 절에 실제 배포 코드를 기록한다.
+코드 마감 커밋: `869515d323d0a32c70599c2f6aef78dee3dd9d98` (`fix: enforce regional boundaries and refresh official service evidence`). 최종 Production 검증 기록은 후속 문서 전용 커밋으로 보존한다. 이 후속 커밋은 실행 코드·데이터·설정의 변경이 없으며 자신의 SHA를 본문에 순환 기록하지 않는다.
 
 ## 14. push 결과
 
-최종 사전 검사 후 main으로 fast-forward push 예정. history rewrite는 하지 않는다. 최종 HEAD와 origin/main, clean 여부를 별도 확인한다.
+코드 마감 커밋을 main으로 정상 fast-forward push했다. 로컬 HEAD와 origin/main 일치 및 clean을 확인했다. history rewrite는 하지 않았다. 후속 문서 커밋도 동일하게 push하고 최종 대화에서 최종 SHA·동기화·배포 결과를 확인한다.
 
 ## 15. Production 반영 상태
 
-기존 프로젝트 `seongnam-voicecare-ai`, [Production](https://seongnam-voicecare-ai.vercel.app)을 사용한다. 새 프로젝트는 만들지 않는다. 이 문서의 사전 검수 시점에는 새 수정 사항의 Production 반영을 아직 완료로 표시하지 않는다.
+기존 프로젝트 `seongnam-voicecare-ai`, [Production](https://seongnam-voicecare-ai.vercel.app)에 자동 반영되었다. 코드 커밋 869515d의 GitHub Production deployment `6293046224`와 Vercel `EPFYyo681zYvoQauJe29hF1VkopT` 성공을 확인했다. [해당 배포](https://seongnam-voicecare-9tn09ence-seongnam-voice-care-ai.vercel.app). 새 프로젝트나 수동 강제 재배포는 필요하지 않았다. 공개 별칭에서 새 guard·보안 헤더·새 출처·확인일을 직접 확인했다.
 
 ## 16. Production 실검증 결과
 
-새 커밋 배포 후 기존 54개와 지역 7개 API 평가, DIRECT/일상어/CLARIFY 선택지 유무/후속 선택/UNSUPPORTED, 프로토타입·개인정보·출처·마이크·TTS UI를 검사할 예정이다. 실제 마이크·스피커·브라우저 권한을 통한 음성 품질은 행사 기기에서 수동 확인해야 한다.
+공개 Production에서 **기존 54/54 + 지역 7/7 = 61/61 PASS**. [질문별 결과](final-production-e2e.json). 각 질문 1회, 기대값 변경·실패 재시도 없음. source 분포는 keyword 21, ai 33, guard 6, fallback 1이었다. 광범위한 복지 질문 1건은 AI 8초 timeout 후 고정 service_required로 복귀하여 계약을 통과했다. 따라서 61/61을 AI 호출 성공률이나 일반 모델 정확도로 해석하면 안 된다.
+
+실제 Chromium에서 프로토타입, 개인정보 안내, 마이크 UI, 일상어 AI DIRECT, 출처, TTS 버튼, CLARIFY 선택지 있음/없음, 선택 후 DIRECT, 부천 거부 시 출처·TTS 없음, 추가 공식 근거 링크, 390px 모바일 가로 넘침 없음, page error 없음 등 19개 확인을 통과했다. [UI 검증 기록](final-production-ui.json). 실제 DOM과 HTTP 응답을 사용했고 답변 mock을 쓰지 않았다. 1265px/390px 스크린샷도 육안 검토했다.
+
+추가 실제 질문에서 분당구 장애인 이동지원은 AI DIRECT(특별교통수단), 성남시 돌봄은 keyword DIRECT, 서울시·청주시는 guard UNSUPPORTED(출처 0개)였다. 공개 응답의 보안 헤더 적용도 확인했다. 실제 마이크·스피커·브라우저 권한을 통한 음성 품질은 행사 기기에서 수동 확인해야 한다.
+
+문서 전용 후속 커밋은 위 검증 코드와 실행 파일이 같음을 git diff로 확인하고, 그 새 Production 배포 성공 및 대표 sentinel을 재확인한다. 반복 전체 모델 평가로 성공 사례를 골라내지 않는다.
 
 ## 17. 공식 심사 기준 점수
 

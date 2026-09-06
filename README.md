@@ -101,14 +101,15 @@ AI 출력은 `DIRECT`, `CLARIFY`, `UNSUPPORTED` 경로와 허용된 서비스 ID
 | --- | ---: |
 | Server tests | 145/145 PASS |
 | UI tests | 44/44 PASS |
-| 이전 고정 API E2E 질문셋 (로컬 개발 서버) | 54/54 PASS |
+| 최종 API E2E (로컬 Production build) | 61/61 PASS |
+| 최종 API E2E (공개 Vercel Production) | 61/61 PASS |
 | ESLint / TypeScript / Production build | PASS |
 
-54/54는 2026-09-06에 고정된 54개 질문을 공개 API 경로로 각 1회 실행한 결과입니다. 해당 질문셋의 기대 route, 서비스 선택, 확인 질문, 공식 문서 기반 답변 무결성을 모두 만족했다는 뜻이며, 임의의 실제 질문에 대한 일반적 정확도 100%를 의미하지 않습니다. 상세 기준과 전체 사례는 [`docs/public-information-e2e-validation.md`](docs/public-information-e2e-validation.md)에 있습니다.
+기존 54개와 추가 지역 경계 7개를 2026-09-06에 각 환경의 공개 API 경로로 질문당 1회 실행했습니다. 해당 질문셋의 기대 route, 서비스 선택, 확인 질문, 공식 문서 기반 답변 무결성을 모두 만족했다는 뜻이며, 임의의 실제 질문에 대한 일반적 정확도 100%를 의미하지 않습니다. 상세 기준과 전체 사례는 [`docs/public-information-e2e-validation.md`](docs/public-information-e2e-validation.md)에 있습니다.
 
-자동 테스트는 실제 OpenAI를 호출하지 않습니다. 실제 모델 평가는 별도 명령과 운영 키로 수행한 기록을 자동 회귀 결과와 구분합니다.
+Server/UI 자동 회귀 테스트는 실제 OpenAI를 호출하지 않습니다. 실제 모델 평가는 별도 명령과 운영 키로 수행한 기록을 자동 회귀 결과와 구분합니다.
 
-최종 검수에서는 기존 54개 기대값을 유지하고 지역 경계 7건을 추가했습니다. 최종 빌드·Production 평가와 출처 변경 내역은 [`docs/final-competition-audit.md`](docs/final-competition-audit.md)를 기준으로 확인하세요. 과거 `docs/*validation*` 문서는 각 작업 시점의 기록이며 현재 배포 상태를 뜻하지 않습니다.
+최종 검수에서는 기존 54개 기대값을 유지하고 지역 경계 7건을 추가했습니다. Production 61개 중 1개는 AI timeout 후 안전한 확인 질문으로 복귀했습니다. 61/61은 fallback을 포함한 시스템 계약 통과율입니다. 최종 빌드·Production 평가와 출처 변경 내역은 [`docs/final-competition-audit.md`](docs/final-competition-audit.md)를 기준으로 확인하세요. 과거 `docs/*validation*` 문서는 각 작업 시점의 기록이며 현재 배포 상태를 뜻하지 않습니다.
 
 ## 기술 스택
 
