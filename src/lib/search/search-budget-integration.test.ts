@@ -3,7 +3,16 @@ import test from "node:test";
 import {createOfficialSearchProvider} from "./openai-official-search";
 import {createRequestSearchBudget} from "./request-search-budget";
 import {createExpandedPublicInformationResponse} from "./expanded-public-information";
+import {createRuntimeSearchBudget} from "./shared-search-budget";
 const env={NODE_ENV:"production",PUBLIC_INFORMATION_WEB_SEARCH_ENABLED:"true",PUBLIC_INFORMATION_SEARCH_DAILY_USD:"3",OPENAI_API_KEY:"fixture",OPENAI_MODEL:"gpt-5.6-terra",UPSTASH_REDIS_REST_URL:"https://fixture.upstash.io",UPSTASH_REDIS_REST_TOKEN:"fixture"};
+test("shared store diagnostics are fixed codes, throttled and do not expose credentials or response bodies",async()=>{
+ const messages:string[]=[];
+ const acquire=createRuntimeSearchBudget(env,(async()=>Response.json({error:"sensitive upstream body"},{status:401})) as typeof fetch,code=>messages.push(code));
+ assert.equal((await acquire(3)).allowed,false);assert.equal((await acquire(3)).allowed,false);
+ assert.deepEqual(messages,["store_http_error"]);
+ const invalid=createRuntimeSearchBudget({...env,UPSTASH_REDIS_REST_URL:"redis://private-credential"},fetch,code=>messages.push(code));
+ await invalid(3);assert.deepEqual(messages,["store_http_error","invalid_endpoint"]);
+});
 test("production provider calls default shared admission before the paid API and releases after source failure",async()=>{
  const order:string[]=[];
  const provider=createOfficialSearchProvider(env,(async(url,init)=>{
