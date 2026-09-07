@@ -1,0 +1,42 @@
+{
+  "mode": "production-post-fix",
+  "rows": [
+    {
+      "id": "domain-097",
+      "question": "성남시 여권 어디서 만들어",
+      "at": "2026-09-07T11:43:18.627Z",
+      "mode": "FRESH_PRODUCTION_HTTP_SHARED_REDIS_NO_OVERRIDE",
+      "ms": 1019,
+      "httpStatus": 200,
+      "schemaPass": true,
+      "capturedCalls": 0,
+      "response": {
+        "query": "성남시 여권 어디서 만들어",
+        "kind": "search_unavailable",
+        "results": [],
+        "hasResults": false,
+        "answer": {
+          "userQuestion": "성남시 여권 어디서 만들어",
+          "title": "공식 검색을 완료하지 못했습니다",
+          "plainLanguageSummary": "공식 웹 검색은 모두가 함께 하루 20회까지 이용합니다. 오늘 한도를 다 썼거나 검색 연결을 확인할 수 없어 이번 검색을 실행하지 못했습니다. 한도는 한국시간 오전 9시에 새로 시작합니다. 아래 예시와 등록된 돌봄·교통약자·복지 안내는 계속 이용할 수 있습니다.",
+          "steps": [],
+          "nextAction": null,
+          "sources": [],
+          "verification": {
+            "status": "insufficient_data",
+            "checkedAt": null,
+            "details": "공식 웹 검색은 모두가 함께 하루 20회까지 이용합니다. 오늘 한도를 다 썼거나 검색 연결을 확인할 수 없어 이번 검색을 실행하지 못했습니다. 한도는 한국시간 오전 9시에 새로 시작합니다. 아래 예시와 등록된 돌봄·교통약자·복지 안내는 계속 이용할 수 있습니다."
+          }
+        },
+        "officialSearch": {
+          "status": "budget_limited",
+          "evidence": [],
+          "links": [],
+          "region": "성남시",
+          "searched": false
+        }
+      },
+      "semanticReview": "PENDING"
+    }
+  ]
+}

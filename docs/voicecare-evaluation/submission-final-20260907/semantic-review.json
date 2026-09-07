@@ -1,0 +1,53 @@
+{
+  "reviewedAt": "2026-09-07",
+  "runtimeCommit": "19061a283864a64fc994471857be71b26fb64456",
+  "criterion": "Core question completed with relevant original evidence; unknown freshness remains unknown. PARTIAL and UNSUPPORTED are not counted as core completions.",
+  "initialFreshProduction": {
+    "artifact": "production-live-summary.json",
+    "httpRequests": 20,
+    "httpAndSchemaPass": 20,
+    "actualNewModelCalls": 17,
+    "structuredNoModel": 2,
+    "unsupportedNoModel": 1,
+    "coreComplete": 13,
+    "safePartial": 3,
+    "unsupported": 1,
+    "wrongOrExpiredSources": 3,
+    "estimatedUsd": 0.523222,
+    "rows": [
+      {"id":"domain-113","verdict":"PARTIAL","reason":"SPA body absent from server HTML; inspected official browser link supplied, no invented disposal rules."},
+      {"id":"domain-083","verdict":"PARTIAL","reason":"Old local source 404; government portal guidance without unverified personal authentication procedure."},
+      {"id":"domain-066","verdict":"PASS","reason":"Actual city bus page explains official route and bus information lookup, without generating a journey."},
+      {"id":"domain-071","verdict":"UNSUPPORTED","reason":"Explicit journey limitation; zero model calls."},
+      {"id":"domain-081","verdict":"PASS","reason":"Actual complaint page provides 국민신문고 starting point and government authentication caveat."},
+      {"id":"domain-053","verdict":"PARTIAL","reason":"Counselling fee unconfirmed; free aids do not establish free counselling."},
+      {"id":"domain-138","verdict":"PASS","reason":"Ordinary library membership and required identification, not temporary pandemic procedures."},
+      {"id":"domain-130","verdict":"FAIL","reason":"The cited Aug 16 performance had already ended on the Sep 7 review date."},
+      {"id":"domain-097","verdict":"FAIL","reason":"Passport certificate kiosk fee table did not answer where to apply for a passport."},
+      {"id":"domain-098","verdict":"PASS","reason":"Actual common passport application documents and exceptions retained."},
+      {"id":"domain-009","verdict":"PASS","reason":"Reviewed structured assistive-device guidance; no model call."},
+      {"id":"domain-068","verdict":"PASS","reason":"Reviewed structured special transportation guidance; no model call."},
+      {"id":"domain-115","verdict":"PASS","reason":"Official bulky waste registration and disposal procedure."},
+      {"id":"domain-052","verdict":"PASS","reason":"Health certificate issuing locations, prerequisites and fees retained together."},
+      {"id":"domain-027","verdict":"PASS","reason":"Official suit rental application conditions and first visit procedure; old calendar parameter is not offered as a current reservation date."},
+      {"id":"domain-031","verdict":"PASS","reason":"Current official youth space notice, address and use conditions."},
+      {"id":"domain-140","verdict":"PASS","reason":"Electronic books, membership and remote PC/mobile use."},
+      {"id":"domain-073","verdict":"PASS","reason":"City hall parking conditions, times and fees preserved, freshness unknown."},
+      {"id":"domain-075","verdict":"PASS","reason":"Official residential parking application procedure, eligibility and restrictions."},
+      {"id":"domain-134","verdict":"FAIL","reason":"A different organizer's event link did not answer the requested cultural foundation site."}
+    ]
+  },
+  "finalCapturedModelCurrentHttpsReplay": {
+    "artifact":"replay-verified-summary.json",
+    "requests":20,"actualNewModelCalls":0,"coreComplete":16,"safePartial":3,"unsupported":1,"wrongSourcesObserved":0,
+    "note":"Historical provider candidates, current HTTPS originals, final guards. Not fresh model accuracy. A career-counselling link found in the intermediate replay was rejected by the final smoking subject guard."
+  },
+  "observedBadCandidateReplay": {
+    "artifact":"observed-risk-replay.json","requests":3,"actualNewModelCalls":0,"coreComplete":3,"wrongSourcesObserved":0,
+    "note":"Synthetic provider explicitly injects the three observed bad candidates. Current official navigation recovers passport reception, upcoming free performances, and foundation ticket instructions."
+  },
+  "postFixProduction": {
+    "artifact":"production-post-fix-summary.json","attemptedRequests":1,"actualNewModelCalls":0,"budgetLimited":1,"remainingRequestsNotAttempted":2,
+    "note":"Stopped at shared budget protection. Public status does not distinguish exhausted allowance from an unverifiable Redis connection. No reset, bypass or independent paid budget used. No final fresh 20-question rerun."
+  }
+}
