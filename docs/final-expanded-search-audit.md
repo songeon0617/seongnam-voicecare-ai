@@ -2,7 +2,7 @@
 
 ## 판정 및 검증 범위
 
-**CONDITIONAL — 검증된 서비스의 대회 시연·제출은 조건부 가능. 전 분야 질문의 완전한 답변을 보장하는 상태는 아니다.** 기존 `bc86f88d869723e3f173b37850570b711ce31314` 기본 버전의 검수 완료와 이번 확장본 검수는 별개다. 아래 결과는 이번 작업에서 실행한 검사다. Production 배포 후 결과는 마지막 절에 추가한다.
+**CONDITIONAL — 검증된 서비스의 대회 시연·제출은 조건부 가능. 전 분야 질문의 완전한 답변을 보장하는 상태는 아니다.** 기존 `bc86f88d869723e3f173b37850570b711ce31314` 기본 버전의 검수 완료와 이번 확장본 검수는 별개다. 아래 결과는 이번 작업에서 실행한 검사다. 최신 확장본을 Production에 배포했고 Redis 실연결·실제 공식검색·기본 회귀를 검증했다. 초기 Redis 설정 blocker는 해결됐다.
 
 증거 폴더: [final-expanded-20260907](voicecare-evaluation/final-expanded-20260907/). 실행 로그·JSON·원문·화면을 함께 보관한다. 테스트 실패를 삭제하거나 기존 61개 기대값을 변경하여 통과시키지 않았다.
 
@@ -19,7 +19,7 @@
 
 bc86 이후 ec472에서 모바일·접근성 UI, 8f5436d에서 공식검색·검증·운영 방어, b39 및 미커밋 작업에서 원문 수집·검색 복구가 추가됐다. 이번 작업에서는 실제 공식 원문/실제 모델 응답에서 드러난 오류, 데이터 누락, 복수 서비스 라우팅, WebKit 제출 문제를 수정했다.
 
-검증한 런타임 파일 목록과 SHA256은 [semantic-review.json](voicecare-evaluation/final-expanded-20260907/semantic-review.json)에 있다. 런타임 지문: `f79f476061068c61e7f4f9dc228dd479efbc31c75588462f61d2a385e1d5d32f`. 최종 문서 커밋과 실제 런타임 검증 커밋을 구분한다.
+검증한 런타임 파일 목록과 SHA256은 [semantic-review.json](voicecare-evaluation/final-expanded-20260907/semantic-review.json)에 있다. 최초 검색/UI 수정 런타임 지문은 `f79f476061068c61e7f4f9dc228dd479efbc31c75588462f61d2a385e1d5d32f`, 비밀 없는 Redis 진단 추가 후 최종 런타임 지문은 `69f2f14f289d75efec6f69f1b4edcb1bb036b83fe347d5e34f1892180d9379fb`이다. 검색 의미 검증은 최초 수정 런타임에서 수행했고 후속 진단은 검색 의미를 변경하지 않았다. 최종 문서 커밋과 실제 런타임 검증 커밋을 구분한다.
 
 ## 공식 데이터 전수 검증
 
@@ -82,7 +82,7 @@ wrong_service는 잘못된 서비스 선택/실제 복수인데 하나로 축소
 
 원문에서 검증한 텍스트만 답변으로 구성한다. 모델이 만든 연락처·서류·장소·대상 조건을 그대로 노출하지 않는다. unknown을 최신으로 바꾸지 않는다. 주제와 무관한 공식 페이지도 답변 근거에서 제외한다. 원문 없는 경우 official_links/search_unavailable 등 명시적 fallback을 사용한다.
 
-서버 unit/integration **282/282**: 입력 오류, AI timeout/API failure/잘못된 JSON/검색 없음/내부 오류, 공식 출처 보존, 스키마, 안전 경계, SSRF/TLS/redirect, 예산과 동시성, 후속 clarification 등을 실제 실행했다. 실패 상황은 의존성 주입으로 재현하며 Production에 장애 유발용 debug endpoint를 만들지 않았다.
+서버 unit/integration **283/283**: 입력 오류, AI timeout/API failure/잘못된 JSON/검색 없음/내부 오류, 공식 출처 보존, 스키마, 안전 경계, SSRF/TLS/redirect, 예산과 동시성, 후속 clarification 등을 실제 실행했다. 최초 282개 통과 후 Redis 진단의 비밀 비노출·로그 제한 검증 1개를 추가하고 전체 재실행했다. 실패 상황은 의존성 주입으로 재현하며 Production에 장애 유발용 debug endpoint를 만들지 않았다.
 
 별도 로컬 실제 HTTP **11/11**: 빈 질문 400, 601자 413, malformed JSON 400, 필수 필드 없음 400, 잘못된 타입 400, body 4KB 초과 413, 잘못된 context 400, 정상/복수/모호/범위 밖 200. 정상 응답의 공식 URL 보존과 모든 응답의 no-store 확인.
 
@@ -93,7 +93,7 @@ wrong_service는 잘못된 서비스 선택/실제 복수인데 하나로 축소
 | lint | exit 0 |
 | typecheck | exit 0 |
 | build | exit 0 |
-| 전체 서버 unit/integration | 282 pass, 0 fail |
+| 전체 서버 unit/integration | 283 pass, 0 fail |
 | 기존 Playwright UI | 53 pass, 0 fail |
 | 로컬 Chromium/Firefox/WebKit | 15 pass, 0 fail |
 | 기존 실제 HTTP 61문항 | 61 pass, 0 fail |
@@ -106,13 +106,13 @@ wrong_service는 잘못된 서비스 선택/실제 복수인데 하나로 축소
 
 ## 보안·운영
 
-모든 로컬 ref의 13개 커밋·923개 Git object, 비무시 작업 파일, 빌드된 클라이언트 static 13개에서 고신뢰 비밀 패턴 및 로컬 실제 credential 일치 검사: **탐지 0**. .env.local ignored, 추적 env 파일은 .env.example만 있다. 최종 커밋 직전에도 재검사한다. 범위와 결과는 security.json에 있으며 모든 형태의 비밀 유출 부재를 수학적으로 보장하는 검사는 아니다.
+초기 모든 로컬 ref의 13개 커밋·923개 Git object, 후속 커밋 후 15개 커밋·1,141개 object 및 비무시 작업 파일 693개, 빌드된 클라이언트 static 13개에서 고신뢰 비밀 패턴 및 로컬 실제 credential 일치 검사: **탐지 0**. .env.local ignored, 추적 env 파일은 .env.example만 있다. 범위와 결과는 security.json에 있으며 모든 형태의 비밀 유출 부재를 수학적으로 보장하는 검사는 아니다.
 
 실제 npm audit: **취약점 0**(총 dependency 438). 보안 헤더 nosniff, DENY, strict-origin-when-cross-origin, Permissions-Policy(microphone=self, camera/geolocation 차단) 확인. CSP는 현재 미설정이다.
 
 입력 길이/바이트/읽기 시간, 인스턴스 요청 제한, provider 시간 제한, 요청당 모델·검색·원문 fetch 횟수 제한, DNS/IP·host allowlist·redirect 재검증, TLS 검증, 원문/검색 캐시가 있다. 공유 Redis 원자 예약으로 UTC 하루 최대 20회, 동시 검색 1개, 최소 간격 2초, 설정 최대 $3의 예약 예산을 적용한다. **예약 예산은 OpenAI 실제 청구액의 강제 상한이 아니다.** OpenAI 계정 청구/프로젝트 예산은 별도 관리해야 한다. Redis 누락/형식 오류/장애 시 비용 발생 검색은 fail closed한다. 제한 시 정적 13개 서비스와 안전 안내는 유지된다.
 
-사용자가 Vercel Production에 UPSTASH_REDIS_REST_URL/TOKEN을 직접 등록했고 변수 이름/환경만 UI에서 확인했다. 비밀값은 읽거나 기록하지 않았다. 기존 AI_ENABLED/OPENAI_API_KEY/OPENAI_MODEL에 WEB_SEARCH_ENABLED=true, SEARCH_DAILY_USD=3을 Production용으로 추가했다. 실제 연결 여부는 새 배포에서 별도 검증한다.
+사용자가 Vercel Production에 UPSTASH_REDIS_REST_URL/TOKEN을 직접 등록했고 변수 이름/환경만 UI에서 확인했다. 비밀값은 읽거나 기록하지 않았다. 기존 AI_ENABLED/OPENAI_API_KEY/OPENAI_MODEL에 WEB_SEARCH_ENABLED=true, SEARCH_DAILY_USD=3을 Production용으로 추가했다. 초기 invalid_endpoint는 사용자가 REST URL/토큰을 수정하고 재배포하여 해결했으며 실제 연결과 동시 요청 차단을 확인했다.
 
 ## 남은 문제 및 제출 조건
 
@@ -125,4 +125,26 @@ wrong_service는 잘못된 서비스 선택/실제 복수인데 하나로 축소
 
 ## Production 및 최종 Git 기록
 
-로컬 검증 완료. 최신 런타임 커밋·main push·Vercel 새 Production SHA·실제 URL E2E 및 Redis 결과를 배포 후 이 절에 기록한다. 현재 이 문서의 배포 전 기록만으로 Production 통과를 주장하지 않는다.
+첫 런타임 커밋 `290dcc0c9ba5158f11cddcf1f33bee883ed27862`를 main에 fast-forward·push하여 실제 Vercel Production에 배포했다(Ready, `8FsY8hwWVhd1YZ6CXAoB8UM1mVov`). 이후 비밀 없는 Redis 진단을 추가한 `21730a576d8ea2bd69197cb6e06aaf02bfef2317`도 전체 게이트 통과 후 main에 push·배포했다(Ready, `BDdP8vktfD1VyiFbqxqVhpXt4Q3y`). 강제 push나 사용량 카운터 초기화는 하지 않았다.
+
+GitHub Actions Offline regression도 두 런타임 커밋 모두 success 확인(run 34110131583, 34110530394). 코드·문서 diff whitespace 검사는 통과했다. 저장한 공식 원본 HTML의 기존 공백은 원문 hash 보존을 위해 바꾸지 않았다.
+
+실제 [Production](https://seongnam-voicecare-ai.vercel.app/) 결과:
+
+- API 11/11 통과, 공식 출처 보존·no-store·보안 헤더 및 HSTS 확인.
+- Chromium/Firefox/WebKit 15/15 통과, 모바일/200% 글씨·키보드·출처 실제 새 창 포함.
+- 기존 61개 실제 HTTP 전부 통과, wrong_service 0, wrong_clarification 0, 비등록 사실 추가 0. 요청 제한을 우회하지 않고 3개 시간 구간으로 나누었다. 앞 40개는 첫 배포, 뒤 21개는 검색 의미 변경 없는 진단 배포에서 실행했다.
+- Redis 초기 동시 요청 2개와 진단 배포 후 2개 모두 안전 fallback. 비공개 Vercel 로그에서 `voicecare_search_budget invalid_endpoint`를 직접 확인했다(2026-09-07T10:16:30Z). Redis URL 형식 검사에서 차단되어 **이 4개 요청의 OpenAI 호출은 0회**다. 변수 존재만으로 실연결 성공을 주장하지 않는다.
+
+사용자가 비밀값을 직접 수정하고 `21730a5`를 재배포한 `jSMTq8x3pYx3XAwPyRfeNN5tYACk`의 Production Ready를 확인했다. **Redis 설정 blocker 해결.** 2026-09-07T10:22:35Z 두 실제 동시 요청 결과:
+
+- 여권 준비물: HTTP 200, partial_answer, searched=true, 15,872ms. 현재 공식 `https://www.seongnam.go.kr/cn0204080301` 원문 대조 성공. 신분증·사진·신청서·수수료 항목 등 완결된 원문을 보존하고 freshness unknown을 명시했다.
+- 신규 도서관 회원증: HTTP 200, search_unavailable/rate_limited, searched=false, 1,071ms. 같은 시간의 추가 유료 호출 차단.
+- 실제 Production 모델 호출 **1회**, 로컬 20회와 합계 **21회**. 초기 실패 4회는 모델 호출 0회. 계정의 다른 사용자 사용량·실제 청구액은 이 감사 호출 수와 별개다.
+- 실제 Vercel 인스턴스 배치를 강제하지 않았으므로 이를 다중 인스턴스 부하 시험이라고 주장하지 않는다. 두 mock 인스턴스의 원자 예약 통합 테스트와 실제 Production 동시 요청 결과를 함께 근거로 삼는다.
+
+Redis 수정 적용 후 실제 Production API 11/11 및 세 브라우저 15/15를 재실행했다. [실제 동시 요청 원 응답](voicecare-evaluation/final-expanded-20260907/production-budget.json), [배포 기록](voicecare-evaluation/final-expanded-20260907/production-deployment.json)을 보존했다. 실행 스크립트도 HTTP 200만으로 성공시키지 않고 ‘공식 근거 응답 1 + rate_limited 1’을 성공 조건으로 강화했다. 이 판정은 저장된 마지막 실제 응답으로 확인했으며 모델을 추가 호출하지 않았다.
+
+최종 소스 코드는 `21730a576d8ea2bd69197cb6e06aaf02bfef2317`에서 검증됐다. 이후 커밋은 검증 보고서·증거·감사 스크립트 판정만 포함하고 앱 런타임은 동일하다. 최종 HEAD 자체를 문서 안에 자기참조로 넣을 수 없으므로 마지막 Git 상태와 최종 배포 SHA는 전달 답변에도 명시한다.
+
+운영자가 URL을 다시 찾을 때에는 [Upstash REST API 공식 문서](https://upstash.com/docs/redis/features/restapi)의 database Connection에서 HTTPS URL과 일반 Token을 사용한다. TCP 주소 또는 Readonly Token을 REST 환경변수와 혼용하지 않는다.

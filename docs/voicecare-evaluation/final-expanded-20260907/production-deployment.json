@@ -1,0 +1,57 @@
+{
+  "checkedAt": "2026-09-07T10:24:39.307Z",
+  "verification": "Vercel authenticated visible UI; no secret values read",
+  "url": "https://seongnam-voicecare-ai.vercel.app/",
+  "deployments": [
+    {
+      "sha": "290dcc0c9ba5158f11cddcf1f33bee883ed27862",
+      "id": "8FsY8hwWVhd1YZ6CXAoB8UM1mVov",
+      "state": "Ready",
+      "environment": "Production"
+    },
+    {
+      "sha": "21730a576d8ea2bd69197cb6e06aaf02bfef2317",
+      "id": "BDdP8vktfD1VyiFbqxqVhpXt4Q3y",
+      "state": "Ready",
+      "environment": "Production"
+    },
+    {
+      "sha": "21730a576d8ea2bd69197cb6e06aaf02bfef2317",
+      "id": "jSMTq8x3pYx3XAwPyRfeNN5tYACk",
+      "state": "Ready",
+      "environment": "Production",
+      "reason": "User corrected REST settings and redeployed"
+    }
+  ],
+  "redis": {
+    "initial": {
+      "state": "blocked_invalid_endpoint",
+      "logAt": "2026-09-07T10:16:30.170Z",
+      "log": "voicecare_search_budget invalid_endpoint",
+      "productionProbeRequests": 4,
+      "providerCalls": 0,
+      "userTokenConfirmation": "User confirmed writable REST token; URL correction pending"
+    },
+    "state": "runtime_verified",
+    "startedAt": "2026-09-07T10:22:35.540Z",
+    "results": [
+      "partial_answer with verified passport original",
+      "rate_limited without search"
+    ],
+    "productionProbeRequests": 6,
+    "providerCalls": 1,
+    "totalAuditProviderCalls": 21,
+    "forcedMultiInstanceTest": false,
+    "runtimePass": true
+  },
+  "githubActions": [
+    {
+      "id": 34110131583,
+      "conclusion": "success"
+    },
+    {
+      "id": 34110530394,
+      "conclusion": "success"
+    }
+  ]
+}

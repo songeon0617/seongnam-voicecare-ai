@@ -1,9 +1,9 @@
 {
-  "checkedAt": "2026-09-07T09:58:58.958Z",
+  "checkedAt": "2026-09-07T10:15:42.723Z",
   "scope": "all local refs reachable git objects, tracked/untracked nonignored files, generated client static bundle; high-confidence patterns plus exact locally configured credentials",
-  "commits": 13,
-  "objects": 923,
-  "workingFiles": 657,
+  "commits": 14,
+  "objects": 1132,
+  "workingFiles": 689,
   "clientFiles": 13,
   "workingFindings": [],
   "historyFindings": [],

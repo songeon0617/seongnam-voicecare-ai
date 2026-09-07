@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-07T10:15:35.215Z",
-  "baseUrl": "http://127.0.0.1:3101",
+  "generatedAt": "2026-09-07T10:14:56.041Z",
+  "baseUrl": "https://seongnam-voicecare-ai.vercel.app",
   "from": 1,
   "to": 20,
   "totalDefinedCases": 61,

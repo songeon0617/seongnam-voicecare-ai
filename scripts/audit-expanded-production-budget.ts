@@ -11,9 +11,12 @@ async function main(){
   const body=await response.json();
   return {query,status:response.status,durationMs:Date.now()-start,schema:!!readSearchAnswer(body),body};
  }));
- const result={startedAt,base,requestCount:2,maxPotentialProviderCalls:2,note:"Real simultaneous Production requests. Different queries avoid query-cache hits; Vercel instance placement is not observable. A rate_limited response together with grounded search shows runtime shared reservation is functioning, not forced multi-instance proof.",results};
+ const runtimePass=results.every(r=>r.status===200&&r.schema)
+  &&results.filter(r=>r.body.officialSearch?.searched&&r.body.officialSearch?.evidence?.length>0).length===1
+  &&results.filter(r=>r.body.officialSearch?.status==="rate_limited"&&!r.body.officialSearch?.searched).length===1;
+ const result={startedAt,base,requestCount:2,maxPotentialProviderCalls:2,runtimePass,note:"Real simultaneous Production requests. Different queries avoid query-cache hits; Vercel instance placement is not observable. A rate_limited response together with grounded search shows runtime shared reservation is functioning, not forced multi-instance proof.",results};
  writeFileSync("docs/voicecare-evaluation/final-expanded-20260907/production-budget.json",JSON.stringify(result,null,2));
  console.log(JSON.stringify(result,null,2));
- if(results.some(r=>r.status!==200||!r.schema))process.exitCode=1;
+ if(!runtimePass)process.exitCode=1;
 }
 void main();

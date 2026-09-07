@@ -163,7 +163,7 @@
             "outputTokens": 391,
             "toolCalls": 1,
             "estimatedUsd": 0.0324997,
-            "durationMs": 306
+            "durationMs": 313
           },
           "diagnostics": {
             "phase": "complete",
@@ -266,7 +266,7 @@
             "outputTokens": 513,
             "toolCalls": 1,
             "estimatedUsd": 0.0342762,
-            "durationMs": 193
+            "durationMs": 201
           },
           "diagnostics": {
             "phase": "complete",
@@ -486,7 +486,7 @@
             "outputTokens": 267,
             "toolCalls": 1,
             "estimatedUsd": 0.0315352,
-            "durationMs": 146
+            "durationMs": 168
           },
           "diagnostics": {
             "phase": "complete",
@@ -610,7 +610,7 @@
             "outputTokens": 154,
             "toolCalls": 1,
             "estimatedUsd": 0.0299337,
-            "durationMs": 13
+            "durationMs": 12
           },
           "diagnostics": {
             "phase": "complete",
@@ -771,7 +771,7 @@
             "outputTokens": 140,
             "toolCalls": 1,
             "estimatedUsd": 0.025501700000000002,
-            "durationMs": 164
+            "durationMs": 128
           },
           "diagnostics": {
             "phase": "extraction",
@@ -871,7 +871,7 @@
             "outputTokens": 298,
             "toolCalls": 1,
             "estimatedUsd": 0.031117199999999998,
-            "durationMs": 132
+            "durationMs": 142
           },
           "diagnostics": {
             "phase": "complete",
@@ -972,7 +972,7 @@
             "outputTokens": 80,
             "toolCalls": 1,
             "estimatedUsd": 0.029089700000000003,
-            "durationMs": 180
+            "durationMs": 198
           },
           "diagnostics": {
             "phase": "complete",
@@ -1113,7 +1113,7 @@
             "outputTokens": 226,
             "toolCalls": 1,
             "estimatedUsd": 0.030573700000000002,
-            "durationMs": 31
+            "durationMs": 35
           },
           "diagnostics": {
             "phase": "complete",
@@ -1187,7 +1187,7 @@
             "outputTokens": 171,
             "toolCalls": 1,
             "estimatedUsd": 0.025670699999999998,
-            "durationMs": 161
+            "durationMs": 162
           },
           "diagnostics": {
             "phase": "extraction",
@@ -1284,7 +1284,7 @@
             "outputTokens": 483,
             "toolCalls": 1,
             "estimatedUsd": 0.043841000000000005,
-            "durationMs": 116
+            "durationMs": 141
           },
           "diagnostics": {
             "phase": "complete",
@@ -1392,7 +1392,7 @@
             "outputTokens": 47,
             "toolCalls": 1,
             "estimatedUsd": 0.0242502,
-            "durationMs": 131
+            "durationMs": 157
           },
           "diagnostics": {
             "phase": "complete",
@@ -1478,7 +1478,7 @@
             "outputTokens": 123,
             "toolCalls": 1,
             "estimatedUsd": 0.029692700000000002,
-            "durationMs": 103
+            "durationMs": 109
           },
           "diagnostics": {
             "phase": "extraction",
@@ -1577,7 +1577,7 @@
             "outputTokens": 92,
             "toolCalls": 1,
             "estimatedUsd": 0.0231757,
-            "durationMs": 100
+            "durationMs": 120
           },
           "diagnostics": {
             "phase": "complete",
@@ -1675,7 +1675,7 @@
             "outputTokens": 579,
             "toolCalls": 1,
             "estimatedUsd": 0.0344302,
-            "durationMs": 26
+            "durationMs": 27
           },
           "diagnostics": {
             "phase": "complete",
@@ -1771,7 +1771,7 @@
             "outputTokens": 249,
             "toolCalls": 1,
             "estimatedUsd": 0.030740700000000003,
-            "durationMs": 142
+            "durationMs": 154
           },
           "diagnostics": {
             "phase": "complete",
@@ -1891,7 +1891,7 @@
             "outputTokens": 141,
             "toolCalls": 1,
             "estimatedUsd": 0.0253387,
-            "durationMs": 141
+            "durationMs": 152
           },
           "diagnostics": {
             "phase": "complete",
@@ -2026,7 +2026,7 @@
             "outputTokens": 81,
             "toolCalls": 1,
             "estimatedUsd": 0.0247892,
-            "durationMs": 109
+            "durationMs": 108
           },
           "diagnostics": {
             "phase": "complete",
