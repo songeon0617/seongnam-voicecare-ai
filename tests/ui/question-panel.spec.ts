@@ -138,7 +138,8 @@ test("생성 답변을 키보드로 요청하고 원문·출처·확인일·상�
   await submit(page);
   const answer = page.getByRole("region", { name: "공식 자료 안내", exact: true });
   await expect(answer.getByRole("status")).toContainText("안내가 준비되었습니다");
-  if (await page.locator("details:not([open]) > summary").count()) await page.locator("details:not([open]) > summary").click();
+  const answerDetails = page.getByText("자세한 내용 보기", { exact: true });
+  if (await answerDetails.count()) await answerDetails.click();
   await expect(answer.getByText(generated.answer.plainLanguageSummary, { exact: true })).toBeVisible();
   await expect(answer.getByRole("status")).toContainText("안내가 준비되었습니다");
   await expect(answer.getByRole("button", { name: "답변 듣기" })).toBeVisible();
@@ -167,7 +168,7 @@ test("명확한 keyword의 실제 API는 AI 호출 없이 UI에 표시한다", a
   const body = await (await response).json();
   expect(body.answerGeneration).toEqual({ status: "skipped", reason: "deterministic" });
   expect(body.routing.source).toBe("keyword");
-  if (await page.locator("details:not([open]) > summary").count()) await page.locator("details:not([open]) > summary").click();
+  if (await page.getByText("자세한 내용 보기", { exact: true }).count()) await page.getByText("자세한 내용 보기", { exact: true }).click();
   await expect(page.getByText(body.answer.plainLanguageSummary, { exact: true })).toBeVisible();
 });
 
@@ -178,7 +179,7 @@ test("AI 실패 fallback을 정상 안내로 표시하며 내부 오류를 노�
   await page.goto("/");
   await submit(page);
   await expect(page.getByRole("status")).toContainText("안내가 준비되었습니다");
-  if (await page.locator("details:not([open]) > summary").count()) await page.locator("details:not([open]) > summary").click();
+  if (await page.getByText("자세한 내용 보기", { exact: true }).count()) await page.getByText("자세한 내용 보기", { exact: true }).click();
   await expect(page.getByText(search.answer.plainLanguageSummary, { exact: true })).toBeVisible();
   await expect(page.getByRole("region", { name: "공식 자료 안내", exact: true })).not.toContainText(/provider_error|private-provider-error|fallback/);
 });
@@ -235,7 +236,7 @@ test("본문의 HTML을 실행하지 않고 텍스트로 표시한다", async ({
   await page.route("**/api/public-information/search", (route) => route.fulfill({ json: search }));
   await page.goto("/");
   await submit(page);
-  if (await page.locator("details:not([open]) > summary").count()) await page.locator("details:not([open]) > summary").click();
+  if (await page.getByText("자세한 내용 보기", { exact: true }).count()) await page.getByText("자세한 내용 보기", { exact: true }).click();
   await expect(page.getByText(search.answer.plainLanguageSummary, { exact: true })).toBeVisible();
   await expect(page.getByRole("region", { name: "공식 자료 안내", exact: true }).locator("img")).toHaveCount(0);
 });
@@ -244,8 +245,15 @@ test("생성 상태라도 미확인 날짜와 재검토·변경 가능성 표시
   const search = fixture();
   search.answerGeneration = { status: "generated", mode: "constrained_presentation" };
   search.answer.verification = { status: "unverified", checkedAt: null, details: "최신 자료인지 확인이 필요합니다." };
-  search.answer.sources = [{ ...search.answer.sources[0], checkedAt: null, documentStatus: "review_required", freshnessStatus: "possibly_outdated" }];
+  search.answer.sources = [{
+    ...search.answer.sources[0],
+    title: "성남시 교통약자 특별교통수단 이용 대상과 신청 절차 및 운행 범위에 관한 공식 안내",
+    checkedAt: null,
+    documentStatus: "review_required",
+    freshnessStatus: "possibly_outdated",
+  }];
   await page.route("**/api/public-information/search", (route) => route.fulfill({ json: search }));
+  await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   await submit(page);
   const answer = page.getByRole("region", { name: "공식 자료 안내", exact: true });
@@ -254,6 +262,7 @@ test("생성 상태라도 미확인 날짜와 재검토·변경 가능성 표시
   await expect(answer).toContainText("변경 가능성 있음");
   await expect(answer).toContainText("자료의 확인 상태를 추가로 확인해야 합니다");
   await expect(answer).not.toContainText("공식 자료 확인됨");
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });
 
 test("30초 네트워크 지연 후 로딩을 해제하고 재시도를 안내한다", async ({ page }) => {
@@ -341,7 +350,7 @@ test("대표 돌봄 질문의 실제 API·출처 바로가기·모바일 표시�
   await submit(page, query);
   const body = await (await response).json();
   expect(body.results[0].document.id).toBe("seongnam-senior-tailored-care");
-  if (await page.locator("details:not([open]) > summary").count()) await page.locator("details:not([open]) > summary").click();
+  if (await page.getByText("자세한 내용 보기", { exact: true }).count()) await page.getByText("자세한 내용 보기", { exact: true }).click();
   await expect(page.getByText(body.answer.plainLanguageSummary, { exact: true })).toBeVisible();
   await page.getByRole("link", { name: /출처 .*건과 확인 상태 보기/ }).click();
   await expect(page.locator("#answer-sources")).toBeInViewport();
@@ -360,12 +369,18 @@ test("대표 돌봄 질문의 실제 API·출처 바로가기·모바일 표시�
 test("1265px 제목 줄바꿈과 첫 화면 프로토타입·AI 개인정보 안내를 확인한다", async ({ page }) => {
   await page.setViewportSize({ width: 1265, height: 900 });
   await page.goto("/");
-  await expect(page.getByText("Astra · 공식 자료 기반 시민 프로젝트", { exact: true })).toBeVisible();
+  await expect(page.getByText("Astra 팀", { exact: true })).toBeVisible();
+  await page.getByText("질문 처리 방식 확인하기", { exact: true }).click();
   await expect(page.getByText(/OpenAI의 공식 웹 검색으로 처리될 수 있습니다/)).toBeVisible();
-  await expect(page.getByText(/주민등록번호, 연락처 등 개인정보는 입력하지 마세요/)).toBeVisible();
+  await expect(page.getByText(/개인정보는 입력하지 마세요/)).toBeVisible();
+  await expect(page.getByText(/이름, 주민등록번호, 연락처/)).toBeVisible();
   await expect(page.getByText(/성남시가 운영하는 공식 서비스가 아닙니다/)).toBeVisible();
-  const titleLine = page.locator("#page-title span");
-  expect(await titleLine.evaluate((element) => element.getClientRects().length)).toBe(1);
+  const title = page.locator("#page-title");
+  expect(await title.evaluate((element) => {
+    const range = document.createRange();
+    range.selectNodeContents(element);
+    return range.getClientRects().length;
+  })).toBe(1);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   await page.setViewportSize({ width: 320, height: 844 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);

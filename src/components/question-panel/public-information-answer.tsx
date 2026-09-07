@@ -23,24 +23,63 @@ function CheckedDate({ value }: { value: string | null }) {
 }
 
 /** 서버가 승인한 답변만 렌더링한다. AI 상태로 검증 수준을 바꾸지 않는다. */
-export function PublicInformationAnswerView({ answer, onReadFull }: { answer: PublicInformationAnswer; onReadFull?: () => void }) {
+export function PublicInformationAnswerView({
+  answer,
+  isSpeaking = false,
+  onReadConcise,
+  onReadFull,
+}: {
+  answer: PublicInformationAnswer;
+  isSpeaking?: boolean;
+  onReadConcise?: () => void;
+  onReadFull?: () => void;
+}) {
   const concise = conciseAnswer(answer);
   const expanded = concise !== answer.plainLanguageSummary;
   return (
     <div className={styles.searchResults}>
       <h3 className={styles.serviceTitle}>{answer.title}</h3>
       {answer.sources.length > 0 && <p className={styles.evidenceLabel}>공식 성남시 자료를 바탕으로 안내합니다.</p>}
+      <p className={styles.summary}>{concise}</p>
+      {onReadConcise && <div className={styles.speechControls}>
+        <button type="button" onClick={onReadConcise} aria-label={isSpeaking ? "답변 읽기 중지" : "답변 듣기"} aria-pressed={isSpeaking}>
+          {isSpeaking ? "중지" : "답변 듣기"}
+        </button>
+        <span>화면의 핵심 안내를 읽습니다. 출처와 확인 상태도 확인해 주세요.</span>
+      </div>}
       {answer.sources.length > 0 && <a className={styles.sourceShortcut} href="#answer-sources">출처 {answer.sources.length}건과 확인 상태 보기</a>}
-      {expanded && <p className={styles.summary}>{concise}</p>}
-      <details open={!expanded} className={styles.detailSection}>
-      <summary>상세 안내 펼치기</summary>
-      <p className={styles.summary}>
-        {answer.plainLanguageSummary.split(/(?<=[.!?])(?=\s)/u).map((paragraph, index) => (
-          <span className={styles.summaryParagraph} key={index}>{paragraph}</span>
-        ))}
-      </p>
-      {expanded && onReadFull && <div className={styles.speechControls}><button type="button" onClick={onReadFull}>상세 안내 전체 듣기</button></div>}
-      </details>
+
+      <div id="answer-sources" className={styles.verification} tabIndex={-1}>
+        <h3>자료 확인 상태</h3>
+        <p>{VERIFICATION[answer.verification.status]}</p>
+        <p>확인일: <CheckedDate value={answer.verification.checkedAt} /></p>
+        {answer.verification.details && <p>{answer.verification.details}</p>}
+      </div>
+      {answer.sources.length > 0 && <div className={styles.sourceSection}>
+        <h3>공식 출처</h3>
+        <p className={styles.sourcesIntro}>성남시 공식 출처에서 자세한 내용을 확인하세요.</p>
+        <ol className={styles.sourceList}>{answer.sources.map((source) => <li key={source.id}>
+          <a href={source.url} target="_blank" rel="noreferrer">{source.title} (새 창)</a>
+          {source.supportingSources?.map((support) => <p key={support.url}>
+            <a href={support.url} target="_blank" rel="noreferrer">추가 근거: {support.title} (새 창)</a>
+          </p>)}
+          <p>출처: {source.organizationName}</p>
+          <p>확인일: <CheckedDate value={source.checkedAt} /></p>
+          <p>최신성: {FRESHNESS[source.freshnessStatus]}</p>
+          <p>문서 상태: {DOCUMENT_STATUS[source.documentStatus]}</p>
+          {source.evidenceSummary && <p>{source.evidenceSummary}</p>}
+        </li>)}</ol>
+      </div>}
+
+      {expanded && <details className={styles.detailSection}>
+        <summary>자세한 내용 보기</summary>
+        <p className={styles.summary}>
+          {answer.plainLanguageSummary.split(/(?<=[.!?])(?=\s)/u).map((paragraph, index) => (
+            <span className={styles.summaryParagraph} key={index}>{paragraph}</span>
+          ))}
+        </p>
+        {onReadFull && <div className={styles.speechControls}><button type="button" onClick={onReadFull}>상세 안내 전체 듣기</button></div>}
+      </details>}
 
       {answer.eligibility && answer.eligibility.length > 0 && <div className={styles.detailSection}>
         <h3>자료에 안내된 대상</h3>
@@ -79,27 +118,6 @@ export function PublicInformationAnswerView({ answer, onReadFull }: { answer: Pu
         {answer.nextAction.url && <a href={answer.nextAction.url} target="_blank" rel="noreferrer">공식 안내 열기 (새 창)</a>}
       </div>}
 
-      <div id="answer-sources" className={styles.verification} tabIndex={-1}>
-        <h3>자료 확인 상태</h3>
-        <p>{VERIFICATION[answer.verification.status]}</p>
-        <p>확인일: <CheckedDate value={answer.verification.checkedAt} /></p>
-        {answer.verification.details && <p>{answer.verification.details}</p>}
-      </div>
-      {answer.sources.length > 0 && <div className={styles.detailSection}>
-        <h3>출처</h3>
-        <p className={styles.sourcesIntro}>성남시 공식 출처에서 자세한 내용을 확인하세요.</p>
-        <ol className={styles.sourceList}>{answer.sources.map((source) => <li key={source.id}>
-          <a href={source.url} target="_blank" rel="noreferrer">{source.title} (새 창)</a>
-          {source.supportingSources?.map((support) => <p key={support.url}>
-            <a href={support.url} target="_blank" rel="noreferrer">추가 근거: {support.title} (새 창)</a>
-          </p>)}
-          <p>출처: {source.organizationName}</p>
-          <p>확인일: <CheckedDate value={source.checkedAt} /></p>
-          <p>최신성: {FRESHNESS[source.freshnessStatus]}</p>
-          <p>문서 상태: {DOCUMENT_STATUS[source.documentStatus]}</p>
-          {source.evidenceSummary && <p>{source.evidenceSummary}</p>}
-        </li>)}</ol>
-      </div>}
     </div>
   );
 }

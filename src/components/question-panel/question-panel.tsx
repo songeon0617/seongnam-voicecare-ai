@@ -151,10 +151,9 @@ export function QuestionPanel() {
     <section className={styles.panel} aria-label="질문하기">
       <div className={styles.panelHeading}>
         <div>
-          <p className={styles.panelEyebrow}>질문 입력</p>
-          <h2>어떤 도움이 필요하세요?</h2>
+          <p className={styles.panelEyebrow}>질문하기</p>
+          <h2>글이나 음성으로 편하게 물어보세요</h2>
         </div>
-        <span className={styles.inputHint}>글자 또는 음성으로 질문하세요</span>
       </div>
       <div className={styles.questionWorkspace}>
         <form
@@ -186,8 +185,14 @@ export function QuestionPanel() {
             </button>
           </div>
           <p className={styles.privacyNotice}>
-            질문과 직전 확인 답변은 OpenAI의 공식 웹 검색으로 처리될 수 있습니다. 번호·이메일 자동 가림에는 한계가 있으니 이름, 주민등록번호, 연락처 등 개인정보는 입력하지 마세요. 앱은 질문·음성 원본을 DB에 저장하지 않습니다.
+            <strong>개인정보는 입력하지 마세요.</strong> 이름, 주민등록번호, 연락처 등은 자동으로 완전히 가려지지 않을 수 있습니다.
           </p>
+          <details className={styles.infoDetails}>
+            <summary>질문 처리 방식 확인하기</summary>
+            <p>
+              질문과 직전 확인 답변은 OpenAI의 공식 웹 검색으로 처리될 수 있습니다. 번호·이메일 자동 가림에는 한계가 있습니다. 앱은 질문·음성 원본을 DB에 저장하지 않습니다.
+            </p>
+          </details>
         </form>
         <div className={styles.voiceArea}>
           <button
@@ -221,10 +226,14 @@ export function QuestionPanel() {
           </button>
           <span className={styles.status}>{isRecognizing ? "다시 누르면 취소합니다" : "한국어 음성 질문"}</span>
           <p id="voice-help" className={styles.voiceHelp}>
-            말씀이 끝나면 인식한 질문을 자동으로 보냅니다. 인식 결과는 질문 입력란에서 수정할 수 있습니다.
-            브라우저에 따라 음성이 음성 인식 서비스로 전송될 수 있습니다.
-            마이크를 사용할 수 없다면 글자 입력이나 휴대폰 키보드의 음성 입력을 이용하세요.
+            말씀이 끝나면 인식한 질문을 자동으로 보냅니다. 마이크를 사용할 수 없다면 글자로 질문하세요.
           </p>
+          <details className={styles.infoDetails}>
+            <summary>음성 입력 방식 확인하기</summary>
+            <p>
+              인식 결과는 질문 입력란에서 수정할 수 있습니다. 브라우저에 따라 음성이 음성 인식 서비스로 전송될 수 있습니다. 휴대폰 키보드의 음성 입력도 이용할 수 있습니다.
+            </p>
+          </details>
           {voice.preview && <p className={styles.voicePreview} aria-live="off">인식 중: {voice.preview}</p>}
         </div>
       </div>
@@ -240,8 +249,13 @@ export function QuestionPanel() {
       </div>}
 
       <div className={styles.examples}>
-        <p>이렇게 물어보세요</p>
-        <p>주요 안내: 어르신 돌봄 · 장애인복지 · 교통약자 이동 · 방문건강관리 · 긴급복지 · 무인민원발급기</p>
+        <div className={styles.examplesHeading}>
+          <p>이렇게 물어보세요</p>
+          <details className={styles.scopeDetails}>
+            <summary>지원 분야 확인하기</summary>
+            <p>어르신 돌봄 · 장애인복지 · 교통약자 이동 · 방문건강관리 · 긴급복지 · 무인민원발급기</p>
+          </details>
+        </div>
         <div className={styles.exampleList}>
           {EXAMPLE_QUESTIONS.map((example) => (
             <button
@@ -262,19 +276,13 @@ export function QuestionPanel() {
         aria-labelledby="answer-title"
       >
         <div className={styles.answerHeading}>
-          <span className={styles.answerIcon} aria-hidden="true">
-            <svg viewBox="0 0 24 24" role="img">
-              <path d="M5 5h14v10H9l-4 4V5Z" />
-              <path d="M9 9h6m-6 3h4" />
-            </svg>
-          </span>
           <h2 id="answer-title">{search?.kind === "safety" ? "긴급 안전 안내" : "공식 자료 안내"}</h2>
         </div>
         {search?.kind === "unsupported" && <h3 className={styles.stateHeading}>지금 안내할 수 있는 범위를 확인해 주세요</h3>}
         <p className={notice ? styles.notice : styles.answerPlaceholder} role="status" aria-live={speech.isSpeaking ? "off" : "polite"} aria-atomic="true">
           {notice || "질문하면 관련 공식 자료와 출처가 여기에 표시됩니다."}
         </p>
-        {search && search.kind !== "clarification" && search.kind !== "unsupported" && Boolean(search.answer.plainLanguageSummary.trim()) && <div className={styles.speechControls}>
+        {search && (search.officialSearch || search.kind === "safety" || search.kind === "guidance") && search.kind !== "clarification" && search.kind !== "unsupported" && Boolean(search.answer.plainLanguageSummary.trim()) && <div className={styles.speechControls}>
           <button type="button" onClick={() => {
             if (speech.isSpeaking) {
               speech.stop();
@@ -321,7 +329,20 @@ export function QuestionPanel() {
             </div>
             <strong>이 서비스는 자동으로 전화하거나 신고하지 않습니다. 사용자가 직접 연락해 주세요.</strong>
           </div>}
-          {search && !search.officialSearch && search.kind !== "guidance" && search.kind !== "clarification" && search.kind !== "unsupported" && search.kind !== "safety" && <PublicInformationAnswerView answer={search.answer} onReadFull={() => { voice.cancel(); speech.play(search.answer.plainLanguageSummary); }} />}
+          {search && !search.officialSearch && search.kind !== "guidance" && search.kind !== "clarification" && search.kind !== "unsupported" && search.kind !== "safety" && <PublicInformationAnswerView
+            answer={search.answer}
+            isSpeaking={speech.isSpeaking}
+            onReadConcise={() => {
+              if (speech.isSpeaking) {
+                speech.stop();
+                setNotice("답변 읽기를 중지했습니다.");
+              } else {
+                voice.cancel();
+                speech.play(conciseAnswer(search.answer));
+              }
+            }}
+            onReadFull={() => { voice.cancel(); speech.play(search.answer.plainLanguageSummary); }}
+          />}
         </div>
       </section>
     </section>

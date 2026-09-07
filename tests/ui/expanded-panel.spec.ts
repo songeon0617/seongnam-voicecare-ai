@@ -22,7 +22,7 @@ test("long policy stays intact behind details and default speech matches visible
     return window.voiceTest.spoken.map(s=>s.text).join("");
   });
   expect(spoken).toBe(await concise.textContent());
-  await page.locator("details > summary").press("Enter");
+  await page.getByText("자세한 내용 보기",{exact:true}).press("Enter");
   await expect(page.getByText(body.answer.plainLanguageSummary,{exact:true})).toBeVisible();
   await expect(page.getByRole("button",{name:"상세 안내 전체 듣기",exact:true})).toBeVisible();
   mkdirSync("docs/voicecare-visual",{recursive:true});

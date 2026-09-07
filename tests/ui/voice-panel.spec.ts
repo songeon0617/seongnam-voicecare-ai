@@ -51,7 +51,7 @@ test("한국어 STT 확정 결과를 입력란과 기존 API에 한 번 전달�
     window.voiceTest.end();
   }, QUERY);
   await expect(page.getByRole("textbox")).toHaveValue(QUERY);
-  if (await page.locator("details:not([open]) > summary").count()) await page.locator("details:not([open]) > summary").click();
+  if (await page.getByText("자세한 내용 보기", { exact: true }).count()) await page.getByText("자세한 내용 보기", { exact: true }).click();
   await expect(page.getByText(search.answer.plainLanguageSummary, { exact: true })).toBeVisible();
   expect(requests).toBe(1);
   expect(await page.evaluate(() => window.voiceTest.spoken.length)).toBe(0);
@@ -157,7 +157,7 @@ test("상세 듣기는 한국어로 원문 전체를 순서대로 읽고 자동 
   await page.goto("/");
   await textQuestion(page);
   expect(await page.evaluate(() => window.voiceTest.spoken.length)).toBe(0);
-  await page.locator("details > summary").click();
+  await page.getByText("자세한 내용 보기", { exact: true }).click();
   await page.getByRole("button", { name: "상세 안내 전체 듣기" }).press("Enter");
   await expect(page.getByRole("button", { name: "답변 읽기 중지" })).toBeVisible();
   await expect(page.getByRole("status")).toHaveAttribute("aria-live", "off");
@@ -233,7 +233,7 @@ test("TTS 미지원에도 본문과 텍스트 기능을 유지한다", async ({ 
   await textQuestion(page);
   await page.getByRole("button", { name: "답변 듣기" }).click();
   await expect(page.getByRole("status")).toContainText("답변 듣기를 지원하지 않습니다");
-  if (await page.locator("details:not([open]) > summary").count()) await page.locator("details:not([open]) > summary").click();
+  if (await page.getByText("자세한 내용 보기", { exact: true }).count()) await page.getByText("자세한 내용 보기", { exact: true }).click();
   await expect(page.getByText(keywordAnswer().plainLanguageSummary, { exact: true })).toBeVisible();
 });
 
@@ -256,7 +256,7 @@ test("이전 TTS 조각의 중복 종료·오류는 다음 조각과 제한 시�
   await page.goto("/");
   await textQuestion(page);
   await page.clock.install();
-  await page.locator("details > summary").click();
+  await page.getByText("자세한 내용 보기", { exact: true }).click();
   await page.getByRole("button", { name: "상세 안내 전체 듣기" }).click();
   await page.evaluate(() => {
     const first = window.voiceTest.spoken[0];
