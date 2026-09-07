@@ -1,0 +1,384 @@
+✔ 모든 허용 표현에서 전체 원문·순서·메타데이터와 구조화된 사실을 보존한다 (5.5821ms)
+✔ 빈 결과는 hasResults 값과 관계없이 제공자를 호출하지 않는다 (7.7279ms)
+✔ 자유 문장·새 사실·출처·구조화 필드·임의 코드가 포함된 출력은 전체 거부한다 (21.9326ms)
+✔ 질문의 프롬프트 주입 문구는 답변에 복사되지 않는다 (0.4588ms)
+✔ 최신성 미확인·확인일 null·문서 검토 상태를 AI가 승격하지 않는다 (0.8912ms)
+✔ 제공자 예외는 원본 답변으로 복귀하고 오류 상세를 노출하지 않는다 (0.5361ms)
+✔ clarification 원칙: 차량 지원인지 요금 지원인지 모호 (1.7731ms)
+✔ clarification 원칙: 노인 돌봄인지 복지관 시설인지 모호 (0.1986ms)
+✔ clarification 원칙: 치매 상담인지 방문건강관리인지 모호 (0.2825ms)
+✔ clarification 원칙: 지역이 없어 시설 안내 불가능 (0.1116ms)
+✔ clarification 원칙: 서비스 자체가 불명확 (0.1206ms)
+✔ clarification 원칙: 일반 이동 도움은 좁은 교통 clarification 금지 (0.1992ms)
+✔ clarification 원칙: 일반 돌봄 대 건강관리는 치매 축 추정 금지 (0.16ms)
+✔ clarification 원칙: 일반 어르신 건강은 치매 축 추정 금지 (0.0976ms)
+✔ 특정 서비스를 말하고 준비물·문의처를 함께 물으면 서비스는 DIRECT로 유지한다 (50.188ms)
+✔ 명시적 활성화와 키·모델이 모두 있어야 제공자를 구성한다 (1.3744ms)
+✔ Responses 요청은 도구 없이 데이터와 제한된 스키마만 전달한다 (29.5744ms)
+✔ HTTP 401는 재시도 없이 실패 처리한다 (2.4687ms)
+✔ HTTP 429는 재시도 없이 실패 처리한다 (1.2299ms)
+✔ HTTP 500는 재시도 없이 실패 처리한다 (0.5738ms)
+✔ 미완료·거절·잘못된 JSON·빈 응답·복수 메시지를 거부한다 (5.3864ms)
+✔ 네트워크 오류는 호출자에게 전달해 안전한 fallback을 허용한다 (0.4143ms)
+✔ 8초 제한은 응답 본문 대기에도 적용하며 요청을 중단한다 (3.0955ms)
+✔ 기존 활성화·키·모델 설정만 읽고 구성 중에는 호출하지 않는다 (1.1083ms)
+✔ Responses strict schema는 현재 catalog ID/enum만 허용하며 원문/도구는 없다 (28.9738ms)
+✔ HTTP 401 실패는 재시도 없이 abort한다 (1.8593ms)
+✔ HTTP 429 실패는 재시도 없이 abort한다 (0.5175ms)
+✔ HTTP 500 실패는 재시도 없이 abort한다 (0.4329ms)
+✔ 거절·미완료·잘못된 JSON·복수 메시지·본문 오류를 invalid output으로 거부한다 (4.13ms)
+✔ 네트워크 오류와 본문 대기 timeout 모두 안전한 실패로 전달한다 (1.8988ms)
+✔ 13개 공식 문서와 카탈로그는 일대일이며 본문·전화·자격 세부를 보내지 않는다 (2.808ms)
+✔ 명확한 keyword는 AI 구성조차 하지 않고 안전 매핑 한 건만 반환한다 (288.1879ms)
+✔ 명시적 제도명이 있어도 부정·복수 서비스 조건은 AI로 분기한다 (53.812ms)
+✔ keyword 실패 + AI DIRECT는 공식 문서만 재조회하고 입력 주입/변경을 격리한다 (27.1691ms)
+✔ 평가 계약(mock; 모델 정확도 아님): 어머니가 혼자 계시는데 누가 안부 좀 봐줄 수 있나요? (13.2434ms)
+✔ 평가 계약(mock; 모델 정확도 아님): 병원 갈 때 같이 가줄 사람이 없어요 (9.8089ms)
+✔ 평가 계약(mock; 모델 정확도 아님): 요즘 자꾸 깜빡하는데 어디에 물어보면 돼요? (9.8026ms)
+✔ 평가 계약(mock; 모델 정확도 아님): 집에 쌀이 떨어졌고 생활비가 없어요 (9.4112ms)
+✔ 평가 계약(mock; 모델 정확도 아님): 다리가 불편해서 버스를 못 타요 (8.0275ms)
+✔ 평가 계약(mock; 모델 정확도 아님): 장애인 택시 지원 있어? (20.0393ms)
+✔ 평가 계약(mock; 모델 정확도 아님): 노인맞춤돌봄 신청하고 싶어요 (26.8962ms)
+✔ 평가 계약(mock; 모델 정확도 아님): 수정구에 가까운 복지관 알려줘 (14.6313ms)
+✔ 평가 계약(mock; 모델 정확도 아님): 오늘 점심 메뉴 추천해줘 (8.6929ms)
+✔ invalid ID·모양·enum·추가 사실·조합·중복은 모두 거부한다 (173.3693ms)
+✔ 현재 카탈로그 밖 ID는 이전에 존재했던 ID여도 거부한다 (3.6376ms)
+✔ CLARIFY 후 짧은 답에 직전 문맥을 제공하며 공식 답변을 생성한다 (7.2365ms)
+✔ 확인 질문에 해당하지 않는 과잉 후보는 제거하되 새로운 후보를 만들지 않는다 (10.251ms)
+✔ 지역 후속 답변과 시설의 다른 구 요청에서도 잘못된 DIRECT를 차단한다 (12.0264ms)
+✔ 입력/문맥 오류는 AI를 호출하지 않는다 (0.2942ms)
+✔ 비활성·미설정·설정/제공자 실패는 사실 없는 확인 질문으로 복귀한다 (51.5162ms)
+✔ 기존 keyword fallback: 문맥 때문에 AI를 시도한 명시적 제도명은 실패해도 복구한다 (26.1513ms)
+✔ 애매한 keyword를 fallback에서 확정하지 않으며 거리 제한은 잘못된 DIRECT도 막는다 (30.9171ms)
+✔ 8초 timeout은 abort 후 HTTP 200의 확인 질문으로 연결된다 (14.7578ms)
+✔ Route Handler 통합: DIRECT·CLARIFY·UNSUPPORTED·변조·실패·입력 오류 (131.9913ms)
+✔ all named mobility candidates are retained: 특별교통수단과 장애인 택시바우처 알려줘 (38.8406ms)
+✔ all named mobility candidates are retained: 장애인 버스요금 지원 또는 장애인 택시바우처 (25.9205ms)
+✔ missing service has no paid search: 도움 (0.2857ms)
+✔ missing service has no paid search: 서류 (0.1228ms)
+✔ missing service has no paid search: 복지 (0.1409ms)
+✔ missing service has no paid search: 신청 어떻게 해 (0.1436ms)
+✔ missing service has no paid search: ㅋㅋㅋ?! (0.1456ms)
+✔ missing service has no paid search: 성남시 (0.2058ms)
+✔ unstored or current detail bypasses every static shortcut: 특별교통수단 예약 취소 (1.2759ms)
+✔ unstored or current detail bypasses every static shortcut: 노인맞춤돌봄서비스 신청 마감 (0.7142ms)
+✔ unstored or current detail bypasses every static shortcut: 내일 장애인 버스요금 지원 변경 (0.2693ms)
+✔ unstored or current detail bypasses every static shortcut: 2027년 장애인 택시바우처 요금 (0.2062ms)
+✔ provider searches the same reviewed institutional hosts enforced at retrieval (48.9545ms)
+✔ real provider counterexample cannot become answer evidence: 066 (0.7031ms)
+✔ real provider counterexample cannot become answer evidence: 138 (0.3194ms)
+✔ real provider counterexample cannot become answer evidence: 130 (0.2693ms)
+✔ captured Stage 1 replay: domain-009 (structured_direct_success) (31.6141ms)
+✔ captured Stage 1 replay: domain-027 (safe_fallback) (636.1064ms)
+✔ captured Stage 1 replay: domain-031 (wrong_source) (446.3359ms)
+✔ captured Stage 1 replay: domain-052 (web_search_grounded_success) (59.3004ms)
+✖ captured Stage 1 replay: domain-053 (safe_fallback) (345.6983ms)
+✔ captured Stage 1 replay: domain-066 (web_search_grounded_success) (37.715ms)
+✔ captured Stage 1 replay: domain-068 (structured_direct_success) (9.7279ms)
+✖ captured Stage 1 replay: domain-071 (safe_fallback) (0.3812ms)
+✔ captured Stage 1 replay: domain-073 (safe_fallback) (254.209ms)
+✖ captured Stage 1 replay: domain-075 (safe_fallback) (282.2648ms)
+✔ captured Stage 1 replay: domain-081 (web_search_grounded_success) (97.2735ms)
+✔ captured Stage 1 replay: domain-083 (safe_fallback) (327.3768ms)
+✔ captured Stage 1 replay: domain-097 (web_search_grounded_success) (261.3641ms)
+✔ captured Stage 1 replay: domain-098 (no_answer_despite_official_evidence) (272.7887ms)
+✔ captured Stage 1 replay: domain-113 (safe_fallback) (213.3152ms)
+✔ captured Stage 1 replay: domain-115 (safe_fallback) (201.14ms)
+✔ captured Stage 1 replay: domain-130 (safe_fallback) (52.6677ms)
+✖ captured Stage 1 replay: domain-134 (wrong_source) (280.3224ms)
+✔ captured Stage 1 replay: domain-138 (safe_fallback) (269.4731ms)
+✖ captured Stage 1 replay: domain-140 (safe_fallback) (214.1166ms)
+✔ topic-only snippets and policy tables cannot substitute for requested details (0.324ms)
+✔ published same-institution navigation is HTTPS and user boards cannot enter evidence (0.7737ms)
+voicecare_search_budget missing_configuration
+voicecare_search_budget missing_configuration
+voicecare_search_budget store_http_error
+voicecare_search_budget store_command_error
+✔ reservation steps, portal widgets and sitemap never qualify as policy evidence (1.4567ms)
+✔ broad welfare and transport support clarify without guessing eligibility or calling search (22.7256ms)
+✔ stale index recovery uses live official menu links and topic evidence, not arbitrary generated URL (11.2985ms)
+✔ intermediate chains cryptographically to existing Mozilla root, expires closed, no new root (16.9619ms)
+✔ long HTML navigation is excluded; full heading hierarchy, tables and trailing exceptions remain together (7.4874ms)
+✔ oversized indivisible policy is omitted, not silently cut before its restrictive footnote (6.2673ms)
+✔ parser ignores hidden/script/form text and decodes entities without executing HTML (1.4106ms)
+✔ production refuses paid calls without shared admission; Redis failure cannot open budget (29.6848ms)
+✔ shared reservation is atomic command with fixed namespace/cap; release is owner checked and idempotent (5.96ms)
+✔ long real-source section passes end-to-end contract, exact quote mismatch stays a link, repeat uses zero paid calls (44.5715ms)
+✔ wide mobility never asserts a disability, and numbered/general-bus followup reaches official search (138.8766ms)
+✔ required acceptance examples route without paid calls (66.5348ms)
+✔ curated thirteen remain exactly mapped under expanded handler (170.7159ms)
+✔ changed/future services bypass curated shortcuts and preserve the original question (19.1775ms)
+✔ new topic clears outside context; outside short context cannot be promoted to local guidance (11.2095ms)
+✔ unknown choice does not loop and a repeated ambiguous pronoun exits with guidance (23.5731ms)
+✔ nearby location followup requests a facility list rather than claiming distance (21.1678ms)
+✔ source policy rejects lookalike hosts, ports, credentials, encoded paths, attachments, boards, redirects (10.1237ms)
+✔ PII and arbitrary user URLs are removed before the external search (16.6374ms)
+✔ HTML processing excludes executable, navigation and forms (1.5415ms)
+✔ whole evidence section retains short eligibility, heading and expired footnote (0.5351ms)
+✔ emergency wording takes priority over costs and external search (57.2471ms)
+✔ comparison, concurrent benefits and device faults must search; ordinary exam and proxy instructions are supported topics (42.055ms)
+✔ library correction starts a fresh subject (0.4141ms)
+✔ actual search execution plus original paragraph is required, snippets/ungrounded text never become facts (43.1756ms)
+✔ time-sensitive, 404 and 429 remain distinct from an answer or no-results (2.8724ms)
+✔ provider request preserves existing model, privacy, one tool call and no retries (3.3878ms)
+✔ bounded response rejects oversized and stalled bodies and releases on timeout (1.7451ms)
+✔ a fetched long original still provides a link without inventing a short fragment (1.6592ms)
+✔ per-process budget handles concurrency, rollover and release idempotence (0.205ms)
+✔ client rejects forged citations and incompatible search states (17.2038ms)
+✔ 실제 답변과 빈 결과를 변경 없이 읽는다 (41.939ms)
+✔ 누락·잘못된 중첩 필드·실행 URL을 가진 응답은 렌더링 전에 거부한다 (38.1746ms)
+✔ 서버가 보낸 선택 구조화 필드와 미확인 날짜는 그대로 보존한다 (25.4916ms)
+✔ 확인 질문·미지원 판별과 무결성: 허용 ID/고정 문장 외 응답 및 사실 혼입 거부 (33.2961ms)
+✔ safety는 검토된 category·번호·고정 문구만 표시 대상으로 허용한다 (24.6142ms)
+✔ 타 지역은 AI 구성 전 차단하고 성남 사실을 반환하지 않는다: 부천시 노인맞춤돌봄서비스 신청하는 곳 알려주세요 (36.4711ms)
+✔ 타 지역은 AI 구성 전 차단하고 성남 사실을 반환하지 않는다: 수원시 장애인 택시 (17.7769ms)
+✔ 타 지역은 AI 구성 전 차단하고 성남 사실을 반환하지 않는다: 서울에서 노인 돌봄 (22.061ms)
+✔ 타 지역은 AI 구성 전 차단하고 성남 사실을 반환하지 않는다: 용인시 노인맞춤돌봄 (17.8752ms)
+✔ 타 지역은 AI 구성 전 차단하고 성남 사실을 반환하지 않는다: 청주시 노인맞춤돌봄 (16.3374ms)
+✔ 타 지역은 AI 구성 전 차단하고 성남 사실을 반환하지 않는다: 강남구 노인맞춤돌봄 (17.3043ms)
+✔ 타 지역은 AI 구성 전 차단하고 성남 사실을 반환하지 않는다: 양평군 노인맞춤돌봄 (14.8832ms)
+✔ 타 지역은 AI 구성 전 차단하고 성남 사실을 반환하지 않는다: 부천시에서 노인맞춤돌봄 (28.3994ms)
+✔ 타 지역은 AI 구성 전 차단하고 성남 사실을 반환하지 않는다: 서울특별시 장애인 택시 (6.604ms)
+✔ 타 지역은 AI 구성 전 차단하고 성남 사실을 반환하지 않는다: 부산광역시 장애인 택시 (6.5023ms)
+✔ 타 지역은 AI 구성 전 차단하고 성남 사실을 반환하지 않는다: 인천 장애인 택시바우처 (15.5089ms)
+✔ 타 지역은 AI 구성 전 차단하고 성남 사실을 반환하지 않는다: 대구에서 돌봄 (6.6872ms)
+✔ 타 지역은 AI 구성 전 차단하고 성남 사실을 반환하지 않는다: 성남시와 부천시 노인맞춤돌봄 비교 (19.8666ms)
+✔ 타 지역은 AI 구성 전 차단하고 성남 사실을 반환하지 않는다: 부천시노인맞춤돌봄 (15.4292ms)
+✔ 타 지역은 AI 구성 전 차단하고 성남 사실을 반환하지 않는다: 부천시청 노인맞춤돌봄 (14.4296ms)
+✔ 타 지역은 AI 구성 전 차단하고 성남 사실을 반환하지 않는다: 서구 노인맞춤돌봄 (25.8149ms)
+✔ 지역 미지정과 성남 3개 구의 명확한 서비스는 keyword DIRECT 유지 (133.9347ms)
+✔ 분당구 장애인 이동지원은 정상 AI 경로로 연결 (8.3442ms)
+✔ 택시·보조기구 등 일상어와 성남 하위 동은 타 지역으로 오인하지 않는다 (0.1525ms)
+✔ 지역 확인 후속과 다른 확인 문맥에 남은 타 지역도 우회 불가 (22.4169ms)
+✔ 기존 region_required 및 성남 거리정보 미지원 정책 유지 (16.8898ms)
+✔ 즉시 safety는 검색과 AI 전에 중단한다: 사람이 의식이 없어요 (3.2332ms)
+✔ 즉시 safety는 검색과 AI 전에 중단한다: 숨을 못 쉬어요 (0.6489ms)
+✔ 즉시 safety는 검색과 AI 전에 중단한다: 쓰러졌어요 (0.3321ms)
+✔ 즉시 safety는 검색과 AI 전에 중단한다: 지금 쓰러질 것 같아요 (0.2647ms)
+✔ 즉시 safety는 검색과 AI 전에 중단한다: 반응이 없어요 (0.2033ms)
+✔ 즉시 safety는 검색과 AI 전에 중단한다: 죽고 싶어요 (0.4525ms)
+✔ 즉시 safety는 검색과 AI 전에 중단한다: 자살하고 싶어요 (0.2153ms)
+✔ 즉시 safety는 검색과 AI 전에 중단한다: 지금 나를 해칠 것 같아요 (0.3706ms)
+✔ 과거·일반·인용 문맥은 safety로 오탐하지 않는다: 작년에 쓰러졌는데 지원받을 수 있나요? (3.1819ms)
+✔ 과거·일반·인용 문맥은 safety로 오탐하지 않는다: 예전에 숨이 안 쉬어진 적이 있어요 (1.2665ms)
+✔ 과거·일반·인용 문맥은 safety로 오탐하지 않는다: 숨을 못 쉬는 증상이 있었어요 (4.6913ms)
+✔ 과거·일반·인용 문맥은 safety로 오탐하지 않는다: 죽고 싶다는 생각이 들었던 적이 있어요 (0.489ms)
+✔ 과거·일반·인용 문맥은 safety로 오탐하지 않는다: 의식이 없는 사람을 발견하면 어떻게 해야 하나요? (0.3813ms)
+✔ 과거·일반·인용 문맥은 safety로 오탐하지 않는다: 죽고 싶다는 말을 들었는데 어떤 상담기관이 있나요? (0.5135ms)
+✔ 과거·일반·인용 문맥은 safety로 오탐하지 않는다: 119 지원금이 있나요? (1.0413ms)
+✔ 과거·일반·인용 문맥은 safety로 오탐하지 않는다: 예시 문장: “죽고 싶어요” (1.2734ms)
+✔ 긴급 생활지원 표현은 safety가 아니라 기존 긴급복지 라우팅을 유지한다 (3.0706ms)
+✔ shared store diagnostics are fixed codes, throttled and do not expose credentials or response bodies (21.2479ms)
+✔ production provider calls default shared admission before the paid API and releases after source failure (27.4839ms)
+voicecare_search_budget missing_configuration
+voicecare_search_budget store_timeout_or_network
+✔ two production provider instances share one atomic admission and a denied lease spends no API call (8.9301ms)
+✔ missing or failing shared store cannot reach the paid API (1.1784ms)
+✔ all navigation and original fetches consume a single bounded request allowance (13.116ms)
+✔ a stalled source or provider exits safely on the request deadline (63.8784ms)
+✔ "장애인 택시 지원받으려면 어떻게 해야 해?"의 최상위 결과는 장애인 택시바우처이다 (35.1533ms)
+✔ "휠체어 타는데 이동지원 차량 이용하고 싶어"의 최상위 결과는 특별교통수단 운영이다 (17.0823ms)
+✔ "혼자 사는 어르신 돌봄 서비스 알려줘"의 최상위 결과는 노인맞춤돌봄서비스이다 (29.1742ms)
+✔ "분당에 노인복지관 어디 있어?"의 최상위 결과는 분당노인종합복지관이다 (20.3196ms)
+✔ "어르신 건강관리 받을 수 있나요?"의 최상위 결과는 AI·IoT 기반 어르신 건강관리이다 (12.0612ms)
+✔ "장애인 보조기구 지원 있나요?"의 최상위 결과는 장애인 보조기구·보장구 지원이다 (7.51ms)
+✔ "발달장애인 지원 알려줘"의 최상위 결과는 발달장애인 지원이다 (3.972ms)
+✔ "장애인 의료 지원은 뭐가 있어?"의 최상위 결과는 장애인 보건·의료서비스 지원이다 (10.5507ms)
+✔ "치매 검사를 어디서 받을 수 있어?"의 최상위 결과는 중원구보건소 치매안심센터이다 (9.3491ms)
+✔ "집으로 와서 건강관리 해주는 서비스 있어?"의 최상위 결과는 맞춤형 방문건강관리이다 (24.7113ms)
+✔ "무인민원발급기에서 등본 떼고 싶어"의 최상위 결과는 무인민원발급기 이용 안내이다 (5.2266ms)
+✔ "위기가구 긴급복지 생계비 지원 알려줘"의 최상위 결과는 긴급복지지원 사업이다 (9.3409ms)
+✔ "장애인 버스요금 교통비 지원 알려줘"의 최상위 결과는 장애인 버스요금 지원이다 (6.3555ms)
+✔ 배포 검색 smoke: "긴급복지지원 받을 수 있나요?"의 최상위 결과는 긴급복지지원 사업이다 (8.4443ms)
+✔ 배포 검색 smoke: "노인맞춤돌봄서비스 신청하고 싶어요"의 최상위 결과는 노인맞춤돌봄서비스이다 (20.1107ms)
+✔ 배포 검색 smoke: "장애인 택시 지원 있어?"의 최상위 결과는 장애인 택시바우처이다 (15.5387ms)
+✔ 배포 검색 smoke: "교통약자 이동지원 알려줘"의 최상위 결과는 특별교통수단 운영이다 (3.7971ms)
+✔ 배포 검색 smoke: "어르신 AI 건강관리 받을 수 있어?"의 최상위 결과는 AI·IoT 기반 어르신 건강관리이다 (9.8173ms)
+✔ 배포 검색 smoke: "장애인 보조기구 지원 있나요?"의 최상위 결과는 장애인 보조기구·보장구 지원이다 (7.0201ms)
+✔ 배포 검색 smoke: "발달장애인 지원 알려줘"의 최상위 결과는 발달장애인 지원이다 (4.325ms)
+✔ 배포 검색 smoke: "장애인 의료서비스 있어?"의 최상위 결과는 장애인 보건·의료서비스 지원이다 (5.8169ms)
+✔ 배포 검색 smoke: "치매 검사 어디서 받아?"의 최상위 결과는 중원구보건소 치매안심센터이다 (7.0074ms)
+✔ 배포 검색 smoke: "방문건강관리 받을 수 있어?"의 최상위 결과는 맞춤형 방문건강관리이다 (15.6901ms)
+✔ 배포 검색 smoke: "무인민원발급기 어디 있어?"의 최상위 결과는 무인민원발급기 이용 안내이다 (4.1187ms)
+✔ 배포 검색 smoke: "장애인 버스요금 지원 있어?"의 최상위 결과는 장애인 버스요금 지원이다 (7.3307ms)
+✔ 배포 검색 smoke: "분당노인종합복지관"의 최상위 결과는 분당노인종합복지관이다 (14.401ms)
+✔ 긴급복지 회귀: "긴급복지 지원 받을 수 있나요?"가 긴급복지지원 사업을 검색한다 (9.0148ms)
+✔ 긴급복지 회귀: "위기가구 긴급복지 생계비 지원 알려줘"가 긴급복지지원 사업을 검색한다 (9.2934ms)
+✔ "프로야구 경기 일정 알려줘"는 관련 결과를 반환하지 않는다 (5.7593ms)
+✔ "청년 월세지원 알려줘"는 관련 결과를 반환하지 않는다 (3.3406ms)
+✔ 기본 최소 점수와 topK 정책을 유지한다 (1.9835ms)
+✔ 기존 4건과 공식 추가 문서 9건의 출처 메타데이터를 보존한다 (0.1618ms)
+✔ 정상 API 입력은 검색 결과와 매핑된 답변을 반환한다 (14.5122ms)
+✔ 관련 없는 API 질문은 성공 응답 안에서 빈 결과로 처리한다 (5.0524ms)
+✔ 빈 API 질문은 400 오류로 처리한다 (0.1517ms)
+✔ 300자를 넘는 API 질문은 413 오류로 처리한다 (0.1116ms)
+✔ Route Handler는 잘못된 JSON을 400 오류로 처리한다 (20.808ms)
+✔ active가 아닌 문서는 검색 코어에서 제외한다 (0.4932ms)
+✔ 답변 매핑은 출처 URL과 원문 메타데이터를 보존한다 (2.3461ms)
+✔ 최신성이 current가 아닌 확인 문서는 partially_verified로 매핑한다 (0.1816ms)
+✔ 답변 매핑은 문서에 구조화되지 않은 값을 생성하지 않는다 (0.1364ms)
+✔ 여러 문서의 대상을 한 서비스 자격으로 합치지 않고 본문마다 문서명을 붙인다 (0.1616ms)
+✔ 분당 30건 허용 후 차단하고 창 만료 시 다시 허용한다 (2.2292ms)
+✔ 동시 3건 제한은 창 만료로 초기화되지 않고 release는 중복 호출에 안전하다 (0.3391ms)
+✔ 429와 Retry-After를 반환하고 IP 헤더를 바꿔도 검색/AI에 도달하지 않는다 (52.9138ms)
+✔ 진행 중 요청은 동시 제한을 점유하고 완료/실패 후 해제한다 (1.6866ms)
+✔ 과대 본문·JSON 이외 요청·잘못된 JSON은 검색/AI 호출 전 거부한다 (1.3687ms)
+✔ 느린 본문은 5초 후 중단하고 슬롯을 해제한다 (2.0765ms)
+✔ legacy boundary: special-name; web provider cannot override the result (42.3678ms)
+✔ legacy boundary: special-colloquial; web provider cannot override the result (18.7919ms)
+✔ legacy boundary: special-situation; web provider cannot override the result (19.7302ms)
+✔ legacy boundary: taxi-name; web provider cannot override the result (18.5476ms)
+✔ legacy boundary: taxi-colloquial; web provider cannot override the result (6.9604ms)
+✔ legacy boundary: taxi-situation; web provider cannot override the result (9.248ms)
+✔ legacy boundary: care-name; web provider cannot override the result (22.0564ms)
+✔ legacy boundary: care-colloquial; web provider cannot override the result (18.2198ms)
+✔ legacy boundary: care-situation; web provider cannot override the result (12.9255ms)
+✔ legacy boundary: center-name; web provider cannot override the result (19.5709ms)
+✔ legacy boundary: center-colloquial; web provider cannot override the result (17.0765ms)
+✔ legacy boundary: center-situation; web provider cannot override the result (22.4971ms)
+✔ legacy boundary: iot-name; web provider cannot override the result (15.754ms)
+✔ legacy boundary: iot-colloquial; web provider cannot override the result (10.4935ms)
+✔ legacy boundary: iot-situation; web provider cannot override the result (11.7742ms)
+✔ legacy boundary: device-name; web provider cannot override the result (13.6801ms)
+✔ legacy boundary: device-colloquial; web provider cannot override the result (7.2149ms)
+✔ legacy boundary: device-situation; web provider cannot override the result (14.0466ms)
+✔ legacy boundary: developmental-name; web provider cannot override the result (8.6551ms)
+✔ legacy boundary: developmental-colloquial; web provider cannot override the result (11.0173ms)
+✔ legacy boundary: developmental-situation; web provider cannot override the result (11.867ms)
+✔ legacy boundary: medical-name; web provider cannot override the result (10.917ms)
+✔ legacy boundary: medical-colloquial; web provider cannot override the result (6.165ms)
+✔ legacy boundary: medical-situation; web provider cannot override the result (8.2485ms)
+✔ legacy boundary: dementia-name; web provider cannot override the result (8.9425ms)
+✔ legacy boundary: dementia-colloquial; web provider cannot override the result (11.2407ms)
+✔ legacy boundary: dementia-situation; web provider cannot override the result (14.4609ms)
+✔ legacy boundary: home-health-name; web provider cannot override the result (23.2115ms)
+✔ legacy boundary: home-health-colloquial; web provider cannot override the result (29.4698ms)
+✔ legacy boundary: home-health-situation; web provider cannot override the result (15.1925ms)
+✔ legacy boundary: kiosk-name; web provider cannot override the result (11.2129ms)
+✔ legacy boundary: kiosk-colloquial; web provider cannot override the result (10.7948ms)
+✔ legacy boundary: kiosk-situation; web provider cannot override the result (9.0716ms)
+✔ legacy boundary: emergency-name; web provider cannot override the result (12.2212ms)
+✔ legacy boundary: emergency-colloquial; web provider cannot override the result (11.6549ms)
+✔ legacy boundary: emergency-situation; web provider cannot override the result (10.1018ms)
+✔ legacy boundary: bus-name; web provider cannot override the result (7.1235ms)
+✔ legacy boundary: bus-colloquial; web provider cannot override the result (6.2166ms)
+✔ legacy boundary: bus-situation; web provider cannot override the result (10.5635ms)
+✔ legacy boundary: edge-mobility-clarify; web provider cannot override the result (14.0642ms)
+✔ legacy boundary: edge-mobility-followup; web provider cannot override the result (9.3196ms)
+✔ legacy boundary: edge-region-missing; web provider cannot override the result (0.1962ms)
+✔ legacy boundary: edge-too-broad; web provider cannot override the result (0.0924ms)
+✔ legacy boundary: edge-nonexistent; web provider cannot override the result (0.128ms)
+✔ legacy boundary: edge-unregistered-phone; web provider cannot override the result (7.0239ms)
+✔ legacy boundary: edge-unregistered-documents; web provider cannot override the result (19.2321ms)
+✔ legacy boundary: edge-unregistered-amount; web provider cannot override the result (7.5975ms)
+✔ legacy boundary: edge-typo; web provider cannot override the result (9.7311ms)
+✔ legacy boundary: edge-unrelated; web provider cannot override the result (0.1868ms)
+✔ legacy boundary: edge-region-unavailable; web provider cannot override the result (0.184ms)
+✔ legacy boundary: edge-elderly-clarify; web provider cannot override the result (24.9462ms)
+✔ legacy boundary: edge-elderly-followup; web provider cannot override the result (13.6006ms)
+✔ legacy boundary: edge-health-clarify; web provider cannot override the result (24.503ms)
+✔ legacy boundary: edge-health-followup; web provider cannot override the result (14.6708ms)
+✔ legacy boundary: region-bucheon; web provider cannot override the result (0.3833ms)
+✔ legacy boundary: region-suwon; web provider cannot override the result (0.0962ms)
+✔ legacy boundary: region-seoul; web provider cannot override the result (0.1309ms)
+✔ legacy boundary: region-unspecified; web provider cannot override the result (17.323ms)
+✔ legacy boundary: region-seongnam; web provider cannot override the result (16.6468ms)
+✔ legacy boundary: region-bundang; web provider cannot override the result (12.3716ms)
+✔ legacy boundary: region-followup; web provider cannot override the result (0.2047ms)
+✔ new wordings preserve purpose, ambiguity, scope and the independent search exit (46.2185ms)
+✔ an outside clarification cannot become local via a free-text legacy followup (0.2055ms)
+ℹ tests 283
+ℹ suites 0
+ℹ pass 278
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4932.257
+
+✖ failing tests:
+
+test at src\lib\search\official-search-recovery.test.ts:34:23
+✖ captured Stage 1 replay: domain-053 (safe_fallback) (345.6983ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 0
+  
+      at TestContext.<anonymous> (C:\Users\rkddu\Desktop\성남시 대회\src\lib\search\official-search-recovery.test.ts:51:72)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at src\lib\search\official-search-recovery.test.ts:34:23
+✖ captured Stage 1 replay: domain-071 (safe_fallback) (0.3812ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (C:\Users\rkddu\Desktop\성남시 대회\src\lib\search\official-search-recovery.test.ts:53:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at src\lib\search\official-search-recovery.test.ts:34:23
+✖ captured Stage 1 replay: domain-075 (safe_fallback) (282.2648ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (C:\Users\rkddu\Desktop\성남시 대회\src\lib\search\official-search-recovery.test.ts:51:72)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at src\lib\search\official-search-recovery.test.ts:34:23
+✖ captured Stage 1 replay: domain-134 (wrong_source) (280.3224ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (C:\Users\rkddu\Desktop\성남시 대회\src\lib\search\official-search-recovery.test.ts:51:72)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at src\lib\search\official-search-recovery.test.ts:34:23
+✖ captured Stage 1 replay: domain-140 (safe_fallback) (214.1166ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (C:\Users\rkddu\Desktop\성남시 대회\src\lib\search\official-search-recovery.test.ts:51:72)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -511,6 +511,13 @@
   border-top: 1px solid var(--border);
 }
 
+.detailSection > summary {
+  min-height: 44px;
+  padding-block: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
 .summaryParagraph {
   display: block;
   white-space: pre-line;

@@ -1,0 +1,91 @@
+
+Running 6 tests using 1 worker
+
+  x  1 tests\ui\submission-panel.spec.ts:6:38 › submission 360px: full answer, source, speech and keyboard details (5.6s)
+  x  2 tests\ui\submission-panel.spec.ts:6:38 › submission 390px: full answer, source, speech and keyboard details (5.5s)
+  x  3 tests\ui\submission-panel.spec.ts:6:38 › submission 430px: full answer, source, speech and keyboard details (5.5s)
+  ok 4 tests\ui\submission-panel.spec.ts:23:5 › shared quota explains continued structured use without a misleading retry loop (495ms)
+  ok 5 tests\ui\submission-panel.spec.ts:37:5 › journey refusal can be heard and opens only a reviewed official navigation link (428ms)
+  ok 6 tests\ui\submission-panel.spec.ts:45:5 › outside-region refusal does not acquire local food-waste links (388ms)
+
+
+  1) tests\ui\submission-panel.spec.ts:6:38 › submission 360px: full answer, source, speech and keyboard details 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator: getByRole('button', { name: '읽기 중지', exact: true })
+    Expected: "true"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveAttribute" getByRole('button', { name: '읽기 중지', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: '읽기 중지', exact: true })
+
+
+      12 |   expect(await summary.evaluate(el=>getComputedStyle(el).outlineStyle)).not.toBe("none");
+      13 |   await page.getByRole("button",{name:"상세 안내 전체 듣기",exact:true}).click();
+    > 14 |   await expect(page.getByRole("button",{name:"읽기 중지",exact:true})).toHaveAttribute("aria-pressed","true");
+         |                                                                    ^
+      15 |   await page.getByRole("button",{name:"읽기 중지",exact:true}).click();
+      16 |   await expect(page.getByRole("status")).toContainText("중지");
+      17 |   await expect(page.getByText("최신성: 최신성 미확인",{exact:true})).toBeVisible();
+        at C:\Users\rkddu\Desktop\성남시 대회\tests\ui\submission-panel.spec.ts:14:68
+
+    Error Context: test-results\submission-panel-submissio-410b4-speech-and-keyboard-details\error-context.md
+
+  2) tests\ui\submission-panel.spec.ts:6:38 › submission 390px: full answer, source, speech and keyboard details 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator: getByRole('button', { name: '읽기 중지', exact: true })
+    Expected: "true"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveAttribute" getByRole('button', { name: '읽기 중지', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: '읽기 중지', exact: true })
+
+
+      12 |   expect(await summary.evaluate(el=>getComputedStyle(el).outlineStyle)).not.toBe("none");
+      13 |   await page.getByRole("button",{name:"상세 안내 전체 듣기",exact:true}).click();
+    > 14 |   await expect(page.getByRole("button",{name:"읽기 중지",exact:true})).toHaveAttribute("aria-pressed","true");
+         |                                                                    ^
+      15 |   await page.getByRole("button",{name:"읽기 중지",exact:true}).click();
+      16 |   await expect(page.getByRole("status")).toContainText("중지");
+      17 |   await expect(page.getByText("최신성: 최신성 미확인",{exact:true})).toBeVisible();
+        at C:\Users\rkddu\Desktop\성남시 대회\tests\ui\submission-panel.spec.ts:14:68
+
+    Error Context: test-results\submission-panel-submissio-50f71-speech-and-keyboard-details\error-context.md
+
+  3) tests\ui\submission-panel.spec.ts:6:38 › submission 430px: full answer, source, speech and keyboard details 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator: getByRole('button', { name: '읽기 중지', exact: true })
+    Expected: "true"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveAttribute" getByRole('button', { name: '읽기 중지', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: '읽기 중지', exact: true })
+
+
+      12 |   expect(await summary.evaluate(el=>getComputedStyle(el).outlineStyle)).not.toBe("none");
+      13 |   await page.getByRole("button",{name:"상세 안내 전체 듣기",exact:true}).click();
+    > 14 |   await expect(page.getByRole("button",{name:"읽기 중지",exact:true})).toHaveAttribute("aria-pressed","true");
+         |                                                                    ^
+      15 |   await page.getByRole("button",{name:"읽기 중지",exact:true}).click();
+      16 |   await expect(page.getByRole("status")).toContainText("중지");
+      17 |   await expect(page.getByText("최신성: 최신성 미확인",{exact:true})).toBeVisible();
+        at C:\Users\rkddu\Desktop\성남시 대회\tests\ui\submission-panel.spec.ts:14:68
+
+    Error Context: test-results\submission-panel-submissio-6f131-speech-and-keyboard-details\error-context.md
+
+  3 failed
+    tests\ui\submission-panel.spec.ts:6:38 › submission 360px: full answer, source, speech and keyboard details 
+    tests\ui\submission-panel.spec.ts:6:38 › submission 390px: full answer, source, speech and keyboard details 
+    tests\ui\submission-panel.spec.ts:6:38 › submission 430px: full answer, source, speech and keyboard details 
+  3 passed (21.9s)

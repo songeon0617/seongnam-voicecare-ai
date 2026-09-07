@@ -1,0 +1,124 @@
+{
+  "requestedUrl": "https://www.seongnam.go.kr/health/ht-pm020101/7034",
+  "url": "https://www.seongnam.go.kr/health/ht-pm020101/7034",
+  "status": 200,
+  "redirects": 0,
+  "checkedAt": "2026-09-07T11:17:11.906Z",
+  "sha256": "ae9b7cd8e169c5bf6a47e16447d4fdb62a60c69b35690428d54ee3815db1b782",
+  "file": "5c2c7eed8684b386500a1d90ea64323082c288738f9416ce58f770ec35851bcc",
+  "title": "보건사업 - 보건사업 - 성남시 보건소",
+  "paragraphs": [
+    "치매안심센터 운영 사업개요 사업 개요 치매 예방, 상담, 조기진단, 자원 연계 및 교육 등 유기적인 「치매 통합관리 서비스」 제공 사업 기간 연중 사업 대상 일반 시민, 치매환자 및 보호자, 치매 고위험군 등 사업 내용 사업내용 • 치매 관련 상담 및 조기검진 • 치매환자 등록 관리 • 치매환자 보호자 지원 사업 • 치매 예방 교육 및 홍보 • 치매환자 쉼터 운영 • 치매 예방 인식개선 교육 및 홍보 • 뇌건강 체험 박물관 운영 등 추진방법 전화 및 방문 문의처 • 수정구보건소 031-729-3879 • 중원구보건소 031-739-3030 • 분당구보건소 031-729-8977 부가정보 관련사이트 수정구 치매안심센터 바로가기 중원구 치매안심센터 바로가기 분당구 치매안심센터 바로가기 추진근거 치매관리법 바로가기 담당부서 수정구보건소>건강증진과>치매예방관리팀 전화번호 031-729-2497 목록"
+  ],
+  "sections": [
+    "치매안심센터 운영 사업개요 사업 개요 치매 예방, 상담, 조기진단, 자원 연계 및 교육 등 유기적인 「치매 통합관리 서비스」 제공 사업 기간 연중 사업 대상 일반 시민, 치매환자 및 보호자, 치매 고위험군 등 사업 내용 사업내용 • 치매 관련 상담 및 조기검진 • 치매환자 등록 관리 • 치매환자 보호자 지원 사업 • 치매 예방 교육 및 홍보 • 치매환자 쉼터 운영 • 치매 예방 인식개선 교육 및 홍보 • 뇌건강 체험 박물관 운영 등 추진방법 전화 및 방문 문의처 • 수정구보건소 031-729-3879 • 중원구보건소 031-739-3030 • 분당구보건소 031-729-8977 부가정보 관련사이트 수정구 치매안심센터 바로가기 중원구 치매안심센터 바로가기 분당구 치매안심센터 바로가기 추진근거 치매관리법 바로가기 담당부서 수정구보건소>건강증진과>치매예방관리팀 전화번호 031-729-2497 목록"
+  ],
+  "navigation": [
+    {
+      "url": "https://www.seongnam.go.kr/index",
+      "title": "성남시청 홈"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/index",
+      "title": "성남시 보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/oidc/auth?acrValues=3",
+      "title": "로그인을 해주세요"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn010101",
+      "title": "보건소 소개"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/hlt01020101",
+      "title": "보건소 소개"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn010102",
+      "title": "연혁"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn010103",
+      "title": "보건의료헌장"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn010201",
+      "title": "수정구 보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht010200",
+      "title": "수정구 보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn01020201",
+      "title": "조직안내"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn010301",
+      "title": "중원구 보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht010300",
+      "title": "중원구 보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn01030201",
+      "title": "조직안내"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn010401",
+      "title": "분당구 보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht010400",
+      "title": "분당구 보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn01040201",
+      "title": "조직안내"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm020101",
+      "title": "보건사업"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/childVaccInfo",
+      "title": "어린이예방접종일정"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/healthCalc",
+      "title": "건강계산기"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm030101",
+      "title": "의료기관 및 시설"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm040201",
+      "title": "채용공고"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht040500",
+      "title": "민원상담·방역요청"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht020100",
+      "title": "보건사업"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm020101?curPage=1&cntPerPage=9&srchWlfCrrCyclCd=&srchWlfHshdSttnCd=&srchHlthBizTypeCd=&srchWlfPvsnTypeCd=&sortType=&srchType=&srchText=",
+      "title": "목록"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn05010101",
+      "title": "개인정보처리방침"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn050401",
+      "title": "저작권정책"
+    }
+  ],
+  "textLength": 448,
+  "omittedSections": 0
+}

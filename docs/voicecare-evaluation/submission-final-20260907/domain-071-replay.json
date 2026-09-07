@@ -1,0 +1,39 @@
+{
+  "id": "domain-071",
+  "question": "판교역에서 성남시청 가는 대중교통 알려줘",
+  "at": "2026-09-07T11:09:19.541Z",
+  "mode": "CAPTURED_PROVIDER_CURRENT_HTTPS_NOT_NEW_MODEL",
+  "ms": 0,
+  "httpStatus": 200,
+  "schemaPass": true,
+  "capturedCalls": 0,
+  "response": {
+    "query": "판교역에서 성남시청 가는 대중교통 알려줘",
+    "kind": "unsupported",
+    "results": [],
+    "hasResults": false,
+    "routing": {
+      "source": "guard",
+      "decision": {
+        "route": "UNSUPPORTED",
+        "serviceIds": [],
+        "intent": "other",
+        "clarificationId": null
+      }
+    },
+    "answer": {
+      "userQuestion": "판교역에서 성남시청 가는 대중교통 알려줘",
+      "title": "정확한 길찾기는 지원하지 않습니다",
+      "plainLanguageSummary": "출발지에서 목적지까지의 정확한 경로·환승·도착 시각은 안내하지 않습니다. 실시간 교통정보를 연결하지 않은 서비스입니다. 성남시 공식 버스 안내에서 연결하는 경기버스정보를 확인해 주세요.",
+      "steps": [],
+      "nextAction": null,
+      "sources": [],
+      "verification": {
+        "status": "insufficient_data",
+        "checkedAt": null,
+        "details": "출발지에서 목적지까지의 정확한 경로·환승·도착 시각은 안내하지 않습니다. 실시간 교통정보를 연결하지 않은 서비스입니다. 성남시 공식 버스 안내에서 연결하는 경기버스정보를 확인해 주세요."
+      }
+    }
+  },
+  "semanticReview": "PENDING"
+}

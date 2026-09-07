@@ -62,7 +62,7 @@ async function main() {
   }
   const summary={total:results.length,pass:results.filter(r=>r.pass).length,wrongService:results.filter(r=>r.wrongService).length,wrongClarification:results.filter(r=>r.wrongClarification).length,unsafeCurated:results.filter(r=>r.unsafeCurated).length,schemaPass:results.filter(r=>r.schemaPass).length,paidCalls:0};
   const stage=process.argv.includes("--baseline")?"before":"after";
-  writeFileSync(`docs/voicecare-evaluation/final-expanded-20260907/routing-${stage}.json`,JSON.stringify({summary,results},null,2));
+  writeFileSync(`${process.env.VOICECARE_RESULT_DIRECTORY??"docs/voicecare-evaluation/final-expanded-20260907"}/routing-${stage}.json`,JSON.stringify({summary,results},null,2));
   console.log(JSON.stringify({summary,failures:results.filter(r=>!r.pass)},null,2));
   if(summary.pass!==summary.total&&!process.argv.includes("--baseline"))process.exitCode=1;
 }

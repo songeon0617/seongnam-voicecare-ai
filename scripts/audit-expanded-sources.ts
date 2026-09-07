@@ -5,7 +5,7 @@ import { PUBLIC_INFORMATION_DOCUMENTS } from "../src/data/public-data/documents"
 import { officialSourceCa } from "../src/lib/search/official-source-ca";
 import { extractOfficialDocument } from "../src/lib/search/extract-official-document";
 
-const directory = "docs/voicecare-evaluation/final-expanded-20260907";
+const directory = process.env.VOICECARE_RESULT_DIRECTORY ?? "docs/voicecare-evaluation/final-expanded-20260907";
 mkdirSync(`${directory}/sources`, { recursive: true });
 const documents = PUBLIC_INFORMATION_DOCUMENTS.map(d => ({...d}));
 const urls = [...new Set(documents.flatMap(d => [d.originalUrl, ...("supportingSources" in d ? d.supportingSources.map(s => s.url) : [])]))];

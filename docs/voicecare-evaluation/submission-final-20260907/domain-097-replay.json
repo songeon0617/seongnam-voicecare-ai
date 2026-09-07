@@ -1,0 +1,112 @@
+{
+  "id": "domain-097",
+  "question": "성남시 여권 어디서 만들어",
+  "at": "2026-09-07T11:09:36.236Z",
+  "mode": "CAPTURED_PROVIDER_CURRENT_HTTPS_NOT_NEW_MODEL",
+  "ms": 161,
+  "httpStatus": 200,
+  "schemaPass": true,
+  "capturedCalls": 1,
+  "response": {
+    "query": "성남시 여권 어디서 만들어",
+    "kind": "partial_answer",
+    "results": [],
+    "hasResults": false,
+    "answer": {
+      "userQuestion": "성남시 여권 어디서 만들어",
+      "title": "확인한 공식 원문과 남은 확인 사항",
+      "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+      "steps": [],
+      "nextAction": null,
+      "sources": [],
+      "verification": {
+        "status": "insufficient_data",
+        "checkedAt": null,
+        "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+      }
+    },
+    "officialSearch": {
+      "status": "partial",
+      "evidence": [
+        {
+          "id": "web-1",
+          "url": "https://www.seongnam.go.kr/cn02040801",
+          "title": "여권신청접수 안내 - 여권 민원 - 종합민원안내 - 민원참여 - 성남시청",
+          "publisher": "성남시청",
+          "region": "성남시",
+          "checkedAt": "2026-09-07T11:09:22.518Z",
+          "publishedAt": null,
+          "updatedAt": null,
+          "applicationPeriod": null,
+          "effectivePeriod": null,
+          "excerpt": "성남시 여권사무 개요 2006. 6. 1부터 외교부 여권발급대행기관으로 지정되어 여권민원 처리 장 소 성남시청 1층 종합민원실(성남시 중원구 성남대로 997) 이용시간 주간: 09:00 ~ 18:00 공휴일, 대체공휴일 미운영 여권신청 대기자가 많을 경우 여권접수는 조기 마감될 수 있습니다. 야간 : 매주 월요일 운영 여권신청: (월)18:00 ~ 19:30 여권교부: (월)18:00 ~ 19:40 공휴일, 대체공휴일, 설·추석연휴 전날과 종무식 날은 미운영 여권수령 방문수령 : 여권신청일로부터(토, 일, 공휴일 제외) 평일기준 10일 이내 소요 외교부로부터 여권발급 완료 문자를 받은 경우 즉시 수령 가능(여권민원실 운영시간 내) 우편등기수령 배송접수일로 4일 ~ 10일 소요됩니다. 조폐공사에서 직접 여권 개별 우편 배송합니다. 최초 발송일로부터 5일이내 3회 발송 했음에도 미수령 처리가 될 경우 환불처리 안되며, 성남시청으로 반송된 후 방문 수령하셔야 합니다. 배송문의 : 조폐공사 콜센터 1577-4321 등기 수수료(5,500원)는 카드 결제만 가능(현금결제 불가) 여행성수기에는 여권발급량 폭주로 여권교부일이 일시적으로 연장 조정될 수 있음 수수료납부 현금 카드(국내발급 신용 및 체크 카드) 모바일(접촉식) 결제 가능 바코드, QR, 지역상품권 결제불가 유의사항 여권사실증명 서류 및 긴급여권(비전자단수여권) 발급 업무는 주간 업무시간 내에서만 가능 야간 여권 접수 및 교부업무는 토·일, 공휴일, 대체공휴일, 설·추석 연휴 전날과 종무식 날 미운영 유효한 여권을 소지한 경우 새로운 여권 발급 시 소지하고 있는 여권을 반드시 반납(여권법 제19조) 문의 성남시 민원여권과 (콜센터 1577-3100)",
+          "collection": "openai_web_search+https_original",
+          "freshness": "unknown",
+          "fromCache": true
+        }
+      ],
+      "links": [
+        {
+          "url": "https://www.seongnam.go.kr/cn02040801",
+          "title": "여권신청접수 안내 - 여권 민원 - 종합민원안내 - 민원참여 - 성남시청"
+        }
+      ],
+      "usage": {
+        "model": "fixture",
+        "inputTokens": 13092,
+        "outputTokens": 529,
+        "toolCalls": 1,
+        "estimatedUsd": 0.0448425,
+        "durationMs": 152
+      },
+      "diagnostics": {
+        "phase": "complete",
+        "budget": {
+          "aiCalls": 1,
+          "searchCalls": 1,
+          "originalFetches": 7,
+          "maxOriginalFetches": 16
+        },
+        "discovered": 10,
+        "rejected": 8,
+        "findings": 1,
+        "pages": [
+          {
+            "url": "https://www.seongnam.go.kr/apply/integration/step1?facilityId=I0681&instiCode=INST_CITY_01",
+            "status": "fetched",
+            "textLength": 137,
+            "sections": 0,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://www.seongnam.go.kr/city/1000071/10046/contents.do",
+            "status": "failed",
+            "errorCode": "source_http_404"
+          },
+          {
+            "url": "https://www.seongnam.go.kr/city/1000079/10052/contents.do",
+            "status": "failed",
+            "errorCode": "source_http_404"
+          },
+          {
+            "url": "https://www.seongnam.go.kr/cn02040801",
+            "status": "fetched",
+            "textLength": 865,
+            "sections": 1,
+            "omittedSections": 2
+          },
+          {
+            "url": "https://www.seongnam.go.kr/apply/integration/step1?instiCode=INST_CITY_01&facilityId=I0681",
+            "status": "fetched",
+            "textLength": 137,
+            "sections": 0,
+            "omittedSections": 0
+          }
+        ]
+      },
+      "region": "성남시",
+      "searched": true
+    }
+  },
+  "semanticReview": "PENDING"
+}

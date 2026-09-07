@@ -39,7 +39,7 @@ export function PublicInformationAnswerView({ answer, onReadFull }: { answer: Pu
           <span className={styles.summaryParagraph} key={index}>{paragraph}</span>
         ))}
       </p>
-      {expanded && onReadFull && <button type="button" onClick={onReadFull}>상세 안내 전체 듣기</button>}
+      {expanded && onReadFull && <div className={styles.speechControls}><button type="button" onClick={onReadFull}>상세 안내 전체 듣기</button></div>}
       </details>
 
       {answer.eligibility && answer.eligibility.length > 0 && <div className={styles.detailSection}>

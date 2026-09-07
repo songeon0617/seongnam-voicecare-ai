@@ -16,6 +16,7 @@ import { searchPublicInformation } from "./search-public-information";
 import { redactQuestion } from "./official-source-policy";
 import { mapDocumentsToPublicInformationAnswer } from "@/lib/public-information/map-documents-to-answer";
 import type { PublicInformationDocument } from "@/types/public-data";
+import { isJourneyRequest, JOURNEY_LIMIT } from "./question-scope";
 
 function state(query:string,kind:PublicInformationSearchResponse["kind"],title:string,message:string):PublicInformationSearchServiceResult {
   return {status:200,body:{query,kind,results:[],hasResults:false,...(kind==="unsupported"?{routing:{source:"guard" as const,decision:{route:"UNSUPPORTED" as const,serviceIds:[] as [],intent:"other" as const,clarificationId:null}}}:{}),answer:{userQuestion:query,title,plainLanguageSummary:message,steps:[],nextAction:null,sources:[],verification:{status:"insufficient_data",checkedAt:null,details:message}}}};
@@ -90,6 +91,7 @@ export async function createExpandedPublicInformationResponse(payload:unknown,pr
     return state(original,"unsupported","안내할 수 있는 범위를 확인해 주세요","개인정보 조회, 진단·자격 확정, 실제 신청·접수, 민간 평가와 일반 작업은 제공하지 않습니다. 성남의 공공 제도, 이용 방법, 공식 상담·신청 안내는 질문할 수 있습니다.");
   if(/^(안녕(?:하세요)?|안녕하세요[.!?]?|고마워요|감사합니다|사용법|도움말|어떻게\s*사용해(?:요)?)[.!?\s]*$/.test(query))
     return state(original,"guidance","성남 공공·생활정보를 물어보세요","성남시를 기본 지역으로 안내합니다. 필요한 일을 글이나 음성으로 질문하고, 확인 질문이 나오면 선택하거나 짧게 답해 주세요. 출처와 확인 상태를 함께 읽어 주세요.");
+  if(isJourneyRequest(query))return state(original,"unsupported","정확한 길찾기는 지원하지 않습니다",JOURNEY_LIMIT);
   // A request with no subject needs user input, not a paid search or a guessed service.
   const subject=query.replace(/성남시?|분당구|수정구|중원구|어떻게|알려\s*줘|알려\s*주세요|신청|방법|서류|준비물|연락처|운영시간|지원|도움|복지|해\s*줘|해\s*주세요/g,"").replace(/[^가-힣a-z0-9]/gi,"").replace(/^(해|요|이요|좀|부탁해요)$/g,"");
   if(!subject && !follow.continued)return clarify(original,"service_required");

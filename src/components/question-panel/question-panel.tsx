@@ -4,6 +4,7 @@ import { type FormEvent, useEffect, useRef, useState } from "react";
 import { EXAMPLE_QUESTIONS } from "@/lib/example-questions";
 import { readSearchAnswer } from "@/lib/search/read-search-answer";
 import { conciseAnswer } from "@/lib/public-information/concise-answer";
+import { questionScope, JOURNEY_LIMIT } from "@/lib/search/question-scope";
 import { CLARIFICATIONS, type ClarificationContext } from "@/types/public-information-router";
 import {
   PUBLIC_INFORMATION_SEARCH_MAX_QUERY_LENGTH,
@@ -122,6 +123,7 @@ export function QuestionPanel() {
     void submitQuestion(text);
   }, setNotice);
   const isRecognizing = voice.state !== "idle";
+  const scope = search && search.kind !== "safety" && search.kind !== "clarification" && (search.kind !== "unsupported" || search.answer.plainLanguageSummary === JOURNEY_LIMIT) ? questionScope(search.answer.userQuestion) : null;
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -239,6 +241,7 @@ export function QuestionPanel() {
 
       <div className={styles.examples}>
         <p>이렇게 물어보세요</p>
+        <p>주요 안내: 어르신 돌봄 · 장애인복지 · 교통약자 이동 · 방문건강관리 · 긴급복지 · 무인민원발급기</p>
         <div className={styles.exampleList}>
           {EXAMPLE_QUESTIONS.map((example) => (
             <button
@@ -288,6 +291,13 @@ export function QuestionPanel() {
             : "답변 본문만 읽습니다."}</span>
         </div>}
         <div aria-busy={isLoading}>
+          {scope && <div className={`${styles.searchResults} ${styles.detailSection}`}>
+            <h3>이 질문의 지원 범위와 확인 방법</h3>
+            <p>{scope.message}</p>
+            <div className={styles.speechControls}><button type="button" onClick={() => { voice.cancel(); speech.play(scope.message); }}>지원 범위 안내 듣기</button></div>
+            <ul>{scope.links.map(link => <li key={link.url}><a href={link.url} target="_blank" rel="noreferrer">{link.title} (새 창)</a></li>)}</ul>
+            <p>직접 확인을 위한 공식 페이지입니다. 상세 답변의 검증 완료를 뜻하지 않습니다.</p>
+          </div>}
           {search?.officialSearch && <div className={styles.searchResults}>
             <h3 className={styles.serviceTitle}>{search.answer.title}</h3>
             <p>안내 지역: 성남시 · {search.officialSearch.searched ? "검색 실행 확인" : "검색 완료 미확인"}</p>
@@ -300,7 +310,7 @@ export function QuestionPanel() {
               <p>게시·수정일: 미확인 · 시행·신청기간: 미확인 · 최신성: 미확인</p>
             </article>)}
             {search.officialSearch.links.length > 0 && <div className={styles.detailSection}><h3>공식 근거</h3><ul>{search.officialSearch.links.map(link => <li key={link.url}><a href={link.url} target="_blank" rel="noreferrer">{link.title} (새 창)</a></li>)}</ul></div>}
-            {search.kind === "search_unavailable" && <button type="button" disabled={isLoading} onClick={() => { void submitQuestion(question); }}>다시 시도</button>}
+            {search.kind === "search_unavailable" && search.officialSearch.status !== "budget_limited" && <button type="button" disabled={isLoading} onClick={() => { void submitQuestion(question); }}>다시 시도</button>}
             <p><a href="https://www.seongnam.go.kr/" target="_blank" rel="noreferrer">성남시 공식 홈페이지 (새 창)</a></p>
           </div>}
           {search?.kind === "safety" && search.safety && <div className={styles.safetyCard} role="alert">

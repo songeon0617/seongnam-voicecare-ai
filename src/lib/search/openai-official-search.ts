@@ -17,7 +17,7 @@ const INSTRUCTIONS=`성남시 공식 공공·생활정보 검색 도우미. 사�
 quote는 30~600자의 원문 그대로이며 대상·조건·금액·기간을 분리하거나 생략하지 않는다. 서버가 원문 전체 구간을 별도 HTTPS로 대조하므로 검색에서 확인한 정확한 원문 표현을 반환한다.
 원문에 없는 사실, 제목만으로 판단한 자격, 개인 진단, 전화번호, 가짜 링크를 만들지 않는다. 인용 주석은 제공하되 JSON 외 설명은 쓰지 않는다.`;
 
-/** This is an instance limit, not a distributed/global budget. No retries. */
+/** Runtime reservations use the shared Redis budget in production. No retries. */
 export function createOfficialSearchProvider(
   env:Readonly<Record<string,string|undefined>>=process.env,
   fetcher:typeof fetch=fetch,

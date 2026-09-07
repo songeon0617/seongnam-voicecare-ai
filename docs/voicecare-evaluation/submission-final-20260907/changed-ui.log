@@ -1,0 +1,11 @@
+
+Running 6 tests using 1 worker
+
+  ok 1 tests\ui\submission-panel.spec.ts:6:38 › submission 360px: full answer, source, speech and keyboard details (813ms)
+  ok 2 tests\ui\submission-panel.spec.ts:6:38 › submission 390px: full answer, source, speech and keyboard details (685ms)
+  ok 3 tests\ui\submission-panel.spec.ts:6:38 › submission 430px: full answer, source, speech and keyboard details (735ms)
+  ok 4 tests\ui\submission-panel.spec.ts:23:5 › shared quota explains continued structured use without a misleading retry loop (443ms)
+  ok 5 tests\ui\submission-panel.spec.ts:37:5 › journey refusal can be heard and opens only a reviewed official navigation link (444ms)
+  ok 6 tests\ui\submission-panel.spec.ts:45:5 › outside-region refusal does not acquire local food-waste links (403ms)
+
+  6 passed (5.8s)

@@ -1,7 +1,7 @@
 import { writeFileSync } from "node:fs";
 import { readSearchAnswer } from "../src/lib/search/read-search-answer";
 const base=process.env.VOICECARE_AUDIT_URL??"http://127.0.0.1:3102";
-const directory="docs/voicecare-evaluation/final-expanded-20260907";
+const directory=process.env.VOICECARE_RESULT_DIRECTORY??"docs/voicecare-evaluation/final-expanded-20260907";
 const production=!['127.0.0.1','localhost'].includes(new URL(base).hostname);
 async function main(){
  const cases=[

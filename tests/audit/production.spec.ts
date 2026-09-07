@@ -17,13 +17,13 @@ test("real text API, clarification, keyboard selection, source popup and another
   await expect(page.getByRole("heading",{name:"무인민원발급기 이용 안내",exact:true})).toBeVisible();
 });
 
-for(const width of [320,390,1440])test(`mobile/desktop ${width}px with 200% text, labels and focus`,async({page},testInfo)=>{
+for(const width of [320,360,390,430,1440])test(`mobile/desktop ${width}px with 200% text, labels and focus`,async({page},testInfo)=>{
   await page.setViewportSize({width,height:900});await page.goto("/");
   await page.addStyleTag({content:"html{font-size:200% !important}"});
   const box=page.getByRole("textbox");await box.focus();await expect(box).toBeFocused();
   await expect(box).toHaveAccessibleName(/질문/);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-  await page.screenshot({path:`docs/voicecare-evaluation/final-expanded-20260907/${process.env.VOICECARE_AUDIT_URL?'production':'local'}-${testInfo.project.name}-${width}.png`,fullPage:true});
+  await page.screenshot({path:`${process.env.VOICECARE_RESULT_DIRECTORY??"docs/voicecare-evaluation/final-expanded-20260907"}/${process.env.VOICECARE_AUDIT_URL?'production':'local'}-${testInfo.project.name}-${width}.png`,fullPage:true});
 });
 
 test("loading and network error are announced and recoverable",async({page})=>{

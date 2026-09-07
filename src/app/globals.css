@@ -54,13 +54,13 @@ button {
   color: inherit;
 }
 
-:where(button, input, a):focus-visible {
+:where(button, input, a, summary):focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 4px;
 }
 
 @media (forced-colors: active) {
-  :where(button, input, a):focus-visible {
+  :where(button, input, a, summary):focus-visible {
     outline-color: Highlight;
   }
 }

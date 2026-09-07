@@ -2,7 +2,7 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 const git = args => execFileSync('git', args, {encoding:'utf8',maxBuffer:100_000_000}).trim();
-const directory='docs/voicecare-evaluation/final-expanded-20260907';
+const directory=process.env.VOICECARE_RESULT_DIRECTORY??'docs/voicecare-evaluation/final-expanded-20260907';
 const env=existsSync('.env.local')?readFileSync('.env.local','utf8'):'';
 const names=['OPENAI_API_KEY','UPSTASH_REDIS_REST_TOKEN','VERCEL_TOKEN'];
 const secrets=names.flatMap(name=>{const m=env.match(new RegExp(`^${name}=(.*)$`,'m'));const value=m?.[1].trim().replace(/^["']|["']$/g,'');return value&&value.length>=20?[value]:[];});

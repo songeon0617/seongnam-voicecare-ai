@@ -26,6 +26,7 @@ export function navigationScore(title:string,query:string):number {
 }
 export function relevantNavigation(page:OriginalPage,query:string) {
   return (page.navigation??[]).map(l=>({...l,score:navigationScore(l.title,query)
+    + (/버스/.test(query)&&/^(교통|교통 자동차)$/.test(l.title)?25:0)
     + (/시청/.test(query)&&/주차|대중교통|가는/.test(query)&&/오시는\s*길/.test(l.title)?30:0)
     + (/정장/.test(query)&&/일자리센터/.test(l.title)?20:0)
     + (/거주자우선/.test(query)&&/도시개발공사/.test(l.title)?30:0)
@@ -54,12 +55,13 @@ export function matchesRequestedSubject(text:string,query:string):boolean {
 export function answersRequestedDetail(text:string,query:string):boolean {
   if(!matchesRequestedSubject(text,query))return false;
   if(navigationScore(text,query)<6)return false;
+  if(/버스/.test(query)&&!/장애|지원|휠체어|특별교통/.test(query)&&!(/버스/.test(text)&&/노선|경로|교통카드|승차|하차|요금|정류장/.test(text)))return false;
   if(/준비물|구비서류/.test(query)&&!(/신분증|사진/.test(text)&&/서류|신청서/.test(text)))return false;
   if(/청년/.test(query)&&/모임|공공\s*공간/.test(query)&&!(/공간|센터/.test(text)&&/[가-힣]+(?:대로|로|길)\s*\d|역\s*\d번\s*출구|대관\s*(신청|방법)/.test(text)))return false;
   if(/시청/.test(query)&&/주차/.test(query)&&!(/시청/.test(text)&&/주차요금|무료|운영시간/.test(text)))return false;
   if(/전자책/.test(query)&&!(/전자책|전자도서관/.test(text)&&/대출|로그인|회원/.test(text)))return false;
   if(/회원증/.test(query)&&!(/회원증.{0,20}발급|회원가입\s*안내|정회원\s*가입/.test(text)&&/신분증|가입/.test(text)))return false;
-  if(/무료\s*상담|담배/.test(query)&&!(/금연/.test(text)&&/상담/.test(text)&&/무료|비용/.test(text)))return false;
+  if(/금연|담배/.test(query)&&/무료|비용|돈|유료/.test(query)&&!(/금연/.test(text)&&/상담/.test(text)&&/무료\s*(?:금연\s*)?상담|상담(?:\s*서비스)?\s*(?:비용|요금|료|은|는|이|가|:|：)*\s*(?:무료|0원)/.test(text)))return false;
   if(/전입신고/.test(query)&&!(/전입신고/.test(text)&&/온라인|인터넷|정부24/.test(text)))return false;
   if(/판교역/.test(query)&&/시청/.test(query)&&!(/판교역/.test(text)&&/시청/.test(text)&&/버스|지하철/.test(text)))return false;
   if(/거주자우선/.test(query)&&!(/거주자.{0,3}(전용|우선)|거주자주차/.test(text)&&/신청\s*및\s*이용자격|신청방법|신청절차|접수방법/.test(text)))return false;

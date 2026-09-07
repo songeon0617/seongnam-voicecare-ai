@@ -29,7 +29,8 @@ export default function Home() {
           </h1>
           <p className={styles.description}>
             제도명을 몰라도 괜찮아요. 필요한 도움을 말하거나 글로 적어 주세요.
-            성남시를 기본 지역으로 공공·생활정보의 공식 근거를 찾습니다. 검색 연결과 자료 확인 상태를 함께 안내합니다.
+            글을 읽거나 입력하기 어려운 어르신·시각장애인도 이용할 수 있도록 음성 질문과 답변 듣기를 제공합니다.
+            성남시와 공공기관의 공식 자료를 바탕으로 출처와 확인 상태를 함께 안내합니다.
           </p>
           <div className={styles.guideList}>
             <div className={styles.guide}>

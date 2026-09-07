@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import {readFileSync} from "node:fs";
+import {readFileSync,existsSync} from "node:fs";
+import {createHash} from "node:crypto";
 import test from "node:test";
 import {extractOfficialDocument} from "./extract-official-document";
 import {isNavigationSource,type OriginalPage} from "./fetch-official-source";
@@ -32,9 +33,15 @@ const facts:Record<string,RegExp[]>={
  "140":[/PC나 모바일기기/,/정회원/,/14일/,/로그인/],
 };
 for(const row of rows)test(`captured Stage 1 replay: ${row.id} (${row.classification})`,async()=>{
- let missing=0,paid=0,store=0;
+ let missing=0,paid=0,store=0;const missingUrls:string[]=[];
  const original=async(url:string):Promise<OriginalPage>=>{
-  const entry=index[url];if(!entry){missing++;throw Error(`fixture_missing:${url}`);}
+  // Add newly visited official pages without overwriting the historical snapshots.
+  const additional=`docs/voicecare-evaluation/submission-final-20260907/sources/${createHash("sha256").update(url).digest("hex")}`;
+  if(!index[url]&&existsSync(`${additional}.json`)){
+   const saved=JSON.parse(readFileSync(`${additional}.json`,"utf8"));
+   return {...saved,...extractOfficialDocument(readFileSync(`${additional}.html`,"utf8"),url)};
+  }
+  const entry=index[url];if(!entry){missing++;missingUrls.push(url);throw Error(`fixture_missing:${url}`);}
   if(entry.status!=="fetched")throw Error(entry.error);
   const saved=JSON.parse(readFileSync(`${directory}/${entry.file}.json`,"utf8"));
   const parsed={...saved,...extractOfficialDocument(readFileSync(`${directory}/${entry.file}.html`,"utf8"),saved.url)};
@@ -48,10 +55,21 @@ for(const row of rows)test(`captured Stage 1 replay: ${row.id} (${row.classifica
    const saved=JSON.parse(readFileSync(`${prior}/${row.id}-provider-${number}.json`,"utf8"));return Response.json(saved.body,{status:saved.status});
   }) as typeof fetch,original);
  const response=await createExpandedPublicInformationResponse({query:row.question},provider);
- const parsed=readSearchAnswer(response.body);assert.ok(parsed);assert.equal(missing,0);
+ const parsed=readSearchAnswer(response.body);assert.ok(parsed);assert.equal(missing,0,missingUrls.join(", "));
+ if(row.id==="domain-071"){
+  assert.equal(parsed.kind,"unsupported");assert.equal(paid,0);assert.equal(store,0);
+  assert.match(parsed.answer.plainLanguageSummary,/정확한 경로.*안내하지 않습니다/);
+  assert.equal(parsed.answer.sources.length,0);return;
+ }
  if(["domain-009","domain-068"].includes(row.id)){assert.equal(parsed.kind,"answer");assert.equal(paid,0);assert.equal(store,0);return;}
  assert.equal(paid,1);assert.equal(store,2);
  const evidence=parsed.officialSearch!.evidence;
+ if(row.id==="domain-053"){
+  // The former check wrongly treated free aids as evidence of free counselling.
+  // Require the actual counselling-fee claim to be rejected, not just schema validity.
+  assert.equal(evidence.length,0);assert.equal(parsed.kind,"official_links");
+  assert.ok(parsed.officialSearch!.links.some(l=>l.url.includes("9016")));return;
+ }
  const expectations=facts[row.id.slice(-3)];
  if(expectations){
   assert.ok(evidence.length,`missing answer: ${row.question}`);

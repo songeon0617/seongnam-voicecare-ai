@@ -57,9 +57,9 @@ export function extractOfficialDocument(html:string,baseUrl="https://www.seongna
       // The official health catalog publishes numeric detail IDs through this
       // exact form handler. Read that data only; never evaluate page JavaScript.
       const detail=attr(n,"onclick").match(/^fn_move_form\((\d{1,8})\);?$/);
-      if(new URL(baseUrl).hostname==="www.seongnam.go.kr"&&detail&&
-        /form\.action\s*=\s*["']\/health\/ht-pm020101\/["']\s*\+\s*cvlcptBizSn/.test(html)) {
-        navigation.push({url:`https://www.seongnam.go.kr/health/ht-pm020101/${detail[1]}`,title:normalized(text(n))});
+      const catalog = html.match(/form\.action\s*=\s*["'](\/health\/ht-pm020101\/|\/pm02020101\/)["']\s*\+\s*cvlcptBizSn/);
+      if(new URL(baseUrl).hostname==="www.seongnam.go.kr"&&detail&&catalog) {
+        navigation.push({url:`https://www.seongnam.go.kr${catalog[1]}${detail[1]}`,title:normalized(text(n))});
       }
       try{const href=attr(n,"href");if(!href||href.startsWith("#")||/^(javascript|mailto|tel):/i.test(href))return;
         const candidate=new URL(href,baseUrl);
