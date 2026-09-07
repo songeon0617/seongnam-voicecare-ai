@@ -1,0 +1,102 @@
+{
+  "id": "domain-031",
+  "question": "성남 청년들이 모임하는 공공 공간 찾아줘",
+  "at": "2026-09-07T11:28:33.936Z",
+  "mode": "FRESH_PRODUCTION_HTTP_SHARED_REDIS_NO_OVERRIDE",
+  "ms": 10826,
+  "httpStatus": 200,
+  "schemaPass": true,
+  "capturedCalls": 0,
+  "response": {
+    "query": "성남 청년들이 모임하는 공공 공간 찾아줘",
+    "kind": "partial_answer",
+    "results": [],
+    "hasResults": false,
+    "answer": {
+      "userQuestion": "성남 청년들이 모임하는 공공 공간 찾아줘",
+      "title": "확인한 공식 원문과 남은 확인 사항",
+      "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+      "steps": [],
+      "nextAction": null,
+      "sources": [],
+      "verification": {
+        "status": "insufficient_data",
+        "checkedAt": null,
+        "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+      }
+    },
+    "officialSearch": {
+      "status": "partial",
+      "evidence": [
+        {
+          "id": "web-1",
+          "url": "https://www.snspring.or.kr/programView.do?idx=838&searchKeyword=%ED%81%B4%EB%9E%98%EC%8A%A4",
+          "title": "성남시 청년지원센터 :: 청년이 봄",
+          "publisher": "성남시 청년지원센터",
+          "region": "성남시",
+          "checkedAt": "2026-09-07T11:28:33.657Z",
+          "publishedAt": null,
+          "updatedAt": null,
+          "applicationPeriod": null,
+          "effectivePeriod": null,
+          "excerpt": "PROGRAM 청년과 함께 가능성과 기회를 만들어갑니다. 홈 프로그램 전체 접수중 누려봄 [청년이봄 정자] 공간 리뉴얼 안내 2026.05.15 1,394 공유하기 새롭게 바뀐 청년이봄 정자를 소개합니다 공부할 때도, 작업할 때도, 회의할 때도, 잠깐 쉬고 싶을 때도. 청년이 머물고 연결될 수 있는 공간으로 청년이봄 정자가 새롭게 리뉴얼되었습니다. 자유롭게 이용 가능한 청년 공간 업무·스터디·모임 가능한 공간 구성(네이버 예약 가능) 클래스 및 프로그램 운영(네이버 예약 가능) 휴식 가능한 리프레시 공간 와이파이, 전 좌석 콘센트, 안마의자 비치 \"청년이봄 정자\" 멤버십 가입 시 무료 이용 가능 지금 멤버십 가입하면 페이퍼 인센스 웰컴 선물도 드려요 멤버십 가입하기 https://m.site.naver.com/25Rhp 청년이봄 정자 경기도 성남시 분당구 성남대로407번길 12 운영시간 MON-FRI 09:00~21:30 SAT 09:00~19:30 SUN·공휴일 OFF 이용대상 19~39세 청년 누구나 신청하러 가기 Prev 목록으로 Next",
+          "collection": "openai_web_search+https_original",
+          "freshness": "unknown",
+          "fromCache": false
+        }
+      ],
+      "links": [
+        {
+          "url": "https://www.snspring.or.kr/programView.do?idx=838&searchKeyword=%ED%81%B4%EB%9E%98%EC%8A%A4",
+          "title": "성남시 청년지원센터 :: 청년이 봄"
+        }
+      ],
+      "usage": {
+        "model": "gpt-5.6-terra",
+        "inputTokens": 13022,
+        "outputTokens": 433,
+        "toolCalls": 1,
+        "estimatedUsd": 0.032996,
+        "durationMs": 10260
+      },
+      "diagnostics": {
+        "phase": "complete",
+        "budget": {
+          "aiCalls": 1,
+          "searchCalls": 1,
+          "originalFetches": 3,
+          "maxOriginalFetches": 16
+        },
+        "discovered": 10,
+        "rejected": 6,
+        "findings": 1,
+        "pages": [
+          {
+            "url": "https://www.snspring.or.kr/programView.do?idx=838&searchKeyword=%ED%81%B4%EB%9E%98%EC%8A%A4",
+            "status": "fetched",
+            "textLength": 535,
+            "sections": 1,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://www.snspring.or.kr/noticeList.do",
+            "status": "fetched",
+            "textLength": 615,
+            "sections": 1,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://www.snspring.or.kr/programList.do",
+            "status": "fetched",
+            "textLength": 612,
+            "sections": 1,
+            "omittedSections": 0
+          }
+        ]
+      },
+      "region": "성남시",
+      "searched": true
+    }
+  },
+  "semanticReview": "PENDING"
+}

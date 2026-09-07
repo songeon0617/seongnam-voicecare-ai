@@ -1,0 +1,100 @@
+{
+  "id": "domain-052",
+  "question": "보건증 발급받으려면 성남 어디로 가요",
+  "at": "2026-09-07T11:35:02.392Z",
+  "mode": "CAPTURED_PROVIDER_CURRENT_HTTPS_NOT_NEW_MODEL",
+  "ms": 1114,
+  "httpStatus": 200,
+  "schemaPass": true,
+  "capturedCalls": 1,
+  "response": {
+    "query": "보건증 발급받으려면 성남 어디로 가요",
+    "kind": "partial_answer",
+    "results": [],
+    "hasResults": false,
+    "answer": {
+      "userQuestion": "보건증 발급받으려면 성남 어디로 가요",
+      "title": "확인한 공식 원문과 남은 확인 사항",
+      "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+      "steps": [],
+      "nextAction": null,
+      "sources": [],
+      "verification": {
+        "status": "insufficient_data",
+        "checkedAt": null,
+        "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+      }
+    },
+    "officialSearch": {
+      "status": "partial",
+      "evidence": [
+        {
+          "id": "web-1",
+          "url": "https://www.seongnam.go.kr/health/ht-pm020101/6010?curPage=1&cvlcptBizSn=6010&srchText=%EA%B1%B4%EA%B0%95%EC%A7%84%EB%8B%A8%EA%B2%B0%EA%B3%BC%EC%84%9C",
+          "title": "보건사업 - 보건사업 - 성남시 보건소",
+          "publisher": "성남시청",
+          "region": "성남시",
+          "checkedAt": "2026-09-07T11:35:02.391Z",
+          "publishedAt": null,
+          "updatedAt": null,
+          "applicationPeriod": null,
+          "effectivePeriod": null,
+          "excerpt": "검진 제증명발급 사업개요 사업 개요 건강진단결과서(구 보건증), 결핵확인서, 일반건강진단서 보건소에서 실시한 검사에 대한 증빙서류 발급 사업 기간 연중 사업 대상 보건소에서 검사한 사람 사업 내용 발급장소 • 수정구보건소 2층 민원실 • 중원구보건소 1층 민원실 • 분당구보건소 5층 민원실 추진방법 • 방문 발급: 보건소 민원실, 신분증 지참 • 인터넷 발급: 공공보건포털 유의사항 • 인터넷 발급은 검사 결과가 정상일 경우에만 가능 • 보건소에서 발급하는 건강진단서는 전염병 유무만 검사하므로 제출처 담당자에게 검사항목 확인 후 발급 • (공무원)채용 신체검사, 운전면허 적성검사, 의료인 면허 및 이·미용사 면허발급용 건강진단서는 미발급 • 외국인 건강진단결과서 신청 시, 본인의 근로 자격을 반드시 확인한 후 신청 문의처 • 수정구보건소 민원실 031-729-3878 • 중원구보건소 민원실 031-729-3897 • 분당구보건소 민원실 031-729-3055 발급내용 발급서류의 종류및 신청필요서류와 처리기간, 수수료에대한 표 구분 수수료 구비서류 처리 기간 건강진단결과서(구 보건증) 3,000원 * 성남시민 무료 신분증 5일(주말·공휴일 제외) 건강진단서 16,450원 건강진단서+B형간염 검사 23,990원 결핵검진결과서 2,000원 4일(주말·공휴일 제외) 제증명 재발급 300원 즉시 사업 추진 처리절차 접수 • 신분증 지참 • 신청서 제출 및 수수료 납부 검사 30분 내외 발급 • 신분증 지참하여 민원실 방문 • 인터넷 발급 부가정보 관련사이트 공공보건포털 바로가기 담당부서 수정구보건소>보건행정과>보건행정팀 전화번호 031-729-3878 목록",
+          "collection": "openai_web_search+https_original",
+          "freshness": "unknown",
+          "fromCache": false
+        }
+      ],
+      "links": [
+        {
+          "url": "https://www.seongnam.go.kr/health/ht-pm020101/6010?curPage=1&cvlcptBizSn=6010&srchText=%EA%B1%B4%EA%B0%95%EC%A7%84%EB%8B%A8%EA%B2%B0%EA%B3%BC%EC%84%9C",
+          "title": "보건사업 - 보건사업 - 성남시 보건소"
+        }
+      ],
+      "usage": {
+        "model": "fixture",
+        "inputTokens": 12898,
+        "outputTokens": 384,
+        "toolCalls": 1,
+        "estimatedUsd": 0.032161,
+        "durationMs": 1094
+      },
+      "diagnostics": {
+        "phase": "complete",
+        "budget": {
+          "aiCalls": 1,
+          "searchCalls": 1,
+          "originalFetches": 4,
+          "maxOriginalFetches": 16
+        },
+        "discovered": 7,
+        "rejected": 7,
+        "findings": 2,
+        "pages": [
+          {
+            "url": "https://www.seongnam.go.kr/health/ht-pm020101/6010?curPage=1&cvlcptBizSn=6010&srchText=%EA%B1%B4%EA%B0%95%EC%A7%84%EB%8B%A8%EA%B2%B0%EA%B3%BC%EC%84%9C",
+            "status": "fetched",
+            "textLength": 821,
+            "sections": 1,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://www.seongnam.go.kr/health/index",
+            "status": "fetched",
+            "textLength": 796,
+            "sections": 0,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://www.seongnam.go.kr/health/",
+            "status": "failed",
+            "errorCode": "source_http_404"
+          }
+        ]
+      },
+      "region": "성남시",
+      "searched": true
+    }
+  },
+  "semanticReview": "PENDING"
+}

@@ -6,9 +6,10 @@ import { readSearchAnswer } from "../src/lib/search/read-search-answer";
 const dir="docs/voicecare-evaluation/submission-final-20260907";
 const prior="docs/voicecare-evaluation/final-expanded-20260907";
 const live=process.argv.includes("--production");
-const mode=live?"production-live":process.argv.includes("--final-replay")?"replay-final":"replay";
+const postFix=process.argv.includes("--post-fix");
+const mode=live?(postFix?"production-post-fix":"production-live"):process.argv.includes("--verified-replay")?"replay-verified":postFix?"replay-post-fix":process.argv.includes("--final-replay")?"replay-final":"replay";
 // Failures first; the selected 20 questions are unchanged.
-const ids=[113,83,66,71,81,53,138,130,97,98,9,68,115,52,27,31,140,73,75,134];
+const ids=live&&postFix?[97,130,134]:[113,83,66,71,81,53,138,130,97,98,9,68,115,52,27,31,140,73,75,134];
 async function main(){
   mkdirSync(dir,{recursive:true});const rows=[];
   for(const number of ids){

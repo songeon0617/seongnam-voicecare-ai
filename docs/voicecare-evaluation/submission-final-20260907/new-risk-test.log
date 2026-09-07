@@ -1,0 +1,62 @@
+✔ captured Stage 1 replay: domain-009 (structured_direct_success) (25.0324ms)
+✔ captured Stage 1 replay: domain-027 (safe_fallback) (440.7003ms)
+✔ captured Stage 1 replay: domain-031 (wrong_source) (345.9476ms)
+✔ captured Stage 1 replay: domain-052 (web_search_grounded_success) (52.0469ms)
+✔ captured Stage 1 replay: domain-053 (safe_fallback) (333.2973ms)
+✔ captured Stage 1 replay: domain-066 (web_search_grounded_success) (38.2183ms)
+✔ captured Stage 1 replay: domain-068 (structured_direct_success) (9.594ms)
+✔ captured Stage 1 replay: domain-071 (safe_fallback) (0.2307ms)
+✔ captured Stage 1 replay: domain-073 (safe_fallback) (248.212ms)
+✔ captured Stage 1 replay: domain-075 (safe_fallback) (290.8169ms)
+✔ captured Stage 1 replay: domain-081 (web_search_grounded_success) (93.0549ms)
+✔ captured Stage 1 replay: domain-083 (safe_fallback) (330.5794ms)
+✔ captured Stage 1 replay: domain-097 (web_search_grounded_success) (262.755ms)
+✔ captured Stage 1 replay: domain-098 (no_answer_despite_official_evidence) (272.597ms)
+✔ captured Stage 1 replay: domain-113 (safe_fallback) (211.8551ms)
+✔ captured Stage 1 replay: domain-115 (safe_fallback) (199.7477ms)
+✔ captured Stage 1 replay: domain-130 (safe_fallback) (51.7346ms)
+✔ captured Stage 1 replay: domain-134 (wrong_source) (286.2035ms)
+✔ captured Stage 1 replay: domain-138 (safe_fallback) (260.8138ms)
+✔ captured Stage 1 replay: domain-140 (safe_fallback) (211.5306ms)
+✔ topic-only snippets and policy tables cannot substitute for requested details (0.6163ms)
+✔ published same-institution navigation is HTTPS and user boards cannot enter evidence (0.7948ms)
+✔ published civil catalog handler reaches the actual complaint starting page (157.7737ms)
+✔ actual sitemap's 자동차 parent leads to the bus source; unrelated events stay excluded (207.0774ms)
+✔ free aids cannot establish free counselling, even when both words occur (6.2456ms)
+✔ journey limitation never spends a model call: 판교역에서 성남시청 가는 대중교통 알려줘 (3.0964ms)
+✔ journey limitation never spends a model call: 야탑역에서 시청까지 버스 경로 알려줘 (0.9796ms)
+✔ journey guard preserves eligibility and accessible vehicle questions (0.1431ms)
+✔ fresh production passport certificate table cannot answer passport issuance (44.1823ms)
+✔ ended performance is rejected for discovery, but historical requests remain possible (8.5885ms)
+✖ another organizer's performance cannot replace the requested foundation site (37.4486ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 30
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4304.449
+
+✖ failing tests:
+
+test at src\lib\search\submission-final.test.ts:63:1
+✖ another organizer's performance cannot replace the requested foundation site (37.4486ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (C:\Users\rkddu\Desktop\성남시 대회\src\lib\search\submission-final.test.ts:68:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

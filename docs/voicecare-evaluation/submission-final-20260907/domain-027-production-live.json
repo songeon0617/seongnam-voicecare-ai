@@ -1,0 +1,100 @@
+{
+  "id": "domain-027",
+  "question": "취업 면접 보러 가는데 정장 빌릴 수 있어요",
+  "at": "2026-09-07T11:28:20.998Z",
+  "mode": "FRESH_PRODUCTION_HTTP_SHARED_REDIS_NO_OVERRIDE",
+  "ms": 9086,
+  "httpStatus": 200,
+  "schemaPass": true,
+  "capturedCalls": 0,
+  "response": {
+    "query": "취업 면접 보러 가는데 정장 빌릴 수 있어요",
+    "kind": "partial_answer",
+    "results": [],
+    "hasResults": false,
+    "answer": {
+      "userQuestion": "취업 면접 보러 가는데 정장 빌릴 수 있어요",
+      "title": "확인한 공식 원문과 남은 확인 사항",
+      "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+      "steps": [],
+      "nextAction": null,
+      "sources": [],
+      "verification": {
+        "status": "insufficient_data",
+        "checkedAt": null,
+        "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+      }
+    },
+    "officialSearch": {
+      "status": "partial",
+      "evidence": [
+        {
+          "id": "web-1",
+          "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=77&c_code1=1&fboard=board_suit&orderby1=&orderby2=&use_month=2&use_year=2016",
+          "title": "드림슈트대여 신청(글목록)<면접정장대여<프로그램안내<성남시일자리센터",
+          "publisher": "성남시 일자리센터",
+          "region": "성남시",
+          "checkedAt": "2026-09-07T11:28:20.609Z",
+          "publishedAt": null,
+          "updatedAt": null,
+          "applicationPeriod": null,
+          "effectivePeriod": null,
+          "excerpt": "본문 바로가기 메인메뉴 바로가기 서브메뉴 바로가기 홈 프로그램안내 면접정장대여 드림슈트대여 신청 프로그램안내 교육프로그램 면접정장대여 드림슈트대여 신청 구직자진로성향검사 커리어/모의면접 신청 취업특강신청 드림슈트대여 신청 면접정장대여 신청 드림슈트대여 안내 드림슈트대여 신청 신청조회 및 수정 첫 회는(매년) 성남시일자리센터(2층)에 본인이 방문하여 신청가능합니다.(성남시 등록 확인 신분증 +면접일정 확인 문자 또는 메일 ) 날짜는 희망 대여일로 선택해 주세요. 토요일, 일요일, 공휴일은 센터휴무이므로 쿠폰발급이 어렵습니다. 참고하세요 원활한 진행을 위해 신청취소는 미리 해주시길 바랍니다. 면접정장 대여 방문시 모의면접 무료로 제공(본인 희망할 경우), 면접 컨설팅 제공 신청시 면접일정(문자 또는 이메일) 첨부해주세요 신청후 수정/삭제는 [신청조회 및 취소]에서 가능합니다 문의:신청 031-729-4416, 2857 2016 2020년 2021년 2022년 2023년 2024년 2025년 2026년 2027년 02 1월 2월 3월 4월 5월 6월 7월 8월 9월 10월 11월 12월 이전달 다음달 ※ 좌우로 화면을 이동하여 내용을 확인해주세요. 달력 일 월 화 수 목 금 토 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 Copyright c Seongnam City. All Rights Reserved.",
+          "collection": "openai_web_search+https_original",
+          "freshness": "unknown",
+          "fromCache": false
+        }
+      ],
+      "links": [
+        {
+          "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=77&c_code1=1&fboard=board_suit&orderby1=&orderby2=&use_month=2&use_year=2016",
+          "title": "드림슈트대여 신청(글목록)<면접정장대여<프로그램안내<성남시일자리센터"
+        }
+      ],
+      "usage": {
+        "model": "gpt-5.6-terra",
+        "inputTokens": 12922,
+        "outputTokens": 543,
+        "toolCalls": 1,
+        "estimatedUsd": 0.0341175,
+        "durationMs": 8498
+      },
+      "diagnostics": {
+        "phase": "complete",
+        "budget": {
+          "aiCalls": 1,
+          "searchCalls": 1,
+          "originalFetches": 3,
+          "maxOriginalFetches": 16
+        },
+        "discovered": 5,
+        "rejected": 11,
+        "findings": 2,
+        "pages": [
+          {
+            "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=77&c_code1=1&fboard=board_suit&orderby1=&orderby2=&use_month=2&use_year=2016",
+            "status": "fetched",
+            "textLength": 734,
+            "sections": 1,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://job.seongnam.go.kr/",
+            "status": "fetched",
+            "textLength": 3631,
+            "sections": 0,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://www.seongnam.go.kr/apply/radon/radonApply.do",
+            "status": "failed",
+            "errorCode": "source_http_404"
+          }
+        ]
+      },
+      "region": "성남시",
+      "searched": true
+    }
+  },
+  "semanticReview": "PENDING"
+}

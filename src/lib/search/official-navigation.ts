@@ -30,7 +30,8 @@ export function relevantNavigation(page:OriginalPage,query:string) {
     + (/시청/.test(query)&&/주차|대중교통|가는/.test(query)&&/오시는\s*길/.test(l.title)?30:0)
     + (/정장/.test(query)&&/일자리센터/.test(l.title)?20:0)
     + (/거주자우선/.test(query)&&/도시개발공사/.test(l.title)?30:0)
-    + (/여권/.test(query)&&/준비물|서류/.test(query)&&/일반여권|여권사무/.test(l.title)?30:0)
+    + (/여권/.test(query)&&/일반여권|여권사무/.test(l.title)?30:0)
+    + (/여권/.test(query)&&/어디|어딜|장소|어느/.test(query)&&/여권신청접수/.test(l.title)?55:0)
     + (/대형폐기물/.test(page.title)&&/소파|폐기물|가구/.test(query)&&/신청안내|신청절차/.test(l.title)?30:0)
     + (/청년/.test(query)&&/공간|모임/.test(query)&&/공간공유|센터소개/.test(l.title)?30:0)
     + (/도서관/.test(query)&&/회원/.test(query)&&/회원가입/.test(l.title)?30:0)
@@ -42,19 +43,33 @@ export function relevantNavigation(page:OriginalPage,query:string) {
     .sort((a,b)=>b.score-a.score||a.title.length-b.title.length).slice(0,3);
 }
 /** Relevance needs the requested detail, not merely a shared subject word. */
-export function matchesRequestedSubject(text:string,query:string):boolean {
+export function matchesRequestedSubject(text:string,query:string,today=new Intl.DateTimeFormat("sv-SE",{timeZone:"Asia/Seoul"}).format(new Date())):boolean {
+  if(/금연|담배/.test(query)&&/상담|끊/.test(query)&&!/금연/.test(text))return false;
+  // Passport certificates are not applications for an actual passport.
+  if(/여권/.test(query)&&!/증명|기록|실효|정보/.test(query)) {
+    const withoutCertificates=text.replace(/여권\s*(?:발급\s*기록|발급\s*신청\s*서류|정보|실효)\s*(?:증명서|확인서)/g,"");
+    if(!/여권\s*(?:발급|신청|민원|사무)|일반여권|여권(?:은|을|의)\s*[^.]{0,80}(?:신청|발급)/.test(withoutCertificates))return false;
+  }
+  // A different organizer's event cannot stand in for the requested institution.
+  if(/문화재단/.test(query)&&!/성남문화재단|성남아트센터/.test(text))return false;
+  // Explicitly ended events are historical, even if the user did not say 'today'.
+  if(/공연|음악회|콘서트/.test(query)&&!/지난|과거|작년|재작년|종료된|\d{4}년|\d{4}[-./]\d{1,2}/.test(query)) {
+    const period=text.match(/행사기간\s*(\d{4}-\d{2}-\d{2})\s*[~～–—]\s*(\d{4}-\d{2}-\d{2})/);
+    if(period&&period[2]<today)return false;
+  }
   // A venue's access directions do not answer a citywide transit question.
   const generalBus=/버스/.test(query)&&!/시청|역에서|역까지|도서관|보건소|센터|박람회|행사|공연|정장|청년|장애|휠체어/.test(query);
   if(generalBus&&/채용|취업|박람회|면접|행사장/.test(text))return false;
   // Temporary pandemic membership procedures are not ordinary first-time registration.
   if(/회원증|회원가입/.test(query)&&!/한시|임시|코로나|2020/.test(query)&&/한시적|임시휴관|코로나19/.test(text))return false;
   // A performance venue mentioned in a career lecture is not a performance program.
-  if(/공연/.test(query)&&!/특강|진로/.test(query)&&! /공연|음악회|콘서트|연극|뮤지컬/.test(text.replace(/공연장/g,"")))return false;
+  if(/공연/.test(query)&&!/특강|진로|문화재단/.test(query)&&! /공연|음악회|콘서트|연극|뮤지컬/.test(text.replace(/공연장/g,"")))return false;
   return true;
 }
 export function answersRequestedDetail(text:string,query:string):boolean {
   if(!matchesRequestedSubject(text,query))return false;
   if(navigationScore(text,query)<6)return false;
+  if(/여권/.test(query)&&!/증명|기록|실효/.test(query)&&/어디|어딜|장소|어느/.test(query)&&!/접수\s*(?:장소|처)|성남시청.{0,30}(?:민원실|여권)/.test(text))return false;
   if(/버스/.test(query)&&!/장애|지원|휠체어|특별교통/.test(query)&&!(/버스/.test(text)&&/노선|경로|교통카드|승차|하차|요금|정류장/.test(text)))return false;
   if(/준비물|구비서류/.test(query)&&!(/신분증|사진/.test(text)&&/서류|신청서/.test(text)))return false;
   if(/청년/.test(query)&&/모임|공공\s*공간/.test(query)&&!(/공간|센터/.test(text)&&/[가-힣]+(?:대로|로|길)\s*\d|역\s*\d번\s*출구|대관\s*(신청|방법)/.test(text)))return false;
@@ -72,6 +87,7 @@ export function answersRequestedDetail(text:string,query:string):boolean {
 }
 export function relevantOriginalSection(page:OriginalPage,query:string):string|undefined {
   const sections=page.sections??[];
+  if(!matchesRequestedSubject([page.title,...page.paragraphs,...sections].join(" "),query))return undefined;
   const combined=sections.join(" ");
   if(/준비물|구비서류/.test(query)&&combined.length<=6000&&answersRequestedDetail(combined,query))return combined;
   return [...sections].map(value=>({value,score:navigationScore(normalizeEvidence(value),query)}))

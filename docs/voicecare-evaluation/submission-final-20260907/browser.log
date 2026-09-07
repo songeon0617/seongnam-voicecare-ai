@@ -1,10 +1,10 @@
-[WebServer] (node:13240) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:19620) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 [WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
 
 
 Running 21 tests using 1 worker
 
-(node:4892) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:16276) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `node --trace-warnings ...` to show where the warning was created)
 
 
@@ -15,7 +15,7 @@ Running 21 tests using 1 worker
 [5/21] [chromium] › tests\audit\production.spec.ts:20:47 › mobile/desktop 430px with 200% text, labels and focus
 [6/21] [chromium] › tests\audit\production.spec.ts:20:47 › mobile/desktop 1440px with 200% text, labels and focus
 [7/21] [chromium] › tests\audit\production.spec.ts:29:5 › loading and network error are announced and recoverable
-(node:264) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:1588) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `node --trace-warnings ...` to show where the warning was created)
 
 
@@ -26,7 +26,7 @@ Running 21 tests using 1 worker
 [12/21] [firefox] › tests\audit\production.spec.ts:20:47 › mobile/desktop 430px with 200% text, labels and focus
 [13/21] [firefox] › tests\audit\production.spec.ts:20:47 › mobile/desktop 1440px with 200% text, labels and focus
 [14/21] [firefox] › tests\audit\production.spec.ts:29:5 › loading and network error are announced and recoverable
-(node:17616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:2876) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `node --trace-warnings ...` to show where the warning was created)
 
 

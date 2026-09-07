@@ -1,0 +1,100 @@
+{
+  "id": "domain-130",
+  "question": "시에서 하는 무료 공연 어디서 찾아요",
+  "at": "2026-09-07T11:27:18.931Z",
+  "mode": "FRESH_PRODUCTION_HTTP_SHARED_REDIS_NO_OVERRIDE",
+  "ms": 13869,
+  "httpStatus": 200,
+  "schemaPass": true,
+  "capturedCalls": 0,
+  "response": {
+    "query": "시에서 하는 무료 공연 어디서 찾아요",
+    "kind": "partial_answer",
+    "results": [],
+    "hasResults": false,
+    "answer": {
+      "userQuestion": "시에서 하는 무료 공연 어디서 찾아요",
+      "title": "확인한 공식 원문과 남은 확인 사항",
+      "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+      "steps": [],
+      "nextAction": null,
+      "sources": [],
+      "verification": {
+        "status": "insufficient_data",
+        "checkedAt": null,
+        "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+      }
+    },
+    "officialSearch": {
+      "status": "partial",
+      "evidence": [
+        {
+          "id": "web-1",
+          "url": "https://www.seongnam.go.kr/tour/tu-pm020101/6014",
+          "title": "이달의 행사 - 요즘성남 - 성남문화관광",
+          "publisher": "성남시청",
+          "region": "성남시",
+          "checkedAt": "2026-09-07T11:27:15.531Z",
+          "publishedAt": null,
+          "updatedAt": null,
+          "applicationPeriod": null,
+          "effectivePeriod": null,
+          "excerpt": "홈 요즘성남 이달의 행사 이달의 행사 링크복사 공유 닫기 QR코드 저장 방법 QR코드 > 마우스 우측버튼 > 이미지를 다른 이름으로 저장 단축주소 프린트 2026 제29회 성남 창작무용제 개최 이미지 원본 보기 분류 공연 조회수 81 참여대상 누구나 행사기간 2026-08-16 ~ 2026-08-16 행사시간 17:00 ~ 19:00 주관 성남예총 문의 031-753-2582 작성부서 교육문화체육국 > 문화관광과 > 예술팀 첨부파일 3.jpg 다운로드 바로보기 2.jpg 다운로드 바로보기 5.jpg 다운로드 바로보기 4.jpg 다운로드 바로보기 ※ 자세한 사항은 이용안내를 참고 바랍니다. 상세정보 2026 제29회 성남창작무용제 -일 시 : 2026. 8. 16.(일) 오후 5시 -장 소 : 성남아트센터 앙상블씨어터 -주최/주관 : 성남예총/성남무용협회 -후 원 : 성남시 -입장연령 : 만 5세 이상 -관 람 료 : 무료 -관람티켓 : 공연 당일 성남아트센터 앙상블씨어터 티켓박스에서 오후 4시부터 선착순 배부 목록 공공누리가 부착되지 않은 자료는 담당자와 사전에 협의한 이후에 사용하여 주시기 바랍니다. 상단으로 이동",
+          "collection": "openai_web_search+https_original",
+          "freshness": "unknown",
+          "fromCache": false
+        }
+      ],
+      "links": [
+        {
+          "url": "https://www.seongnam.go.kr/tour/tu-pm020101/6014",
+          "title": "이달의 행사 - 요즘성남 - 성남문화관광"
+        }
+      ],
+      "usage": {
+        "model": "gpt-5.6-terra",
+        "inputTokens": 12901,
+        "outputTokens": 523,
+        "toolCalls": 1,
+        "estimatedUsd": 0.033832,
+        "durationMs": 13294
+      },
+      "diagnostics": {
+        "phase": "complete",
+        "budget": {
+          "aiCalls": 1,
+          "searchCalls": 1,
+          "originalFetches": 3,
+          "maxOriginalFetches": 16
+        },
+        "discovered": 8,
+        "rejected": 10,
+        "findings": 3,
+        "pages": [
+          {
+            "url": "https://www.seongnam.go.kr/tour/index",
+            "status": "fetched",
+            "textLength": 8118,
+            "sections": 0,
+            "omittedSections": 1
+          },
+          {
+            "url": "https://www.seongnam.go.kr/apply/",
+            "status": "failed",
+            "errorCode": "source_http_404"
+          },
+          {
+            "url": "https://www.seongnam.go.kr/tour/tu-pm020101/6014",
+            "status": "fetched",
+            "textLength": 576,
+            "sections": 1,
+            "omittedSections": 0
+          }
+        ]
+      },
+      "region": "성남시",
+      "searched": true
+    }
+  },
+  "semanticReview": "PENDING"
+}

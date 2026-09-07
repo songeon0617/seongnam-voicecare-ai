@@ -1,0 +1,114 @@
+{
+  "id": "domain-073",
+  "question": "성남 시청에 차 가져가면 주차할 수 있어요",
+  "at": "2026-09-07T11:28:59.757Z",
+  "mode": "FRESH_PRODUCTION_HTTP_SHARED_REDIS_NO_OVERRIDE",
+  "ms": 9252,
+  "httpStatus": 200,
+  "schemaPass": true,
+  "capturedCalls": 0,
+  "response": {
+    "query": "성남 시청에 차 가져가면 주차할 수 있어요",
+    "kind": "partial_answer",
+    "results": [],
+    "hasResults": false,
+    "answer": {
+      "userQuestion": "성남 시청에 차 가져가면 주차할 수 있어요",
+      "title": "확인한 공식 원문과 남은 확인 사항",
+      "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+      "steps": [],
+      "nextAction": null,
+      "sources": [],
+      "verification": {
+        "status": "insufficient_data",
+        "checkedAt": null,
+        "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+      }
+    },
+    "officialSearch": {
+      "status": "partial",
+      "evidence": [
+        {
+          "id": "web-1",
+          "url": "https://www.seongnam.go.kr/cn040503",
+          "title": "오시는 길 - 청사 안내 - 성남소개 - 성남시청",
+          "publisher": "성남시청",
+          "region": "성남시",
+          "checkedAt": "2026-09-07T11:28:59.528Z",
+          "publishedAt": null,
+          "updatedAt": null,
+          "applicationPeriod": null,
+          "effectivePeriod": null,
+          "excerpt": "성남시청 주차장 안내 청사 시설물을 보호하기 위해 높이 2.1m 이상 차량은 지하주차장으로 진입할 수 없습니다. 주차장 현황 성남시청 주차장 현황 : 위치,지상1층,지하1층,지하2층으로 구성된 표 위치 지상1층 지하1층 지하2층 주차면수 476면 310면 324면 운영시간 : 월~금요일 07:00~20:00 (토·일요일, 공휴일은 무료개방) 주차요금 성남시청 주차장 주차요금 구분 요금 비고 무료 1시간 후 추가 30분까지 400원 무료개방 : 토·일요일, 공휴일 요금면제 시 주관행사 및 회의 참석차량, 공공개방시설 이용차량 해당부서의 확인을 받은 1시간이내 민원방문 차량 요금 50% 감면 : 국가유공자 및 장애인 차량, 소형자동차(1000cc 미만) 초과 10분당 300원 진입로 주차요금문의 : 총무과 031-729-2189 교통문의 : 대중교통과 버스행정팀 031-729-8566",
+          "collection": "openai_web_search+https_original",
+          "freshness": "unknown",
+          "fromCache": false
+        }
+      ],
+      "links": [
+        {
+          "url": "https://www.seongnam.go.kr/cn040503",
+          "title": "오시는 길 - 청사 안내 - 성남소개 - 성남시청"
+        }
+      ],
+      "usage": {
+        "model": "gpt-5.6-terra",
+        "inputTokens": 11102,
+        "outputTokens": 256,
+        "toolCalls": 1,
+        "estimatedUsd": 0.027033,
+        "durationMs": 8714
+      },
+      "diagnostics": {
+        "phase": "complete",
+        "budget": {
+          "aiCalls": 1,
+          "searchCalls": 1,
+          "originalFetches": 7,
+          "maxOriginalFetches": 16
+        },
+        "discovered": 6,
+        "rejected": 12,
+        "findings": 1,
+        "pages": [
+          {
+            "url": "https://www.seongnam.go.kr/city/1000050/10040/contents.do",
+            "status": "failed",
+            "errorCode": "source_http_404"
+          },
+          {
+            "url": "https://www.seongnam.go.kr/sn04050101",
+            "status": "fetched",
+            "textLength": 1744,
+            "sections": 3,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://www.seongnam.go.kr/fu030100",
+            "status": "fetched",
+            "textLength": 416,
+            "sections": 1,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://www.seongnam.go.kr/cn040503",
+            "status": "fetched",
+            "textLength": 1039,
+            "sections": 5,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://www.seongnam.go.kr/fu-cn020104",
+            "status": "fetched",
+            "textLength": 375,
+            "sections": 1,
+            "omittedSections": 0
+          }
+        ]
+      },
+      "region": "성남시",
+      "searched": true
+    }
+  },
+  "semanticReview": "PENDING"
+}
