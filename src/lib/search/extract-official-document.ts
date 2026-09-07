@@ -1,6 +1,6 @@
 import "server-only";
 import { parse, type DefaultTreeAdapterMap } from "parse5";
-import { officialUrl } from "./official-source-policy";
+import { officialUrl, officialPublisher } from "./official-source-policy";
 
 type Node = DefaultTreeAdapterMap["node"];
 const normalized = (s:string) => s.normalize("NFKC").replace(/\s+/g," ").trim();
@@ -21,11 +21,12 @@ function find(n:Node,p:(n:Node)=>boolean):Node|undefined {
 }
 
 /** Whole heading groups, including sibling conditions and table headers; never character slices. */
-export function extractOfficialDocument(html:string) {
+export function extractOfficialDocument(html:string,baseUrl="https://www.seongnam.go.kr/") {
   const document=parse(html);
   const title=normalized(text(find(document,n=>tag(n)==="title")??document)).slice(0,180)||"성남시 공식 안내";
   // Seongnam's actual article has content-section; content-body includes tab navigation.
   const root=find(document,n=>attr(n,"class").split(/\s+/).includes("content-section")) ??
+    find(document,n=>attr(n,"class").split(/\s+/).includes("page_wrap")) ??
     find(document,n=>tag(n)==="main") ?? find(document,n=>attr(n,"class").split(/\s+/).includes("content-body")) ??
     find(document,n=>tag(n)==="body") ?? document;
   const complete=normalized(text(root));
@@ -51,12 +52,26 @@ export function extractOfficialDocument(html:string) {
   const sections=(groups.length?groups.map(g=>normalized([...preamble,...g].join(" "))):[complete])
     .filter(s=>s.length>=20&&s.length<=6000);
   const navigation: {url:string;title:string}[]=[];
-  function links(n:Node){
+  function links(n:Node,trail:string[]=[]){
     if(tag(n)==="a"){
-      try{const url=officialUrl(new URL(attr(n,"href"),"https://www.seongnam.go.kr/").href),label=normalized(text(n));
+      // The official health catalog publishes numeric detail IDs through this
+      // exact form handler. Read that data only; never evaluate page JavaScript.
+      const detail=attr(n,"onclick").match(/^fn_move_form\((\d{1,8})\);?$/);
+      if(new URL(baseUrl).hostname==="www.seongnam.go.kr"&&detail&&
+        /form\.action\s*=\s*["']\/health\/ht-pm020101\/["']\s*\+\s*cvlcptBizSn/.test(html)) {
+        navigation.push({url:`https://www.seongnam.go.kr/health/ht-pm020101/${detail[1]}`,title:normalized(text(n))});
+      }
+      try{const href=attr(n,"href");if(!href||href.startsWith("#")||/^(javascript|mailto|tel):/i.test(href))return;
+        const candidate=new URL(href,baseUrl);
+        // Upgrade only a published link to an already reviewed institution. The
+        // actual HTTPS fetch must still succeed and validate every redirect.
+        if(candidate.protocol==="http:"&&officialPublisher(candidate.href))candidate.protocol="https:";
+        const url=officialUrl(candidate.href),label=normalized([...trail,text(n)].join(" "));
         if(url&&label.length>=2&&label.length<=80&&!navigation.some(l=>l.url===url))navigation.push({url,title:label});}catch{}
     }
-    children(n).forEach(links);
+    const parentLabel=tag(n)==="li"?children(n).find(c=>tag(c)==="a"):undefined;
+    for(const child of children(n))links(child,
+      parentLabel&&tag(child)==="ul"?[...trail,normalized(text(parentLabel))]:trail);
   }
   links(document);
   return {title,paragraphs,sections,navigation:navigation.slice(0,1200),textLength:complete.length,omittedSections:(groups.length||1)-sections.length};

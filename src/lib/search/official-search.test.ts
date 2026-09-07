@@ -39,7 +39,8 @@ test("required acceptance examples route without paid calls",async()=>{
     ["성남에서 버스 타려면","search_unavailable"],["휠체어 타고 병원 가야 해","clarification"],["특별교통수단 신청 방법","answer"],
     ["성남시 여권 어디서 만들어","search_unavailable"],["성남 청년지원 뭐 있어","clarification"],["성남 음식물쓰레기 버리는 법","search_unavailable"],
     ["분당 도서관 오늘 열어?","clarification"],["수원시 여권 발급","unsupported"],["서울 사는데 성남시청에서 여권 만들 수 있어?","search_unavailable"],
-    ["부천 말고 성남","search_unavailable"],["안녕하세요","guidance"],
+    // Correcting only the region still leaves the requested service unspecified.
+    ["부천 말고 성남","clarification"],["안녕하세요","guidance"],
     ["서울 사는데 성남 도서관 이용할 수 있어?","search_unavailable"],["성남이 아니라 수원 공공근로","unsupported"],
   ];
   for(const [query,kind]of cases){const result=await body({query});assert.equal(result.kind,kind,query);assert.ok(readSearchAnswer(result),query);}

@@ -1,0 +1,49 @@
+domain-031 청년지원센터 https://www.snspring.or.kr/
+domain-081 민원참여 https://www.seongnam.go.kr/sn020101
+domain-081 여권 민원 https://www.seongnam.go.kr/cn02040801
+domain-081 종합민원안내 https://www.seongnam.go.kr/cn020401
+domain-097 여권 민원 https://www.seongnam.go.kr/cn02040801
+domain-098 여권 민원 https://www.seongnam.go.kr/cn02040801
+domain-115 대형폐기물인터넷배출신고 https://waste.isdc.co.kr/
+domain-134 성남문화재단 https://www.snart.or.kr/
+domain-138 도서관사업소 https://www.snlib.go.kr/
+domain-140 도서관사업소 https://www.snlib.go.kr/
+{
+  file: 'b578f96dce27008738cf1bef663926289c4b3d39c5297314c37549db582325e8',
+  finalUrl: 'https://www.snart.or.kr/main/main.do',
+  status: 'fetched'
+}
+{
+  file: '59fb1154d3a7553aaf925a8b74844ca2b0418954c019419171fc2f762bab4e7c',
+  finalUrl: 'https://www.snlib.go.kr/intro/40008/contents.do',
+  status: 'fetched'
+}
+{
+  file: '64c8df4cbce4aa018e058b4ee5e4cc5729374791db6d98afe679187b95ab9313',
+  finalUrl: 'https://www.snlib.go.kr/intro/menu/10022/contents/40020/contents.do',
+  status: 'fetched'
+}
+{
+  file: '7bc3cb855c3146b5e33dbc439cede0391bc2b04cbe020710d3b0bf3c66c5b889',
+  finalUrl: 'https://waste.isdc.co.kr/contents/content.php?cIdx=3',
+  status: 'fetched'
+}
+{
+  file: '48bbbd1c97e6f47ea03e4362eafe12f9748a618d5f04a3528a10f201ca4b9329',
+  finalUrl: 'https://www.snspring.or.kr/spaceSharing.do',
+  status: 'fetched'
+}
+{
+  file: '18928918b75f48c1f9483e5689485fe54124da26e9f64db76acc0a1e4a5c6ecd',
+  finalUrl: 'https://www.snspring.or.kr/introduceCenter.do',
+  status: 'fetched'
+}
+{
+  file: '5f2545300c698f877ba3cf4fabe642140b4c71d8bbde4924af740d58a78a1af7',
+  finalUrl: 'https://job.seongnam.go.kr/contents/content.do?cIdx=76',
+  status: 'fetched'
+}
+{
+  status: 'failed',
+  error: 'unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca'
+}

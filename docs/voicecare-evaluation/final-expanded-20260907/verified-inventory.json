@@ -1,0 +1,629 @@
+{
+  "checkedAt": "2026-09-07T09:54:04.162Z",
+  "documentCount": 13,
+  "registeredSourceUrls": 25,
+  "categories": {
+    "mobility_support": 3,
+    "senior_welfare": 3,
+    "welfare_facility": 1,
+    "disability_welfare": 3,
+    "welfare_support": 2,
+    "administrative_service": 1
+  },
+  "officialHosts": [
+    "www.seongnam.go.kr",
+    "seongnam.go.kr",
+    "recycle.seongnam.go.kr",
+    "www.snlib.go.kr",
+    "snlib.go.kr",
+    "waste.isdc.co.kr",
+    "www.snspring.or.kr",
+    "job.seongnam.go.kr",
+    "www.isdc.co.kr",
+    "www.snart.or.kr",
+    "park.isdc.co.kr"
+  ],
+  "publishers": {
+    "www.seongnam.go.kr": "성남시청",
+    "seongnam.go.kr": "성남시청",
+    "recycle.seongnam.go.kr": "성남시청",
+    "www.snlib.go.kr": "성남시 도서관사업소",
+    "snlib.go.kr": "성남시 도서관사업소",
+    "waste.isdc.co.kr": "성남도시개발공사",
+    "www.snspring.or.kr": "성남시 청년지원센터",
+    "job.seongnam.go.kr": "성남시 일자리센터",
+    "www.isdc.co.kr": "성남도시개발공사",
+    "www.snart.or.kr": "성남문화재단",
+    "park.isdc.co.kr": "성남도시개발공사"
+  },
+  "documents": [
+    {
+      "id": "seongnam-special-transportation",
+      "title": "특별교통수단 운영",
+      "content": "사업기간은 연중이다. 대상은 중증 보행장애인(심한 장애) 또는 대중교통 이용이 어려운 휠체어 탑승자다. 중증 보행장애인은 복지카드 또는 장애인증명서가 필요하며, 보행상 장애 표준 기준에 따라 장애정도 심사결과 통보서나 보행상 장애판정을 증명하는 공공기관 발급 서류가 추가로 필요할 수 있다. 대중교통 이용이 어려운 휠체어 탑승자는 종합병원급 이상 진단서에 휠체어 이용, 대중교통 이용이 어렵다는 문구, 이용 불가기간이 명시되어야 한다. 진단서의 이용 불가기간은 최대 5년이며 기간이 없으면 발급일부터 6개월 이용할 수 있다. 차량은 슬로프 장착 카니발 특장 차량 84대이고 24시간 운영하며, 22시부터 다음 날 06시 30분까지는 4대를 운영한다. 즉시콜은 전화·문자 1666-0420 또는 경기도 광역이동지원 시스템 앱·홈페이지로 24시간 접수한다. 성남 관내·경기·서울·인천 사전예약은 이용 목적과 시간 조건에 따라 하루 전에 접수한다. 문의는 성남시 대중교통과 031-729-3723이다.",
+      "category": "mobility_support",
+      "sourceId": "seongnam-city",
+      "sourceOrganizationName": "성남시청",
+      "originalUrl": "https://www.seongnam.go.kr/wf-pm020101/23018",
+      "publishedAt": null,
+      "updatedAt": null,
+      "fetchedAt": "2026-09-07T18:37:00+09:00",
+      "lastVerifiedAt": "2026-09-07T18:37:00+09:00",
+      "status": "active",
+      "freshness": {
+        "status": "unknown",
+        "evaluatedAt": "2026-09-07T18:37:00+09:00",
+        "reason": "현재 성남시청 복지사업 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다."
+      },
+      "relatedRegions": [
+        "성남시"
+      ],
+      "targetAudiences": [
+        "중증 보행장애인",
+        "대중교통 이용이 어려운 휠체어 탑승자"
+      ],
+      "searchTags": [
+        "특별교통수단",
+        "교통약자",
+        "장애인 이동지원",
+        "휠체어",
+        "이용등록"
+      ],
+      "review": {
+        "application": "전화·문자 1666-0420 / 경기도 광역이동지원 시스템 앱·홈페이지. 사전예약은 운행지역·이용목적별 조건 확인",
+        "requiredItems": "복지카드/장애인증명서 및 보행장애 증빙, 또는 종합병원급 이상 진단서(휠체어·대중교통 이용불가·기간 명시). 출퇴근/등하교 예약은 재직/재학 증명 등 별도 조건",
+        "location": "운행지역 경기·서울·인천; 특정 승차 장소는 미등록",
+        "hours": "24시간. 22:00~익일06:30 4대. 사전예약 접수 1일 전 07:00~22:00, 운행 시간·목적은 지역별 상이",
+        "contact": "호출 1666-0420; 담당 031-729-3723",
+        "notes": "서류, 84대, 시간, 진단서 기간 대조. 저장된 요약은 예약 전체 조건을 확정하지 않음"
+      }
+    },
+    {
+      "id": "seongnam-disabled-taxi-voucher",
+      "title": "장애인 택시바우처",
+      "content": "사업기간은 연중이다. 지원대상은 14세 이상 장애 정도가 심한 장애인(기존 1~3급)이다. 택시 이용요금의 75%를 지원하며 일 4회, 월 40회, 1회 1만원 한도다. 콜센터 접수 후 택시를 이용하고 금융형 장애인 복지카드로 결제하면 할인 청구된다. 거주지 동 행정복지센터에서 신청한다. 문의는 성남시 장애인복지과 031-729-2884이다.",
+      "category": "mobility_support",
+      "sourceId": "seongnam-city",
+      "sourceOrganizationName": "성남시청",
+      "originalUrl": "https://www.seongnam.go.kr/wf-pm020101/23019",
+      "publishedAt": null,
+      "updatedAt": null,
+      "fetchedAt": "2026-09-07T18:37:00+09:00",
+      "lastVerifiedAt": "2026-09-07T18:37:00+09:00",
+      "status": "active",
+      "freshness": {
+        "status": "unknown",
+        "evaluatedAt": "2026-09-07T18:37:00+09:00",
+        "reason": "현재 성남시청 복지사업 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다."
+      },
+      "relatedRegions": [
+        "성남시"
+      ],
+      "targetAudiences": [
+        "14세 이상 장애 정도가 심한 장애인"
+      ],
+      "searchTags": [
+        "장애인 택시바우처",
+        "택시요금 지원",
+        "장애인 복지카드",
+        "행정복지센터 신청"
+      ],
+      "review": {
+        "application": "거주지 동 행정복지센터; 콜센터 접수→택시 이용→금융형 복지카드 결제",
+        "requiredItems": "신청 구비서류는 원문 미명시(확인 필요). 금융형 복지카드는 결제 수단",
+        "location": "거주지 동 행정복지센터; 개별 주소 미명시",
+        "hours": "사업기간 연중; 창구·콜센터 운영시간 미명시",
+        "contact": "031-729-2884",
+        "notes": "14세 이상 심한 장애, 75%, 일4회·월40회·1회1만원 한도 일치"
+      }
+    },
+    {
+      "id": "seongnam-senior-tailored-care",
+      "title": "노인맞춤돌봄서비스",
+      "content": "사업기간은 연중이다. 대상은 65세 이상 기초생활수급자 또는 기초연금 수급자 가운데 독거·조손·고령부부 가구 등 돌봄이 필요하거나 신체·인지기능 저하로 돌봄이 필요한 노인이다. 욕구에 따라 안전·안부 확인, 병원·외출 동행 등 일상생활 지원, 건강운동·낙상예방 등 생활교육, 지역 서비스 연계를 제공한다. 주소지 동 행정복지센터 방문, 전화·우편·팩스·온라인 또는 읍·면·동 공무원 직권으로 신청할 수 있으며 제출서류는 신청서다. 신청 후 동 행정복지센터가 소득과 유사서비스 이용현황을 확인하고, 수행기관이 가정방문해 필요한 서비스를 조사한 뒤 시청이 대상자를 선정·승인한다. 문의는 성남시 노인복지과 031-729-2906이다.",
+      "category": "senior_welfare",
+      "sourceId": "seongnam-city",
+      "sourceOrganizationName": "성남시청",
+      "originalUrl": "https://www.seongnam.go.kr/wf-pm020101/22001",
+      "publishedAt": null,
+      "updatedAt": null,
+      "fetchedAt": "2026-09-07T18:37:00+09:00",
+      "lastVerifiedAt": "2026-09-07T18:37:00+09:00",
+      "status": "active",
+      "freshness": {
+        "status": "unknown",
+        "evaluatedAt": "2026-09-07T18:37:00+09:00",
+        "reason": "현재 성남시청 복지사업 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다."
+      },
+      "relatedRegions": [
+        "성남시"
+      ],
+      "targetAudiences": [
+        "돌봄이 필요한 65세 이상 기초생활수급자",
+        "돌봄이 필요한 65세 이상 기초연금 수급자"
+      ],
+      "searchTags": [
+        "노인맞춤돌봄서비스",
+        "어르신 돌봄",
+        "안부 확인",
+        "외출 동행",
+        "행정복지센터 신청"
+      ],
+      "review": {
+        "application": "주소지 동 행정복지센터 방문·전화·우편·팩스·온라인 또는 공무원 직권. 접수→소득/유사서비스 확인→가정조사→시 선정·승인",
+        "requiredItems": "신청서",
+        "location": "주소지 동 행정복지센터 및 대상자 가정; 개별 주소 미명시",
+        "hours": "사업기간 연중; 창구 운영시간 미명시",
+        "contact": "031-729-2906",
+        "notes": "65세 이상 수급자 가운데 돌봄 필요 조건 및 선정절차 일치"
+      }
+    },
+    {
+      "id": "seongnam-bundang-senior-welfare-center",
+      "title": "분당노인종합복지관",
+      "content": "분당구 정자동에 있는 노인종합복지관으로 교육 프로그램, 상담, 일자리 지원 등 어르신을 위한 종합적인 복지서비스를 제공한다. 주소는 경기 성남시 분당구 불정로 50이며, 연락처는 031-785-9200이다. 시설 홈페이지는 https://www.bdsenior.or.kr/ 이다.",
+      "category": "welfare_facility",
+      "sourceId": "seongnam-city",
+      "sourceOrganizationName": "성남시청",
+      "originalUrl": "https://www.seongnam.go.kr/wf-bbs05010303/403121",
+      "publishedAt": "2026-06-18",
+      "updatedAt": "2026-06-18",
+      "fetchedAt": "2026-09-07T18:37:00+09:00",
+      "lastVerifiedAt": "2026-09-07T18:37:00+09:00",
+      "status": "active",
+      "freshness": {
+        "status": "current",
+        "evaluatedAt": "2026-09-07T18:37:00+09:00",
+        "reason": "성남시청 시설정보 페이지의 등록일과 수정일이 2026-06-18로 표시되고 현재 페이지에서 직접 확인했다."
+      },
+      "relatedRegions": [
+        "성남시",
+        "분당구",
+        "정자동"
+      ],
+      "targetAudiences": [
+        "어르신",
+        "노인복지관 이용 희망자"
+      ],
+      "searchTags": [
+        "분당노인종합복지관",
+        "노인복지시설",
+        "어르신 교육",
+        "상담",
+        "일자리지원",
+        "분당구"
+      ],
+      "review": {
+        "application": "시설 이용 신청방법 미명시(확인 필요)",
+        "requiredItems": "미명시(확인 필요)",
+        "location": "경기 성남시 분당구 불정로 50",
+        "hours": "미명시(확인 필요)",
+        "contact": "031-785-9200",
+        "notes": "소개·주소·전화 및 2026-06-18 등록/수정일 일치. 시설 홈페이지 bdsenior.or.kr는 시청 게시 외부 링크이며 등록 근거 URL 25개에는 포함하지 않음"
+      }
+    },
+    {
+      "id": "seongnam-senior-ai-iot-health-care",
+      "title": "AI·IoT 기반 어르신 건강관리",
+      "content": "허약·만성질환 관리나 건강행태 개선이 필요한 65세 이상 성남시 어르신에게 스마트기술에 기반한 비대면 건강관리 서비스를 제공한다. AI·IoT 기술과 건강측정기기를 활용하며 대상자 등록, 1차 대면 참여, 6개월 건강관리, 2차 대면 사후평가 순으로 진행한다. 전화 또는 방문으로 신청하며 문의는 수정구보건소 031-729-3778, 중원구보건소 031-750-1413, 분당구보건소 031-729-3669다. 현재 등록한 공식 페이지에는 스마트폰 기종별 제한이나 중복 등록 조건이 명시되어 있지 않으므로 해당 조건은 담당 보건소에 확인해야 한다.",
+      "category": "senior_welfare",
+      "sourceId": "seongnam-city",
+      "sourceOrganizationName": "성남시청",
+      "originalUrl": "https://www.seongnam.go.kr/health/ht-pm020101/12062",
+      "publishedAt": null,
+      "updatedAt": null,
+      "fetchedAt": "2026-09-07T18:37:00+09:00",
+      "lastVerifiedAt": "2026-09-07T18:37:00+09:00",
+      "status": "active",
+      "freshness": {
+        "status": "unknown",
+        "evaluatedAt": "2026-09-07T18:37:00+09:00",
+        "reason": "현재 성남시 보건소 공식 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다."
+      },
+      "relatedRegions": [
+        "성남시"
+      ],
+      "targetAudiences": [
+        "건강관리가 필요한 65세 이상 성남시 어르신"
+      ],
+      "searchTags": [
+        "AI IoT",
+        "어르신 건강관리",
+        "만성질환",
+        "스마트폰"
+      ],
+      "review": {
+        "application": "전화 또는 방문. 등록→1차 대면→6개월 관리→사후평가",
+        "requiredItems": "미명시(스마트폰 기종·중복등록 제외도 확정하지 않음)",
+        "location": "각 구 보건소; 개별 주소 미명시",
+        "hours": "사업기간 연중; 창구 운영시간 미명시",
+        "contact": "수정031-729-3778 / 중원031-750-1413 / 분당031-729-3669",
+        "notes": "사업 대상 65세 이상 성남시 노인, 허약·만성질환·건강행태개선 개요 일치"
+      }
+    },
+    {
+      "id": "seongnam-disabled-assistive-devices",
+      "title": "장애인 보조기구·보장구 지원",
+      "content": "장애인 보조기구 지원대상은 국민기초생활수급자 및 차상위계층 중 등록장애인이다. 지원품목은 장애유형에 따라 욕창예방방석·매트리스, 음성유도장치, 음성시계, 영상확대시스템, 신호장치, 진동시계, 보행차 등으로 구분되며 각 동 행정복지센터에 신청한다. 보조기구 문의는 성남시 장애인복지과 031-729-2884다. 별도 보장구 지원은 해당 유형의 등록장애인을 대상으로 하며 건강보험·의료급여 등 구분에 따라 지원기준과 절차가 다르므로 추가 근거의 보장구 안내를 확인해야 한다. 보장구 페이지의 사업 본문 문의는 031-729-2885이며 하단 전화번호는 031-729-2884로 서로 다르게 표시되어 있어 담당 부서 확인이 필요하다.",
+      "category": "disability_welfare",
+      "sourceId": "seongnam-city",
+      "sourceOrganizationName": "성남시청",
+      "originalUrl": "https://www.seongnam.go.kr/wf-pm020101/23003",
+      "supportingSources": [
+        {
+          "title": "장애인 보장구 지원",
+          "url": "https://www.seongnam.go.kr/wf-pm020101/23004"
+        }
+      ],
+      "publishedAt": null,
+      "updatedAt": null,
+      "fetchedAt": "2026-09-07T18:37:00+09:00",
+      "lastVerifiedAt": "2026-09-07T18:37:00+09:00",
+      "status": "active",
+      "freshness": {
+        "status": "unknown",
+        "evaluatedAt": "2026-09-07T18:37:00+09:00",
+        "reason": "현재 성남시청 공식 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다."
+      },
+      "relatedRegions": [
+        "성남시"
+      ],
+      "targetAudiences": [
+        "보조기구: 국민기초생활수급자 및 차상위계층 중 등록장애인",
+        "보장구: 해당 보장구 유형의 등록장애인(건강보험·의료급여별 기준 확인 필요)"
+      ],
+      "searchTags": [
+        "장애인 보조기구",
+        "장애인 보장구",
+        "보행차",
+        "행정복지센터 신청"
+      ],
+      "review": {
+        "application": "보조기구: 동 행정복지센터→국민연금 적격심사 등. 보장구: 처방→신청·자격판단→구입→검수→청구→사후점검",
+        "requiredItems": "보조기구 구비서류 미명시. 보장구는 등록증·의료급여증 제시, 절차상 처방전·영수증·검수확인서",
+        "location": "보조기구 동 행정복지센터; 보장구 의료급여기관 등 절차별 상이",
+        "hours": "사업기간 연중; 창구 운영시간 미명시",
+        "contact": "보조기구031-729-2884. 보장구 본문2885/하단2884 상충",
+        "notes": "보조기구의 저소득 조건을 보장구 전체에 적용하던 targetAudiences 수정. 원문 연락처 충돌은 확인 필요 유지"
+      }
+    },
+    {
+      "id": "seongnam-developmental-disability-support",
+      "title": "발달장애인 지원",
+      "content": "발달장애인과 가족 관련 부모상담, 공공후견, 장애아동 발달재활서비스, 언어발달지원, 성인 주간활동, 청소년 방과후활동 서비스를 안내한다. 각 사업은 대상이 다르며 언어발달지원은 해당 장애가 있는 부모의 12세 미만 비장애아동 대상이다. 부모상담·발달재활·언어발달·주간활동·방과후활동은 주민등록상 거주지 동 행정복지센터에서 신청한다. 공공후견은 가정법원의 후견심판 절차가 있으므로 별도 공식 안내를 확인해야 한다. 문의는 성남시 장애인복지과 031-729-2885다.",
+      "category": "disability_welfare",
+      "sourceId": "seongnam-city",
+      "sourceOrganizationName": "성남시청",
+      "originalUrl": "https://www.seongnam.go.kr/wf-pm020101/23012",
+      "supportingSources": [
+        {
+          "title": "발달장애인 부모상담지원",
+          "url": "https://www.seongnam.go.kr/wf-pm020101/23008"
+        },
+        {
+          "title": "발달장애인 공공후견인 지원",
+          "url": "https://www.seongnam.go.kr/wf-pm020101/23009"
+        },
+        {
+          "title": "장애아동 발달재활서비스 지원",
+          "url": "https://www.seongnam.go.kr/wf-pm020101/23010"
+        },
+        {
+          "title": "언어발달지원",
+          "url": "https://www.seongnam.go.kr/wf-pm020101/23011"
+        },
+        {
+          "title": "청소년 발달장애인 방과후활동 서비스",
+          "url": "https://www.seongnam.go.kr/wf-pm020101/23013"
+        }
+      ],
+      "publishedAt": null,
+      "updatedAt": null,
+      "fetchedAt": "2026-09-07T18:37:00+09:00",
+      "lastVerifiedAt": "2026-09-07T18:37:00+09:00",
+      "status": "active",
+      "freshness": {
+        "status": "unknown",
+        "evaluatedAt": "2026-09-07T18:37:00+09:00",
+        "reason": "현재 성남시청 공식 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다."
+      },
+      "relatedRegions": [
+        "성남시"
+      ],
+      "targetAudiences": [
+        "발달장애인 및 부모·보호자(세부 사업별 대상 상이)",
+        "발달재활: 해당 장애아동 등 별도 대상 기준 확인 필요",
+        "언어발달: 해당 등록장애가 있는 부모의 12세 미만 비장애아동"
+      ],
+      "searchTags": [
+        "발달장애",
+        "부모상담",
+        "공공후견",
+        "주간활동",
+        "방과후활동"
+      ],
+      "review": {
+        "application": "부모상담·재활·언어·주간·방과후: 주민등록상 거주지 동 행정복지센터. 공공후견은 가정법원 심판 별도",
+        "requiredItems": "발달재활: 신분증·신청서·가구원 소득 증명 자료. 다른 사업 미명시",
+        "location": "거주지 동 행정복지센터; 주간활동 제공기관; 후견 가정법원 등 사업별 상이",
+        "hours": "사업기간 연중; 실제 기관 운영시간 미명시",
+        "contact": "031-729-2885",
+        "notes": "6개 원문 전수 검토. 대상은 사업별 상이하며 비장애아동 언어발달 대상 및 장애아동 재활 대상을 metadata에도 구분"
+      }
+    },
+    {
+      "id": "seongnam-disabled-medical-support",
+      "title": "장애인 보건·의료서비스 지원",
+      "content": "장애인의료비, 장애인등록 진단비, 장애검사비, 저소득세대 국민건강보험료, 저소득장애인 의료비, 장애인 대소변흡수용품 구입비 지원을 안내한다. 세부 사업별 지원대상과 범위가 다르다. 장애인의료비는 의료기관이 직접 신청하며 수급자 본인이 동 행정복지센터에 신청할 수도 있다. 진단비·검사비·저소득장애인 의료비·대소변흡수용품 지원은 각 동 행정복지센터에 신청한다. 성남시 장애인복지과 문의는 의료비 031-729-2885, 진단비·검사비 031-729-2884, 건강보험료·대소변흡수용품 031-729-2882다.",
+      "category": "disability_welfare",
+      "sourceId": "seongnam-city",
+      "sourceOrganizationName": "성남시청",
+      "originalUrl": "https://www.seongnam.go.kr/wf-pm020101/22018",
+      "supportingSources": [
+        {
+          "title": "장애인등록 진단비 지원",
+          "url": "https://www.seongnam.go.kr/wf-pm020101/22013"
+        },
+        {
+          "title": "장애검사비 지원",
+          "url": "https://www.seongnam.go.kr/wf-pm020101/22014"
+        },
+        {
+          "title": "저소득세대 국민건강보험료 지원",
+          "url": "https://www.seongnam.go.kr/wf-pm020101/22015"
+        },
+        {
+          "title": "저소득 장애인 의료비 지원",
+          "url": "https://www.seongnam.go.kr/wf-pm020101/22016"
+        },
+        {
+          "title": "장애인 대소변흡수용품 구입비 지원",
+          "url": "https://www.seongnam.go.kr/wf-pm020101/23001"
+        }
+      ],
+      "publishedAt": null,
+      "updatedAt": null,
+      "fetchedAt": "2026-09-07T18:37:00+09:00",
+      "lastVerifiedAt": "2026-09-07T18:37:00+09:00",
+      "status": "active",
+      "freshness": {
+        "status": "unknown",
+        "evaluatedAt": "2026-09-07T18:37:00+09:00",
+        "reason": "현재 성남시청 공식 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다."
+      },
+      "relatedRegions": [
+        "성남시"
+      ],
+      "targetAudiences": [
+        "의료비·진단비·검사비·흡수용품: 사업별 장애·소득·연령 등 기준 확인 필요",
+        "건강보험료: 성남시 지역가입자 중 최저보험료를 납부하는 등록장애인·한부모가족·만성질환세대"
+      ],
+      "searchTags": [
+        "장애인의료비",
+        "장애검사비",
+        "건강보험료 지원",
+        "대소변흡수용품"
+      ],
+      "review": {
+        "application": "의료비는 의료기관 직접 또는 수급자 동 신청. 진단·검사·저소득의료·흡수용품은 동 신청. 보험료는 매월 적합 여부 확인 후 대납",
+        "requiredItems": "의료비 진료시 장애인등록증·의료급여증 등 제시. 그 밖의 서류는 각 사업 원문/담당 확인",
+        "location": "의료기관 또는 동 행정복지센터 등 사업별 상이",
+        "hours": "사업기간 연중; 창구 운영시간 미명시",
+        "contact": "의료비031-729-2885 / 진단·검사031-729-2884 / 보험료·흡수용품031-729-2882",
+        "notes": "6개 원문 전수 검토. 보험료는 한부모·만성질환 세대도 포함하므로 등록장애인으로만 좁히던 metadata 수정"
+      }
+    },
+    {
+      "id": "seongnam-dementia-center",
+      "title": "중원구보건소 치매안심센터",
+      "content": "치매안심센터는 치매 관련 상담과 조기검진, 환자 등록관리, 보호자 지원, 치매예방교육과 쉼터 등을 연중 운영한다. 중원구보건소 치매안심센터의 일반 문의는 031-739-3030이다. 치매 또는 경도인지장애를 진단받지 않은 주민은 인지선별검사 안내를 확인할 수 있다. 검진은 전화 신청 후 신분증을 지참하여 방문하며, 중원구 조기검진 문의는 031-739-3051~4다. 검진 장소와 절차는 추가 근거의 조기검진 안내와 담당 센터에서 확인해야 한다.",
+      "category": "senior_welfare",
+      "sourceId": "seongnam-city",
+      "sourceOrganizationName": "성남시청",
+      "originalUrl": "https://www.seongnam.go.kr/health/ht-pm020101/7034",
+      "supportingSources": [
+        {
+          "title": "치매 조기검진 사업",
+          "url": "https://www.seongnam.go.kr/health/ht-pm020101/7027"
+        }
+      ],
+      "publishedAt": null,
+      "updatedAt": null,
+      "fetchedAt": "2026-09-07T18:37:00+09:00",
+      "lastVerifiedAt": "2026-09-07T18:37:00+09:00",
+      "status": "active",
+      "freshness": {
+        "status": "unknown",
+        "evaluatedAt": "2026-09-07T18:37:00+09:00",
+        "reason": "현재 성남시 보건소 공식 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다."
+      },
+      "relatedRegions": [
+        "성남시",
+        "중원구"
+      ],
+      "targetAudiences": [
+        "치매검진을 원하는 주민",
+        "치매환자와 가족"
+      ],
+      "searchTags": [
+        "치매안심센터",
+        "치매 조기검진",
+        "인지선별검사",
+        "치매 상담"
+      ],
+      "review": {
+        "application": "일반 상담 전화·방문; 조기검진 전화 신청 후 신분증 지참 방문",
+        "requiredItems": "조기검진 신분증",
+        "location": "선별·진단검사 치매안심센터, 감별검사 협약병원. 저장된 안내는 중원구 중심이며 가까운 시설을 단정하지 않음",
+        "hours": "사업기간 연중; 창구 운영시간 미명시",
+        "contact": "중원 일반031-739-3030 / 검진031-739-3051~4",
+        "notes": "일반운영/조기검진 2개 원문 일치. 현재 다른 구 전화번호도 원문에 있으나 등록 문서를 다른 구 시설로 매핑하지 않음"
+      }
+    },
+    {
+      "id": "seongnam-home-health-care",
+      "title": "맞춤형 방문건강관리",
+      "content": "방문 형태의 건강관리서비스가 필요한 성남시 지역주민을 위한 사업이다. 공식 안내 대상에는 65세 이상 노인, 의료요양 통합돌봄 연계 대상자, 기초생활보장수급자와 차상위계층, 독거노인·다문화가족·한부모가족, 관리되지 않은 만성질환자·장애인·재가암환자 등이 포함된다. 간호사가 가정 등을 방문하여 건강상태를 확인하고 개인 상태에 따라 만성질환 예방·관리, 일상과 계절·자연재난 안전관리, 허약 예방·관리를 제공한다. 전화·방문 상담 후 신청한다. 문의는 각 보건소 의료돌봄팀으로, 수정구 031-729-3778, 중원구 031-750-1413, 분당구 031-729-3669이며 추가 전화번호는 공식 원문에 안내되어 있다. 현재 등록한 공식 페이지에는 비용과 장기요양 등급별 제외 조건이 명시되어 있지 않아 담당 보건소 확인이 필요하다.",
+      "category": "welfare_support",
+      "sourceId": "seongnam-city",
+      "sourceOrganizationName": "성남시청",
+      "originalUrl": "https://www.seongnam.go.kr/health/ht-pm020101/12058",
+      "publishedAt": null,
+      "updatedAt": null,
+      "fetchedAt": "2026-09-07T18:37:00+09:00",
+      "lastVerifiedAt": "2026-09-07T18:37:00+09:00",
+      "status": "active",
+      "freshness": {
+        "status": "unknown",
+        "evaluatedAt": "2026-09-07T18:37:00+09:00",
+        "reason": "현재 성남시 보건소 공식 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다."
+      },
+      "relatedRegions": [
+        "성남시"
+      ],
+      "targetAudiences": [
+        "성남시 의료취약계층"
+      ],
+      "searchTags": [
+        "방문건강관리",
+        "간호사 방문",
+        "의료취약계층",
+        "건강상태 조사"
+      ],
+      "review": {
+        "application": "전화·방문 상담 후 신청",
+        "requiredItems": "미명시(확인 필요)",
+        "location": "대상자 가정 등 방문; 각 보건소 구체 주소 미명시",
+        "hours": "사업기간 연중; 실제 방문/창구 시간 미명시",
+        "contact": "의료돌봄팀 수정031-729-3778 / 중원031-750-1413 / 분당031-729-3669(원문 추가 번호 있음)",
+        "notes": "원문에 있는 구별 문의를 저장 내용에 보완. 무료·장기요양 등급 제외는 근거 없어 계속 확인 필요"
+      }
+    },
+    {
+      "id": "seongnam-unmanned-civil-service-kiosk",
+      "title": "무인민원발급기 이용 안내",
+      "content": "성남시 무인민원발급기에서는 주민등록 등·초본, 토지·지적·건축, 차량, 보건복지, 병적, 지방세, 가족관계등록, 교육, 국세청, 건강보험, 여권, 교통 관련 증명 등 다양한 민원서류를 발급할 수 있다. 설치 장소마다 이용시간과 법원 발급 증명서 지원 여부, 장애인 접근 여부가 다르므로 공식 페이지의 설치현황표를 확인해야 한다. 공식 페이지에는 총 63대의 설치 장소와 위치가 안내되어 있다.",
+      "category": "administrative_service",
+      "sourceId": "seongnam-city",
+      "sourceOrganizationName": "성남시청",
+      "originalUrl": "https://www.seongnam.go.kr/cn020403",
+      "publishedAt": null,
+      "updatedAt": null,
+      "fetchedAt": "2026-09-07T18:37:00+09:00",
+      "lastVerifiedAt": "2026-09-07T18:37:00+09:00",
+      "status": "active",
+      "freshness": {
+        "status": "unknown",
+        "evaluatedAt": "2026-09-07T18:37:00+09:00",
+        "reason": "현재 성남시청 공식 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다."
+      },
+      "relatedRegions": [
+        "성남시",
+        "수정구",
+        "중원구",
+        "분당구"
+      ],
+      "targetAudiences": [
+        "민원서류 발급이 필요한 시민",
+        "무인민원발급기 이용자"
+      ],
+      "searchTags": [
+        "무인민원발급기",
+        "민원서류",
+        "등본",
+        "초본",
+        "장애인 접근"
+      ],
+      "review": {
+        "application": "증명 종류→정보입력→필요한 경우 지문확인→부수→수수료→출력; 설치현황표 확인",
+        "requiredItems": "증명별 본인확인 상이. 종이 구비서류 일괄 목록 없음",
+        "location": "공식 설치표 63대. 저장 요약은 특정 기기 주소를 추론하지 않음",
+        "hours": "기기별24시간/05:30~24:00/09~18시 등 상이. 공식 표 확인",
+        "contact": "원문 시031-729-2376/수정5082/중원6082/분당7082(뒤 세 번호의 접두부031-729); 저장 요약에는 미등록",
+        "notes": "63대·발급 범주 일치. 서현청소년수련관 평일 시간이 원문 상단06시/설치표09시로 상충하므로 특정 시간 단정 불가"
+      }
+    },
+    {
+      "id": "seongnam-emergency-welfare-support",
+      "title": "긴급복지지원 사업",
+      "content": "갑작스러운 위기상황으로 생계유지가 어렵고 소득·재산 기준을 충족하는 저소득 가구에 생계비, 의료비, 교육비, 주거비, 사회복지시설 이용료 등을 단기적으로 지원한다. 주소득자의 소득 상실, 중한 질병·부상, 방임·유기·학대, 가족폭력·성폭력, 화재·자연재해, 실직·폐업 등 공식 페이지에 열거된 위기사유를 기준으로 확인한다. 현재 적용되는 소득·재산 기준과 지원액은 담당 부서 확인이 필요하며 지원 여부를 확정하지 않는다. 주소지 동 행정복지센터 맞춤형복지팀 또는 사회복지담당에 신청하며, 문의는 시 031-729-2894, 수정구 031-729-5551, 중원구 031-729-6552, 분당구 031-729-8052다.",
+      "category": "welfare_support",
+      "sourceId": "seongnam-city",
+      "sourceOrganizationName": "성남시청",
+      "originalUrl": "https://www.seongnam.go.kr/wf-pm020101/24011",
+      "publishedAt": null,
+      "updatedAt": null,
+      "fetchedAt": "2026-09-07T18:37:00+09:00",
+      "lastVerifiedAt": "2026-09-07T18:37:00+09:00",
+      "status": "active",
+      "freshness": {
+        "status": "unknown",
+        "evaluatedAt": "2026-09-07T18:37:00+09:00",
+        "reason": "현재 성남시청 공식 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다."
+      },
+      "relatedRegions": [
+        "성남시",
+        "수정구",
+        "중원구",
+        "분당구"
+      ],
+      "targetAudiences": [
+        "위기상황으로 생계유지가 어렵고 소득·재산 기준을 충족하는 저소득 가구"
+      ],
+      "searchTags": [
+        "긴급복지",
+        "생계비",
+        "의료비",
+        "주거비",
+        "위기가구"
+      ],
+      "review": {
+        "application": "동 행정복지센터 맞춤형복지팀/사회복지담당. 현장확인→지원결정·실시→사후조사→적정성 심사",
+        "requiredItems": "일괄 구비서류 목록 미명시(확인 필요)",
+        "location": "주소지 동 행정복지센터; 구체 주소 미명시",
+        "hours": "사업기간 연중; 창구 운영시간 미명시",
+        "contact": "시031-729-2894 / 수정031-729-5551 / 중원031-729-6552 / 분당031-729-8052",
+        "notes": "소득·재산 충족 및 단기 지원 조건 보완. 원문의 금액표는 적용 연도 미명시이므로 현재 금액으로 제공하지 않음"
+      }
+    },
+    {
+      "id": "seongnam-disabled-bus-fare-support",
+      "title": "장애인 버스요금 지원",
+      "content": "성남시에 거주하는 모든 등록장애인에게 장애 정도와 무관하게 버스 이용요금 실비를 지원한다. 환급 대상은 성남시를 경유하는 시내·마을·광역버스이며 공항버스와 시외버스는 제외한다. 성남시 자체 제작 교통카드를 발급받아 충전·사용한 뒤 분기별로 정산하며 사용 분기 다음 달 말일에 환급한다. 지원 한도는 1인당 연 23만원 이내, 분기 57,500원이다. 성남시 장애인 대중교통비 지원시스템에서 온라인 신청하거나, 복지카드와 입금 계좌를 지참하여 거주지 동 행정복지센터에 방문 신청한다. 문의는 성남시 장애인복지과 031-729-2884다.",
+      "category": "mobility_support",
+      "sourceId": "seongnam-city",
+      "sourceOrganizationName": "성남시청",
+      "originalUrl": "https://www.seongnam.go.kr/wf-pm020101/23020",
+      "publishedAt": null,
+      "updatedAt": null,
+      "fetchedAt": "2026-09-07T18:37:00+09:00",
+      "lastVerifiedAt": "2026-09-07T18:37:00+09:00",
+      "status": "active",
+      "freshness": {
+        "status": "unknown",
+        "evaluatedAt": "2026-09-07T18:37:00+09:00",
+        "reason": "공약 이행 PDF 대신 현재 성남시청 장애인 버스요금 지원 안내에서 내용을 확인했다. 게시일과 수정일은 표시되지 않아 정책 최신성을 확정하지 않는다."
+      },
+      "relatedRegions": [
+        "성남시"
+      ],
+      "targetAudiences": [
+        "성남시 거주 등록장애인"
+      ],
+      "searchTags": [
+        "장애인 버스요금",
+        "버스 교통비",
+        "충전형 교통카드",
+        "교통비 환급"
+      ],
+      "review": {
+        "application": "성남시 장애인 대중교통비 지원시스템 온라인 또는 거주지 동 행정복지센터 방문; 자체카드 충전사용→분기정산→다음달 말일 환급",
+        "requiredItems": "방문 신청시 복지카드·입금 계좌",
+        "location": "거주지 동 행정복지센터; 구체 주소 미명시",
+        "hours": "사업기간 연중; 창구 운영시간 미명시",
+        "contact": "031-729-2884",
+        "notes": "연23만원에 더해 분기57,500원, 공항·시외버스 제외, 신청/준비물/연락처 보완"
+      }
+    }
+  ]
+}

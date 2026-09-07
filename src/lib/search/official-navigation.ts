@@ -3,7 +3,7 @@ import { normalizeEvidence, type OriginalPage } from "./fetch-official-source";
 
 // Retrieval vocabulary only; no URL, eligibility, fee or contact is inferred here.
 export function retrievalTerms(query:string):string[] {
-  const aliases: [RegExp,string][]=[[/소파|가구|침대/,"대형폐기물"],[/보건증/,"건강진단결과서"],[/정장/,"면접"],[/버스/,"버스"],[/도서관|전자책/,"도서관"],[/담배|금연/,"금연"],[/청년/,"청년"],[/주차/,"주차"],[/공연/,"공연"]];
+  const aliases: [RegExp,string][]=[[/소파|가구|침대/,"대형폐기물"],[/보건증/,"건강진단결과서"],[/정장/,"면접"],[/버스/,"버스"],[/도서관|전자책/,"도서관"],[/전자책/,"전자도서관"],[/회원증/,"회원가입"],[/담배|금연/,"금연"],[/담배|금연/,"금연클리닉"],[/청년/,"청년"],[/주차/,"주차"],[/공연/,"공연"],[/준비물/,"구비서류"],[/전입/,"전입신고"],[/청년.*모임|공공.*공간/,"공간공유"]];
   const clean=query.replace(/성남시청|성남시|성남|시청|분당구|중원구|수정구|공식|안내|어떻게|어디서|어디|알려|방법|신청|하는|할수|수있|지원|처음|만드는|만들어|이용|싶어요|홈페이지|사이트|공공|공간|무료|시에서|알아|주세요/g," ");
   const stop=new Set(["에서","으로","어떤","무슨","있는","있어요","있나요","가능","가능해요","가요","가져가면","빌릴","만들","찾아줘","알려줘","할수","되나요","하는데","싶은데","어디로","버리는"]);
   const terms:string[]=(clean.match(/[가-힣]{2,}|[a-z]{3,}/gi)??[])
@@ -25,11 +25,53 @@ export function navigationScore(title:string,query:string):number {
   return score;
 }
 export function relevantNavigation(page:OriginalPage,query:string) {
-  return (page.navigation??[]).map(l=>({...l,score:navigationScore(l.title,query)})).filter(l=>l.score>=6)
+  return (page.navigation??[]).map(l=>({...l,score:navigationScore(l.title,query)
+    + (/시청/.test(query)&&/주차|대중교통|가는/.test(query)&&/오시는\s*길/.test(l.title)?30:0)
+    + (/정장/.test(query)&&/일자리센터/.test(l.title)?20:0)
+    + (/거주자우선/.test(query)&&/도시개발공사/.test(l.title)?30:0)
+    + (/여권/.test(query)&&/준비물|서류/.test(query)&&/일반여권|여권사무/.test(l.title)?30:0)
+    + (/대형폐기물/.test(page.title)&&/소파|폐기물|가구/.test(query)&&/신청안내|신청절차/.test(l.title)?30:0)
+    + (/청년/.test(query)&&/공간|모임/.test(query)&&/공간공유|센터소개/.test(l.title)?30:0)
+    + (/도서관/.test(query)&&/회원/.test(query)&&/회원가입/.test(l.title)?30:0)
+    + (/담배|금연/.test(query)&&/보건소/.test(l.title)?20:0)
+    + (/문화재단/.test(query)&&/예매안내/.test(l.title)?40:0)
+    + (/거주자우선/.test(query)&&/거주자/.test(l.title)&&/이용안내/.test(l.title)?50:0)
+    + (/거주자/.test(page.title)&&/거주자/.test(query)&&/이용안내/.test(l.title)&&new URL(l.url).pathname.split("/")[1]===new URL(page.url).pathname.split("/")[1]?50:0)
+  })).filter(l=>l.score>=6)
     .sort((a,b)=>b.score-a.score||a.title.length-b.title.length).slice(0,3);
+}
+/** Relevance needs the requested detail, not merely a shared subject word. */
+export function matchesRequestedSubject(text:string,query:string):boolean {
+  // A venue's access directions do not answer a citywide transit question.
+  const generalBus=/버스/.test(query)&&!/시청|역에서|역까지|도서관|보건소|센터|박람회|행사|공연|정장|청년|장애|휠체어/.test(query);
+  if(generalBus&&/채용|취업|박람회|면접|행사장/.test(text))return false;
+  // Temporary pandemic membership procedures are not ordinary first-time registration.
+  if(/회원증|회원가입/.test(query)&&!/한시|임시|코로나|2020/.test(query)&&/한시적|임시휴관|코로나19/.test(text))return false;
+  // A performance venue mentioned in a career lecture is not a performance program.
+  if(/공연/.test(query)&&!/특강|진로/.test(query)&&! /공연|음악회|콘서트|연극|뮤지컬/.test(text.replace(/공연장/g,"")))return false;
+  return true;
+}
+export function answersRequestedDetail(text:string,query:string):boolean {
+  if(!matchesRequestedSubject(text,query))return false;
+  if(navigationScore(text,query)<6)return false;
+  if(/준비물|구비서류/.test(query)&&!(/신분증|사진/.test(text)&&/서류|신청서/.test(text)))return false;
+  if(/청년/.test(query)&&/모임|공공\s*공간/.test(query)&&!(/공간|센터/.test(text)&&/[가-힣]+(?:대로|로|길)\s*\d|역\s*\d번\s*출구|대관\s*(신청|방법)/.test(text)))return false;
+  if(/시청/.test(query)&&/주차/.test(query)&&!(/시청/.test(text)&&/주차요금|무료|운영시간/.test(text)))return false;
+  if(/전자책/.test(query)&&!(/전자책|전자도서관/.test(text)&&/대출|로그인|회원/.test(text)))return false;
+  if(/회원증/.test(query)&&!(/회원증.{0,20}발급|회원가입\s*안내|정회원\s*가입/.test(text)&&/신분증|가입/.test(text)))return false;
+  if(/무료\s*상담|담배/.test(query)&&!(/금연/.test(text)&&/상담/.test(text)&&/무료|비용/.test(text)))return false;
+  if(/전입신고/.test(query)&&!(/전입신고/.test(text)&&/온라인|인터넷|정부24/.test(text)))return false;
+  if(/판교역/.test(query)&&/시청/.test(query)&&!(/판교역/.test(text)&&/시청/.test(text)&&/버스|지하철/.test(text)))return false;
+  if(/거주자우선/.test(query)&&!(/거주자.{0,3}(전용|우선)|거주자주차/.test(text)&&/신청\s*및\s*이용자격|신청방법|신청절차|접수방법/.test(text)))return false;
+  if(/문화재단/.test(query)&&!(/문화재단|성남아트센터/.test(text)&&/예매/.test(text)))return false;
+  if(/민원\s*넣/.test(query)&&!/성남시에 바란다|국민신문고|민원상담/.test(text))return false;
+  if(/음식물/.test(query)&&!(/음식물/.test(text)&&/배출|봉투/.test(text)))return false;
+  return true;
 }
 export function relevantOriginalSection(page:OriginalPage,query:string):string|undefined {
   const sections=page.sections??[];
+  const combined=sections.join(" ");
+  if(/준비물|구비서류/.test(query)&&combined.length<=6000&&answersRequestedDetail(combined,query))return combined;
   return [...sections].map(value=>({value,score:navigationScore(normalizeEvidence(value),query)}))
-    .filter(s=>s.score>=6).sort((a,b)=>b.score-a.score)[0]?.value;
+    .filter(s=>s.score>=6&&answersRequestedDetail(s.value,query)).sort((a,b)=>b.score-a.score)[0]?.value;
 }

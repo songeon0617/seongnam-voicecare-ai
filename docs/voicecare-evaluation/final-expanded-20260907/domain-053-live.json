@@ -1,0 +1,137 @@
+{
+  "id": "domain-053",
+  "question": "담배 끊고 싶은데 무료 상담 있어요",
+  "at": "2026-09-07T09:52:45.521Z",
+  "ms": 8799,
+  "schemaPass": true,
+  "response": {
+    "query": "담배 끊고 싶은데 무료 상담 있어요",
+    "kind": "partial_answer",
+    "results": [],
+    "hasResults": false,
+    "answer": {
+      "userQuestion": "담배 끊고 싶은데 무료 상담 있어요",
+      "title": "확인한 공식 원문과 남은 확인 사항",
+      "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+      "steps": [],
+      "nextAction": null,
+      "sources": [],
+      "verification": {
+        "status": "insufficient_data",
+        "checkedAt": null,
+        "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+      }
+    },
+    "officialSearch": {
+      "status": "partial",
+      "evidence": [
+        {
+          "id": "web-1",
+          "url": "https://www.seongnam.go.kr/health/ht-pm020101/9016",
+          "title": "보건사업 - 보건사업 - 성남시 보건소",
+          "publisher": "성남시청",
+          "region": "성남시",
+          "checkedAt": "2026-09-07T09:52:45.520Z",
+          "publishedAt": null,
+          "updatedAt": null,
+          "applicationPeriod": null,
+          "effectivePeriod": null,
+          "excerpt": "금연클리닉 사업개요 사업 개요 금연을 희망하는 시민에게 체계적인 금연상담과 보조제 지원, 치료 연계를 통해 금연을 돕고 성공 시 기념품을 제공하는 서비스 사업 기간 상시 사업 대상 금연을 희망하는 흡연자 사업 내용 운영내용 등록자를 대상으로 체계적인 금연상담(행동요법,금단증상 극복법 등) 지원내용 • 금연보조제 지급(8~12주 무료 지원) • 금연침 및 금연처방 연계 • 6개월 이상 금연성공자에게 기념품 제공 추진방법 보건소 운영시간 내 보건소 방문 등록 문의처 • 수정구보건소 금연클리닉 031-729-3887~3889 • 중원구보건소 금연클리닉 031-729-3915,3918 • 분당구보건소 금연클리닉 031-729-3975,4339,4340,4206 담당부서 수정구보건소>건강증진과>건강증진팀 전화번호 031-729-4048 목록",
+          "collection": "openai_web_search+https_original",
+          "freshness": "unknown",
+          "fromCache": false
+        }
+      ],
+      "links": [
+        {
+          "url": "https://www.seongnam.go.kr/health/ht-pm020101/9016",
+          "title": "보건사업 - 보건사업 - 성남시 보건소"
+        }
+      ],
+      "usage": {
+        "model": "gpt-5.6-terra",
+        "inputTokens": 13000,
+        "outputTokens": 123,
+        "toolCalls": 1,
+        "estimatedUsd": 0.029231,
+        "durationMs": 8779
+      },
+      "diagnostics": {
+        "phase": "complete",
+        "budget": {
+          "aiCalls": 1,
+          "searchCalls": 1,
+          "originalFetches": 12,
+          "maxOriginalFetches": 16
+        },
+        "discovered": 6,
+        "rejected": 11,
+        "findings": 1,
+        "pages": [
+          {
+            "url": "https://www.seongnam.go.kr/city/1000098/10299/contents.do",
+            "status": "failed",
+            "errorCode": "source_http_404"
+          },
+          {
+            "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=135&fboard=board_jobfair2",
+            "status": "fetched",
+            "textLength": 901,
+            "sections": 1,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://www.seongnam.go.kr/health/1002309/11514/contents.do",
+            "status": "failed",
+            "errorCode": "source_http_404"
+          },
+          {
+            "url": "https://www.seongnam.go.kr/health/index",
+            "status": "fetched",
+            "textLength": 796,
+            "sections": 0,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://www.seongnam.go.kr/apply/integration/step1?instiCode=INST_CITY_01&facilityId=I0588",
+            "status": "fetched",
+            "textLength": 137,
+            "sections": 0,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://www.seongnam.go.kr/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&arrHlthBizTypeCd=&arrWlfCrrCyclCd=&arrWlfHshdSttnCd=&srchWlfPvsnTypeCd=&srchType=&srchText=%EA%B8%88%EC%97%B0%ED%81%B4%EB%A6%AC%EB%8B%89&cntPerPage=9",
+            "status": "fetched",
+            "textLength": 84,
+            "sections": 1,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://www.seongnam.go.kr/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&srchWlfPvsnTypeCd=&srchType=1&srchText=%EA%B8%88%EC%97%B0%ED%81%B4%EB%A6%AC%EB%8B%89",
+            "status": "fetched",
+            "textLength": 84,
+            "sections": 1,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://www.seongnam.go.kr/health/ht-pm020101/9016",
+            "status": "fetched",
+            "textLength": 414,
+            "sections": 1,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://www.seongnam.go.kr/health/ht-pm020101/9020",
+            "status": "fetched",
+            "textLength": 311,
+            "sections": 1,
+            "omittedSections": 0
+          }
+        ]
+      },
+      "region": "성남시",
+      "searched": true
+    }
+  },
+  "semanticReview": "PENDING"
+}

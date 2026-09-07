@@ -1,0 +1,48 @@
+{
+  "url": "https://waste.isdc.co.kr/main/index.php",
+  "title": "성남시 대형폐기물 인터넷 배출신고",
+  "paragraphs": [],
+  "sections": [],
+  "navigation": [
+    {
+      "url": "https://waste.isdc.co.kr/",
+      "title": "성남시 대형폐기물 인터넷 배출신고"
+    },
+    {
+      "url": "https://waste.isdc.co.kr/contents/content.php?cIdx=1",
+      "title": "배출신청"
+    },
+    {
+      "url": "https://waste.isdc.co.kr/contents/content.php?cIdx=2",
+      "title": "신청내역조회"
+    },
+    {
+      "url": "https://waste.isdc.co.kr/contents/content.php?cIdx=3",
+      "title": "신청안내"
+    },
+    {
+      "url": "https://waste.isdc.co.kr/contents/content.php?cIdx=4",
+      "title": "처리비용안내"
+    },
+    {
+      "url": "https://waste.isdc.co.kr/contents/content.php?cIdx=5",
+      "title": "공지사항"
+    },
+    {
+      "url": "https://waste.isdc.co.kr/contents/content.php?cIdx=5&fboard=board_notice&actionMode=list",
+      "title": "더보기"
+    },
+    {
+      "url": "https://waste.isdc.co.kr/contents/content.php?cIdx=6",
+      "title": "개인정보처리방침"
+    },
+    {
+      "url": "https://waste.isdc.co.kr/contents/content.php?cIdx=7",
+      "title": "이메일무단수집거부"
+    }
+  ],
+  "textLength": 547,
+  "omittedSections": 0,
+  "checkedAt": "2026-09-06T16:25:54.784Z",
+  "fromCache": false
+}

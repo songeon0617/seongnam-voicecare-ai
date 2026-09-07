@@ -1,0 +1,256 @@
+{
+  "url": "https://job.seongnam.go.kr/",
+  "title": "성남시일자리센터",
+  "paragraphs": [],
+  "sections": [],
+  "navigation": [
+    {
+      "url": "https://job.seongnam.go.kr/",
+      "title": "성남시 일자리센터"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=1",
+      "title": "일자리"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=2",
+      "title": "공공일자리정보"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=109",
+      "title": "구직신청"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=3",
+      "title": "구인신청"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=6",
+      "title": "프로그램안내"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=8",
+      "title": "면접정장대여"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=10",
+      "title": "구직자진로성향검사"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=126&fboard=board_aivr",
+      "title": "커리어/모의면접 신청"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=137&fboard=board_jobfair4",
+      "title": "취업특강신청"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=88",
+      "title": "채용행사"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=115",
+      "title": "2026 성남시 채용박람회"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=117&fboard=board_meeting1",
+      "title": "구인•구직자 만남의 날"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=116&fboard=board_interview1",
+      "title": "상설면접"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=16",
+      "title": "취업준비정보"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=17",
+      "title": "취업뉴스"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=20",
+      "title": "취업정보사이트"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=22",
+      "title": "커뮤니티"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=123&fboard=board_promotion",
+      "title": "홍보마당"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=23&fboard=board_gallery",
+      "title": "갤러리"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=25",
+      "title": "센터소개"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=26",
+      "title": "조직도"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=27",
+      "title": "사업안내"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=28",
+      "title": "관련사이트"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=29",
+      "title": "오시는길"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=76",
+      "title": "면접정장대여"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=105",
+      "title": "교육프로그램"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=119",
+      "title": "구인기업소개"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=126",
+      "title": "커리어/모의면접신청"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/seongnam.do?cIdx=112",
+      "title": "공공일자리정보"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=113",
+      "title": "내 주변 일자리정보"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=122",
+      "title": "이번주 채용정보"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=129",
+      "title": "워크넷 채용정보"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=130",
+      "title": "내 주변 일자리정보"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=131&fboard=board_jobinfo",
+      "title": "주간구인정보(워크넷)"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=112",
+      "title": "성남시 채용공고"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=66",
+      "title": "산하기관 채용공고"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=67",
+      "title": "직접 일자리정보"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=77&fboard=board_suit",
+      "title": "드림슈트대여 신청"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=90",
+      "title": "행사안내"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=91&fboard=board_schedule",
+      "title": "행사일정"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=132",
+      "title": "행사안내"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=133&fboard=board_jobfair3",
+      "title": "참여기업"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=134&fboard=board_jobfair1",
+      "title": "취업특강"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=135&fboard=board_jobfair2",
+      "title": "컨설팅존"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=139&fboard=board_jobfair5",
+      "title": "현직자멘토링존"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=140",
+      "title": "체험존"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=136",
+      "title": "부대행사"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=50",
+      "title": "직업목표설정"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=124&fboard=board_pds",
+      "title": "취업자료실"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=52",
+      "title": "구인기업 지원"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=53",
+      "title": "구직자 지원"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=54",
+      "title": "취업박람회 운영"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=123&fboard=board_promotion&actionMode=view&b_num=54",
+      "title": "[서강-판교 디지털혁신캠퍼스] SoC설계코어드라이브과정 훈련생 모집(~9/30)"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=123&fboard=board_promotion&actionMode=view&b_num=53",
+      "title": "2026년 제13회 행복한마음축제 2026-08-05"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=123&fboard=board_promotion&actionMode=view&b_num=52",
+      "title": "성남시에 거주하는 취업준비생 「면접준비 지원사업」신청자 모집 공고 2026-07-31"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=123&fboard=board_promotion&actionMode=view&b_num=50",
+      "title": "[서강대 판교캠퍼스] SoC설계코어드라이브과정 2기 훈련생 모집 안내 2026-07-14"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=82",
+      "title": "구직자성향검사 진로성향 진단으로 나의 강점을 찾고 가능성을 확인해 보세요."
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/recruit.do?cIdx=120",
+      "title": "기업전용 인재정보검색"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=70",
+      "title": "사업안내"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=30",
+      "title": "개인정보처리방침"
+    }
+  ],
+  "textLength": 3631,
+  "omittedSections": 0,
+  "checkedAt": "2026-09-06T16:25:50.023Z",
+  "fromCache": false
+}

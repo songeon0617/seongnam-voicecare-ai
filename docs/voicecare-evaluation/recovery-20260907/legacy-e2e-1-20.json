@@ -1,0 +1,509 @@
+{
+  "generatedAt": "2026-09-06T16:50:00.817Z",
+  "baseUrl": "http://127.0.0.1:3101",
+  "from": 1,
+  "to": 20,
+  "totalDefinedCases": 61,
+  "results": [
+    {
+      "id": "special-name",
+      "group": "특별교통수단 운영",
+      "question": "특별교통수단 운영 신청에 필요한 서류가 뭐예요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-special-transportation"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-special-transportation"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "특별교통수단 운영",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "special-colloquial",
+      "group": "특별교통수단 운영",
+      "question": "휠체어 타는데 부를 수 있는 차 있어요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-special-transportation"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-special-transportation"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "특별교통수단 운영",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "special-situation",
+      "group": "특별교통수단 운영",
+      "question": "버스를 타기 어려운 휠체어 이용자가 이동할 차량이 필요해요.",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-special-transportation"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-special-transportation"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "특별교통수단 운영",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "taxi-name",
+      "group": "장애인 택시바우처",
+      "question": "장애인 택시바우처 신청하려면 어떻게 해요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-disabled-taxi-voucher"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-disabled-taxi-voucher"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "장애인 택시바우처",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "taxi-colloquial",
+      "group": "장애인 택시바우처",
+      "question": "장애인이 택시비 할인받는 거 있어요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-disabled-taxi-voucher"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-disabled-taxi-voucher"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "장애인 택시바우처",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "taxi-situation",
+      "group": "장애인 택시바우처",
+      "question": "장애가 심한데 택시 탈 때 요금 지원받고 싶어요.",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-disabled-taxi-voucher"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-disabled-taxi-voucher"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "장애인 택시바우처",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "care-name",
+      "group": "노인맞춤돌봄서비스",
+      "question": "노인맞춤돌봄서비스는 어디서 신청하나요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-senior-tailored-care"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-senior-tailored-care"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "노인맞춤돌봄서비스",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "care-colloquial",
+      "group": "노인맞춤돌봄서비스",
+      "question": "혼자 사는 어머니 안부를 챙겨주는 도움 있나요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-senior-tailored-care"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-senior-tailored-care"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "노인맞춤돌봄서비스",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "care-situation",
+      "group": "노인맞춤돌봄서비스",
+      "question": "70세 기초연금 수급자인 아버지가 병원 갈 때 동행이 필요해요.",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-senior-tailored-care"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-senior-tailored-care"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "노인맞춤돌봄서비스",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "center-name",
+      "group": "분당노인종합복지관",
+      "question": "분당노인종합복지관 주소와 연락처 알려주세요.",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-bundang-senior-welfare-center"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-bundang-senior-welfare-center"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "분당노인종합복지관",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "center-colloquial",
+      "group": "분당노인종합복지관",
+      "question": "정자동에 어르신 교육이랑 상담하는 복지관 있어요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-bundang-senior-welfare-center"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-bundang-senior-welfare-center"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "분당노인종합복지관",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "center-situation",
+      "group": "분당노인종합복지관",
+      "question": "부모님이 분당에서 프로그램에 참여할 만한 노인복지시설을 찾고 있어요.",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-bundang-senior-welfare-center"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-bundang-senior-welfare-center"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "분당노인종합복지관",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "iot-name",
+      "group": "AI·IoT 기반 어르신 건강관리",
+      "question": "AI·IoT 기반 어르신 건강관리 신청 대상이 누구예요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-senior-ai-iot-health-care"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-senior-ai-iot-health-care"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "AI·IoT 기반 어르신 건강관리",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "iot-colloquial",
+      "group": "AI·IoT 기반 어르신 건강관리",
+      "question": "스마트폰으로 어르신 건강 챙겨주는 서비스 있나요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-senior-ai-iot-health-care"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-senior-ai-iot-health-care"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "AI·IoT 기반 어르신 건강관리",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "iot-situation",
+      "group": "AI·IoT 기반 어르신 건강관리",
+      "question": "70세이고 만성질환이 있는데 앱이랑 스마트기기로 건강관리를 받고 싶어요.",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-senior-ai-iot-health-care"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-senior-ai-iot-health-care"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "AI·IoT 기반 어르신 건강관리",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "device-name",
+      "group": "장애인 보조기구·보장구 지원",
+      "question": "장애인 보조기구·보장구 지원은 어디서 신청해요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-disabled-assistive-devices"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-disabled-assistive-devices"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "장애인 보조기구·보장구 지원",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "device-colloquial",
+      "group": "장애인 보조기구·보장구 지원",
+      "question": "장애인 보행차 지원받을 수 있나요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-disabled-assistive-devices"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-disabled-assistive-devices"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "장애인 보조기구·보장구 지원",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "device-situation",
+      "group": "장애인 보조기구·보장구 지원",
+      "question": "차상위 등록장애인인데 욕창 방석을 마련할 때 도움받을 수 있을까요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-disabled-assistive-devices"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-disabled-assistive-devices"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "장애인 보조기구·보장구 지원",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "developmental-name",
+      "group": "발달장애인 지원",
+      "question": "발달장애인 지원 서비스 신청 방법을 알려주세요.",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-developmental-disability-support"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-developmental-disability-support"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "발달장애인 지원",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    },
+    {
+      "id": "developmental-colloquial",
+      "group": "발달장애인 지원",
+      "question": "발달장애 자녀가 방과 후에 도움받을 곳이 있나요?",
+      "expectedRoute": "DIRECT",
+      "expectedServiceIds": [
+        "seongnam-developmental-disability-support"
+      ],
+      "httpStatus": 200,
+      "actualRoute": "DIRECT",
+      "actualServiceIds": [
+        "seongnam-developmental-disability-support"
+      ],
+      "actualClarificationId": null,
+      "routingSource": "keyword",
+      "routingReason": null,
+      "answerTitle": "발달장애인 지원",
+      "hallucination": false,
+      "unsupportedInformation": false,
+      "wrongRoute": false,
+      "wrongService": false,
+      "wrongClarification": false,
+      "pass": true,
+      "failureReason": ""
+    }
+  ]
+}

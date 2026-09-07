@@ -32,22 +32,23 @@ export function extractPage(html:string): { title:string; paragraphs:string[] } 
   const paragraphs=complete.length>=20&&complete.length<=900?[complete]:[];
   return {title,paragraphs};
 }
-export interface OriginalPage {url:string;title:string;paragraphs:string[];sections?:string[];navigation?:{url:string;title:string}[];textLength?:number;omittedSections?:number;checkedAt:string;fromCache:boolean}
+export interface OriginalPage {url:string;title:string;paragraphs:string[];sections?:string[];navigation?:{url:string;title:string}[];textLength?:number;omittedSections?:number;checkedAt:string;fromCache:boolean;redirectCount?:number}
 const cache=new Map<string,{expires:number;page:OriginalPage}>();
 /** DNS is checked and pinned into the HTTPS socket; every redirect is revalidated. */
-export async function fetchOfficialSource(input:string, signal:AbortSignal):Promise<OriginalPage> {
+export async function fetchOfficialSource(input:string, signal:AbortSignal, capture?: (url:string,html:string)=>void, chargeRedirect?:()=>void):Promise<OriginalPage> {
   let current=officialUrl(input);
   if (!current) throw new Error("source_unverified");
   const cached=cache.get(current);
-  if(cached&&cached.expires>Date.now()) return {...cached.page,fromCache:true};
+  if(!capture&&cached&&cached.expires>Date.now()) return {...cached.page,fromCache:true};
   for(let hop=0;hop<3;hop++) {
+    if(hop>0)chargeRedirect?.();
     if(signal.aborted) throw new Error("timeout");
     const url=new URL(current);
     const addresses=await abortable(lookup(url.hostname,{all:true}),signal);
     if(!addresses.length||addresses.some(x=>!publicAddress(x.address))) throw new Error("source_unverified");
     const pinned=addresses[0];
     const response=await new Promise<{status:number;location?:string;html:string}>((resolve,reject)=>{
-      const req=request(url,{signal,timeout:5000,ca:officialSourceCa(),rejectUnauthorized:true,lookup:(_host,options,callback)=>{
+      const req=request(url,{signal,timeout:5000,ca:officialSourceCa(Date.now(),url.hostname),rejectUnauthorized:true,lookup:(_host,options,callback)=>{
         if(options.all) callback(null,[pinned]); else callback(null,pinned.address,pinned.family);
       },headers:{Accept:"text/html","User-Agent":"VoiceCare/1.0 official-evidence-verification"}},res=>{
         if(res.statusCode&&res.statusCode>=300&&res.statusCode<400) {res.resume();resolve({status:res.statusCode,location:res.headers.location,html:""});return;}
@@ -67,8 +68,9 @@ export async function fetchOfficialSource(input:string, signal:AbortSignal):Prom
       if(!current) throw new Error("source_unverified");
       continue;
     }
-    const parsed=extractOfficialDocument(response.html);
-    const page={url:current,...parsed,checkedAt:new Date().toISOString(),fromCache:false};
+    capture?.(current,response.html);
+    const parsed=extractOfficialDocument(response.html,current);
+    const page={url:current,...parsed,checkedAt:new Date().toISOString(),fromCache:false,redirectCount:hop};
     // Portal home/sitemap widgets and navigation are discovery, not policy evidence.
     if(isNavigationSource(current)){
       page.paragraphs=[];page.sections=[];
@@ -85,5 +87,5 @@ export async function fetchOfficialSource(input:string, signal:AbortSignal):Prom
 
 export function isNavigationSource(url:string):boolean {
   const path=new URL(url).pathname;
-  return /\/(?:index|sitemap)\/?$/.test(path)||path==="/"||path.startsWith("/apply/");
+  return /\/(?:index|sitemap)(?:\.(?:do|php))?\/?$/i.test(path)||path==="/"||path.startsWith("/apply/");
 }

@@ -3,7 +3,7 @@ import { CLARIFICATIONS, isClarificationId, type ClarificationId } from "@/types
 import { SAFETY_GUIDANCE, type PublicInformationSafetyResponse, type SafetyCategory } from "@/types/public-information-safety";
 import { SEARCH_FAILURES, type OfficialSearchPresentation } from "@/types/official-search";
 import type { PublicInformationSearchResponse } from "@/types/public-information-search";
-import { officialUrl } from "./official-source-policy";
+import { officialUrl, officialPublisher } from "./official-source-policy";
 import { SEARCH_MESSAGES } from "@/types/search-messages";
 
 type RecordValue = Record<string, unknown>;
@@ -64,7 +64,7 @@ export function readSearchAnswer(value: unknown): {
       const safeUrl=(v:unknown)=>string(v)&&officialUrl(v)===v;
       const links=official.links;
       if(!official.links.every(link=>record(link)&&safeUrl(link.url)&&string(link.title)))return null;
-      if(!official.evidence.every(e=>record(e)&&string(e.id)&&safeUrl(e.url)&&string(e.title)&&e.publisher==="성남시청"&&e.region==="성남시"&&
+      if(!official.evidence.every(e=>record(e)&&string(e.id)&&safeUrl(e.url)&&string(e.title)&&e.publisher===officialPublisher(String(e.url))&&e.region==="성남시"&&
         string(e.excerpt)&&e.excerpt.length>=20&&e.excerpt.length<=6000&&string(e.checkedAt)&&date(e.checkedAt)&&date(e.publishedAt)&&date(e.updatedAt)&&
         e.applicationPeriod===null&&e.effectivePeriod===null&&e.freshness==="unknown"&&typeof e.fromCache==="boolean"&&e.collection==="openai_web_search+https_original"&&
         links.some(link=>record(link)&&link.url===e.url)))return null;

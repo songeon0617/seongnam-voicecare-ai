@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="Referrer" content="origin">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="청년이봄은 청년의 활동을 지원하고 청년의 능동적인 참여를 보장함으로써 청년의 삶의 질 향상을 위한 통합서비스를 제공하는 공간입니다.">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="성남시 청년지원센터 청년이봄">
+	<meta property="og:description" content="청년이봄은 청년의 활동을 지원하고 청년의 능동적인 참여를 보장함으로써 청년의 삶의 질 향상을 위한 통합서비스를 제공하는 공간입니다.">
+	<meta property="og:url" content="https://www.snspring.or.kr/main.do">
+	<title>성남시 청년지원센터 :: 청년이 봄</title>
+	<link rel="shortcut icon" href="/img/favicon_16.ico">
+	<link rel="stylesheet" type="text/css" href="/css/slick.css" />
+	<link rel="stylesheet" type="text/css" href="/css/slick-theme.css" />
+	<link rel="stylesheet" type="text/css" href="/css/common.css" />
+	<link type="text/css" rel="stylesheet" href="/css/magnific-popup.css" />
+	<script src="/js/jquery-1.12.4.min.js"></script>
+	<script src="/js/slick.min.js"></script>
+	<script src="/js/ui.js"></script>
+	<script src="/js/jquery.magnific-popup.min.js"></script>
+	<script src="/js/public.js"></script>
+</head>
+<body>
+
+<div id="wrap">
+	<!-- header_wrap -->
+	<div id="header_wrap">
+		<div class="inner">
+			<h1 class="logo"><a href="/main.do"><img src="/img/logo_header.svg" alt="성남시 청년지원센터 청년이 봄" /></a></h1>
+			<div class="menu_wrap">
+				<ul class="gnb_menu">
+					<li class="menu_home">
+						<a href="/main.do" class="depth01">홈으로</a>
+					</li>
+					<li>
+						<a href="javascript:void(0);" class="depth01">센터소개</a>
+						<ul class="depth02">
+							<li><a href="introduceCenter.do">센터소개</a></li>
+							<li><a href="introduceEmployee.do">함께하는 사람들</a></li>
+							<li><a href="introducePartner.do">함께하는 기관</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:void(0);" class="depth01">프로그램</a>
+						<ul class="depth02">
+							<li><a href="programList.do">전체</a></li>
+							<li><a href="programList.do?searchCategory=해봄">해봄</a></li>
+							<li><a href="programList.do?searchCategory=즐겨봄">즐겨봄</a></li>
+							<li><a href="programList.do?searchCategory=만나봄">만나봄</a></li>
+							<li><a href="programList.do?searchCategory=누려봄">누려봄</a></li>
+							<li><a href="spaceSharing.do">공간공유</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:void(0);" class="depth01">청년INFO</a>
+						<ul class="depth02">
+							<li><a href="supportList.do">청년지원 서비스</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:void(0);" class="depth01">센터소식</a>
+						<ul class="depth02">
+							<li><a href="noticeList.do">공지사항</a></li>
+							<li><a href="questionList.do">물어봄</a></li>
+							<li><a href="storyList.do">봄이야기</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:void(0);" class="depth01">청춘상담소</a>
+						<ul class="depth02">
+							<li><a href="introduceCounsel.do">청춘상담소</a></li>
+							<li><a href="letterList.do">봄편지</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="util">
+<li><a href="loginForm.do">로그인</a></li>
+					<li><a href="memberJoinAgree.do">멤버십 가입</a></li>
+	<li><a href="javascript:;" class="btn_sitemap pop_open" data-target="#sitemap">전체메뉴</a></li>
+				</ul>
+			</div>
+			<a href="javascript:;" class="btn_fullmenu">전체메뉴</a>
+		</div>
+	</div>
+	<!-- //header_wrap -->
+
+<script>
+	var arrUrl = location.href.replace('https://www.snspring.or.kr/', '').split('?');
+	
+	arrUrl[0] = arrUrl[0].replace('View', 'List').replace('EntryForm', 'List').replace('ModifyForm', 'List');
+	
+	var currentMenu = $(".gnb_menu [href='" + arrUrl[0] + "']");
+	
+	if(arrUrl.length==1 || arrUrl.length>1 && arrUrl[0] != 'programList.do'){
+		currentMenu.addClass('m_active');
+	}
+	
+	currentMenu.parent().parent().parent().find('.depth01').addClass('current');
+	
+	$(function(){
+		currentMenu.parent().parent().parent().find('.depth01').trigger('click');
+	});
+</script>
+	<link rel="stylesheet" type="text/css" href="/css/flexslider.css" />
+<script src="/js/jquery.flexslider-min.js"></script>
+<script src="/js/notice_popup.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var mainBnrSlick = $(".bnr_wrap01").slick({
+		autoplay:true,
+		autoplaySpeed:3000,
+		dots:true
+	});
+	$(".btn_pp .btn_play").css("display","none");
+	$(".btn_pp .btn_pause").css("display","block");
+
+	$(document).on("click",".btn_pp .btn_play",function(){
+		mainBnrSlick.slick("slickPlay");
+		$(this).css("display","none");
+		$(".btn_pp .btn_pause").css("display","block");
+	});
+	$(document).on("click",".btn_pp .btn_pause",function(){
+		mainBnrSlick.slick("slickPause");
+		$(this).css("display","none");
+		$(".btn_pp .btn_play").css("display","block");
+	});
+
+
+	if(getCookie('popup_116')!='N'){
+		window.open('popupView.do?idx=116', 'popup_116', 'left=0, top=0, width=600, height=900, status=no, resizable=no, scrollbars=yes');
+	}
+
+});
+</script>
+
+
+
+	<!-- page wrapper -->
+	<div class="page_wrap main_wrap"><!-- //main -->
+		<div class="sect">
+			<div class="bnr_wrap01">
+<div>
+					<a href="javascript:;" class="btn_link"></a>
+					<div class="con_box">
+						<div class="img_box">
+							<img src="/file/banner/20220930110903_91689.jpg" alt="메인 이미지 슬라이드 3번째장" />
+						</div>
+						<div class="txt_box">
+	<p class="txt01">청년이봄 NOW!</p>
+	<p class="txt02">Now Start, 청년이봄과 함께</p>
+	</div>
+					</div>
+				</div>
+</div>
+			<div class="btn_pp">
+				<a href="javascript:;" class="btn_pause"></a>
+				<a href="javascript:;" class="btn_play"></a>
+			</div>
+		</div>
+		<div class="sect main01">
+			<h2 class="animated" data-scroll="fadeInUp">PROGRAM</h2>
+			<div class="inner">
+				<ul class="program_list">
+<li class="mainly animated" data-scroll="fadeInUp">
+						<a href="programView.do?idx=909">
+							<span class="rollimg"><img src="/file/program/20260901170637_71497.png" alt="[청년이봄] 취미제작소 9월 참가자 모집(~9/8)" /></span>
+							<span class="stat">접수중</span>
+							<span class="category cate02">즐겨봄</span>
+							<span class="txt01">[청년이봄] 취미제작소 9월 참가자 모집(~9/8)</span>
+						</a>
+					</li>
+<li class="mainly animated delay-1s" data-scroll="fadeInUp">
+						<a href="programView.do?idx=903">
+							<span class="rollimg"><img src="/file/program/20260831135709_13591.jpg" alt="[청년이봄] 2026년 청춘상담소 9월 &#039;청년 마인드톡톡&#039; 참가자 모집(~9/9)" /></span>
+							<span class="stat">접수중</span>
+							<span class="category cate03">만나봄</span>
+							<span class="txt01">[청년이봄] 2026년 청춘상담소 9월 &#039;청년 마인드톡톡&#039; 참가자 모집(~9/9)</span>
+						</a>
+					</li>
+<li class="mainly animated delay-2s" data-scroll="fadeInUp">
+						<a href="programView.do?idx=803">
+							<span class="rollimg"><img src="/file/program/20260402173143_19807.png" alt="[청년사업실, 청년이봄] 2026. 청년라이프쉐어 러너블리 성남청년 러닝크루(※ 상시모집)" /></span>
+							<span class="stat">접수중</span>
+							<span class="category cate02">즐겨봄</span>
+							<span class="txt01">[청년사업실, 청년이봄] 2026. 청년라이프쉐어 러너블리 성남청년 러닝크루(※ 상시모집)</span>
+						</a>
+					</li>
+<li class="mainly animated delay-3s" data-scroll="fadeInUp">
+						<a href="programView.do?idx=860">
+							<span class="rollimg"><img src="/file/program/20260703155414_03182.png" alt="[청년이봄 수정] 2026년 청년이봄 스토리텔러 모여라!" /></span>
+							<span class="stat">접수중</span>
+							<span class="category cate04">누려봄</span>
+							<span class="txt01">[청년이봄 수정] 2026년 청년이봄 스토리텔러 모여라!</span>
+						</a>
+					</li>
+</ul>
+				<div class="btn_wrap align_c animated" data-scroll="fadeInUp">
+					<a href="programList.do" class="btn btn_black btn_more_list">더보기</a>
+				</div>
+			</div>
+		</div>
+		<div class="sect main02">
+			<div class="inner">
+				<div class="txt_box">
+					<div class="txt01 animated delay-2s" data-scroll="fadeInUp">
+						성남시 청년공간<br>
+						청년이봄 뽐뽐TV
+					</div>
+					<div class="txt02 animated delay-3s" data-scroll="fadeInUp">
+						<p>
+							성남시 청년공간 청년이봄은 <br>
+							청년의 자발적인 참여와 성장을 지원하는 지역 거점 플랫폼으로, <br>
+							청년 역량강화부터 문화·소통·활동공간 지원까지 <br>
+							청년의 일상과 도전을 함께하는 공간입니다.
+						</p>
+					</div>
+				</div>
+				<div class="video_box animated delay-1s" data-scroll="fadeInUp">
+					<div class="vod_wrap" style="position:relative;height:0;padding-bottom:56.25%;">
+						<iframe style="position:absolute;width:100%;height:100%;left:0;" src="https://www.youtube.com/embed/pA30KRgh4O0?rel=0&amp;autoplay=0" frameborder="0" allow="encrypted-media"></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="sect main03">
+			<div class="inner">
+				<div class="notice_wrap">
+					<div class="title_box animated delay-1s" data-scroll="fadeInUp">
+						<p>NOTICE</p>
+						<a href="noticeList.do" class="btn_more"></a>
+					</div>
+					<ul class="notice_list">
+<li class="animated delay-2s" data-scroll="fadeInUp"><a href="noticeView.do?idx=1918">2026년도 8월 취미제작소 선정 결과 발표<span class="date">2026.08.12</span></a></li>
+<li class="animated delay-3s" data-scroll="fadeInUp"><a href="noticeView.do?idx=876">[영상촬영 장비 대여 서비스] 이용 안내<span class="date">2022.07.30</span></a></li>
+<li class="animated delay-4s" data-scroll="fadeInUp"><a href="noticeView.do?idx=736">[증명서] 발급 안내<span class="date">2022.03.30</span></a></li>
+<li class="animated delay-5s" data-scroll="fadeInUp"><a href="noticeView.do?idx=1908">2026년도 7월 취미제작소 선정 결과 발표<span class="date">2026.07.15</span></a></li>
+</ul>
+				</div>
+				<div class="info_wrap">
+					<div class="title_box animated delay-1s" data-scroll="fadeInUp">
+						<p>청년INFO</p>
+						<a href="policyList.do" class="btn_more"></a>
+					</div>
+					<ul class="info_list">
+<li class="animated delay-2s" data-scroll="fadeInUp">
+							<a href="supportView.do?idx=1900">
+								<span class="tag">지원서비스</span>
+								<strong class="txt">경기도, 성남시 지원 직업교육훈련 [ 기업연계 AI 서비스기획자 양성과정 ]의 교육생을 모집</strong>
+								<span class="date">2026.06.25</span>
+							</a>
+						</li>
+<li class="animated delay-3s" data-scroll="fadeInUp">
+							<a href="supportView.do?idx=1894">
+								<span class="tag">지원서비스</span>
+								<strong class="txt">2026 성남시민 마음건강관리 대강좌 신청(선착순)</strong>
+								<span class="date">2026.06.05</span>
+							</a>
+						</li>
+<li class="animated delay-4s" data-scroll="fadeInUp">
+							<a href="supportView.do?idx=1866">
+								<span class="tag">지원서비스</span>
+								<strong class="txt">[청년정책조정실] 청년인재DB</strong>
+								<span class="date">2026.04.06</span>
+							</a>
+						</li>
+<li class="animated delay-5s" data-scroll="fadeInUp">
+							<a href="supportView.do?idx=1864">
+								<span class="tag">지원서비스</span>
+								<strong class="txt">[성남시정신건강복지센터] 성남시 정신건강 설문 이벤트(~7/1)</strong>
+								<span class="date">2026.04.06</span>
+							</a>
+						</li>
+</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //page wrapper -->
+
+
+
+<!-- footer -->
+	<div id="footer_wrap" class="white">
+		<div class="f_inner">
+			<div class="inner">
+				<h1 class="logo"><a href="/"><img src="/img/logo_footer.png" alt="청년이 봄" /></a></h1>
+				<div class="info_box">
+					<ul class="f_menu">
+						<li><a href="useAgreement.do">이용약관</a></li>
+						<li><a href="personalInfoPolicy.do">개인정보처리방침</a></li>
+						<li><a href="emailPolicy.do">이메일무단수집거부</a></li>
+					</ul>
+					<div class="info01">
+						<p>ⓒ성남시청년공간 청년이봄</p>
+						<ul>
+							<li>경기도 성남시 수정구 산성대로 267 롯데시네마타워 지하1층 B1049호</li>
+							<li><span>T</span> +82 070-4908-2094</li>
+							<li><span>E</span> snboom@snyouth.or.kr</li>
+							<li>개인정보관리책임자: 청년사업실장</li>
+						</ul>
+						<ul>
+							<li>대표자: 양경석</li>
+							<li>사업자번호: 129-82-72820</li>
+						</ul>
+					</div>
+				</div>
+				<div class="f_util">
+					<!--
+					<div class="select_box">
+						<select id="familySiteList" onchange="if($(this).val()!=''){window.open($(this).val());}">
+							<option value="">Family Site</option>
+<option value="https://www.instagram.com/snyouth_spring/">청년이봄 인스타그램</option>
+<option value="https://www.facebook.com/snyouth.spring">청년이봄 페이스북</option>
+<option value="https://pf.kakao.com/_iqcxaT">청년이봄 카카오채널</option>
+</select>
+					</div>
+					-->
+					<ul class="f_sns">
+						<li><a href="https://www.facebook.com/snyouth.spring/?ref=bookmarks" target="_blank" class="btn_facebook"></a></li>
+						<li><a href="https://www.instagram.com/snyouth_spring/?hl=ko" target="_blank" class="btn_insta"></a></li>
+						<li><a href="https://pf.kakao.com/_iqcxaT" target="_blank" class="btn_ch"></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //footer -->
+
+	<div class="btn_top_bottom">
+		<a href="javascript:;" class="btn_top"></a>
+		<a href="javascript:;" class="btn_bottom"></a>
+	</div>
+</div>
+
+<!-- layer popup -->
+<div class="layer_pop_wrap type_dim" id="sitemap" style="display:none;">
+	<div class="pop_inner">
+		<div class="pop_wrap">
+			<a href="javascript:;" class="btn_close pop_close"></a>
+			<div class="con_box">
+				<table cellpadding="0" cellspacing="0" border="0">
+					<colgroup>
+						<col style="width:20%;" />
+						<col style="width:20%;" />
+						<col style="width:20%;" />
+						<col style="width:20%;" />
+						<col style="width:20%;" />
+					</colgroup>
+					<tr>
+						<td>
+							<dl>
+								<dt>센터소개</dt>
+								<dd>
+									<ul>
+										<li><a href="introduceCenter.do">센터소개</a></li>
+										<li><a href="introduceEmployee.do">함께하는 사람들</a></li>
+										<li><a href="introducePartner.do">함께하는 기관</a></li>
+									</ul>
+								</dd>
+							</dl>
+						</td>
+						<td>
+							<dl>
+								<dt>프로그램</dt>
+								<dd>
+									<ul>
+										<li><a href="programList.do">전체</a></li>
+										<li><a href="programList.do?searchCategory=해봄">해봄</a></li>
+										<li><a href="programList.do?searchCategory=즐겨봄">즐겨봄</a></li>
+										<li><a href="programList.do?searchCategory=만나봄">만나봄</a></li>
+										<li><a href="programList.do?searchCategory=누려봄">누려봄</a></li>
+										<li><a href="spaceSharing.do">공간공유</a></li>
+									</ul>
+								</dd>
+							</dl>
+						</td>
+						<td>
+							<dl>
+								<dt>청년INFO</dt>
+								<dd>
+									<ul>
+										<li><a href="supportList.do">청년지원 서비스</a></li>
+									</ul>
+								</dd>
+							</dl>
+						</td>
+						<td>
+							<dl>
+								<dt>센터소식</dt>
+								<dd>
+									<ul>
+										<li><a href="noticeList.do">공지사항</a></li>
+										<li><a href="questionList.do">물어봄</a></li>
+										<li><a href="storyList.do">봄이야기</a></li>
+									</ul>
+								</dd>
+							</dl>
+						</td>
+						<td>
+							<dl>
+								<dt>청춘상담소</dt>
+								<dd>
+									<ul>
+										<li><a href="introduceCounsel.do">청춘상담소</a></li>
+										<li><a href="letterList.do">봄편지</a></li>
+									</ul>
+								</dd>
+							</dl>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<dl>
+								<dt>멤버십</dt>
+								<dd>
+									<ul>
+<li><a href="loginForm.do">로그인</a></li>
+										<li><a href="memberJoinAgree.do">멤버십 가입</a></li>
+	</ul>
+								</dd>
+							</dl>
+						</td>
+						<td>
+							<dl>
+								<dt>기타</dt>
+								<dd>
+									<ul>
+										<li><a href="personalInfoPolicy.do">개인정보처리방침</a></li>
+										<li><a href="emailPolicy.do">이메일무단수집거부</a></li>
+									</ul>
+									<ul class="f_sns">
+										<li><a href="https://www.facebook.com/snyouth.spring/?ref=bookmarks" target="_blank" class="btn_facebook"></a></li>
+										<li><a href="https://www.instagram.com/snyouth_spring/?hl=ko" target="_blank" class="btn_insta"></a></li>
+										<li><a href="https://pf.kakao.com/_iqcxaT" target="_blank" class="btn_ch"></a></li>
+									</ul>
+								</dd>
+							</dl>
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //layer popup -->
+
+<div class="magnific_progress mfp-hide" style="text-align:center;">
+	<img src="/img/loading.gif" style="width:96px;height:97px;" />
+	<div class="msg">처리중입니다.</div>
+</div>
+
+<iframe name="iframe_process" src="about:blank" style="width:0px;height:0px;display:none;"></iframe>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-164696542-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-164696542-1');
+</script>
+
+</body>
+</html>

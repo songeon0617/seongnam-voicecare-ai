@@ -1,0 +1,2075 @@
+{
+  "mode": "CAPTURED_PROVIDER_LIVE_HTTPS",
+  "actualPaidCalls": 0,
+  "fixtureMissing": 0,
+  "results": [
+    {
+      "id": "domain-009",
+      "question": "장애인 보조기구 지원 신청 방법",
+      "baseline": "structured_direct_success",
+      "schemaPass": true,
+      "response": {
+        "query": "장애인 보조기구 지원 신청 방법",
+        "results": [
+          {
+            "document": {
+              "id": "seongnam-disabled-assistive-devices",
+              "title": "장애인 보조기구·보장구 지원",
+              "content": "장애인 보조기구 지원대상은 국민기초생활수급자 및 차상위계층 중 등록장애인이다. 지원품목은 장애유형에 따라 욕창예방방석·매트리스, 음성유도장치, 음성시계, 영상확대시스템, 신호장치, 진동시계, 보행차 등으로 구분되며 각 동 행정복지센터에 신청한다. 보조기구 문의는 성남시 장애인복지과 031-729-2884다. 별도 보장구 지원은 해당 유형의 등록장애인을 대상으로 하며 건강보험·의료급여 등 구분에 따라 지원기준과 절차가 다르므로 추가 근거의 보장구 안내를 확인해야 한다. 보장구 페이지의 사업 본문 문의는 031-729-2885이며 하단 전화번호는 031-729-2884로 서로 다르게 표시되어 있어 담당 부서 확인이 필요하다.",
+              "category": "disability_welfare",
+              "sourceId": "seongnam-city",
+              "sourceOrganizationName": "성남시청",
+              "originalUrl": "https://www.seongnam.go.kr/wf-pm020101/23003",
+              "supportingSources": [
+                {
+                  "title": "장애인 보장구 지원",
+                  "url": "https://www.seongnam.go.kr/wf-pm020101/23004"
+                }
+              ],
+              "publishedAt": null,
+              "updatedAt": null,
+              "fetchedAt": "2026-09-06T21:27:42+09:00",
+              "lastVerifiedAt": "2026-09-06T21:27:42+09:00",
+              "status": "active",
+              "freshness": {
+                "status": "unknown",
+                "evaluatedAt": "2026-09-06T21:27:42+09:00",
+                "reason": "현재 성남시청 공식 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다."
+              },
+              "relatedRegions": [
+                "성남시"
+              ],
+              "targetAudiences": [
+                "국민기초생활수급자 및 차상위계층 중 등록장애인"
+              ],
+              "searchTags": [
+                "장애인 보조기구",
+                "장애인 보장구",
+                "보행차",
+                "행정복지센터 신청"
+              ]
+            },
+            "score": 0,
+            "matchedTerms": []
+          }
+        ],
+        "hasResults": true,
+        "answer": {
+          "userQuestion": "장애인 보조기구 지원 신청 방법",
+          "title": "장애인 보조기구·보장구 지원",
+          "plainLanguageSummary": "장애인 보조기구 지원대상은 국민기초생활수급자 및 차상위계층 중 등록장애인이다. 지원품목은 장애유형에 따라 욕창예방방석·매트리스, 음성유도장치, 음성시계, 영상확대시스템, 신호장치, 진동시계, 보행차 등으로 구분되며 각 동 행정복지센터에 신청한다. 보조기구 문의는 성남시 장애인복지과 031-729-2884다. 별도 보장구 지원은 해당 유형의 등록장애인을 대상으로 하며 건강보험·의료급여 등 구분에 따라 지원기준과 절차가 다르므로 추가 근거의 보장구 안내를 확인해야 한다. 보장구 페이지의 사업 본문 문의는 031-729-2885이며 하단 전화번호는 031-729-2884로 서로 다르게 표시되어 있어 담당 부서 확인이 필요하다.",
+          "eligibility": [
+            "국민기초생활수급자 및 차상위계층 중 등록장애인"
+          ],
+          "steps": [],
+          "nextAction": null,
+          "sources": [
+            {
+              "id": "seongnam-disabled-assistive-devices",
+              "sourceId": "seongnam-city",
+              "organizationName": "성남시청",
+              "title": "장애인 보조기구·보장구 지원",
+              "url": "https://www.seongnam.go.kr/wf-pm020101/23003",
+              "supportingSources": [
+                {
+                  "title": "장애인 보장구 지원",
+                  "url": "https://www.seongnam.go.kr/wf-pm020101/23004"
+                }
+              ],
+              "checkedAt": "2026-09-06T21:27:42+09:00",
+              "documentStatus": "active",
+              "freshnessStatus": "unknown"
+            }
+          ],
+          "verification": {
+            "status": "partially_verified",
+            "checkedAt": "2026-09-06",
+            "details": "공식 문서를 확인했지만 일부 문서가 최신 자료인지 확인되지 않았습니다."
+          }
+        },
+        "kind": "answer",
+        "routing": {
+          "source": "keyword",
+          "decision": {
+            "route": "DIRECT",
+            "serviceIds": [
+              "seongnam-disabled-assistive-devices"
+            ],
+            "intent": "application",
+            "clarificationId": null
+          }
+        },
+        "answerGeneration": {
+          "status": "skipped",
+          "reason": "deterministic"
+        }
+      },
+      "semanticReview": "PENDING"
+    },
+    {
+      "id": "domain-027",
+      "question": "취업 면접 보러 가는데 정장 빌릴 수 있어요",
+      "baseline": "safe_fallback",
+      "schemaPass": true,
+      "response": {
+        "query": "취업 면접 보러 가는데 정장 빌릴 수 있어요",
+        "kind": "partial_answer",
+        "results": [],
+        "hasResults": false,
+        "answer": {
+          "userQuestion": "취업 면접 보러 가는데 정장 빌릴 수 있어요",
+          "title": "확인한 공식 원문과 남은 확인 사항",
+          "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+          "steps": [],
+          "nextAction": null,
+          "sources": [],
+          "verification": {
+            "status": "insufficient_data",
+            "checkedAt": null,
+            "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+          }
+        },
+        "officialSearch": {
+          "status": "partial",
+          "evidence": [
+            {
+              "id": "web-1",
+              "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=76",
+              "title": "드림슈트대여 안내<면접정장대여<프로그램안내<성남시일자리센터",
+              "publisher": "성남시 일자리센터",
+              "region": "성남시",
+              "checkedAt": "2026-09-06T16:22:51.347Z",
+              "publishedAt": null,
+              "updatedAt": null,
+              "applicationPeriod": null,
+              "effectivePeriod": null,
+              "excerpt": "본문 바로가기 메인메뉴 바로가기 서브메뉴 바로가기 홈 프로그램안내 면접정장대여 드림슈트대여 안내 프로그램안내 교육프로그램 면접정장대여 드림슈트대여 신청 구직자진로성향검사 커리어/모의면접 신청 취업특강신청 드림슈트대여 안내 드림슈트대여 안내 드림슈트대여 안내 드림슈트대여 신청 신청조회 및 수정 2026년 면접정장 대여 서비스를 15일(목)부터 시행합니다! 2026년 첫 번째 신청은 성남시일자리센터에 본인이 방문하여 신청해 주세요! 성남시 거주지가 확인되는 신분증을 지참하시고 면접일정이 나와 있는 문자나 이메일, 카카오톡 메시지 등을 보여주세요. 아래의 이용안내를 확인하고 신청해 주세요! 이용안내 이용안내 신청대상 면접이 예정된 성남시 소재 청년구직자(18~39세) ※ 현재 주민등록등본 주소가 타지역으로, 거주지만 성남시인 경우 서비스 이용불가 신청기간 2026. 01. 15~ 예산 소진시까지 지원내용 남자 : 재킷, 바지, 셔츠, 벨트, 넥타이, 구두 여자 : 재킷, 바지 또는 스커트, 블라우스, 구두 대여규정 대여기간 : 대여일로부터 3박 4일 대여횟수 : 1인당 연간 5회까지 (예산소진 시 5회 제공이 어려울 수 있습니다) 대여기간연장 : 대여기간 연장 및 연체 시 1일당 추가부담금 대여자 부담 취업면접시에만 대여 가능 [면접날짜가 확정된 경우로 지원서, 합격통지서 등 필요서류 확인(캡쳐가능)] 교육, 모의면접과 같은 취업과 직접 관계가 없는 경우에는 대여 불가 의류, 구두 등 대여품목을 훼손 또는 분실할 경우 대여자가 비용을 부담할 수 있습니다. 대여장소 스완제이(판교역점) : 성남시 분당구 판교역로192번길 22, 2층 여우팀장(야탑역) : 성남시 분당구 성남대로926번길 20, 3층 신청방법 1 첫회방문신청(성남시청) (2회부터 온라인 신청가능) 2 승인 (문자) 3 대여업체 (방문수령) 4 사용 후 반납 예약/상담문의 031) 729-4416, 2857 Copyright c Seongnam City. All Rights Reserved.",
+              "collection": "openai_web_search+https_original",
+              "freshness": "unknown",
+              "fromCache": false
+            }
+          ],
+          "links": [
+            {
+              "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=76",
+              "title": "드림슈트대여 안내<면접정장대여<프로그램안내<성남시일자리센터"
+            },
+            {
+              "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=76",
+              "title": "드림슈트대여 안내<면접정장대여<프로그램안내<성남시일자리센터"
+            }
+          ],
+          "usage": {
+            "model": "gpt-5.6-terra",
+            "inputTokens": 12972,
+            "outputTokens": 391,
+            "toolCalls": 1,
+            "estimatedUsd": 0.0324997,
+            "durationMs": 279
+          },
+          "diagnostics": {
+            "phase": "complete",
+            "budget": {
+              "aiCalls": 1,
+              "searchCalls": 1,
+              "originalFetches": 6,
+              "maxOriginalFetches": 16
+            },
+            "discovered": 1,
+            "rejected": 16,
+            "findings": 0,
+            "pages": [
+              {
+                "url": "https://www.seongnam.go.kr/apply/view.do?appIdx=3669",
+                "status": "failed",
+                "errorCode": "source_http_404"
+              },
+              {
+                "url": "https://job.seongnam.go.kr/",
+                "status": "fetched",
+                "textLength": 3631,
+                "sections": 0,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=76",
+                "status": "fetched",
+                "textLength": 992,
+                "sections": 1,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=76",
+                "status": "fetched",
+                "textLength": 992,
+                "sections": 1,
+                "omittedSections": 0
+              }
+            ]
+          },
+          "region": "성남시",
+          "searched": true
+        }
+      },
+      "semanticReview": "PENDING"
+    },
+    {
+      "id": "domain-031",
+      "question": "성남 청년들이 모임하는 공공 공간 찾아줘",
+      "baseline": "wrong_source",
+      "schemaPass": true,
+      "response": {
+        "query": "성남 청년들이 모임하는 공공 공간 찾아줘",
+        "kind": "partial_answer",
+        "results": [],
+        "hasResults": false,
+        "answer": {
+          "userQuestion": "성남 청년들이 모임하는 공공 공간 찾아줘",
+          "title": "확인한 공식 원문과 남은 확인 사항",
+          "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+          "steps": [],
+          "nextAction": null,
+          "sources": [],
+          "verification": {
+            "status": "insufficient_data",
+            "checkedAt": null,
+            "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+          }
+        },
+        "officialSearch": {
+          "status": "partial",
+          "evidence": [
+            {
+              "id": "web-1",
+              "url": "https://www.snspring.or.kr/introduceCenter.do",
+              "title": "성남시 청년지원센터 :: 청년이 봄",
+              "publisher": "성남시 청년지원센터",
+              "region": "성남시",
+              "checkedAt": "2026-09-06T16:22:50.735Z",
+              "publishedAt": null,
+              "updatedAt": null,
+              "applicationPeriod": null,
+              "effectivePeriod": null,
+              "excerpt": "INTRODUCE 성남시 청년지원센터 청년이봄을 소개합니다. 홈 센터소개 센터소개 센터소개 함께하는 사람들 함께하는 기관 센터소개 성남시 청년공간 청년이봄은 2019년 성남시 청년 기본 조례에 근거해 설립된 성남시 청년공간 청년이봄은 2025년 8월 민간위탁 종료에 따라 성남시청소년청년재단 내 사업으로 전환되어, 청년의 자발적인 참여와 성장을 지원하는 지역 거점형 청년 플랫폼입니다. ‘청년이 주체적으로 청년의 문제를 살피고(SIGHT), 고민하며 시도(TRY)하는 과정들을 봄(春, SPRING)의 기운으로 따뜻하게 품는다’는 의미를 담아 청년이봄이라는 이름으로 운영되고 있습니다. 운영방향 미션 자신의 365일을 디자인하는 청년지원 비전 주체적이고 행복한 청년의 삶을 위한 통합서비스 제공 및 청년 생태계 구축 목표 청년 역량강화를 위한 다각화된 지원사업 기획 및 실행 청년들의 사회 참여와 지속 가능한 활동 기반 및 지원 체계 구축 청년 역량강화 해봄 청년의 주도적인 참여와 원활한 사회 진입을 지원합니다. 청년 문화정서 즐겨봄 청년의 문화 감수성을 향상시키고 마음건강을 지원합니다. 청년 거버넌스 만나봄 청년 활동 및 커뮤니티 모임을 지원하고 지역과 청년의 교류를 활성화합니다. 청년 활동공간 누려봄 원활한 청년 활동을 위한 공간 지원, 정보 및 서비스를 제공합니다. 리플렛 다운로드 ※ 자세한 사항은 리플렛을 통해 알아보세요 공간소개 메인센터 청년 누구나 자유롭게 이용할 수 있는 열린 공간 스튜디오 제품, 프로필 사진 등 촬영 장비가 갖춰진 공간 세미나실 소모임 등 다목적 공간 미디어실 영상촬영과 편집소프트웨어가 갖춰진 공간 찾아오시는 길 지하철 8 신흥역 신흥역 3번 출구 시네마타워 지하1층 성남중앙지하도상가 2번 출구 버스 지선 4419, 452, 303 마을 7, 7-1, 7-2, 10, 10-1, 10-2, 810 일반 3-1, 17, 17-1, 30, 33, 51, 52, 57, 70, 100, 240, 331, 340, 382 좌석 333, 2007, 반디2 신흥역&종합시장, 신흥역&청년지원센터 정거장에서 하차",
+              "collection": "openai_web_search+https_original",
+              "freshness": "unknown",
+              "fromCache": false
+            }
+          ],
+          "links": [
+            {
+              "url": "https://www.snspring.or.kr/introduceCenter.do",
+              "title": "성남시 청년지원센터 :: 청년이 봄"
+            }
+          ],
+          "usage": {
+            "model": "gpt-5.6-terra",
+            "inputTokens": 13129,
+            "outputTokens": 513,
+            "toolCalls": 1,
+            "estimatedUsd": 0.0342762,
+            "durationMs": 188
+          },
+          "diagnostics": {
+            "phase": "complete",
+            "budget": {
+              "aiCalls": 1,
+              "searchCalls": 1,
+              "originalFetches": 9,
+              "maxOriginalFetches": 16
+            },
+            "discovered": 6,
+            "rejected": 11,
+            "findings": 2,
+            "pages": [
+              {
+                "url": "https://www.seongnam.go.kr/city/1001740/11373/contents.do",
+                "status": "failed",
+                "errorCode": "source_http_404"
+              },
+              {
+                "url": "https://www.seongnam.go.kr/ct-cn090301",
+                "status": "fetched",
+                "textLength": 4747,
+                "sections": 1,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.seongnam.go.kr/apply/event.do",
+                "status": "failed",
+                "errorCode": "source_http_404"
+              },
+              {
+                "url": "https://www.snspring.or.kr/",
+                "status": "fetched",
+                "textLength": 695,
+                "sections": 0,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.seongnam.go.kr/pm010201/6305",
+                "status": "fetched",
+                "textLength": 794,
+                "sections": 1,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.snspring.or.kr/spaceSharing.do",
+                "status": "fetched",
+                "textLength": 1373,
+                "sections": 1,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.snspring.or.kr/introduceCenter.do",
+                "status": "fetched",
+                "textLength": 1031,
+                "sections": 1,
+                "omittedSections": 0
+              }
+            ]
+          },
+          "region": "성남시",
+          "searched": true
+        }
+      },
+      "semanticReview": "PENDING"
+    },
+    {
+      "id": "domain-052",
+      "question": "보건증 발급받으려면 성남 어디로 가요",
+      "baseline": "web_search_grounded_success",
+      "schemaPass": true,
+      "response": {
+        "query": "보건증 발급받으려면 성남 어디로 가요",
+        "kind": "partial_answer",
+        "results": [],
+        "hasResults": false,
+        "answer": {
+          "userQuestion": "보건증 발급받으려면 성남 어디로 가요",
+          "title": "확인한 공식 원문과 남은 확인 사항",
+          "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+          "steps": [],
+          "nextAction": null,
+          "sources": [],
+          "verification": {
+            "status": "insufficient_data",
+            "checkedAt": null,
+            "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+          }
+        },
+        "officialSearch": {
+          "status": "partial",
+          "evidence": [
+            {
+              "id": "web-1",
+              "url": "https://www.seongnam.go.kr/health/ht-pm020101/6010?curPage=1&cvlcptBizSn=6010&srchText=%EA%B1%B4%EA%B0%95%EC%A7%84%EB%8B%A8%EA%B2%B0%EA%B3%BC%EC%84%9C",
+              "title": "보건사업 - 보건사업 - 성남시 보건소",
+              "publisher": "성남시청",
+              "region": "성남시",
+              "checkedAt": "2026-09-06T16:18:32.310Z",
+              "publishedAt": null,
+              "updatedAt": null,
+              "applicationPeriod": null,
+              "effectivePeriod": null,
+              "excerpt": "검진 제증명발급 사업개요 사업 개요 건강진단결과서(구 보건증), 결핵확인서, 일반건강진단서 보건소에서 실시한 검사에 대한 증빙서류 발급 사업 기간 연중 사업 대상 보건소에서 검사한 사람 사업 내용 발급장소 • 수정구보건소 2층 민원실 • 중원구보건소 1층 민원실 • 분당구보건소 5층 민원실 추진방법 • 방문 발급: 보건소 민원실, 신분증 지참 • 인터넷 발급: 공공보건포털 유의사항 • 인터넷 발급은 검사 결과가 정상일 경우에만 가능 • 보건소에서 발급하는 건강진단서는 전염병 유무만 검사하므로 제출처 담당자에게 검사항목 확인 후 발급 • (공무원)채용 신체검사, 운전면허 적성검사, 의료인 면허 및 이·미용사 면허발급용 건강진단서는 미발급 • 외국인 건강진단결과서 신청 시, 본인의 근로 자격을 반드시 확인한 후 신청 문의처 • 수정구보건소 민원실 031-729-3878 • 중원구보건소 민원실 031-729-3897 • 분당구보건소 민원실 031-729-3055 발급내용 발급서류의 종류및 신청필요서류와 처리기간, 수수료에대한 표 구분 수수료 구비서류 처리 기간 건강진단결과서(구 보건증) 3,000원 * 성남시민 무료 신분증 5일(주말·공휴일 제외) 건강진단서 16,450원 건강진단서+B형간염 검사 23,990원 결핵검진결과서 2,000원 4일(주말·공휴일 제외) 제증명 재발급 300원 즉시 사업 추진 처리절차 접수 • 신분증 지참 • 신청서 제출 및 수수료 납부 검사 30분 내외 발급 • 신분증 지참하여 민원실 방문 • 인터넷 발급 부가정보 관련사이트 공공보건포털 바로가기 담당부서 수정구보건소>보건행정과>보건행정팀 전화번호 031-729-3878 목록",
+              "collection": "openai_web_search+https_original",
+              "freshness": "unknown",
+              "fromCache": false
+            }
+          ],
+          "links": [
+            {
+              "url": "https://www.seongnam.go.kr/health/ht-pm020101/6010?curPage=1&cvlcptBizSn=6010&srchText=%EA%B1%B4%EA%B0%95%EC%A7%84%EB%8B%A8%EA%B2%B0%EA%B3%BC%EC%84%9C",
+              "title": "보건사업 - 보건사업 - 성남시 보건소"
+            }
+          ],
+          "usage": {
+            "model": "gpt-5.6-terra",
+            "inputTokens": 12897,
+            "outputTokens": 368,
+            "toolCalls": 1,
+            "estimatedUsd": 0.0320732,
+            "durationMs": 33
+          },
+          "diagnostics": {
+            "phase": "complete",
+            "budget": {
+              "aiCalls": 1,
+              "searchCalls": 1,
+              "originalFetches": 3,
+              "maxOriginalFetches": 16
+            },
+            "discovered": 12,
+            "rejected": 5,
+            "findings": 2,
+            "pages": [
+              {
+                "url": "https://www.seongnam.go.kr/health/ht-pm020101/6010?curPage=1&cvlcptBizSn=6010&srchText=%EA%B1%B4%EA%B0%95%EC%A7%84%EB%8B%A8%EA%B2%B0%EA%B3%BC%EC%84%9C",
+                "status": "fetched",
+                "textLength": 821,
+                "sections": 1,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.seongnam.go.kr/health/index",
+                "status": "fetched",
+                "textLength": 796,
+                "sections": 0,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.seongnam.go.kr/health/index",
+                "status": "fetched",
+                "textLength": 796,
+                "sections": 0,
+                "omittedSections": 0
+              }
+            ]
+          },
+          "region": "성남시",
+          "searched": true
+        }
+      },
+      "semanticReview": "PENDING"
+    },
+    {
+      "id": "domain-053",
+      "question": "담배 끊고 싶은데 무료 상담 있어요",
+      "baseline": "safe_fallback",
+      "schemaPass": true,
+      "response": {
+        "query": "담배 끊고 싶은데 무료 상담 있어요",
+        "kind": "partial_answer",
+        "results": [],
+        "hasResults": false,
+        "answer": {
+          "userQuestion": "담배 끊고 싶은데 무료 상담 있어요",
+          "title": "확인한 공식 원문과 남은 확인 사항",
+          "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+          "steps": [],
+          "nextAction": null,
+          "sources": [],
+          "verification": {
+            "status": "insufficient_data",
+            "checkedAt": null,
+            "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+          }
+        },
+        "officialSearch": {
+          "status": "partial",
+          "evidence": [
+            {
+              "id": "web-1",
+              "url": "https://www.seongnam.go.kr/health/ht-pm020101/9016",
+              "title": "보건사업 - 보건사업 - 성남시 보건소",
+              "publisher": "성남시청",
+              "region": "성남시",
+              "checkedAt": "2026-09-06T16:28:26.421Z",
+              "publishedAt": null,
+              "updatedAt": null,
+              "applicationPeriod": null,
+              "effectivePeriod": null,
+              "excerpt": "금연클리닉 사업개요 사업 개요 금연을 희망하는 시민에게 체계적인 금연상담과 보조제 지원, 치료 연계를 통해 금연을 돕고 성공 시 기념품을 제공하는 서비스 사업 기간 상시 사업 대상 금연을 희망하는 흡연자 사업 내용 운영내용 등록자를 대상으로 체계적인 금연상담(행동요법,금단증상 극복법 등) 지원내용 • 금연보조제 지급(8~12주 무료 지원) • 금연침 및 금연처방 연계 • 6개월 이상 금연성공자에게 기념품 제공 추진방법 보건소 운영시간 내 보건소 방문 등록 문의처 • 수정구보건소 금연클리닉 031-729-3887~3889 • 중원구보건소 금연클리닉 031-729-3915,3918 • 분당구보건소 금연클리닉 031-729-3975,4339,4340,4206 담당부서 수정구보건소>건강증진과>건강증진팀 전화번호 031-729-4048 목록",
+              "collection": "openai_web_search+https_original",
+              "freshness": "unknown",
+              "fromCache": false
+            }
+          ],
+          "links": [
+            {
+              "url": "https://www.seongnam.go.kr/health/ht-pm020101/9016",
+              "title": "보건사업 - 보건사업 - 성남시 보건소"
+            }
+          ],
+          "usage": {
+            "model": "gpt-5.6-terra",
+            "inputTokens": 13235,
+            "outputTokens": 267,
+            "toolCalls": 1,
+            "estimatedUsd": 0.0315352,
+            "durationMs": 156
+          },
+          "diagnostics": {
+            "phase": "complete",
+            "budget": {
+              "aiCalls": 1,
+              "searchCalls": 1,
+              "originalFetches": 9,
+              "maxOriginalFetches": 16
+            },
+            "discovered": 1,
+            "rejected": 16,
+            "findings": 0,
+            "pages": [
+              {
+                "url": "https://www.seongnam.go.kr/city/1000098/10299/contents.do",
+                "status": "failed",
+                "errorCode": "source_http_404"
+              },
+              {
+                "url": "https://www.seongnam.go.kr/health/index",
+                "status": "fetched",
+                "textLength": 796,
+                "sections": 0,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.seongnam.go.kr/apply/integration/step1?instiCode=INST_CITY_01&facilityId=I0588",
+                "status": "fetched",
+                "textLength": 137,
+                "sections": 0,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.seongnam.go.kr/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&arrHlthBizTypeCd=&arrWlfCrrCyclCd=&arrWlfHshdSttnCd=&srchWlfPvsnTypeCd=&srchType=&srchText=%EA%B8%88%EC%97%B0%ED%81%B4%EB%A6%AC%EB%8B%89&cntPerPage=9",
+                "status": "fetched",
+                "textLength": 84,
+                "sections": 1,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.seongnam.go.kr/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&srchWlfPvsnTypeCd=&srchType=1&srchText=%EA%B8%88%EC%97%B0%ED%81%B4%EB%A6%AC%EB%8B%89",
+                "status": "fetched",
+                "textLength": 84,
+                "sections": 1,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.seongnam.go.kr/health/ht-pm020101/9016",
+                "status": "fetched",
+                "textLength": 414,
+                "sections": 1,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.seongnam.go.kr/health/ht-pm020101/9020",
+                "status": "fetched",
+                "textLength": 311,
+                "sections": 1,
+                "omittedSections": 0
+              }
+            ]
+          },
+          "region": "성남시",
+          "searched": true
+        }
+      },
+      "semanticReview": "PENDING"
+    },
+    {
+      "id": "domain-066",
+      "question": "성남에서 버스 타려면",
+      "baseline": "web_search_grounded_success",
+      "schemaPass": true,
+      "response": {
+        "query": "성남에서 버스 타려면",
+        "kind": "partial_answer",
+        "results": [],
+        "hasResults": false,
+        "answer": {
+          "userQuestion": "성남에서 버스 타려면",
+          "title": "확인한 공식 원문과 남은 확인 사항",
+          "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+          "steps": [],
+          "nextAction": null,
+          "sources": [],
+          "verification": {
+            "status": "insufficient_data",
+            "checkedAt": null,
+            "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+          }
+        },
+        "officialSearch": {
+          "status": "partial",
+          "evidence": [
+            {
+              "id": "web-1",
+              "url": "https://www.seongnam.go.kr/tr010200",
+              "title": "버스 - 자동차 - 교통 - 분야별정보 - 성남시청",
+              "publisher": "성남시청",
+              "region": "성남시",
+              "checkedAt": "2026-09-06T16:18:34.139Z",
+              "publishedAt": null,
+              "updatedAt": null,
+              "applicationPeriod": null,
+              "effectivePeriod": null,
+              "excerpt": "홈 분야별정보 교통 자동차 버스 버스 링크복사 공유 닫기 QR코드 저장 방법 QR코드 > 마우스 우측버튼 > 이미지를 다른 이름으로 저장 단축주소 프린트 성남시 시내버스 경기버스정보 사이트에서 성남시 시내버스 정보를 확인하실 수 있습니다. 제공하는 서비스 버스정보에 대한 통합검색, 경로검색 및 실시간버스 정보를 제공합니다. 시내버스 관련 지역별/유형별 노선현황 정보를 제공합니다. 환승할인제(수도권통합요금제) 다운로드 경기버스정보 성남시시내버스노선 성남시마을버스노선 담당부서 : 버스노선팀 031-729-8567 성남시 시외버스 및 고속버스 성남종합버스터미널 사이트에서 성남시 시외·고속버스 정보를 확인하실 수 있습니다. 제공하는 서비스 터미널 안내, 승차권 온라인예매 정보를 제공합니다. 성남종합버스터미널 담당부서 : 버스행정팀 031-729-3714 공항버스 공항버스 예약 온라인 예매( www.bustago.or.kr ) 어플 예매 : 어플리케이션 티머니GO 접속 성남시 경유 노선 현황 인천공항(국제선) 5000번 5300번 5400번 5400-1번 5500번 김포공항(국내선) 5100번 5200-1번 운행시간표 운행시간표 바로가기 문의 담당부서 : 버스행정팀 031-729-3713 업체연락처 : (주)경기고속 분당영업소: 031-716-7111~3 상단으로 이동",
+              "collection": "openai_web_search+https_original",
+              "freshness": "unknown",
+              "fromCache": false
+            }
+          ],
+          "links": [
+            {
+              "url": "https://www.seongnam.go.kr/tr010200",
+              "title": "버스 - 자동차 - 교통 - 분야별정보 - 성남시청"
+            }
+          ],
+          "usage": {
+            "model": "gpt-5.6-terra",
+            "inputTokens": 13113,
+            "outputTokens": 154,
+            "toolCalls": 1,
+            "estimatedUsd": 0.0299337,
+            "durationMs": 13
+          },
+          "diagnostics": {
+            "phase": "complete",
+            "budget": {
+              "aiCalls": 1,
+              "searchCalls": 1,
+              "originalFetches": 1,
+              "maxOriginalFetches": 16
+            },
+            "discovered": 1,
+            "rejected": 17,
+            "findings": 1,
+            "pages": [
+              {
+                "url": "https://www.seongnam.go.kr/tr010200",
+                "status": "fetched",
+                "textLength": 658,
+                "sections": 1,
+                "omittedSections": 0
+              }
+            ]
+          },
+          "region": "성남시",
+          "searched": true
+        }
+      },
+      "semanticReview": "PENDING"
+    },
+    {
+      "id": "domain-068",
+      "question": "특별교통수단 신청 방법",
+      "baseline": "structured_direct_success",
+      "schemaPass": true,
+      "response": {
+        "query": "특별교통수단 신청 방법",
+        "results": [
+          {
+            "document": {
+              "id": "seongnam-special-transportation",
+              "title": "특별교통수단 운영",
+              "content": "사업기간은 연중이다. 대상은 중증 보행장애인(심한 장애) 또는 대중교통 이용이 어려운 휠체어 탑승자다. 중증 보행장애인은 복지카드 또는 장애인증명서가 필요하며, 보행상 장애 표준 기준에 따라 장애정도 심사결과 통보서나 보행상 장애판정을 증명하는 공공기관 발급 서류가 추가로 필요할 수 있다. 대중교통 이용이 어려운 휠체어 탑승자는 종합병원급 이상 진단서에 휠체어 이용, 대중교통 이용이 어렵다는 문구, 이용 불가기간이 명시되어야 한다. 진단서의 이용 불가기간은 최대 5년이며 기간이 없으면 발급일부터 6개월 이용할 수 있다. 차량은 슬로프 장착 카니발 특장 차량 84대이고 24시간 운영하며, 22시부터 다음 날 06시 30분까지는 4대를 운영한다. 즉시콜은 전화·문자 1666-0420 또는 경기도 광역이동지원 시스템 앱·홈페이지로 24시간 접수한다. 성남 관내·경기·서울·인천 사전예약은 이용 목적과 시간 조건에 따라 하루 전에 접수한다. 문의는 성남시 대중교통과 031-729-3723이다.",
+              "category": "mobility_support",
+              "sourceId": "seongnam-city",
+              "sourceOrganizationName": "성남시청",
+              "originalUrl": "https://www.seongnam.go.kr/wf-pm020101/23018",
+              "publishedAt": null,
+              "updatedAt": null,
+              "fetchedAt": "2026-09-06T21:27:42+09:00",
+              "lastVerifiedAt": "2026-09-06T21:27:42+09:00",
+              "status": "active",
+              "freshness": {
+                "status": "unknown",
+                "evaluatedAt": "2026-09-06T21:27:42+09:00",
+                "reason": "현재 성남시청 복지사업 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다."
+              },
+              "relatedRegions": [
+                "성남시"
+              ],
+              "targetAudiences": [
+                "중증 보행장애인",
+                "대중교통 이용이 어려운 휠체어 탑승자"
+              ],
+              "searchTags": [
+                "특별교통수단",
+                "교통약자",
+                "장애인 이동지원",
+                "휠체어",
+                "이용등록"
+              ]
+            },
+            "score": 0,
+            "matchedTerms": []
+          }
+        ],
+        "hasResults": true,
+        "answer": {
+          "userQuestion": "특별교통수단 신청 방법",
+          "title": "특별교통수단 운영",
+          "plainLanguageSummary": "사업기간은 연중이다. 대상은 중증 보행장애인(심한 장애) 또는 대중교통 이용이 어려운 휠체어 탑승자다. 중증 보행장애인은 복지카드 또는 장애인증명서가 필요하며, 보행상 장애 표준 기준에 따라 장애정도 심사결과 통보서나 보행상 장애판정을 증명하는 공공기관 발급 서류가 추가로 필요할 수 있다. 대중교통 이용이 어려운 휠체어 탑승자는 종합병원급 이상 진단서에 휠체어 이용, 대중교통 이용이 어렵다는 문구, 이용 불가기간이 명시되어야 한다. 진단서의 이용 불가기간은 최대 5년이며 기간이 없으면 발급일부터 6개월 이용할 수 있다. 차량은 슬로프 장착 카니발 특장 차량 84대이고 24시간 운영하며, 22시부터 다음 날 06시 30분까지는 4대를 운영한다. 즉시콜은 전화·문자 1666-0420 또는 경기도 광역이동지원 시스템 앱·홈페이지로 24시간 접수한다. 성남 관내·경기·서울·인천 사전예약은 이용 목적과 시간 조건에 따라 하루 전에 접수한다. 문의는 성남시 대중교통과 031-729-3723이다.",
+          "eligibility": [
+            "중증 보행장애인",
+            "대중교통 이용이 어려운 휠체어 탑승자"
+          ],
+          "steps": [],
+          "nextAction": null,
+          "sources": [
+            {
+              "id": "seongnam-special-transportation",
+              "sourceId": "seongnam-city",
+              "organizationName": "성남시청",
+              "title": "특별교통수단 운영",
+              "url": "https://www.seongnam.go.kr/wf-pm020101/23018",
+              "checkedAt": "2026-09-06T21:27:42+09:00",
+              "documentStatus": "active",
+              "freshnessStatus": "unknown"
+            }
+          ],
+          "verification": {
+            "status": "partially_verified",
+            "checkedAt": "2026-09-06",
+            "details": "공식 문서를 확인했지만 일부 문서가 최신 자료인지 확인되지 않았습니다."
+          }
+        },
+        "kind": "answer",
+        "routing": {
+          "source": "keyword",
+          "decision": {
+            "route": "DIRECT",
+            "serviceIds": [
+              "seongnam-special-transportation"
+            ],
+            "intent": "application",
+            "clarificationId": null
+          }
+        },
+        "answerGeneration": {
+          "status": "skipped",
+          "reason": "deterministic"
+        }
+      },
+      "semanticReview": "PENDING"
+    },
+    {
+      "id": "domain-071",
+      "question": "판교역에서 성남시청 가는 대중교통 알려줘",
+      "baseline": "safe_fallback",
+      "schemaPass": true,
+      "response": {
+        "query": "판교역에서 성남시청 가는 대중교통 알려줘",
+        "kind": "official_links",
+        "results": [],
+        "hasResults": false,
+        "answer": {
+          "userQuestion": "판교역에서 성남시청 가는 대중교통 알려줘",
+          "title": "공식 페이지에서 확인해 주세요",
+          "plainLanguageSummary": "관련 공식 페이지를 확인했습니다. 질문의 상세 내용은 원문과 충분히 대조하지 못했습니다. 아래 링크에서 확인해 주세요.",
+          "steps": [],
+          "nextAction": null,
+          "sources": [],
+          "verification": {
+            "status": "insufficient_data",
+            "checkedAt": null,
+            "details": "관련 공식 페이지를 확인했습니다. 질문의 상세 내용은 원문과 충분히 대조하지 못했습니다. 아래 링크에서 확인해 주세요."
+          }
+        },
+        "officialSearch": {
+          "status": "links",
+          "evidence": [],
+          "links": [
+            {
+              "url": "https://www.seongnam.go.kr/cn040503",
+              "title": "오시는 길 - 청사 안내 - 성남소개 - 성남시청"
+            }
+          ],
+          "usage": {
+            "model": "gpt-5.6-terra",
+            "inputTokens": 10979,
+            "outputTokens": 140,
+            "toolCalls": 1,
+            "estimatedUsd": 0.025501700000000002,
+            "durationMs": 124
+          },
+          "diagnostics": {
+            "phase": "extraction",
+            "budget": {
+              "aiCalls": 1,
+              "searchCalls": 1,
+              "originalFetches": 6,
+              "maxOriginalFetches": 16
+            },
+            "discovered": 5,
+            "rejected": 13,
+            "findings": 0,
+            "pages": [
+              {
+                "url": "https://seongnam.go.kr/apply/view.do?appIdx=3679",
+                "status": "failed",
+                "errorCode": "source_unavailable"
+              },
+              {
+                "url": "https://seongnam.go.kr/snursc/images/content/b_sansung2.png",
+                "status": "failed",
+                "errorCode": "source_http_200"
+              },
+              {
+                "url": "https://seongnam.go.kr/apply/view.do?appIdx=3598",
+                "status": "failed",
+                "errorCode": "source_unavailable"
+              },
+              {
+                "url": "https://www.seongnam.go.kr/cn040503",
+                "status": "fetched",
+                "textLength": 1039,
+                "sections": 5,
+                "omittedSections": 0
+              }
+            ],
+            "reason": "no_matching_evidence"
+          },
+          "region": "성남시",
+          "searched": true
+        }
+      },
+      "semanticReview": "PENDING"
+    },
+    {
+      "id": "domain-073",
+      "question": "성남 시청에 차 가져가면 주차할 수 있어요",
+      "baseline": "safe_fallback",
+      "schemaPass": true,
+      "response": {
+        "query": "성남 시청에 차 가져가면 주차할 수 있어요",
+        "kind": "partial_answer",
+        "results": [],
+        "hasResults": false,
+        "answer": {
+          "userQuestion": "성남 시청에 차 가져가면 주차할 수 있어요",
+          "title": "확인한 공식 원문과 남은 확인 사항",
+          "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+          "steps": [],
+          "nextAction": null,
+          "sources": [],
+          "verification": {
+            "status": "insufficient_data",
+            "checkedAt": null,
+            "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+          }
+        },
+        "officialSearch": {
+          "status": "partial",
+          "evidence": [
+            {
+              "id": "web-1",
+              "url": "https://www.seongnam.go.kr/cn040503",
+              "title": "오시는 길 - 청사 안내 - 성남소개 - 성남시청",
+              "publisher": "성남시청",
+              "region": "성남시",
+              "checkedAt": "2026-09-06T16:21:34.216Z",
+              "publishedAt": null,
+              "updatedAt": null,
+              "applicationPeriod": null,
+              "effectivePeriod": null,
+              "excerpt": "성남시청 주차장 안내 청사 시설물을 보호하기 위해 높이 2.1m 이상 차량은 지하주차장으로 진입할 수 없습니다. 주차장 현황 성남시청 주차장 현황 : 위치,지상1층,지하1층,지하2층으로 구성된 표 위치 지상1층 지하1층 지하2층 주차면수 476면 310면 324면 운영시간 : 월~금요일 07:00~20:00 (토·일요일, 공휴일은 무료개방) 주차요금 성남시청 주차장 주차요금 구분 요금 비고 무료 1시간 후 추가 30분까지 400원 무료개방 : 토·일요일, 공휴일 요금면제 시 주관행사 및 회의 참석차량, 공공개방시설 이용차량 해당부서의 확인을 받은 1시간이내 민원방문 차량 요금 50% 감면 : 국가유공자 및 장애인 차량, 소형자동차(1000cc 미만) 초과 10분당 300원 진입로 주차요금문의 : 총무과 031-729-2189 교통문의 : 대중교통과 버스행정팀 031-729-8566",
+              "collection": "openai_web_search+https_original",
+              "freshness": "unknown",
+              "fromCache": false
+            }
+          ],
+          "links": [
+            {
+              "url": "https://www.seongnam.go.kr/cn040503",
+              "title": "오시는 길 - 청사 안내 - 성남소개 - 성남시청"
+            }
+          ],
+          "usage": {
+            "model": "gpt-5.6-terra",
+            "inputTokens": 12839,
+            "outputTokens": 298,
+            "toolCalls": 1,
+            "estimatedUsd": 0.031117199999999998,
+            "durationMs": 141
+          },
+          "diagnostics": {
+            "phase": "complete",
+            "budget": {
+              "aiCalls": 1,
+              "searchCalls": 1,
+              "originalFetches": 6,
+              "maxOriginalFetches": 16
+            },
+            "discovered": 5,
+            "rejected": 12,
+            "findings": 2,
+            "pages": [
+              {
+                "url": "https://www.seongnam.go.kr/city/1000050/10040/contents.do",
+                "status": "failed",
+                "errorCode": "source_http_404"
+              },
+              {
+                "url": "https://www.seongnam.go.kr/city/1002241/11467/contents.do",
+                "status": "failed",
+                "errorCode": "source_http_404"
+              },
+              {
+                "url": "https://www.seongnam.go.kr/sn04050101",
+                "status": "fetched",
+                "textLength": 1744,
+                "sections": 3,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.seongnam.go.kr/cn040503",
+                "status": "fetched",
+                "textLength": 1039,
+                "sections": 5,
+                "omittedSections": 0
+              }
+            ]
+          },
+          "region": "성남시",
+          "searched": true
+        }
+      },
+      "semanticReview": "PENDING"
+    },
+    {
+      "id": "domain-075",
+      "question": "성남 거주자우선주차 신청하는 법",
+      "baseline": "safe_fallback",
+      "schemaPass": true,
+      "response": {
+        "query": "성남 거주자우선주차 신청하는 법",
+        "kind": "partial_answer",
+        "results": [],
+        "hasResults": false,
+        "answer": {
+          "userQuestion": "성남 거주자우선주차 신청하는 법",
+          "title": "확인한 공식 원문과 남은 확인 사항",
+          "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+          "steps": [],
+          "nextAction": null,
+          "sources": [],
+          "verification": {
+            "status": "insufficient_data",
+            "checkedAt": null,
+            "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+          }
+        },
+        "officialSearch": {
+          "status": "partial",
+          "evidence": [
+            {
+              "id": "web-1",
+              "url": "https://park.isdc.co.kr/resident/useinfo.do",
+              "title": "이용안내|거주자전용주차장",
+              "publisher": "성남도시개발공사",
+              "region": "성남시",
+              "checkedAt": "2026-09-06T16:33:25.680Z",
+              "publishedAt": null,
+              "updatedAt": null,
+              "applicationPeriod": null,
+              "effectivePeriod": null,
+              "excerpt": "거주자전용주차장 (왼쪽메뉴) 주차장소개 이용안내 이용신청 주차장별 현황 주차(대기)신청 추첨 결과 확인 요금결제 주차요금결제 결제내역 확인 미납요금조회납부 이용안내 가산금 부과 이의신청서 다운로드 다운로드 가산금 부과 이의신청서는 작성하신 후 FAX) 031-754-3108 로 보내주시기 바라며, 문의사항은 031-725-9441~3 으로 연락부탁드립니다. 신청 및 이용자격 주차 신청은 1세대당 1개 주차장 1대 차량만 신청 및 이용 가능합니다. - 거주자전용주차장 계약 중, 계약자 본인 또는 같은 세대원이 중복으로 대기신청 및 이용은 불가합니다. - 중복 신청 및 이용시 2년 주기 추첨 대상 및 계약 대상에서 제외됩니다. 당해 동에 주민등록이 되어 있고, 실제 거주하는 자 당해 동에서 상가 등 점포운영자로서 사업자등록이 되어 있는 차량소유자(사업주차량 직원명의로 계약불가) 당해 동에 거주하고 있으나 법인차량(리스 및 렌트카 포함) 또는 가족명의 차량을 사용하는 자 타 시군 거주자 중 당해 동에 소재한 직장에 재직 중인 자 회원명과,계약자 차량소유자가 동일해야 합니다. 회원 본인명의 소유 차량, 가족 차량일 경우 주민등록등본상 동일등록지에 등재된 직계 및 형제, 자매, 배우자 차량만 이용가능합니다. ※ 단, 동일등록지(등본)에 등재된 가족의 차량으로 등록시, 인적감면 제외 (경차, 저공해차량 등 감면은 가능하나 경로우대, 장애인 할인 등은 적용불가) 캠핑카 및 특수차량등은 안전상 문제로 신청 및 이용 불가합니다. 신청 방법 성남시도시개발공사 주차장 홈페이지 회원가입 회원가입 후 주차구역신청 메뉴 클릭 후 주차장 검색 및 주차신청 감면 대상 1. 주차요금 100퍼센트 감면 대상 1) [도로교통법] 제2조제22호에 따른 긴급자동차 2) 국세청장·경기도지사·성남시장의 모범·유공·성실납세자 표창을 받은 자로서 모범·유공·성실납세자 인증서 소지 차량 (교부일로부터 1년) 2.월정기 50% 감면 1) 「국가유공자 등 예우 및 지원에 관한 법률」에 따른 국가유공자 또는 유족 본인이 탑승하여 국가유공자증 등의 증서를 제시하는 경우 2) 「5.18.민주유공자예우에 관한 법률」 제4조제2호에 따른 5.18민주화운동 부상자 3) 「고엽제후유의증 등 환자지원 및 단체에 관한 법률」 제2조에 따른 고엽제후유의증환자 4) 「참전유공자예우 및 단체설립에 관한 법률」에 따른 참전유공자로 등록된 참전유공자 5) 「장애인복지법」에 따른 장애인 6) 「의사상자 등 예우 및 지원에 관한 법률 시행령」 제17조의2제1항 각호의 어느 하나에 해당하는 사람 7) 「성남시 재능나눔 및 자원봉사활동 지원에 관한 조례」 제3조에 따른 자원봉사활동 직접 사용 차량(유효기간 내) 8) 「자동차관리법」 시행규칙 제2조에 따른 경형 자동차 9) 「노인복지법」 제26조제1항에 따른 65세 이상의 경로우대자 명의로 등록되어 있고 본인이 운전하는 차량 10) 「수도권 대기환경 개선에 관한 특별법」제2조제6호에 따른 저공해자동차 (저공해자동차 표지가 부착되어 식별이 가능한 차량에 한함) 11 ) 「환경친화적자동차의 개발 및 보급 촉진에 관한 법률 시행규칙」 제5조제2항에 따른 환경친화적자동차의 표지 부착차량 (단, 전기자동차 경우 2시간 이내 요금 면제) 12) 임산부자동차표지 부착차량(유효기간 내) 13) 다자녀가정의 경기아이-플러스(I-plus)카드 소지(두 자녀 이상 표기)또는 성남시 발급 다자녀자동차표지 부착차량 14) 병역명문가 가족으로 병무청에서 발행한 병역명문가증 제시 차량 관련 첨부 서류 거주자 전용 주차장 신청 관련 첨부 서류 구분 첨부서류 해당사항 공통사항 자동차등록증 1부, 주민등록등본 1부 모든 신청자 해당자 국가유공자증 사본, 국가유공자 표지판 장애인 복지카드 사본, 장애인표지판 등 관련 증빙서류 제출 요금 감면 대상자 ※ 임차차량 등은 추가서류가 필요할 수 있습니다. 신청제한 차량 16인이상 승합차량 및 2t 이상 화물자동차 대형차, 위험물 적재차량 자동차의 구조상 주차가 불가능하거나 곤란한 경우 발화성 또는 인화성 물질, 병원 폐기물을 적재한 경우 주차장의 구조 설비를 손상할 우려가 있는 차량 주차장 안에서 자동차를 이용하여 영업행위를 하는 경우 이용 안내 주차장 이용시 안전사고에 유의하시기 바랍니다. 본인 부주의에 의해 사고(차량손실 등)에 대해서는 공사에서 책임지지 않습니다. 개인정보처리방침 찾아오시는길 사이트맵 노외 주차처 : 경기도 성남시 중원구 둔촌대로 183번길 20 성남종합운동장 실내체육관(3층) | 전화 : 031-725-9400 노상 주차처 : 경기도 성남시 중원구 제일로 60 성남종합운동장 성남종합스포츠 센터(4층) | 전화 : 031-725-9400 견인.거주자팀 : 경기도 성남시 중원구 둔촌대로 10 (성남동 대형주차장 내) | 전화 : (견인) 031-752-9783~4 , (거주자) 031-725-9441~4 Copyright© 2020 성남도시개발공사 All Rights Reserved. 본 페이지에 게시된 이메일주소 자동 수집을 거부하며, 이를 위반시 정보통신망법에 의해 처벌됨을 유념하시기 바랍니다.",
+              "collection": "openai_web_search+https_original",
+              "freshness": "unknown",
+              "fromCache": false
+            }
+          ],
+          "links": [
+            {
+              "url": "https://park.isdc.co.kr/resident/useinfo.do",
+              "title": "이용안내|거주자전용주차장"
+            }
+          ],
+          "usage": {
+            "model": "gpt-5.6-terra",
+            "inputTokens": 13134,
+            "outputTokens": 80,
+            "toolCalls": 1,
+            "estimatedUsd": 0.029089700000000003,
+            "durationMs": 188
+          },
+          "diagnostics": {
+            "phase": "complete",
+            "budget": {
+              "aiCalls": 1,
+              "searchCalls": 1,
+              "originalFetches": 12,
+              "maxOriginalFetches": 16
+            },
+            "discovered": 12,
+            "rejected": 4,
+            "findings": 0,
+            "pages": [
+              {
+                "url": "https://www.seongnam.go.kr/sn02030601",
+                "status": "fetched",
+                "textLength": 2208,
+                "sections": 6,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.seongnam.go.kr/city/1000071/10046/contents.do",
+                "status": "failed",
+                "errorCode": "source_http_404"
+              },
+              {
+                "url": "https://seongnam.go.kr/city/1000071/10046/contents.do",
+                "status": "failed",
+                "errorCode": "source_unavailable"
+              },
+              {
+                "url": "https://www.isdc.co.kr/",
+                "status": "fetched",
+                "textLength": 1161,
+                "sections": 0,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://park.isdc.co.kr/",
+                "status": "fetched",
+                "textLength": 698,
+                "sections": 0,
+                "omittedSections": 1
+              },
+              {
+                "url": "https://park.isdc.co.kr/qfeeinq.do",
+                "status": "fetched",
+                "textLength": 486,
+                "sections": 1,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://park.isdc.co.kr/roadin/park_info.do",
+                "status": "fetched",
+                "textLength": 1071,
+                "sections": 1,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://park.isdc.co.kr/resident/park_info.do",
+                "status": "fetched",
+                "textLength": 1902,
+                "sections": 1,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://park.isdc.co.kr/resident/useinfo.do",
+                "status": "fetched",
+                "textLength": 2502,
+                "sections": 1,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://park.isdc.co.kr/mypage/parkContractInfo.do",
+                "status": "failed",
+                "errorCode": "source_unverified"
+              }
+            ]
+          },
+          "region": "성남시",
+          "searched": true
+        }
+      },
+      "semanticReview": "PENDING"
+    },
+    {
+      "id": "domain-081",
+      "question": "성남시청에 민원 넣고 싶은데 어디서 시작해요",
+      "baseline": "web_search_grounded_success",
+      "schemaPass": true,
+      "response": {
+        "query": "성남시청에 민원 넣고 싶은데 어디서 시작해요",
+        "kind": "partial_answer",
+        "results": [],
+        "hasResults": false,
+        "answer": {
+          "userQuestion": "성남시청에 민원 넣고 싶은데 어디서 시작해요",
+          "title": "확인한 공식 원문과 남은 확인 사항",
+          "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+          "steps": [],
+          "nextAction": null,
+          "sources": [],
+          "verification": {
+            "status": "insufficient_data",
+            "checkedAt": null,
+            "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+          }
+        },
+        "officialSearch": {
+          "status": "partial",
+          "evidence": [
+            {
+              "id": "web-1",
+              "url": "https://www.seongnam.go.kr/VFVhtEc",
+              "title": "민원/제안/신고 - 민원참여 - 성남시청",
+              "publisher": "성남시청",
+              "region": "성남시",
+              "checkedAt": "2026-09-06T16:18:35.840Z",
+              "publishedAt": null,
+              "updatedAt": null,
+              "applicationPeriod": null,
+              "effectivePeriod": null,
+              "excerpt": "제안 신청 행정의 능률화, 경제화 및 행정서비스의 질적 향상을 도모하기 위하여 창의적이고 참신한 시민 제안 상시 접수 「 제안제도 운영 조례」제3조 규정에 따라 행정의 능률화, 경제화 및 행정서비스의 질적 향상을 도모하기 위하여 창의적이고 참신한 제안을 상시 접수합니다. 제안이란 시민 또는 공무원이 시장에게 제출하는 행정제도, 행정서비스, 행정문화 및 행정운영의 개선과 관련된 창의적 의견 또는 고안을 말하며, 특정한 행위를 요구하는 민원사무, 단순한 건의, 주의환기, 진정 비판 등은 “성남시에 바란다”를 이용하시기 바랍니다. 본 제안신청은 국민권익위원회에서 운영하는 국민신문고와 통합운영됩니다. 본 화면에서 민원신청 시 정부통합인증이 안되니 정부통합인증 통합로그인을 하실 분은 국민신문고 를 이용하시기 바랍니다. 인증오류 문의: 국민신문고 헬프데스크 1600-8172 민원상담 문의: 성남시 콜센터 1577-3100 담당부서 소통관>소통혁신팀 전화번호 031-729-4205 목록",
+              "collection": "openai_web_search+https_original",
+              "freshness": "unknown",
+              "fromCache": false
+            }
+          ],
+          "links": [
+            {
+              "url": "https://www.seongnam.go.kr/VFVhtEc",
+              "title": "민원/제안/신고 - 민원참여 - 성남시청"
+            }
+          ],
+          "usage": {
+            "model": "gpt-5.6-terra",
+            "inputTokens": 12999,
+            "outputTokens": 226,
+            "toolCalls": 1,
+            "estimatedUsd": 0.030573700000000002,
+            "durationMs": 33
+          },
+          "diagnostics": {
+            "phase": "complete",
+            "budget": {
+              "aiCalls": 1,
+              "searchCalls": 1,
+              "originalFetches": 3,
+              "maxOriginalFetches": 16
+            },
+            "discovered": 10,
+            "rejected": 7,
+            "findings": 1,
+            "pages": [
+              {
+                "url": "https://www.seongnam.go.kr/city/1001126/10798/contents.do",
+                "status": "failed",
+                "errorCode": "source_http_404"
+              },
+              {
+                "url": "https://www.seongnam.go.kr/VFVhtEc",
+                "status": "fetched",
+                "textLength": 495,
+                "sections": 1,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.seongnam.go.kr/sn02030601",
+                "status": "fetched",
+                "textLength": 2208,
+                "sections": 6,
+                "omittedSections": 0
+              }
+            ]
+          },
+          "region": "성남시",
+          "searched": true
+        }
+      },
+      "semanticReview": "PENDING"
+    },
+    {
+      "id": "domain-083",
+      "question": "전입신고 온라인으로 할 수 있나요",
+      "baseline": "safe_fallback",
+      "schemaPass": true,
+      "response": {
+        "query": "전입신고 온라인으로 할 수 있나요",
+        "kind": "search_unavailable",
+        "results": [],
+        "hasResults": false,
+        "answer": {
+          "userQuestion": "전입신고 온라인으로 할 수 있나요",
+          "title": "공식 검색을 완료하지 못했습니다",
+          "plainLanguageSummary": "검색 결과와 원문 근거를 대조하지 못해 상세 안내를 보류했습니다.",
+          "steps": [],
+          "nextAction": null,
+          "sources": [],
+          "verification": {
+            "status": "insufficient_data",
+            "checkedAt": null,
+            "details": "검색 결과와 원문 근거를 대조하지 못해 상세 안내를 보류했습니다."
+          }
+        },
+        "officialSearch": {
+          "status": "source_unverified",
+          "evidence": [],
+          "links": [],
+          "usage": {
+            "model": "gpt-5.6-terra",
+            "inputTokens": 10879,
+            "outputTokens": 171,
+            "toolCalls": 1,
+            "estimatedUsd": 0.025670699999999998,
+            "durationMs": 164
+          },
+          "diagnostics": {
+            "phase": "extraction",
+            "budget": {
+              "aiCalls": 1,
+              "searchCalls": 1,
+              "originalFetches": 5,
+              "maxOriginalFetches": 16
+            },
+            "discovered": 4,
+            "rejected": 12,
+            "findings": 1,
+            "pages": [
+              {
+                "url": "https://www.seongnam.go.kr/city/1000094/10063/contents.do",
+                "status": "failed",
+                "errorCode": "source_http_404"
+              },
+              {
+                "url": "https://www.seongnam.go.kr/apply/online/view?appIdx=3609&menuType=welfare",
+                "status": "fetched",
+                "textLength": 84,
+                "sections": 0,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.seongnam.go.kr/pm04041101?deptCode=38000000000&orgSelect=orgSelect02",
+                "status": "fetched",
+                "textLength": 24545,
+                "sections": 0,
+                "omittedSections": 1
+              }
+            ],
+            "reason": "no_relevant_evidence"
+          },
+          "region": "성남시",
+          "searched": true
+        }
+      },
+      "semanticReview": "PENDING"
+    },
+    {
+      "id": "domain-097",
+      "question": "성남시 여권 어디서 만들어",
+      "baseline": "web_search_grounded_success",
+      "schemaPass": true,
+      "response": {
+        "query": "성남시 여권 어디서 만들어",
+        "kind": "partial_answer",
+        "results": [],
+        "hasResults": false,
+        "answer": {
+          "userQuestion": "성남시 여권 어디서 만들어",
+          "title": "확인한 공식 원문과 남은 확인 사항",
+          "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+          "steps": [],
+          "nextAction": null,
+          "sources": [],
+          "verification": {
+            "status": "insufficient_data",
+            "checkedAt": null,
+            "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+          }
+        },
+        "officialSearch": {
+          "status": "partial",
+          "evidence": [
+            {
+              "id": "web-1",
+              "url": "https://www.seongnam.go.kr/cn02040801",
+              "title": "여권신청접수 안내 - 여권 민원 - 종합민원안내 - 민원참여 - 성남시청",
+              "publisher": "성남시청",
+              "region": "성남시",
+              "checkedAt": "2026-09-06T16:18:35.271Z",
+              "publishedAt": null,
+              "updatedAt": null,
+              "applicationPeriod": null,
+              "effectivePeriod": null,
+              "excerpt": "성남시 여권사무 개요 2006. 6. 1부터 외교부 여권발급대행기관으로 지정되어 여권민원 처리 장 소 성남시청 1층 종합민원실(성남시 중원구 성남대로 997) 이용시간 주간: 09:00 ~ 18:00 공휴일, 대체공휴일 미운영 여권신청 대기자가 많을 경우 여권접수는 조기 마감될 수 있습니다. 야간 : 매주 월요일 운영 여권신청: (월)18:00 ~ 19:30 여권교부: (월)18:00 ~ 19:40 공휴일, 대체공휴일, 설·추석연휴 전날과 종무식 날은 미운영 여권수령 방문수령 : 여권신청일로부터(토, 일, 공휴일 제외) 평일기준 10일 이내 소요 외교부로부터 여권발급 완료 문자를 받은 경우 즉시 수령 가능(여권민원실 운영시간 내) 우편등기수령 배송접수일로 4일 ~ 10일 소요됩니다. 조폐공사에서 직접 여권 개별 우편 배송합니다. 최초 발송일로부터 5일이내 3회 발송 했음에도 미수령 처리가 될 경우 환불처리 안되며, 성남시청으로 반송된 후 방문 수령하셔야 합니다. 배송문의 : 조폐공사 콜센터 1577-4321 등기 수수료(5,500원)는 카드 결제만 가능(현금결제 불가) 여행성수기에는 여권발급량 폭주로 여권교부일이 일시적으로 연장 조정될 수 있음 수수료납부 현금 카드(국내발급 신용 및 체크 카드) 모바일(접촉식) 결제 가능 바코드, QR, 지역상품권 결제불가 유의사항 여권사실증명 서류 및 긴급여권(비전자단수여권) 발급 업무는 주간 업무시간 내에서만 가능 야간 여권 접수 및 교부업무는 토·일, 공휴일, 대체공휴일, 설·추석 연휴 전날과 종무식 날 미운영 유효한 여권을 소지한 경우 새로운 여권 발급 시 소지하고 있는 여권을 반드시 반납(여권법 제19조) 문의 성남시 민원여권과 (콜센터 1577-3100)",
+              "collection": "openai_web_search+https_original",
+              "freshness": "unknown",
+              "fromCache": false
+            }
+          ],
+          "links": [
+            {
+              "url": "https://www.seongnam.go.kr/cn02040801",
+              "title": "여권신청접수 안내 - 여권 민원 - 종합민원안내 - 민원참여 - 성남시청"
+            }
+          ],
+          "usage": {
+            "model": "gpt-5.6-terra",
+            "inputTokens": 12882,
+            "outputTokens": 483,
+            "toolCalls": 1,
+            "estimatedUsd": 0.043841000000000005,
+            "durationMs": 119
+          },
+          "diagnostics": {
+            "phase": "complete",
+            "budget": {
+              "aiCalls": 1,
+              "searchCalls": 1,
+              "originalFetches": 7,
+              "maxOriginalFetches": 16
+            },
+            "discovered": 6,
+            "rejected": 12,
+            "findings": 1,
+            "pages": [
+              {
+                "url": "https://www.seongnam.go.kr/apply/integration/step1?facilityId=I0681&instiCode=INST_CITY_01",
+                "status": "fetched",
+                "textLength": 137,
+                "sections": 0,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.seongnam.go.kr/city/1000079/10052/contents.do",
+                "status": "failed",
+                "errorCode": "source_http_404"
+              },
+              {
+                "url": "https://seongnam.go.kr/city/1000080/10053/contents.do",
+                "status": "failed",
+                "errorCode": "source_unavailable"
+              },
+              {
+                "url": "https://www.seongnam.go.kr/cn02040801",
+                "status": "fetched",
+                "textLength": 865,
+                "sections": 1,
+                "omittedSections": 2
+              },
+              {
+                "url": "https://www.seongnam.go.kr/apply/integration/step1?instiCode=INST_CITY_01&facilityId=I0681",
+                "status": "fetched",
+                "textLength": 137,
+                "sections": 0,
+                "omittedSections": 0
+              }
+            ]
+          },
+          "region": "성남시",
+          "searched": true
+        }
+      },
+      "semanticReview": "PENDING"
+    },
+    {
+      "id": "domain-098",
+      "question": "성남에서 여권 만들 때 준비물",
+      "baseline": "no_answer_despite_official_evidence",
+      "schemaPass": true,
+      "response": {
+        "query": "성남에서 여권 만들 때 준비물",
+        "kind": "partial_answer",
+        "results": [],
+        "hasResults": false,
+        "answer": {
+          "userQuestion": "성남에서 여권 만들 때 준비물",
+          "title": "확인한 공식 원문과 남은 확인 사항",
+          "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+          "steps": [],
+          "nextAction": null,
+          "sources": [],
+          "verification": {
+            "status": "insufficient_data",
+            "checkedAt": null,
+            "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+          }
+        },
+        "officialSearch": {
+          "status": "partial",
+          "evidence": [
+            {
+              "id": "web-1",
+              "url": "https://www.seongnam.go.kr/cn0204080301",
+              "title": "일반여권신청 - 여권사무 - 여권 민원 - 종합민원안내 - 민원참여 - 성남시청",
+              "publisher": "성남시청",
+              "region": "성남시",
+              "checkedAt": "2026-09-06T16:21:34.098Z",
+              "publishedAt": null,
+              "updatedAt": null,
+              "applicationPeriod": null,
+              "effectivePeriod": null,
+              "excerpt": "일반여권신청(공통서류) 여권발급 신청시 유효기간이 남아있는 여권 소지자는 여권을 반드시 지참하여야 함. 여권발급신청서 1부 (소정양식 여권민원실 비치) 여권발급신청서 다운받기 출력하여 사용하는 경우 반드시 칼라프린터로 인쇄, 축소 확대 절대 불가 굵은 선 안(색깔 부분)은 검정색 펜으로 빠짐없이 직접 기재(워드로 작성하면 안됨) 배우자의 성은 필요한 경우만 기재 6개월이내 촬영한 여권용 사진2매(1매는 예비용) 전자여권용 사진은 전자여권 내에 내장된 전자칩에 수록하기 위한 기본 12가지 조건 및 육안검사 항목에 부합되어야 하며 국제기준에 따라 엄격하게 적용하므로 동 조건에 적합하지 않을 경우 여권신청 접수가 거부될 수 있음 * 종합민원실 내에는 사진관이 상주하고 있지 않으므로 여권 신청시 반드시 여권용 사진 2매 를 준비하여 주시기 바랍니다. (외교부 지침에 의거 즉석사진, 개인이 촬영한 디지털 사진 또는 구여권 사진과 동일한 사진은 부적합 함) 사진규정 보기 신분증 주민등록증, 유효한 운전면허증, 유효한 여권 수수료(현금 및 카드) 수수료 보기 현재 소지중인 여권 유효기간이 남아있는 여권 (단수여권 포함) 메모해 올 사항 : 국내 긴급연락처 민원접수 구비서류 감축에 따라 신청자의 개인정보 열람전 사전동의를 받고 있습니다. 행정정보공동이용 서비스의 이용 동의 하시면 가족관계등록부, 병적증명서,출입국에 관한 사실증명, 주민등록등·초본등의 제출을 생략할 수 있습니다.",
+              "collection": "openai_web_search+https_original",
+              "freshness": "unknown",
+              "fromCache": false
+            }
+          ],
+          "links": [
+            {
+              "url": "https://www.seongnam.go.kr/cn0204080301",
+              "title": "일반여권신청 - 여권사무 - 여권 민원 - 종합민원안내 - 민원참여 - 성남시청"
+            }
+          ],
+          "usage": {
+            "model": "gpt-5.6-terra",
+            "inputTokens": 10913,
+            "outputTokens": 47,
+            "toolCalls": 1,
+            "estimatedUsd": 0.0242502,
+            "durationMs": 134
+          },
+          "diagnostics": {
+            "phase": "complete",
+            "budget": {
+              "aiCalls": 1,
+              "searchCalls": 1,
+              "originalFetches": 7,
+              "maxOriginalFetches": 16
+            },
+            "discovered": 6,
+            "rejected": 11,
+            "findings": 0,
+            "pages": [
+              {
+                "url": "https://seongnam.go.kr/city/1000081/10054/contents.do",
+                "status": "failed",
+                "errorCode": "source_unavailable"
+              },
+              {
+                "url": "https://www.seongnam.go.kr/city/1000013/10010/contents.do",
+                "status": "failed",
+                "errorCode": "source_http_404"
+              },
+              {
+                "url": "https://www.seongnam.go.kr/VFVhtEc",
+                "status": "fetched",
+                "textLength": 495,
+                "sections": 1,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.seongnam.go.kr/cn0204080301",
+                "status": "fetched",
+                "textLength": 717,
+                "sections": 2,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.seongnam.go.kr/cn02040802",
+                "status": "fetched",
+                "textLength": 679,
+                "sections": 5,
+                "omittedSections": 0
+              }
+            ]
+          },
+          "region": "성남시",
+          "searched": true
+        }
+      },
+      "semanticReview": "PENDING"
+    },
+    {
+      "id": "domain-113",
+      "question": "성남 음식물쓰레기 버리는 법",
+      "baseline": "safe_fallback",
+      "schemaPass": true,
+      "response": {
+        "query": "성남 음식물쓰레기 버리는 법",
+        "kind": "search_unavailable",
+        "results": [],
+        "hasResults": false,
+        "answer": {
+          "userQuestion": "성남 음식물쓰레기 버리는 법",
+          "title": "공식 검색을 완료하지 못했습니다",
+          "plainLanguageSummary": "검색 결과와 원문 근거를 대조하지 못해 상세 안내를 보류했습니다.",
+          "steps": [],
+          "nextAction": null,
+          "sources": [],
+          "verification": {
+            "status": "insufficient_data",
+            "checkedAt": null,
+            "details": "검색 결과와 원문 근거를 대조하지 못해 상세 안내를 보류했습니다."
+          }
+        },
+        "officialSearch": {
+          "status": "source_unverified",
+          "evidence": [],
+          "links": [],
+          "usage": {
+            "model": "gpt-5.6-terra",
+            "inputTokens": 13178,
+            "outputTokens": 123,
+            "toolCalls": 1,
+            "estimatedUsd": 0.029692700000000002,
+            "durationMs": 103
+          },
+          "diagnostics": {
+            "phase": "extraction",
+            "budget": {
+              "aiCalls": 1,
+              "searchCalls": 1,
+              "originalFetches": 5,
+              "maxOriginalFetches": 16
+            },
+            "discovered": 9,
+            "rejected": 9,
+            "findings": 0,
+            "pages": [
+              {
+                "url": "https://recycle.seongnam.go.kr/platforminfo/trash",
+                "status": "fetched",
+                "textLength": 0,
+                "sections": 0,
+                "omittedSections": 1
+              },
+              {
+                "url": "https://recycle.seongnam.go.kr/platforminfo",
+                "status": "fetched",
+                "textLength": 0,
+                "sections": 0,
+                "omittedSections": 1
+              },
+              {
+                "url": "https://www.seongnam.go.kr/sn02030601",
+                "status": "fetched",
+                "textLength": 2208,
+                "sections": 6,
+                "omittedSections": 0
+              }
+            ],
+            "reason": "no_relevant_evidence"
+          },
+          "region": "성남시",
+          "searched": true
+        }
+      },
+      "semanticReview": "PENDING"
+    },
+    {
+      "id": "domain-115",
+      "question": "낡은 소파 버릴 때 어떻게 신고해요",
+      "baseline": "safe_fallback",
+      "schemaPass": true,
+      "response": {
+        "query": "낡은 소파 버릴 때 어떻게 신고해요",
+        "kind": "partial_answer",
+        "results": [],
+        "hasResults": false,
+        "answer": {
+          "userQuestion": "낡은 소파 버릴 때 어떻게 신고해요",
+          "title": "확인한 공식 원문과 남은 확인 사항",
+          "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+          "steps": [],
+          "nextAction": null,
+          "sources": [],
+          "verification": {
+            "status": "insufficient_data",
+            "checkedAt": null,
+            "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+          }
+        },
+        "officialSearch": {
+          "status": "partial",
+          "evidence": [
+            {
+              "id": "web-1",
+              "url": "https://waste.isdc.co.kr/contents/content.php?cIdx=3",
+              "title": "신청안내<성남시 대형폐기물 인터넷 배출신고",
+              "publisher": "성남도시개발공사",
+              "region": "성남시",
+              "checkedAt": "2026-09-06T16:22:50.497Z",
+              "publishedAt": null,
+              "updatedAt": null,
+              "applicationPeriod": null,
+              "effectivePeriod": null,
+              "excerpt": "본문 바로가기 메인메뉴 바로가기 서브메뉴 바로가기 신청안내 SNS 리스트 SNS 리스트 닫기 프린트 대형폐기물이란? 생활폐기물 중 종량제봉투에 담기 어려운 폐기물 가전제품류 : 텔레비전, 냉장고, 세탁기 등 가구류 : 장롱, 침대, 책상 등 기타 생활용품류 : 유리, 항아리, 자전거, 가방 등 대형폐기물 배출방법 구역별 청소대행업체에 전화로 대형폐기물 배출신고 후 계좌입금 또는 현장에서 카드결제 전화신고 : 운영시간(월요일 ~ 금요일 09:00 ~ 18:00시까지) 인터넷(http://waste.isdc.co.kr), 모바일을 통한 신고 : 24시간 연중무휴 판매소에서 대형폐기물 납부필증(스티커) 구매하지 않아도 됩니다.(2015년 3월부터 시행) 인터넷 신청절차 1 배출신청서 작성 (PC, 스마트폰) 2 폐기물 수수료 결제 (카드, 계좌이체) 3 관할동 수거업체 신청접수 4 납부필증 출력 또는 종이에 접수번호 기재 5 신고한 폐기물 배출장소에 배출 전화 신청절차 1 관할동 수거업체에 전화 2 상담원을 통한 배출신청서 작성 3 신청자에게 문자발송 (접수번호, 가상계좌, 수수료) 4 안내된 가상계좌로 수수료 입금 5 접수번호 기재 후 폐기물 배출 수거업체정보 수정구 수정구 수거업체 업체명 전화번호 관할구역 삼성환경 757-7186 신흥1동, 복정동, 신촌동, 고등동 두림환경 707-3900 수진1동, 시흥동, 위례동 환경개발 777-8689 단대동, 산성동, 양지동, 태평2동 성남환경 714-6016 태평3동, 태평4동, 수진2동 평 화 755-5832 신흥2동, 신흥3동, 태평1동 중원구 중원구 수거업체 업체명 전화번호 관할구역 금성환경 734-4008 금광1동, 상대원2동, 하대원동 대림환경 754-2561 성남동 비케이엔텍 703-3341 금광2동, 상대원3동 엘앤케이비즈 753-3545 중앙동, 은행2동 나눔환경 721-0436 은행1동, 상대원1동, 도촌동 분당구 분당구 수거업체 업체명 전화번호 관할구역 한성산업 732-7363 야탑1동, 야탑2동, 야탑3동 한진용역 753-6401 정자2동, 구미동, 구미1동 창성산업 781-6661 이매1동, 삼평동, 백현동 강산이엔에쓰 756-0301 분당동, 수내2동, 서현1동 중앙기업 716-4747 수내1동, 수내3동, 정자동, 서현2동 디엔에스 744-2114 정자1동, 정자3동, 금곡동 지앤에이치 778-6288 이매2동, 판교동, 운중동 대형폐가전 무상 방문수거 사업 시행 수거시간 평일 및 공휴일 : 08:00~18:00 휴무 : 매주 일요일, 근로자의 날(5월1일), 설/추석 연휴, 신정(1월 1일) ※ 지역에 따라 수거가능 요일이 다릅니다. 수거방법 : 주민이 예약한 배출품목 가정 내 방문 수거 (단, 주민의 요청 시 현관문 앞, 마당 등 문전수거) 수거비용 : 무료 방문수거 대상제품 단일수거품목 : 냉장고, 세탁기, 에어컨, TV 등 세트품목 : 오디오세트(전축), 데스크탑 PC세트(본체+모니터) 다량(5개 이상) 배출품목 : 가습기, 청소기, 전기히터, 전기밥솥, 모니터, 휴대폰, 전기다리미, 선풍기 등 이용방법 홈페이지 : 폐가전 무상방문수거 홈페이지(바로가기) 콜센터 : 전국 1599-0903 (평일 월~금 08:00~18:00) 카카오톡ID : weec 유의사항 에어컨, 벽걸이 TV, 빔프로젝터, 유무선공유기, 감시카메라 등 설치(고정)된 제품은 서비스 이용 전 기본 철거가 되어 있어야 수거가 가능함 방문수거 대상품목 수거 시, 기타 비대상 소형가전제품 추가 수거 가능 인력으로 수거가 불가한 제품은 주민이 수거 가능한 상태가 되도록 조치 하여야 수거가 가능함 프린터, 복사기, 팩시밀리 수거 신청시, 잉크/토너 등이 밖으로 새어나가지 않도록 고정조치 후 배출",
+              "collection": "openai_web_search+https_original",
+              "freshness": "unknown",
+              "fromCache": false
+            }
+          ],
+          "links": [
+            {
+              "url": "https://waste.isdc.co.kr/contents/content.php?cIdx=3",
+              "title": "신청안내<성남시 대형폐기물 인터넷 배출신고"
+            }
+          ],
+          "usage": {
+            "model": "gpt-5.6-terra",
+            "inputTokens": 10105,
+            "outputTokens": 92,
+            "toolCalls": 1,
+            "estimatedUsd": 0.0231757,
+            "durationMs": 103
+          },
+          "diagnostics": {
+            "phase": "complete",
+            "budget": {
+              "aiCalls": 1,
+              "searchCalls": 1,
+              "originalFetches": 5,
+              "maxOriginalFetches": 16
+            },
+            "discovered": 0,
+            "rejected": 3,
+            "findings": 0,
+            "pages": [
+              {
+                "url": "https://waste.isdc.co.kr/main/index.php",
+                "status": "fetched",
+                "textLength": 547,
+                "sections": 0,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://waste.isdc.co.kr/main/index.php",
+                "status": "fetched",
+                "textLength": 547,
+                "sections": 0,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://waste.isdc.co.kr/contents/content.php?cIdx=3",
+                "status": "fetched",
+                "textLength": 1835,
+                "sections": 1,
+                "omittedSections": 0
+              }
+            ]
+          },
+          "region": "성남시",
+          "searched": true
+        }
+      },
+      "semanticReview": "PENDING"
+    },
+    {
+      "id": "domain-130",
+      "question": "시에서 하는 무료 공연 어디서 찾아요",
+      "baseline": "safe_fallback",
+      "schemaPass": true,
+      "response": {
+        "query": "시에서 하는 무료 공연 어디서 찾아요",
+        "kind": "partial_answer",
+        "results": [],
+        "hasResults": false,
+        "answer": {
+          "userQuestion": "시에서 하는 무료 공연 어디서 찾아요",
+          "title": "확인한 공식 원문과 남은 확인 사항",
+          "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+          "steps": [],
+          "nextAction": null,
+          "sources": [],
+          "verification": {
+            "status": "insufficient_data",
+            "checkedAt": null,
+            "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+          }
+        },
+        "officialSearch": {
+          "status": "partial",
+          "evidence": [
+            {
+              "id": "web-1",
+              "url": "https://www.seongnam.go.kr/tour/tu-pm020101/6228",
+              "title": "이달의 행사 - 요즘성남 - 성남문화관광",
+              "publisher": "성남시청",
+              "region": "성남시",
+              "checkedAt": "2026-09-06T16:18:39.361Z",
+              "publishedAt": null,
+              "updatedAt": null,
+              "applicationPeriod": null,
+              "effectivePeriod": null,
+              "excerpt": "홈 요즘성남 이달의 행사 이달의 행사 링크복사 공유 닫기 QR코드 저장 방법 QR코드 > 마우스 우측버튼 > 이미지를 다른 이름으로 저장 단축주소 프린트 성남 HIP FESTA (힙페스타) 9월 공연 안내 이미지 원본 보기 분류 공연 조회수 236 참여대상 누구나 행사기간 2026-09-12 ~ 2026-09-21 행사시간 00:00 ~ 00:00 주관 성남예총 문의 031-753-1020 작성부서 교육문화체육국 > 문화관광과 > 예술팀 첨부파일 9.12. 힙페스타.jpg 다운로드 바로보기 9.19. 힙페스타.jpg 다운로드 바로보기 9.20.힙페스타.jpg 다운로드 바로보기 ※ 자세한 사항은 이용안내를 참고 바랍니다. 상세정보 2026 성남 HIP:FESTA(성남 힙페스타) - 일 시 : 2026년 9월 12일(토) 오후 5시 - 장 소 : 대원공원 분수광장 - 출 연 : 김상배, 손민채, 지희, 색소폰 송경철, 국악극 7인 8색, 퓨전국악 가연 - 관람료 : 무료 - 주최/주관 : 성남예총(한국예총 경기도연합회 성남지회) - 후 원 : 성남시 ※ 우천 시 행사가 취소될 수 있으며, 출연진이 변경될 수 있음. ============================================================= 2026 성남 HIP:FESTA(성남 힙페스타) - 일 시 : 2026년 9월 19일(토) 오후 5시 - 장 소 : 금상초등학교 - 출 연 : 진시몬, 마로니에, 진혜진, 명지, 여성중창단 벨라디움보체, 매직버블쇼 - 관람료 : 무료 - 주최/주관 : 성남예총(한국예총 경기도연합회 성남지회) - 후 원 : 성남시 ※ 우천 시 행사가 취소될 수 있으며, 출연진이 변경될 수 있음. ============================================================= 2026 성남 HIP:FESTA(성남 힙페스타) <체험부스> - 일 시 : 2026년 9월 20일(일) 오후 3시 - 장 소 : 섬말공원 야외공연장 - 프로그램 : 캘리그라피, 가훈써주기, 페이스페인팅, 캐리커처 - 체험비 : 무료 <공 연> - 일 시 : 2026년 9월 20일(일) 오후 3시30분 - 장 소 : 섬말공원 야외공연장 - 출 연 : 여행스케치, 은주(전 써니힐), 밴드 탄천프렌드 - 관람료 : 무료 - 주최/주관 : 성남예총(한국예총 경기도연합회 성남지회) - 후 원 : 성남시 ※ 우천 시 행사가 취소될 수 있으며, 출연진이 변경될 수 있음. 목록 공공누리가 부착되지 않은 자료는 담당자와 사전에 협의한 이후에 사용하여 주시기 바랍니다. 상단으로 이동",
+              "collection": "openai_web_search+https_original",
+              "freshness": "unknown",
+              "fromCache": false
+            }
+          ],
+          "links": [
+            {
+              "url": "https://www.seongnam.go.kr/tour/tu-pm020101/6228",
+              "title": "이달의 행사 - 요즘성남 - 성남문화관광"
+            }
+          ],
+          "usage": {
+            "model": "gpt-5.6-terra",
+            "inputTokens": 12811,
+            "outputTokens": 579,
+            "toolCalls": 1,
+            "estimatedUsd": 0.0344302,
+            "durationMs": 25
+          },
+          "diagnostics": {
+            "phase": "complete",
+            "budget": {
+              "aiCalls": 1,
+              "searchCalls": 1,
+              "originalFetches": 3,
+              "maxOriginalFetches": 16
+            },
+            "discovered": 9,
+            "rejected": 8,
+            "findings": 3,
+            "pages": [
+              {
+                "url": "https://www.seongnam.go.kr/tour/tu-pm020101/6228",
+                "status": "fetched",
+                "textLength": 1287,
+                "sections": 1,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.seongnam.go.kr/apply/",
+                "status": "failed",
+                "errorCode": "source_http_404"
+              },
+              {
+                "url": "https://www.seongnam.go.kr/tour/index",
+                "status": "fetched",
+                "textLength": 8210,
+                "sections": 0,
+                "omittedSections": 1
+              }
+            ]
+          },
+          "region": "성남시",
+          "searched": true
+        }
+      },
+      "semanticReview": "PENDING"
+    },
+    {
+      "id": "domain-134",
+      "question": "성남문화재단 공연표 신청하는데 공식 사이트 알려줘",
+      "baseline": "wrong_source",
+      "schemaPass": true,
+      "response": {
+        "query": "성남문화재단 공연표 신청하는데 공식 사이트 알려줘",
+        "kind": "partial_answer",
+        "results": [],
+        "hasResults": false,
+        "answer": {
+          "userQuestion": "성남문화재단 공연표 신청하는데 공식 사이트 알려줘",
+          "title": "확인한 공식 원문과 남은 확인 사항",
+          "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+          "steps": [],
+          "nextAction": null,
+          "sources": [],
+          "verification": {
+            "status": "insufficient_data",
+            "checkedAt": null,
+            "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+          }
+        },
+        "officialSearch": {
+          "status": "partial",
+          "evidence": [
+            {
+              "id": "web-1",
+              "url": "https://www.snart.or.kr/main/content/view.do?sn=90",
+              "title": "성남문화재단 - 예매안내",
+              "publisher": "성남문화재단",
+              "region": "성남시",
+              "checkedAt": "2026-09-06T16:31:14.022Z",
+              "publishedAt": null,
+              "updatedAt": null,
+              "applicationPeriod": null,
+              "effectivePeriod": null,
+              "excerpt": "상단 메뉴 바로가기 본문 바로가기 하단 메뉴 바로가기 예매안내 티켓 예매 안내 인터넷 예매 예매시간 : 24시간 예매 가능 (공연 2시간 전까지 인터넷예매 가능) 예매방법 : 회원가입 및 로그인 → 공연선택 → 예매날짜/시간/좌석선택 → 결제방법선택/결제/예매완료 NOL티켓 예매방법 예매수수료 : 성남아트센터 홈페이지를 통하여 예매하시면 수수료는 부과되지 않습니다. 결제방법 신용카드결제 : 신용카드로 결제하시면 바로 결제가 완료됩니다. 무통장 입금 : 무통장 입금으로 결제하시면 가상계좌가 생성됩니다. 이는 예매건 별로 생성되는 가상계좌번호이며 정확한 금액을 입금하셔야 결제가 완료됩니다. (입금자명과 예매자명이 달라도 문제 없음) 가상계좌번호 는 예매 익일 23시 59분까지 존재하며 그 이후에는 자동 소멸하므로 입금이 불가능합니다. (은행에 따라서 23시 30분 이후로는 온라인 입금이 제한될 수 있습니다.) 공연일이 4일 남았을 시 무통장입금으로 결제할 수 있습니다. 전화예매 전화번호 : 1544-8117 예매시간 : 09:00~18:00(점심시간 12:00~13:00 미운영) 예매 방법 : 1544-8117 예매수수료 : 장당 2,000원 결제방법 : 신용카드, 무통장입금 결제 가능 현장예매 예매시간 : 월~일 09:00~18:00 (점심시간 12:00~13:00 미운영) (휴무 시 사전 공지) 예매 방법 : 성남아트센터 아이플라자(종합안내소)로 방문하시면 예매할 수 있습니다. (공연 시작 1시간 30분 전부터는 해당 공연장 1층 매표소에서 가능) 예매수수료 : 없음 결제방법 : 신용카드, 현금 결제 가능 위치 : 오페라하우스 광장 아이플라자 문의번호 : 031-783-8000 티켓 수령 안내 현장 수령 현장 수령 예매티켓은 공연 당일 해당 공연장 매표소에서 수령 가능합니다. (예매자 신분증 및 예매내역서 지참) 티켓 예매 시 할인받은 경우 할인 증빙에 필요한 자료를 제시해야 하며 실관람자 본인이 직접 해당 증빙자료를 제시하여야만 티켓 수령이 가능합니다. (ex. 장애인 할인, 국가유공자 할인, 경로우대 등) 배송 인터넷 및 전화예매 시 우편배송으로 티켓을 수령하실 수 있습니다. 우편배송(3,700원) : 결제완료 후 3~4일 이내 배송됩니다. (공연일 14일 전까지만 가능) 배송신청 후 현장수령으로 변경 시 배송료는 환불되지 않습니다. 예매취소 및 변경 취소 및 변경방법 예매처, 취소 및 변경 방법 항목으로 구성된 표입니다. 예매처 취소 및 변경 방법 예매처 : 성남아트센터 홈페이지 취소 및 변경 방법 : 홈페이지 로그인 후 (마이페이지/예매확인 및 취소)에서 취소 및 변경 예매처 : NOL 티켓 취소 및 변경 방법 : NOL 티켓 로그인 후 (예매확인/취소)에서 취소 및 변경 예매처 : 콜센터 취소 및 변경 방법 : 콜센터 (1544-8117)로 전화 후 취소 및 변경 예매처 : 현장(아이플라자) 취소 및 변경 방법 : 티켓 지참 후 내방하여 취소 및 변경 모든 취소 및 변경은 예매하신 예매처에서 가능합니다. 가능 시간 공연일별 취소 및 변경 가능 시간 제공 표 공연일 취소 및 변경 가능 시간 공연일 : 월요일~토요일, 공휴일 취소 및 변경 가능 시간 : 관람 전일 오후 5시까지 가능 공연일 : 일요일 취소 및 변경 가능 시간 : 토요일 오전 11시까지 가능 공연 당일에는 취소 및 변경이 불가능합니다. 취소수수료 (소비자분쟁해결 보상기준에 따름) 1. 예매 후 7일까지 취소 시에는 취소수수료가 없습니다. 2. 관람일 기준은 아래 기준으로 취소수수료가 적용됩니다.(1번과 2번에 모두 해당하는 경우, 2번 기준이 우선 적용) 관람일 10일 전까지: 뮤지컬, 콘서트, 클래식, 무용 한 장당 4,000원, 그 외 장르 한 장당 2,000원 (단, 최대 티켓금액의 10% 한도) 관람일 9일 전~관람일 7일 전까지 : 티켓금액의 10% 관람일 6일 전~관람일 3일 전까지 : 티켓금액의 20% 관람일 2일 전~관람일 1일 전까지 : 티켓금액의 30% 위 2번의 경우 예매 당일 밤 12시 이전 취소시에는 취소수수료가 없습니다.(단, 취소기간 내에 한함) 주의사항 모든 할인은 관람자를 기준으로 합니다. 예매티켓 변경은 콜센터(1544-8117)로 문의, 재예매 후 기존 예매 티켓 취소 방식으로 이루어집니다. 예매티켓 변경 시 기존 예매티켓 금액보다 적은 금액으로 결제될 경우(부분취소, 하향등급선택 등) 취소수수료가 부가됩니다. 무통장 입금으로 결제 한 경우 취소 수수료를 제외한 금액이 환급됩니다.(송금수수료 미부과) 티켓을 이미 배송으로 수령하신 경우에는 인터넷 및 전화로 취소할 수 없습니다. 반드시 취소마감 시간 전에 티켓이 NOL 티켓 고객서비스센터로 반송되어야 취소 가능하며, 취소수수료는 도착일자 기준으로 부과됩니다. (단, 일괄배송 취소에 대한 자세한 문의는 콜센터(1544-8117)로 문의해주시기 바랍니다.) 콘텐츠 만족도 조사 Quick Menu",
+              "collection": "openai_web_search+https_original",
+              "freshness": "unknown",
+              "fromCache": false
+            }
+          ],
+          "links": [
+            {
+              "url": "https://www.snart.or.kr/main/content/view.do?sn=90",
+              "title": "성남문화재단 - 예매안내"
+            }
+          ],
+          "usage": {
+            "model": "gpt-5.6-terra",
+            "inputTokens": 12945,
+            "outputTokens": 249,
+            "toolCalls": 1,
+            "estimatedUsd": 0.030740700000000003,
+            "durationMs": 142
+          },
+          "diagnostics": {
+            "phase": "complete",
+            "budget": {
+              "aiCalls": 1,
+              "searchCalls": 1,
+              "originalFetches": 9,
+              "maxOriginalFetches": 16
+            },
+            "discovered": 7,
+            "rejected": 11,
+            "findings": 1,
+            "pages": [
+              {
+                "url": "https://www.seongnam.go.kr/oa/kOiJeeb.do",
+                "status": "failed",
+                "errorCode": "source_http_404"
+              },
+              {
+                "url": "https://www.seongnam.go.kr/oa/qqBf8ia.do",
+                "status": "failed",
+                "errorCode": "source_http_404"
+              },
+              {
+                "url": "https://seongnam.go.kr/apply/view.do?appIdx=3598",
+                "status": "failed",
+                "errorCode": "source_unavailable"
+              },
+              {
+                "url": "https://www.snart.or.kr/main/main.do",
+                "status": "fetched",
+                "textLength": 2078,
+                "sections": 10,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.seongnam.go.kr/pm010201/6228",
+                "status": "fetched",
+                "textLength": 1291,
+                "sections": 1,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.snart.or.kr/main/content/view.do?sn=90",
+                "status": "fetched",
+                "textLength": 2416,
+                "sections": 1,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.snart.or.kr/main/content/view.do?sn=141",
+                "status": "fetched",
+                "textLength": 417,
+                "sections": 1,
+                "omittedSections": 0
+              }
+            ]
+          },
+          "region": "성남시",
+          "searched": true
+        }
+      },
+      "semanticReview": "PENDING"
+    },
+    {
+      "id": "domain-138",
+      "question": "성남 도서관 회원증 처음 만드는 방법",
+      "baseline": "safe_fallback",
+      "schemaPass": true,
+      "response": {
+        "query": "성남 도서관 회원증 처음 만드는 방법",
+        "kind": "partial_answer",
+        "results": [],
+        "hasResults": false,
+        "answer": {
+          "userQuestion": "성남 도서관 회원증 처음 만드는 방법",
+          "title": "확인한 공식 원문과 남은 확인 사항",
+          "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+          "steps": [],
+          "nextAction": null,
+          "sources": [],
+          "verification": {
+            "status": "insufficient_data",
+            "checkedAt": null,
+            "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+          }
+        },
+        "officialSearch": {
+          "status": "partial",
+          "evidence": [
+            {
+              "id": "web-1",
+              "url": "https://www.snlib.go.kr/intro/menu/10022/contents/40020/contents.do",
+              "title": "성남시도서관사업소",
+              "publisher": "성남시 도서관사업소",
+              "region": "성남시",
+              "checkedAt": "2026-09-06T16:22:50.308Z",
+              "publishedAt": null,
+              "updatedAt": null,
+              "applicationPeriod": null,
+              "effectivePeriod": null,
+              "excerpt": "본문 바로가기 하위메뉴 바로가기 주메뉴 페이지타이틀 SNS 공유하기 페이스북 트위터 현재화면 프린트. 탭메뉴 가입 대상 주민등록상 경기도, 송파구민(온라인, 방문 모두 가능 방문시 신분증 필요) 경기도, 송파구 소재 직장인이나 학생(방문만 가능, 증명서 필요) 준회원은 거주지에 관계없이 누구나 가입 가능 회원 유형 및 가입절차 회원 유형 및 가입절차 안내 표 구분 설명 준회원 회원정의: 홈페이지에만 가입한 회원 가입방법: 홈페이지에서 회원가입(휴대폰 또는 아이핀 인증 필요) 제공서비스: 일반열람실 이용, 홈페이지 게시판 이용가능 정회원 회원정의: 회원증 발급받은 회원 가입방법: 준회원 가입 후 온라인 또는 도서관 방문을 통해 도서관 회원증 발급 제공서비스: 도서대출,상호대차,스마트도서관,전자책,오디오북 등 이용가능 신규발급 당일부터 도서대출 가능, 어플 설치 후 모바일회원증으로 도서대출 가능 준회원 회원가입 온라인 정회원 신청 가입 시 유의사항 준회원 가입 시 유의사항 본인 명의의 휴대폰이나 아이핀(ipin) 정보가 필요합니다. 14세 이상인 경우: 휴대폰인증 또는 아이핀인증 후 가입 14세 미만인 경우: 보호자(법정대리인)의 본인인증(1차) 후 가입자의 아이핀인증(2차) 후 가입 (아이핀인증으로 회원가입 시 보호자(법정대리인)의 주민등록증 발급일자 필요) 외국인인 경우: 외국인 거소증으로 아이핀 발급받은 후 가입 시 본인인증하시면 됩니다. 정회원 등록 시 유의사항 반드시 신분증과 필요 시 추가 구비서류를 준비하신 후 도서관에 방문하시기 바랍니다. 정회원 가입 안내 온라인 발급 대상: 주민등록상 경기도 거주자, 서울특별시 송파구 거주자 홈페이지 회원 가입 후 [온라인 정회원 신청]클릭 > 인증 절차 후 온라인 회원증 발급 온라인 정회원 인증을 통한 회원증 발급 시 초기 회원증 비밀번호는 생일(예:생일 1월1일 ->비밀번호0101) 실물 회원증 발급을 원하는 경우 가까운 도서관에 방문하여 발급 가능 방문 발급 대상: 경기도 및 송파구 소재 직장인(사업자) 및 재학생 홈페이지 회원 가입 후 구비서류 안내에 따라 서류를 지참하여 도서관 방문 가족회원 등록 안내 대상: 도서대출회원으로 가입된 가족구성원 절차: 1 전체 가족 구성원이 정회원 등록 2 가까운 공공도서관 방문하여 신청(구비서류 지참) 구비서류: 가족회원신청서, 도서대출회원증, 가족관계 증명서류(주민등록등본 또는 가족관계증명서와 신분증, 최근3개월 이내) 정회원 등록 시 구비서류 정회원 등록 시 구비서류 안내 표 대상 구비 서류 14세 이상 신분증(주민등록증, 운전면허증 등) 14세 미만 주민등록등본(발급 3개월 이내) 보호자 또는 법정대리인의 신분증 공통사항 현재 경기도 및 송파구 실거주지 확인이 가능한 신분증 지참(신분증 상 주소변경이 안된 경우 주민등록등본 필히 지참) 14세 미만 아동은 법정대리인이 방문하여야 대출증 발급이 가능 대리인 신청 시 대리인 및 신청자 신분증, 신청자와의 관계 및 주소 확인이 가능한 등본 지참 방문발급 시 구비서류 방문발급 시 구비서류 안내 표 대상 구비 서류 경기도민 (송파구민) 성인: 현재 거주지 확인 가능한 신분증 중고등학생: 청소년증(학생증) 및 3개월이내 발급 된 등본 미취학아동 및 초등: 3개월이내 발급 된 등본 및 보호자 신분증 경기도,송파구 소재 직장인 또는 재학생 직장인: 신분증 및 현재 재직증명서 중고등학생: 학생증, 청소년증 대학생: 신분증 및 재학증명서 주소지가 경기도가 아닌 경우에 한함(본인만 회원 가입 가능하며 1년마다 갱신함) 다자녀가족 다자녀대출신청서(방문할 도서관 홈페이지에서 다운로드) 다운로드 두자녀 이상 기재된 주민등록등본 또는 가족관계증명서와 신분증 신청자 본인 및 회원가입된 가족의 대출증 지참 가족회원 가족회원신청서(방문할 도서관 홈페이지에서 다운로드) 다운로드 가족 구성원 기재된 주민등록등본 또는 가족관계증명서와 신분증 신청자 본인 및 회원가입된 가족의 대출증 지참 가족회원은 직계가족에 한합니다. 회원 탈퇴 준회원: 홈페이지 로그인 후 회원정보 > 회원탈퇴 메뉴에서 탈퇴하면 바로 탈퇴 처리 정회원: 홈페이지에서 탈퇴 후 도서관 방문해서 탈퇴 신청 후 대출/연체 여부 등 확인 후 탈퇴 처리 회원증재발급 실물 회원증 분실 시 모바일 회원증으로 이용가능(모바일 앱 ‘성남시립도서관’ 설치 필요) 실물 회원증 발급을 원하는 경우 신분증 지참하여 가까운 도서관에 방문 발급 가능",
+              "collection": "openai_web_search+https_original",
+              "freshness": "unknown",
+              "fromCache": false
+            }
+          ],
+          "links": [
+            {
+              "url": "https://www.snlib.go.kr/intro/menu/10022/contents/40020/contents.do",
+              "title": "성남시도서관사업소"
+            }
+          ],
+          "usage": {
+            "model": "gpt-5.6-terra",
+            "inputTokens": 10893,
+            "outputTokens": 141,
+            "toolCalls": 1,
+            "estimatedUsd": 0.0253387,
+            "durationMs": 151
+          },
+          "diagnostics": {
+            "phase": "complete",
+            "budget": {
+              "aiCalls": 1,
+              "searchCalls": 1,
+              "originalFetches": 8,
+              "maxOriginalFetches": 16
+            },
+            "discovered": 8,
+            "rejected": 10,
+            "findings": 0,
+            "pages": [
+              {
+                "url": "https://www.seongnam.go.kr/mulga/mulgaDongMain.do",
+                "status": "failed",
+                "errorCode": "source_http_404"
+              },
+              {
+                "url": "https://www.seongnam.go.kr/sn02030601",
+                "status": "fetched",
+                "textLength": 2208,
+                "sections": 6,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.seongnam.go.kr/city/1000071/10046/contents.do",
+                "status": "failed",
+                "errorCode": "source_http_404"
+              },
+              {
+                "url": "https://www.snlib.go.kr/intro/index.do",
+                "status": "fetched",
+                "textLength": 3843,
+                "sections": 0,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.snlib.go.kr/intro/menu/10022/contents/40020/contents.do",
+                "status": "fetched",
+                "textLength": 2158,
+                "sections": 1,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.snlib.go.kr/ct/index.do",
+                "status": "fetched",
+                "textLength": 3946,
+                "sections": 0,
+                "omittedSections": 0
+              }
+            ]
+          },
+          "region": "성남시",
+          "searched": true
+        }
+      },
+      "semanticReview": "PENDING"
+    },
+    {
+      "id": "domain-140",
+      "question": "전자책은 집에서 빌릴 수 있나요",
+      "baseline": "safe_fallback",
+      "schemaPass": true,
+      "response": {
+        "query": "전자책은 집에서 빌릴 수 있나요",
+        "kind": "partial_answer",
+        "results": [],
+        "hasResults": false,
+        "answer": {
+          "userQuestion": "전자책은 집에서 빌릴 수 있나요",
+          "title": "확인한 공식 원문과 남은 확인 사항",
+          "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+          "steps": [],
+          "nextAction": null,
+          "sources": [],
+          "verification": {
+            "status": "insufficient_data",
+            "checkedAt": null,
+            "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+          }
+        },
+        "officialSearch": {
+          "status": "partial",
+          "evidence": [
+            {
+              "id": "web-1",
+              "url": "https://www.snlib.go.kr/intro/40008/contents.do",
+              "title": "성남시도서관사업소",
+              "publisher": "성남시 도서관사업소",
+              "region": "성남시",
+              "checkedAt": "2026-09-06T16:22:50.128Z",
+              "publishedAt": null,
+              "updatedAt": null,
+              "applicationPeriod": null,
+              "effectivePeriod": null,
+              "excerpt": "본문 바로가기 하위메뉴 바로가기 주메뉴 페이지타이틀 SNS 공유하기 페이스북 트위터 현재화면 프린트. 탭메뉴 전자책이란? 저작물의 내용을 디지털 데이터로 변환한 디지털 도서 종이책과 마찬가지로 대출, 반납 및 예약 가능 PC나 모바일기기로 이용 가능 대출/반납 안내 이용대상: 성남시 공공도서관 정회원 대출권수: 12권 대출기간: 14일 (※연장불가) 도서반납: 자동반납(14일후)/선반납 가능(14일전) 예약 안내 예약권수: 6권 주의사항 예약한 콘텐츠는 앞서 이용하는 이용자가 반납할 경우 자동으로 대출 됩니다. 만약 자동으로 대출될 때 12권을 모두 대출하여 남은 대출가능권수가 없는 경우, 우선예약기간(24시간) 만큼 대출을 받을 수 있는 기회를 제공 합니다. 이 기간동안 ‘전자도서관 > 내서재 > 예약중인 목록’에서 ‘대출’버튼을 통해 직접 대출하여야 하며 기간이 지날 경우 예약이 취소됩니다. 전자책 이용방법 디지털_디지털서비스 전자책 이용방법 구분 PC 모바일기기 이용방법 전용뷰어 설치 후 이용 가능 (교보전자책 뷰어, 북큐브 북플레이어, YES24 전자책 뷰어) 앱(APP) 설치 후 이용가능 (교보문고 전자도서관, 북큐브 전자도서관, 예스24 전자도서관) 프로그램 다운받기 교보전자책 뷰어 북큐브 북플레이어 YES24 전자책 뷰어 [앱스토어], [구글플레이스토어]에서 다운받아 설치 유의사항 ※ 교보전자책 뷰어는 Windows7/8/10에서 이용가능하며, 그 외 Windows 버전 및 일부 가상화시스템(VDI)에서는 지원이 불가할 수 있으며 MAC OS에서는 이용불가 ※ 인터넷 브라우저 설정에서 팝업이 허용으로 되어 있어야 전자책 열람 가능 ※ 전자책 유통사에 따라 이용할 수 있는 앱이 제한되어 있습니다. (교보전자책은 교보앱에서만, 북큐브전자책은 북큐브앱에서만, 예스24 전자책은 예스24앱에서만 이용가능) 전자책 희망도서 희망도서 신청 신청자격: 성남시 관내 공공도서관 정회원 신청권수: 1인당 월 4권 신청방법: 도서관 홈페이지(로그인=>전자책 홈페이지=>희망도서 신청하기) 희망도서 선정제외 소장·정리·주문 중인 자료 최근 5년 이전 출판자료 품절 및 절판도서 수험서, 문제집, 학습참고서 논문, 전문서적 및 전공서적 연속간행물, 방송교재, 체험판, 게임가이드북 판타지, 로맨스, 선정적인 자료, 무협지 정보와 지식을 전달하는 만화 이외의 만화류 이용저조 예상도서 과도한 개인신앙자료, 정치색이 짙은 자료 고가도서 : 50,000원 초과(기관판매 전자책은 개인 구입가와 다름) 기타 도서관 상황에 부적합 자료 문 의 전자책 홈페이지 070-7602-2676 교보문고 전자책 070-7602-2676 YES24 전자책 031-713-1101 전자책 서비스는 정회원 로그인 후 이용하실 수 있습니다 전자책 바로가기 경기도사이버도서관은 별도 회원가입 후 이용하실 수 있습니다 경기도사이버도서관 바로가기",
+              "collection": "openai_web_search+https_original",
+              "freshness": "unknown",
+              "fromCache": false
+            },
+            {
+              "id": "web-2",
+              "url": "https://www.snlib.go.kr/intro/menu/206007/contents/41520/contents.do",
+              "title": "성남시도서관사업소",
+              "publisher": "성남시 도서관사업소",
+              "region": "성남시",
+              "checkedAt": "2026-09-06T16:25:55.906Z",
+              "publishedAt": null,
+              "updatedAt": null,
+              "applicationPeriod": null,
+              "effectivePeriod": null,
+              "excerpt": "본문 바로가기 하위메뉴 바로가기 주메뉴 페이지타이틀 SNS 공유하기 페이스북 트위터 현재화면 프린트. 탭메뉴 전자도서관은 정회원만 이용가능합니다. 전자책 이용안내 바로가기 오디오북 이용안내 바로가기 경기도사이버도서관 전자책/오디오북 이용안내 바로가기 온라인학술DB(DBpia) 이용안내 바로가기 닫기 온라인학술DB(KISS) 이용안내 바로가기 전자잡지 이용안내 바로가기 뮤직 라이브러리 이용안내 바로가기 어학강좌 이용안내 바로가기",
+              "collection": "openai_web_search+https_original",
+              "freshness": "unknown",
+              "fromCache": false
+            }
+          ],
+          "links": [
+            {
+              "url": "https://www.snlib.go.kr/intro/40008/contents.do",
+              "title": "성남시도서관사업소"
+            },
+            {
+              "url": "https://www.snlib.go.kr/intro/menu/206007/contents/41520/contents.do",
+              "title": "성남시도서관사업소"
+            }
+          ],
+          "usage": {
+            "model": "gpt-5.6-terra",
+            "inputTokens": 10978,
+            "outputTokens": 81,
+            "toolCalls": 1,
+            "estimatedUsd": 0.0247892,
+            "durationMs": 120
+          },
+          "diagnostics": {
+            "phase": "complete",
+            "budget": {
+              "aiCalls": 1,
+              "searchCalls": 1,
+              "originalFetches": 5,
+              "maxOriginalFetches": 16
+            },
+            "discovered": 0,
+            "rejected": 18,
+            "findings": 0,
+            "pages": [
+              {
+                "url": "https://www.snlib.go.kr/intro/index.do",
+                "status": "fetched",
+                "textLength": 3843,
+                "sections": 0,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.snlib.go.kr/intro/40008/contents.do",
+                "status": "fetched",
+                "textLength": 1415,
+                "sections": 1,
+                "omittedSections": 0
+              },
+              {
+                "url": "https://www.snlib.go.kr/intro/menu/206007/contents/41520/contents.do",
+                "status": "fetched",
+                "textLength": 240,
+                "sections": 1,
+                "omittedSections": 0
+              }
+            ]
+          },
+          "region": "성남시",
+          "searched": true
+        }
+      },
+      "semanticReview": "PENDING"
+    }
+  ]
+}

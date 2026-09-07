@@ -1,0 +1,97 @@
+{
+  "id": "domain-066",
+  "question": "성남에서 버스 타려면",
+  "at": "2026-09-07T09:52:56.474Z",
+  "ms": 8851,
+  "schemaPass": true,
+  "response": {
+    "query": "성남에서 버스 타려면",
+    "kind": "partial_answer",
+    "results": [],
+    "hasResults": false,
+    "answer": {
+      "userQuestion": "성남에서 버스 타려면",
+      "title": "확인한 공식 원문과 남은 확인 사항",
+      "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+      "steps": [],
+      "nextAction": null,
+      "sources": [],
+      "verification": {
+        "status": "insufficient_data",
+        "checkedAt": null,
+        "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+      }
+    },
+    "officialSearch": {
+      "status": "partial",
+      "evidence": [
+        {
+          "id": "web-1",
+          "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=132",
+          "title": "행사안내<2026 성남시 채용박람회<채용행사<성남시일자리센터",
+          "publisher": "성남시 일자리센터",
+          "region": "성남시",
+          "checkedAt": "2026-09-07T09:52:56.474Z",
+          "publishedAt": null,
+          "updatedAt": null,
+          "applicationPeriod": null,
+          "effectivePeriod": null,
+          "excerpt": "본문 바로가기 메인메뉴 바로가기 서브메뉴 바로가기 홈 채용행사 2026 성남시 채용박람회 행사안내 채용행사 채용행사안내 행사안내 행사일정 2026 성남시 채용박람회 행사안내 참여기업 취업특강 컨설팅존 현직자멘토링존 체험존 부대행사 구인•구직자 만남의 날 상설면접 행사안내 오늘 찾은 내일 job 설레는 나의 내일! 이용안내 일 시 2026년 9월 17일 (목) 13:00 ~ 17:00 장 소 성남종합스포츠센터 1층 다목적체육관 규 모 구인기업 30개 업체 행사내용 [컨설팅] - 이력서 & 면접코칭 - 마음상담 - 보이스트레이닝 [체험존] - AI 면접컨설팅 \"노트미\" - 진로성향검사 \"심커리어\" [부대행사] - AI이력서 사진촬영 - 헤어&메이크업 - 퍼스널컬러진단 참여방법 현장면접, 성남시일자리센터 홈페이지 주 최 성남시/성남시일자리센터 성남고용복지+센터, 경기도일자리재단,가천대학교, 동서울대학교,성남산업진흥원, 신용회복위원회 찾아오시는길 장 소 성남종합스포츠센터 교통안내 이용안내 구분 이용노선 이용방법 버스 일반버스 31-2번, 31-3번, 55번, 60번, 350번 중원구청 앞 또는 성남종합운동장 장류장에서 하차 지하철 분당선, 8호선 모란역(2번 출구) 하차 후 도보나 연계 대중교통이용 Copyright c Seongnam City. All Rights Reserved.",
+          "collection": "openai_web_search+https_original",
+          "freshness": "unknown",
+          "fromCache": false
+        }
+      ],
+      "links": [
+        {
+          "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=132",
+          "title": "행사안내<2026 성남시 채용박람회<채용행사<성남시일자리센터"
+        }
+      ],
+      "usage": {
+        "model": "gpt-5.6-terra",
+        "inputTokens": 11014,
+        "outputTokens": 334,
+        "toolCalls": 1,
+        "estimatedUsd": 0.0277895,
+        "durationMs": 8836
+      },
+      "diagnostics": {
+        "phase": "complete",
+        "budget": {
+          "aiCalls": 1,
+          "searchCalls": 1,
+          "originalFetches": 4,
+          "maxOriginalFetches": 16
+        },
+        "discovered": 3,
+        "rejected": 15,
+        "findings": 1,
+        "pages": [
+          {
+            "url": "https://www.seongnam.go.kr/city/1000050/10040/contents.do",
+            "status": "failed",
+            "errorCode": "source_http_404"
+          },
+          {
+            "url": "https://www.seongnam.go.kr/sn02030601",
+            "status": "fetched",
+            "textLength": 2208,
+            "sections": 5,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=132",
+            "status": "fetched",
+            "textLength": 667,
+            "sections": 1,
+            "omittedSections": 0
+          }
+        ]
+      },
+      "region": "성남시",
+      "searched": true
+    }
+  },
+  "semanticReview": "PENDING"
+}

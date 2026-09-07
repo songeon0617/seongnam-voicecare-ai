@@ -1,0 +1,407 @@
+{
+  "reviewedAt": "2026-09-07T10:05:14.008Z",
+  "sample": 20,
+  "initialLiveProviderCalls": 18,
+  "initialSchemaPass": 20,
+  "initialRelatedAnswerOrPartial": 16,
+  "initialComplete": 12,
+  "initialWrongSource": 3,
+  "postFixMode": "Same captured provider responses + new real HTTPS; NOT a fresh 20-case OpenAI evaluation",
+  "postFixSchemaPass": 20,
+  "postFixRelatedAnswerOrPartial": 15,
+  "postFixComplete": 14,
+  "postFixWrongSource": 0,
+  "separateFreshFinalProbes": 2,
+  "actualPaidCallsLocal": 20,
+  "runtimeSha256": "f79f476061068c61e7f4f9dc228dd479efbc31c75588462f61d2a385e1d5d32f",
+  "runtimeFiles": [
+    "next.config.ts",
+    "package-lock.json",
+    "package.json",
+    "src/app/api/public-information/search/route.ts",
+    "src/app/favicon.ico",
+    "src/app/globals.css",
+    "src/app/layout.tsx",
+    "src/app/page.module.css",
+    "src/app/page.tsx",
+    "src/components/question-panel/public-information-answer.tsx",
+    "src/components/question-panel/question-panel.module.css",
+    "src/components/question-panel/question-panel.tsx",
+    "src/components/question-panel/use-answer-speech.ts",
+    "src/components/question-panel/use-voice-input.ts",
+    "src/data/public-data/documents.ts",
+    "src/data/public-data/sources.ts",
+    "src/lib/ai/generate-public-information-answer.ts",
+    "src/lib/ai/intent-router-evaluation.ts",
+    "src/lib/ai/intent-router.ts",
+    "src/lib/ai/openai-answer-generator.ts",
+    "src/lib/ai/openai-intent-router.ts",
+    "src/lib/ai/service-catalog.ts",
+    "src/lib/example-questions.ts",
+    "src/lib/public-information/concise-answer.ts",
+    "src/lib/public-information/map-documents-to-answer.ts",
+    "src/lib/safety/safety-boundary.ts",
+    "src/lib/search/bounded-io.ts",
+    "src/lib/search/create-public-information-response-with-answer.ts",
+    "src/lib/search/create-public-information-search-response.ts",
+    "src/lib/search/curated-query-policy.ts",
+    "src/lib/search/expanded-public-information.ts",
+    "src/lib/search/extract-official-document.ts",
+    "src/lib/search/fetch-official-source.ts",
+    "src/lib/search/handle-public-information-search.ts",
+    "src/lib/search/keyword-routing.ts",
+    "src/lib/search/official-institution-ca.ts",
+    "src/lib/search/official-navigation.ts",
+    "src/lib/search/official-source-ca.ts",
+    "src/lib/search/official-source-policy.ts",
+    "src/lib/search/openai-official-search.ts",
+    "src/lib/search/read-search-answer.ts",
+    "src/lib/search/region-boundary.ts",
+    "src/lib/search/request-search-budget.ts",
+    "src/lib/search/search-budget.ts",
+    "src/lib/search/search-public-information.ts",
+    "src/lib/search/search-request-limit.ts",
+    "src/lib/search/shared-search-budget.ts",
+    "src/lib/search/structured-boundary.ts",
+    "src/lib/speech/browser-speech.ts",
+    "src/types/official-search.ts",
+    "src/types/public-data.ts",
+    "src/types/public-information-router.ts",
+    "src/types/public-information-safety.ts",
+    "src/types/public-information-search.ts",
+    "src/types/public-information.ts",
+    "src/types/search-messages.ts"
+  ],
+  "rows": [
+    {
+      "id": "domain-097",
+      "question": "성남시 여권 어디서 만들어",
+      "beforeKind": "partial_answer",
+      "afterKind": "partial_answer",
+      "beforeWrongSource": false,
+      "afterWrongSource": false,
+      "beforeComplete": true,
+      "afterComplete": true,
+      "afterSources": [
+        {
+          "url": "https://www.seongnam.go.kr/cn02040801",
+          "checkedAt": "2026-09-07T09:56:38.884Z",
+          "freshness": "unknown"
+        }
+      ],
+      "notes": "요청한 핵심 정보가 전체 조건과 함께 공식 원문/등록 데이터에 존재. 개인 자격·현재 접수 가능을 확정하지 않음."
+    },
+    {
+      "id": "domain-098",
+      "question": "성남에서 여권 만들 때 준비물",
+      "beforeKind": "partial_answer",
+      "afterKind": "partial_answer",
+      "beforeWrongSource": false,
+      "afterWrongSource": false,
+      "beforeComplete": true,
+      "afterComplete": true,
+      "afterSources": [
+        {
+          "url": "https://www.seongnam.go.kr/cn0204080301",
+          "checkedAt": "2026-09-07T09:56:41.363Z",
+          "freshness": "unknown"
+        }
+      ],
+      "notes": "요청한 핵심 정보가 전체 조건과 함께 공식 원문/등록 데이터에 존재. 개인 자격·현재 접수 가능을 확정하지 않음."
+    },
+    {
+      "id": "domain-009",
+      "question": "장애인 보조기구 지원 신청 방법",
+      "beforeKind": "answer",
+      "afterKind": "answer",
+      "beforeWrongSource": false,
+      "afterWrongSource": false,
+      "beforeComplete": true,
+      "afterComplete": true,
+      "afterSources": [
+        {
+          "url": "https://www.seongnam.go.kr/wf-pm020101/23003",
+          "checkedAt": "2026-09-07T18:37:00+09:00",
+          "freshness": "unknown"
+        }
+      ],
+      "notes": "요청한 핵심 정보가 전체 조건과 함께 공식 원문/등록 데이터에 존재. 개인 자격·현재 접수 가능을 확정하지 않음."
+    },
+    {
+      "id": "domain-068",
+      "question": "특별교통수단 신청 방법",
+      "beforeKind": "answer",
+      "afterKind": "answer",
+      "beforeWrongSource": false,
+      "afterWrongSource": false,
+      "beforeComplete": true,
+      "afterComplete": true,
+      "afterSources": [
+        {
+          "url": "https://www.seongnam.go.kr/wf-pm020101/23018",
+          "checkedAt": "2026-09-07T18:37:00+09:00",
+          "freshness": "unknown"
+        }
+      ],
+      "notes": "요청한 핵심 정보가 전체 조건과 함께 공식 원문/등록 데이터에 존재. 개인 자격·현재 접수 가능을 확정하지 않음."
+    },
+    {
+      "id": "domain-113",
+      "question": "성남 음식물쓰레기 버리는 법",
+      "beforeKind": "search_unavailable",
+      "afterKind": "search_unavailable",
+      "beforeWrongSource": false,
+      "afterWrongSource": false,
+      "beforeComplete": false,
+      "afterComplete": false,
+      "afterSources": [],
+      "notes": "공식 자원순환 SPA가 존재하지만 HTTP HTML에 실행 후 본문이 없음. 원문 답변 미완료."
+    },
+    {
+      "id": "domain-115",
+      "question": "낡은 소파 버릴 때 어떻게 신고해요",
+      "beforeKind": "partial_answer",
+      "afterKind": "partial_answer",
+      "beforeWrongSource": false,
+      "afterWrongSource": false,
+      "beforeComplete": true,
+      "afterComplete": true,
+      "afterSources": [
+        {
+          "url": "https://waste.isdc.co.kr/contents/content.php?cIdx=3",
+          "checkedAt": "2026-09-07T09:56:50.192Z",
+          "freshness": "unknown"
+        }
+      ],
+      "notes": "요청한 핵심 정보가 전체 조건과 함께 공식 원문/등록 데이터에 존재. 개인 자격·현재 접수 가능을 확정하지 않음."
+    },
+    {
+      "id": "domain-081",
+      "question": "성남시청에 민원 넣고 싶은데 어디서 시작해요",
+      "beforeKind": "official_links",
+      "afterKind": "official_links",
+      "beforeWrongSource": false,
+      "afterWrongSource": false,
+      "beforeComplete": false,
+      "afterComplete": false,
+      "afterSources": [],
+      "notes": "공식 링크만 제공. 상세 민원 시작 절차의 원문 대조 미완료."
+    },
+    {
+      "id": "domain-083",
+      "question": "전입신고 온라인으로 할 수 있나요",
+      "beforeKind": "search_unavailable",
+      "afterKind": "search_unavailable",
+      "beforeWrongSource": false,
+      "afterWrongSource": false,
+      "beforeComplete": false,
+      "afterComplete": false,
+      "afterSources": [],
+      "notes": "구 성남시전입 URL은 404. 현재 원문 확보 미완료; 다른 주거 안내로 대체하지 않음."
+    },
+    {
+      "id": "domain-052",
+      "question": "보건증 발급받으려면 성남 어디로 가요",
+      "beforeKind": "partial_answer",
+      "afterKind": "partial_answer",
+      "beforeWrongSource": false,
+      "afterWrongSource": false,
+      "beforeComplete": true,
+      "afterComplete": true,
+      "afterSources": [
+        {
+          "url": "https://www.seongnam.go.kr/health/ht-pm020101/6010?curPage=1&cvlcptBizSn=6010&srchText=%EA%B1%B4%EA%B0%95%EC%A7%84%EB%8B%A8%EA%B2%B0%EA%B3%BC%EC%84%9C",
+          "checkedAt": "2026-09-07T09:57:04.616Z",
+          "freshness": "unknown"
+        }
+      ],
+      "notes": "요청한 핵심 정보가 전체 조건과 함께 공식 원문/등록 데이터에 존재. 개인 자격·현재 접수 가능을 확정하지 않음."
+    },
+    {
+      "id": "domain-053",
+      "question": "담배 끊고 싶은데 무료 상담 있어요",
+      "beforeKind": "partial_answer",
+      "afterKind": "partial_answer",
+      "beforeWrongSource": false,
+      "afterWrongSource": false,
+      "beforeComplete": false,
+      "afterComplete": false,
+      "afterSources": [
+        {
+          "url": "https://www.seongnam.go.kr/health/ht-pm020101/9016",
+          "checkedAt": "2026-09-07T09:57:09.225Z",
+          "freshness": "unknown"
+        }
+      ],
+      "notes": "금연상담 및 무료 보조제 안내 원문은 관련 있음. 상담 자체가 무료인지 명시되지 않아 질문 완수로 집계하지 않음."
+    },
+    {
+      "id": "domain-066",
+      "question": "성남에서 버스 타려면",
+      "beforeKind": "partial_answer",
+      "afterKind": "search_unavailable",
+      "beforeWrongSource": true,
+      "afterWrongSource": false,
+      "beforeComplete": false,
+      "afterComplete": false,
+      "afterSources": [],
+      "notes": "Before: 채용박람회 오시는 길은 일반 버스 이용의 답이 아님. After: 무관 근거 제외, 안전 fallback. 일반 버스 안내 수집 미완료."
+    },
+    {
+      "id": "domain-071",
+      "question": "판교역에서 성남시청 가는 대중교통 알려줘",
+      "beforeKind": "official_links",
+      "afterKind": "official_links",
+      "beforeWrongSource": false,
+      "afterWrongSource": false,
+      "beforeComplete": false,
+      "afterComplete": false,
+      "afterSources": [],
+      "notes": "시청 교통 링크는 있으나 판교역 출발의 전체 경로 근거 미확보."
+    },
+    {
+      "id": "domain-027",
+      "question": "취업 면접 보러 가는데 정장 빌릴 수 있어요",
+      "beforeKind": "partial_answer",
+      "afterKind": "partial_answer",
+      "beforeWrongSource": false,
+      "afterWrongSource": false,
+      "beforeComplete": true,
+      "afterComplete": true,
+      "afterSources": [
+        {
+          "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=76",
+          "checkedAt": "2026-09-07T09:57:17.823Z",
+          "freshness": "unknown"
+        }
+      ],
+      "notes": "요청한 핵심 정보가 전체 조건과 함께 공식 원문/등록 데이터에 존재. 개인 자격·현재 접수 가능을 확정하지 않음."
+    },
+    {
+      "id": "domain-031",
+      "question": "성남 청년들이 모임하는 공공 공간 찾아줘",
+      "beforeKind": "partial_answer",
+      "afterKind": "partial_answer",
+      "beforeWrongSource": false,
+      "afterWrongSource": false,
+      "beforeComplete": true,
+      "afterComplete": true,
+      "afterSources": [
+        {
+          "url": "https://www.snspring.or.kr/programView.do?idx=838&searchKeyword=%ED%81%B4%EB%9E%98%EC%8A%A4",
+          "checkedAt": "2026-09-07T09:57:20.192Z",
+          "freshness": "unknown"
+        }
+      ],
+      "notes": "요청한 핵심 정보가 전체 조건과 함께 공식 원문/등록 데이터에 존재. 개인 자격·현재 접수 가능을 확정하지 않음."
+    },
+    {
+      "id": "domain-138",
+      "question": "성남 도서관 회원증 처음 만드는 방법",
+      "beforeKind": "partial_answer",
+      "afterKind": "partial_answer",
+      "beforeWrongSource": true,
+      "afterWrongSource": false,
+      "beforeComplete": false,
+      "afterComplete": true,
+      "afterSources": [
+        {
+          "url": "https://snlib.go.kr/intro/menu/10022/contents/40020/contents.do",
+          "checkedAt": "2026-09-07T09:57:24.499Z",
+          "freshness": "unknown"
+        }
+      ],
+      "notes": "Before: 2020년 코로나 임시휴관 중 대출/한시 회원 전환. After: 실제 회원가입·회원증발급·구비서류 안내로 복구."
+    },
+    {
+      "id": "domain-140",
+      "question": "전자책은 집에서 빌릴 수 있나요",
+      "beforeKind": "partial_answer",
+      "afterKind": "partial_answer",
+      "beforeWrongSource": false,
+      "afterWrongSource": false,
+      "beforeComplete": true,
+      "afterComplete": true,
+      "afterSources": [
+        {
+          "url": "https://www.snlib.go.kr/pg/40008/contents.do",
+          "checkedAt": "2026-09-07T09:57:26.918Z",
+          "freshness": "unknown"
+        }
+      ],
+      "notes": "요청한 핵심 정보가 전체 조건과 함께 공식 원문/등록 데이터에 존재. 개인 자격·현재 접수 가능을 확정하지 않음."
+    },
+    {
+      "id": "domain-073",
+      "question": "성남 시청에 차 가져가면 주차할 수 있어요",
+      "beforeKind": "partial_answer",
+      "afterKind": "partial_answer",
+      "beforeWrongSource": false,
+      "afterWrongSource": false,
+      "beforeComplete": true,
+      "afterComplete": true,
+      "afterSources": [
+        {
+          "url": "https://www.seongnam.go.kr/cn040503",
+          "checkedAt": "2026-09-07T09:57:14.603Z",
+          "freshness": "unknown"
+        }
+      ],
+      "notes": "요청한 핵심 정보가 전체 조건과 함께 공식 원문/등록 데이터에 존재. 개인 자격·현재 접수 가능을 확정하지 않음."
+    },
+    {
+      "id": "domain-075",
+      "question": "성남 거주자우선주차 신청하는 법",
+      "beforeKind": "partial_answer",
+      "afterKind": "partial_answer",
+      "beforeWrongSource": false,
+      "afterWrongSource": false,
+      "beforeComplete": true,
+      "afterComplete": true,
+      "afterSources": [
+        {
+          "url": "https://park.isdc.co.kr/resident/useinfo.do",
+          "checkedAt": "2026-09-07T09:57:31.618Z",
+          "freshness": "unknown"
+        }
+      ],
+      "notes": "요청한 핵심 정보가 전체 조건과 함께 공식 원문/등록 데이터에 존재. 개인 자격·현재 접수 가능을 확정하지 않음."
+    },
+    {
+      "id": "domain-130",
+      "question": "시에서 하는 무료 공연 어디서 찾아요",
+      "beforeKind": "partial_answer",
+      "afterKind": "partial_answer",
+      "beforeWrongSource": true,
+      "afterWrongSource": false,
+      "beforeComplete": false,
+      "afterComplete": true,
+      "afterSources": [
+        {
+          "url": "https://www.seongnam.go.kr/pm010201/6228",
+          "checkedAt": "2026-09-07T09:57:34.660Z",
+          "freshness": "unknown"
+        }
+      ],
+      "notes": "Before: 진로 특강/공연장 언급을 일반 공연으로 오인. After: 실제 무료 힙페스타 일정·장소·우천 조건 원문으로 복구."
+    },
+    {
+      "id": "domain-134",
+      "question": "성남문화재단 공연표 신청하는데 공식 사이트 알려줘",
+      "beforeKind": "partial_answer",
+      "afterKind": "partial_answer",
+      "beforeWrongSource": false,
+      "afterWrongSource": false,
+      "beforeComplete": true,
+      "afterComplete": true,
+      "afterSources": [
+        {
+          "url": "https://www.snart.or.kr/main/content/view.do?sn=90",
+          "checkedAt": "2026-09-07T09:57:37.795Z",
+          "freshness": "unknown"
+        }
+      ],
+      "notes": "요청한 핵심 정보가 전체 조건과 함께 공식 원문/등록 데이터에 존재. 개인 자격·현재 접수 가능을 확정하지 않음."
+    }
+  ]
+}

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>성남시 대형폐기물 인터넷 배출신고</title>
+<!-- meta -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="format-detection" content="telephone=no,email=no,address=no" />
+<meta name="author" content="성남시 대형폐기물 인터넷 배출신고" />
+<meta name="Keywords" content="배출신청, 신청내역조회, 신청안내, 처리비용안내, 공지사항" />
+<meta name="description" content="온라인으로 대형폐기물 배출, 이제 쉽고 간편하게 신청하세요!" />
+<meta name="copyright" content="경기도 성남시 중원구 성남대로 997 (여수동) 성남시청" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+
+<!-- css -->
+<link type="text/css" rel="stylesheet" href="/common/css/default.css">
+
+<!-- js -->
+<script src="/common/js/jquery-3.1.1.min.js"></script>
+<script src="/common/js/jquery-ui.js"></script>
+<script src="/common/plugin/jquery.bxslider.js"></script>
+<script src="/common/plugin/jquery.placeholder.js"></script>
+<script src="/common/plugin/jquery.simpler-sidebar.js"></script>
+<script src="/common/plugin/kakao.min.js"></script>
+<script src="/common/plugin/jquery.printarea.js"></script>
+<script src="/common/ckeditor/ckeditor.js"></script>
+<script src="/common/js/fboard.js"></script>
+<script src="/common/js/member.js"></script>
+<!-- <script src="/common/plugin/tooltipster.bundle.min.js"></script> -->
+<!-- <script src="/common/plugin/jquery.dotdotdot.min.js"></script> -->
+<!-- <script src="/common/plugin/jquery.slimscroll.min.js"></script> -->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-90791842-12"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-90791842-12');
+</script>
+
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+    <script src="/common/js/html5shiv.min.js"></script>
+    <script src="/common/js/respond.min.js"></script>
+<![endif]-->
+<script>
+$(function() {
+  // 관할구
+  $("#o_gu").change(function() {
+    var o_gu = $(this).val();  // 구
+    $.ajax({
+      type : "POST",
+      url : "../contents/order_write_ajax.php",
+      data:{actionMode:"gu_change2", o_gu:o_gu},
+      success:function(data) {
+        //alert(data);
+        $("#o_dong").html(data);
+
+      }
+    });
+  });
+
+  // 관할동
+  $("#o_dong").change(function() {
+    var o_dong = $(this).val();  // 동
+    $.ajax({
+      type : "POST",
+      url : "../contents/order_write_ajax.php",
+      data:{actionMode:"dong_change", o_dong:o_dong},
+      success:function(data) {
+        var data_array = data.split('§');
+        var m_id = data_array[0];
+        var m_name = data_array[1];
+        var m_tel = data_array[2];
+        $("#company_txt").removeClass("info");
+        $("#company_txt").addClass("result");
+        $("#company_txt").html(m_name +" "+ m_tel);
+      }
+    });
+  });
+});
+
+// 설문조사 팝업
+</script>
+</head>
+<body class="bg_index">
+<ul id="accessibility">
+	<li><a href="#mcontainer">본문 바로가기</a></li>
+	<li><a href="#gnb">메인메뉴 바로가기</a></li>
+</ul>
+<div id="wrap">
+  <!-- 헤더 -->
+  
+<!-- Pc header  -->
+<div id="header_wrap">
+<header id="header">
+  <h1 class="logo">
+    <a href="../">성남시 대형폐기물 인터넷 배출신고</a>
+  </h1>
+
+  <nav id="gnb">
+    <div class="gnbIn">
+      <div class="gnbInner">
+        <ul class="depth01">
+                    <li><a href='../contents/content.php?cIdx=1' class='menu1'>배출신청</a></li>
+                    <li><a href='../contents/content.php?cIdx=2' class='menu2'>신청내역조회</a></li>
+                    <li><a href='../contents/content.php?cIdx=3' class='menu3'>신청안내</a></li>
+                    <li><a href='../contents/content.php?cIdx=4' class='menu4'>처리비용안내</a></li>
+                    <li><a href='../contents/content.php?cIdx=5' class='menu5'>공지사항</a></li>
+                  </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+</div>
+<!-- /Pc header  -->
+
+
+<!-- Mobile header  -->
+<nav id="mo_header">
+  <h2 class="skip">모바일용 메뉴</h2>
+  <div class="header">
+    <!-- <a href="#btn_srch" class="mbtn_srch"><span>검색하기</span></a> -->
+    <a href="#menu" class="toggle-sidebar mbtn_menu"><span>전체메뉴</span></a>
+    <h2 class="tit"><a href="../"><img src="../images/common/h1_logo.png" alt="성남시 대형폐기물 인터넷 배출신고" /></a></h2>
+    <!-- <div class="msrch_wrap">
+      <form name="search_result" method="post" action="../contents/search_result.php" onsubmit="return search_resultChk();">
+        <fieldset>
+          <legend>사이트 검색어 입력</legend>
+          <input type="text" name="tsearchName" class="mipt_srch1" title="검색어를 입력해주세요" placeholder="검색어를 입력해주세요" maxlength="100" />
+          <input type="image" src="../mobile/images/btn_srch2.png" width="20" height="20" alt="검색하기" />
+        </fieldset>
+      </form>
+    </div> -->
+  </div>
+
+  <script>
+  $(".mbtn_srch").click(function () {
+     $(".msrch_wrap").stop().slideToggle();
+     return false;
+   });
+
+   $(".mbtn_srch").hover(function () {
+     $(this).stop().css({
+       "cursor": "pointer"
+     })
+   });
+  </script>
+
+  <div id="sidebar">
+    <div id="sidebar-wrapper" class="sidebar-wrapper mo_menu">
+      <a class="toggle-sidebar close" href="#">닫기</a>
+      <div class="head">
+        <h2>성남시 대형폐기물 인터넷 배출신고</h2>
+        <!-- <div class="login">
+                    <a href="/contents/content.php?cIdx=23">로그인</a>
+          <a href="/contents/content.php?cIdx=24">회원가입</a>
+          <a href="/contents/content.php?cIdx=30">신청내역확인</a>
+                  </div> -->
+      </div>
+      <div class="sidebar">
+        <ul class="depth1">
+                  <li><a href='../contents/content.php?cIdx=1' class='depth1_a'><span>배출신청</span></a>            <ul class="depth2 sub-menu" style='display:block;'>
+                          </ul>
+          </li>
+                    <li><a href='../contents/content.php?cIdx=2' class='depth1_a'><span>신청내역조회</span></a>            <ul class="depth2 sub-menu" style='display:none;'>
+                          </ul>
+          </li>
+                    <li><a href='#' class='depth1_a' >신청안내</a>            <ul class="depth2 sub-menu" style='display:none;'>
+                            <li><a href='../contents/content.php?cIdx=3' >신청안내</a>                              </li>
+                          </ul>
+          </li>
+                    <li><a href='../contents/content.php?cIdx=4' class='depth1_a'><span>처리비용안내</span></a>            <ul class="depth2 sub-menu" style='display:none;'>
+                          </ul>
+          </li>
+                    <li><a href='../contents/content.php?cIdx=5' class='depth1_a'><span>공지사항</span></a>            <ul class="depth2 sub-menu" style='display:none;'>
+                          </ul>
+          </li>
+                    <li>
+            <div class="banner_wrap">
+              <a href="http://www.15990903.or.kr/mobile/index.do" target="_blank" title="새창이동"><img src="../images/common/img_bnnr1.jpg" alt="폐가전제품 무상방문 수거안내, 인터넷접수:edtd.or.kr, 전화접수:1599-0903"></a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- /Mobile header  -->
+
+	<div id="mcontainer">
+
+		<div id="mcon1_wrap">
+	    <div class="mcon1">
+
+				<div class="m_slogan">
+					<span><img src="../images/main/p_index_tit1.png" alt="대형폐기물, 이제 인터넷으로 간편하게 신청하세요!"></span>
+				</div>
+
+				<div class="m_menu">
+
+					<!-- 메인배너 컨트롤 -->
+					<ul class="prog_slider">
+						<!-- 1번 배너 -->
+						<li class="menu1">
+							<a href="../contents/content.php?cIdx=1">
+							배출신청
+							</a>
+						</li>
+
+						<!-- 2번 배너 -->
+						<li class="menu2">
+							<a href="../contents/content.php?cIdx=2">
+							신청내역조회
+							</a>
+						</li>
+
+						<!-- 3번 배너 -->
+						<li class="menu3">
+							<a href="../contents/content.php?cIdx=4">
+								처리비용안내
+							</a>
+						</li>
+
+						<!-- 4번 배너 -->
+						<li class="menu4">
+							신청절차안내
+						</li>
+
+					</ul>
+				</div>
+
+		  </div>
+	  </div>
+	  <!-- /mcon1_wrap -->
+
+
+	  <div id="mcon2_wrap">
+	    <div class="mcon2">
+
+				<!-- 서브 배너 -->
+        <div class="sbnnr_box">
+  <h3 class="hidden">팝업존</h3>
+  <div class="info">
+    <div class="count">
+      <span id="sliderStatus"><span class="numerhere">1</span>/<span class="ltest"></span></span>
+    </div>
+    <div class="ctrl">
+      <a href="#prev" class="sbnnr_prev"><img src="../images/main/btn_prev2.png" alt="이전 배너보기" /></a>
+      <a href="#stop" class="sbnnr_stop"><img src="../images/main/btn_stop2.png" alt="배너멈추기" /></a>
+      <a href="#next" class="sbnnr_next"><img src="../images/main/btn_next2.png" alt="다음 배너보기" /></a>
+    </div>
+  </div>
+  <div class="body">
+    <ul class="sbnnr">
+            <li>
+        <a href="//gatda.com?utm_source=citychannel&utm_medium=convention&utm_campaign=seongnam_city" target="_blank">
+          <img src="../fileupload/banner/d1nwosfz1iubghgtb7eei60y.jpg" alt="대형폐기물 배출신고 "빼기" 도입" />
+        </a>
+      </li>
+            <li>
+        <a href="//ncov.mohw.go.kr/baroView4.do?brdId=4&brdGubun=44" target="_blank">
+          <img src="../fileupload/banner/uzsaj4bsdze1cvubcx4uewdy.png" alt="코로나 국민예방수칙2" />
+        </a>
+      </li>
+          </ul>
+  </div>
+</div>
+
+				<!-- 공지사항 -->
+				<div class="notice">
+					<div class="head">
+						<h3><span>공지사항</span></h3>
+					</div>
+					<!-- 공지사항 -->
+<div class="body">
+  <ul>
+        <li>
+      <div class="date">
+				<i class="day">20</i><i class="year">2024-06</i>
+			</div>
+			<div class="desc">
+				<a href="../contents/content.php?cIdx=5&amp;fboard=board_notice&amp;actionMode=view&amp;num=8">
+          <span class="tit">대형폐기물 홈페이지 일시 중단 안내 (6월 30일)</span>
+          <span class="txt">6월 30일 18시~24시까지 홈페이지가 일시 중단되며, 추가로 6월 24일~6월 30일까지 배출예정일 예약이 불가합니다.
+
+</span>
+				</a>
+			</div>
+    </li>
+        <li>
+      <div class="date">
+				<i class="day">04</i><i class="year">2023-09</i>
+			</div>
+			<div class="desc">
+				<a href="../contents/content.php?cIdx=5&amp;fboard=board_notice&amp;actionMode=view&amp;num=7">
+          <span class="tit">환불신청시 유의사항입니다. 환불 전 꼭 확인해주세요!</span>
+          <span class="txt">﻿1. 가상계좌(전화접수) 결제 신청인께서는 환불신청시 꼭 환불 은행, 계좌번호 예금주를 입력하여 주시기 바랍니다.
+
+(카드 결제시 카드사 취소로 인해 계좌번호 필요하지 않습니다)
+
+※ 결제 번호 미입력시 환불절차 기간이 길어집니다..
+
+
+
+2. 환불기간은 업체 확인 후 계좌번호 확인 은행 계좌 확인, 카드 결제 취소시 카드사 전달 시간 등으로
+
+인해 15일정도 소요됩니다.
+
+(환불완료 표시 후 은행에서 계좌 확인 및 입금 시간이 2~3일 소요될수 있습니다)
+
+양해 부탁드립니다.
+
+
+감사합니다</span>
+				</a>
+			</div>
+    </li>
+      </ul>
+  <a href="../contents/content.php?cIdx=5&amp;fboard=board_notice&amp;actionMode=list" class="more">더보기</a>
+</div>
+<!-- /공지사항 -->
+				</div>
+
+				<!-- 우리동 수거업체 -->
+				<div class="area">
+					<div class="head">
+						<h3>우리동 수거업체를 확인하세요!</h3>
+					</div>
+					<div class="body">
+						<div class="srch_wrap">
+
+              <select name="o_gu" id="o_gu" class="slt_box slt1" title="관할구 선택">
+                <option value="">관할구</option>
+                <option value='수정구' >수정구</option><option value='중원구' >중원구</option><option value='분당구' >분당구</option>              </select>
+              <select name="o_dong" id="o_dong" class="slt_box slt2" title="관할동 선택">
+                <option value="">관할동</option>
+              </select>
+
+							<!-- <button type="submit" class="btn_submit"><span>검색하기</span></button> -->
+						</div>
+						<p class="info" id="company_txt">※ 구, 동을 선택하시면 수거업체 전화번호가 표기됩니다. </p>
+
+					</div>
+				</div>
+
+
+	    </div>
+	  </div>
+	  <!-- /mcon3_wrap -->
+
+	</div>
+	<!-- /mcontainer -->
+
+  <!-- 풋터 -->
+  <!-- 풋터 -->
+<footer id="footer_wrap">
+  <div class="footer">
+    <div class="ft_menu">
+      <a href="../contents/content.php?cIdx=6" class="priv">개인정보처리방침</a>
+      <a href="../contents/content.php?cIdx=7">이메일무단수집거부</a>
+    </div>
+    <address>
+      <p class="addr"><span>우)13495 경기도 성남시 분당구 탄천로 215 성남도시개발공사</span></p>
+      <p class="tel"><span><i>개인정보정책책임자</i> : 시설관리부서장(대)</span> <span><i>대표자</i> : 성남시장</span> <span><i>사업자등록번호</i> : 144-82-00548</span></p>
+      <p class="copy">Copyright ⓒ 2020 Seongnam City. All rights Reserved.</p>
+    </address>
+  </div>
+  <a href="#btn_top" class="scrollup" title="홈페이지 상단으로 이동">컨텐츠 최상단으로 이동</a>
+</footer>
+
+<script src="../common/plugin/hammer.min.js"></script>
+<script src="../common/plugin/jquery.fixedcontent.js"></script> <!-- 배출신청 : 오른쪽 fixed 컨텐츠(결제예정금액) -->
+<script src="../common/js/default.js"></script>
+
+</div>
+<!-- /wrap -->
+
+</body>
+</html>

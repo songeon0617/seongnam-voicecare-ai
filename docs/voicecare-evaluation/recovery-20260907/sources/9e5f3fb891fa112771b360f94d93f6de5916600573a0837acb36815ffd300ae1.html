@@ -1,0 +1,1958 @@
+<!DOCTYPE html>
+	<html class="js-fouc" lang="ko">
+	<head>
+		<meta charset="utf-8">
+
+        <!-- Google tag / Naver Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CZHY3SFX38"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-CZHY3SFX38');
+    </script>
+
+    <script type="text/javascript" src="//wcs.pstatic.net/wcslog.js"></script>
+    <script type="text/javascript"> if (!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "167834287a476d0";
+    if (window.wcs) {
+        wcs_do();
+    }
+    </script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+		<meta name="format-detection" content="telephone=no, address=no, email=no">
+		
+		<!-- Meta Tag -->
+        <link rel="shortcut icon" href="https://www.snart.or.kr/main/favicon.ico">
+		<meta name="keywords" content="">
+		<meta name="title" content="성남문화재단">
+		<meta name="description" content="시민과 함께하는 열린 문화플랫폼">
+		
+		<!-- Sns -->
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="성남문화재단" />
+		<meta property="og:description" content="시민과 함께하는 열린 문화플랫폼" />
+		<meta property="og:url" content="https://www.snart.or.kr/main/content/view.do?sn=90">
+		<meta property="og:image" content="https://www.snart.or.kr/main/opengraph.png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:type" content="image/jpeg" />
+		<meta property="og:image:alt" content="성남문화재단" />
+		
+		<!-- Title -->
+		<title>성남문화재단 - 예매안내</title>
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js" defer></script>
+
+<script src="https://t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" defer></script>
+
+<script src="/cmmn/lib/js/script.document.js?v=47892" defer></script><script src="/cmmn/lib/js/script.extends.js?v=47892" defer></script><script src="/cmmn/lib/js/script.validation.js?v=47892" defer></script><script src="/cmmn/lib/js/script.function.js?v=47892" defer></script><script>
+		//페이지 로딩 후 실행
+		$(document).ready(function(){
+			//이벤트 실행
+			fnLoad_nodata_fillSpan();
+			fnLoad_bindEvt_token();
+		});
+	
+		//ContextPath 찾기
+		const fnLoad_contextPath = function() {
+		    return "";
+		}
+		
+		//에디터 업로드 경로
+		const fnLoad_editor_upload = function() {
+			//토큰정보
+			var _token = fnLoad_obj_token();
+
+			//URL 생성
+			var url_split = [
+				fnLoad_contextPath()
+			,	"/other/editor/process.file.do"
+			,	"?"
+			];
+			//파라미터 생성
+			var params = [
+				"TP=up"
+			,	_token["f0debef1-b46d-47ab-82e4-04609f926e23"] +"=" +_token["d44ae6aa-2430-4cf5-b786-d33bfd9ab84d"]
+			];
+
+			//합치기
+			var url = url_split.join("") +params.join("&");
+
+			//내보내기
+			return url;
+		}
+		
+		//첨부파일 확장자
+		const fnLoad_acept_fileExt = function() {
+			var acepts = ".jpg,.jpeg,.gif,.png,.doc,.docx,.hwp,.hwpx,.txt,.xls,.xlsx,.ppt,.pptx,.pdf,.zip,.mp4".split(",");
+			acepts = acepts.filter(function(val, key){
+			    return acepts.indexOf(val)==key;
+			});
+			
+			return acepts.join(",");
+		}
+
+		//첨부파일 최대 크기
+		const fnLoad_maxFileSize = function(type) {
+			//Def
+			var rtnType = type!=null ? type : "r";
+			var fileSize_raw = Number("52428800");
+			var fileSize_format = "50.00MB";
+			
+			//Return
+			return type=="b" ? fileSize_format : fileSize_raw;
+		}
+		
+		//첨부파일 삭제 이벤트
+		var fnClick_delAtch = function(el) {
+			var _this = $(el);
+			var _target = $("#" +_this.data("target")).closest(".form_group");
+
+			if (el.checked) {
+				_target.removeClass("blind");
+			} else {
+				_target.addClass("blind");
+			}
+		}
+		
+		//리스트 페이지에서 NoData에 ColSpan 맞춰주기
+		const fnLoad_nodata_fillSpan = function() {
+			var el_nodata = $('.cm_nodata');
+			if (el_nodata.length>0) {
+				$.each(el_nodata, function(key, obj) {
+					var _this = $(obj);
+					var el_nodata_top = _this.closest('table');
+					var el_cols = el_nodata_top.find("colgroup col");
+					_this.closest("td").prop("colspan", el_cols.length);
+				});
+			}
+		}
+		
+		//CSRF 토큰 이벤트
+		const fnLoad_obj_token = function(){
+			return {
+				"f0debef1-b46d-47ab-82e4-04609f926e23" : "_csrf"
+			,	"d44ae6aa-2430-4cf5-b786-d33bfd9ab84d" : "cTMrNEQrbjdVMG5jMlJLeVUvYkxYSUJ5T2lRMXNESUo2SFFHaURJQ0NCTzBHSEE2eXBnOWMvaUw2YWNUT2hQYXB6VGUxcm9HSkNDaUozenlObTVKQmc9PQ=="
+			};
+		}
+		const fnLoad_bindEvt_token = function() {
+			//Vars
+			var _token = fnLoad_obj_token();
+			var _tokenNm = _token["f0debef1-b46d-47ab-82e4-04609f926e23"];
+			var _tokenVal = _token["d44ae6aa-2430-4cf5-b786-d33bfd9ab84d"];
+	
+			//Proc#1, Ajax Bind
+			$.ajaxSetup({
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader(_tokenNm, _tokenVal);
+				},
+				complete: function(xhr,status) {
+					fnLoad_bindEvt_token();	
+				},
+			});
+			
+			//Proc#2, Func Define
+			var _func = function() {
+				//Vars
+				var _this = $(this);
+				var _input = _this.find("input[name=" +_tokenNm+ "]");
+				
+				//Proc#2.1, Compare
+				if (_input.length>0) {
+					return true;
+				}
+				
+				//Proc#2.2, Create
+				var _input = $("<input />", {
+					"type" : "hidden"
+				,	"name" : _tokenNm
+				,	"value" : _tokenVal
+				});
+				
+				//Proc#2.3, Token Shell
+				var _div = $("<div />", {
+					"html" : _input
+				});
+				
+				//Proc#2.4, Append
+				_this.append(_div);
+				
+				//Proc#2.5, Remove Bind Event
+				_this.off("submit", _func);
+			}
+	
+			//Proc#2, Form Bind
+			var foms = $("form");
+			$.each(foms, function(key, obj){
+				//Vars
+				var _form = $(obj);
+				var _method = _form.attr("method");
+	
+				//Proc#2.1, Null
+				if (_method==null) {
+					_method = 'get';
+				}
+	
+				//Proc#2.2, Compare
+				if (_method=="get") {
+					return true;
+				}
+				
+				//Proc#2.4, Event Bind
+				_form.on("submit", _func);
+			});
+		}
+		
+		function fnPopup_PdfViewr(vSn) {
+			window.open("/other/attach/process.file.do?TP=pdf_viewer&pdf_file_sn=" + vSn, null, null);
+		}
+		
+	</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.3/themes/smoothness/jquery-ui.min.css" media="print" onload="this.media='all'">
+
+<style>
+		#viewLoading {display:block; position:fixed; top:0; left:0; right:0; bottom:0; width:100%; height:100%; z-Index:9999; text-align:center; background:rgba(0, 0, 0, 0.3); }
+		#viewLoading .lds-spinner {display: inline-block; position:fixed; left:50%; top:50%; margin-left:-40px; margin-top:-40px; }
+		#viewLoading .lds-spinner div {transform-origin: 40px 40px; animation: lds-spinner 1.2s linear infinite; }
+		#viewLoading .lds-spinner div:after {content: " "; display: block; position: absolute; top: 3px; left: 37px; width: 6px; height: 18px; border-radius: 20%; background: #fff; }
+		#viewLoading .lds-spinner div:nth-child(1) {transform: rotate(0deg); animation-delay: -1.1s; }
+		#viewLoading .lds-spinner div:nth-child(2) {transform: rotate(30deg); animation-delay: -1s; }
+		#viewLoading .lds-spinner div:nth-child(3) {transform: rotate(60deg); animation-delay: -0.9s; }
+		#viewLoading .lds-spinner div:nth-child(4) {transform: rotate(90deg); animation-delay: -0.8s; }
+		#viewLoading .lds-spinner div:nth-child(5) {transform: rotate(120deg); animation-delay: -0.7s; }
+		#viewLoading .lds-spinner div:nth-child(6) {transform: rotate(150deg); animation-delay: -0.6s; }
+		#viewLoading .lds-spinner div:nth-child(7) {transform: rotate(180deg); animation-delay: -0.5s; }
+		#viewLoading .lds-spinner div:nth-child(8) {transform: rotate(210deg); animation-delay: -0.4s; }
+		#viewLoading .lds-spinner div:nth-child(9) {transform: rotate(240deg); animation-delay: -0.3s; }
+		#viewLoading .lds-spinner div:nth-child(10) {transform: rotate(270deg); animation-delay: -0.2s; }
+		#viewLoading .lds-spinner div:nth-child(11) {transform: rotate(300deg); animation-delay: -0.1s; }
+		#viewLoading .lds-spinner div:nth-child(12) {transform: rotate(330deg); animation-delay: 0s; }
+		@keyframes lds-spinner {
+			0% {opacity: 1; }
+			100% {opacity: 0; }
+		}
+	</style>
+<link rel="shortcut icon" type="image/x-icon" href="/main/images/favicon.ico" />
+		
+		<!-- CSS -->
+		<link rel="stylesheet" href="/main/lib/jquery/jquery-ui.min.css?v=47892" />
+		<link rel="stylesheet" href="/main/lib/jquery/swiper-bundle.min.css?v=47892" />
+		<link rel="stylesheet" href="/main/lib/jquery/aos.css?v=47892" />
+		<link rel="stylesheet" href="/main/lib/css/fonts.css?v=47892" />
+		<link rel="stylesheet" href="/main/lib/css/reset.css?v=47892" />
+		<link rel="stylesheet" href="/main/lib/css/common.css?v=47892" />
+		<link rel="stylesheet" href="/main/lib/css/style.css?v=47892" />
+
+		<!-- JS -->
+		<script src="/main/lib/jquery/jquery.min.js?v=47892"></script>
+		<script src="/main/lib/jquery/lodash.min.js?v=47892"></script>
+		<script src="/main/lib/jquery/jquery.rwdImageMaps.min.js?v=47892"></script>
+		<script src="/main/lib/jquery/jquery-ui.min.js?v=47892"></script>
+		<script src="/main/lib/jquery/swiper-bundle.min.js?v=47892"></script>
+		<script src="/main/lib/jquery/aos.js?v=47892"></script>
+		<script src="/main/lib/js/script.js?v=47892"></script>
+
+	</head>
+	<body>
+		<script>
+			(function() {
+				var cookieName = 'site_zoom_level';
+				// 쿠키에서 값 가져오기 (정규식 사용으로 속도 최적화)
+				var match = document.cookie.match(new RegExp('(^| )' + cookieName + '=([^;]+)'));
+				var savedZoom = match ? match[2] : null;
+				
+				// 저장된 값이 있다면 즉시 body에 적용
+				if (savedZoom) {
+					document.body.style.zoom = savedZoom;
+				}
+			})();
+		</script>
+
+		<div id="skipNavi">
+			<a href="#header">상단 메뉴 바로가기</a>
+			<a href="#real_content">본문 바로가기</a>
+			<a href="#footer">하단 메뉴 바로가기</a>
+		</div>
+	
+		<div id="wrap" class="wrap">
+
+			<!-- Top Banner -->
+			<script>
+	$(document).ready(function(){
+		fnPopup_zone_open2('layer_popupzone2_pc');
+		fnPopup_zone_open2('layer_popupzone2_mo');
+	});
+	var fnPopup_zone_open2 = function(popup_id) {
+		var _cookie = document.cookie;
+		var cokie_id = "fnPopup_zone_close_2";
+
+		if ($("#" +popup_id).length<1) {
+			return;
+		}
+
+		if (_cookie.indexOf(cokie_id)<0) {
+			$("#" +popup_id).addClass("main top_banner");
+			$("#" +popup_id).removeClass("hide");
+		} else {
+			//$("#" +popup_id).remove();
+		}
+	}
+	var fnPopup_zone_close2 = function(popup_id) {
+		var _layer = $("#" +popup_id);
+		var _input = _layer.find("input[name=todayClose]");
+
+		var cokie_chk = _input.get(0);
+		var cokie_id = "fnPopup_zone_close_2";
+		var cokie_day = 1;
+
+		if (cokie_chk!=null && cokie_chk.checked) {
+			setCookie(cokie_id, "N" , cokie_day);
+		}
+		// PC/모바일 배너는 "오늘 하루 보지 않기" 쿠키를 공유하므로, 둘 중 하나를 닫아도
+		// 화면에 보이지 않던(@media로 숨김 상태인) 나머지 하나까지 같이 제거해서
+		// .top_banner 형제 선택자 기반 헤더 오프셋 CSS가 꼬이지 않게 한다.
+		$('#layer_popupzone2_pc, #layer_popupzone2_mo').remove();
+	}
+</script>
+<!-- //Top Banner -->
+
+	        <!-- header -->
+			<header id="header" class="header ">
+	<div class="header_top">
+		<div class="inner">
+			<div class="familysite_area">
+				<button type="button" class="btn_family" onclick="toggleParentClass('.familysite_area', 'active', this);"><span>패밀리사이트</span></button>
+				<div class="familysite_layer">
+					<div class="familysite_title">주요 서비스</div>
+					<ul class="list_body">
+						<li class="list_item"><a href="/main/member/mediaCenterSSo.do" target="_blank" class="btn_fam" title="새창열림"><span>성남미디어센터</span></a></li>
+						<li class="list_item"><a href="/main/member/museumSSo.do" target="_blank" class="btn_fam" title="새창열림"><span>성남큐브미술관</span></a></li>
+						<li class="list_item"><a href="/main/member/snarteSSo.do" target="_blank" class="btn_fam" title="새창열림"><span>성남문화예술교육센터</span></a></li>
+						<li class="list_item"><a href="/main/member/ilibrSSo.do" target="_blank" class="btn_fam" title="새창열림"><span>악기랑</span></a></li>
+						<li class="list_item"><a href="https://seongnamfestival.com/" target="_blank" class="btn_fam" title="새창열림"><span>성남페스티벌</span></a></li>
+						<li class="list_item"><a href="https://www.snart.or.kr/rental/main.do" target="_blank" class="btn_fam" title="새창열림"><span>성남문화재단 대관시스템</span></a></li>
+					</ul>
+					<button type="button" class="btn_close" onclick="removeParentClass('.familysite_area', 'active', this);"><span>닫기</span></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="header_btm">
+		<div class="inner">
+			<!-- logo -->
+			<h1 class="logo">
+				<a href="/" class="logo_img"><img src="/main/images/common/logo.svg" alt="성남문화재단" /></a>
+			</h1>
+			<!-- // logo -->
+
+			<!-- gnb -->
+			<nav class="gnb_area">
+					<div class="gnb_depth1_wrap">
+						<ul class="gnb_depth1">
+							<li class="on">
+									<a href="/main/cal_prex/calendar.do"  class="" ><span>공연/전시</span></a>
+
+									<div class="gnb_depth2_wrap">
+											<ul class="gnb_depth2">
+												<li class="">
+														<a href="/main/cal_prex/calendar.do"  class="" ><span>캘린더</span></a>
+
+														</li>
+												<li class="">
+														<a href="/main/prex/prefer/list.do"  class="" ><span>공연</span></a>
+
+														</li>
+												<li class="">
+														<a href="/main/prex/exhibit/list.do"  class="" ><span>전시</span></a>
+
+														</li>
+												<li class="has_depth">
+														<a href="/main/content/view.do?sn=62"  class="" ><span>좌석배치도</span></a>
+
+														<div class="gnb_depth3_wrap">
+																<ul class="gnb_depth3">
+																	<li class="">
+																			<a href="/main/content/view.do?sn=62"  class="" ><span>성남아트센터 오페라하우스</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=63"  class="" ><span>성남아트센터 콘서트홀</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=64"  class="" ><span>성남아트센터 앙상블시어터</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=65"  class="" ><span>성남아트리움 대극장</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=66"  class="" ><span>성남아트리움 소극장</span></a>
+																		</li>
+																	</ul>
+															</div>
+														</li>
+												<li class="on">
+														<a href="/main/content/view.do?sn=90"  class="" ><span>예매안내</span></a>
+
+														</li>
+												<li class="has_depth">
+														<a href="/main/content/view.do?sn=92"  class="" ><span>관람예절</span></a>
+
+														<div class="gnb_depth3_wrap">
+																<ul class="gnb_depth3">
+																	<li class="">
+																			<a href="/main/content/view.do?sn=92"  class="" ><span>공연</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=93"  class="" ><span>전시</span></a>
+																		</li>
+																	</ul>
+															</div>
+														</li>
+												<li class="">
+														<a href="/main/pst/list.do?pst_id=review"  class="" ><span>관람후기</span></a>
+
+														</li>
+												</ul>
+										</div>
+									</li>
+							<li class="">
+									<a href="/main/education/list.do"  class="" ><span>문화예술교육</span></a>
+
+									<div class="gnb_depth2_wrap">
+											<ul class="gnb_depth2">
+												<li class="">
+														<a href="/main/education/list.do"  class="" ><span>교육신청</span></a>
+
+														</li>
+												<li class="has_depth">
+														<a href="/main/content/view.do?sn=85"  class="" ><span>성남아트센터 아카데미</span></a>
+
+														<div class="gnb_depth3_wrap">
+																<ul class="gnb_depth3">
+																	<li class="">
+																			<a href="/main/content/view.do?sn=85"  class="" ><span>수강신청 안내</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=86"  class="" ><span>강의실</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/pst/list.do?pst_id=academy"  class="" ><span>아카데미 게시판</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/pst/list.do?pst_id=academy_faq"  class="" ><span>아카데미 FAQ</span></a>
+																		</li>
+																	</ul>
+															</div>
+														</li>
+												<li class="has_depth">
+														<a href="/main/content/view.do?sn=88"  class="" ><span>성남아트리움 아카데미</span></a>
+
+														<div class="gnb_depth3_wrap">
+																<ul class="gnb_depth3">
+																	<li class="">
+																			<a href="/main/content/view.do?sn=88"  class="" ><span>수강신청 안내</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=89"  class="" ><span>강의실</span></a>
+																		</li>
+																	</ul>
+															</div>
+														</li>
+												<li class="has_depth">
+														<a href="/main/content/view.do?sn=95"  class="" ><span>투어프로그램</span></a>
+
+														<div class="gnb_depth3_wrap">
+																<ul class="gnb_depth3">
+																	<li class="">
+																			<a href="/main/content/view.do?sn=95"  class="" ><span>극장견학</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=97"  class="" ><span>세계악기전시관 투어</span></a>
+																		</li>
+																	</ul>
+															</div>
+														</li>
+												<li class="">
+														<a href="/main/content/view.do?sn=83"  class="" ><span>기타사업</span></a>
+
+														</li>
+												</ul>
+										</div>
+									</li>
+							<li class="">
+									<a href="/main/artbiz/list.do"  class="" ><span>지원사업</span></a>
+
+									<div class="gnb_depth2_wrap">
+											<ul class="gnb_depth2">
+												<li class="">
+														<a href="/main/artbiz/list.do"  class="" ><span>지원사업신청</span></a>
+
+														</li>
+												<li class="">
+														<a href="/main/content/view.do?sn=100"  class="" ><span>성남문화예술지원사업</span></a>
+
+														</li>
+												<li class="has_depth">
+														<a href="/main/content/view.do?sn=102"  class="" ><span>생활문화동호회 지원사업</span></a>
+
+														<div class="gnb_depth3_wrap">
+																<ul class="gnb_depth3">
+																	<li class="">
+																			<a href="/main/content/view.do?sn=102"  class="" ><span>생활문화동호회 소식</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=103"  class="" ><span>사랑방문화공간</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=104"  class="" ><span>사랑방문화클럽</span></a>
+																		</li>
+																	</ul>
+															</div>
+														</li>
+												<li class="has_depth">
+														<a href="/main/content/view.do?sn=107"  class="" ><span>지난 사업</span></a>
+
+														<div class="gnb_depth3_wrap">
+																<ul class="gnb_depth3">
+																	<li class="">
+																			<a href="/main/content/view.do?sn=107"  class="" ><span>독립운동가 웹툰 프로젝트</span></a>
+																		</li>
+																	</ul>
+															</div>
+														</li>
+												</ul>
+										</div>
+									</li>
+							<li class="">
+									<a href="/main/content/view.do?sn=161"  class="" ><span>운영시설</span></a>
+
+									<div class="gnb_depth2_wrap">
+											<ul class="gnb_depth2">
+												<li class="has_depth">
+														<a href="/main/content/view.do?sn=161"  class="" ><span>성남아트센터</span></a>
+
+														<div class="gnb_depth3_wrap">
+																<ul class="gnb_depth3">
+																	<li class="">
+																			<a href="/main/content/view.do?sn=161"  class="" ><span>성남아트센터 소개</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=162"  class="" ><span>공연장</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=165"  class="" ><span>전시장</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=166"  class="" ><span>성남미디어센터</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=167"  class="" ><span>회의실</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=168"  class="" ><span>세계악기전시관</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=169"  class="" ><span>악기랑</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=170"  class="" ><span>편의시설</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=171"  class="" ><span>음악분수</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=173"  class="" ><span>시립예술단</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=178"  class="" ><span>BI소개</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=180"  class="" ><span>오시는길</span></a>
+																		</li>
+																	<li class="">
+																			<a href="https://www.snart.or.kr/snart_vr/index.html" target="_blank" class="btn_link" ><span>사이버투어</span></a>
+																		</li>
+																	</ul>
+															</div>
+														</li>
+												<li class="">
+														<a href="/main/content/view.do?sn=182"  class="" ><span>성남아트리움</span></a>
+
+														</li>
+												<li class="has_depth">
+														<a href="/main/content/view.do?sn=241"  class="" ><span>성남문화예술교육센터</span></a>
+
+														<div class="gnb_depth3_wrap">
+																<ul class="gnb_depth3">
+																	<li class="">
+																			<a href="/main/content/view.do?sn=241"  class="" ><span>성남문화예술교육센터 소개</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=242"  class="" ><span>주요시설</span></a>
+																		</li>
+																	</ul>
+															</div>
+														</li>
+												<li class="has_depth">
+														<a href="/main/content/view.do?sn=111"  class="" ><span>위례스토리박스</span></a>
+
+														<div class="gnb_depth3_wrap">
+																<ul class="gnb_depth3">
+																	<li class="">
+																			<a href="/main/content/view.do?sn=111"  class="" ><span>위례스토리박스 소개</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/pst/list.do?pst_id=wirye-atelier"  class="" ><span>아뜰리에</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/pst/list.do?pst_id=wirye-notice"  class="" ><span>공지사항</span></a>
+																		</li>
+																	</ul>
+															</div>
+														</li>
+												<li class="">
+														<a href="/main/content/view.do?sn=184"  class="" ><span>성남물빛정원 뮤직홀</span></a>
+
+														</li>
+												<li class="">
+														<a href="/main/content/view.do?sn=185"  class="" ><span>야외공연장</span></a>
+
+														</li>
+												<li class="">
+														<a href="https://www.snart.or.kr/rental/concerthall/info/list.do" target="_blank" class="btn_link" ><span>대관안내</span></a>
+
+														</li>
+												</ul>
+										</div>
+									</li>
+							<li class="">
+									<a href="/main/pst/list.do?pst_id=notice"  class="" ><span>소식·알림</span></a>
+
+									<div class="gnb_depth2_wrap">
+											<ul class="gnb_depth2">
+												<li class="">
+														<a href="/main/pst/list.do?pst_id=notice"  class="" ><span>공지사항</span></a>
+
+														</li>
+												<li class="">
+														<a href="/main/pst/list.do?pst_id=recruit"  class="" ><span>채용안내</span></a>
+
+														</li>
+												<li class="has_depth">
+														<a href="/main/pst/list.do?pst_id=lost"  class="" ><span>고객센터</span></a>
+
+														<div class="gnb_depth3_wrap">
+																<ul class="gnb_depth3">
+																	<li class="">
+																			<a href="/main/pst/list.do?pst_id=lost"  class="" ><span>유실물센터</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/pst/list.do?pst_id=faq"  class="" ><span>자주 묻는 질문</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/pst/list.do?pst_id=qna"  class="" ><span>궁금합니다</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/pst/list.do?pst_id=voc"  class="" ><span>고객의 소리</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=121"  class="" ><span>종합안내소</span></a>
+																		</li>
+																	</ul>
+															</div>
+														</li>
+												<li class="">
+														<a href="/main/pst/list.do?pst_id=seongnam-info"  class="" ><span>성남시 산하기관 알림</span></a>
+
+														</li>
+												<li class="">
+														<a href="/main/content/view.do?sn=123"  class="" ><span>자원봉사활동 안내</span></a>
+
+														</li>
+												<li class="">
+														<a href="/main/survey/list.do"  class="" ><span>설문조사</span></a>
+
+														</li>
+												</ul>
+										</div>
+									</li>
+							<li class="">
+									<a href="/main/content/view.do?sn=141"  class="" ><span>성남문화재단</span></a>
+
+									<div class="gnb_depth2_wrap">
+											<ul class="gnb_depth2">
+												<li class="has_depth">
+														<a href="/main/content/view.do?sn=141"  class="" ><span>인사말</span></a>
+
+														<div class="gnb_depth3_wrap">
+																<ul class="gnb_depth3">
+																	<li class="">
+																			<a href="/main/content/view.do?sn=141"  class="" ><span>이사장 인사말</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=142"  class="" ><span>대표이사 인사말</span></a>
+																		</li>
+																	</ul>
+															</div>
+														</li>
+												<li class="">
+														<a href="/main/content/view.do?sn=144"  class="" ><span>비전 및 정책목표</span></a>
+
+														</li>
+												<li class="has_depth">
+														<a href="/main/content/view.do?sn=146"  class="" ><span>경영철학</span></a>
+
+														<div class="gnb_depth3_wrap">
+																<ul class="gnb_depth3">
+																	<li class="">
+																			<a href="/main/content/view.do?sn=146"  class="" ><span>윤리·인권경영</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=247"  class="" ><span>ESG경영</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/dclr/write.do"  class="" ><span>클린(통합)신고센터</span></a>
+																		</li>
+																	</ul>
+															</div>
+														</li>
+												<li class="has_depth">
+														<a href="/main/content/view.do?sn=156"  class="" ><span>기관소개</span></a>
+
+														<div class="gnb_depth3_wrap">
+																<ul class="gnb_depth3">
+																	<li class="">
+																			<a href="/main/content/view.do?sn=156"  class="" ><span>연혁</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=157"  class="" ><span>조직도</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=158"  class="" ><span>CI소개</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=159"  class="" ><span>사회공헌</span></a>
+																		</li>
+																	</ul>
+															</div>
+														</li>
+												<li class="has_depth">
+														<a href="/main/pst/list.do?pst_id=budget"  class="" ><span>정보공개</span></a>
+
+														<div class="gnb_depth3_wrap">
+																<ul class="gnb_depth3">
+																	<li class="">
+																			<a href="/main/pst/list.do?pst_id=budget"  class="" ><span>예산</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/pst/list.do?pst_id=settlement"  class="" ><span>결산</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/pst/list.do?pst_id=contract"  class="" ><span>계약 및 용역</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/pst/list.do?pst_id=expense-report"  class="" ><span>업무추진비</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/pst/list.do?pst_id=minutes"  class="" ><span>회의록</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/pst/list.do?pst_id=data"  class="" ><span>자료실</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/pst/list.do?pst_id=perf-result"  class="" ><span>경영실적 평가결과</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/pst/list.do?pst_id=executive-status"  class="" ><span>임원 및 운영인력 현황</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/pst/list.do?pst_id=cs-result"  class="" ><span>고객만족도 결과</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/pst/list.do?pst_id=hr-expense"  class="" ><span>인건비 집행 현황</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/pst/list.do?pst_id=audit"  class="" ><span>감사</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/pst/list.do?pst_id=legal"  class="" ><span>법무</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/pst/list.do?pst_id=safety_health"  class="" ><span>안전보건</span></a>
+																		</li>
+																	</ul>
+															</div>
+														</li>
+												<li class="has_depth">
+														<a href="/main/content/view.do?sn=189"  class="" ><span>후원회</span></a>
+
+														<div class="gnb_depth3_wrap">
+																<ul class="gnb_depth3">
+																	<li class="">
+																			<a href="/main/content/view.do?sn=189"  class="" ><span>후원회 안내</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=190"  class="" ><span>후원회장 인사말</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=191"  class="" ><span>후원회 명단</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=192"  class="" ><span>후원회 예우</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/content/view.do?sn=193"  class="" ><span>가입안내</span></a>
+																		</li>
+																	</ul>
+															</div>
+														</li>
+												<li class="has_depth">
+														<a href="/main/wbzn/atvw/artview.do"  class="" ><span>디지털아카이브</span></a>
+
+														<div class="gnb_depth3_wrap">
+																<ul class="gnb_depth3">
+																	<li class="">
+																			<a href="/main/wbzn/atvw/artview.do"  class="" ><span>아트뷰</span></a>
+																		</li>
+																	<li class="">
+																			<a href="/main/wbzn/nslt/list.do"  class="" ><span>뉴스레터</span></a>
+																		</li>
+																	</ul>
+															</div>
+														</li>
+												</ul>
+										</div>
+									</li>
+							</ul>
+					</div>
+				</nav>
+			<!-- // gnb -->
+
+			<!-- util -->
+			<div class="util_area">
+				<div class="utilities_area">
+					<ul class="btn_member">
+						<!-- 로그인 전 -->
+								<li><a href="/main/member/login.do?redirect=L21haW4vY29udGVudC92aWV3LmRvP3NuPTkw"><span>로그인</span></a></li>
+								<li><a href="/main/member/join/write.do"><span>회원가입</span></a></li>
+							</ul>
+					<div class="font_setting">
+						<button type="button" class="cm_icon icon_arrow_drop icon_r" style="--icon-size:20;" onclick="toggleParentActive(this);"><span class="cm_icon icon_view_mode">글자 설정</span></button>
+						<div class="font_setting_layer">
+							<button type="button" class="btn_font_size zoom_out"><span>가</span>작게</button>
+							<button type="button" class="active btn_font_size"><span>가</span>보통</button>
+							<button type="button" class="btn_font_size zoom_in"><span>가</span>크게</button>
+						</div>
+					</div>
+				</div>
+				<div class="search_area">
+					<a href="javascript:;" class="btn_search" onclick="toggleParentActive(this);"><span>검색</span></a>
+					<div class="search_layer">
+						<form action="/main/search/list.do" method="get">
+							<div class="search_form">
+								<input type="text" name="srchVal" value="" title="검색어 입력" class="search_input" placeholder="검색어를 입력해 주세요" />
+								<button type="submit" class="btn_default btn_lg btn_primary cm_btn search_btn"><span class="cm_icon icon_search_wt">검색</span></button>
+							</div>
+						</form>
+					</div>
+				</div>
+                <div class="language_area">
+                    <a href="javascript:;" class="btn_lang" onclick="toggleParentActive(this);"><span class="cm_icon icon_arrow_drop icon_r" style="--icon-gap:6;">KOR</span></a>
+                    <div class="lang_layer">
+                        <a href="javascript:;" class="active"><span>KOR</span></a>
+                        <a href="/eng/main.do"><span>ENG</span></a>
+                    </div>
+                </div>
+			</div>
+			<!-- // util -->
+
+			<div class="sitemap_area">
+				<a href="javascript:;" class="btn_sitemap"><span>사이트맵</span></a>
+				<div class="sitemap_layer">
+					<nav class="sitemap_wrap">
+						<div class="sitemap_title"></div>
+						<div class="sitemap_util">
+							<div class="btn_member">
+                                <!-- 로그인 전 -->
+                                        <a href="/main/member/login.do?redirect=L21haW4vY29udGVudC92aWV3LmRvP3NuPTkw" class="btn_login btn_util"><span>로그인</span></a>
+                                        <a href="/main/member/join/write.do" class="btn_join btn_util"><span>회원가입</span></a>
+                                    </div>
+                            <div class="language_area">
+                                <a href="javascript:;" class="active"><span>KOR</span></a>
+                                <a href="/eng/main.do"><span>ENG</span></a>
+                            </div>
+						</div>
+						<div class="sitemap_depth1_wrap">
+							<ul class="sitemap_depth1">
+
+								<li class="" >
+												<a href="/main/cal_prex/calendar.do"  class="" ><span>공연/전시</span></a>
+	
+												<div class="sitemap_depth2_wrap">
+														<ul class="sitemap_depth2">
+															<li>
+																	<a href="/main/cal_prex/calendar.do"  class="" ><span>캘린더</span></a>
+	
+																	</li>
+															<li>
+																	<a href="/main/prex/prefer/list.do"  class="" ><span>공연</span></a>
+	
+																	</li>
+															<li>
+																	<a href="/main/prex/exhibit/list.do"  class="" ><span>전시</span></a>
+	
+																	</li>
+															<li>
+																	<a href="/main/content/view.do?sn=62"  class="" ><span>좌석배치도</span></a>
+	
+																	<div class="sitemap_depth3_wrap">
+																			<ul class="sitemap_depth3">
+	
+																				<li>
+																						<a href="/main/content/view.do?sn=62"  class="" ><span>성남아트센터 오페라하우스</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=63"  class="" ><span>성남아트센터 콘서트홀</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=64"  class="" ><span>성남아트센터 앙상블시어터</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=65"  class="" ><span>성남아트리움 대극장</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=66"  class="" ><span>성남아트리움 소극장</span></a>
+																					</li>
+																				</ul>
+																		</div>
+																	</li>
+															<li>
+																	<a href="/main/content/view.do?sn=90"  class="" ><span>예매안내</span></a>
+	
+																	</li>
+															<li>
+																	<a href="/main/content/view.do?sn=92"  class="" ><span>관람예절</span></a>
+	
+																	<div class="sitemap_depth3_wrap">
+																			<ul class="sitemap_depth3">
+	
+																				<li>
+																						<a href="/main/content/view.do?sn=92"  class="" ><span>공연</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=93"  class="" ><span>전시</span></a>
+																					</li>
+																				</ul>
+																		</div>
+																	</li>
+															<li>
+																	<a href="/main/pst/list.do?pst_id=review"  class="" ><span>관람후기</span></a>
+	
+																	</li>
+															</ul>
+													</div>
+												</li>
+										<li class="" >
+												<a href="/main/education/list.do"  class="" ><span>문화예술교육</span></a>
+	
+												<div class="sitemap_depth2_wrap">
+														<ul class="sitemap_depth2">
+															<li>
+																	<a href="/main/education/list.do"  class="" ><span>교육신청</span></a>
+	
+																	</li>
+															<li>
+																	<a href="/main/content/view.do?sn=85"  class="" ><span>성남아트센터 아카데미</span></a>
+	
+																	<div class="sitemap_depth3_wrap">
+																			<ul class="sitemap_depth3">
+	
+																				<li>
+																						<a href="/main/content/view.do?sn=85"  class="" ><span>수강신청 안내</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=86"  class="" ><span>강의실</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/pst/list.do?pst_id=academy"  class="" ><span>아카데미 게시판</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/pst/list.do?pst_id=academy_faq"  class="" ><span>아카데미 FAQ</span></a>
+																					</li>
+																				</ul>
+																		</div>
+																	</li>
+															<li>
+																	<a href="/main/content/view.do?sn=88"  class="" ><span>성남아트리움 아카데미</span></a>
+	
+																	<div class="sitemap_depth3_wrap">
+																			<ul class="sitemap_depth3">
+	
+																				<li>
+																						<a href="/main/content/view.do?sn=88"  class="" ><span>수강신청 안내</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=89"  class="" ><span>강의실</span></a>
+																					</li>
+																				</ul>
+																		</div>
+																	</li>
+															<li>
+																	<a href="/main/content/view.do?sn=95"  class="" ><span>투어프로그램</span></a>
+	
+																	<div class="sitemap_depth3_wrap">
+																			<ul class="sitemap_depth3">
+	
+																				<li>
+																						<a href="/main/content/view.do?sn=95"  class="" ><span>극장견학</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=97"  class="" ><span>세계악기전시관 투어</span></a>
+																					</li>
+																				</ul>
+																		</div>
+																	</li>
+															<li>
+																	<a href="/main/content/view.do?sn=83"  class="" ><span>기타사업</span></a>
+	
+																	</li>
+															</ul>
+													</div>
+												</li>
+										<li class="" >
+												<a href="/main/artbiz/list.do"  class="" ><span>지원사업</span></a>
+	
+												<div class="sitemap_depth2_wrap">
+														<ul class="sitemap_depth2">
+															<li>
+																	<a href="/main/artbiz/list.do"  class="" ><span>지원사업신청</span></a>
+	
+																	</li>
+															<li>
+																	<a href="/main/content/view.do?sn=100"  class="" ><span>성남문화예술지원사업</span></a>
+	
+																	</li>
+															<li>
+																	<a href="/main/content/view.do?sn=102"  class="" ><span>생활문화동호회 지원사업</span></a>
+	
+																	<div class="sitemap_depth3_wrap">
+																			<ul class="sitemap_depth3">
+	
+																				<li>
+																						<a href="/main/content/view.do?sn=102"  class="" ><span>생활문화동호회 소식</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=103"  class="" ><span>사랑방문화공간</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=104"  class="" ><span>사랑방문화클럽</span></a>
+																					</li>
+																				</ul>
+																		</div>
+																	</li>
+															<li>
+																	<a href="/main/content/view.do?sn=107"  class="" ><span>지난 사업</span></a>
+	
+																	<div class="sitemap_depth3_wrap">
+																			<ul class="sitemap_depth3">
+	
+																				<li>
+																						<a href="/main/content/view.do?sn=107"  class="" ><span>독립운동가 웹툰 프로젝트</span></a>
+																					</li>
+																				</ul>
+																		</div>
+																	</li>
+															</ul>
+													</div>
+												</li>
+										<li class="" >
+												<a href="/main/content/view.do?sn=161"  class="" ><span>운영시설</span></a>
+	
+												<div class="sitemap_depth2_wrap">
+														<ul class="sitemap_depth2">
+															<li>
+																	<a href="/main/content/view.do?sn=161"  class="" ><span>성남아트센터</span></a>
+	
+																	<div class="sitemap_depth3_wrap">
+																			<ul class="sitemap_depth3">
+	
+																				<li>
+																						<a href="/main/content/view.do?sn=161"  class="" ><span>성남아트센터 소개</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=162"  class="" ><span>공연장</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=165"  class="" ><span>전시장</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=166"  class="" ><span>성남미디어센터</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=167"  class="" ><span>회의실</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=168"  class="" ><span>세계악기전시관</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=169"  class="" ><span>악기랑</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=170"  class="" ><span>편의시설</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=171"  class="" ><span>음악분수</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=173"  class="" ><span>시립예술단</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=178"  class="" ><span>BI소개</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=180"  class="" ><span>오시는길</span></a>
+																					</li>
+																				<li>
+																						<a href="https://www.snart.or.kr/snart_vr/index.html" target="_blank" class="btn_link" ><span>사이버투어</span></a>
+																					</li>
+																				</ul>
+																		</div>
+																	</li>
+															<li>
+																	<a href="/main/content/view.do?sn=182"  class="" ><span>성남아트리움</span></a>
+	
+																	</li>
+															<li>
+																	<a href="/main/content/view.do?sn=241"  class="" ><span>성남문화예술교육센터</span></a>
+	
+																	<div class="sitemap_depth3_wrap">
+																			<ul class="sitemap_depth3">
+	
+																				<li>
+																						<a href="/main/content/view.do?sn=241"  class="" ><span>성남문화예술교육센터 소개</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=242"  class="" ><span>주요시설</span></a>
+																					</li>
+																				</ul>
+																		</div>
+																	</li>
+															<li>
+																	<a href="/main/content/view.do?sn=111"  class="" ><span>위례스토리박스</span></a>
+	
+																	<div class="sitemap_depth3_wrap">
+																			<ul class="sitemap_depth3">
+	
+																				<li>
+																						<a href="/main/content/view.do?sn=111"  class="" ><span>위례스토리박스 소개</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/pst/list.do?pst_id=wirye-atelier"  class="" ><span>아뜰리에</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/pst/list.do?pst_id=wirye-notice"  class="" ><span>공지사항</span></a>
+																					</li>
+																				</ul>
+																		</div>
+																	</li>
+															<li>
+																	<a href="/main/content/view.do?sn=184"  class="" ><span>성남물빛정원 뮤직홀</span></a>
+	
+																	</li>
+															<li>
+																	<a href="/main/content/view.do?sn=185"  class="" ><span>야외공연장</span></a>
+	
+																	</li>
+															<li>
+																	<a href="https://www.snart.or.kr/rental/concerthall/info/list.do" target="_blank" class="btn_link" ><span>대관안내</span></a>
+	
+																	</li>
+															</ul>
+													</div>
+												</li>
+										<li class="" >
+												<a href="/main/pst/list.do?pst_id=notice"  class="" ><span>소식·알림</span></a>
+	
+												<div class="sitemap_depth2_wrap">
+														<ul class="sitemap_depth2">
+															<li>
+																	<a href="/main/pst/list.do?pst_id=notice"  class="" ><span>공지사항</span></a>
+	
+																	</li>
+															<li>
+																	<a href="/main/pst/list.do?pst_id=recruit"  class="" ><span>채용안내</span></a>
+	
+																	</li>
+															<li>
+																	<a href="/main/pst/list.do?pst_id=lost"  class="" ><span>고객센터</span></a>
+	
+																	<div class="sitemap_depth3_wrap">
+																			<ul class="sitemap_depth3">
+	
+																				<li>
+																						<a href="/main/pst/list.do?pst_id=lost"  class="" ><span>유실물센터</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/pst/list.do?pst_id=faq"  class="" ><span>자주 묻는 질문</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/pst/list.do?pst_id=qna"  class="" ><span>궁금합니다</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/pst/list.do?pst_id=voc"  class="" ><span>고객의 소리</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=121"  class="" ><span>종합안내소</span></a>
+																					</li>
+																				</ul>
+																		</div>
+																	</li>
+															<li>
+																	<a href="/main/pst/list.do?pst_id=seongnam-info"  class="" ><span>성남시 산하기관 알림</span></a>
+	
+																	</li>
+															<li>
+																	<a href="/main/content/view.do?sn=123"  class="" ><span>자원봉사활동 안내</span></a>
+	
+																	</li>
+															<li>
+																	<a href="/main/survey/list.do"  class="" ><span>설문조사</span></a>
+	
+																	</li>
+															</ul>
+													</div>
+												</li>
+										<li class="" >
+												<a href="/main/content/view.do?sn=141"  class="" ><span>성남문화재단</span></a>
+	
+												<div class="sitemap_depth2_wrap">
+														<ul class="sitemap_depth2">
+															<li>
+																	<a href="/main/content/view.do?sn=141"  class="" ><span>인사말</span></a>
+	
+																	<div class="sitemap_depth3_wrap">
+																			<ul class="sitemap_depth3">
+	
+																				<li>
+																						<a href="/main/content/view.do?sn=141"  class="" ><span>이사장 인사말</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=142"  class="" ><span>대표이사 인사말</span></a>
+																					</li>
+																				</ul>
+																		</div>
+																	</li>
+															<li>
+																	<a href="/main/content/view.do?sn=144"  class="" ><span>비전 및 정책목표</span></a>
+	
+																	</li>
+															<li>
+																	<a href="/main/content/view.do?sn=146"  class="" ><span>경영철학</span></a>
+	
+																	<div class="sitemap_depth3_wrap">
+																			<ul class="sitemap_depth3">
+	
+																				<li>
+																						<a href="/main/content/view.do?sn=146"  class="" ><span>윤리·인권경영</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=247"  class="" ><span>ESG경영</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/dclr/write.do"  class="" ><span>클린(통합)신고센터</span></a>
+																					</li>
+																				</ul>
+																		</div>
+																	</li>
+															<li>
+																	<a href="/main/content/view.do?sn=156"  class="" ><span>기관소개</span></a>
+	
+																	<div class="sitemap_depth3_wrap">
+																			<ul class="sitemap_depth3">
+	
+																				<li>
+																						<a href="/main/content/view.do?sn=156"  class="" ><span>연혁</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=157"  class="" ><span>조직도</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=158"  class="" ><span>CI소개</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=159"  class="" ><span>사회공헌</span></a>
+																					</li>
+																				</ul>
+																		</div>
+																	</li>
+															<li>
+																	<a href="/main/pst/list.do?pst_id=budget"  class="" ><span>정보공개</span></a>
+	
+																	<div class="sitemap_depth3_wrap">
+																			<ul class="sitemap_depth3">
+	
+																				<li>
+																						<a href="/main/pst/list.do?pst_id=budget"  class="" ><span>예산</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/pst/list.do?pst_id=settlement"  class="" ><span>결산</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/pst/list.do?pst_id=contract"  class="" ><span>계약 및 용역</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/pst/list.do?pst_id=expense-report"  class="" ><span>업무추진비</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/pst/list.do?pst_id=minutes"  class="" ><span>회의록</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/pst/list.do?pst_id=data"  class="" ><span>자료실</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/pst/list.do?pst_id=perf-result"  class="" ><span>경영실적 평가결과</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/pst/list.do?pst_id=executive-status"  class="" ><span>임원 및 운영인력 현황</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/pst/list.do?pst_id=cs-result"  class="" ><span>고객만족도 결과</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/pst/list.do?pst_id=hr-expense"  class="" ><span>인건비 집행 현황</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/pst/list.do?pst_id=audit"  class="" ><span>감사</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/pst/list.do?pst_id=legal"  class="" ><span>법무</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/pst/list.do?pst_id=safety_health"  class="" ><span>안전보건</span></a>
+																					</li>
+																				</ul>
+																		</div>
+																	</li>
+															<li>
+																	<a href="/main/content/view.do?sn=189"  class="" ><span>후원회</span></a>
+	
+																	<div class="sitemap_depth3_wrap">
+																			<ul class="sitemap_depth3">
+	
+																				<li>
+																						<a href="/main/content/view.do?sn=189"  class="" ><span>후원회 안내</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=190"  class="" ><span>후원회장 인사말</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=191"  class="" ><span>후원회 명단</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=192"  class="" ><span>후원회 예우</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/content/view.do?sn=193"  class="" ><span>가입안내</span></a>
+																					</li>
+																				</ul>
+																		</div>
+																	</li>
+															<li>
+																	<a href="/main/wbzn/atvw/artview.do"  class="" ><span>디지털아카이브</span></a>
+	
+																	<div class="sitemap_depth3_wrap">
+																			<ul class="sitemap_depth3">
+	
+																				<li>
+																						<a href="/main/wbzn/atvw/artview.do"  class="" ><span>아트뷰</span></a>
+																					</li>
+																				<li>
+																						<a href="/main/wbzn/nslt/list.do"  class="" ><span>뉴스레터</span></a>
+																					</li>
+																				</ul>
+																		</div>
+																	</li>
+															</ul>
+													</div>
+												</li>
+										<li class=" my_mobile_only " >
+												<a href="/main/myinfo/reserve/list.do"  class="" ><span>마이페이지</span></a>
+	
+												<div class="sitemap_depth2_wrap">
+														<ul class="sitemap_depth2">
+															<li>
+																	<a href="/main/myinfo/reserve/list.do"  class="" ><span>예매 확인 및 취소</span></a>
+	
+																	</li>
+															<li>
+																	<a href="/main/myinfo/education/aply/list.do"  class="" ><span>교육신청내역</span></a>
+	
+																	</li>
+															<li>
+																	<a href=""  class="" ><span>관심항목 스크랩</span></a>
+	
+																	</li>
+															<li>
+																	<a href="/main/myinfo/pst/list.do?pst_id=review"  class="" ><span>게시글 내역</span></a>
+	
+																	</li>
+															<li>
+																	<a href="/main/myinfo/write.do"  class="" ><span>회원정보 변경</span></a>
+	
+																	</li>
+															<li>
+																	<a href="/main/myinfo/leave.do"  class="" ><span>회원탈퇴</span></a>
+	
+																	</li>
+															</ul>
+													</div>
+												</li>
+										</ul>
+						</div>
+						
+						
+						<div class="sitemap_other">
+							<dl class="oth_list">
+											<dt class="oth_title">이용안내</dt>
+											<dd class="oth_menu">
+												<a href="/main/guide/policy_prvc/view.do"  class="btn_oth"><span>개인정보처리방침</span></a>
+													<a href="/main/content/view.do?sn=198"  class="btn_oth"><span>개인정보처리위탁내역</span></a>
+													<a href="/main/content/view.do?sn=194"  class="btn_oth"><span>저작권 보호정책</span></a>
+													<a href="/main/content/view.do?sn=195"  class="btn_oth"><span>이메일무단수집거부</span></a>
+													<a href="/main/guide/policy_video/view.do"  class="btn_oth"><span>영상정보처리기기 운영/관리 방침</span></a>
+													</dd>
+										</dl>
+									<dl class="oth_list">
+											<dt class="oth_title">통합검색</dt>
+											<dd class="oth_menu">
+												<a href="/main/search/list.do"  class="btn_oth"><span>검색결과</span></a>
+													</dd>
+										</dl>
+									<dl class="oth_list">
+											<dt class="oth_title">멤버쉽</dt>
+											<dd class="oth_menu">
+												<a href="/main/member/login.do"  class="btn_oth"><span>로그인</span></a>
+													<a href="/main/member/find_id.do"  class="btn_oth"><span>아이디찾기</span></a>
+													<a href="/main/member/find_pw.do"  class="btn_oth"><span>비밀번호찾기</span></a>
+													<a href="/main/member/join/write.do"  class="btn_oth"><span>회원가입</span></a>
+													</dd>
+										</dl>
+									</div>
+						<a href="javascript:;" class="btn_close"><span>사이트맵 닫기</span></a>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+<!-- // header -->
+			
+			<!-- container -->
+			<div id="container" class="container">
+				<!-- 콘텐츠 -->
+				<div class="sub_page">
+							<nav class="sidebar_nav">
+												<div class="sidebar_depth1_wrap">
+													<ul class="sidebar_depth1">
+														<li class="active">
+															<div class="depth1_item"><span>공연/전시</span></div>
+<div class="sidebar_depth2_wrap">
+																<ul class="sidebar_depth2">
+																	<ul class="sidebar_depth2">
+																			<li class=" ">
+																					<a href="/main/cal_prex/calendar.do"  class="" ><span>캘린더</span></a>
+																					</li>
+																			<li class=" ">
+																					<a href="/main/prex/prefer/list.do"  class="" ><span>공연</span></a>
+																					</li>
+																			<li class=" ">
+																					<a href="/main/prex/exhibit/list.do"  class="" ><span>전시</span></a>
+																					</li>
+																			<li class=" has_depth  ">
+																					<a href="/main/content/view.do?sn=62"  class="" ><span>좌석배치도</span></a>
+																					</li>
+																			<li class="active ">
+																					<a href="/main/content/view.do?sn=90"  class="" ><span>예매안내</span></a>
+																					</li>
+																			<li class=" has_depth  ">
+																					<a href="/main/content/view.do?sn=92"  class="" ><span>관람예절</span></a>
+																					</li>
+																			<li class=" ">
+																					<a href="/main/pst/list.do?pst_id=review"  class="" ><span>관람후기</span></a>
+																					</li>
+																			</ul>
+																	</ul>
+															</div>
+														</li>
+													</ul>
+												</div>
+											</nav>
+										<!-- sub title -->
+							<div class="sub_page_content">
+								<div class="inner">
+									<div class="sub_page_head">
+										<!-- breadcrumb -->
+										<nav class="cm_breadcrumb" aria-label="현재 경로">
+											<ol class="nav_list">
+												<li class="home"><a href="/main/main.do"><span class="cm_icon icon_home2">홈</span></a></li>
+												<li>
+															<a href="/main/cal_prex/calendar.do" target="_self" >
+																<span>공연/전시</span>
+															</a>
+														</li>
+													</ol>
+										</nav>
+										
+										<!-- //breadcrumb -->
+										<div class="sub_page_head_title_area">
+											<h2 class="sub_page_head_title"><span>예매안내</span></h2>
+											<div class="sub_page_share_area">
+												<button type="button" class="share_toggle_btn" aria-expanded="false" aria-label="페이지 공유하기" onclick="toggleShareList(this)"></button>
+												<ul class=" share_list">
+													<li class="share_item"><button class="facebook share_item_btn" onclick="fnShareFaceBook();" aria-label="페이스북으로 공유하기"></button></li>
+													<li class="share_item"><button class="blog share_item_btn" onclick="fnShareNaverBlog();" aria-label="블로그로 공유하기"></button></li>
+													<li class="share_item"><button id="kakaotalk-sharing-btn" class="kakao share_item_btn" aria-label="카카오톡으로 공유하기"></button></li>
+													<li class="share_item"><button class="copy_url share_item_btn" onclick="fnCopyUrlToClipboard();" aria-label="URL 복사하기"></button></li>
+												</ul>
+											</div>
+										</div>
+										<!-- //네비게이션 -->
+									</div>
+									
+									
+									<div id="real_content" class="real_content">
+										<!-- 상단 메뉴  -->
+	<!-- //상단 메뉴  -->
+										
+										<!--  콘텐츠 -->
+										<div class="page_SNA18">
+ <div class="cm_text mb-25 text1">
+  티켓 예매 안내
+ </div><!-- <div class="cm_overview15">
+  <div class="ovw15_box">
+    <div class="ovw15_title cm_text text2">인터넷 예매</div>
+    <p>① 성남문화재단 로그인</p>
+    <p>② 공연선택</p>
+    <p>③ 날짜/시간/좌석 선택</p>
+    <p>④ 결제</p>
+  </div>
+  <div class="ovw15_box">
+    <div class="ovw15_title cm_text text2">전화예매</div>
+    <strong class="number">1544-8117</strong>
+    <span class="text_bg">09:00 ~ 18:00  점심시간 미운영</span>
+    <div>
+      <span class="cm_icon icon_info" style="--icon-size:20; --icon-gap:8;">예매수수료 : <span class="text-primary">장당 2,000원</span></span>
+    </div>
+  </div>
+  <div class="ovw15_box">
+    <div class="ovw15_title cm_text text2">현장예매</div>
+    <div class="cm_text text1">성남아트센터 아이플라자 방문</div>
+    <span class="text_bg">09:00 ~ 18:00  점심시간 미운영</span>
+    <p>문의 : 031-783-8000</p>
+  </div>
+</div> -->
+ <div class="cm_text mb-15 text2">
+  인터넷 예매
+ </div>
+ <ul class="cm_bul_list1">
+  <li class="list_item"><span><span class="font-weight-bold">예매시간</span> : 24시간 예매 가능 (공연 2시간 전까지 인터넷예매 가능)</span></li>
+  <li class="list_item"><span><span class="font-weight-bold">예매방법</span> : 회원가입 및 로그인 → 공연선택 → 예매날짜/시간/좌석선택 → 결제방법선택/결제/예매완료<br><a href="https://ticket.interpark.com/TiKi/Info/BookingGuide.asp?Url=guide_01.html" target="_blank" class="btn_crimson_red btn_md btn_primary cm_btn cm_icon icon_externalLink2 mt-10" style="--icon-size: 18" title="새창열림"><span>NOL티켓 예매방법</span></a> </span></li>
+  <li class="list_item"><span><span class="font-weight-bold">예매수수료</span> : 성남아트센터 홈페이지를 통하여 예매하시면 수수료는 부과되지 않습니다.</span></li>
+  <li class="list_item"><span class="font-weight-bold">결제방법</span>
+   <ul class="cm_bul_list2 mt-05">
+    <li class="list_item"><span><span class="font-weight-bold">신용카드결제</span> : 신용카드로 결제하시면 바로 결제가 완료됩니다.</span></li>
+    <li class="list_item"><span><span class="font-weight-bold">무통장 입금</span> : 무통장 입금으로 결제하시면 가상계좌가 생성됩니다.<br>
+       이는 예매건 별로 생성되는 가상계좌번호이며 정확한 금액을 입금하셔야 결제가 완료됩니다.<br>
+       (입금자명과 예매자명이 달라도 문제 없음)</span></li>
+    <li class="list_item"><span><span class="font-weight-bold">가상계좌번호</span>는 예매 익일 23시 59분까지 존재하며 그 이후에는 자동 소멸하므로 입금이 불가능합니다.<br>
+       (은행에 따라서 23시 30분 이후로는 온라인 입금이 제한될 수 있습니다.)<br>
+       공연일이 4일 남았을 시 무통장입금으로 결제할 수 있습니다.</span></li>
+   </ul></li>
+ </ul>
+ <div class="cm_text mb-15 mt-40 text2">
+  전화예매
+ </div>
+ <ul class="cm_bul_list1">
+  <li class="list_item"><span><span class="font-weight-bold">전화번호</span> : 1544-8117</span></li>
+  <li class="list_item"><span><span class="font-weight-bold">예매시간</span> : 09:00~18:00(점심시간 12:00~13:00 미운영)</span></li>
+  <li class="list_item"><span><span class="font-weight-bold">예매 방법</span> : 1544-8117</span></li>
+  <li class="list_item"><span><span class="font-weight-bold">예매수수료</span> : 장당 2,000원</span></li>
+  <li class="list_item"><span><span class="font-weight-bold">결제방법</span> : 신용카드, 무통장입금 결제 가능</span></li>
+ </ul>
+ <div class="cm_text mb-15 mt-40 text2">
+  현장예매
+ </div>
+ <ul class="cm_bul_list1">
+  <li class="list_item"><span><span class="font-weight-bold">예매시간</span> : 월~일 09:00~18:00 (점심시간 12:00~13:00 미운영) (휴무 시 사전 공지)</span></li>
+  <li class="list_item"><span><span class="font-weight-bold">예매 방법</span> : 성남아트센터 아이플라자(종합안내소)로 방문하시면 예매할 수 있습니다.<br>
+    (공연 시작 1시간 30분 전부터는 해당 공연장 1층 매표소에서 가능)</span></li>
+  <li class="list_item"><span><span class="font-weight-bold">예매수수료</span> : 없음</span></li>
+  <li class="list_item"><span><span class="font-weight-bold">결제방법</span> : 신용카드, 현금 결제 가능</span></li>
+  <li class="list_item"><span><span class="font-weight-bold">위치</span> : 오페라하우스 광장 아이플라자</span></li>
+  <li class="list_item"><span><span class="font-weight-bold">문의번호</span> : 031-783-8000</span></li>
+ </ul>
+ <div class="cm_text mb-25 mt-60 text1">
+  티켓 수령 안내
+ </div>
+ <div class="cm_text mb-15 text2">
+  현장 수령
+ </div>
+ <ul class="cm_bul_list1">
+  <li class="list_item">현장 수령 예매티켓은 공연 당일 해당 공연장 매표소에서 수령 가능합니다.<br>
+   (예매자 신분증 및 예매내역서 지참)</li>
+  <li class="list_item">티켓 예매 시 할인받은 경우 할인 증빙에 필요한 자료를 제시해야 하며 실관람자 본인이 직접 해당 증빙자료를 제시하여야만 티켓 수령이 가능합니다.<br>
+   (ex. 장애인 할인, 국가유공자 할인, 경로우대 등)</li>
+ </ul>
+ <div class="cm_text mt-40 text2">
+  배송
+ </div>
+ <ul class="cm_bul_list1">
+  <li class="list_item">인터넷 및 전화예매 시 우편배송으로 티켓을 수령하실 수 있습니다.</li>
+  <li class="list_item"><span class="font-weight-bold">우편배송(3,700원)</span> : 결제완료 후 3~4일 이내 배송됩니다. (공연일 14일 전까지만 가능)</li>
+  <li class="list_item">배송신청 후 현장수령으로 변경 시 배송료는 환불되지 않습니다.</li>
+ </ul>
+ <div class="cm_text mb-25 mt-60 text1">
+  예매취소 및 변경
+ </div>
+ <div class="cm_text mb-15 text2">
+  취소 및 변경방법
+ </div>
+ <div class="cm_table2 mt-15 no_border responsible_table">
+  <table id="table-0" data-table-id="0" data-table-type="thead-header">
+   <caption>
+    예매처, 취소 및 변경 방법 항목으로 구성된 표입니다.
+   </caption>
+   <colgroup>
+    <col style="width: 218px;">
+    <col style="">
+   </colgroup>
+   <thead>
+    <tr>
+     <th scope="col">예매처</th>
+     <th scope="col">취소 및 변경 방법</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td class="text-center" data-th="예매처"><span class="m_visible">예매처 : </span> 성남아트센터 홈페이지</td>
+     <td data-th="취소 및 변경 방법"><span class="m_visible">취소 및 변경 방법 : </span> 홈페이지 로그인 후 (마이페이지/예매확인 및 취소)에서 취소 및 변경</td>
+    </tr>
+    <tr>
+     <td class="text-center" data-th="예매처"><span class="m_visible">예매처 : </span> NOL 티켓</td>
+     <td data-th="취소 및 변경 방법"><span class="m_visible">취소 및 변경 방법 : </span> NOL 티켓 로그인 후 (예매확인/취소)에서 취소 및 변경</td>
+    </tr>
+    <tr>
+     <td class="text-center" data-th="예매처"><span class="m_visible">예매처 : </span> 콜센터</td>
+     <td data-th="취소 및 변경 방법"><span class="m_visible">취소 및 변경 방법 : </span> 콜센터 (1544-8117)로 전화 후 취소 및 변경</td>
+    </tr>
+    <tr>
+     <td class="text-center" data-th="예매처"><span class="m_visible">예매처 : </span> 현장(아이플라자)</td>
+     <td data-th="취소 및 변경 방법"><span class="m_visible">취소 및 변경 방법 : </span> 티켓 지참 후 내방하여 취소 및 변경</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="cm_font_size15 mt-15"><span class="cm_icon icon_info" style="--icon-size: 20; --icon-gap: 8;">모든 취소 및 변경은 예매하신 예매처에서 가능합니다.</span></p>
+ <div class="cm_text mb-15 mt-40 text2">
+  가능 시간
+ </div>
+ <div class="cm_table2 mt-15 no_border responsible_table">
+  <table id="table-1" data-table-id="1" data-table-type="thead-header">
+   <caption>
+    공연일별 취소 및 변경 가능 시간 제공 표
+   </caption>
+   <colgroup>
+    <col style="width: 218px;">
+    <col style="">
+   </colgroup>
+   <thead>
+    <tr>
+     <th scope="col">공연일</th>
+     <th scope="col">취소 및 변경 가능 시간</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td class="text-center" data-th="공연일"><span class="m_visible">공연일 : </span> 월요일~토요일, 공휴일</td>
+     <td data-th="취소 및 변경 가능 시간"><span class="m_visible">취소 및 변경 가능 시간 : </span> 관람 전일 오후 5시까지 가능</td>
+    </tr>
+    <tr>
+     <td class="text-center" data-th="공연일"><span class="m_visible">공연일 : </span> 일요일</td>
+     <td data-th="취소 및 변경 가능 시간"><span class="m_visible">취소 및 변경 가능 시간 : </span> 토요일 오전 11시까지 가능</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="cm_font_size15 mt-15"><span class="cm_icon icon_info" style="--icon-size: 20; --icon-gap: 8;">공연 당일에는 취소 및 변경이 불가능합니다.</span></p>
+ <div class="cm_text mb-15 mt-40 text2">
+  취소수수료 (소비자분쟁해결 보상기준에 따름)
+ </div>
+ <ul class="cm_bul_list5">
+  <li class="list_item"><span class="number">1.</span>
+   <div>
+    예매 후 7일까지 취소 시에는 취소수수료가 없습니다.
+   </div></li>
+  <li class="list_item"><span class="number">2.</span>
+   <div>
+    관람일 기준은 아래 기준으로 취소수수료가 적용됩니다.(1번과 2번에 모두 해당하는 경우, 2번 기준이 우선 적용) 
+    <ul class="cm_bul_list2 mt-05">
+     <li class="list_item">관람일 10일 전까지: 뮤지컬, 콘서트, 클래식, 무용 한 장당 4,000원, 그 외 장르 한 장당 2,000원<br>
+      (단, 최대 티켓금액의 10% 한도)</li>
+     <li class="list_item">관람일 9일 전~관람일 7일 전까지 : 티켓금액의 10%</li>
+     <li class="list_item">관람일 6일 전~관람일 3일 전까지 : 티켓금액의 20%</li>
+     <li class="list_item">관람일 2일 전~관람일 1일 전까지 : 티켓금액의 30%</li>
+     <li class="list_item text-point-60">위 2번의 경우 예매 당일 밤 12시 이전 취소시에는 취소수수료가 없습니다.(단, 취소기간 내에 한함)</li>
+    </ul>
+   </div></li>
+ </ul>
+ <div class="cm_text mb-15 mt-40 text2">
+  주의사항
+ </div>
+ <ul class="cm_bul_list1">
+  <li class="list_item">모든 할인은 관람자를 기준으로 합니다.</li>
+  <li class="list_item">예매티켓 변경은 콜센터(1544-8117)로 문의, 재예매 후 기존 예매 티켓 취소 방식으로 이루어집니다.</li>
+  <li class="list_item">예매티켓 변경 시 기존 예매티켓 금액보다 적은 금액으로 결제될 경우(부분취소, 하향등급선택 등) 취소수수료가 부가됩니다.</li>
+  <li class="list_item">무통장 입금으로 결제 한 경우 취소 수수료를 제외한 금액이 환급됩니다.(송금수수료 미부과)</li>
+  <li class="list_item">티켓을 이미 배송으로 수령하신 경우에는 인터넷 및 전화로 취소할 수 없습니다.<br>
+    반드시 취소마감 시간 전에 티켓이 NOL 티켓 고객서비스센터로 반송되어야 취소 가능하며, 취소수수료는 도착일자 기준으로 부과됩니다.<br>
+    (단, 일괄배송 취소에 대한 자세한 문의는 콜센터(1544-8117)로 문의해주시기 바랍니다.)</li>
+ </ul>
+</div><!-- //공연/전시 - 예매안내 --><!--  //콘텐츠 -->
+									</div>
+										
+									<div class="cm_content_satisfaction">
+	<div class="skip">콘텐츠 만족도 조사</div>
+	<form id="formMenuDgstfn" name="formMenuDgstfn" action="/main/content/view/process.do" method="post" target="hidden_iframe" onSubmit="return fnFormDgstfn_validation();" >
+		<input type="hidden" name="TP" value=dgstfn />
+		<input type="hidden" name="cms_menu_sn" value="90" />
+		<div class="cm_text survey_title text2"><span class="cm_icon icon_survey">이 페이지에서 제공하는 정보에 대해 만족하십니까?</span></div>
+		<div class="survey_content">
+			<div class="cm_chk_wrap">
+				<label class="cm_chk1">
+						<input type="radio" id="dgstfn_scr_1" name="dgstfn_scr" value="5">
+						<span class="chk_label">매우만족</span>
+					</label>
+				<label class="cm_chk1">
+						<input type="radio" id="dgstfn_scr_2" name="dgstfn_scr" value="4">
+						<span class="chk_label">만족</span>
+					</label>
+				<label class="cm_chk1">
+						<input type="radio" id="dgstfn_scr_3" name="dgstfn_scr" value="3">
+						<span class="chk_label">보통</span>
+					</label>
+				<label class="cm_chk1">
+						<input type="radio" id="dgstfn_scr_4" name="dgstfn_scr" value="2">
+						<span class="chk_label">불만족</span>
+					</label>
+				<label class="cm_chk1">
+						<input type="radio" id="dgstfn_scr_5" name="dgstfn_scr" value="1">
+						<span class="chk_label">매우불만족</span>
+					</label>
+				</div>
+			<div class="survey_action">
+				<button type="submit" class="btn_default btn_md btn_primary cm_btn">등록</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<script>
+	var formMenuDgstfn = $("#formMenuDgstfn"); 
+	var fnFormDgstfn_validation = function () {
+		var formChecked = chk_field(formMenuDgstfn.find("input[name=dgstfn_scr]"), "checked", "페이지 만족도");
+		
+		if (formChecked) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script></div>
+							</div>
+							<!-- 페이지 콘텐츠 종료 -->
+						</div>
+					<!-- // 콘텐츠 -->
+	        </div>
+			<!-- // container -->
+			<!-- notice modal -->
+			<!-- quick menu -->
+			<div id="quick" class="quick_menu_area" role="complementary" aria-label="퀵메뉴">
+				<div class="quick_menu_toggle_button">
+					<button type="button" class="btn_quick_open" aria-expanded="false" aria-label="퀵메뉴 열기" onclick="openMobileQuick();"> Quick<br />Menu </button>
+				</div>
+				<div class="quick_menu_box" aria-hidden="true" aria-label="퀵메뉴">
+					<div class="quick_menu_box_head">
+						<div id="quickMenuTitle" class="title">Quick Menu</div>
+						<div class="quick_menu_close_wrap">
+							<div class="m_visible">닫기</div>
+							<button type="button" class="btn_quick_close" aria-label="퀵메뉴 닫기" onclick="closeMobileQuick();"></button>
+						</div>
+					</div>
+					<ul class="quick_menu_list">
+						<li class="quick_academy quick_menu_item">
+							<a href="/main/education/list.do" class="item_box">
+								<i class="icon" aria-hidden="true"></i>
+								<span class="text">아카데미<br />교육신청</span>
+							</a>
+						</li>
+						<!--1월 10일경 지원사업 관련 콘텐츠 수급시 주석 해제 -->
+						<li class="quick_menu_item quick_platform">
+							<a href="/artbiz/main.do" class="item_box">
+								<i class="icon" aria-hidden="true"></i>
+								<span class="text">예술인지원<br />플랫폼</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="dim" aria-hidden="true"></div>
+			</div>
+			<!-- // quick menu -->
+			
+	        <!-- footer -->
+			<footer id="footer" class="footer">
+	<div class="footer_top">
+		<div class="inner">
+			<div class="footer_link_area">
+				<ul class="footer_link">
+					<li class="active"><a href="/main/guide/policy_prvc/view.do"><span>개인정보처리방침</span></a></li>
+					<li><a href="/main/guide/policy_video/view.do"><span>영상정보처리기기운영 / 관리방침</span></a></li>
+					<li><a href="/main/content/view.do?sn=195"><span>이메일무단수집거부</span></a></li>
+					<li><a href="/main/content/view.do?sn=194"><span>저작권보호정책</span></a></li>
+				</ul>
+			</div>
+			<div class="footer_info_area">
+				<ul class="footer_info">
+					<li>
+						<dl>
+							<dt>예매문의</dt>
+							<dd>1544-8117</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>일반문의</dt>
+							<dd>031-783-8000</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>팩스번호</dt>
+							<dd>031-783-8160</dd>
+						</dl>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="footer_bottom">
+		<div class="inner">
+			<div class="footer_logo">
+				<img src="/main/images/common/logo2.svg" alt="성남문화재단" />
+			</div>
+			<div class="footer_address">
+				<p>(13514) 경기도 성남시 분당구 성남대로 808 (야탑동)</p>
+				<div class="footer_content">
+					<div class="footer_business_info">
+						<ul class="business_info_list">
+							<li>재단법인 <span class="font-weight-bold">성남문화재단</span></li>
+							<li>사업자등록번호 129-82-07974</li>
+							<li>
+								<span class="mr-15">통신판매업신고 제2006-경기성남-674호</span>
+								<a href="https://www.ftc.go.kr/bizCommPop.do?wrkr_no=1298207974" target="_blank" class="btn_business_info" title="새창열림"><span>사업자정보확인</span></a>
+							</li>
+						</ul>
+					</div>
+					<div class="footer_familysite_wrap">
+						<div class="footer_familysite js_dropdown">
+							<button type="button" class="footer_familysite_title js_dropdown_trigger" aria-expanded="false" aria-label="패밀리사이트">
+								<span>Family Site</span>
+							</button>
+							<div class="footer_familysite_options">
+								<div class="footer_familysite_options_scroll">
+								<a rel="noopener noreferrer" href="/main/member/mediaCenterSSo.do" target="_blank" class="js_dropdown_option" title="새창열림">성남미디어센터</a>
+									<a rel="noopener noreferrer" href="/main/member/museumSSo.do" target="_blank" class="js_dropdown_option" title="새창열림">성남큐브미술관</a>
+									<a rel="noopener noreferrer" href="/main/member/snarteSSo.do" target="_blank" class="js_dropdown_option" title="새창열림">성남문화예술교육센터</a>
+									<a rel="noopener noreferrer" href="/main/member/ilibrSSo.do" target="_blank" class="js_dropdown_option" title="새창열림">악기랑</a>
+									<a rel="noopener noreferrer" href="https://seongnamfestival.com/" target="_blank" class="js_dropdown_option" title="새창열림">성남페스티벌</a>
+									<a rel="noopener noreferrer" href="https://www.snart.or.kr/rental/main.do" target="_blank" class="js_dropdown_option" title="새창열림">성남문화재단 대관시스템</a>
+									<a rel="noopener noreferrer" href="https://www.seongnam.go.kr/main.do" target="_blank" class="js_dropdown_option" title="새창열림">성남시청</a>
+									<a rel="noopener noreferrer" href="https://art.seongnam.go.kr:10021/main/index.php" target="_blank" class="js_dropdown_option" title="새창열림">성남시립예술단</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<p class="footer_copyright">Copyright© <span class="font-weight-bold">Seongnam Cultural Foundation</span> All Rights Reserved.</p>
+			</div>
+		</div>
+	</div>
+
+    <script>
+        window.__ht_wc = window.__ht_wc || {};
+        window.__ht_wc.host = 'design.happytalkio.com';
+        window.__ht_wc.site_id = '5000001012'; // site_id
+        window.__ht_wc.site_name = '성남문화재단'; // 회사 이름
+        window.__ht_wc.category_id = '120053'; // 대분류 id
+        window.__ht_wc.division_id = '120054'; // 중분류 id
+
+        // 고정 및 Custom 파라미터 추가 영역, 파라미터가 여러개인 경우 ,(콤마)로 구분
+        // 앱 개발시, 웹뷰 Local Storage 사용가능하도록 처리
+
+        (function() {
+            var ht = document.createElement('script');
+            ht.type = 'text/javascript';
+            ht.async = true;
+            ht.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + window.__ht_wc.host + '/web_chatting/tracking.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ht, s);
+        })();
+    </script>
+</footer><!-- // footer -->
+		</div>
+		<!-- // wrap -->
+		
+		<input type="text" id="ShareUrl" title="클립보드 복사 url" style="position: absolute; z-index:-1; height:0; opacity:0 " tabindex="-1">
+			<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script> 
+			<script>
+				function fnCopyUrlToClipboard(){
+					var obShareUrl = document.getElementById("ShareUrl");
+					obShareUrl.value = window.document.location.href;  // 현재 URL 을 세팅해 줍니다
+					obShareUrl.select();  // 해당 값이 선택되도록 select() 합니다
+					document.execCommand("copy"); // 클립보드에 복사합니다.
+					obShareUrl.blur(); // 선택된 것을 다시 선택안된것으로 바꿈니다.
+					alert("현재 페이지 URL이 복사되었습니다");
+				}
+				
+				function fnShareFaceBook() {
+					window.open('http://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'','width=1280,height=830');
+				}
+				
+				function fnShareNaverBlog() {
+				    window.open('http://blog.naver.com/openapi/share?title=성남문화재단 예매안내&url=' + encodeURIComponent(' + location.href + '),'','width=480,height=460');
+				}
+				
+				//카카오톡 공유 버튼
+				if (!Kakao.isInitialized()) {
+					Kakao.init('04773f65740cf7bfc99cd1f12d1e6727');
+				}
+				
+				Kakao.Share.createDefaultButton({
+					container: '#kakaotalk-sharing-btn',
+					objectType: 'feed',
+					content: {
+						title: '성남문화재단 예매안내',
+						imageUrl: 'https://www.snart.or.kr/main/images/common/logo.svg',
+						link: {
+							mobileWebUrl: location.href,
+							webUrl: location.href,
+						},
+					},
+				});
+				
+			</script>
+		<iframe name="hidden_iframe" id="hidden_iframe" title="숨겨진 프레임" src="about:blank" style="display: none; " ></iframe>
+	</body>
+</html>

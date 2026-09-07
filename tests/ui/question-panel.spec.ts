@@ -177,6 +177,7 @@ test("AI 실패 fallback을 정상 안내로 표시하며 내부 오류를 노�
   await page.route("**/api/public-information/search", (route) => route.fulfill({ json: { ...search, ...fallback } }));
   await page.goto("/");
   await submit(page);
+  await expect(page.getByRole("status")).toContainText("안내가 준비되었습니다");
   if (await page.locator("details:not([open]) > summary").count()) await page.locator("details:not([open]) > summary").click();
   await expect(page.getByText(search.answer.plainLanguageSummary, { exact: true })).toBeVisible();
   await expect(page.getByRole("region", { name: "공식 자료 안내", exact: true })).not.toContainText(/provider_error|private-provider-error|fallback/);

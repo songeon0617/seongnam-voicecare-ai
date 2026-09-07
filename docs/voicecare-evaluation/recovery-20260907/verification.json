@@ -1,0 +1,53 @@
+{
+  "mode": "NO_PAID_API_ORDERED_RELEASE_CHECKS",
+  "results": [
+    {
+      "name": "server",
+      "start": "2026-09-06T16:49:08.499Z",
+      "end": "2026-09-06T16:49:12.129Z",
+      "exitCode": 0
+    },
+    {
+      "name": "ui",
+      "start": "2026-09-06T16:49:12.132Z",
+      "end": "2026-09-06T16:49:47.957Z",
+      "exitCode": 0
+    },
+    {
+      "name": "lint",
+      "start": "2026-09-06T16:49:47.958Z",
+      "end": "2026-09-06T16:49:51.631Z",
+      "exitCode": 0
+    },
+    {
+      "name": "typecheck",
+      "start": "2026-09-06T16:49:51.632Z",
+      "end": "2026-09-06T16:49:53.194Z",
+      "exitCode": 0
+    },
+    {
+      "name": "build",
+      "start": "2026-09-06T16:49:53.195Z",
+      "end": "2026-09-06T16:49:59.522Z",
+      "exitCode": 0
+    },
+    {
+      "name": "legacy",
+      "start": "2026-09-06T16:49:59.522Z",
+      "end": "2026-09-06T16:50:03.253Z",
+      "exitCode": 0
+    },
+    {
+      "name": "official-fixtures",
+      "start": "2026-09-06T16:50:03.253Z",
+      "end": "2026-09-06T16:50:06.312Z",
+      "exitCode": 0
+    },
+    {
+      "name": "replay-offline",
+      "start": "2026-09-06T16:50:06.313Z",
+      "end": "2026-09-06T16:50:09.154Z",
+      "exitCode": 0
+    }
+  ]
+}

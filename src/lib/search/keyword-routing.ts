@@ -33,12 +33,11 @@ export function serviceScopeGuard(query: string, decision: IntentRoute): IntentR
 }
 
 const compact = (value: string) => value.normalize("NFKC").replace(/[^0-9a-zA-Z가-힣]/g, "").toLowerCase();
-/** 점수만 신뢰하지 않고 기존 검색의 명시적 제도명만 단일 선택한다. */
-export function confidentKeywordResult(query: string, results: readonly PublicInformationSearchResult[]) {
-  if (locationGuard(query)) return undefined;
+/** Collect every explicit service before choosing a route, including candidates outside top K. */
+export function namedKeywordDocuments(query: string, results: readonly PublicInformationSearchResult[]) {
   const text = compact(query);
   // top-K 밖으로 밀린 명시적 서비스도 복수 후보 판단에 포함한다.
-  const named = getRoutingDocuments().filter((document) => {
+  return getRoutingDocuments().filter((document) => {
     const matchedTerms = results.find((result) => result.document.id === document.id)?.matchedTerms ?? [];
     const title = compact(document.title);
     const stem = compact(document.title.replace(/서비스$| 운영$| 이용 안내$| 사업$/, ""));
@@ -50,6 +49,12 @@ export function confidentKeywordResult(query: string, results: readonly PublicIn
     return text.includes(stem) || namedTag ||
       (document.id === "seongnam-special-transportation" && matchedTerms.includes("특별교통수단"));
   });
+}
+
+/** 점수만 신뢰하지 않고 기존 검색의 명시적 제도명만 단일 선택한다. */
+export function confidentKeywordResult(query: string, results: readonly PublicInformationSearchResult[]) {
+  if (locationGuard(query)) return undefined;
+  const named = namedKeywordDocuments(query, results);
   if (named.length !== 1) return undefined;
   const result = results.find((result) => result.document.id === named[0].id);
   if (!result) return undefined;

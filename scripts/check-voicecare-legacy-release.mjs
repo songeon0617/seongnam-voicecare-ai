@@ -1,6 +1,6 @@
 import {spawn} from "node:child_process";
 import {readFileSync,writeFileSync} from "node:fs";
-const directory="docs/voicecare-evaluation/release-20260907";
+const directory=process.env.VOICECARE_RESULT_DIRECTORY??"docs/voicecare-evaluation/release-20260907";
 const results=[];
 // Fresh isolated server per batch preserves the real 30/minute production limiter.
 for(const [from,to] of [[1,20],[21,40],[41,61]]){

@@ -1,0 +1,1226 @@
+<!-- fnct -->
+<!DOCTYPE html>
+<html lang="ko" >
+<head>
+	<link rel="shortcut icon" href="/humanframe/theme/global/assets/images/ico/ico_sns_favicon.png" type="image/x-icon"/>
+	<link rel="icon" href="/humanframe/theme/global/assets/images/ico/ico_sns_favicon.png" type="image/x-icon"/>
+	<link rel="canonical" href="https://www.seongnam.go.kr/health/index">
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-YVSMJ02ZJW"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		  gtag('config', 'G-YVSMJ02ZJW');
+		</script>
+	<title>
+		보건사업
+	            	-
+	            보건사업
+	       - 성남시 보건소
+	    </title>
+
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="성남시 보건소">
+    <meta name="keywords" content="">
+    <meta property="og:image" content="https://www.seongnam.go.kr/humanframe/theme/global/assets/images/common/kakaotalk_thum.png">
+    
+ 	<!-- global -->
+    <link rel="stylesheet" href="/humanframe/theme/global/assets/style/style.css">
+    <link rel="stylesheet" href="/humanframe/theme/global/assets/plugin/swiper/swiper-bundle.min.css">
+    <script src="/humanframe/theme/global/assets/script/jquery-1.12.4.min.js"></script>
+    <script src="/humanframe/theme/global/assets/plugin/swiper/swiper-bundle.min.js"></script>
+    
+    <script src="/humanframe/theme/global/assets/script/common.js"></script>
+    
+    <!-- theme -->
+    <link rel="stylesheet" href="/humanframe/theme/health/assets/style/layout/layout.css">
+    <link rel="stylesheet" href="/humanframe/theme/health/assets/style/style.css">
+    
+    <script src="/humanframe/theme/health/assets/script/common.js"></script>
+    
+    <style>
+		.paginate a.com2.prev {
+		    width: auto;
+		    background-image: url(/humanframe/theme/global/assets/images/ico/ico_prev.svg);
+		    background-position: center;
+    		padding: 15px;
+    		margin-right: 4px;
+		}
+		.paginate a.com2.next {
+		    width: auto;
+		    background-image: url(/humanframe/theme/global/assets/images/ico/ico_next.svg);
+		    background-position: center;
+    		padding: 15px;
+    		margin-left: 2px;
+		}
+		.paginate a.com {
+		    display: unset !important;
+		}
+		.checkbox-type {
+		    align-items: center !important;
+		}
+		.textcolor-danger {
+		  	color: #BD2C0F !important;
+		}
+		@media only screen and (max-width: 47.99em) {
+		    .paginate {
+		        padding-top: 0px;
+		    }
+		}
+		</style>
+	    <link rel="stylesheet" href="/humanframe/theme/global/assets/style/jquery-ui.css">
+	    <script src="/humanframe/theme/global/assets/script/jquery-3.7.1.min.js"></script>
+	    <script src="/humanframe/theme/global/assets/script/jquery-ui.min.js"></script>
+    </head>
+
+
+
+<script>
+	var anyidAdaptor = anyidAdaptor || {};
+
+	/*이용기관 수정 영역 Start*/
+	anyidAdaptor.orgLogin = function(data){
+		//정부 통합인증SDK_연계가이드 4.4.1.3 이용기관 로그인(토글 off) 참조
+		//제공되는 라이브러리 메소드로 인증데이터 decrypt 이후 자체 로그인 로직 개발
+		const params = new URLSearchParams(location.search);
+		var obj ={
+			ssob : data.ssob
+			, tag : params.get("tx")
+		}
+
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", "/fnct/mber/nonmember/anyidProc.do", true);
+		xhr.setRequestHeader("Content-Type", "application/json");
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4) {  // 요청 완료
+				if (xhr.status === 200) {  // 서버 응답 성공
+					try {
+						const response = JSON.parse(xhr.responseText);
+
+						if (response.status === "success") {
+							//console.log("로그인 성공 >>>>> ", JSON.stringify(response));
+							// 성공 시 메인 페이지로 이동
+							window.location.href = "/index"; // 실제 메인 페이지 URL로 수정
+						} else {
+							// 인증 실패 시 메시지 표시
+							alert(response.message || "로그인에 실패했습니다. 다시 시도해주세요.");
+						}
+					} catch (e) {
+						// console.error("응답 파싱 에러:", e);
+						alert("서버 응답 처리 중 오류가 발생했습니다.");
+					}
+				} else {
+					// console.error("서버 오류:", xhr.status, xhr.statusText);
+					alert("서버와 통신 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+				}
+			}
+		};
+		xhr.send(JSON.stringify(obj));
+		
+	}
+	/*이용기관 수정 영역 End*/
+	
+	
+	/*이용기관 문구수정 영역 Start*/
+	anyidAdaptor.JoinConfirm = function(portalJoinUri, memberData){
+		if(confirm('Any-ID 사용자로 등록하시겠습니까?')) {
+			anyidAdaptor.receiveAnyIdJoin(portalJoinUri, memberData);
+		} else {
+			anyidAdaptor.orgLogin(anyidAdaptor.certData);
+			return;
+		}
+	}
+	/*이용기관 문구수정 영역 End*/
+	
+	anyidAdaptor.portalJoinUri = "null";
+	anyidAdaptor.certData = null;
+	
+	anyidAdaptor.ssoByPass = "0";
+	anyidAdaptor.niRegYn = "";
+	anyidAdaptor.agencyContextPath = "";
+	
+	
+	anyidAdaptor.success = function(data){
+		if(anyidAdaptor.ssoByPass != 0 || !data.useSso) {
+			anyidAdaptor.orgLogin(data);
+		} else {
+			anyidAdaptor.certData = data;
+			anyidAdaptor.userCheck();
+		}  
+	}
+	
+	anyidAdaptor.userCheck = function(){
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", anyidAdaptor.agencyContextPath + "/oidc/userCheck", true);
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4 && xhr.status === 200) {
+				var response = JSON.parse(xhr.responseText);
+				if (response.success) {
+					anyidAdaptor.ssoLogin();
+				} else {
+					setTimeout(function() {
+						anyidAdaptor.receiveAnyIdJoin(response.uri, response.data);
+					}, 100);  
+				}
+			}
+		};
+
+		let jsonObject = new Object();
+		jsonObject.txId = anyidAdaptor.certData.txId;
+		jsonObject.ssob = anyidAdaptor.certData.ssob;
+		jsonObject.userSeCd = anyidAdaptor.certData.userSeCd;
+		
+		let jsonStr = JSON.stringify(jsonObject);
+		let encodedString = btoa(jsonStr);
+		
+		var data = "data=" + encodedString + "&txId=" + anyidAdaptor.certData.txId;
+		xhr.send(data);
+		
+	}
+
+	//anyid가입
+	anyidAdaptor.receiveAnyIdJoin = function(portalJoinUri, memberData){
+	
+		var url = portalJoinUri+encodeURIComponent(memberData);
+		anyidAdaptor.popup(url,"openAnyIdRegistUserIdv",700,740);
+
+		window.addEventListener("message", function(event) {
+			var result;
+			try {
+				result = JSON.parse(event.data);
+			} catch (error) {
+				// console.error("Received message is not valid JSON:", error);
+				return;
+			}
+			
+			if(!result.funcName || (result.funcName !== "trmsAgreComplete" && result.funcName !== "registUserComplete")) {
+				return;
+			}
+			if(result.status === "success") {
+				if(result.trmsAgreYn == "Y"){
+					anyidAdaptor.ssoLogin();
+				}else{
+					anyidAdaptor.orgLogin(anyidAdaptor.certData);
+				}
+			}else{
+				
+				anyidAdaptor.orgLogin(anyidAdaptor.certData);
+			}
+
+		}, false);
+	}
+
+	// 팝업 호출
+	anyidAdaptor.popup = function(url, name, width, height){
+		let left = (screen.width) ? (screen.width-width)/2 : 0;
+		let top = (screen.height) ? (screen.height-height)/2 : 0;
+		let popup=window.open(url, name ,"resizable=yes,toolbar=no,scrollbars=yes,location=no,top="+top+"px,left="+left+"px,width="+width+"px,height="+height+"px");
+		if(popup){
+			popup.focus();
+		}
+	}
+
+	anyidAdaptor.ssoLogin = function(){
+		let jsonObject = new Object();
+		jsonObject.txId = anyidAdaptor.certData.txId;
+		jsonObject.ssob = anyidAdaptor.certData.ssob;
+		jsonObject.userSeCd = anyidAdaptor.certData.userSeCd;
+		jsonObject.afData = anyidAdaptor.certData.afData;
+		let jsonStr = JSON.stringify(jsonObject);
+		
+		let encodedString = btoa(jsonStr);
+		var baseUrl = window.location.origin + anyidAdaptor.agencyContextPath + "/oidc/ssoLogin";
+		var urlWithParams = baseUrl + "?data=" + encodedString;
+		window.location.href = urlWithParams;
+		
+	}
+	
+	anyidAdaptor.ssoLoginPageSub = function(baseUrl, endPoint, acrValues){
+		var subUrl = "";
+		
+		if (endPoint && endPoint.trim() !== "") {
+			subUrl = "?endPoint=" + encodeURIComponent(endPoint);
+		}
+		
+		if (!acrValues && acrValues.trim() == "") {
+			acrValues = "3";
+		}
+		
+		if (acrValues && acrValues.trim() !== "") {
+			if(subUrl == ""){
+				subUrl = "?";
+			}else{
+				subUrl = subUrl + "&";
+			}
+			subUrl = subUrl + "acrValues=" + acrValues;
+		}
+		
+		window.location.replace(baseUrl+subUrl);
+	}
+	
+	/**/
+	anyidAdaptor.ssoLogout = function(endPoint) {
+		endPoint = typeof endPoint !== 'undefined' ? endPoint : "/";
+		var baseUrl = window.location.origin + anyidAdaptor.agencyContextPath + "/oidc/ssoLogout";
+		baseUrl = baseUrl + "?endPoint=" + encodeURIComponent(endPoint);
+		window.location.replace(baseUrl);
+	}
+	/**/
+	anyidAdaptor.reAuthLevel = function(endPoint, acrValues){
+		endPoint = typeof endPoint !== 'undefined' ? endPoint : "/";
+		var baseUrl = window.location.origin + anyidAdaptor.agencyContextPath + "/oidc/reAuthLevel";
+		anyidAdaptor.ssoLoginPageSub(baseUrl, endPoint, acrValues);
+
+	}
+	/**/
+	anyidAdaptor.ssoLoginPage = function(endPoint, acrValues){
+		endPoint = typeof endPoint !== 'undefined' ? endPoint : "/";
+		var baseUrl = window.location.origin + anyidAdaptor.agencyContextPath + "/oidc/auth";
+		anyidAdaptor.ssoLoginPageSub(baseUrl, endPoint, acrValues);
+	}
+	
+	/**/
+	anyidAdaptor.ssoSvcToSvc = function(url, endPoint){
+		var baseUrl = url + "/oidc/svcToSvc?endPoint=" + encodeURIComponent(endPoint);
+		window.open(baseUrl, "_blank");
+	}
+</script><body>
+	<div class="wrapper">
+	    <div id="skipnav">
+	        <a href="#gnb">주메뉴 바로가기</a>
+	        <a href="#contentLoad">본문 바로가기</a>
+	    </div>
+	    <header id="header">
+			<div class="header-top">
+			    <div class="inner">
+			        <span>이 누리집은 대한민국 공식 전자정부 누리집입니다.</span>
+			    </div>
+			</div>   
+			<div class="header-middle">
+			    <style>
+
+.ai-chat-header-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 92px;
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: #0f6ecd;
+    color: #fff !important;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+.ai-chat-header-btn:hover {
+    background: #0b5cad;
+}
+#aiChatLayerWrap {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+}
+#aiChatLayerWrap .ai-chat-dim {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+}
+#aiChatLayerWrap .ai-chat-layer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    right: auto;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    max-width: calc(100vw - 24px);
+    /* height: 690px; */
+    max-height: calc(100vh - 24px);
+    /* background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 18px 48px rgba(0,0,0,0.28); */
+}
+#aiChatLayerWrap .ai-chat-layer-head {
+    height: 56px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #0f6ecd;
+    color: #fff;
+    box-sizing: border-box;
+}
+#aiChatLayerWrap .ai-chat-layer-head strong {
+    font-size: 16px;
+    font-weight: 700;
+}
+#aiChatLayerWrap .ai-chat-layer-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+}
+#aiChatLayerWrap .ai-chat-layer-close:hover {
+    background: rgba(255,255,255,0.15);
+}
+#aiChatLayerWrap .ai-chat-frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    /* background: #fff; */
+}
+body.ai-chat-open {
+    overflow: hidden;
+}
+@media (max-width: 767px) {
+    #aiChatLayerWrap .ai-chat-layer {
+        width: 96%;
+        /* left: 0;
+        top: 0;
+        right: auto;
+        transform: none;
+        max-width: none;
+        height: 100vh;
+        max-height: none;
+        border-radius: 0; */
+    }
+}
+</style>
+
+<div class="inner">
+    <ul class="top-menu">
+		<li>
+			<a href="#none" class="button-bottom">화면크기</a>
+			<div class="drop-menu zoom-btn">
+				<ul>
+					<li><a href="#none" data-zoom="0.9" class="xsm">작게</a></li>
+					<li><a href="#none" data-zoom="1" class="sm active">보통</a></li>
+					<li><a href="#none" data-zoom="1.1" class="md">조금 크게</a></li>
+					<li><a href="#none" data-zoom="1.2" class="lg">크게</a></li>
+					<li><a href="#none" data-zoom="1.3" class="xlg">가장 크게</a></li>
+					<li><a href="#none" class="zoom-reset"><i><img src="/humanframe/theme/global/assets/images/ico/ico_reset.svg" alt=""></i> 리셋</a></li>
+				</ul>
+			</div>
+		</li>	
+        <li><a href="/index" class="button" target="_blank" title="새창">성남시청 홈</a></li>
+        <li>
+            <a href="#none" class="button-bottom">Language</a>
+            <div class="drop-menu">
+                <ul>
+                    <li style="border-bottom: 1px solid #e0e0e0"><a id="nara1TrCur" href="javascript:void(0);" style="cursor: unset;"></a></li>
+					<li id="nara1Tr_ko" style="display:none"><a href="javascript:void(0);" onclick="changeLang('ko');" title="한국어" class="kt">한국어</a></li>
+					<li id="nara1Tr_en"><a href="javascript:void(0);" onclick="changeLang('en');" title="English (영어)" class="ktj">English (영어)</a></li>
+					<li id="nara1Tr_zh-Hans"><a href="javascript:void(0);" onclick="changeLang('zh-Hans');" title="中文 (중국어)" class="ktj">中文 (중국어)</a></li>
+					<li id="nara1Tr_ja"><a href="javascript:void(0);" onclick="changeLang('ja');" title="日本語 (일본어)" class="ktj">日本語 (일본어)</a></li>
+					<li id="nara1Tr_vi"><a href="javascript:void(0);" onclick="changeLang('vi');" title="Tiếng Việt (베트남어)" class="ktj">Tiếng Việt (베트남어)</a></li>
+					<li id="nara1Tr_es"><a href="javascript:void(0);" onclick="changeLang('es');" title="Español (스페인어)" class="ktj">Español (스페인어)</a></li>
+					<li id="nara1Tr_ru"><a href="javascript:void(0);" onclick="changeLang('ru');" title="Русский (러시아어)" class="ktj">Русский (러시아어)</a></li>
+					<li id="nara1Tr_th"><a href="javascript:void(0);" onclick="changeLang('th');" title="แบบไทย (태국어)" class="ktj">แบบไทย (태국어)</a></li>
+					<li id="nara1Tr_mn"><a href="javascript:void(0);" onclick="changeLang('mn');" title="Монгол (몽골어)" class="ktj">Монгол (몽골어)</a></li>
+					</ul>
+            </div>
+        </li>
+    </ul>
+    <div class="bottom-menu">
+        <div class="logo">
+            <h1>
+                <a href="/health/index">
+                    <span class="hd-element">성남시 보건소</span>
+                </a>
+            </h1>
+        </div>
+        <ul class="etc-menu">
+            <li>
+                <a href="#none" class="total-search"><i><img src="/humanframe/theme/global/assets/images/ico/ico_search.svg" alt=""></i><span>통합검색</span></a>
+                <div class="header-search">
+                    <p>통합검색</p>
+                    <label for="applyTotalSearchTop" class="hd-element">검색어 입력</label>
+                    <input type="text" id="applyTotalSearchTop" placeholder="검색어를 입력해 주세요." maxlength="150">
+                    <a href="#none" class="header-search-btn" onclick="fn_totalSearch('applyTotalSearchTop', 'wn');"><span class="hd-element">검색</span></a>
+                    <a href="#none" class="ai-search" id="btnOpenAiChatLayer">AI 검색</a>
+                    </div>
+            </li>
+            <style>
+@media only screen and (max-width: 47.99em) {
+    header .etc-menu li > a {
+        display: block !important;
+    }
+}
+
+header .my-profile span {
+    display: flex;
+}
+
+header .my-profile .time {
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    font-size: 15px;
+}
+
+header .my-profile .time span {
+	display: flex;
+    color: #A50082;
+    padding-left: 18px;
+    background: url(/humanframe/theme/global/assets/images/ico/ico_time.svg) no-repeat 0 center;
+}
+</style>
+
+<li class="login">
+			<!-- 내부오픈 기간에는 운영 도메인이 아니라서 애니아이디 사용이 안됨, 비회원로그인이라도 사용하기 위해 수정한 로그인 페이지 url 사용 -->
+			<a href="#none" onclick="return fnHeaderMberLogin(window.location.pathname + window.location.search);">
+			    	    <span><i><img src="/humanframe/theme/global/assets/images/ico/ico_login.svg" alt=""></i>로그인</span>
+					</a>
+			    </li>
+		
+		<script>
+		function fnHeaderMberLogin(returnURL) {
+			if (!returnURL) {
+				returnURL = "";
+			}
+			
+			try { sessionStorage.setItem('niceLoginReturnUrl', returnURL); } catch(e) {}
+			
+			if (window.anyidAdaptor && typeof window.anyidAdaptor.ssoLoginPage === "function") {
+				window.anyidAdaptor.ssoLoginPage(returnURL, "3");
+				return false;
+			}
+			return true;
+		}
+		</script>
+	<li><a href="#none" id="menuAll"><i><img src="/humanframe/theme/global/assets/images/ico/ico_all_menu.svg" alt=""></i><span>전체메뉴</span></a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="aiChatLayerWrap">
+    <div class="ai-chat-dim"></div>
+    <div class="ai-chat-layer">
+        <!-- <iframe id="aiChatLayerFrame" class="ai-chat-frame" src="/fnct/ps/aiChatFront" title="AI 챗봇"></iframe> -->
+        
+        <iframe
+    id="aiChatLayerFrame"
+    class="ai-chat-frame"
+    src="about:blank"
+    data-src="/fnct/ps/aiChatFront"
+    title="AI 챗봇"></iframe>
+    
+        
+        
+        <!-- /fnct/ps/aiChatFront -->
+        
+    </div>
+</div>
+<script>
+$(function() {
+    $(document).on('click', '#btnOpenAiChatLayer', function(e) {
+        e.preventDefault();
+        openAiChatLayer();
+
+        $aiChatOpenBtn = $(this);
+
+        e.preventDefault();
+        openAiChatLayer();
+
+        const $layer = $("#aiChatLayerWrap");
+
+        $layer.attr("tabindex", "0");
+
+        setTimeout(function() {
+            $layer[0].focus();
+        }, 100);
+    });
+
+    $(document).on('click', '#btnCloseAiChatLayer, #aiChatLayerWrap .ai-chat-dim', function(e) {
+        e.preventDefault();
+        closeAiChatLayer();
+    });
+
+    $(document).on('keydown', function(e) {
+        if (e.key === 'Escape' && $('#aiChatLayerWrap').is(':visible')) {
+            closeAiChatLayer();
+        }
+    });
+
+    function closeAiChatLayer() { 
+        $('#aiChatLayerWrap').hide(); 
+
+        if ($aiChatOpenBtn && $aiChatOpenBtn.length) { 
+            setTimeout(function() {
+                $aiChatOpenBtn[0].focus();
+            }, 0);
+        } 
+    }
+});
+
+function openAiChatLayer() {
+    var $frame = $('#aiChatLayerFrame');
+    var src = $frame.attr('data-src');
+    var sep = src.indexOf('?') > -1 ? '&' : '?';
+
+    $frame.attr('src', src + sep + '_ts=' + new Date().getTime());
+
+    $('#aiChatLayerWrap').show();
+    $('body').addClass('ai-chat-open');
+}
+
+function closeAiChatLayer() {
+    $('#aiChatLayerWrap').hide();
+    $('body').removeClass('ai-chat-open');
+
+    $('#aiChatLayerFrame').attr('src', 'about:blank');
+}
+
+$(function(){
+	//검색키워드 엔터키 처리
+	$("#applyTotalSearchTop").keypress(function(event){
+	    if(event.keyCode==13){
+	    	fn_totalSearch('applyTotalSearchTop', 'wn');
+	    }
+	});		
+});
+</script></div>
+			<div class="header-bottom">
+			    <div class="mobile-top">
+    <div class="mobile-close">
+        <a href="#none"><span class="hd-element">메뉴 닫기</span></a>
+    </div>
+    <!-- <ul class="top-menu">
+        <li><a href="#none" class="button-bottom">통합사이트</a></li>
+        <li>
+            <a href="#none" class="button-bottom">Language</a>
+            <div class="drop-menu">
+                <ul>
+                    <li><a href="#none">유틸리티 레이블</a></li>
+                    <li><a href="#none">유틸리티 레이블</a></li>
+                    <li><a href="#none">유틸리티 레이블</a></li>
+                    <li><a href="#none">유틸리티 레이블</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul> -->
+    <div class="mobile-login">
+        <a href="/oidc/auth?acrValues=3" onclick="return fnHeaderMberLogin(window.location.pathname + window.location.search);">로그인을 해주세요</a>
+        	</div>
+</div>
+
+<div class="inner">
+    <nav id="gnb">
+        <ul>
+			<li>
+						<a href="javascript:void();" >보건소 안내</a>
+		                <div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                <li >
+		                                        	<a href="/health/ht-cn010101"  >보건소 소개</a>
+<div class="depth3-wrap">
+		                                            	<div class="tit">
+			                                                	<a href="/health/hlt01020101">보건소 소개</a>
+			                                                </div>
+			                                                <ul>
+			                                                    <li >
+			                                                            	<a href="/health/ht-cn010101"  >인사말</a>
+</li>
+			                                                        <li >
+			                                                            	<a href="/health/ht-cn010102"  >연혁</a>
+</li>
+			                                                        <li >
+			                                                            	<a href="/health/ht-cn010103"  >보건의료헌장</a>
+</li>
+			                                                        </ul>
+														</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht-cn010201"  >수정구 보건소</a>
+<div class="depth3-wrap">
+		                                            	<div class="tit">
+			                                                	<a href="/health/ht010200">수정구 보건소</a>
+			                                                </div>
+			                                                <ul>
+			                                                    <li >
+			                                                            	<a href="/health/ht-cn010201"  >이용안내</a>
+</li>
+			                                                        <li >
+			                                                            	<a href="/health/ht-cn01020201"  >조직안내</a>
+</li>
+			                                                        </ul>
+														</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht-cn010301"  >중원구 보건소</a>
+<div class="depth3-wrap">
+		                                            	<div class="tit">
+			                                                	<a href="/health/ht010300">중원구 보건소</a>
+			                                                </div>
+			                                                <ul>
+			                                                    <li >
+			                                                            	<a href="/health/ht-cn010301"  >이용안내</a>
+</li>
+			                                                        <li >
+			                                                            	<a href="/health/ht-cn01030201"  >조직안내</a>
+</li>
+			                                                        </ul>
+														</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht-cn010401"  >분당구 보건소</a>
+<div class="depth3-wrap">
+		                                            	<div class="tit">
+			                                                	<a href="/health/ht010400">분당구 보건소</a>
+			                                                </div>
+			                                                <ul>
+			                                                    <li >
+			                                                            	<a href="/health/ht-cn010401"  >이용안내</a>
+</li>
+			                                                        <li >
+			                                                            	<a href="/health/ht-cn01040201"  >조직안내</a>
+</li>
+			                                                        </ul>
+														</div>
+		                                        </li>
+		                                    </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        <li>
+						<a href="javascript:void();" style="color: #052B57;">보건사업</a>
+		                <div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                <li class="active">
+		                                        	<a href="/health/ht-pm020101"  >보건사업</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/childVaccInfo"  >어린이예방접종일정</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/healthCalc"  >건강계산기</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        <li>
+						<a href="javascript:void();" >기관/시설정보</a>
+		                <div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                <li >
+		                                        	<a href="/health/ht-pm030101"  >의료기관 및 시설</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht-bbs030201"  >달빛어린이병원</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht-bbs030301"  >심야공공약국</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="https://www.e-gen.or.kr/egen/search_aed.do" target="_blank" title="새창" class="other-link link-blank" >자동심장충격기 <i><img src='/humanframe/theme/global/assets/images/ico/ico_link_black.svg' alt='새창열기' style='width: 18px;'></i>
+</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="https://www.nhis.or.kr/nhis/healthin/retrieveExmdAdminSearch.do" target="_blank" title="새창" class="other-link link-blank" >암검진기관 <i><img src='/humanframe/theme/global/assets/images/ico/ico_link_black.svg' alt='새창열기' style='width: 18px;'></i>
+</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        <li>
+						<a href="javascript:void();" >소식·알림</a>
+		                <div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                <li >
+		                                        	<a href="/health/ht-bbs040101"  >새소식</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht-bbs040600"  >감염병소식</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht-bbs26070901"  >예방접종소식</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht-pm040201"  >채용공고</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht-bbs040301"  >자료실</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht-bbs040401"  >자주묻는 질문</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht040500"  >민원상담·방역요청</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        </ul>
+    </nav>
+</div></div>
+	    </header>
+	    
+	    <div class="layer-popup-wrap sitemap-popup">
+	<div class="layer-popup department-popup">
+		<p>전체메뉴</p>
+		<a href="#none" class="close"><span class="hd-element">팝업닫기</span></a>
+		<div class="popup-body">
+			<ul class="portal-sitemap">
+				<li>
+							<a href="#none">보건소 안내</a>
+							<ul class="normal-type dot">
+								<li>
+											<a href="/health/ht-cn010101"  >보건소 소개</a>
+<ul class="normal-type hyphen">
+													<li>
+																<a href="/health/ht-cn010101"  >인사말</a>
+</li>
+														<li>
+																<a href="/health/ht-cn010102"  >연혁</a>
+</li>
+														<li>
+																<a href="/health/ht-cn010103"  >보건의료헌장</a>
+</li>
+														</ul>
+											</li>
+									<li>
+											<a href="/health/ht-cn010201"  >수정구 보건소</a>
+<ul class="normal-type hyphen">
+													<li>
+																<a href="/health/ht-cn010201"  >이용안내</a>
+</li>
+														<li>
+																<a href="/health/ht-cn01020201"  >조직안내</a>
+</li>
+														</ul>
+											</li>
+									<li>
+											<a href="/health/ht-cn010301"  >중원구 보건소</a>
+<ul class="normal-type hyphen">
+													<li>
+																<a href="/health/ht-cn010301"  >이용안내</a>
+</li>
+														<li>
+																<a href="/health/ht-cn01030201"  >조직안내</a>
+</li>
+														</ul>
+											</li>
+									<li>
+											<a href="/health/ht-cn010401"  >분당구 보건소</a>
+<ul class="normal-type hyphen">
+													<li>
+																<a href="/health/ht-cn010401"  >이용안내</a>
+</li>
+														<li>
+																<a href="/health/ht-cn01040201"  >조직안내</a>
+</li>
+														</ul>
+											</li>
+									</ul>
+						</li>
+					<li>
+							<a href="#none">보건사업</a>
+							<ul class="normal-type dot">
+								<li>
+											<a href="/health/ht-pm020101"  >보건사업</a>
+</li>
+									<li>
+											<a href="/health/childVaccInfo"  >어린이예방접종일정</a>
+</li>
+									<li>
+											<a href="/health/healthCalc"  >건강계산기</a>
+</li>
+									</ul>
+						</li>
+					<li>
+							<a href="#none">기관/시설정보</a>
+							<ul class="normal-type dot">
+								<li>
+											<a href="/health/ht-pm030101"  >의료기관 및 시설</a>
+</li>
+									<li>
+											<a href="/health/ht-bbs030201"  >달빛어린이병원</a>
+</li>
+									<li>
+											<a href="/health/ht-bbs030301"  >심야공공약국</a>
+</li>
+									<li>
+											<a href="https://www.e-gen.or.kr/egen/search_aed.do" target="_blank" title="새창" class="other-link link-blank" >자동심장충격기 <i><img src='/humanframe/theme/global/assets/images/ico/ico_link_black.svg' alt='새창열기' style='width: 18px;'></i>
+</a>
+</li>
+									<li>
+											<a href="https://www.nhis.or.kr/nhis/healthin/retrieveExmdAdminSearch.do" target="_blank" title="새창" class="other-link link-blank" >암검진기관 <i><img src='/humanframe/theme/global/assets/images/ico/ico_link_black.svg' alt='새창열기' style='width: 18px;'></i>
+</a>
+</li>
+									</ul>
+						</li>
+					<li>
+							<a href="#none">소식·알림</a>
+							<ul class="normal-type dot">
+								<li>
+											<a href="/health/ht-bbs040101"  >새소식</a>
+</li>
+									<li>
+											<a href="/health/ht-bbs040600"  >감염병소식</a>
+</li>
+									<li>
+											<a href="/health/ht-bbs26070901"  >예방접종소식</a>
+</li>
+									<li>
+											<a href="/health/ht-pm040201"  >채용공고</a>
+</li>
+									<li>
+											<a href="/health/ht-bbs040301"  >자료실</a>
+</li>
+									<li>
+											<a href="/health/ht-bbs040401"  >자주묻는 질문</a>
+</li>
+									<li>
+											<a href="/health/ht040500"  >민원상담·방역요청</a>
+</li>
+									</ul>
+						</li>
+					</ul>
+		</div>
+	</div>
+</div><main class="container">
+	    	<div class="inner">
+		                <div class="content-wrap">
+		                    <div class="content-head">
+		                        <div class="breadcrumb">
+    <ul>
+    	<li>
+			        <a href="/health"><span>홈</span></a>
+			    </li>
+			    <li>
+			                <a href="/health/ht020100">
+			                    <span>보건사업</span>
+			                </a>
+			            </li>
+			        </ul>
+</div>
+<style>
+.qr-img {
+    text-align: -webkit-center !important;
+}
+</style>
+
+<div class="content-title-wrap">
+    <h2>보건사업</h2>
+    <ul class="content-actions">
+        <li>
+            <a href="#none" class="link">
+                <span class="hd-element">링크복사</span>
+            </a>
+        </li>
+        <li>
+	        <a href="#none" class="share">
+	            <span class="hd-element">공유</span>
+	        </a>
+	        <div class="share-box">
+	            <ul>
+	                <li><a href="#none" id="sns3" title="페이스북에 공유하기(새창열림)" onclick="shareFaceBook('공유하기','https://www.seongnam.go.kr/health/ht-pm020101/12058'); return false;"><img src="/humanframe/theme/global/assets/images/ico/ico_share_facebook.svg" alt="페이스북 공유"></a></li>
+	                <li><a href="#none" id="sns1" title="카카오톡에 공유하기(새창열림)"><img src="/humanframe/theme/global/assets/images/ico/ico_share_kakao.svg" alt="카카오톡 공유"></a></li>
+	                <li><a href="#none" id="sns0" title="밴드에 공유하기(새창열림)"><img src="/humanframe/theme/global/assets/images/ico/ico_share_band.svg" alt="네이버밴드 공유"></a></li>
+	                <li><a href="#none" id="sns4" title="트위터에 공유하기(새창열림)" onclick="shareTwitter('성남시청 : 보건소 : 보건사업 : 보건사업','https://www.seongnam.go.kr/health/ht-pm020101/12058'); return false;"><img src="/humanframe/theme/global/assets/images/ico/ico_share_x.svg" alt="트위터X 공유"></a></li>
+	                <li><a href="#none" id="sns6" class="qr-open"><img src="/humanframe/theme/global/assets/images/ico/ico_share_qr.svg" alt="QR코드"></a></li>
+	            </ul>
+	            <div class="share-qr">
+	                <a href="#none" class="close"><span class="hd-element">닫기</span></a>
+	                <p>QR코드</p>
+	                <div class="qr-img"></div>
+	                <dl>
+	                    <dt>저장 방법</dt>
+	                    <dd>QR코드 > 마우스 우측버튼 > 이미지를 다른 이름으로 저장</dd>
+	                </dl>
+	                <dl>
+	                    <dt>단축주소</dt>
+	                    <dd>
+	                    	<a href="#none" class="link" onclick="copyText()" id="shortUrl" title="복사"></a>
+	                    </dd>
+	                </dl>
+	            </div>
+	        </div>
+	    </li>
+        <li>
+            <a href="#none" onclick="onPrint()" onkeyPress="if (event.keyCode==13){onPrint();}" class="print">
+                <span class="hd-element">프린트</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<script src="/humanframe/theme/global/assets/script/jquery.qrcode.min.js"></script>
+<script src="/humanframe/theme/global/assets/script/layout.js"></script>
+<script src="/humanframe/theme/global/assets/script/clipboard.min.js"></script>
+<script src="/humanframe/theme/global/assets/script/resources.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script>
+Kakao.init('b23dfea5a5e5d41dab7edca4289c54f9');
+
+$(document).ready(function () {
+	
+	Kakao.Link.createDefaultButton({
+		container: '#sns1',
+		objectType: 'feed',
+		content: {
+        title: "성남시청 : 보건소 : 보건사업 : 보건사업",
+        description: '',
+        imageUrl: '/humanframe/theme/global/assets/images/ico/ico_sns_favicon.png',
+        link: {
+			mobileWebUrl: 'https://www.seongnam.go.kr/health/ht-pm020101/12058',
+			webUrl: 'https://www.seongnam.go.kr/health/ht-pm020101/12058'
+        	}
+		}
+	});
+	
+	$('#sns0').click(function (e) {
+		window.open("http://www.band.us/plugin/share?body=성남시청 : 보건소 : 보건사업 : 보건사업&route=https://www.seongnam.go.kr/health/ht-pm020101/12058", "share_band", "width=600, height=800, resizable=no");
+	});
+	
+	$('#sns6').click(function (e) {
+		$.ajax({
+			type: "POST",
+			url: "/ajax/getShortUrl",
+			dataType: "json",
+			data: { "url" : "https://www.seongnam.go.kr/health/ht-pm020101/12058"},
+			error: function (request, status, error) {
+				//console.log("에러코드: " + request.status + "\r\n메시지: " + request.responseText);
+			},
+			success: function (data) {
+				$(".qr-img").html('');
+				$(".qr-img").qrcode({
+					width : 100,
+					height : 100,
+					text : data.url
+				});
+				$("#shortUrl").html(data.url+'<i><img src="/humanframe/theme/global/assets/images/ico/ico_copy.svg" alt=""></i>');
+				$("#shortUrl").attr('data-clipboard-text', data.url);
+			}
+		});
+	});
+	
+	$(".print").focus(function () {
+		$(".share-box").hide();
+	});
+});
+
+function shareTwitter(msg, url) {
+	var shareUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(msg) + "&url=" + encodeURIComponent(url);
+	var objwin = window.open(shareUrl, 'twitterPopup', 'scrollbars=no,menubar=0,toolbar=0');
+	if (objwin) {
+		objwin.focus();
+	}
+}
+
+function shareFaceBook(msg, url) {
+	var shareUrl = "http://www.facebook.com/sharer/sharer.php?t=" + encodeURIComponent(msg) + "&u=" + encodeURIComponent(url);
+	var objwin = window.open(shareUrl, 'facebookPopup', 'scrollbars=no,menubar=0,toolbar=0');
+	if (objwin) {
+		objwin.focus();
+	}
+}
+
+function copyText() {
+	var clipboard = new ClipboardJS('#shortUrl');
+	alert('단축주소가 복사되었습니다.');
+}
+
+function onPrint() {
+	window.print();
+}
+</script>
+</div>
+		                    <div class="content-body" id="contentLoad">
+		                    	﻿<!-- 보건사업 -->
+<div class="content-section">
+	<h3>맞춤형 방문건강관리</h3>
+    <h4>사업개요</h4>
+    <div class="table-col is-row">
+        <ul>
+            <li>
+	                <strong>사업 개요</strong>
+	                <div class="text">
+	                    <span>건강관리가 필요한 노인, 장애인, 저소득층 등 취약계층을 대상으로 직접 가정 등을 방문하여 건강관리 서비스를 제공</span>
+	                </div>
+	            </li>
+            <li>
+	                <strong>사업 기간</strong>
+	                <div class="text">
+	                    <span>연중</span>
+	                </div>
+	            </li>
+            <li>
+	                <strong>사업 대상</strong>
+	                <div class="text">
+	                    <span>• 방문형태의 건강관리서비스가 필요한 지역주민<br/> - 65세 이상 노인, 의료요양 통합돌봄 연계 대상자<br/> - 기초생활보장수급자, 차상위 계층<br/> - 독거노인, 다문화가족, 한부모가족 등<br/> - 관리되지 않은 만성질환자 및 장애인, 재가암환자등</span>
+	                </div>
+	            </li>
+            </ul>
+    </div>
+    <h4 class="mt40">사업 내용</h4>
+	    <div class="table-col is-row">
+	        <ul>
+	            <li>
+	                <div class="text">
+	                	<span><b class="title-b">사업내용</b><br/>• 취약계층을 대상으로 간호사가 방문하여 건강상태 스크리닝 후 개인 상태에 따른 주기적 건강관리서비스를 제공<br/> - 만성질환 예방 및 관리<br/> - 계절 및 자연재난, 일상 속 안전 관리<br/> - 허약 예방 및 관리<br/><br/><b class="title-b">추진방법</b><br/>전화·방문 상담 후 신청<br/><br/><b class="title-b">문의처</b><br/>· 수정구보건소 의료돌봄팀 : 031-729-3778, 2329, 2446~2449, 2498, 2499, 2658, 2659, 8654~8658, 8837, 8838<br/>· 중원구보건소 의료돌봄팀 : 031-750-1413, 031-729-8682, 8683, 8685~8689, 8691~8694<br/>· 분당구보건소 의료돌봄팀 : 031-729-3669, 3668, 8636, 8667~8674</span>
+	                	</div>
+	            </li>
+	        </ul>
+	    </div>
+    <div class="board-view-info">
+            <p><strong>담당부서 </strong>수정구보건소&gt;건강증진과&gt;의료돌봄팀</p>
+            <p><strong>전화번호 </strong>031-729-2498</p>
+            </div>
+    <div class="btn-wrap" style="padding-top: 20px;border-top: 1px solid #CDD1D5;margin-top: 20px;">
+           	<a href="/health/ht-pm020101?curPage=1&cntPerPage=9&srchWlfCrrCyclCd=&srchWlfHshdSttnCd=&srchHlthBizTypeCd=&srchWlfPvsnTypeCd=&sortType=&srchType=&srchText=" class="btn-normal bg-btn-tertiary medium">목록</a>
+       	</div>
+    </div>
+
+<form action="/fnct/cvlcpt/search/getFile" name="searchVO" id="getFileVO">
+	<input type="hidden" name="cvlcptBizSn" value="12058">
+	<input type="hidden" id="getFileFileNo" name="fileNo">
+</form>
+
+<form action="/fnct/cvlcpt/search/filePreview" target="_blank" name="searchVO" id="getFilePreviewVO">
+	<input type="hidden" name="cvlcptBizSn" value="12058">
+	<input type="hidden" id="getFilePreviewFileNo" name="fileNo">
+</form>
+
+<script type="text/javascript">
+	function fn_get_file(fileNo){
+		$("#getFileFileNo").val(fileNo);
+		$("#getFileVO").submit();
+	}
+	
+	function fn_view_file(fileNo){
+		$("#getFilePreviewFileNo").val(fileNo);
+		$("#getFilePreviewVO").submit();
+	}
+</script></div>
+		                    <div class="content-foot">
+		                    	<!-- 게시판인 경우에만 실행 -->
+</div>
+		                </div>   
+		            </div>         
+				<div class="page-top-btn">
+				<button type="button"><span class="hd-element">상단으로 이동</span></button>
+			</div>
+	    </main>
+	
+	    <footer id="footer" class="section">
+	    	<style>
+footer .footer-site .site-open {
+    z-index: 1000;
+}
+</style>
+
+<div class="footer-info">
+    <div class="inner">
+        <div class="footer-logo">
+            <img src="/humanframe/theme/health/assets/images/common/footer_logo.svg" alt="성남시 보건소 수정,중원,분당">
+        </div>
+        <div class="address-wrap">
+            <div class="address">
+                <p><span>수정구보건소</span>경기도 성남시 수정구 수정로 218(신흥동)<br>TEL 031-729-3870 | FAX 031-729-3839</p>
+                <p><span>중원구보건소</span>경기도 성남시 중원구 금상로 137(상대원동)<br>TEL 031-729-3930 | FAX 031-729-3899</p>
+                <p><span>분당구보건소</span>경기도 성남시 분당구 정자일로 159(정자동)<br>TEL 031-729-3990 | FAX 031-729-3959</p>
+            </div>
+            <div class="address-map">
+                <ul>
+                    <li><a href="https://www.webwatch.or.kr/Situation/WA_Situation.html?MenuCD=110" target="_blank" title="새창"><img src="/humanframe/theme/global/assets/images/common/footer_wa.svg" alt="웹접근성인증마크"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="util">
+            <ul>
+                <li><a href="/cn05010101"><strong>개인정보처리방침</strong></a></li>
+                <li><a href="/cn050401">저작권정책</a></li>
+            </ul>
+            <p>Copyright ⓒ Seongnam City. All Rights Reserved.</p>
+        </div>
+    </div>
+</div></footer>
+	
+	    <div class="black-dim"></div>
+	</div>
+	<form name="totalSearchForm" id="totalSearchForm" method="post">
+	    <input type="hidden" name="query" id="totalQuery" value="">
+	</form>
+	
+	<script>
+	window.aiTranslatorConfig = {
+	    chat_bot_id: '00a69c9c-9a6a-44d6-ac3d-fcde4d33b4fe',
+	    currentDomain: 'https://seongnam.han.kr'
+	};
+	</script>
+	<script src="/humanframe/theme/global/assets/plugin/translator/ai-translator.js"></script>
+	
+	<!-- LOGGER(TM) TRACKING SCRIPT V.40 FOR logger.co.kr / 100000 : COMBINE TYPE / DO NOT ALTER THIS SCRIPT. -->
+	<script type="text/javascript">var _TRK_LID = "100008";var _L_TD = "log.seongnam.go.kr";var _TRK_CDMN = ".seongnam.go.kr";</script>
+	<script type="text/javascript">var _CDN_DOMAIN = location.protocol == "https:" ? "https://log.seongnam.go.kr" : "http://log.seongnam.go.kr"; 
+	(function (b, s) { var f = b.getElementsByTagName(s)[0], j = b.createElement(s); j.async = true; j.src = "//log.seongnam.go.kr/fs4/bstrk.sol.js"; f.parentNode.insertBefore(j, f); })(document, "script");
+	</script>
+	<noscript><img alt="Logger Script" width="1" height="1" src="http://log.seongnam.go.kr/tracker.sol.tsp?u=100008&amp;js=N"/></noscript>
+	<!-- END OF LOGGER TRACKING SCRIPT -->
+</body>
+</html>
+<!--homepage-was1-1-->

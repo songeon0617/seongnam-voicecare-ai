@@ -1,0 +1,20 @@
+domain-027 성남시일자리센터 https://job.seongnam.go.kr/
+domain-031 청년지원센터 https://www.snspring.or.kr/
+domain-053 보건소 https://www.seongnam.go.kr/health
+domain-071 오시는 길 https://www.seongnam.go.kr/cn040503
+domain-073 오시는 길 https://www.seongnam.go.kr/cn040503
+domain-075 성남도시개발공사 https://www.isdc.co.kr/
+domain-081 민원참여 https://www.seongnam.go.kr/sn020101
+domain-081 여권 민원 https://www.seongnam.go.kr/cn02040801
+domain-081 종합민원안내 https://www.seongnam.go.kr/cn020401
+domain-097 여권 민원 https://www.seongnam.go.kr/cn02040801
+domain-098 여권 민원 https://www.seongnam.go.kr/cn02040801
+domain-115 대형폐기물인터넷배출신고 https://waste.isdc.co.kr/
+domain-134 성남문화재단 https://www.snart.or.kr/
+domain-138 도서관사업소 https://www.snlib.go.kr/
+domain-140 도서관사업소 https://www.snlib.go.kr/
+{
+  file: '1a16ac23be143c405edcd6c1b9f020de81e1879c513fc0c00e00b432b94b7265',
+  finalUrl: 'https://www.isdc.co.kr/',
+  status: 'fetched'
+}

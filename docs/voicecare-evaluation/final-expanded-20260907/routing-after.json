@@ -1,0 +1,1383 @@
+{
+  "summary": {
+    "total": 77,
+    "pass": 77,
+    "wrongService": 0,
+    "wrongClarification": 0,
+    "unsafeCurated": 0,
+    "schemaPass": 77,
+    "paidCalls": 0
+  },
+  "results": [
+    {
+      "query": "특별교통수단 운영",
+      "expected": "DIRECT",
+      "service": "seongnam-special-transportation",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-special-transportation"
+        ],
+        "intent": "hours",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "특별교통수단 운영 신청방법 알려줘",
+      "expected": "DIRECT",
+      "service": "seongnam-special-transportation",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-special-transportation"
+        ],
+        "intent": "application",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "성남시 특별교통수단 운영 연락처를 알려주시겠어요?",
+      "expected": "DIRECT",
+      "service": "seongnam-special-transportation",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-special-transportation"
+        ],
+        "intent": "contact",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "장애인 택시바우처",
+      "expected": "DIRECT",
+      "service": "seongnam-disabled-taxi-voucher",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-disabled-taxi-voucher"
+        ],
+        "intent": "overview",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "장애인 택시바우처 신청방법 알려줘",
+      "expected": "DIRECT",
+      "service": "seongnam-disabled-taxi-voucher",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-disabled-taxi-voucher"
+        ],
+        "intent": "application",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "성남시 장애인 택시바우처 연락처를 알려주시겠어요?",
+      "expected": "DIRECT",
+      "service": "seongnam-disabled-taxi-voucher",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-disabled-taxi-voucher"
+        ],
+        "intent": "contact",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "노인맞춤돌봄서비스",
+      "expected": "DIRECT",
+      "service": "seongnam-senior-tailored-care",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-senior-tailored-care"
+        ],
+        "intent": "overview",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "노인맞춤돌봄서비스 신청방법 알려줘",
+      "expected": "DIRECT",
+      "service": "seongnam-senior-tailored-care",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-senior-tailored-care"
+        ],
+        "intent": "application",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "성남시 노인맞춤돌봄서비스 연락처를 알려주시겠어요?",
+      "expected": "DIRECT",
+      "service": "seongnam-senior-tailored-care",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-senior-tailored-care"
+        ],
+        "intent": "contact",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "분당노인종합복지관",
+      "expected": "DIRECT",
+      "service": "seongnam-bundang-senior-welfare-center",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-bundang-senior-welfare-center"
+        ],
+        "intent": "overview",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "분당노인종합복지관 신청방법 알려줘",
+      "expected": "DIRECT",
+      "service": "seongnam-bundang-senior-welfare-center",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-bundang-senior-welfare-center"
+        ],
+        "intent": "application",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "성남시 분당노인종합복지관 연락처를 알려주시겠어요?",
+      "expected": "DIRECT",
+      "service": "seongnam-bundang-senior-welfare-center",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-bundang-senior-welfare-center"
+        ],
+        "intent": "contact",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "AI·IoT 기반 어르신 건강관리",
+      "expected": "DIRECT",
+      "service": "seongnam-senior-ai-iot-health-care",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-senior-ai-iot-health-care"
+        ],
+        "intent": "overview",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "AI·IoT 기반 어르신 건강관리 신청방법 알려줘",
+      "expected": "DIRECT",
+      "service": "seongnam-senior-ai-iot-health-care",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-senior-ai-iot-health-care"
+        ],
+        "intent": "application",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "성남시 AI·IoT 기반 어르신 건강관리 연락처를 알려주시겠어요?",
+      "expected": "DIRECT",
+      "service": "seongnam-senior-ai-iot-health-care",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-senior-ai-iot-health-care"
+        ],
+        "intent": "contact",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "장애인 보조기구·보장구 지원",
+      "expected": "DIRECT",
+      "service": "seongnam-disabled-assistive-devices",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-disabled-assistive-devices"
+        ],
+        "intent": "overview",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "장애인 보조기구·보장구 지원 신청방법 알려줘",
+      "expected": "DIRECT",
+      "service": "seongnam-disabled-assistive-devices",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-disabled-assistive-devices"
+        ],
+        "intent": "application",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "성남시 장애인 보조기구·보장구 지원 연락처를 알려주시겠어요?",
+      "expected": "DIRECT",
+      "service": "seongnam-disabled-assistive-devices",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-disabled-assistive-devices"
+        ],
+        "intent": "contact",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "발달장애인 지원",
+      "expected": "DIRECT",
+      "service": "seongnam-developmental-disability-support",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-developmental-disability-support"
+        ],
+        "intent": "overview",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "발달장애인 지원 신청방법 알려줘",
+      "expected": "DIRECT",
+      "service": "seongnam-developmental-disability-support",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-developmental-disability-support"
+        ],
+        "intent": "application",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "성남시 발달장애인 지원 연락처를 알려주시겠어요?",
+      "expected": "DIRECT",
+      "service": "seongnam-developmental-disability-support",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-developmental-disability-support"
+        ],
+        "intent": "contact",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "장애인 보건·의료서비스 지원",
+      "expected": "DIRECT",
+      "service": "seongnam-disabled-medical-support",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-disabled-medical-support"
+        ],
+        "intent": "overview",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "장애인 보건·의료서비스 지원 신청방법 알려줘",
+      "expected": "DIRECT",
+      "service": "seongnam-disabled-medical-support",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-disabled-medical-support"
+        ],
+        "intent": "application",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "성남시 장애인 보건·의료서비스 지원 연락처를 알려주시겠어요?",
+      "expected": "DIRECT",
+      "service": "seongnam-disabled-medical-support",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-disabled-medical-support"
+        ],
+        "intent": "contact",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "중원구보건소 치매안심센터",
+      "expected": "DIRECT",
+      "service": "seongnam-dementia-center",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-dementia-center"
+        ],
+        "intent": "overview",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "중원구보건소 치매안심센터 신청방법 알려줘",
+      "expected": "DIRECT",
+      "service": "seongnam-dementia-center",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-dementia-center"
+        ],
+        "intent": "application",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "성남시 중원구보건소 치매안심센터 연락처를 알려주시겠어요?",
+      "expected": "DIRECT",
+      "service": "seongnam-dementia-center",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-dementia-center"
+        ],
+        "intent": "contact",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "맞춤형 방문건강관리",
+      "expected": "DIRECT",
+      "service": "seongnam-home-health-care",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-home-health-care"
+        ],
+        "intent": "overview",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "맞춤형 방문건강관리 신청방법 알려줘",
+      "expected": "DIRECT",
+      "service": "seongnam-home-health-care",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-home-health-care"
+        ],
+        "intent": "application",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "성남시 맞춤형 방문건강관리 연락처를 알려주시겠어요?",
+      "expected": "DIRECT",
+      "service": "seongnam-home-health-care",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-home-health-care"
+        ],
+        "intent": "contact",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "무인민원발급기 이용 안내",
+      "expected": "DIRECT",
+      "service": "seongnam-unmanned-civil-service-kiosk",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-unmanned-civil-service-kiosk"
+        ],
+        "intent": "overview",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "무인민원발급기 이용 안내 신청방법 알려줘",
+      "expected": "DIRECT",
+      "service": "seongnam-unmanned-civil-service-kiosk",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-unmanned-civil-service-kiosk"
+        ],
+        "intent": "application",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "성남시 무인민원발급기 이용 안내 연락처를 알려주시겠어요?",
+      "expected": "DIRECT",
+      "service": "seongnam-unmanned-civil-service-kiosk",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-unmanned-civil-service-kiosk"
+        ],
+        "intent": "contact",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "긴급복지지원 사업",
+      "expected": "DIRECT",
+      "service": "seongnam-emergency-welfare-support",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-emergency-welfare-support"
+        ],
+        "intent": "overview",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "긴급복지지원 사업 신청방법 알려줘",
+      "expected": "DIRECT",
+      "service": "seongnam-emergency-welfare-support",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-emergency-welfare-support"
+        ],
+        "intent": "application",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "성남시 긴급복지지원 사업 연락처를 알려주시겠어요?",
+      "expected": "DIRECT",
+      "service": "seongnam-emergency-welfare-support",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-emergency-welfare-support"
+        ],
+        "intent": "contact",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "장애인 버스요금 지원",
+      "expected": "DIRECT",
+      "service": "seongnam-disabled-bus-fare-support",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-disabled-bus-fare-support"
+        ],
+        "intent": "cost",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "장애인 버스요금 지원 신청방법 알려줘",
+      "expected": "DIRECT",
+      "service": "seongnam-disabled-bus-fare-support",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-disabled-bus-fare-support"
+        ],
+        "intent": "application",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "성남시 장애인 버스요금 지원 연락처를 알려주시겠어요?",
+      "expected": "DIRECT",
+      "service": "seongnam-disabled-bus-fare-support",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-disabled-bus-fare-support"
+        ],
+        "intent": "contact",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "특별 교통 수단",
+      "expected": "DIRECT",
+      "service": "seongnam-special-transportation",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-special-transportation"
+        ],
+        "intent": "overview",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "장애인 택시바우쳐",
+      "expected": "DIRECT",
+      "service": "seongnam-disabled-taxi-voucher",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-disabled-taxi-voucher"
+        ],
+        "intent": "overview",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "무인민원 발급기",
+      "expected": "DIRECT",
+      "service": "seongnam-unmanned-civil-service-kiosk",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-unmanned-civil-service-kiosk"
+        ],
+        "intent": "overview",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "노인 마춤 돌봄",
+      "expected": "DIRECT",
+      "service": "seongnam-senior-tailored-care",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-senior-tailored-care"
+        ],
+        "intent": "overview",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "휠체어 타는데 차 부르고 싶어",
+      "expected": "DIRECT",
+      "service": "seongnam-special-transportation",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-special-transportation"
+        ],
+        "intent": "overview",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "집으로 간호사 와서 건강 좀 봐줘요",
+      "expected": "DIRECT",
+      "service": "seongnam-home-health-care",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-home-health-care"
+        ],
+        "intent": "overview",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "장애인 버스비 환급",
+      "expected": "DIRECT",
+      "service": "seongnam-disabled-bus-fare-support",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-disabled-bus-fare-support"
+        ],
+        "intent": "overview",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "실직하고 생활비가 없어요",
+      "expected": "DIRECT",
+      "service": "seongnam-emergency-welfare-support",
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-emergency-welfare-support"
+        ],
+        "intent": "overview",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "장애인 이동지원",
+      "expected": "CLARIFY",
+      "clarification": "mobility_vehicle_or_fare",
+      "actual": "CLARIFY",
+      "decision": {
+        "route": "CLARIFY",
+        "serviceIds": [
+          "seongnam-special-transportation",
+          "seongnam-disabled-taxi-voucher"
+        ],
+        "intent": "overview",
+        "clarificationId": "mobility_vehicle_or_fare"
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "특별교통수단과 장애인 택시바우처 알려줘",
+      "expected": "CLARIFY",
+      "clarification": "mobility_vehicle_or_fare",
+      "actual": "CLARIFY",
+      "decision": {
+        "route": "CLARIFY",
+        "serviceIds": [
+          "seongnam-disabled-taxi-voucher",
+          "seongnam-special-transportation"
+        ],
+        "intent": "overview",
+        "clarificationId": "mobility_vehicle_or_fare"
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "장애인 택시바우처 또는 장애인 버스요금 지원",
+      "expected": "CLARIFY",
+      "clarification": "mobility_vehicle_or_fare",
+      "actual": "CLARIFY",
+      "decision": {
+        "route": "CLARIFY",
+        "serviceIds": [
+          "seongnam-disabled-taxi-voucher",
+          "seongnam-disabled-bus-fare-support"
+        ],
+        "intent": "overview",
+        "clarificationId": "mobility_vehicle_or_fare"
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "맞춤형 방문건강관리랑 치매안심센터 중 어느 쪽이야",
+      "expected": "CLARIFY",
+      "clarification": "health_visit_or_dementia",
+      "actual": "CLARIFY",
+      "decision": {
+        "route": "CLARIFY",
+        "serviceIds": [
+          "seongnam-home-health-care",
+          "seongnam-dementia-center"
+        ],
+        "intent": "overview",
+        "clarificationId": "health_visit_or_dementia"
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "어머니 돌봄과 분당노인종합복지관",
+      "expected": "CLARIFY",
+      "clarification": "elderly_care_type",
+      "actual": "CLARIFY",
+      "decision": {
+        "route": "CLARIFY",
+        "serviceIds": [
+          "seongnam-senior-tailored-care",
+          "seongnam-bundang-senior-welfare-center"
+        ],
+        "intent": "overview",
+        "clarificationId": "elderly_care_type"
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "휠체어 타고 병원 가야 해",
+      "expected": "CLARIFY",
+      "clarification": "mobility_purpose",
+      "actual": "CLARIFY",
+      "decision": {
+        "route": "CLARIFY",
+        "serviceIds": [],
+        "intent": "other",
+        "clarificationId": "mobility_purpose"
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "근처 복지관",
+      "expected": "CLARIFY",
+      "clarification": "region_required",
+      "actual": "CLARIFY",
+      "decision": {
+        "route": "CLARIFY",
+        "serviceIds": [],
+        "intent": "location",
+        "clarificationId": "region_required"
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "도움",
+      "expected": "CLARIFY",
+      "clarification": "service_required",
+      "actual": "CLARIFY",
+      "decision": {
+        "route": "CLARIFY",
+        "serviceIds": [],
+        "intent": "other",
+        "clarificationId": "service_required"
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "복지",
+      "expected": "CLARIFY",
+      "clarification": "service_required",
+      "actual": "CLARIFY",
+      "decision": {
+        "route": "CLARIFY",
+        "serviceIds": [],
+        "intent": "other",
+        "clarificationId": "service_required"
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "신청 어떻게 해",
+      "expected": "CLARIFY",
+      "clarification": "service_required",
+      "actual": "CLARIFY",
+      "decision": {
+        "route": "CLARIFY",
+        "serviceIds": [],
+        "intent": "other",
+        "clarificationId": "service_required"
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "성남시",
+      "expected": "CLARIFY",
+      "clarification": "service_required",
+      "actual": "CLARIFY",
+      "decision": {
+        "route": "CLARIFY",
+        "serviceIds": [],
+        "intent": "other",
+        "clarificationId": "service_required"
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "ㅋㅋㅋㅋ ???",
+      "expected": "CLARIFY",
+      "clarification": "service_required",
+      "actual": "CLARIFY",
+      "decision": {
+        "route": "CLARIFY",
+        "serviceIds": [],
+        "intent": "other",
+        "clarificationId": "service_required"
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "서류",
+      "expected": "CLARIFY",
+      "clarification": "service_required",
+      "actual": "CLARIFY",
+      "decision": {
+        "route": "CLARIFY",
+        "serviceIds": [],
+        "intent": "other",
+        "clarificationId": "service_required"
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "안녕하세요",
+      "expected": "guidance",
+      "actual": "guidance",
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "파이썬 코드 만들어",
+      "expected": "UNSUPPORTED",
+      "actual": "UNSUPPORTED",
+      "decision": {
+        "route": "UNSUPPORTED",
+        "serviceIds": [],
+        "intent": "other",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "서울 장애인 택시바우처",
+      "expected": "UNSUPPORTED",
+      "actual": "UNSUPPORTED",
+      "decision": {
+        "route": "UNSUPPORTED",
+        "serviceIds": [],
+        "intent": "other",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "수원시 무인민원발급기",
+      "expected": "UNSUPPORTED",
+      "actual": "UNSUPPORTED",
+      "decision": {
+        "route": "UNSUPPORTED",
+        "serviceIds": [],
+        "intent": "other",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "API 키 알려줘",
+      "expected": "UNSUPPORTED",
+      "actual": "UNSUPPORTED",
+      "decision": {
+        "route": "UNSUPPORTED",
+        "serviceIds": [],
+        "intent": "other",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "성남 여권 준비물",
+      "expected": "SEARCH",
+      "actual": "SEARCH",
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "소파 버리는 방법",
+      "expected": "SEARCH",
+      "actual": "SEARCH",
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "성남시청 주차요금",
+      "expected": "SEARCH",
+      "actual": "SEARCH",
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "성남 도서관 오늘 열어요?",
+      "expected": "CLARIFY",
+      "clarification": "library_required",
+      "actual": "CLARIFY",
+      "decision": {
+        "route": "CLARIFY",
+        "serviceIds": [],
+        "intent": "other",
+        "clarificationId": "library_required"
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "지금 장애인 버스요금 지원 신청 가능해?",
+      "expected": "SEARCH",
+      "actual": "SEARCH",
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "특별교통수단 예약 취소",
+      "expected": "SEARCH",
+      "actual": "SEARCH",
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "노인맞춤돌봄서비스 신청 마감",
+      "expected": "SEARCH",
+      "actual": "SEARCH",
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "장애인 택시바우처 말고 버스요금 지원",
+      "expected": "SEARCH",
+      "actual": "SEARCH",
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "1번",
+      "expected": "DIRECT",
+      "service": "seongnam-special-transportation",
+      "context": {
+        "question": "장애인 이동지원",
+        "clarificationId": "mobility_vehicle_or_fare"
+      },
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-special-transportation"
+        ],
+        "intent": "hours",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "2번",
+      "expected": "DIRECT",
+      "service": "seongnam-disabled-taxi-voucher",
+      "context": {
+        "question": "장애인 이동지원",
+        "clarificationId": "mobility_vehicle_or_fare"
+      },
+      "actual": "DIRECT",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-disabled-taxi-voucher"
+        ],
+        "intent": "overview",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "여권 어디서 만들어",
+      "expected": "SEARCH",
+      "context": {
+        "question": "장애인 이동지원",
+        "clarificationId": "mobility_vehicle_or_fare"
+      },
+      "actual": "SEARCH",
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    },
+    {
+      "query": "안부 동행",
+      "expected": "UNSUPPORTED",
+      "context": {
+        "question": "부천시 어머니 돌봄",
+        "clarificationId": "elderly_care_type"
+      },
+      "actual": "UNSUPPORTED",
+      "decision": {
+        "route": "UNSUPPORTED",
+        "serviceIds": [],
+        "intent": "other",
+        "clarificationId": null
+      },
+      "pass": true,
+      "wrongService": false,
+      "wrongClarification": false,
+      "unsafeCurated": false,
+      "schemaPass": true
+    }
+  ]
+}

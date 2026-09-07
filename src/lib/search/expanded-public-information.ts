@@ -3,7 +3,9 @@ import { CLARIFICATIONS, type ClarificationId, type ServiceId } from "@/types/pu
 import type { PublicInformationSearchResponse } from "@/types/public-information-search";
 import type { OfficialSearchProvider, SearchFailure } from "@/types/official-search";
 import { SEARCH_MESSAGES as MESSAGES } from "@/types/search-messages";
-import { createPublicInformationResponseWithAnswer as legacy } from "./create-public-information-response-with-answer";
+import { createPublicInformationResponseWithAnswer as legacy, finishStructuredResponse } from "./create-public-information-response-with-answer";
+import { structuredBoundary } from "./structured-boundary";
+import { needsLiveOfficialEvidence } from "./curated-query-policy";
 import { validatePublicInformationSearchRequest, type PublicInformationSearchServiceResult } from "./create-public-information-search-response";
 import { createOfficialSearchProvider } from "./openai-official-search";
 import { regionBoundaryGuard } from "./region-boundary";
@@ -16,15 +18,15 @@ import { mapDocumentsToPublicInformationAnswer } from "@/lib/public-information/
 import type { PublicInformationDocument } from "@/types/public-data";
 
 function state(query:string,kind:PublicInformationSearchResponse["kind"],title:string,message:string):PublicInformationSearchServiceResult {
-  return {status:200,body:{query,kind,results:[],hasResults:false,answer:{userQuestion:query,title,plainLanguageSummary:message,steps:[],nextAction:null,sources:[],verification:{status:"insufficient_data",checkedAt:null,details:message}}}};
+  return {status:200,body:{query,kind,results:[],hasResults:false,...(kind==="unsupported"?{routing:{source:"guard" as const,decision:{route:"UNSUPPORTED" as const,serviceIds:[] as [],intent:"other" as const,clarificationId:null}}}:{}),answer:{userQuestion:query,title,plainLanguageSummary:message,steps:[],nextAction:null,sources:[],verification:{status:"insufficient_data",checkedAt:null,details:message}}}};
 }
 function clarify(query:string,id:ClarificationId) {
   const result=state(query,"clarification","안내를 위해 확인해 주세요",CLARIFICATIONS[id].question);
-  if("answer" in result.body)result.body.clarification={id};
+  if("answer" in result.body){result.body.clarification={id};result.body.routing={source:"guard",decision:{route:"CLARIFY",serviceIds:[],intent:"other",clarificationId:id}};}
   return result;
 }
 const compact=(s:string)=>s.replace(/\s+/g,"");
-const needsFreshEvidence=(query:string)=>/오늘|지금|현재|올해|내일|내년|작년|지난|이번|실시간|마감|모집|예약|중단|폐지|변경|바뀌|인상|인하|종료|차이|비교|동시에|같이|함께|중복|지문|고장|안돼|안되|오류|취소|분실|재발급|수급.{0,6}확정|내가.{0,6}대상|여권|쓰레기|주차|도서관|역사|관광|\b20\d{2}\b/.test(query);
+const needsFreshEvidence=(query:string)=>needsLiveOfficialEvidence(query)||/예약|동시에|같이|함께|여권|쓰레기|주차|도서관|역사|관광/.test(query);
 function curatedResponse(query:string,document:PublicInformationDocument):PublicInformationSearchServiceResult {
   return {status:200,body:{query,kind:"answer",results:[{document,score:0,matchedTerms:[]}],hasResults:true,
     answer:mapDocumentsToPublicInformationAnswer(query,[document]),routing:{source:"keyword",decision:keywordDecision(query,document.id as ServiceId)},answerGeneration:{status:"skipped",reason:"deterministic"}}};
@@ -45,6 +47,11 @@ export function resolveFollowup(query:string,context?:{question:string;clarifica
   }
   if(context.clarificationId==="mobility_purpose"&&/차량|차요|차가/.test(q))chosen="휠체어로 탈 차량";
   if(context.clarificationId==="mobility_purpose"&&/비용|요금/.test(q))chosen="이동 비용 도움";
+  if(!/성남|분당구|중원구|수정구|여권|도서관/.test(q)) {
+    if(context.clarificationId==="elderly_care_type"&&/안부|동행/.test(q)&&!/복지관/.test(q))chosen="노인맞춤돌봄서비스 안내";
+    if(context.clarificationId==="health_visit_or_dementia"&&/집/.test(q)&&/간호사|건강/.test(q)&&!/기억력|치매/.test(q))chosen="맞춤형 방문건강관리 안내";
+    if(context.clarificationId==="mobility_vehicle_or_fare"&&/휠체어/.test(q)&&/차량/.test(q)&&!/택시|비용|요금/.test(q))chosen="특별교통수단 운영 안내";
+  }
   if(chosen==="잘 모르겠어요")return {query:`${context.question} 분야별 공식 안내`,continued:true,uncertain:true};
   if(chosen) {
     const expanded:Record<string,string>={"일반 버스·지하철 이용":"성남시 일반 버스 지하철 이용 안내", "타기 편한 차량 지원":"성남시 교통약자 이동 차량 지원 안내", "교통비 도움":"성남시 교통비 지원 종류", "휠체어로 탈 차량":"특별교통수단 신청 방법", "이동 비용 도움":"성남시 휠체어 이용자 교통비 지원 종류"};
@@ -83,6 +90,14 @@ export async function createExpandedPublicInformationResponse(payload:unknown,pr
     return state(original,"unsupported","안내할 수 있는 범위를 확인해 주세요","개인정보 조회, 진단·자격 확정, 실제 신청·접수, 민간 평가와 일반 작업은 제공하지 않습니다. 성남의 공공 제도, 이용 방법, 공식 상담·신청 안내는 질문할 수 있습니다.");
   if(/^(안녕(?:하세요)?|안녕하세요[.!?]?|고마워요|감사합니다|사용법|도움말|어떻게\s*사용해(?:요)?)[.!?\s]*$/.test(query))
     return state(original,"guidance","성남 공공·생활정보를 물어보세요","성남시를 기본 지역으로 안내합니다. 필요한 일을 글이나 음성으로 질문하고, 확인 질문이 나오면 선택하거나 짧게 답해 주세요. 출처와 확인 상태를 함께 읽어 주세요.");
+  // A request with no subject needs user input, not a paid search or a guessed service.
+  const subject=query.replace(/성남시?|분당구|수정구|중원구|어떻게|알려\s*줘|알려\s*주세요|신청|방법|서류|준비물|연락처|운영시간|지원|도움|복지|해\s*줘|해\s*주세요/g,"").replace(/[^가-힣a-z0-9]/gi,"").replace(/^(해|요|이요|좀|부탁해요)$/g,"");
+  if(!subject && !follow.continued)return clarify(original,"service_required");
+  const structured = !residencyQuestion && structuredBoundary(query, context);
+  if (structured) {
+    const empty = state(original,"answer","","");
+    if ("answer" in empty.body) return finishStructuredResponse(empty.body,structured,structured.route==="DIRECT"?"keyword":"guard");
+  }
   if(follow.uncertain&&/^(그거|그게|거기|그걸)(요)?$/.test(compact(original))) {
     if(context?.clarificationId==="referent_required")return state(original,"guidance","새 질문을 적어 주세요","앞선 선택을 확인하기 어렵습니다. 원하는 일을 새 질문으로 적어 주세요. 예: 성남에서 일반 버스 이용 방법");
     return clarify(original,"referent_required");

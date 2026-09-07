@@ -1,0 +1,85 @@
+{
+  "id": "domain-130",
+  "question": "시에서 하는 무료 공연 어디서 찾아요",
+  "at": "2026-09-07T09:54:20.650Z",
+  "ms": 11319,
+  "schemaPass": true,
+  "response": {
+    "query": "시에서 하는 무료 공연 어디서 찾아요",
+    "kind": "partial_answer",
+    "results": [],
+    "hasResults": false,
+    "answer": {
+      "userQuestion": "시에서 하는 무료 공연 어디서 찾아요",
+      "title": "확인한 공식 원문과 남은 확인 사항",
+      "plainLanguageSummary": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다.",
+      "steps": [],
+      "nextAction": null,
+      "sources": [],
+      "verification": {
+        "status": "insufficient_data",
+        "checkedAt": null,
+        "details": "질문과 관련해 대조한 공식 원문입니다. 게시·수정일과 현재 적용 여부는 확인되지 않았습니다. 개인별 자격이나 현재 접수 가능 여부를 확정하지 않습니다."
+      }
+    },
+    "officialSearch": {
+      "status": "partial",
+      "evidence": [
+        {
+          "id": "web-1",
+          "url": "https://www.snspring.or.kr/programView.do?idx=894",
+          "title": "성남시 청년지원센터 :: 청년이 봄",
+          "publisher": "성남시 청년지원센터",
+          "region": "성남시",
+          "checkedAt": "2026-09-07T09:54:20.649Z",
+          "publishedAt": null,
+          "updatedAt": null,
+          "applicationPeriod": null,
+          "effectivePeriod": null,
+          "excerpt": "PROGRAM 청년과 함께 가능성과 기회를 만들어갑니다. 홈 프로그램 전체 마감 만나봄 [청년사업실] 성남 청년나침반 2차(소통왕 말자할매와 함께하는 성남 청년 진로 고민 SHOW)(~ 9/17, 선착순) 2026.08.11 3,025 공유하기 ※ 선착순 접수에 따라 마감되었습니다. 현장에서 실시간 참여가 가능하오니 많은 참여 바랍니다. ★ 성남청년나침반 2차 전문가 특강(소통왕 말자할매와 함께하는 성남 청년 진로 고민 SHOW) ★ 진로와 미래에 대한 고민, 혼자서만 끌어안고 있나요? “앞으로 어디로 가야 하지?” “나는 무엇을 잘할까?” “어떻게 해야 나답게 살아갈 수 있을까?” 진로를 고민하고 있는 성남시 청년들을 위해 소통왕 말자할매와 함께하는 진로특강을 준비했습니다. 개그우먼 김영희·개그맨 정범균과 함께 청년들의 솔직한 진로 고민을 유쾌하게 나누고, 나만의 방향과 가능성을 발견해 보는 시간! 말자할매의 속 시원하고 따뜻한 이야기를 통해 막막했던 진로 고민의 실마리를 찾아보세요. *진로와 미래에 대해 고민하고 있는 청년 *나에게 맞는 진로 방향을 찾고 싶은 청년 *말자할매와 고민을 나누며 유쾌한 해답을 얻고 싶은 청년 *재미와 공감이 있는 말자할매 진로 특강에 참여하고 싶은 청년 *성남시에서 거주·재직·재학·활동 중인 청년 누구나 환영! [프로그램 개요] ◎ 프로그램명: 2026. 성남청년나침반 2차 전문가 특강 「소통왕 말자할매와 함께하는 성남 청년 진로 고민 SHOW」 ◎ 운영일시: 2026. 9. 19.(토) 17:30 ~ 19:00 ◎ 운영장소: 성남시청 야외공연장 ◎ 운영내용: 김영희·정범균의 \"소통왕 말자할매와 함께하는 성남 청년 진로 고민 SHOW) ◎ 모집기간: 2026. 8. 25.(화) ~ 9. 17.(목) ◎ 모집대상: 성남시(거주·재직·재학·활동) 청년(19~39세) ◎ 모집인원: 150명(선착순 접수) ◎ 참가비: 무료 ◎ 신청방법: 청년이봄 홈페이지를 통한 신청 ※ 2026. 8. 25.(화) 09:00부터 신청 가능(신청하러 가기 클릭) ※ 구글폼 신청서 작성 필수(진로고민 필수작성) 문의사항: 청년사업실(031-729-9063) [프로그램 안내] *본 프로그램은 선착순으로 접수되며, 모집인원 충원 시 조기 마감될 수 있습니다. *신청 시 구글폼을 통해 진로와 미래에 대한 고민을 자유롭게 작성해 주세요. 보내주신 고민은 행사 당일 포스트잇으로 게시될 수 있습니다. *접수된 고민 중 일부를 선정하여 말자할매가 직접 고민을 듣고 함께 이야기 나누는 시간을 진행합니다. 선정된 분은 말자할매와 직접 대화할 수 있으며, 소정의 기프티콘을 드립니다. *행사와 관련된 자세한 안내사항은 신청자에게 별도의 문자메시지로 안내될 예정입니다. 신청하러 가기 Prev 목록으로 Next",
+          "collection": "openai_web_search+https_original",
+          "freshness": "unknown",
+          "fromCache": false
+        }
+      ],
+      "links": [
+        {
+          "url": "https://www.snspring.or.kr/programView.do?idx=894",
+          "title": "성남시 청년지원센터 :: 청년이 봄"
+        }
+      ],
+      "usage": {
+        "model": "gpt-5.6-terra",
+        "inputTokens": 13029,
+        "outputTokens": 517,
+        "toolCalls": 1,
+        "estimatedUsd": 0.034016,
+        "durationMs": 11299
+      },
+      "diagnostics": {
+        "phase": "complete",
+        "budget": {
+          "aiCalls": 1,
+          "searchCalls": 1,
+          "originalFetches": 1,
+          "maxOriginalFetches": 16
+        },
+        "discovered": 1,
+        "rejected": 17,
+        "findings": 1,
+        "pages": [
+          {
+            "url": "https://www.snspring.or.kr/programView.do?idx=894",
+            "status": "fetched",
+            "textLength": 1362,
+            "sections": 1,
+            "omittedSections": 0
+          }
+        ]
+      },
+      "region": "성남시",
+      "searched": true
+    }
+  },
+  "semanticReview": "PENDING"
+}

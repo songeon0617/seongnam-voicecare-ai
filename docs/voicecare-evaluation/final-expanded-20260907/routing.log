@@ -1,0 +1,12 @@
+{
+  "summary": {
+    "total": 77,
+    "pass": 77,
+    "wrongService": 0,
+    "wrongClarification": 0,
+    "unsafeCurated": 0,
+    "schemaPass": 77,
+    "paidCalls": 0
+  },
+  "failures": []
+}

@@ -1,0 +1,1 @@
+{"mode":"BUILT_NEXT_HTTP_AI_AND_SEARCH_OFF_ORIGINAL_EXPECTATIONS_UNCHANGED","total":61,"pass":61,"fail":0,"httpErrors":0,"note":"Legacy strict route/document contract differs from expanded clarification/search contract. Its hallucination flag is a structural mapping check, not semantic adjudication."}

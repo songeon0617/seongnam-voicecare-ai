@@ -1,0 +1,1514 @@
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>성남시청</title>
+    <meta property="og:image" content="https://www.seongnam.go.kr/humanframe/theme/global/assets/images/common/kakaotalk_thum.png">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!--globel-->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/jquery-1.12.4.min.js"></script>
+
+    <!--swiper-->
+    <link rel="stylesheet" href="assets/plugin/swiper/swiper-bundle.min.css">
+    <script src="assets/plugin/swiper/swiper-bundle.min.js"></script>
+
+    <script src="assets/js/common.js"></script>
+	<script src="assets/js/jquery-ui.min.js"></script>
+	<script src="assets/js/datepicker_real.js"></script>
+	<script src="assets/js/search.js"></script>
+<script>
+
+$(document).ready(function() {
+    // [1] 검색대상 (체크박스) 복원
+    var currentCols = "ALL"; // ex: "bbs,site,contents"
+    if (currentCols && currentCols !== "ALL") {
+        var colArr = currentCols.split(",");
+        $.each(colArr, function(index, val) {
+            $("input[name='col_chk'][value='" + val + "']").prop("checked", true);
+        });
+    }
+    $("#radio1").prop("checked", true);
+
+    // [2] 검색기간 버튼 (active) 복원
+    var currentRange = "A";
+    $(".filter-list .btn-wrap a").removeClass("active"); // 일단 모든 버튼의 불을 끔
+    
+    if (currentRange === "1M") {
+        $(".filter-list .btn-wrap a:contains('1개월')").addClass("active");
+    } else if (currentRange === "3M") {
+        $(".filter-list .btn-wrap a:contains('3개월')").addClass("active");
+    } else if (currentRange === "6M") {
+        $(".filter-list .btn-wrap a:contains('6개월')").addClass("active");
+    } else if (currentRange === "1Y") {
+        $(".filter-list .btn-wrap a:contains('1년')").addClass("active");
+    }
+
+    // [3] 결과 내 재검색 복원
+    var currentReQuery = "";
+    console.log("currentReQuery : " + currentReQuery);
+    var currentReQueryData = "";
+    console.log("currentReQueryData : " + currentReQueryData);
+    
+    if (currentReQuery === "1") {
+        $("#radio1").prop("checked", true);
+    } else if (currentReQuery === "2") {
+        $("#radio2").prop("checked", true);
+    }
+    if (currentReQueryData) {
+        $("#reQueryData").val(currentReQueryData);
+    }
+ 	// 화면 복원이 다 끝난 후 카운트 함수 최초 1회 실행(기존 선택된 갯수 표시)
+    updateColCount();
+    updateDateCount();
+    renderAppliedTags();
+
+    // 사용자가 체크박스를 클릭(change)할 때마다 실시간으로 카운트 업데이트
+    $("input[name='col_chk']").on("change", function() {
+        updateColCount();
+    });
+
+    
+    
+
+    getMyKeyword("전입신고", 54);
+    
+	// 기간 달력 설정
+	$("#startDate").datepicker({dateFormat: "yy.mm.dd",buttonImageOnly: true, changeMonth: true, changeYear: true, showMonthAfterYear:false});
+	$("#endDate").datepicker({dateFormat: "yy.mm.dd",buttonImageOnly: true, changeMonth: true, changeYear: true, showMonthAfterYear:false});
+    //getPopkeyword_top();
+    setTimeout('getPopkeyword()',10);
+});
+function getPopkeyword() {
+	var dateType = "W";
+	var label  = "_ALL_";
+	$.ajax({
+	  type: "POST",
+	  url: "./popword/popword.jsp",
+	  dataType: "json",
+	  data: { "dateType" : dateType, "label" : label },
+	  success: function(res) {
+		var str = "<ul>";
+		var idx = 1;
+		
+		if(res && res.result && res.result.Item) {
+			$.each(res.result.Item, function(index, item) {
+				if(idx < 6){
+					var updown = item.updown; // 속성값 접근
+					var query = item.Query;   // 텍스트값 접근
+					var count = item.count;   // 텍스트값 접근
+					
+					str += "<li><a href='#none' onclick=\"javascript:doKeyword('" + query + "');\"><span><strong> "+idx+" </strong> " + query +"</span>";
+
+					if (updown == "U") {
+						str +='<span class="ranking up">' + count + '</span>';
+					} else if (updown == "D") {
+						str += '<span class="ranking down">' + count + '</span>';
+					} else if (updown == "N") {
+						str += '<span class="ranking normal">-</span>';
+					} else if (updown == "C") {
+						str += '<span class="ranking normal">-</span>';
+					}
+					str += "</a></li>";
+					idx++;
+				}
+			});
+		}
+		str += "</ul>";
+		$("#popword").html(str);
+	  },
+	  error: function(xhr, status, error) {
+		  console.error("Ajax 통신 에러:", error);
+	  }
+	});
+}
+function imgerror(obj){
+	obj.src='/include/mayor/image/common/thum_Photo.jpg';
+}
+$(function(){
+	$(".siteShortcut > a").click(function(){
+		if($(".siteShortcut ul").css("display") == "block"){
+			$(".siteShortcut ul").show();
+            $(this).attr("title","사이트 선택(축소됨)");
+		}else{
+			$(".siteShortcut ul").hide();
+            $(this).attr("title","사이트 선택(확장됨)");
+		}
+		return false;
+	});
+});
+//검색대상 체크박스 갯수 업데이트 함수
+function updateColCount() {
+    var count = $("input[name='col_chk']:checked").length;
+    if (count > 0) {
+        $("#colCountBadge").text(count).show();
+    } else {
+        $("#colCountBadge").hide();
+    }
+}
+
+// 검색기간 버튼 활성화 갯수 업데이트 함수
+function updateDateCount() {
+    var count = $(".filter-list .btn-wrap a.active").length;
+    if (count > 0) {
+        $("#dateCountBadge").text(count).show();
+    } else {
+        $("#dateCountBadge").hide();
+    }
+}
+// 페이지 로딩 시, JSP에 세팅된 값을 읽어와서 태그를 그려줍니다.
+function renderAppliedTags() {
+    var tagCount = 0;
+    var $tagWrap = $("#appliedTagWrap");
+    
+    // 기존 태그 초기화 (초기화 버튼 빼고 다 지움)
+    $tagWrap.find("a:not(.reset)").remove(); 
+
+    // 1. 검색대상 (컬렉션) 태그 생성
+    var currentCols = "ALL";
+    if (currentCols && currentCols !== "ALL") {
+        var colArr = currentCols.split(",");
+        $.each(colArr, function(index, val) {
+            // 체크박스 옆에 있는 label 글자를 가져와서 태그 이름으로 사용
+            var labelText = $("input[name='col_chk'][value='" + val + "']").next("label").text();
+            if(labelText) {
+                // 클릭하면 removeTag 함수 호출
+                var tagHtml = '<a href="#none" onclick="removeTag(\'col\', \'' + val + '\'); return false;"><span>' + labelText + '</span></a>';
+                $tagWrap.append(tagHtml);
+                tagCount++;
+            }
+        });
+    }
+
+    // 2. 검색기간 태그 생성
+    var currentRange = "A";
+    if (currentRange && currentRange !== "A") {
+        var rangeText = "";
+        if (currentRange === "1M") rangeText = "1개월";
+        else if (currentRange === "3M") rangeText = "3개월";
+        else if (currentRange === "6M") rangeText = "6개월";
+        else if (currentRange === "1Y") rangeText = "1년";
+
+        if(rangeText) {
+            var tagHtml = '<a href="#none" onclick="removeTag(\'range\', \'\'); return false;"><span>' + rangeText + '</span></a>';
+            $tagWrap.append(tagHtml);
+            tagCount++;
+        }
+    }
+
+ // 화면 반영 (조건 갯수 상관없이 박스는 항상 노출)
+    $("#appliedTagCount").text(tagCount);
+    $("#appliedSearchTags").show(); 
+
+    // 조건이 0개일 때는 굳이 '초기화(동그란 화살표)' 버튼이 보일 필요가 없으므로 숨겨줍니다.
+    if (tagCount === 0) {
+        $("#appliedTagWrap .reset").hide();
+    } else {
+        $("#appliedTagWrap .reset").show();
+    }
+}
+
+// 태그를 클릭했을 때 호출되는 함수 (해당 조건 해제 후 자동 검색)
+function removeTag(type, val) {
+    if (type === 'col') {
+        // 해당 검색대상 체크 해제
+        $("input[name='col_chk'][value='" + val + "']").prop("checked", false);
+    } else if (type === 'range') {
+        // 검색기간을 전체(A)로 되돌림
+        $("input[name='range']").val("A");
+        $("#startDate").val("1970.01.01");
+        $("#endDate").val(formatDate(new Date()));
+        $(".filter-list .btn-wrap a").removeClass("active");
+    }
+    
+    // 조건 변경 후 폼 자동 전송
+    applySearchFilter();
+}
+function fn_get_file(pstSn, pst_crt_sn, fileNo, menu_url){
+    $("#getFilePstSn").val(pstSn);
+    $("#getFilePstCrtSn").val(pst_crt_sn);
+    $("#getFileFileNo").val(fileNo);
+    
+    var contextPath = "";
+    contextPath = contextPath + menu_url + "/getFile";
+    
+    $("#getFileVO").attr("action", contextPath);
+    
+    $("#getFileVO").submit();
+}
+
+$(function() {
+    $(document).on('click', '#btnOpenAiChatLayer, #ai-search-open', function(e) {
+        e.preventDefault();
+        openAiChatLayer();
+    });
+
+    $(document).on('click', '#btnCloseAiChatLayer, #aiChatLayerWrap .ai-chat-dim', function(e) {
+        e.preventDefault();
+        closeAiChatLayer();
+    });
+
+    $(document).on('keydown', function(e) {
+        if (e.keyCode === 27 && $('#aiChatLayerWrap').is(':visible')) {
+            closeAiChatLayer();
+        }
+    });
+});
+
+function openAiChatLayer() {
+    var $frame = $('#aiChatLayerFrame');
+    var src = $frame.attr('data-src');
+    var sep = src.indexOf('?') > -1 ? '&' : '?';
+
+    $frame.attr('src', src + sep + '_ts=' + new Date().getTime());
+
+    $('#aiChatLayerWrap').show();
+    $('body').addClass('ai-chat-open');
+}
+
+function closeAiChatLayer() {
+    $('#aiChatLayerWrap').hide();
+    $('body').removeClass('ai-chat-open');
+
+    $('#aiChatLayerFrame').attr('src', 'about:blank');
+}
+</script>
+
+    <!--datepickr-->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+    <script src="assets/js/kakao-map-autoload.js"></script>
+    <!--  Daum 지도 roughmapLoader.js  -->
+    <script charset="UTF-8" class="daum_roughmap_loader_script"
+        src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
+    <style>
+    /* AI 챗봇 레이어 */
+    #aiChatLayerWrap {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+    }
+    #aiChatLayerWrap .ai-chat-dim {
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.55);
+    }
+    #aiChatLayerWrap .ai-chat-layer {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        right: auto;
+        height: 100%; 
+        transform: translate(-50%, -50%);
+        width: 700px;
+        max-width: calc(100vw - 24px);
+        max-height: calc(100vh - 24px);
+    }
+    #aiChatLayerWrap .ai-chat-layer-head {
+        height: 56px;
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #0f6ecd;
+        color: #fff;
+        box-sizing: border-box;
+    }
+    #aiChatLayerWrap .ai-chat-layer-head strong {
+        font-size: 16px;
+        font-weight: 700;
+    }
+    #aiChatLayerWrap .ai-chat-layer-close {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 24px;
+        text-decoration: none;
+    }
+    #aiChatLayerWrap .ai-chat-layer-close:hover {
+        background: rgba(255,255,255,0.15);
+    }
+    #aiChatLayerWrap .ai-chat-frame {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+    body.ai-chat-open {
+        overflow: hidden;
+    }
+    @media (max-width: 767px) {
+        #aiChatLayerWrap .ai-chat-layer {
+            width: 96%;
+        }
+    }
+    .search-wrap .search-body .search-cont .search-result > ul > li .text dl dt a br {
+	    display: none;
+	}
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!--header-->
+        <header id="header">
+            <div class="header-top">
+                <div class="inner">
+                    <span>이 누리집은 대한민국 공식 전자정부 누리집입니다.</span>
+                </div>
+            </div>
+            <div class="header-middle">
+                <div class="inner">
+                    <div class="bottom-menu">
+                        <div class="logo">
+                            <h1>
+                                <a href="/index">
+                                    <span class="hd-element">성남시 Seongnam City</span>
+                                </a>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!--// header-->
+
+        <!--content-body-->
+<form action="/getFile" name="searchVO" id="getFileVO">
+    <input type="hidden" id="getFilePstSn" name="pstSn">
+    <input type="hidden" id="getFilePstCrtSn" name="pstCrtSn">
+    <input type="hidden" id="getFileFileNo" name="fileNo">
+</form>
+<form name="search" id="search" action="/search/search.jsp" method="post">
+    <input type="hidden" name="startCount" value="0" />
+    <input type="hidden" name="sort" value="DATE" />
+    <input type="hidden" name="range" id="range" value="A" />
+    <input type="hidden" name="searchField" value="ALL" />
+    <input type="hidden" name="reQuery" value=""/>
+    <input type="hidden" name="realQuery" value="전입신고" />
+    <input type="hidden" name="viewCount" value="10" />
+    <input type="hidden" name="collection" id="collection" value="ALL"/>
+
+        <main class="container">
+            <div class="inner">
+                <div class="content-wrap" id="contentLoad">
+                        <div class="content-body">
+                            <div class="board-wrap search-wrap">
+                                <div class="search-head">
+                                    <div class="box">
+                                        <div class="content-head">
+                                            <div class="content-title-wrap">
+                                                <h2>통합검색</h2>
+                                            </div>
+                                        </div>
+                                        <div class="form-wrap">
+                                            <div>
+                                                <label for="query" class="hd-element">텍스트입력</label>
+                                                <input type="text" id="query" name="query" value="전입신고" placeholder="검색어를 입력하세요" onkeypress="javascript:pressCheck((event),this);">
+                                                <a href="#none" class="search-btn" onclick="javascript:doSearch();"><span class="hd-element">검색</span></a>
+                                            </div>
+                                            <div class="ai">
+                                                <a href="#none" class="ai-btn" id="btnOpenAiChatLayer">AI검색</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="board-body search-body">
+                                    <div class="search-filter">
+									    <h4>
+									        검색 필터
+									        <a href="#none" class="reset" onclick="javascript:resetSearchFilter(); return false;">초기화</a>
+									    </h4>
+									    
+									    <div class="filter-list">
+									        <a href="#none" class="tit">검색대상 <strong id="colCountBadge" style="display:none;">0</strong></a>
+									        <div class="filter-of">
+									            <div class="checkbox-wrap">
+									                <div class="checkbox-type">
+									                    <input type="checkbox" name="col_chk" id="col_site" value="site">
+									                    <label for="col_site">관련사이트
+															
+															
+									                    </label>
+									                </div>
+									                <div class="checkbox-type">
+									                    <input type="checkbox" name="col_chk" id="col_menu" value="menu">
+									                    <label for="col_menu">메뉴
+															
+															
+									                    </label>
+									                </div>
+									                <div class="checkbox-type">
+									                    <input type="checkbox" name="col_chk" id="col_emp" value="emp">
+									                    <label for="col_emp">업무∙직원
+															
+															
+																(6건)
+															
+									                    </label>
+									                </div>
+									                <div class="checkbox-type">
+									                    <input type="checkbox" name="col_chk" id="col_cntnts" value="cntnts">
+									                    <label for="col_cntnts">콘텐츠
+															
+															
+																(5건)
+															
+									                    </label>
+									                </div>
+									                <div class="checkbox-type">
+									                    <input type="checkbox" name="col_chk" id="col_bbs" value="bbs">
+									                    <label for="col_bbs">게시판
+															
+															
+																(12건)
+															
+									                    </label>
+									                </div>
+									                <div class="checkbox-type">
+									                    <input type="checkbox" name="col_chk" id="col_news" value="news">
+									                    <label for="col_news">뉴스
+															
+															
+																(29건)
+															
+									                    </label>
+									                </div>
+									                <div class="checkbox-type">
+									                    <input type="checkbox" name="col_chk" id="col_welfare" value="welfare">
+									                    <label for="col_welfare">복지∙보건
+															
+															
+																(1건)
+															
+									                    </label>
+									                </div>
+									                <div class="checkbox-type">
+									                    <input type="checkbox" name="col_chk" id="col_culture" value="culture">
+									                    <label for="col_culture">문화∙행사
+															
+															
+									                    </label>
+									                </div>
+									                <div class="checkbox-type">
+									                    <input type="checkbox" name="col_chk" id="col_apply" value="apply">
+									                    <label for="col_apply">통합예약
+															
+															
+									                    </label>
+									                </div>
+									                <div class="checkbox-type">
+									                    <input type="checkbox" name="col_chk" id="col_img" value="img">
+									                    <label for="col_img">이미지∙미디어
+															
+															
+																(1건)
+															
+									                    </label>
+									                </div>
+									                <div class="checkbox-type">
+									                    <input type="checkbox" name="col_chk" id="col_atch_file" value="atch_file">
+									                    <label for="col_atch_file">첨부파일
+															
+															
+									                    </label>
+									                </div>
+								                </div>
+									        </div>
+									    </div>
+									
+									    <div class="filter-list">
+									        <a href="#none" class="tit">검색기간 <strong id="dateCountBadge" style="display:none;">0</strong></a>
+									        <div class="filter-of">
+									            <div class="btn-wrap flex">
+									                <a href="#none" class="btn-normal bg-btn-tertiary small" onclick="javascript:setFilterDate(1, this); return false;">1개월</a>
+									                <a href="#none" class="btn-normal bg-btn-tertiary small" onclick="javascript:setFilterDate(3, this); return false;">3개월</a>
+									                <a href="#none" class="btn-normal bg-btn-tertiary small" onclick="javascript:setFilterDate(6, this); return false;">6개월</a>
+									                <a href="#none" class="btn-normal bg-btn-tertiary small" onclick="javascript:setFilterDate(12, this); return false;">1년</a>
+									            </div>
+									            <div class="date">
+									                <div class="form-wrap">
+									                    <label for="startDate">시작날짜</label>
+									                    <input type="text" id="startDate" name="startDate" class="datepicker type-small" value="1970.01.01">
+									                </div>
+									                <div class="form-wrap">
+									                    <label for="endDate">종료날짜</label>
+									                    <input type="text" id="endDate" name="endDate" class="datepicker type-small" value="2026.09.07">
+									                </div>
+									            </div>
+									        </div>
+									    </div>
+									
+									    <div class="filter-list">
+									        <a href="#none" class="tit">결과 내 재검색</a>
+									        <div class="filter-of">
+									            <div class="radio-wrap">
+									                <div class="radio-type">
+									                	<input type="radio" name="radio" id="radio1" value="1">
+									                    <label for="radio1">검색어 포함</label>
+									                </div>
+									                <div class="radio-type">
+									                    <input type="radio" name="radio" id="radio2" value="2">
+									                    <label for="radio2">검색어 제외</label>
+									                </div>
+									            </div>
+									            <div class="form-wrap">
+									                <label for="reQueryData">검색어</label>
+									                <input type="text" id="reQueryData" name="reQueryData" class="type-small" onkeypress="javascript:pressCheck_reSearch((event),this);">
+									                <a href="#none" class="btn-normal bg-btn-secondary small" onclick="javascript:applySearchFilter(); return false;">선택된 조건 검색하기</a>
+									            </div>
+									        </div>
+									    </div>
+									
+									    <div class="btn-wrap flex between">
+									        <a href="#none" class="btn-normal bg-btn-tertiary medium" onclick="javascript:resetSearchFilter(); return false;">초기화</a>
+									        <a href="#none" class="btn-normal bg-btn-black medium" onclick="javascript:applySearchFilter(); return false;">적용하기</a>
+									    </div>
+								        <div class="search-item" id="myKeywordWrap" style="display:none;">
+								            <p class="tit">내가 찾은 검색어</p>
+								            <div id="mykeyword" class="list my-search">
+								                </div>
+								        </div>
+									    <div class="search-item">
+								            <p class="tit">인기 검색어</p>
+								            <div id="popword" class="list ranking-list">
+								            </div>
+								        </div>
+										<div class="board-search" id="appliedSearchTags">
+										    <div class="filter">
+										        <strong>적용된 고급검색 조건 <span id="appliedTagCount">0</span></strong>
+										        <div class="tag-wrap" id="appliedTagWrap">
+										            <a href="#none" class="reset" onclick="javascript:resetSearchFilter(); applySearchFilter(); return false;">
+										                <span class="hd-element">초기화</span>
+										            </a>
+										            </div>
+										    </div>
+										</div>
+									</div>
+
+                                    <div class="search-cont" style="padding-top: 80.2375px;">
+                                        <div class="board-table-head">
+                                            <div class="total">
+                                                적용된 검색어 '<strong>전입신고</strong>' <span class="line"></span>
+                                                검색 결과 <strong>54</strong>개
+                                            </div>
+                                            <div class="board-option">
+	                                            <dl id="filter-open">
+	                                                <dt>필터</dt>
+	                                                <dd>
+	                                                    <a href="#none"></a>                           
+	                                                </dd>
+	                                            </dl>
+                                                <dl>
+                                                    <dt>목록 표시 개수</dt>
+                                                    <dd>
+                                                        <div class="form-wrap">
+	                                                        <label for="board-select2" class="hd-element"></label>
+	                                                        <select name="board-select2" id="board-select2" onchange="javascript:doViewCount(this.value);" class="select-control form-common" autocomplete="off">
+                                                                <option value="10" selected='selected'>10개</option>
+                                                                <option value="15" >15개</option>
+                                                                <option value="20" >20개</option>
+                                                            </select>
+                                                        </div>
+                                                    </dd>
+                                                </dl>
+                                                <dl>
+                                                    <dt>정렬기준</dt>
+                                                    <dd>
+                                                        <ul>
+                                                            <li class=""><a href="#none" onclick="javascript:doSorting('SCORE');">관련도순</a></li>
+                                                            <li class="active"><a href="#none" onclick="javascript:doSorting('DATE');">최신순</a></li>
+                                                        </ul>
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="search-result">
+                                        	
+                                        		
+                                        	<ul>
+
+												
+
+
+
+
+    
+    
+
+    
+        
+
+        
+            
+        
+    
+
+												
+
+
+
+
+    
+    
+
+    
+        
+
+        
+            
+        
+    
+
+												
+
+
+
+
+    
+    
+
+    
+        
+            <li>
+                <div class="badge-wrap">
+                    <span class="bg-badge-search medium">업무∙직원 (6)</span>
+                </div>
+                <table class="content-table is-left">
+                    <caption></caption>
+                    <colgroup>
+                        <col><col><col>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th scope="col">담당 부서/팀 명</th>
+                            <th scope="col">전화번호</th>
+                            <th scope="col">담당 업무</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                            
+                            
+                            
+
+                            
+                            
+                            
+
+                            <tr>
+                                <td>중원구>성남동>행정팀</td>
+                                <td>031-729-6615</td>
+                                <td>○통합민원 
+○<strong class='keyword'>전입</strong><strong class='keyword'>신고</strong>,<strong class='keyword'>전입</strong>세대 열람,체류지 변경
+○확정일자,임대차<strong class='keyword'>신고</strong>제</td>
+                            </tr>
+                        
+                            
+                            
+                            
+
+                            
+                            
+                            
+
+                            <tr>
+                                <td>분당구>정자1동>행정팀</td>
+                                <td>031-729-8253</td>
+                                <td>통합민원(<strong class='keyword'>전입</strong>,확정일자,해외체류<strong class='keyword'>신고</strong>,취학)</td>
+                            </tr>
+                        
+                            
+                            
+                            
+
+                            
+                            
+                            
+
+                            <tr>
+                                <td>분당구>구미동>행정팀</td>
+                                <td>031-729-7946</td>
+                                <td>통합민원(<strong class='keyword'>전입</strong>, 임대차<strong class='keyword'>신고</strong>, 취학, 등초본)</td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+
+                
+                    <div class="list-more">
+                        <a href="#" class="btn-normal bg-btn-tertiary small" onClick="javascript:doCollection('emp'); return false;">더보기</a>
+                    </div>
+                
+            </li>
+
+            
+        
+
+        
+    
+
+												
+
+
+
+
+    
+    
+
+    
+        
+            
+                
+                
+                
+                
+                
+                
+
+                
+                
+
+                <li>
+                    <div class="badge-wrap">
+			
+                        <span class="bg-badge-search medium">콘텐츠 (5)</span>
+                        
+                    </div>
+                    <div class="text">
+                        <dl>
+                            <dt><a href="/ct-cn080202">건물번호 부여신청</a></dt>
+                            <dd>...신청대상  : 신축, 증축, 개축 등 건물 소유자 또는 사업시행자  신청방법  : 방문, 팩스, 우편 및 인터넷 신청(정부민원포털 정부24  www.gov.kr  )  처리기간  : 신청일로부터 10일 이내  처리절차  사업자등록, 주민등록 <strong class='keyword'>전입</strong> 및 확정일자 <strong class='keyword'>신고</strong>시 도로명주소가 없어서 불편함을 겪지 않도록 건물사용승인 전 부여신청하여 주시기 바랍니다.  건물번호 부여신청서  건물번호 부여신청서  다운로드  자율형건물번호판 설치 신청서  다운로드</dd>
+                        </dl>
+                    </div>
+                    <div class="info">
+                        <ul>
+                            
+                            
+                                <li>성남시청</li>
+                            
+                                <li>분야별정보</li>
+                            
+                                <li>도시·주택</li>
+                            
+                                <li>도시생활서비스</li>
+                            
+                                <li>도로명 주소</li>
+                            
+                                <li>건물번호 부여신청</li>
+                            
+                        </ul>
+                    </div>
+
+                    
+                </li>
+            
+                
+                
+                
+                
+                
+                
+
+                
+                
+
+                <li>
+                    <div class="badge-wrap">
+			
+                    </div>
+                    <div class="text">
+                        <dl>
+                            <dt><a href="/tr-cn0106030203">차량사업소 이륜차등록 변경신고</a></dt>
+                            <dd>...<strong class='keyword'>신고</strong>하는 것을 말합니다.  관련법령  자동차 관리법 시행규칙 제99조  사용본거지(주소)가 변경된 경우  이륜자동차 소유자의 주민등록지가 이륜자동차의 사용본거지일 경우에는 주민등록법에 의한 <strong class='keyword'>전입</strong><strong class='keyword'>신고</strong>로 자동 변경등록이 완료되어 <strong class='keyword'>신고</strong>를 할 필요가 없습니다.(법인 및 사업자로 등록된 경우 <strong class='keyword'>신고</strong> 의무)  법인 및 사업자로 등록된 이륜자동차가 변경(주소, 명칭 등)된 경우 30일 이내에 아래와 같은 서류를 구비하여 <strong class='keyword'>신고</strong>를 하시면 됩니다.  구비서류  이...</dd>
+                        </dl>
+                    </div>
+                    <div class="info">
+                        <ul>
+                            
+                            
+                                <li>성남시청</li>
+                            
+                                <li>사업소정보</li>
+                            
+                                <li>차량등록사업소</li>
+                            
+                                <li>사업소 사업</li>
+                            
+                                <li>이륜차 등록</li>
+                            
+                                <li>변경신고</li>
+                            
+                        </ul>
+                    </div>
+
+                    
+                </li>
+            
+                
+                
+                
+                
+                
+                
+
+                
+                
+
+                <li>
+                    <div class="badge-wrap">
+			
+                    </div>
+                    <div class="text">
+                        <dl>
+                            <dt><a href="/tr-cn0106030104">차량사업소 자동차등록 변경등록</a></dt>
+                            <dd>...<strong class='keyword'>전입</strong><strong class='keyword'>신고</strong>로 사용본거지(주소)가 자동으로 변경등록이 되므로 자동차등록증만 재발급 받으면 됩니다.(2013년 1월 2일 시행)  개명의 경우, 자동으로 변경등록이 안되어 있을 시에는 주민등록초본(개명 등 변경사항 포함)을 지참하여 별도의 변경등록을 신청해야 함  자동차 등록 번호가 지역번호(서울00가0000 등)인 경우, 번호 변경 없이 기존 번호 사용이 가능하며 전국번호로의 변경은 소유자의 선택사항임(자동차등록령 개정 : 2014년 10월 15일...</dd>
+                        </dl>
+                    </div>
+                    <div class="info">
+                        <ul>
+                            
+                            
+                                <li>성남시청</li>
+                            
+                                <li>사업소정보</li>
+                            
+                                <li>차량등록사업소</li>
+                            
+                                <li>사업소 사업</li>
+                            
+                                <li>자동차 등록</li>
+                            
+                                <li>변경등록</li>
+                            
+                        </ul>
+                    </div>
+
+                    
+                        <div class="list-more">
+                            <a href="#" class="btn-normal bg-btn-tertiary small" onClick="javascript:doCollection('cntnts'); return false;">더보기</a>
+                        </div>
+                    
+                </li>
+            
+
+            
+        
+
+        
+    
+
+												
+
+
+
+
+    
+    
+
+    
+        
+            
+                
+                
+                
+                
+                
+                
+
+                
+                
+
+                <li>
+                    <div class="badge-wrap">
+			
+                        <span class="bg-badge-search medium">게시판 (12)</span>
+			
+                    </div>
+                    <div class="text">
+                        <dl>
+                            <dt><a href="/tr-bbs01060101/401235">이륜자동차 사용<strong class='keyword'>신고</strong>를 득한 후 개인정보 변경(주소지, 성명, 주민등록번호)시 <strong class='keyword'>신고</strong>해야 하나요?</a> <strong class="date">2026-06-09</strong></dt>
+                            <dd>주민등록법에 따른 <strong class='keyword'>전입</strong><strong class='keyword'>신고</strong>와 성명 및 주민등록번호의 정정 <strong class='keyword'>신고</strong>를 한 때에는 변경신고 한 것으로 인정되어 별도의  신청은 필요 없습니다. 단 법인이나 단체의 변경사항은 30일 이내에 <strong class='keyword'>신고</strong>해야 합니다.</dd>
+                        </dl>
+                    </div>
+                    <div class="info">
+                        <ul>
+                            
+                            
+                                <li>성남시청</li>
+                            
+                                <li>사업소정보</li>
+                            
+                                <li>차량등록사업소</li>
+                            
+                                <li>소식·알림</li>
+                            
+                                <li>자주묻는 질문</li>
+                            
+                        </ul>
+                    </div>
+
+                    
+                </li>
+            
+                
+                
+                
+                
+                
+                
+
+                
+                
+
+                <li>
+                    <div class="badge-wrap">
+			
+                    </div>
+                    <div class="text">
+                        <dl>
+                            <dt><a href="/bbs020405/360069">[분당이지 QR코드 작성예시] <strong class='keyword'>전입</strong>(편입) <strong class='keyword'>신고</strong>서</a> <strong class="date">2026-04-06</strong></dt>
+                            <dd>아래 QR코드를 스캔하면, 휴대전화로 <strong class='keyword'>전입</strong><strong class='keyword'>신고</strong>서 작성예시 확인 가능합니다.</dd>
+                        </dl>
+                    </div>
+                    <div class="info">
+                        <ul>
+                            
+                            
+                                <li>성남시청</li>
+                            
+                                <li>민원참여</li>
+                            
+                                <li>종합민원안내</li>
+                            
+                                <li>민원 편람</li>
+                            
+                        </ul>
+                    </div>
+
+                    
+                </li>
+            
+                
+                
+                
+                
+                
+                
+
+                
+                
+
+                <li>
+                    <div class="badge-wrap">
+			
+                    </div>
+                    <div class="text">
+                        <dl>
+                            <dt><a href="/bbs010101/372620">성남시 취업청년 전월세·이사비 지원 사업 2025년도 하반기 추가모집(-->>25년도 모집종료, 예산소진됨. 내년도 신청바랍니다.))</a> <strong class="date">2025-09-04</strong></dt>
+                            <dd>...<strong class='keyword'>전입신고</strong> 완료자  (중개비 및 이사비는 25.1.1.이후)  ▶(취업)  근로소득자(정규, 임시, 상용직, 일용직 등), 사업자등록(사업소득발생 필수)  ▶(소득)  연소득 4천만원 이하  (부부는 연소득 7천만원 이하)  ▶(주택) 면적 85  ㎡이하 이면서, 환산보증금 3억원 이하 주택  ○ 사업규모: 625명  (예산소진 여부에 따라 변동 가능)  ○ 지원내용:  &#9312;과 &#9313;,&#9314;은 신청 및 복수 지원 가능  (...</dd>
+                        </dl>
+                    </div>
+                    <div class="info">
+                        <ul>
+                            
+                            
+                                <li>성남시청</li>
+                            
+                                <li>성남소식</li>
+                            
+                                <li>새소식</li>
+                            
+                        </ul>
+                    </div>
+
+                    
+                        <div class="list-more">
+                            <a href="#" class="btn-normal bg-btn-tertiary small" onClick="javascript:doCollection('bbs'); return false;">더보기</a>
+                        </div>
+                    
+                </li>
+            
+
+            
+        
+
+        
+    
+
+												
+
+
+
+
+    
+    
+
+    
+        
+            
+                
+                
+                
+                
+                
+                
+                
+
+                
+                
+
+                <li>
+                    <div class="badge-wrap">
+						
+                        	<span class="bg-badge-search medium">이미지∙미디어 (1)</span>
+                        
+                    </div>
+                    <div class="text">
+                        <dl>
+                            <dt><a href="/mayor/ma-pm020601/941">민원감동센터 개소식</a><strong class="date"></strong></dt>
+                            <dd>이대엽 시장은 직장인이나 맞벌이 부부등의 편의를 위해 26일부터 민원행정서비스를 매일밤 12시까지 연장 운영하는 e-푸른성남 민원감동센터 개소식을 갖고 민원실 살펴보고있다[사진].민원감동센터는 오후6시이후 수정.중원.분당구청민원실에 주민등록등,초본 등 총13종의 제증명을 비롯한 출생.사망<strong class='keyword'>신고</strong>.<strong class='keyword'>전입</strong><strong class='keyword'>신고</strong> 등8종의 <strong class='keyword'>신고</strong>민원업무룰 처리한다.또 지방세완납필증,졸업.성적증명서등 팩스민원320종을 담당한다.</dd>
+                        </dl>
+	                    <div class="img">
+	                    	<img src="/comm/getImage?srvcId=MAYORPHOTONEWS&upperNo=941&fileTy=THUMB&fileNo=1&thumbTy=L" alt="민원감동센터 개소식" style="width:180px; height:135px; object-fit:cover;">
+	                    </div>
+	                </div>
+                    <div class="info">
+                        <ul>
+                            
+                            
+                                <li>열린시장실</li>
+                            
+                                <li>시정24시</li>
+                            
+                                <li>지난활동</li>
+                            
+                                <li>지난뉴스</li>
+                            
+                        </ul>
+                    </div>
+
+                    
+                </li>
+            
+
+            
+        
+
+        
+    
+
+												
+
+
+
+
+    
+    
+
+    
+        
+
+        
+            
+        
+    
+
+												
+
+
+
+
+    
+    
+
+    
+        
+            
+                
+                
+                
+                
+                
+                
+
+                
+                
+
+                <li>
+                    <div class="badge-wrap">
+			
+                        <span class="bg-badge-search medium">뉴스 (29)</span>
+                        
+                    </div>
+                    <div class="text">
+                        <dl>
+                            <dt><a href="/bbs010501/115224">“탈세 노린 <strong class='keyword'>전입신고</strong> 회피 꼼짝 마!”</a><strong class="date">2016-03-28</strong></dt>
+                            <dd>...<strong class='keyword'>전입</strong><strong class='keyword'>신고</strong>를 하지 않는 가구를 찾아내기 위해 전국 최초로 전수조사를 시작했다. 법의 맹점을 악용한 불법행위를 근절하고, 세입자의 권리를 보호하기 위한 조치다.  현행 주민등록법상 거주 목적으로 오피스텔에 입주할 경우 <strong class='keyword'>전입</strong><strong class='keyword'>신고</strong>를 해야 한다. 하지만 이를 이행하지 않아도 처벌조항이 없는 점을 악용, 일부 소유주가 세금부과를 면하기 위해 세입자가 <strong class='keyword'>전입</strong><strong class='keyword'>신고</strong>를 하지 않는 조건으로 전?월세 계약을 맺는 편법이 횡행하고 있다. <strong class='keyword'>전입</strong><strong class='keyword'>신고</strong>를 할 경우 해당 오피스...</dd>
+                        </dl>
+                    </div>
+                    <div class="info">
+                        <ul>
+                            
+                            
+                                <li>성남시청</li>
+                            
+                                <li>성남소식</li>
+                            
+                                <li>언론 보도</li>
+                            
+                                <li>보도 자료</li>
+                            
+                        </ul>
+                    </div>
+
+                    
+                </li>
+            
+                
+                
+                
+                
+                
+                
+
+                
+                
+
+                <li>
+                    <div class="badge-wrap">
+			
+                    </div>
+                    <div class="text">
+                        <dl>
+                            <dt><a href="/bbs010501/101396">위례신도시 성남권역 ‘위례동’ 11월 2일 신설</a><strong class="date">2015-10-23</strong></dt>
+                            <dd>...<strong class='keyword'>전입</strong><strong class='keyword'>신고</strong>, 제증명 발급, 청소, 건설, 사회복지 등의 기본적인 행정업무를 수행한다.  위례신도시 10블록에 성남시 위례동 주민센터 본 청사(2018년 상반기)가 들어설 때까지 운영한다.  성남시, 하남시, 서울 송파구 등 3개 행정구역에 걸쳐 있는 위례신도시는 관할이 각기 다른 3개의 위례동이 운영된다.  앞선 6월 서울 송파구는 위례신도시 내 송파권역 거여동과 장지동 일부를 위례동으로 확정했다. 하남시는 오는 11월 5일부터 기존 학암동 전 ...</dd>
+                        </dl>
+                    </div>
+                    <div class="info">
+                        <ul>
+                            
+                            
+                                <li>성남시청</li>
+                            
+                                <li>성남소식</li>
+                            
+                                <li>언론 보도</li>
+                            
+                                <li>보도 자료</li>
+                            
+                        </ul>
+                    </div>
+
+                    
+                </li>
+            
+                
+                
+                
+                
+                
+                
+
+                
+                
+
+                <li>
+                    <div class="badge-wrap">
+			
+                    </div>
+                    <div class="text">
+                        <dl>
+                            <dt><a href="/bbs010501/99925">성남시, 14일에도 3개 구청 민원실에서 통합민원 처리</a><strong class="date">2015-08-12</strong></dt>
+                            <dd>...<strong class='keyword'>신고</strong>를 비롯해 <strong class='keyword'>전입</strong><strong class='keyword'>신고</strong>, 주민등록증 분실 재발급 <strong class='keyword'>신고</strong>도 가능하다.  성남시는 시민들의 편의 증진을 위해 「시민이 행복한 민원센터」를 운영 중이다. 3개 구청 민원실은 평일에는 21시까지 토·일요일·공휴일에는 10시부터 17시까지 업무를 처리한다. 단, 추석·설날 당일과 전·후일은 휴무다.  임시 공휴일에 구청 민원실까지 방문이 어려운 시민들은 모란역, 정자역, 판교역이나 시청·분당경찰서 등에 설치된 무인민원발급기를 이용하면 간편하고 저렴하게 민...</dd>
+                        </dl>
+                    </div>
+                    <div class="info">
+                        <ul>
+                            
+                            
+                                <li>성남시청</li>
+                            
+                                <li>성남소식</li>
+                            
+                                <li>언론 보도</li>
+                            
+                                <li>보도 자료</li>
+                            
+                        </ul>
+                    </div>
+
+                    
+                        <div class="list-more">
+                            <a href="#" class="btn-normal bg-btn-tertiary small" onClick="javascript:doCollection('news'); return false;">더보기</a>
+                        </div>
+                    
+                </li>
+            
+
+            
+        
+
+        
+    
+
+												
+
+
+
+
+    
+    
+
+    
+        
+            
+                
+                
+                
+                
+                
+                
+
+                
+                
+
+                <li>
+                    <div class="badge-wrap">
+			
+                        <span class="bg-badge-search medium">복지∙보건 (1)</span>
+                        
+                    </div>
+                    <div class="text">
+                        <dl>
+                            <dt><a href="/wf-pm020101/19007">취업청년 전월세 이사비 지원 사업</a></dt>
+                            <dd>...<strong class='keyword'>전입신고</strong> 완료자(중개비 및 이사비는 25.7.1.이후) - 취업: 근로소득자(정규, 임시, 상용직, 일용직 등), 사업자등록(사업소득발생 필수) - 소득: 연소득 4천만원 이하(부부는 연소득 7천만원 이하) - 주택: 면적 85㎡이하, 환산보증금 3억원 이하 주택(준주택-오피스텔) ※단, 근린생활시설(고시원 등) 제외 ※ 지원제외: 국토부 청년월세 지원사업 대상자(기준중위소득 60%이하) |  추진방법  온라인 신청(성남청년다해(성남 청년정보 ...</dd>
+                        </dl>
+                    </div>
+                    <div class="info">
+                        <ul>
+                            
+                            
+                                <li>성남시청</li>
+                            
+                                <li>분야별정보</li>
+                            
+                                <li>복지</li>
+                            
+                                <li>복지사업</li>
+                            
+                        </ul>
+                    </div>
+
+                    
+                </li>
+            
+
+            
+        
+
+        
+    
+
+												
+
+
+
+
+    
+    
+
+    
+        
+
+        
+            
+        
+    
+
+												
+
+
+
+    
+    
+
+    
+        
+
+        
+            
+        
+    
+
+                                            </ul>
+                                        		
+                                        	
+                                        	
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </main>
+                    </form>
+        <!--// content-body-->
+
+        <footer id="footer">
+            <div class="footer-site">
+                <div class="inner">
+                    <ul>
+                        <li>
+                            <a href="#none">누리집·사업소</a>
+                            <div class="site-open">
+                                <div class="inner">
+                                    <p>누리집·사업소</p>
+                                    <a href="#none" class="close"><span class="hd-element">누리집·사업소 팝업 닫기</span></a>
+                                    <ul class="site-list-1"></ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#none">구청 및 동 행정복지센터</a>
+                            <div class="site-open">
+                                <div class="inner">
+                                    <a href="#none" class="close"><span class="hd-element">구청 및 동 행정복지센터 팝업 닫기</span></a>
+                                    <p>구청 및 동 행정복지센터</p>
+                                    <ul class="site-list-2"></ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#none">공사·출연기관</a>
+                            <div class="site-open">
+                                <div class="inner">
+                                    <a href="#none" class="close"><span class="hd-element">공사·출연기관 팝업 닫기</span></a>
+                                    <p>공사·출연기관</p>
+                                    <ul class="site-list-3"></ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#none">유관기관</a>
+                            <div class="site-open">
+                                <div class="inner">
+                                    <a href="#none" class="close"><span class="hd-element">유관기관 팝업 닫기</span></a>
+                                    <p>유관기관</p>
+                                    <ul class="site-list-4"></ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-info">
+                <div class="inner">
+                    <div class="footer-logo">
+                        <img src="/humanframe/theme/global/assets/images/common/logo.svg" alt="성남시 Seongnam City">
+                    </div>
+                    <div class="address-wrap">
+                        <div class="address">
+                            <p><span>13437</span>경기도 성남시 중원구 성남대로 997 (여수동)</p>
+                            <p><span>성남콜센터</span> <strong>1577-3100</strong> 평일 09:00 ~ 18:00 (토·일·공휴일 제외)<br> 상담시간 외 당직실 연결</p>
+                        </div>
+                        <div class="address-map">
+                            <a href="/cn040503">오시는 길</a>
+                            <a href="/pm050501">관련사이트</a>
+                            <ul>
+                                <li><a href="https://www.mois.go.kr/frt/sub/popup/p_taegugki_banner/screen.do" target="_blank" title="새창"><img src="/humanframe/theme/global/assets/images/common/footer_country.svg" alt="국가상징알아보기"></a></li>
+                                <li><a href="https://www.webwatch.or.kr/Situation/WA_Situation.html?MenuCD=110" target="_blank" title="새창"><img src="/humanframe/theme/global/assets/images/common/footer_wa.svg" alt="웹접근성인증마크"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="util">
+                        <ul>
+                            <li><a href="/cn05010101 "><strong>개인정보처리방침</strong></a></li>
+                            <li><a href="/bbs050301">영상정보처리기기운영관리방침</a></li>
+                            <li><a href="/cn050401">저작권정책</a></li>
+                        </ul>
+                        <p>Copyright ⓒ Seongnam City. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--// footer-->
+
+        <div class="black-dim"></div>
+    </div>
+
+    <div id="aiChatLayerWrap">
+        <div class="ai-chat-dim"></div>
+        <div class="ai-chat-layer">
+            <iframe
+                id="aiChatLayerFrame"
+                class="ai-chat-frame"
+                src="about:blank"
+                data-src="/fnct/ps/aiChatFront"
+                title="AI 챗봇"></iframe>
+        </div>
+    </div>
+    
+    <script>
+	$(function() {
+		f_RelateSite('COMM_RELATE_SITE_1_3','1');
+		f_RelateSite('COMM_RELATE_SITE_1_4','2');
+		f_RelateSite('COMM_RELATE_SITE_1_5','3');
+		f_RelateSite('COMM_RELATE_SITE_1_6','4');
+	});
+	
+	function f_RelateSite(code,idx){
+    	var param = { code : code };
+    	$.ajax({
+    		type : "get"
+    		, url: '/ajax/getRelateSite'
+    		, data : param
+    		, dataType : "json"
+    		, contentType: "application/x-www-form-urlencoded; charset=UTF-8"
+    		, async : false
+    		, success: function(data) {
+    			var arr = data.resultList;
+    			var bList = "";
+
+    			for(var i in arr){
+    				bList += '<li>';
+    				bList += '<a href="'+arr[i].siteUrl+'" target="_blank" title="새창" class="link-text large color-black">';
+    				bList += '<span>'+arr[i].siteNm+'</span> ';
+    				bList += '<i><img src="/images/ico/ico_link_black.svg" alt=""></i>';
+    				bList += '</a>';
+    				bList += '</li>';
+    		   	}
+
+    			$('.site-list-'+idx).html(bList);
+    		},
+    		error: function(data, status, err) {
+    			//console.log('error forward : ' + data);
+    		}
+    	});
+    }
+	</script>
+</body>
+
+</html>

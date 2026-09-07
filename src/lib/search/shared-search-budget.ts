@@ -1,6 +1,6 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
-import { boundedResponseText } from "./bounded-io";
+import { abortable, boundedResponseText } from "./bounded-io";
 import { acquireSearchBudget } from "./search-budget";
 
 export type BudgetLease = {allowed:false;reason:"budget_limited"|"rate_limited"}|{allowed:true;release:()=>void|Promise<void>};
@@ -35,7 +35,7 @@ export function createRuntimeSearchBudget(env:Readonly<Record<string,string|unde
   if(!valid)return ()=>({allowed:false,reason:"budget_limited"});
   async function command(args:(string|number)[]) {
     const signal=AbortSignal.timeout(2000);
-    const r=await fetcher(endpoint!,{method:"POST",headers:{Authorization:`Bearer ${token}`,"Content-Type":"application/json"},body:JSON.stringify(args),signal,redirect:"error",cache:"no-store"});
+    const r=await abortable(fetcher(endpoint!,{method:"POST",headers:{Authorization:`Bearer ${token}`,"Content-Type":"application/json"},body:JSON.stringify(args),signal,redirect:"error",cache:"no-store"}),signal);
     if(!r.ok)throw Error("budget_store_unavailable");
     const body=JSON.parse(await boundedResponseText(r,signal,4000));
     if(body.error||!Number.isInteger(body.result))throw Error("budget_store_unavailable");

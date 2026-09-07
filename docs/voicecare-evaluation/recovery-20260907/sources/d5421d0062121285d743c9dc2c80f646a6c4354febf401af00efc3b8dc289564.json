@@ -1,0 +1,164 @@
+{
+  "url": "https://park.isdc.co.kr/",
+  "title": "성남시 공영주차장",
+  "paragraphs": [],
+  "sections": [],
+  "navigation": [
+    {
+      "url": "https://park.isdc.co.kr/main.do",
+      "title": "홈으로"
+    },
+    {
+      "url": "https://park.isdc.co.kr/roadin/park_info.do",
+      "title": "주차장소개"
+    },
+    {
+      "url": "https://park.isdc.co.kr/roadin/useinfo.do",
+      "title": "이용안내"
+    },
+    {
+      "url": "https://park.isdc.co.kr/roadin/fee_inq.do",
+      "title": "요금납부안내"
+    },
+    {
+      "url": "https://park.isdc.co.kr/roadin/contact.do",
+      "title": "주차장 현황"
+    },
+    {
+      "url": "https://park.isdc.co.kr/resident/park_info.do",
+      "title": "주차장소개"
+    },
+    {
+      "url": "https://park.isdc.co.kr/resident/useinfo.do",
+      "title": "이용안내"
+    },
+    {
+      "url": "https://park.isdc.co.kr/resident/contract.do",
+      "title": "이용신청"
+    },
+    {
+      "url": "https://park.isdc.co.kr/resident/contractOrder.do",
+      "title": "- 주차(대기)신청"
+    },
+    {
+      "url": "https://park.isdc.co.kr/resident/raffleResult.do",
+      "title": "- 추첨 결과 확인"
+    },
+    {
+      "url": "https://park.isdc.co.kr/resident/fee.do",
+      "title": "요금결제"
+    },
+    {
+      "url": "https://park.isdc.co.kr/resident/feeConf.do",
+      "title": "- 결제내역확인"
+    },
+    {
+      "url": "https://park.isdc.co.kr/resident/fee_inq.do",
+      "title": "미납요금조회납부"
+    },
+    {
+      "url": "https://park.isdc.co.kr/tow/repo_now.do",
+      "title": "견인보관소현황"
+    },
+    {
+      "url": "https://park.isdc.co.kr/tow/repo_info.do",
+      "title": "차량인수안내"
+    },
+    {
+      "url": "https://park.isdc.co.kr/tow/repo_map_info.do",
+      "title": "위치안내"
+    },
+    {
+      "url": "https://park.isdc.co.kr/tow/repo_law.do",
+      "title": "관련법규"
+    },
+    {
+      "url": "https://park.isdc.co.kr/mypage/parkContractWaiter.do",
+      "title": "대기현황조회"
+    },
+    {
+      "url": "https://park.isdc.co.kr/mypage/parkContractInfo.do",
+      "title": "주차장정보"
+    },
+    {
+      "url": "https://park.isdc.co.kr/mypage/contractCharge.do",
+      "title": "- 주차장 결제정보"
+    },
+    {
+      "url": "https://park.isdc.co.kr/mypage/userInfo.do",
+      "title": "정보수정"
+    },
+    {
+      "url": "https://park.isdc.co.kr/mypage/parkContractInfoModify.do",
+      "title": "- 계약정보변경"
+    },
+    {
+      "url": "https://park.isdc.co.kr/mypage/uploadFile.do",
+      "title": "- 증빙 서류 제출"
+    },
+    {
+      "url": "https://park.isdc.co.kr/open/notice.do?menutype=roadout",
+      "title": "공지사항"
+    },
+    {
+      "url": "https://park.isdc.co.kr/open/qna.do",
+      "title": "자주묻는질문"
+    },
+    {
+      "url": "https://park.isdc.co.kr/open/tel_info.do",
+      "title": "전화번호안내"
+    },
+    {
+      "url": "https://park.isdc.co.kr/open/find.do",
+      "title": "찾아오시는길"
+    },
+    {
+      "url": "https://park.isdc.co.kr/open/lastPrivate.do",
+      "title": "개인정보보호"
+    },
+    {
+      "url": "https://park.isdc.co.kr/open/contents.do",
+      "title": "- 개인정보 열람 청구절차"
+    },
+    {
+      "url": "https://park.isdc.co.kr/open/imageProcessing.do",
+      "title": "- 영상정보처리기기 운영관리 방침"
+    },
+    {
+      "url": "https://park.isdc.co.kr/parkmap.do",
+      "title": "주차장위치보기"
+    },
+    {
+      "url": "https://park.isdc.co.kr/qfeeinq.do",
+      "title": "미납요금조회"
+    },
+    {
+      "url": "https://park.isdc.co.kr/quserinfo.do?parkType=roadout",
+      "title": "주차요금안내"
+    },
+    {
+      "url": "https://park.isdc.co.kr/open/notice.do",
+      "title": "공지사항"
+    },
+    {
+      "url": "https://www.isdc.co.kr/",
+      "title": "공사홈페이지"
+    },
+    {
+      "url": "https://www.snlib.go.kr/sj/index.do",
+      "title": "수정도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/jw/index.do",
+      "title": "중원도서관"
+    },
+    {
+      "url": "https://waste.isdc.co.kr/main/index.php",
+      "title": "대형폐기물"
+    }
+  ],
+  "textLength": 698,
+  "omittedSections": 1,
+  "checkedAt": "2026-09-06T16:31:13.741Z",
+  "fromCache": false
+}

@@ -1,0 +1,419 @@
+{
+  "https://www.seongnam.go.kr/sitemap": {
+    "file": "08876078e8268ab6cb7b2ed3b7d99b478dcdaa9e4dae5efcc4d108e26bff4fde",
+    "finalUrl": "https://www.seongnam.go.kr/sitemap",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/apply/view.do?appIdx=3669": {
+    "status": "failed",
+    "error": "source_http_404"
+  },
+  "https://www.seongnam.go.kr/city/1001740/11373/contents.do": {
+    "status": "failed",
+    "error": "source_http_404"
+  },
+  "https://www.seongnam.go.kr/ct-cn090301": {
+    "file": "63dd28b9535a89a0ce6f6334b3aaa5f91ca5c28b87fa338edc3dbd722b6afeea",
+    "finalUrl": "https://www.seongnam.go.kr/ct-cn090301",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/apply/event.do": {
+    "status": "failed",
+    "error": "source_http_404"
+  },
+  "https://www.seongnam.go.kr/sn030105": {
+    "file": "c216ec4529d2b8fb37839665734ebfd53ae00a61fb5e2e0176141bd4f903c6d4",
+    "finalUrl": "https://www.seongnam.go.kr/sn030105",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/cn030507": {
+    "file": "47dba13037a6d2ee225ed761002b5dce2bc904dd878d993bb4603f94404fb270",
+    "finalUrl": "https://www.seongnam.go.kr/cn030507",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/health/ht-pm020101/6010?curPage=1&cvlcptBizSn=6010&srchText=%EA%B1%B4%EA%B0%95%EC%A7%84%EB%8B%A8%EA%B2%B0%EA%B3%BC%EC%84%9C": {
+    "file": "6b74a627b84e9c78db699a54338d70fd18990a7dfc81e0b12df30b3ad73ba0e2",
+    "finalUrl": "https://www.seongnam.go.kr/health/ht-pm020101/6010?curPage=1&cvlcptBizSn=6010&srchText=%EA%B1%B4%EA%B0%95%EC%A7%84%EB%8B%A8%EA%B2%B0%EA%B3%BC%EC%84%9C",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/health/index": {
+    "file": "14c5e1ecc7c3ff963995b3cc5864a69c21122431b2c0d4c73c5b14138d342d6f",
+    "finalUrl": "https://www.seongnam.go.kr/health/index",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/health/ht-pm020101/6010?curPage=1&sortType=&cvlcptBizSn=6010&srchWlfPvsnTypeCd=&srchType=&srchText=%EA%B1%B4%EA%B0%95%EC%A7%84%EB%8B%A8%EA%B2%B0%EA%B3%BC%EC%84%9C": {
+    "file": "be0682d3ae45812aac4294def5006d30f75c58808ca30e432612c8edce911cea",
+    "finalUrl": "https://www.seongnam.go.kr/health/ht-pm020101/6010?curPage=1&sortType=&cvlcptBizSn=6010&srchWlfPvsnTypeCd=&srchType=&srchText=%EA%B1%B4%EA%B0%95%EC%A7%84%EB%8B%A8%EA%B2%B0%EA%B3%BC%EC%84%9C",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/city/1000098/10299/contents.do": {
+    "status": "failed",
+    "error": "source_http_404"
+  },
+  "https://www.seongnam.go.kr/apply/integration/step1?instiCode=INST_CITY_01&facilityId=I0588": {
+    "file": "7fcdaee9f3b6874a0e93d3eac146cbdca9d697e24602229198a04aa51d789073",
+    "finalUrl": "https://www.seongnam.go.kr/apply/integration/step1?instiCode=INST_CITY_01&facilityId=I0588",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/tr010200": {
+    "file": "56fbbc61d66e3cdea9255926c7713d32f75bb072493cf4b457e9502981d3ab2c",
+    "finalUrl": "https://www.seongnam.go.kr/tr010200",
+    "status": "fetched"
+  },
+  "https://seongnam.go.kr/apply/view.do?appIdx=3679": {
+    "status": "failed",
+    "error": "source_unavailable"
+  },
+  "https://seongnam.go.kr/snursc/images/content/b_sansung2.png": {
+    "status": "failed",
+    "error": "source_http_200"
+  },
+  "https://seongnam.go.kr/apply/view.do?appIdx=3598": {
+    "status": "failed",
+    "error": "source_unavailable"
+  },
+  "https://www.seongnam.go.kr/city/1000050/10040/contents.do": {
+    "status": "failed",
+    "error": "source_http_404"
+  },
+  "https://www.seongnam.go.kr/city/1002241/11467/contents.do": {
+    "status": "failed",
+    "error": "source_http_404"
+  },
+  "https://www.seongnam.go.kr/sn04050101": {
+    "file": "541fa579c619f412fe96720c932aec4b0ee1bc4fa4a6a27923c5e18629e5e073",
+    "finalUrl": "https://www.seongnam.go.kr/sn04050101",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/sn02030601": {
+    "file": "2ef679753cd5cca06326d57840167f982e0e147844510d46a99761b2d13bded0",
+    "finalUrl": "https://www.seongnam.go.kr/sn02030601",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/city/1000071/10046/contents.do": {
+    "status": "failed",
+    "error": "source_http_404"
+  },
+  "https://seongnam.go.kr/city/1000071/10046/contents.do": {
+    "status": "failed",
+    "error": "source_unavailable"
+  },
+  "https://www.seongnam.go.kr/sn020101": {
+    "file": "ba3415e5f84053070f9e0b70e23509555cbb83dfacdae4c75f2da20fd390f44d",
+    "finalUrl": "https://www.seongnam.go.kr/sn020101",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/cn02040801": {
+    "file": "1c78d1e26ed83cda70396da9831526295ab266d899db743e79f88b435c7d48ef",
+    "finalUrl": "https://www.seongnam.go.kr/cn02040801",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/cn020401": {
+    "file": "a4ba84a5414047f0bf2ae97565fc2c6dd60d0e742ad0bd7c0cca06ec3281bc45",
+    "finalUrl": "https://www.seongnam.go.kr/cn020401",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/city/1001126/10798/contents.do": {
+    "status": "failed",
+    "error": "source_http_404"
+  },
+  "https://www.seongnam.go.kr/VFVhtEc": {
+    "file": "17fc88523344d849c8afcfe9c8c8e88add104469cafc6d6e398040b8674e664c",
+    "finalUrl": "https://www.seongnam.go.kr/VFVhtEc",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/city/1000094/10063/contents.do": {
+    "status": "failed",
+    "error": "source_http_404"
+  },
+  "https://www.seongnam.go.kr/apply/online/view?appIdx=3609&menuType=welfare": {
+    "file": "87dd1061313a3ef2a420b19d5c93966754759d9e830bd92892ed784da9ece73b",
+    "finalUrl": "https://www.seongnam.go.kr/apply/online/view?appIdx=3609&menuType=welfare",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/pm04041101?deptCode=38000000000&orgSelect=orgSelect02": {
+    "file": "e1b451b08218b0f1a4b61fcad29ccc1381cd33ca5d734a0e5231c72189bdc820",
+    "finalUrl": "https://www.seongnam.go.kr/pm04041101?deptCode=38000000000&orgSelect=orgSelect02",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/apply/integration/step1?facilityId=I0681&instiCode=INST_CITY_01": {
+    "file": "39647586bba097ce10d45af60aa8df30f76a0a8a8746e8b69e7b9113a34abe44",
+    "finalUrl": "https://www.seongnam.go.kr/apply/integration/step1?facilityId=I0681&instiCode=INST_CITY_01",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/city/1000079/10052/contents.do": {
+    "status": "failed",
+    "error": "source_http_404"
+  },
+  "https://seongnam.go.kr/city/1000080/10053/contents.do": {
+    "status": "failed",
+    "error": "source_unavailable"
+  },
+  "https://www.seongnam.go.kr/apply/integration/step1?instiCode=INST_CITY_01&facilityId=I0681": {
+    "file": "d8e6f2b8c1485462b224677c21557ddd870e11bc1a07d0d191c8cfdb1547ac6f",
+    "finalUrl": "https://www.seongnam.go.kr/apply/integration/step1?instiCode=INST_CITY_01&facilityId=I0681",
+    "status": "fetched"
+  },
+  "https://seongnam.go.kr/city/1000081/10054/contents.do": {
+    "status": "failed",
+    "error": "source_unavailable"
+  },
+  "https://www.seongnam.go.kr/city/1000013/10010/contents.do": {
+    "status": "failed",
+    "error": "source_http_404"
+  },
+  "https://www.seongnam.go.kr/pm010201/6306": {
+    "file": "a1af8853d36b991a755053daeb8167d9ee83305e546f0615e5e421738a48ca1a",
+    "finalUrl": "https://www.seongnam.go.kr/pm010201/6306",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/pm02020101?curPage=1": {
+    "file": "a2ef7f9c82d2166208ae44a3431d7a6aa3fbaf4d7228e7994140482c8128151e",
+    "finalUrl": "https://www.seongnam.go.kr/pm02020101?curPage=1",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/tour/tu-pm020101/6228": {
+    "file": "27d2f4eeadaf746a60530fd0962435a5e4e46c5e2a84658df336560b8ee27aa1",
+    "finalUrl": "https://www.seongnam.go.kr/tour/tu-pm020101/6228",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/apply/": {
+    "status": "failed",
+    "error": "source_http_404"
+  },
+  "https://www.seongnam.go.kr/tour/index": {
+    "file": "040d4c617f17bb9dded2a96a10c8353bec459b5989c5dd20fc64e31ab392c061",
+    "finalUrl": "https://www.seongnam.go.kr/tour/index",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/pm010201/6228": {
+    "file": "42154ac685f489bd7f231dabcdbe7f98d19fbfa1e9b6b1d5c3bec1a4f9076a6b",
+    "finalUrl": "https://www.seongnam.go.kr/pm010201/6228",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/apply/lecture/step1?instiCode=INST_CITY_01&facilityId=L0720": {
+    "file": "7516d93814fbaf19a40c92b5ef42b290ecf7972b3a436079f5a959f04bcf48a7",
+    "finalUrl": "https://www.seongnam.go.kr/apply/lecture/step1?instiCode=INST_CITY_01&facilityId=L0720",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/oa/kOiJeeb.do": {
+    "status": "failed",
+    "error": "source_http_404"
+  },
+  "https://www.seongnam.go.kr/oa/qqBf8ia.do": {
+    "status": "failed",
+    "error": "source_http_404"
+  },
+  "https://www.seongnam.go.kr/pm050501": {
+    "file": "98ec93465988dc82d0b378ec39a208c9f8f9418e84586e38cccef4e23f528e00",
+    "finalUrl": "https://www.seongnam.go.kr/pm050501",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/mulga/mulgaDongMain.do": {
+    "status": "failed",
+    "error": "source_http_404"
+  },
+  "https://www.snspring.or.kr/": {
+    "file": "dd8d168e6b9cd349994fde30e2fb1768b4260c3c7289bfe5e32ef15645660627",
+    "finalUrl": "https://www.snspring.or.kr/",
+    "status": "fetched"
+  },
+  "https://waste.isdc.co.kr/": {
+    "file": "70c6d20d0bafde3f2d414a88685da9c7a99749afd0270223d066c330aee3cd73",
+    "finalUrl": "https://waste.isdc.co.kr/main/index.php",
+    "status": "fetched"
+  },
+  "https://www.snlib.go.kr/": {
+    "file": "e23cbee73f6708fe3acb4f55c2cc295be8f2df23623e59b1c4eb8b3f48eb1e72",
+    "finalUrl": "https://www.snlib.go.kr/intro/index.do",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/cn0204080301": {
+    "file": "ec09eb37d77c06b6c8bda701eeb9c832452334d48f4bc2cb070e66ab3eb2a777",
+    "finalUrl": "https://www.seongnam.go.kr/cn0204080301",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/cn040503": {
+    "file": "62f4669839ff3acc124c3d16ee970e2608d06e27f9c0ccd7dbc57284f95605f0",
+    "finalUrl": "https://www.seongnam.go.kr/cn040503",
+    "status": "fetched"
+  },
+  "https://www.seongnam.go.kr/index": {
+    "file": "659a5194b6033c0b5e12c4953a7da19be131b5b3625025eb48734af204e4711a",
+    "finalUrl": "https://www.seongnam.go.kr/index",
+    "status": "fetched"
+  },
+  "https://recycle.seongnam.go.kr/platforminfo/trash": {
+    "file": "a76038573b0ea4e30ea74f4d4cea127c7a9927465e0801c4795f981d558480ed",
+    "finalUrl": "https://recycle.seongnam.go.kr/platforminfo/trash",
+    "status": "fetched"
+  },
+  "https://www.snlib.go.kr": {
+    "file": "ef52b9add8cf5740fe45ec1ea1ac726c9c6ab91bf01e8ae04a449f835cab08b9",
+    "finalUrl": "https://www.snlib.go.kr/intro/index.do",
+    "status": "fetched"
+  },
+  "https://waste.isdc.co.kr": {
+    "file": "a91c7552b8d377f955d101da349d25032dc6a4d421ec454bc8910d78a0230285",
+    "finalUrl": "https://waste.isdc.co.kr/main/index.php",
+    "status": "fetched"
+  },
+  "https://www.snspring.or.kr": {
+    "file": "738061e96098f883b678acae2906f6b6858278975032cde8bb61d3ee5bb3b6a6",
+    "finalUrl": "https://www.snspring.or.kr/",
+    "status": "fetched"
+  },
+  "https://job.seongnam.go.kr": {
+    "file": "b84618c37ab273792623167658cc00e55191aab91e39c53bda600aa2a2b770e5",
+    "finalUrl": "https://job.seongnam.go.kr/",
+    "status": "fetched"
+  },
+  "https://www.snart.or.kr/": {
+    "file": "b578f96dce27008738cf1bef663926289c4b3d39c5297314c37549db582325e8",
+    "finalUrl": "https://www.snart.or.kr/main/main.do",
+    "status": "fetched"
+  },
+  "https://www.snlib.go.kr/intro/40008/contents.do": {
+    "file": "59fb1154d3a7553aaf925a8b74844ca2b0418954c019419171fc2f762bab4e7c",
+    "finalUrl": "https://www.snlib.go.kr/intro/40008/contents.do",
+    "status": "fetched"
+  },
+  "https://www.snlib.go.kr/intro/menu/10022/contents/40020/contents.do": {
+    "file": "64c8df4cbce4aa018e058b4ee5e4cc5729374791db6d98afe679187b95ab9313",
+    "finalUrl": "https://www.snlib.go.kr/intro/menu/10022/contents/40020/contents.do",
+    "status": "fetched"
+  },
+  "https://waste.isdc.co.kr/contents/content.php?cIdx=3": {
+    "file": "7bc3cb855c3146b5e33dbc439cede0391bc2b04cbe020710d3b0bf3c66c5b889",
+    "finalUrl": "https://waste.isdc.co.kr/contents/content.php?cIdx=3",
+    "status": "fetched"
+  },
+  "https://www.snspring.or.kr/spaceSharing.do": {
+    "file": "48bbbd1c97e6f47ea03e4362eafe12f9748a618d5f04a3528a10f201ca4b9329",
+    "finalUrl": "https://www.snspring.or.kr/spaceSharing.do",
+    "status": "fetched"
+  },
+  "https://www.snspring.or.kr/introduceCenter.do": {
+    "file": "18928918b75f48c1f9483e5689485fe54124da26e9f64db76acc0a1e4a5c6ecd",
+    "finalUrl": "https://www.snspring.or.kr/introduceCenter.do",
+    "status": "fetched"
+  },
+  "https://job.seongnam.go.kr/contents/content.do?cIdx=8": {
+    "file": "5f2545300c698f877ba3cf4fabe642140b4c71d8bbde4924af740d58a78a1af7",
+    "finalUrl": "https://job.seongnam.go.kr/contents/content.do?cIdx=76",
+    "status": "fetched"
+  },
+  "https://www.isdc.co.kr/": {
+    "file": "1a16ac23be143c405edcd6c1b9f020de81e1879c513fc0c00e00b432b94b7265",
+    "finalUrl": "https://www.isdc.co.kr/",
+    "status": "fetched"
+  },
+  "https://job.seongnam.go.kr/": {
+    "status": "fetched",
+    "file": "57ebea93e9f7b16ef93724dbe629f34932ec74e81b119fcad059e185a10734cb"
+  },
+  "https://job.seongnam.go.kr/contents/content.do?cIdx=76": {
+    "status": "fetched",
+    "file": "bef22394ec5d9583def9eb0fc4c23354a21a4f2c4de686f63930f5e86ea4e514"
+  },
+  "https://www.seongnam.go.kr/health": {
+    "status": "fetched",
+    "file": "0d122ba087a9817c6e9a1f9d62c0194264cb083cd54c18f97033a88d6d737f91"
+  },
+  "https://www.seongnam.go.kr/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&srchWlfPvsnTypeCd=&srchType=1&srchText=%EA%B8%88%EC%97%B0%ED%81%B4%EB%A6%AC%EB%8B%89": {
+    "status": "fetched",
+    "file": "ebc9ff9613fd7bc93f36f4b146fc50ad242089d1f8e5efe5aa04dd5ce4cc5076"
+  },
+  "https://www.seongnam.go.kr/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&arrHlthBizTypeCd=&arrWlfCrrCyclCd=&arrWlfHshdSttnCd=&srchWlfPvsnTypeCd=&srchType=&srchText=%EA%B8%88%EC%97%B0%ED%81%B4%EB%A6%AC%EB%8B%89&cntPerPage=9": {
+    "status": "fetched",
+    "file": "6c1add7ddd3c46383829d3b202b303c27ca07afcd7807c828376b933f7e487be"
+  },
+  "https://www.seongnam.go.kr/health/hlt01020101": {
+    "status": "fetched",
+    "file": "c10f99a80005a31fe12cdead7c46f9522531eb1e663750f3e40ae06b2f031529"
+  },
+  "https://www.seongnam.go.kr/health/ht-cn010101": {
+    "status": "fetched",
+    "file": "37a237ccdaae3c10f988e325c37ab6907cab9eeeeb9610a1aa4ac684af839813"
+  },
+  "https://www.seongnam.go.kr/health/hlt01010101": {
+    "status": "fetched",
+    "file": "7a4fdb9ab13c399b2fe14162495e9c304093bab9165262b7a79e2f272fd1f56f"
+  },
+  "https://www.seongnam.go.kr/cn02040802": {
+    "status": "fetched",
+    "file": "2db9c21c9ee83d895fa4a1d08ea5a0488a482ffbeeaead42c382497ec965ca05"
+  },
+  "https://recycle.seongnam.go.kr/platforminfo": {
+    "status": "fetched",
+    "file": "408d9c732f73c7541b54f9280dbf0d0bb171a9ef8787c77a83aa4d1302142db7"
+  },
+  "https://waste.isdc.co.kr/main/index.php": {
+    "status": "fetched",
+    "file": "e4a202638e86d38badb3132996d459e6a929163e2a1bd2ab0f2026bf8f54d87e"
+  },
+  "https://www.snlib.go.kr/ct/index.do": {
+    "status": "fetched",
+    "file": "7980048d53083126ef16b6ff0f29dfc2f5812d4e46ff16751308f78fc5f0b567"
+  },
+  "https://www.snlib.go.kr/intro/menu/206007/contents/41520/contents.do": {
+    "status": "fetched",
+    "file": "2df217d4d25ad527c6983a0cd52398a53b77c5dc3d0cd7e35c8cc9c693e7190a"
+  },
+  "https://www.seongnam.go.kr/pm010201/6305": {
+    "status": "fetched",
+    "file": "3168677a2a9cc82686cb45964b3bc9eec825a1c805770e8bad0d6fdf2cac2a30"
+  },
+  "https://www.seongnam.go.kr/health/ht-pm020101/9016": {
+    "status": "fetched",
+    "file": "1240f2258f82e73dcf11b3f0d115b800c2153a3bd944179ac7a61945bf7e094a"
+  },
+  "https://www.seongnam.go.kr/health/ht-pm020101/9020": {
+    "status": "fetched",
+    "file": "878be4fc87f8fb09e602fdc612c42cc8d0852a2f3956844b1ef9278542108fd7"
+  },
+  "https://www.isdc.co.kr": {
+    "file": "8fdad62f2aeb4abb550e5241c6e63fea130bb77ec7007610e3ea1e18fd6db140",
+    "finalUrl": "https://www.isdc.co.kr/",
+    "status": "fetched"
+  },
+  "https://park.isdc.co.kr/": {
+    "file": "d5421d0062121285d743c9dc2c80f646a6c4354febf401af00efc3b8dc289564",
+    "finalUrl": "https://park.isdc.co.kr/",
+    "status": "fetched"
+  },
+  "https://www.snart.or.kr/main/content/view.do?sn=90": {
+    "file": "9e5f3fb891fa112771b360f94d93f6de5916600573a0837acb36815ffd300ae1",
+    "finalUrl": "https://www.snart.or.kr/main/content/view.do?sn=90",
+    "status": "fetched"
+  },
+  "https://park.isdc.co.kr/qfeeinq.do": {
+    "status": "fetched",
+    "file": "7568a79a19ac85285d35f6c1d96b14d0e7fd1f474f200c1f33a9b3837c94644a"
+  },
+  "https://park.isdc.co.kr/roadin/park_info.do": {
+    "status": "fetched",
+    "file": "98a1892de725aa5e3da5ad2ddfbfcc5d1d970f49045455b2575bbabc2d5bd772"
+  },
+  "https://park.isdc.co.kr/resident/park_info.do": {
+    "status": "fetched",
+    "file": "e6e9ec436a9ebfd959ae68bf1c4f0b03a66fc475f35d556501d7198b3039e6c2"
+  },
+  "https://park.isdc.co.kr/mypage/parkContractInfo.do": {
+    "status": "failed",
+    "error": "source_unverified"
+  },
+  "https://www.snart.or.kr/main/content/view.do?sn=141": {
+    "status": "fetched",
+    "file": "992004668639d0ca0a28f894845e307c1387245cce4618dc326da35a12fc381f"
+  },
+  "https://park.isdc.co.kr/resident/useinfo.do": {
+    "status": "fetched",
+    "file": "b19168659f6b45c5994750beed5dd2b8980ff5fb74b6bbfb21243a08c58a9d34"
+  },
+  "https://www.seongnam.go.kr/en000000": {
+    "file": "5dea352a6543edda31375d5da75b52488ffcca950a2048f53d3bca7f09905497",
+    "finalUrl": "https://www.seongnam.go.kr/en000000",
+    "status": "fetched"
+  }
+}

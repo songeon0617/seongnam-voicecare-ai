@@ -1,0 +1,64 @@
+{
+  "url": "https://www.snspring.or.kr/spaceSharing.do",
+  "title": "성남시 청년지원센터 :: 청년이 봄",
+  "paragraphs": [],
+  "sections": [],
+  "navigation": [
+    {
+      "url": "https://www.snspring.or.kr/main.do",
+      "title": "홈으로"
+    },
+    {
+      "url": "https://www.snspring.or.kr/introduceCenter.do",
+      "title": "센터소개"
+    },
+    {
+      "url": "https://www.snspring.or.kr/introducePartner.do",
+      "title": "함께하는 기관"
+    },
+    {
+      "url": "https://www.snspring.or.kr/programList.do",
+      "title": "전체"
+    },
+    {
+      "url": "https://www.snspring.or.kr/programList.do?searchCategory=%ED%95%B4%EB%B4%84",
+      "title": "해봄"
+    },
+    {
+      "url": "https://www.snspring.or.kr/programList.do?searchCategory=%EC%A6%90%EA%B2%A8%EB%B4%84",
+      "title": "즐겨봄"
+    },
+    {
+      "url": "https://www.snspring.or.kr/programList.do?searchCategory=%EB%A7%8C%EB%82%98%EB%B4%84",
+      "title": "만나봄"
+    },
+    {
+      "url": "https://www.snspring.or.kr/programList.do?searchCategory=%EB%88%84%EB%A0%A4%EB%B4%84",
+      "title": "누려봄"
+    },
+    {
+      "url": "https://www.snspring.or.kr/spaceSharing.do",
+      "title": "공간공유"
+    },
+    {
+      "url": "https://www.snspring.or.kr/supportList.do",
+      "title": "청년지원 서비스"
+    },
+    {
+      "url": "https://www.snspring.or.kr/noticeList.do",
+      "title": "공지사항"
+    },
+    {
+      "url": "https://www.snspring.or.kr/introduceCounsel.do",
+      "title": "청춘상담소"
+    },
+    {
+      "url": "https://www.snspring.or.kr/letterList.do",
+      "title": "봄편지"
+    }
+  ],
+  "textLength": 1681,
+  "omittedSections": 0,
+  "checkedAt": "2026-09-06T16:22:50.655Z",
+  "fromCache": false
+}

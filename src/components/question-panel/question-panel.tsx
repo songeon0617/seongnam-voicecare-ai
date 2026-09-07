@@ -125,8 +125,12 @@ export function QuestionPanel() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    // Read the submitted control too: autofill or input before hydration can precede
+    // React's onChange state update (observed in WebKit on a production build).
+    const submittedQuestion = String(new FormData(event.currentTarget).get("question") ?? question);
+    setQuestion(submittedQuestion);
     voice.cancel();
-    await submitQuestion(question);
+    await submitQuestion(submittedQuestion);
   }
 
   function selectExample(example: string, preserveContext = false) {

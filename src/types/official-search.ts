@@ -5,7 +5,7 @@ export interface OfficialEvidence {
   id: string;
   url: string;
   title: string;
-  publisher: "성남시청";
+  publisher: string;
   region: "성남시";
   checkedAt: string;
   publishedAt: string | null;
@@ -32,6 +32,7 @@ export interface SearchDiagnostics {
   discovered?: number;
   rejected?: number;
   findings?: number;
+  budget?: {aiCalls:number;searchCalls:number;originalFetches:number;maxOriginalFetches:number};
   pages?: {url:string;status:string;errorCode?:string;textLength?:number;sections?:number;omittedSections?:number}[];
 }
 export interface OfficialSearchResult {

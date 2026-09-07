@@ -1,11 +1,28 @@
 /** Explicit institutions only; a provider's domain filter is not a security boundary. */
-export const OFFICIAL_HOSTS = ["www.seongnam.go.kr", "seongnam.go.kr"] as const;
+// Reviewed institutional links, not a wildcard for arbitrary municipal subdomains.
+// City's /sitemap links snlib, waste.isdc and snspring; recycle's department footer
+// identifies 성남시 자원순환과. Captures live in the recovery audit's sources directory.
+export const OFFICIAL_PUBLISHERS: Readonly<Record<string,string>> = {
+  "www.seongnam.go.kr":"성남시청", "seongnam.go.kr":"성남시청",
+  "recycle.seongnam.go.kr":"성남시청",
+  "www.snlib.go.kr":"성남시 도서관사업소", "snlib.go.kr":"성남시 도서관사업소",
+  "waste.isdc.co.kr":"성남도시개발공사", "www.snspring.or.kr":"성남시 청년지원센터",
+  "job.seongnam.go.kr":"성남시 일자리센터",
+  "www.isdc.co.kr":"성남도시개발공사", "www.snart.or.kr":"성남문화재단",
+  "park.isdc.co.kr":"성남도시개발공사",
+};
+export const OFFICIAL_HOSTS = Object.keys(OFFICIAL_PUBLISHERS);
+export function officialPublisher(url:string):string|undefined {
+  try{return OFFICIAL_PUBLISHERS[new URL(url).hostname];}catch{return undefined;}
+}
 export function officialUrl(input: string): string | null {
   try {
     const url = new URL(input);
     if (url.protocol !== "https:" || url.username || url.password || (url.port && url.port !== "443") ||
       !OFFICIAL_HOSTS.some(host => url.hostname === host)) return null;
     const path = decodeURIComponent(url.pathname).toLowerCase();
+    if ([...url.searchParams.values()].some(value=>/board_(review|joboffer)|board_center/i.test(value))) return null;
+    if (/introduceEmployee|question(List|View)|story(List|View)|personalInfo|useAgreement|emailPolicy/i.test(path)) return null;
     if (/\\|\x00/.test(path) || /(?:download|attach|filedown|staff|search|login|member|board|bbs|freeboard|opinion|review)/i.test(path) ||
       /\.(?:pdf|hwpx?|xlsx?|zip|docx?|csv)$/i.test(path)) return null;
     if ([...url.searchParams.keys()].some(key => /url|redirect|callback|file|download/i.test(key))) return null;

@@ -1,0 +1,2206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<!-- 온라인신청전용 -->
+	<link rel="shortcut icon" href="/humanframe/theme/global/assets/images/ico/ico_sns_favicon.png" type="image/x-icon" />
+	<link rel="icon" href="/humanframe/theme/global/assets/images/ico/ico_sns_favicon.png" type="image/x-icon" />
+	<link rel="canonical" href="https://www.seongnam.go.kr/index">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="description" content="성남시 통합예약">
+	<meta name="keywords" content="">
+	<title>행정복지 - 성남시 통합예약</title>
+
+	<style>
+		.apply-view-body > .step-wrap {
+			margin-bottom: 56px;
+		}
+
+		.apply-view-body .reserve-content-foot .tab + .section-title {
+			margin-top: 48px;
+		}
+
+		.apply-view-body .reserve-content-foot .board-view-table + .section-title {
+			margin-top: 56px;
+		}
+
+		.apply-view-body .reserve-content-foot .foot-title + .normal-text,
+		.apply-view-body .reserve-content-foot .foot-title + .board-view-table {
+			margin-top: 32px;
+		}
+
+		.apply-view-body .reserve-content-foot .reserv-detail-content.alert-plain-text-content {
+			border-bottom: 0;
+		}
+
+		.apply-view-body .apply-detail-tab ul {
+			display: flex;
+			flex-wrap: nowrap;
+		}
+
+		.apply-view-body .apply-detail-tab li {
+			flex: 1 1 0;
+		}
+
+		.apply-view-body .apply-detail-tab li a {
+			display: block;
+			width: 100%;
+			text-align: center;
+		}
+
+		.apply-view-body .reserve-content-foot .tab.inner > ul.col2 > li.active > a {
+			background-color: #17479e !important;
+			color: #ffffff !important;
+		}
+
+		.apply-view-body .apply-tab-panel {
+			display: none;
+		}
+
+		.apply-view-body .apply-tab-panel.is-active {
+			display: block;
+		}
+
+		.apply-view-body .apply-summary-actions {
+			margin-top: 32px;
+		}
+
+		.apply-view-body .apply-summary-actions-inner {
+			display: flex !important;
+			align-items: center;
+			justify-content: space-between !important;
+			gap: 16px;
+			width: 100%;
+			position: static !important;
+			bottom: auto !important;
+			right: auto !important;
+		}
+
+		.apply-view-body .apply-switch-tabs {
+			display: flex;
+			width: 100%;
+			margin-top: 48px;
+			border: 1px solid #c7d1dc;
+			border-radius: 8px;
+			overflow: hidden;
+			background-color: #ffffff;
+		}
+
+		.apply-view-body .apply-switch-tabs__item {
+			flex: 1 1 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 52px;
+			padding: 0 16px;
+			border-left: 1px solid #c7d1dc;
+			background-color: #ffffff;
+			color: #1e2124;
+			font-size: 18px;
+			font-weight: 700;
+			text-decoration: none;
+		}
+
+		.apply-view-body .apply-switch-tabs__item:first-child {
+			border-left: 0;
+		}
+
+		.apply-view-body .apply-switch-tabs__item.is-active {
+			background-color: #17479e;
+			color: #ffffff;
+		}
+
+		.apply-view-body .legacy-online-view,
+		.apply-view-body .legacy-online-foot {
+			display: none;
+		}
+
+		.apply-view-body .apply-location-link {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			gap: 4px;
+			margin-left: 10px;
+			padding: 4px 12px;
+			border: 1px solid #0b50d0;
+			border-radius: 4px;
+			background-color: #ecf2fe;
+			color: #0b50d0;
+			font-size: 14px;
+			font-weight: 700;
+			text-decoration: none;
+			vertical-align: middle;
+		}
+
+		.apply-view-body .apply-location-link::after {
+			content: "";
+			display: inline-block;
+			width: 16px;
+			height: 16px;
+			background-image: url(/humanframe/theme/apply/assets/images/ico/ico_open-new.svg);
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: contain;
+		}
+	</style>
+<!-- START : inc.jsp -->
+	<!-- ################ servletPathForCheck : /WEB-INF/jsp/apply/user/online_view.jsp #####################-->
+<!-- ################ requestURI : /WEB-INF/jsp/apply/user/online_view.jsp #####################-->
+<!-- ################ isApplyOnlinePage : true #####################-->
+<link rel="stylesheet" type="text/css" href="/humanframe/theme/global/assets/style/style.css?val=20260907011835" />
+<link rel="stylesheet" type="text/css" href="/humanframe/theme/apply/assets/style/layout/layout.css?val=20260907011835" />
+<link rel="stylesheet" type="text/css" href="/humanframe/theme/apply/assets/style/style.css?val=20260907011835" />
+<link rel="stylesheet" type="text/css" href="/humanframe/theme/apply/assets/style/style-online-apply-extracted.css?val=20260907011835" />
+<link rel="stylesheet" type="text/css" href="/humanframe/theme/global/assets/plugin/swiper/swiper-bundle.min.css?val=20260907011835" />
+<link rel="stylesheet" type="text/css" href="/humanframe/theme/global/assets/style/jquery-ui.css?val=20260907011835" />
+<link rel="stylesheet" type="text/css" href="/humanframe/theme/apply/assets/style/style-online-apply-mobile.css?val=20260907011835" />
+<script type="text/javascript" src="/include/apply/js/jquery-3.6.4.min.js?val=20260907011835"></script>
+<script type="text/javascript">
+	(function($) {
+		if (!$ || $.fn._applyLegacyLoadPatched) {
+			return;
+		}
+
+		var originalLoad = $.fn.load;
+		$.fn.load = function(url, params, callback) {
+			if (typeof url === "function") {
+				return this.on("load", url);
+			}
+			return originalLoad.apply(this, arguments);
+		};
+		$.fn._applyLegacyLoadPatched = true;
+	})(window.jQuery);
+</script>
+<script type="text/javascript" src="/include/sitesys/js/jquery-ui.js?val=20260907011835"></script>
+<script type="text/javascript" src="/include/cmm/js/jquery.alphanum.js?val=20260907011835"></script>
+<script type="text/javascript" src="/humanframe/theme/global/assets/script/common.js?val=20260907011835"></script>
+<script type="text/javascript" src="/humanframe/theme/apply/assets/script/common.js?val=20260907011835"></script>
+<script type="text/javascript" src="/humanframe/theme/global/assets/plugin/swiper/swiper-bundle.min.js?val=20260907011835"></script>
+	<script type="text/javascript" src="/include/apply/new/js/style.js?val=20260907011835"></script>
+<script type="text/javascript" src="/include/apply/js/slick/1.8.1/slick.js?val=20260907011835"></script>
+<script type="text/javascript" src="/include/apply/js/sub_style.js?val=20260907011835"></script>
+
+<script type="text/javascript" src="/include/cmm/js/jquery.fileDownload.js"></script>
+<!-- END : inc.jsp -->
+	<style>
+		.tab{display:block !important; height:auto !important;}
+		.tab a{width: auto !important; background:#fff !important;}
+
+		body.apply-theme-page .apply-view-body .apply-summary-actions-inner {
+			display: flex !important;
+			align-items: center !important;
+			justify-content: space-between !important;
+			flex-wrap: nowrap !important;
+			gap: 16px !important;
+			width: 100% !important;
+			position: static !important;
+			bottom: auto !important;
+			right: auto !important;
+		}
+
+		body.apply-theme-page .apply-view-body .apply-summary-actions-inner > * {
+			display: inline-flex !important;
+			visibility: visible !important;
+			opacity: 1 !important;
+		}
+
+		body.apply-theme-page .apply-view-body .apply-summary-buttons {
+			display: flex !important;
+			align-items: center !important;
+			justify-content: space-between !important;
+			gap: 16px !important;
+			width: 100% !important;
+		}
+
+		body.apply-theme-page .apply-view-body .apply-summary-button--secondary {
+			background-color: #ffffff !important;
+			border-color: #58616a !important;
+			color: #1e2124 !important;
+		}
+
+		body.apply-theme-page .apply-view-body .apply-summary-button--primary {
+			background-color: #256ef4 !important;
+			border-color: #256ef4 !important;
+			color: #ffffff !important;
+		}
+
+		body.apply-theme-page .apply-view-body .apply-summary-button--disabled {
+			background-color: #cdd1d5 !important;
+			border-color: #cdd1d5 !important;
+			color: #6d7882 !important;
+			cursor: default !important;
+			pointer-events: none !important;
+		}
+
+		body.apply-theme-page .apply-view-body .apply-switch-tabs {
+			display: flex !important;
+			align-items: stretch !important;
+			width: 100% !important;
+			margin-top: 48px !important;
+			border: 1px solid #c7d1dc !important;
+			border-radius: 8px !important;
+			overflow: hidden !important;
+			background-color: #ffffff !important;
+		}
+
+		body.apply-theme-page .apply-view-body .apply-switch-tabs__item {
+			flex: 1 1 0 !important;
+			display: flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			min-height: 52px !important;
+			padding: 0 16px !important;
+			border-left: 1px solid #c7d1dc !important;
+			background-color: #ffffff !important;
+			color: #1e2124 !important;
+			font-size: 18px !important;
+			font-weight: 700 !important;
+			line-height: 1.3 !important;
+			text-align: center !important;
+			text-decoration: none !important;
+			white-space: nowrap !important;
+		}
+
+		body.apply-theme-page .apply-view-body .apply-switch-tabs__item:first-child {
+			border-left: 0 !important;
+		}
+
+		body.apply-theme-page .apply-view-body .apply-switch-tabs__item.is-active {
+			background-color: #17479e !important;
+			color: #ffffff !important;
+		}
+
+		body.apply-theme-page .apply-view-body .reserve-content-foot .tab.inner > ul.col2 > li.active > a {
+			background-color: #17479e !important;
+			color: #ffffff !important;
+		}
+
+		body.apply-theme-page .apply-view-body .reserve-content-foot .foot-title + .normal-text,
+		body.apply-theme-page .apply-view-body .reserve-content-foot .foot-title + .board-view-table {
+			margin-top: 32px !important;
+		}
+
+		body.apply-theme-page .apply-view-body .reserve-content-foot .reserv-detail-content.alert-plain-text-content {
+			border-bottom: 0 !important;
+		}
+
+		body.apply-theme-page .apply-view-body .apply-tab-panel {
+			display: none !important;
+		}
+
+		body.apply-theme-page .apply-view-body .apply-tab-panel.is-active {
+			display: block !important;
+		}
+
+		/* body.apply-theme-page .apply-view-body #applyGuidePanel .section-title,
+		body.apply-theme-page .apply-view-body #applyDetailPanel .section-title {
+			margin-top: 72px !important;
+		} */
+
+		body.apply-theme-page .apply-location-popup .popup {
+			width: min(880px, calc(100% - 32px)) !important;
+			max-width: calc(100% - 32px) !important;
+		}
+
+		body.apply-theme-page .apply-location-popup .text {
+			text-align: left !important;
+		}
+
+		body.apply-theme-page .apply-location-popup__info {
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+		}
+
+		body.apply-theme-page .apply-location-popup__info dl {
+			margin: 0;
+		}
+
+		body.apply-theme-page .apply-location-popup__info dt {
+			margin-bottom: 4px;
+			font-weight: 700;
+			color: #1e2124;
+		}
+
+		body.apply-theme-page .apply-location-popup__info dd {
+			margin: 0;
+			color: #3b4147;
+			line-height: 1.6;
+		}
+
+		body.apply-theme-page .apply-location-popup__map {
+			width: 100%;
+			height: 360px;
+			margin-top: 20px;
+			border: 1px solid #d7dce2;
+			border-radius: 8px;
+			overflow: hidden;
+		}
+
+	</style>
+</head>
+
+<body class="os apply-theme-page">
+	<div class="wrapper">
+	<div id="skipnav">
+		<a href="#sub">본문 바로가기</a>
+		<a href="#gnb">주메뉴 바로가기</a>
+	</div>
+
+	
+
+
+<script>
+	var anyidAdaptor = anyidAdaptor || {};
+
+	/*이용기관 수정 영역 Start*/
+	anyidAdaptor.orgLogin = function(data){
+		//정부 통합인증SDK_연계가이드 4.4.1.3 이용기관 로그인(토글 off) 참조
+		//제공되는 라이브러리 메소드로 인증데이터 decrypt 이후 자체 로그인 로직 개발
+		const params = new URLSearchParams(location.search);
+		var obj ={
+			ssob : data.ssob
+			, tag : params.get("tx")
+		}
+
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", "/fnct/mber/nonmember/anyidProc.do", true);
+		xhr.setRequestHeader("Content-Type", "application/json");
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4) {  // 요청 완료
+				if (xhr.status === 200) {  // 서버 응답 성공
+					try {
+						const response = JSON.parse(xhr.responseText);
+
+						if (response.status === "success") {
+							//console.log("로그인 성공 >>>>> ", JSON.stringify(response));
+							// 성공 시 메인 페이지로 이동
+							window.location.href = "/index"; // 실제 메인 페이지 URL로 수정
+						} else {
+							// 인증 실패 시 메시지 표시
+							alert(response.message || "로그인에 실패했습니다. 다시 시도해주세요.");
+						}
+					} catch (e) {
+						// console.error("응답 파싱 에러:", e);
+						alert("서버 응답 처리 중 오류가 발생했습니다.");
+					}
+				} else {
+					// console.error("서버 오류:", xhr.status, xhr.statusText);
+					alert("서버와 통신 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+				}
+			}
+		};
+		xhr.send(JSON.stringify(obj));
+		
+	}
+	/*이용기관 수정 영역 End*/
+	
+	
+	/*이용기관 문구수정 영역 Start*/
+	anyidAdaptor.JoinConfirm = function(portalJoinUri, memberData){
+		if(confirm('Any-ID 사용자로 등록하시겠습니까?')) {
+			anyidAdaptor.receiveAnyIdJoin(portalJoinUri, memberData);
+		} else {
+			anyidAdaptor.orgLogin(anyidAdaptor.certData);
+			return;
+		}
+	}
+	/*이용기관 문구수정 영역 End*/
+	
+	anyidAdaptor.portalJoinUri = "null";
+	anyidAdaptor.certData = null;
+	
+	anyidAdaptor.ssoByPass = "0";
+	anyidAdaptor.niRegYn = "";
+	anyidAdaptor.agencyContextPath = "";
+	
+	
+	anyidAdaptor.success = function(data){
+		if(anyidAdaptor.ssoByPass != 0 || !data.useSso) {
+			anyidAdaptor.orgLogin(data);
+		} else {
+			anyidAdaptor.certData = data;
+			anyidAdaptor.userCheck();
+		}  
+	}
+	
+	anyidAdaptor.userCheck = function(){
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", anyidAdaptor.agencyContextPath + "/oidc/userCheck", true);
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4 && xhr.status === 200) {
+				var response = JSON.parse(xhr.responseText);
+				if (response.success) {
+					anyidAdaptor.ssoLogin();
+				} else {
+					setTimeout(function() {
+						anyidAdaptor.receiveAnyIdJoin(response.uri, response.data);
+					}, 100);  
+				}
+			}
+		};
+
+		let jsonObject = new Object();
+		jsonObject.txId = anyidAdaptor.certData.txId;
+		jsonObject.ssob = anyidAdaptor.certData.ssob;
+		jsonObject.userSeCd = anyidAdaptor.certData.userSeCd;
+		
+		let jsonStr = JSON.stringify(jsonObject);
+		let encodedString = btoa(jsonStr);
+		
+		var data = "data=" + encodedString + "&txId=" + anyidAdaptor.certData.txId;
+		xhr.send(data);
+		
+	}
+
+	//anyid가입
+	anyidAdaptor.receiveAnyIdJoin = function(portalJoinUri, memberData){
+	
+		var url = portalJoinUri+encodeURIComponent(memberData);
+		anyidAdaptor.popup(url,"openAnyIdRegistUserIdv",700,740);
+
+		window.addEventListener("message", function(event) {
+			var result;
+			try {
+				result = JSON.parse(event.data);
+			} catch (error) {
+				// console.error("Received message is not valid JSON:", error);
+				return;
+			}
+			
+			if(!result.funcName || (result.funcName !== "trmsAgreComplete" && result.funcName !== "registUserComplete")) {
+				return;
+			}
+			if(result.status === "success") {
+				if(result.trmsAgreYn == "Y"){
+					anyidAdaptor.ssoLogin();
+				}else{
+					anyidAdaptor.orgLogin(anyidAdaptor.certData);
+				}
+			}else{
+				
+				anyidAdaptor.orgLogin(anyidAdaptor.certData);
+			}
+
+		}, false);
+	}
+
+	// 팝업 호출
+	anyidAdaptor.popup = function(url, name, width, height){
+		let left = (screen.width) ? (screen.width-width)/2 : 0;
+		let top = (screen.height) ? (screen.height-height)/2 : 0;
+		let popup=window.open(url, name ,"resizable=yes,toolbar=no,scrollbars=yes,location=no,top="+top+"px,left="+left+"px,width="+width+"px,height="+height+"px");
+		if(popup){
+			popup.focus();
+		}
+	}
+
+	anyidAdaptor.ssoLogin = function(){
+		let jsonObject = new Object();
+		jsonObject.txId = anyidAdaptor.certData.txId;
+		jsonObject.ssob = anyidAdaptor.certData.ssob;
+		jsonObject.userSeCd = anyidAdaptor.certData.userSeCd;
+		jsonObject.afData = anyidAdaptor.certData.afData;
+		let jsonStr = JSON.stringify(jsonObject);
+		
+		let encodedString = btoa(jsonStr);
+		var baseUrl = window.location.origin + anyidAdaptor.agencyContextPath + "/oidc/ssoLogin";
+		var urlWithParams = baseUrl + "?data=" + encodedString;
+		window.location.href = urlWithParams;
+		
+	}
+	
+	anyidAdaptor.ssoLoginPageSub = function(baseUrl, endPoint, acrValues){
+		var subUrl = "";
+		
+		if (endPoint && endPoint.trim() !== "") {
+			subUrl = "?endPoint=" + encodeURIComponent(endPoint);
+		}
+		
+		if (!acrValues && acrValues.trim() == "") {
+			acrValues = "3";
+		}
+		
+		if (acrValues && acrValues.trim() !== "") {
+			if(subUrl == ""){
+				subUrl = "?";
+			}else{
+				subUrl = subUrl + "&";
+			}
+			subUrl = subUrl + "acrValues=" + acrValues;
+		}
+		
+		window.location.replace(baseUrl+subUrl);
+	}
+	
+	/**/
+	anyidAdaptor.ssoLogout = function(endPoint) {
+		endPoint = typeof endPoint !== 'undefined' ? endPoint : "/";
+		var baseUrl = window.location.origin + anyidAdaptor.agencyContextPath + "/oidc/ssoLogout";
+		baseUrl = baseUrl + "?endPoint=" + encodeURIComponent(endPoint);
+		window.location.replace(baseUrl);
+	}
+	/**/
+	anyidAdaptor.reAuthLevel = function(endPoint, acrValues){
+		endPoint = typeof endPoint !== 'undefined' ? endPoint : "/";
+		var baseUrl = window.location.origin + anyidAdaptor.agencyContextPath + "/oidc/reAuthLevel";
+		anyidAdaptor.ssoLoginPageSub(baseUrl, endPoint, acrValues);
+
+	}
+	/**/
+	anyidAdaptor.ssoLoginPage = function(endPoint, acrValues){
+		endPoint = typeof endPoint !== 'undefined' ? endPoint : "/";
+		var baseUrl = window.location.origin + anyidAdaptor.agencyContextPath + "/oidc/auth";
+		anyidAdaptor.ssoLoginPageSub(baseUrl, endPoint, acrValues);
+	}
+	
+	/**/
+	anyidAdaptor.ssoSvcToSvc = function(url, endPoint){
+		var baseUrl = url + "/oidc/svcToSvc?endPoint=" + encodeURIComponent(endPoint);
+		window.open(baseUrl, "_blank");
+	}
+</script><header id="header">
+	<div class="header-top">
+		<div class="inner">
+			<span>이 누리집은 대한민국 공식 전자정부 누리집입니다.</span>
+		</div>
+	</div>
+	<div class="header-middle">
+		<style>
+
+.ai-chat-header-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 92px;
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: #0f6ecd;
+    color: #fff !important;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+.ai-chat-header-btn:hover {
+    background: #0b5cad;
+}
+#aiChatLayerWrap {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+}
+#aiChatLayerWrap .ai-chat-dim {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+}
+#aiChatLayerWrap .ai-chat-layer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    right: auto;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    max-width: calc(100vw - 24px);
+    /* height: 690px; */
+    max-height: calc(100vh - 24px);
+    /* background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 18px 48px rgba(0,0,0,0.28); */
+}
+#aiChatLayerWrap .ai-chat-layer-head {
+    height: 56px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #0f6ecd;
+    color: #fff;
+    box-sizing: border-box;
+}
+#aiChatLayerWrap .ai-chat-layer-head strong {
+    font-size: 16px;
+    font-weight: 700;
+}
+#aiChatLayerWrap .ai-chat-layer-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+}
+#aiChatLayerWrap .ai-chat-layer-close:hover {
+    background: rgba(255,255,255,0.15);
+}
+#aiChatLayerWrap .ai-chat-frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    /* background: #fff; */
+}
+body.ai-chat-open {
+    overflow: hidden;
+}
+@media (max-width: 767px) {
+    #aiChatLayerWrap .ai-chat-layer {
+        width: 96%;
+        /* left: 0;
+        top: 0;
+        right: auto;
+        transform: none;
+        max-width: none;
+        height: 100vh;
+        max-height: none;
+        border-radius: 0; */
+    }
+}
+</style>
+
+<div class="inner">
+    <ul class="top-menu">
+		<li>
+			<a href="#none" class="button-bottom">화면크기</a>
+			<div class="drop-menu zoom-btn">
+				<ul>
+					<li><a href="#none" data-zoom="0.9" class="xsm">작게</a></li>
+					<li><a href="#none" data-zoom="1" class="sm active">보통</a></li>
+					<li><a href="#none" data-zoom="1.1" class="md">조금 크게</a></li>
+					<li><a href="#none" data-zoom="1.2" class="lg">크게</a></li>
+					<li><a href="#none" data-zoom="1.3" class="xlg">가장 크게</a></li>
+					<li><a href="#none" class="zoom-reset"><i><img src="/humanframe/theme/global/assets/images/ico/ico_reset.svg" alt=""></i> 리셋</a></li>
+				</ul>
+			</div>
+		</li>	
+        <li><a href="/index" class="button" target="_blank" title="새창">성남시청 홈</a></li>
+        <li>
+            <a href="#none" class="button-bottom">Language</a>
+            <div class="drop-menu">
+                <ul>
+                    <li style="border-bottom: 1px solid #e0e0e0"><a id="nara1TrCur" href="javascript:void(0);" style="cursor: unset;"></a></li>
+					<li id="nara1Tr_ko" style="display:none"><a href="javascript:void(0);" onclick="changeLang('ko');" title="한국어" class="kt">한국어</a></li>
+					<li id="nara1Tr_en"><a href="javascript:void(0);" onclick="changeLang('en');" title="English (영어)" class="ktj">English (영어)</a></li>
+					<li id="nara1Tr_zh-Hans"><a href="javascript:void(0);" onclick="changeLang('zh-Hans');" title="中文 (중국어)" class="ktj">中文 (중국어)</a></li>
+					<li id="nara1Tr_ja"><a href="javascript:void(0);" onclick="changeLang('ja');" title="日本語 (일본어)" class="ktj">日本語 (일본어)</a></li>
+					<li id="nara1Tr_vi"><a href="javascript:void(0);" onclick="changeLang('vi');" title="Tiếng Việt (베트남어)" class="ktj">Tiếng Việt (베트남어)</a></li>
+					<li id="nara1Tr_es"><a href="javascript:void(0);" onclick="changeLang('es');" title="Español (스페인어)" class="ktj">Español (스페인어)</a></li>
+					<li id="nara1Tr_ru"><a href="javascript:void(0);" onclick="changeLang('ru');" title="Русский (러시아어)" class="ktj">Русский (러시아어)</a></li>
+					<li id="nara1Tr_th"><a href="javascript:void(0);" onclick="changeLang('th');" title="แบบไทย (태국어)" class="ktj">แบบไทย (태국어)</a></li>
+					<li id="nara1Tr_mn"><a href="javascript:void(0);" onclick="changeLang('mn');" title="Монгол (몽골어)" class="ktj">Монгол (몽골어)</a></li>
+					</ul>
+            </div>
+        </li>
+    </ul>
+    <div class="bottom-menu">
+        <div class="logo">
+            <h1>
+                <a href="/apply/index">
+                    <span class="hd-element">성남시 통합예약</span>
+                </a>
+            </h1>
+        </div>
+        <ul class="etc-menu">
+            <li>
+                <a href="#none" class="total-search"><i><img src="/humanframe/theme/global/assets/images/ico/ico_search.svg" alt=""></i><span>통합검색</span></a>
+                <div class="header-search">
+                    <p>통합검색</p>
+                    <label for="applyTotalSearchTop" class="hd-element">검색어 입력</label>
+                    <input type="text" id="applyTotalSearchTop" placeholder="검색어를 입력해 주세요." maxlength="150">
+                    <a href="#none" class="header-search-btn" onclick="fn_totalSearch('applyTotalSearchTop', 'wn');"><span class="hd-element">검색</span></a>
+                    <a href="#none" class="ai-search" id="btnOpenAiChatLayer">AI 검색</a>
+                    </div>
+            </li>
+            <style>
+@media only screen and (max-width: 47.99em) {
+    header .etc-menu li > a {
+        display: block !important;
+    }
+}
+
+header .my-profile span {
+    display: flex;
+}
+
+header .my-profile .time {
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    font-size: 15px;
+}
+
+header .my-profile .time span {
+	display: flex;
+    color: #A50082;
+    padding-left: 18px;
+    background: url(/humanframe/theme/global/assets/images/ico/ico_time.svg) no-repeat 0 center;
+}
+</style>
+
+<li class="login">
+			<!-- 내부오픈 기간에는 운영 도메인이 아니라서 애니아이디 사용이 안됨, 비회원로그인이라도 사용하기 위해 수정한 로그인 페이지 url 사용 -->
+			<a href="#none" onclick="return fnHeaderMberLogin(window.location.pathname + window.location.search);">
+			    	    <span><i><img src="/humanframe/theme/global/assets/images/ico/ico_login.svg" alt=""></i>로그인</span>
+					</a>
+			    </li>
+		
+		<script>
+		function fnHeaderMberLogin(returnURL) {
+			if (!returnURL) {
+				returnURL = "";
+			}
+			
+			try { sessionStorage.setItem('niceLoginReturnUrl', returnURL); } catch(e) {}
+			
+			if (window.anyidAdaptor && typeof window.anyidAdaptor.ssoLoginPage === "function") {
+				window.anyidAdaptor.ssoLoginPage(returnURL, "3");
+				return false;
+			}
+			return true;
+		}
+		</script>
+	<li><a href="#none" id="menuAll"><i><img src="/humanframe/theme/global/assets/images/ico/ico_all_menu.svg" alt=""></i><span>전체메뉴</span></a></li>
+        </ul>
+    </div>
+</div>
+<div id="aiChatLayerWrap">
+    <div class="ai-chat-dim"></div>
+    <div class="ai-chat-layer">
+        <!-- <iframe id="aiChatLayerFrame" class="ai-chat-frame" src="/fnct/ps/aiChatFront" title="AI 챗봇"></iframe> -->
+        
+        <iframe
+    id="aiChatLayerFrame"
+    class="ai-chat-frame"
+    src="about:blank"
+    data-src="/fnct/ps/aiChatFront"
+    title="AI 챗봇"></iframe>
+    
+        
+        
+        <!-- /fnct/ps/aiChatFront -->
+        
+    </div>
+</div>
+<script>
+$(function() {
+	weatherZone();
+	airZone();
+});
+
+function weatherZone() {
+    $.ajax({
+        type: "POST",
+        url: "/ajax/weatherAjax",
+        dataType: "json",
+        data: {},
+        success: function(data) {
+            if (data.success) {
+                $("#weatherIcon").attr('src', '/humanframe/theme/portal/assets/images/weather/'+data.weatherCd+'.png');
+                $("#weatherIcon").attr('alt', data.weatherNm);
+                $("#temperature").html(data.weatherTemp + "℃");
+            }
+        },
+        error: function(request, status, error) {
+            // console.log("에러코드: " + request.status + "\r\n메시지: " + request.responseText);
+        }
+    });
+}
+
+function airZone() {
+    $.ajax({
+        type: "POST",
+        url: "/ajax/airAjax",
+        dataType: "json",
+        data: {},
+        success: function(data) {
+            if (data.success) {
+                var airPm25 = data.airPm25;
+				var airPm25Img = data.airPm25Img;
+                
+				$("#airStatus").addClass(airPm25Img);
+                $("#airStatus").html(airPm25);
+            }
+        },
+        error: function(request, status, error) {
+            // console.log("에러코드: " + request.status + "\r\n메시지: " + request.responseText);
+        }
+    });
+}
+
+$(function() {
+    $(document).on('click', '#btnOpenAiChatLayer', function(e) {
+        $aiChatOpenBtn = $(this);
+
+        e.preventDefault();
+        openAiChatLayer();
+
+        const $layer = $("#aiChatLayerWrap");
+
+        $layer.attr("tabindex", "0");
+
+        setTimeout(function() {
+            $layer[0].focus();
+        }, 100);
+    });
+
+    $(document).on('click', '#btnCloseAiChatLayer, #aiChatLayerWrap .ai-chat-dim', function(e) {
+        e.preventDefault();
+        closeAiChatLayer();
+    });
+
+    $(document).on('keydown', function(e) {
+        if (e.key === 'Escape' && $('#aiChatLayerWrap').is(':visible')) {
+            closeAiChatLayer();
+        }
+    });
+
+    function closeAiChatLayer() { 
+        $('#aiChatLayerWrap').hide(); 
+
+        if ($aiChatOpenBtn && $aiChatOpenBtn.length) { 
+            setTimeout(function() {
+                $aiChatOpenBtn[0].focus();
+            }, 0);
+        } 
+    }
+});
+
+function openAiChatLayer() {
+    var $frame = $('#aiChatLayerFrame');
+    var src = $frame.attr('data-src');
+    var sep = src.indexOf('?') > -1 ? '&' : '?';
+
+    $frame.attr('src', src + sep + '_ts=' + new Date().getTime());
+
+    $('#aiChatLayerWrap').show();
+    $('body').addClass('ai-chat-open');
+}
+
+function closeAiChatLayer() {
+    $('#aiChatLayerWrap').hide();
+    $('body').removeClass('ai-chat-open');
+
+    $('#aiChatLayerFrame').attr('src', 'about:blank');
+}
+
+$(function(){
+	//검색키워드 엔터키 처리
+	$("#applyTotalSearchTop").keypress(function(event){
+	    if(event.keyCode==13){
+	    	fn_totalSearch('applyTotalSearchTop', 'wn');
+	    }
+	});		
+});
+</script></div>
+	<div class="header-bottom">
+		<div class="mobile-top">
+    <div class="mobile-close">
+        <a href="#none"><span class="hd-element">메뉴 닫기</span></a>
+    </div>
+    <!-- <ul class="top-menu">
+        <li><a href="#none" class="button button-bottom">바로가기</a></li>
+        <li><a href="#none" class="button">Language</a></li>
+    </ul> -->
+    <div class="mobile-login">
+        <a href="/oidc/auth?acrValues=3" onclick="return fnHeaderMberLogin(window.location.pathname + window.location.search);">로그인을 해주세요</a>
+        	</div>
+    <div class="mobile-search">
+        <div class="form-wrap">
+            <label for="board-input-text" class="hd-element">메뉴명을 입력해주세요</label>
+            <input type="text" id="board-input-text" name="board-input-text" class="type-medium" placeholder="메뉴명을 입력해주세요">
+            <a href="#none"><span class="hd-element">검색</span></a>
+        </div>            
+    </div>
+</div>
+
+<div class="inner">
+    <nav id="gnb">
+	    <ul>
+	    	
+	    	<li>
+						<a href="/apply/facility"  >공간시설</a>
+<div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        <li>
+						<a href="/apply/sports"  >체육시설</a>
+<div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        <li>
+						<a href="/apply/goods"  >물품대여</a>
+<div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        <li>
+						<a href="/apply/integration/list?srchFacilityType=INTG_00"  >행정복지</a>
+<div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        <li>
+						<a href="/apply/lecture/list?srchFacilityType=LECT_02"  >시민참여</a>
+<div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        <li>
+						<a href="https://learning.seongnam.go.kr/index.do" target="_blank" title="새창" class="other-link link-blank" >배움숲 <i><img src='/humanframe/theme/global/assets/images/ico/ico_link_black.svg' alt='새창열기' style='width: 18px;'></i>
+</a>
+<div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        <li>
+						<a href="/apply/myFacility"  >마이페이지</a>
+<div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        </ul>
+	</nav>
+</div>
+</div>
+</header>
+<div class="layer-popup-wrap sitemap-popup">
+	<div class="layer-popup department-popup">
+		<p>전체메뉴</p>
+		<a href="#none" class="close"><span class="hd-element">팝업닫기</span></a>
+		<div class="popup-body">
+			<ul class="portal-sitemap">
+				<li>
+							<a href="#none">공간시설</a>
+							<ul class="normal-type dot">
+								</ul>
+						</li>
+					<li>
+							<a href="#none">체육시설</a>
+							<ul class="normal-type dot">
+								</ul>
+						</li>
+					<li>
+							<a href="#none">물품대여</a>
+							<ul class="normal-type dot">
+								</ul>
+						</li>
+					<li>
+							<a href="#none">행정복지</a>
+							<ul class="normal-type dot">
+								</ul>
+						</li>
+					<li>
+							<a href="#none">시민참여</a>
+							<ul class="normal-type dot">
+								</ul>
+						</li>
+					<li>
+							<a href="#none">배움숲</a>
+							<ul class="normal-type dot">
+								</ul>
+						</li>
+					<li>
+							<a href="#none">마이페이지</a>
+							<ul class="normal-type dot">
+								</ul>
+						</li>
+					</ul>
+		</div>
+	</div>
+</div><div class="black-dim"></div>
+
+<script type="text/javascript">
+	function doApplyHeaderSearch(formId) {
+		var $form = $("#" + formId);
+		var $query = $form.find("input[name='query']");
+		var query = $.trim($query.val());
+		if (query === "") {
+			alert("검색어를 입력해 주세요.");
+			$query.focus();
+			return false;
+		}
+		return true;
+	}
+</script>
+<main class="container">
+		<div class="content-wrap inner apply-view-content">
+			<style>
+.qr-img {
+	text-align: -webkit-center !important;
+}
+</style>
+
+<div class="content-head">
+	<div class="breadcrumb">
+		<ul>
+			<li><a href="/index"><span>&#54856;</span></a></li>
+			<li><a href="/apply/online?menuType=welfare"><span>&#54665;&#51221;&#48373;&#51648;</span></a></li>
+			</ul>
+	</div>
+	<div class="content-title-wrap">
+		<h2>성남시 아빠 육아휴직 장려금 지원</h2>
+		<ul class="content-actions">
+			<li>
+				<a href="#none" class="share">
+					<span class="hd-element">공유하기</span>
+				</a>
+				<div class="share-box">
+					<ul>
+						<li>
+							<a href="#none" id="sns3" title="페이스북에 공유하기(새창열림)" onclick="shareFaceBook('공유하기','https://www.seongnam.go.kr/apply/online/view?appIdx=3609&menuType=welfare'); return false;">
+								<img src="/humanframe/theme/global/assets/images/ico/ico_share_facebook.svg" alt="페이스북 공유">
+							</a>
+						</li>
+						<li>
+							<a href="#none" id="sns1" title="카카오톡에 공유하기(새창열림)">
+								<img src="/humanframe/theme/global/assets/images/ico/ico_share_kakao.svg" alt="카카오톡 공유">
+							</a>
+						</li>
+						<li>
+							<a href="#none" id="sns0" title="밴드에 공유하기(새창열림)">
+								<img src="/humanframe/theme/global/assets/images/ico/ico_share_band.svg" alt="네이버밴드 공유">
+							</a>
+						</li>
+						<li>
+							<a href="#none" id="sns4" title="트위터에 공유하기(새창열림)" onclick="shareTwitter('성남시청 : 통합예약 : 성남시 아빠 육아휴직 장려금 지원','https://www.seongnam.go.kr/apply/online/view?appIdx=3609&menuType=welfare'); return false;">
+								<img src="/humanframe/theme/global/assets/images/ico/ico_share_x.svg" alt="트위터X 공유">
+							</a>
+						</li>
+						<li>
+							<a href="#none" id="sns6" class="qr-open" title="QR코드">
+								<img src="/humanframe/theme/global/assets/images/ico/ico_share_qr.svg" alt="QR코드">
+							</a>
+						</li>
+					</ul>
+					<div class="share-qr">
+						<a href="#none" class="close"><span class="hd-element">닫기</span></a>
+						<p>QR코드</p>
+						<div class="qr-img"></div>
+						<dl>
+							<dt>저장 방법</dt>
+							<dd>QR코드 > 마우스 오른쪽 버튼 > 이미지를 다른 이름으로 저장</dd>
+						</dl>
+						<dl>
+							<dt>단축주소</dt>
+							<dd>
+								<a href="#none" class="link" onclick="copyText()" id="shortUrl" title="복사"></a>
+							</dd>
+						</dl>
+					</div>
+				</div>
+			</li>
+			<li>
+				<a href="#none" onclick="onPrint()" onkeypress="if (event.keyCode==13){onPrint();}" class="print">
+					<span class="hd-element">프린트</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<script src="/humanframe/theme/global/assets/script/jquery.qrcode.min.js"></script>
+<script src="/humanframe/theme/global/assets/script/clipboard.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script>
+$(document).ready(function () {
+	if (window.Kakao && !Kakao.isInitialized()) {
+		Kakao.init('b23dfea5a5e5d41dab7edca4289c54f9');
+	}
+
+	if (window.Kakao && Kakao.Link) {
+		Kakao.Link.createDefaultButton({
+			container: '#sns1',
+			objectType: 'feed',
+			content: {
+				title: "성남시청 : 통합예약 : 성남시 아빠 육아휴직 장려금 지원",
+				description: '',
+				imageUrl: 'https://www.seongnam.go.kr/include/cmm_new/image/common/sns_noimg.png',
+				link: {
+					mobileWebUrl: 'https://www.seongnam.go.kr/apply/online/view?appIdx=3609&menuType=welfare',
+					webUrl: 'https://www.seongnam.go.kr/apply/online/view?appIdx=3609&menuType=welfare'
+				}
+			}
+		});
+	}
+
+	$('#sns0').on('click', function (e) {
+		e.preventDefault();
+		window.open("http://www.band.us/plugin/share?body=성남시청 : 통합예약 : 성남시 아빠 육아휴직 장려금 지원&route=https://www.seongnam.go.kr/apply/online/view?appIdx=3609&menuType=welfare", "share_band", "width=600, height=800, resizable=no");
+	});
+
+	$('#sns6').on('click', function () {
+		$.ajax({
+			type: "POST",
+			url: "/ajax/getShortUrl",
+			dataType: "json",
+			data: { "url" : "https://www.seongnam.go.kr/apply/online/view?appIdx=3609%26menuType=welfare"},
+			error: function () {
+			},
+			success: function (data) {
+				$(".qr-img").html('');
+				$(".qr-img").qrcode({
+					width : 100,
+					height : 100,
+					text : data.url
+				});
+				$("#shortUrl").html(data.url + '<i><img src="/humanframe/theme/global/assets/images/ico/ico_copy.svg" alt=""></i>');
+				$("#shortUrl").attr('data-clipboard-text', data.url);
+			}
+		});
+	});
+
+	$(".print").focus(function () {
+		$(".share-box").hide();
+	});
+});
+
+function shareTwitter(msg, url) {
+	var shareUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(msg) + "&url=" + encodeURIComponent(url);
+	var objwin = window.open(shareUrl, 'twitterPopup', 'scrollbars=no,menubar=0,toolbar=0');
+	if (objwin) {
+		objwin.focus();
+	}
+}
+
+function shareFaceBook(msg, url) {
+	var shareUrl = "http://www.facebook.com/sharer/sharer.php?t=" + encodeURIComponent(msg) + "&u=" + encodeURIComponent(url);
+	var objwin = window.open(shareUrl, 'facebookPopup', 'scrollbars=no,menubar=0,toolbar=0');
+	if (objwin) {
+		objwin.focus();
+	}
+}
+
+function copyText() {
+	var clipboard = new ClipboardJS('#shortUrl');
+	alert('단축주소가 복사되었습니다.');
+}
+
+function onPrint() {
+	window.print();
+}
+</script>
+<div id="sub" class="content-body">
+	    <div class="sub">
+	      	<div class="apply-view-body">
+	      		<div class="step-wrap">
+	      				<ul>
+	      					<li class="check">
+	      						<dl>
+	      							<dt>1단계</dt>
+	      							<dd>정보 확인</dd>
+	      						</dl>
+	      					</li>
+	      					<li>
+	      						<dl>
+	      							<dt>2단계</dt>
+	      							<dd>개인정보수집 동의</dd>
+	      						</dl>
+	      					</li>
+	      					<li>
+	      						<dl>
+	      							<dt>3단계</dt>
+	      							<dd>신청정보 입력</dd>
+	      						</dl>
+	      					</li>
+	      					<li>
+	      						<dl>
+	      							<dt>4단계</dt>
+	      							<dd>신청 완료</dd>
+	      						</dl>
+	      					</li>
+	      				</ul>
+	      			</div>
+	      		<div class="legacy-online-view">
+		        		<div class="reserv-body">
+		        			<div class="content-section mt40">
+		        				<h4 class="section-title">기본정보</h4>
+		        				<div class="info-grid">
+		        					<div class="info-item">
+		        						<span class="info-key">신청 대상</span>
+		        						<span class="info-val">남성</span>
+		        					</div>
+		        					<div class="info-item">
+		        						<span class="info-key">신청 기간</span>
+		        						<span class="info-val">
+		        							2026-08-05(수) 09:00
+		        									~
+		        									2026-12-18(금) 23:59</span>
+		        					</div>
+		        					<div class="info-item">
+		        						<span class="info-key">선발 방법</span>
+		        						<span class="info-val">예산소진시</span>
+		        					</div>
+		        					<div class="info-item">
+		        						<span class="info-key">신청 정원</span>
+		        						<span class="info-val">
+		        							
+		        									제한없음
+		        								</span>
+		        					</div>
+		        					</div>
+		        			</div>
+
+		        			<div class="content-section mt40">
+		        				<h4 class="section-title">담당 정보</h4>
+		        				<div class="info-grid">
+		        					<div class="info-item">
+		        						<span class="info-key">부서</span>
+		        						<span class="info-val">복지국 > 여성가족과</span>
+		        					</div>
+		        					<div class="info-item">
+		        						<span class="info-key">담당자</span>
+		        						<span class="info-val">한보미</span>
+		        					</div>
+		        					<div class="info-item">
+		        						<span class="info-key">문의처</span>
+		        						<span class="info-val">031-729-2916</span>
+		        					</div>
+		        					<div class="info-item">
+		        						<span class="info-key">이메일</span>
+		        						<span class="info-val">snwf@korea.kr</span>
+		        					</div>
+		        				</div>
+		        			</div>
+
+		        			<div class="content-section mt40">
+		        				<h4 class="section-title">상세안내</h4>
+		        				<div class="reserv-detail-content">
+		        					<div class="text" style="overflow:auto">
+		        						<p class="0" style="line-height: 155%; margin-left: 33px; text-indent: -25pt; margin-bottom: 9px; text-align: left; word-break: keep-all; font-size: 14pt;"><span style="font-weight: bold;">&nbsp;*온라인 접수 시 신청서와&nbsp;개인정보제공동의서&nbsp;작성 모두 필요합니다. 온라인 미접수 후&nbsp;메일로만 보내주실 시 확인이 어렵습니다.</span></p>
+<p class="0" style="line-height: 155%; margin-left: 33px; text-indent: -25pt; margin-bottom: 9px; text-align: left; word-break: keep-all; font-weight: bold; font-size: 14pt;">&nbsp;1. 지원대상</p>
+<p class="0" style="line-height: 155%; text-align: left; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-size: 14pt;"></span><span style=" letter-spacing: -1pt; font-size: 14pt;">&nbsp; &nbsp;&nbsp;</span><span style=" font-size: 14pt;">다음의 요건을 모두 충족한 남성</span><span style=" letter-spacing: 0pt; font-size: 14pt;">(</span><span style=" font-size: 14pt;">아빠</span><span style=" letter-spacing: 0pt; font-size: 14pt;">)</span><span style=" font-size: 14pt;">인 성남 시민</span></p>
+<p class="0" style="line-height: 155%; margin-top: 5px; margin-bottom: 5px; text-align: left; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style=" letter-spacing: 0pt; font-size: 14pt;">&nbsp;-</span><span style=" letter-spacing: 0pt; font-size: 14pt;">「</span><span style=" font-size: 14pt;">고용보험법</span><span style=" letter-spacing: 0pt; font-size: 14pt;">」</span><span style=" font-size: 14pt;">제</span><span style=" letter-spacing: 0pt; font-size: 14pt;">70</span><span style=" font-size: 14pt;">조에 따른 육아휴직 급여 수급자</span></p>
+<p class="0" style="line-height: 155%;"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style=" letter-spacing: 0pt; font-size: 14pt;">&nbsp;-</span><span style=" letter-spacing: -0.9pt; font-size: 14pt;"> </span><span style=" letter-spacing: -0.9pt; font-size: 14pt;">신청일 기준 </span><span style=" letter-spacing: -0.9pt; font-size: 14pt;">1</span><span style=" letter-spacing: -0.9pt; font-size: 14pt;">년 이상 계속하여 성남시에 주민등록이 되어 있는 경우</span></p>
+<p class="0" style="line-height: 155%; margin-left: 64px; text-indent: -48pt;"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style=" letter-spacing: 0pt; font-size: 14pt;">&nbsp;-</span><span style=" letter-spacing: -0.1pt; font-size: 14pt;"> </span><span style=" letter-spacing: -0.4pt; font-size: 14pt;">육아휴<span style="">직자 및 대상 자녀가 육아휴직 기간 및 장려금 지원 기간 동안 함께 성남시에 거주하는 자</span></span></p>
+<p class="0" style="line-height: 155%; margin-left: 64px; text-indent: -48pt;"><span style=" letter-spacing: -0.4pt; font-size: 14pt;">&nbsp;-&nbsp;</span><span style=" font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">고용노동부에서 지급되는&nbsp;육아휴직</span><span style=" font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">&nbsp;</span><span style=" font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">실제</span><span style=" font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">&nbsp;</span><span style=" font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">수령액이 250만원&nbsp;이하일 경우 그 차액을 지급함<span style="font-weight: bold;">(예시를 꼭 읽어보고 신청해주세요.)</span></span></p>
+<p class="0" style="line-height: 155%; margin-left: 64px; text-indent: -48pt;"><span style=" font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">&nbsp;</span><span style=" font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">&nbsp;&nbsp;</span></p>
+<p class="0" style="line-height: 155%; margin-left: 64px; text-indent: -48pt;"><span style=" font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">&nbsp; &nbsp;예시1<span style="font-size: 12pt;">)</span></span><span style="font-size: 12pt; ">육아휴직급여 지급결정 통지서에 지급받은 금액이<span style="font-weight: bold;"> </span></span><span lang="EN-US" style="font-size: 12pt;  letter-spacing: 0pt;">230</span><span style="font-size: 12pt; ">만원</span><span lang="EN-US" style="font-size: 12pt;  letter-spacing: 0pt;">(</span><span style="font-size: 12pt; ">첫째 달</span><span lang="EN-US" style="font-size: 12pt;  letter-spacing: 0pt;">~</span><span style="font-size: 12pt; ">셋째 달</span><span lang="EN-US" style="font-size: 12pt;  letter-spacing: 0pt;">)</span><span style="font-size: 12pt; ">일 경우 차액인<span style="font-weight: bold;"> </span></span><span lang="EN-US" style="font-size: 12pt;  letter-spacing: 0pt;">20</span><span style="font-size: 12pt; ">만원 지급</span></p>
+<p class="0" style="line-height: 155%; margin-left: 64px; text-indent: -48pt;"><span style="font-size: 12pt; ">&nbsp; &nbsp;</span><span style="font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">예시2<span style="font-size: 12pt;">)</span></span><span style="font-size: 12pt;">육아휴직급여 지급결정 통지서에 지급받은 금액이<span style="font-weight: bold;"> </span></span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">250</span><span style="font-size: 12pt;">만원</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">(</span><span style="font-size: 12pt;">첫째 달</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">~</span><span style="font-size: 12pt;">셋째 달</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">)</span><span style="font-size: 12pt;">일 경우 지급대상 X</span></p>
+<p class="0" style="line-height: 155%; margin-left: 64px; text-indent: -48pt;"><span style="font-size: 12pt; ">&nbsp; &nbsp;</span><span style="font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">예시3<span style="font-size: 12pt;">)</span></span><span style="font-size: 12pt;">육아휴직급여 지급결정 통지서에 지급받은 금액이<span style="font-weight: bold;">&nbsp;</span></span><span style="font-weight: bold;"><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">230</span><span style="font-size: 12pt;">만원</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">(넷째</span><span style="font-size: 12pt;">&nbsp;달</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">~여섯째</span><span style="font-size: 12pt;">&nbsp;달</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">)</span></span><span style="font-size: 12pt;"><span style="font-weight: bold;">일 경우 지급대상 X</span></span><span style="font-size: 12pt; text-indent: -48pt;">-</span><span style="font-size: 12pt; text-indent: -48pt; font-weight: bold;">&gt;</span><span style="font-size: 12pt; text-indent: -48pt; font-weight: bold;">고용노동부 기준에 따라 성남시 상한액 기준도 함께&nbsp;적용(넷째 달~여섯째 달&nbsp;상한액&nbsp;200만원)</span></p>
+<p class="0" style="line-height: 155%; margin-left: 64px; text-indent: -48pt;"><span style="font-size: 12pt; text-indent: -48pt; font-weight: bold;">&nbsp; </span><span style="font-size: 12pt; text-indent: -48pt;">&nbsp;예시4)</span><span style="font-size: 12pt;">육아휴직급여 지급결정 통지서에 지급받은 금액이&nbsp;</span><span style="font-size: 10pt; font-weight: bold;"><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">160</span><span style="font-size: 12pt;">만원</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">(일곱째 달~</span><span style="font-size: 12pt;">&nbsp;마지막&nbsp;달</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">)</span></span><span style="font-size: 12pt;"><span style="font-weight: bold;">일 경우</span><span style="font-weight: bold;">&nbsp;지급대상 X</span></span><span style="text-indent: -48pt; font-size: 12pt;">-</span><span style="text-indent: -48pt; font-size: 12pt; font-weight: bold;">&gt;</span><span style="text-indent: -48pt; font-size: 12pt; font-weight: bold;">고용노동부 기준에 따라 성남시 상한액 기준도 함께&nbsp;적용(</span><span lang="EN-US" style="font-weight: 700; letter-spacing: 0pt; font-size: 12pt;">일곱째 달~</span><span style="font-weight: 700; font-size: 12pt;">&nbsp;마지막&nbsp;달&nbsp;</span><span style="font-size: 12pt; font-weight: bold; text-indent: -48pt;">상한</span><span style="font-size: 12pt; font-weight: bold; text-indent: -48pt;">액 160만원)</span></p>
+<p class="0" style="line-height: 155%; margin-left: 64px; text-indent: -48pt;"><span style="font-size: 12pt;">&nbsp; &nbsp;</span><span style="font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">예시5<span style="font-size: 12pt;">)</span></span><span style="font-size: 12pt;">육아휴직급여 지급결정 통지서에 지급받은 금액이 180</span><span style="font-size: 12pt;">만원</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">(</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">넷째</span><span style="font-size: 12pt;">&nbsp;달</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">~여섯째</span><span style="font-size: 12pt;">&nbsp;달</span><span lang="EN-US" style="text-indent: -48pt; letter-spacing: 0pt; font-size: 12pt;">)</span><span style="text-indent: -48pt; font-size: 12pt;">일 경우 차액인&nbsp;</span><span lang="EN-US" style="text-indent: -48pt; letter-spacing: 0pt; font-size: 12pt;">20</span><span style="text-indent: -48pt; font-size: 12pt;">만원 지급</span></p>
+<p class="0" style="line-height: 155%; margin-left: 64px; text-indent: -48pt;"><span style="text-indent: -48pt; font-size: 12pt;"><br></span></p>
+<p class="0" style="line-height: 155%; margin-left: 64px; text-indent: -48pt;"><span style="color: rgb(0, 0, 255); font-family: 휴먼명조; font-size: 12pt; letter-spacing: -0.8px; text-align: center;">&nbsp; &nbsp;&nbsp;</span></p>
+<p class="0" style="line-height: 155%; text-align: left; word-break: keep-all;"><span style="font-family: 휴먼명조; font-weight: bold; font-size: 14pt;"></span><span style="font-family: 휴먼명조; font-weight: bold; font-size: 14pt;">&nbsp;2.&nbsp;지원내용</span></p>
+<p class="0" style="line-height: 155%; margin-left: 33px; text-indent: -25pt; margin-bottom: 9px; text-align: left; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-size: 14pt;">&nbsp; </span><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-size: 14pt;">&nbsp;</span><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-size: 14pt;">「</span><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-size: 14pt;">고용보험법</span><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-size: 14pt;">」</span><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-size: 14pt;">에 따른 </span><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-weight: bold; font-size: 14pt;">육아휴직급여 상한액과의 차액을 최대 </span><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-weight: bold; font-size: 14pt;">6</span><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-weight: bold; font-size: 14pt;">개월간 지원 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">- </span><span style="font-family: 휴먼명조; font-size: 14pt;">최소 </span><span style="font-family: 휴먼명조; letter-spacing: 0.2pt; font-size: 14pt;">월</span><span style="font-family: 휴먼명조; letter-spacing: 0.2pt; font-size: 14pt;">10</span><span style="font-family: 휴먼명조; letter-spacing: 0.2pt; font-size: 14pt;">만원 지원 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">- </span><span style="font-family: 휴먼명조; font-size: 14pt;">육아휴직 기간이 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">6</span><span style="font-family: 휴먼명조; font-size: 14pt;">개월 미만이면 실제 휴직한 기간만큼 지원 </span><span style="font-family: 휴먼명조; letter-spacing: -0.3pt; font-size: 14pt;"> </span><span style="font-family: 휴먼명조; letter-spacing: -0.3pt; font-size: 14pt;">- </span><span style="font-family: 휴먼명조; letter-spacing: -0.3pt; font-size: 14pt;">육아휴직 기간을 분리하여 사용한 경우 </span><span style="font-family: 휴먼명조; letter-spacing: -0.3pt; font-size: 14pt;">6</span><span style="font-family: 휴먼명조; letter-spacing: -0.3pt; font-size: 14pt;">개월까지 합산하여 지원</span></p>
+<p class="0" style="line-height: 168%; text-align: left; word-break: keep-all; margin-left: 37px; text-indent: -37px;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">&nbsp;-&nbsp;</span><span style="font-family: 휴먼명조; font-size: 14pt;">신청기간</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">: </span><span style="font-family: 휴먼명조; letter-spacing: -0.9pt; font-size: 14pt;">육아휴직 시작 </span><span style="font-family: 휴먼명조; letter-spacing: -0.9pt; font-size: 14pt;">1</span><span style="font-family: 휴먼명조; letter-spacing: -0.9pt; font-size: 14pt;">개월 이후부터 육아휴직 종료 이후 </span><span style="font-family: 휴먼명조; letter-spacing: -0.9pt; font-size: 14pt;">12</span><span style="font-family: 휴먼명조; letter-spacing: -0.9pt; font-size: 14pt;">개월 이내</span></p>
+<p class="0" style="line-height: 168%; text-align: left; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">&nbsp;-&nbsp;</span><span style="font-family: 휴먼명조; font-size: 14pt;">신청방법</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">: </span><span style="font-family: 휴먼명조; font-size: 14pt;">시 홈페이지&nbsp;</span><span style="font-family: 휴먼명조; font-size: 14pt;">온라인 신청 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">(</span><span style="font-family: 휴먼명조; font-size: 14pt;">회원가입 및 본인인증 절차 필요</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">)</span></p>
+<p class="0" style="line-height: 168%; text-align: left; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 14pt;">&nbsp;</span></p>
+<p class="0" style="text-indent: 0px; line-height: 168%; text-align: left; word-break: keep-all;"><span style="font-size: 14pt;"></span><span style="font-size: 14pt; text-indent: -26.9333px; font-family: 휴먼명조; letter-spacing: -1.46667px;">&nbsp;</span><span style="font-family: 양재소슬체S; font-size: 14pt; text-indent: -26.9333px;">※</span><span style="font-family: 휴먼명조; font-size: 14pt;">처리절차</span></p>
+<div style='overflow:auto'><table style="border-collapse: collapse; table-layout: fixed; border-width: initial; border-style: none; border-color: initial;" class="settedTableHeader" summary="아빠 육아휴직 장려금 지원 신청">
+<caption style="display: none;">아빠 육아휴직 장려금 지원 신청</caption>
+<tbody>
+<tr>
+<th style="width: 135px; height: 53px; padding: 1px; border-width: 1px 1px 3px; border-style: solid solid double; border-color: rgb(0, 0, 0); background: rgb(214, 214, 214); vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 130%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-weight: bold; font-size: 12pt;">대상조건 확인</span></p> 
+<p class="0" style="line-height: 130%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-weight: bold; font-size: 12pt;">(1</span><span style="font-family: 휴먼명조; font-weight: bold; font-size: 12pt;">단계</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-weight: bold; font-size: 12pt;">)</span></p></th>
+<th rowspan="3" style="width: 33px; height: 205px; padding: 1px; border-width: medium 3px medium medium; border-style: none solid none none; border-color: currentcolor rgb(255, 0, 0) currentcolor currentcolor; vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 130%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-weight: bold; font-size: 14pt;"><br></span></p></th>
+<th style="width: 135px; height: 53px; padding: 1px; border-width: 3px; border-style: solid solid double; border-color: rgb(255, 0, 0) rgb(255, 0, 0) rgb(0, 0, 0); background: rgb(214, 214, 214); vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 130%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-weight: bold; font-size: 12pt;">지원 신청</span></p> 
+<p class="0" style="line-height: 130%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-weight: bold; font-size: 12pt;">(2</span><span style="font-family: 휴먼명조; font-weight: bold; font-size: 12pt;">단계</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-weight: bold; font-size: 12pt;">)</span></p></th>
+<th rowspan="3" style="width: 27px; height: 205px; padding: 1px; border-width: medium 1px medium 3px; border-style: none solid; border-color: currentcolor rgb(0, 0, 0) currentcolor rgb(255, 0, 0); vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 130%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-weight: bold; font-size: 14pt;"><br></span></p></th>
+<th style="width: 156px; height: 53px; padding: 1px; border-width: 1px 1px 3px; border-style: solid solid double; border-color: rgb(0, 0, 0); background: rgb(214, 214, 214); vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 130%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-weight: bold; font-size: 12pt;">신청서류 전송</span></p> 
+<p class="0" style="line-height: 130%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-weight: bold; font-size: 12pt;">(3</span><span style="font-family: 휴먼명조; font-weight: bold; font-size: 12pt;">단계</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-weight: bold; font-size: 12pt;">)</span></p></th>
+<th rowspan="3" style="width: 28px; height: 205px; padding: 1px; border-width: medium 1px; border-style: none solid; border-color: currentcolor rgb(0, 0, 0); vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 130%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-weight: bold; font-size: 14pt;"><br></span></p></th>
+<th style="width: 118px; height: 53px; padding: 1px; border-width: 1px 1px 3px; border-style: solid solid double; border-color: rgb(0, 0, 0); background: rgb(214, 214, 214); vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 130%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-weight: bold; font-size: 12pt;">대상자 통보 및 장려금 지원</span></p></th>
+</tr>
+<tr>
+<td style="width: 135px; height: 91px; padding: 1px; border-width: 3px 1px; border-style: double solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 180%;"><span style="font-family: 휴먼명조; letter-spacing: -0.8pt; font-size: 12pt;">&nbsp;시청 홈페이지<br></span></p>
+<p class="0" style="line-height: 180%;"><span style="font-family: 휴먼명조; letter-spacing: -0.1pt; font-size: 12pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -0.1pt; font-size: 12pt;">&nbsp;접</span><span style="font-family: 휴먼명조; letter-spacing: -1.8pt; font-size: 12pt;">속 및 안내문확인</span></p></td>
+<td style="width: 135px; height: 91px; padding: 1px; border-width: 3px; border-style: double solid; border-color: rgb(0, 0, 0) rgb(255, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 150%;"><span style="font-family: 휴먼명조; letter-spacing: -2.2pt; font-size: 12pt;">&nbsp;온라인 신청하기<br></span></p>
+<p class="0" style="line-height: 150%;"><span style="font-family: 휴먼명조; letter-spacing: -2.2pt; font-size: 12pt;">클릭 후 개인정보 입력</span></p></td>
+<td style="width: 156px; height: 91px; padding: 1px; border-width: 3px 1px; border-style: double solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 150%;"><span style="font-family: 휴먼명조; letter-spacing: -0.9pt; font-size: 12pt;">신청서</span><span style="font-family: 휴먼명조; letter-spacing: -1.9pt; font-size: 12pt;">(</span><span style="font-family: 휴먼명조; letter-spacing: -1.9pt; font-size: 12pt;">자필작성</span><span style="font-family: 휴먼명조; letter-spacing: -1.9pt; font-size: 12pt;">),</span></p>
+<p class="0" style="line-height: 150%;"><span style="font-family: 휴먼명조; letter-spacing: -2pt; font-size: 12pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -2pt; font-size: 12pt;">육아휴직급여 지급결정    통지서</span><span style="font-family: 휴먼명조; letter-spacing: -2pt; font-size: 12pt;">, </span><span style="font-family: 휴먼명조; letter-spacing: -1.9pt; font-size: 12pt;">통장사본 및      신분증 사본 메일전송</span></p></td>
+<td rowspan="2" style="width: 118px; height: 152px; padding: 1px; border-width: 3px 1px 1px; border-style: double solid solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 170%;"><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">대상자 통보<br></span></p>
+<p class="0" style="line-height: 170%;"><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">(SMS</span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">전송</span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">)</span></p>
+<p class="0" style="line-height: 170%;"><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">장려금 지원<br></span></p>
+<p class="0" style="line-height: 170%;"><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">(</span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">익월 </span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">25</span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">일 한</span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">)</span></p></td>
+</tr>
+<tr>
+<td style="width: 135px; height: 61px; padding: 1px; border-width: 3px 1px 1px; border-style: double solid solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 120%; text-align: center; word-break: keep-all; letter-spacing: -1.1pt; font-size: 12pt;">&nbsp;</p>
+<p class="0" style="line-height: 120%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">&nbsp;성남시청 홈페이지</span></p>
+<p class="0" style="line-height: 120%; text-align: center; word-break: keep-all; letter-spacing: -1.6pt; font-size: 12pt;">&nbsp;</p></td>
+<td style="width: 135px; height: 61px; padding: 1px; border-width: 3px; border-style: double solid solid; border-color: rgb(0, 0, 0) rgb(255, 0, 0) rgb(255, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 120%; text-align: center; word-break: keep-all; letter-spacing: -1.1pt; font-size: 12pt;">&nbsp;</p>
+<p class="0" style="line-height: 120%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">&nbsp;성남시청 홈페이지</span></p>
+<p class="0" style="line-height: 120%; text-align: center; word-break: keep-all; letter-spacing: -1.6pt; font-size: 12pt;">&nbsp;</p></td>
+<td style="width: 156px; height: 61px; padding: 1px; border-width: 3px 1px 1px; border-style: double solid solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 180%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0.1pt; font-size: 12pt;">시 홈페이지 확인</span></p></td>
+</tr>
+</tbody>
+</table></div>
+<p><br></p>
+<p class="0" style="line-height: 168%;"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -0.9pt; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -0.9pt; font-size: 14pt;">※ </span><span style="font-family: 휴먼명조; letter-spacing: -0.9pt; font-size: 14pt;">신청서류 전송 메일주소 </span><span style="font-family: 휴먼명조; letter-spacing: -0.9pt; font-size: 14pt;">:</span><span style="font-family: 함초롬돋움; letter-spacing: 0.7pt; font-weight: bold; font-size: 14pt;"> </span><a href="mailto:snwf@korea.kr" title="아빠 육아휴직 장려금 지원 신청"><u><span style="font-family: 함초롬돋움; letter-spacing: 0.7pt; font-weight: bold; font-size: 13pt; color: rgb(128, 0, 128);">snwf@korea.kr</span></u></a><span style="font-family: 함초롬돋움; letter-spacing: 0.7pt; font-weight: bold; font-size: 13pt;">(</span><span style="font-family: 함초롬돋움; letter-spacing: 0.7pt; font-weight: bold; font-size: 13pt;">여성가족과 대표</span><span style="font-family: 함초롬돋움; letter-spacing: 0.2pt; font-weight: bold; font-size: 13pt;">메일</span><span style="font-family: 함초롬돋움; letter-spacing: 0.2pt; font-weight: bold; font-size: 13pt;">)(보안메일로 수신확인이 뜨지 않음)</span></p>
+<p class="0" style="line-height: 168%; margin-left: 43px; text-indent: -32.3pt;"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">&nbsp;&nbsp;&nbsp;</span><span style="font-family: 휴먼명조; font-size: 14pt;">지 급 일</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">: </span><span style="font-family: 휴먼명조; font-size: 14pt;">신청일 익월 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">25</span><span style="font-family: 휴먼명조; font-size: 14pt;">일~31일 내</span></p>
+<p class="0" style="line-height: 168%; margin-left: 43px; text-indent: -32.3pt;"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">&nbsp;&nbsp;&nbsp;</span><span style="font-family: 휴먼명조; font-size: 14pt;">지급방식</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">: </span><span style="font-family: 휴먼명조; font-size: 14pt;">계좌 입금</span></p>
+<p class="0" style="line-height: 168%; text-align: left; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">&nbsp;&nbsp;&nbsp;</span><span style="font-family: 휴먼명조; font-size: 14pt;">문    의</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">: </span><span style="font-family: 휴먼명조; font-size: 14pt;">성남시 여성가족과 가족정책팀 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">(</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">☎</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">031-729-2916)</span></p>
+<p class="0" style="line-height: 168%; text-align: left; word-break: keep-all; font-size: 14pt;">&nbsp;</p>
+<p class="0" style="line-height: 168%; margin-left: 33px; text-indent: -25pt; margin-bottom: 9px; text-align: left; word-break: keep-all;"><span style="font-family: 휴먼명조; font-weight: bold; font-size: 14pt;"></span><span style="font-family: 휴먼명조; font-weight: bold; font-size: 14pt;">&nbsp;3. 신청서류</span></p>
+<div style='overflow:auto'><table style="border-collapse: collapse; table-layout: fixed; border-width: initial; border-style: none; border-color: initial;" class="settedTableHeader" summary="아빠 육아휴직 장려금 지원 신청" data-pe_bxd="">
+<caption style="display: none;">아빠 육아휴직 장려금 지원 신청</caption>
+<tbody data-pe_bxd="">
+<tr>
+<th style="width: 54px; height: 24px; padding: 1px 6px; border-width: 1px 1px 3px; border-style: solid solid double; border-color: rgb(0, 0, 0); background: rgb(214, 214, 214); vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 1.5pt; font-weight: bold; font-size: 13pt;">구분</span></p></th>
+<th style="width: 353px; height: 24px; padding: 1px 6px; border-width: 1px 1px 3px; border-style: solid solid double; border-color: rgb(0, 0, 0); background: rgb(214, 214, 214); vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 1.5pt; font-weight: bold; font-size: 13pt;">신청서류</span></p></th>
+<th style="width: 85px; height: 24px; padding: 1px 6px; border-width: 1px 1px 3px; border-style: solid solid double; border-color: rgb(0, 0, 0); background: rgb(214, 214, 214); vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 1.5pt; font-weight: bold; font-size: 13pt;">비고</span></p></th>
+<th style="width: 141px; height: 24px; padding: 1px 6px; border-width: 1px 1px 3px; border-style: solid solid double; border-color: rgb(0, 0, 0); background: rgb(214, 214, 214); vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 1.5pt; font-weight: bold; font-size: 13pt;">발급처</span></p></th>
+</tr>
+<tr data-pe_bxd="">
+<td style="width: 54px; height: 23px; padding: 1px 6px; border-width: 3px 1px 1px; border-style: double solid solid; border-color: rgb(0, 0, 0); vertical-align: middle;" data-pe_bxd="">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 12pt;">&#9312;</span></p></td>
+<td style="width: 353px; height: 23px; padding: 1px 6px; border-width: 3px 1px 1px; border-style: double solid solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 12pt;">신청서 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 12pt;">1</span><span style="font-family: 휴먼명조; font-size: 12pt;">부</span></p></td>
+<td style="width: 85px; height: 23px; padding: 1px 6px; border-width: 3px 1px 1px; border-style: double solid solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 12pt;">필수제출</span></p></td>
+<td style="width: 141px; height: 23px; padding: 1px 6px; border-width: 3px 1px 1px; border-style: double solid solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 12pt;">별지 제</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 12pt;">1</span><span style="font-family: 휴먼명조; font-size: 12pt;">호서식</span></p></td>
+</tr>
+<tr>
+<td style="width: 54px; height: 35px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 12pt;">&#9313;</span></p></td>
+<td style="width: 353px; height: 35px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 12pt;">개인정보 수집 및&nbsp;</span><span style="font-family: 휴먼명조; font-size: 12pt;">이용 동의서 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 12pt;">1</span><span style="font-family: 휴먼명조; font-size: 12pt;">부</span></p></td>
+<td style="width: 85px; height: 35px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 12pt;">온라인 입력</span></p></td>
+<td style="width: 141px; height: 35px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 12pt;">별지 제</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 12pt;">2</span><span style="font-family: 휴먼명조; font-size: 12pt;">호서식</span></p></td>
+</tr>
+<tr>
+<td style="width: 54px; height: 23px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 12pt;">&#9314;</span></p></td>
+<td style="width: 353px; height: 23px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 145%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 12pt;">신청인 명의 통장사본 및 신분증 사본</span></p></td>
+<td style="width: 85px; height: 23px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 12pt;">필수제출</span></p></td>
+<td style="width: 141px; height: 23px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all; font-size: 12pt;">&nbsp;</p></td>
+</tr>
+<tr data-pe_bxd="">
+<td style="width: 54px; height: 23px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 12pt;">&#9315;</span></p></td>
+<td style="width: 353px; height: 23px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;" data-pe_bxd="">
+<p class="0" style="line-height: 145%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 12pt; color: rgb(0, 0, 255);">육아휴직급여 지급결정 통지서</span></p></td>
+<td style="width: 85px; height: 23px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 12pt;">필수제출</span></p></td>
+<td style="width: 141px; height: 23px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all; font-size: 12pt;"><a href="https://www.ei.go.kr/" title="아빠 육아휴직 장려금 지원 신청"><u><span style="font-family: 휴먼명조; font-size: 12pt; color: rgb(0, 0, 255);">고용보험 사이트</span></u></a></p></td>
+</tr>
+</tbody>
+</table></div>
+<p><br></p>
+<p class="0" style="line-height: 168%; margin-left: 26px; text-indent: -20.2pt; text-align: left; word-break: keep-all;"><span style="font-family: 양재소슬체S; letter-spacing: 0pt; font-size: 14pt;">※</span><span style="font-family: 휴먼명조; font-weight: bold; font-size: 14pt;"> </span><span style="font-family: 휴먼명조; font-weight: bold; font-size: 14pt;">육아휴직급여 지급결정통지서 온라인 발행안내</span></p>
+<p class="0" style="line-height: 168%; margin-left: 33px; text-indent: -25pt; margin-bottom: 9px;"><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt;">&nbsp; -&gt;</span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt;">고용보험 사이트 </span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt;">(www.ei.go.kr) -&gt;</span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt;">모성보호 </span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt;">-&gt;</span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt;">민원처리현황 </span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt;">(</span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt;">본인확인 필요</span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt;">)</span></p>
+<p class="0" style="line-height: 168%; margin-left: 26px; text-indent: -20.2pt; text-align: left; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt; color: rgb(255, 0, 0);">※ </span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 14pt; color: rgb(255, 0, 0);">모든 서류는 시청 홈페이지에 기재된 </span><a href="mailto:snwf@korea.kr" title="아빠 육아휴직 장려금 지원 신청"><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 14pt; color: rgb(128, 0, 128);">여성가족과 대표이메일 </span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 14pt; color: rgb(128, 0, 128);">snwf@korea.kr</span></a><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 14pt; color: rgb(255, 0, 0);"> </span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 14pt; color: rgb(255, 0, 0);">로 제출하여 주시기 바라며</span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 14pt; color: rgb(255, 0, 0);">, </span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt; color: rgb(255, 0, 0);">담당자가 추가로 자료 보완을 요구할 수 있습니다</span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt; color: rgb(255, 0, 0);">.</span></p>
+<p class="0" style="margin-left: 33px; text-indent: -25pt; margin-bottom: 9px; text-align: left; word-break: keep-all; font-weight: bold; font-size: 14pt;">&nbsp;</p>
+<p class="0" style="margin-left: 33px; text-indent: -25pt; margin-bottom: 9px; text-align: left; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-weight: bold; font-size: 14pt;">4.&nbsp;</span><span style="font-family: 휴먼명조; font-weight: bold; font-size: 14pt;">기타사항</span></p>
+<p class="0" style="text-align: left; word-break: keep-all; margin-left: 25px; text-indent: -25px;"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style="font-family: 휴먼명조; font-size: 14pt;"><span style="letter-spacing: -1.33333px;">&nbsp;-</span>&nbsp;</span><span style="font-family: 휴먼명조; font-size: 14pt;">장려금 신청은 육아휴직자 본인만 가능</span></p>
+<p class="0"><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-size: 14pt;">&nbsp;-&nbsp;</span><span style="font-family: 휴먼명조; letter-spacing: -0.8pt; font-size: 14pt;">시 홈페이지 </span><u><span style="font-family: 휴먼명조; letter-spacing: -0.8pt; font-weight: bold; font-size: 14pt; color: rgb(0, 0, 255);">온라인 접수 후 </span></u><u><span style="font-family: 휴먼명조; letter-spacing: -0.8pt; font-weight: bold; font-size: 14pt; color: rgb(0, 0, 255);">15</span></u><u><span style="font-family: 휴먼명조; letter-spacing: -0.8pt; font-weight: bold; font-size: 14pt; color: rgb(0, 0, 255);">일 이내 구비서류 미제출 시 취소 처리</span></u><span style="font-family: 휴먼명조; letter-spacing: -0.8pt; font-size: 14pt;"></span></p>
+<p class="0"><span style="font-family: 휴먼명조; font-weight: bold; font-size: 14pt;"></span><span style="font-family: 휴먼명조; font-size: 14pt;"><span style="letter-spacing: -1.33333px;">&nbsp;-</span>&nbsp;</span><span style="font-family: 휴먼명조; font-size: 14pt;">제출서류는 압축파일 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">1</span><span style="font-family: 휴먼명조; font-size: 14pt;">개로 제출 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">: </span><span style="font-family: 휴먼명조; font-size: 14pt;">파일명은 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">[</span><span style="font-family: 휴먼명조; font-size: 14pt;">장려금</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">-</span><span style="font-family: 휴먼명조; font-size: 14pt;">신청자이름</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">]</span></p>
+<p class="0"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">&nbsp; (</span><span style="font-family: 휴먼명조; font-size: 14pt;">예시</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">:</span><span style="font-family: 휴먼명조; font-size: 14pt;">장려금</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">-</span><span style="font-family: 휴먼명조; font-size: 14pt;">성남 이</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">.zip)</span></p>
+<p class="0"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style="font-family: 휴먼명조; font-size: 14pt;"><span style="letter-spacing: -1.33333px;">&nbsp;-</span>&nbsp;</span><span style="font-family: 휴먼명조; font-size: 14pt;">제출된 서류는 반환하지 않음</span></p>
+<p class="0"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">&nbsp;-&nbsp;</span><span style="font-family: 휴먼명조; font-size: 14pt;">지급중단 사유가 발생</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">(</span><span style="font-family: 휴먼명조; font-size: 14pt;">전출</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">, </span><span style="font-family: 휴먼명조; font-size: 14pt;">복직 등</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">)</span><span style="font-family: 휴먼명조; font-size: 14pt;">하거나 거짓 또는 그 밖의 부정한      방법으로 장려금을 받은 경우 지원 중단 및 즉시 반환</span></p>
+<p class="0" style="line-height: 155%; margin-left: 33px; text-indent: -25pt; margin-bottom: 9px; text-align: left; word-break: keep-all; font-weight: bold; font-size: 14pt;">&nbsp;</p>
+<p><br></p></div>
+		        				</div>
+		        			</div>
+		        		</div>
+		        		</div>
+
+		        		<!-- state 신청상태값 조사 -->
+		        		<div class="reserve-content-wrap">
+		        			<div class="reserve-content-head">
+								<div class="left-element">
+									<div class="thumb-slide-wrap">
+										<div class="swiper mySwiper1">
+											<div class="swiper-wrapper">
+												<div class="swiper-slide">
+																<img src="/fnct/apply/thumb/R25MZVNWNEJnbnN5cUdLZzQxcTdBdz09" alt="성남시 아빠 육아휴직 장려금 지원" onerror="this.onerror=null; this.src='/humanframe/theme/apply/assets/images/content/img_thumb_no.png';">
+															</div>
+														</div>
+										</div>
+									</div>
+									<div class="thumb-list-wrap">
+										<div class="swiper mySwiper2">
+											<div class="swiper-wrapper">
+												<div class="swiper-slide">
+														<span></span>
+														<a href="javascript:void(0)"><img src="/fnct/apply/thumb/WWl0cFJ6bmFaOU56eXJnazNjdFpJUT09" alt="20260719_123610_3674112b.jpg" onerror="this.onerror=null; this.src='/humanframe/theme/apply/assets/images/content/img_thumb_no.png';"></a>
+													</div>
+												</div>
+										</div>
+									</div>
+								</div>
+								<div class="info">
+									<dl>
+										<dt>신청구분</dt>
+										<dd>행정복지 ㅣ 지원금</dd>
+									</dl>
+									<dl>
+										<dt>신청대상</dt>
+										<dd>남성</dd>
+									</dl>
+									<dl>
+										<dt>선별방법</dt>
+										<dd>예산소진시</dd>
+									</dl>
+									<dl>
+										<dt>신청기간</dt>
+										<dd>
+											2026-08-05(수) 09:00 ~ 2026-12-18(금) 23:59</dd>
+									</dl>
+									<dl>
+										<dt>주소</dt>
+										<dd>
+											경기 성남시 중원구 성남대로 997 (여수동, 성남시청)<a href="#none" class="apply-location-link" onclick="openApplyLocationPopup(); return false;">위치찾기</a>
+											</dd>
+									</dl>
+									<dl>
+										<dt>담당부서</dt>
+										<dd>복지국 > 여성가족과</dd>
+									</dl>
+									<dl>
+										<dt>문의</dt>
+										<dd>031-729-2916</dd>
+									</dl>
+									<div class="point-txt">※ 온라인신청 오픈전 민원/제안/신고에서 신청하실 수 있습니다.<br/>※ [신청하기] 클릭시  민원/제안/신고로 이동 합니다.</div>
+									</div>
+			        		</div>
+		        			<div class="reserve-content-btn apply-summary-actions">
+		        				<div class="apply-summary-actions-inner apply-summary-buttons btn-wrap flex between" style="display:flex !important; align-items:center !important; justify-content:space-between !important; gap:16px !important; width:100% !important; position:static !important; bottom:auto !important; right:auto !important;">
+		        					<a class="apply-summary-button apply-summary-button--secondary btn-normal bg-btn-tertiary xlarge medium" href="#none" onclick="onList(); return false;">목록으로</a>
+		        					<a class="apply-summary-button apply-summary-button--primary btn-normal primary bg-btn-primary xlarge medium" href="https://www.seongnam.go.kr/pm02020101/107" target="_blank" title="새창열림">신청하기</a>
+															</div>
+		        			</div>
+		        			<div class="reserve-content-foot">
+								<div class="tab inner">
+									<ul class="col2">
+		        						<li class="active"><a id="applyGuideTab" href="#none" aria-selected="true" onclick="switchApplyTab('guide'); return false;">이용안내</a></li>
+		        						<li><a id="applyDetailTab" href="#none" aria-selected="false" onclick="switchApplyTab('detail'); return false;">상세정보</a></li>
+									</ul>
+								</div>
+		        				<!-- <div class="apply-switch-tabs">
+
+		        				</div> -->
+		        				<div id="applyGuidePanel" class="apply-tab-panel is-active">
+		        				<h4 id="applyGuide" class="section-title">이용안내</h4>
+		        				<div class="board-view-table">
+		        					<div class="table-line">
+		        						<dl>
+		        							<dt>선별방법</dt>
+		        							<dd>예산소진시</dd>
+		        						</dl>
+		        					</div>
+		        					<div class="table-line">
+		        						<dl>
+		        							<dt>신청대상</dt>
+		        							<dd>남성</dd>
+		        						</dl>
+		        					</div>
+		        					<div class="table-line">
+		        						<dl>
+		        							<dt>신청기간</dt>
+		        							<dd>
+		        								2026-08-05(수) 09:00
+		        										~
+		        										2026-12-18(금) 23:59</dd>
+		        						</dl>
+		        					</div>
+		        					<div class="table-line">
+		        						<dl>
+		        							<dt>정원</dt>
+		        							<dd>
+		        								
+		        										제한없음
+		        									</dd>
+		        						</dl>
+		        					</div>
+		        					</div>
+		        				</div>
+		        				<div id="applyDetailPanel" class="apply-tab-panel">
+		        					<h4 id="applyDetail" class="section-title">상세정보</h4>
+		        					<div class="board-view-table">
+		        						<div class="table-line">
+		        								<dl>
+		        									<dt>상세설명</dt>
+		        									<dd><div class="text" style="overflow:auto"><p class="0" style="line-height: 155%; margin-left: 33px; text-indent: -25pt; margin-bottom: 9px; text-align: left; word-break: keep-all; font-size: 14pt;"><span style="font-weight: bold;">&nbsp;*온라인 접수 시 신청서와&nbsp;개인정보제공동의서&nbsp;작성 모두 필요합니다. 온라인 미접수 후&nbsp;메일로만 보내주실 시 확인이 어렵습니다.</span></p>
+<p class="0" style="line-height: 155%; margin-left: 33px; text-indent: -25pt; margin-bottom: 9px; text-align: left; word-break: keep-all; font-weight: bold; font-size: 14pt;">&nbsp;1. 지원대상</p>
+<p class="0" style="line-height: 155%; text-align: left; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-size: 14pt;"></span><span style=" letter-spacing: -1pt; font-size: 14pt;">&nbsp; &nbsp;&nbsp;</span><span style=" font-size: 14pt;">다음의 요건을 모두 충족한 남성</span><span style=" letter-spacing: 0pt; font-size: 14pt;">(</span><span style=" font-size: 14pt;">아빠</span><span style=" letter-spacing: 0pt; font-size: 14pt;">)</span><span style=" font-size: 14pt;">인 성남 시민</span></p>
+<p class="0" style="line-height: 155%; margin-top: 5px; margin-bottom: 5px; text-align: left; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style=" letter-spacing: 0pt; font-size: 14pt;">&nbsp;-</span><span style=" letter-spacing: 0pt; font-size: 14pt;">「</span><span style=" font-size: 14pt;">고용보험법</span><span style=" letter-spacing: 0pt; font-size: 14pt;">」</span><span style=" font-size: 14pt;">제</span><span style=" letter-spacing: 0pt; font-size: 14pt;">70</span><span style=" font-size: 14pt;">조에 따른 육아휴직 급여 수급자</span></p>
+<p class="0" style="line-height: 155%;"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style=" letter-spacing: 0pt; font-size: 14pt;">&nbsp;-</span><span style=" letter-spacing: -0.9pt; font-size: 14pt;"> </span><span style=" letter-spacing: -0.9pt; font-size: 14pt;">신청일 기준 </span><span style=" letter-spacing: -0.9pt; font-size: 14pt;">1</span><span style=" letter-spacing: -0.9pt; font-size: 14pt;">년 이상 계속하여 성남시에 주민등록이 되어 있는 경우</span></p>
+<p class="0" style="line-height: 155%; margin-left: 64px; text-indent: -48pt;"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style=" letter-spacing: 0pt; font-size: 14pt;">&nbsp;-</span><span style=" letter-spacing: -0.1pt; font-size: 14pt;"> </span><span style=" letter-spacing: -0.4pt; font-size: 14pt;">육아휴<span style="">직자 및 대상 자녀가 육아휴직 기간 및 장려금 지원 기간 동안 함께 성남시에 거주하는 자</span></span></p>
+<p class="0" style="line-height: 155%; margin-left: 64px; text-indent: -48pt;"><span style=" letter-spacing: -0.4pt; font-size: 14pt;">&nbsp;-&nbsp;</span><span style=" font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">고용노동부에서 지급되는&nbsp;육아휴직</span><span style=" font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">&nbsp;</span><span style=" font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">실제</span><span style=" font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">&nbsp;</span><span style=" font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">수령액이 250만원&nbsp;이하일 경우 그 차액을 지급함<span style="font-weight: bold;">(예시를 꼭 읽어보고 신청해주세요.)</span></span></p>
+<p class="0" style="line-height: 155%; margin-left: 64px; text-indent: -48pt;"><span style=" font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">&nbsp;</span><span style=" font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">&nbsp;&nbsp;</span></p>
+<p class="0" style="line-height: 155%; margin-left: 64px; text-indent: -48pt;"><span style=" font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">&nbsp; &nbsp;예시1<span style="font-size: 12pt;">)</span></span><span style="font-size: 12pt; ">육아휴직급여 지급결정 통지서에 지급받은 금액이<span style="font-weight: bold;"> </span></span><span lang="EN-US" style="font-size: 12pt;  letter-spacing: 0pt;">230</span><span style="font-size: 12pt; ">만원</span><span lang="EN-US" style="font-size: 12pt;  letter-spacing: 0pt;">(</span><span style="font-size: 12pt; ">첫째 달</span><span lang="EN-US" style="font-size: 12pt;  letter-spacing: 0pt;">~</span><span style="font-size: 12pt; ">셋째 달</span><span lang="EN-US" style="font-size: 12pt;  letter-spacing: 0pt;">)</span><span style="font-size: 12pt; ">일 경우 차액인<span style="font-weight: bold;"> </span></span><span lang="EN-US" style="font-size: 12pt;  letter-spacing: 0pt;">20</span><span style="font-size: 12pt; ">만원 지급</span></p>
+<p class="0" style="line-height: 155%; margin-left: 64px; text-indent: -48pt;"><span style="font-size: 12pt; ">&nbsp; &nbsp;</span><span style="font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">예시2<span style="font-size: 12pt;">)</span></span><span style="font-size: 12pt;">육아휴직급여 지급결정 통지서에 지급받은 금액이<span style="font-weight: bold;"> </span></span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">250</span><span style="font-size: 12pt;">만원</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">(</span><span style="font-size: 12pt;">첫째 달</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">~</span><span style="font-size: 12pt;">셋째 달</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">)</span><span style="font-size: 12pt;">일 경우 지급대상 X</span></p>
+<p class="0" style="line-height: 155%; margin-left: 64px; text-indent: -48pt;"><span style="font-size: 12pt; ">&nbsp; &nbsp;</span><span style="font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">예시3<span style="font-size: 12pt;">)</span></span><span style="font-size: 12pt;">육아휴직급여 지급결정 통지서에 지급받은 금액이<span style="font-weight: bold;">&nbsp;</span></span><span style="font-weight: bold;"><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">230</span><span style="font-size: 12pt;">만원</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">(넷째</span><span style="font-size: 12pt;">&nbsp;달</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">~여섯째</span><span style="font-size: 12pt;">&nbsp;달</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">)</span></span><span style="font-size: 12pt;"><span style="font-weight: bold;">일 경우 지급대상 X</span></span><span style="font-size: 12pt; text-indent: -48pt;">-</span><span style="font-size: 12pt; text-indent: -48pt; font-weight: bold;">&gt;</span><span style="font-size: 12pt; text-indent: -48pt; font-weight: bold;">고용노동부 기준에 따라 성남시 상한액 기준도 함께&nbsp;적용(넷째 달~여섯째 달&nbsp;상한액&nbsp;200만원)</span></p>
+<p class="0" style="line-height: 155%; margin-left: 64px; text-indent: -48pt;"><span style="font-size: 12pt; text-indent: -48pt; font-weight: bold;">&nbsp; </span><span style="font-size: 12pt; text-indent: -48pt;">&nbsp;예시4)</span><span style="font-size: 12pt;">육아휴직급여 지급결정 통지서에 지급받은 금액이&nbsp;</span><span style="font-size: 10pt; font-weight: bold;"><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">160</span><span style="font-size: 12pt;">만원</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">(일곱째 달~</span><span style="font-size: 12pt;">&nbsp;마지막&nbsp;달</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">)</span></span><span style="font-size: 12pt;"><span style="font-weight: bold;">일 경우</span><span style="font-weight: bold;">&nbsp;지급대상 X</span></span><span style="text-indent: -48pt; font-size: 12pt;">-</span><span style="text-indent: -48pt; font-size: 12pt; font-weight: bold;">&gt;</span><span style="text-indent: -48pt; font-size: 12pt; font-weight: bold;">고용노동부 기준에 따라 성남시 상한액 기준도 함께&nbsp;적용(</span><span lang="EN-US" style="font-weight: 700; letter-spacing: 0pt; font-size: 12pt;">일곱째 달~</span><span style="font-weight: 700; font-size: 12pt;">&nbsp;마지막&nbsp;달&nbsp;</span><span style="font-size: 12pt; font-weight: bold; text-indent: -48pt;">상한</span><span style="font-size: 12pt; font-weight: bold; text-indent: -48pt;">액 160만원)</span></p>
+<p class="0" style="line-height: 155%; margin-left: 64px; text-indent: -48pt;"><span style="font-size: 12pt;">&nbsp; &nbsp;</span><span style="font-size: 14pt; letter-spacing: -0.3pt; text-indent: -25pt;">예시5<span style="font-size: 12pt;">)</span></span><span style="font-size: 12pt;">육아휴직급여 지급결정 통지서에 지급받은 금액이 180</span><span style="font-size: 12pt;">만원</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">(</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">넷째</span><span style="font-size: 12pt;">&nbsp;달</span><span lang="EN-US" style="letter-spacing: 0pt; font-size: 12pt;">~여섯째</span><span style="font-size: 12pt;">&nbsp;달</span><span lang="EN-US" style="text-indent: -48pt; letter-spacing: 0pt; font-size: 12pt;">)</span><span style="text-indent: -48pt; font-size: 12pt;">일 경우 차액인&nbsp;</span><span lang="EN-US" style="text-indent: -48pt; letter-spacing: 0pt; font-size: 12pt;">20</span><span style="text-indent: -48pt; font-size: 12pt;">만원 지급</span></p>
+<p class="0" style="line-height: 155%; margin-left: 64px; text-indent: -48pt;"><span style="text-indent: -48pt; font-size: 12pt;"><br></span></p>
+<p class="0" style="line-height: 155%; margin-left: 64px; text-indent: -48pt;"><span style="color: rgb(0, 0, 255); font-family: 휴먼명조; font-size: 12pt; letter-spacing: -0.8px; text-align: center;">&nbsp; &nbsp;&nbsp;</span></p>
+<p class="0" style="line-height: 155%; text-align: left; word-break: keep-all;"><span style="font-family: 휴먼명조; font-weight: bold; font-size: 14pt;"></span><span style="font-family: 휴먼명조; font-weight: bold; font-size: 14pt;">&nbsp;2.&nbsp;지원내용</span></p>
+<p class="0" style="line-height: 155%; margin-left: 33px; text-indent: -25pt; margin-bottom: 9px; text-align: left; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-size: 14pt;">&nbsp; </span><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-size: 14pt;">&nbsp;</span><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-size: 14pt;">「</span><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-size: 14pt;">고용보험법</span><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-size: 14pt;">」</span><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-size: 14pt;">에 따른 </span><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-weight: bold; font-size: 14pt;">육아휴직급여 상한액과의 차액을 최대 </span><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-weight: bold; font-size: 14pt;">6</span><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-weight: bold; font-size: 14pt;">개월간 지원 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">- </span><span style="font-family: 휴먼명조; font-size: 14pt;">최소 </span><span style="font-family: 휴먼명조; letter-spacing: 0.2pt; font-size: 14pt;">월</span><span style="font-family: 휴먼명조; letter-spacing: 0.2pt; font-size: 14pt;">10</span><span style="font-family: 휴먼명조; letter-spacing: 0.2pt; font-size: 14pt;">만원 지원 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">- </span><span style="font-family: 휴먼명조; font-size: 14pt;">육아휴직 기간이 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">6</span><span style="font-family: 휴먼명조; font-size: 14pt;">개월 미만이면 실제 휴직한 기간만큼 지원 </span><span style="font-family: 휴먼명조; letter-spacing: -0.3pt; font-size: 14pt;"> </span><span style="font-family: 휴먼명조; letter-spacing: -0.3pt; font-size: 14pt;">- </span><span style="font-family: 휴먼명조; letter-spacing: -0.3pt; font-size: 14pt;">육아휴직 기간을 분리하여 사용한 경우 </span><span style="font-family: 휴먼명조; letter-spacing: -0.3pt; font-size: 14pt;">6</span><span style="font-family: 휴먼명조; letter-spacing: -0.3pt; font-size: 14pt;">개월까지 합산하여 지원</span></p>
+<p class="0" style="line-height: 168%; text-align: left; word-break: keep-all; margin-left: 37px; text-indent: -37px;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">&nbsp;-&nbsp;</span><span style="font-family: 휴먼명조; font-size: 14pt;">신청기간</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">: </span><span style="font-family: 휴먼명조; letter-spacing: -0.9pt; font-size: 14pt;">육아휴직 시작 </span><span style="font-family: 휴먼명조; letter-spacing: -0.9pt; font-size: 14pt;">1</span><span style="font-family: 휴먼명조; letter-spacing: -0.9pt; font-size: 14pt;">개월 이후부터 육아휴직 종료 이후 </span><span style="font-family: 휴먼명조; letter-spacing: -0.9pt; font-size: 14pt;">12</span><span style="font-family: 휴먼명조; letter-spacing: -0.9pt; font-size: 14pt;">개월 이내</span></p>
+<p class="0" style="line-height: 168%; text-align: left; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">&nbsp;-&nbsp;</span><span style="font-family: 휴먼명조; font-size: 14pt;">신청방법</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">: </span><span style="font-family: 휴먼명조; font-size: 14pt;">시 홈페이지&nbsp;</span><span style="font-family: 휴먼명조; font-size: 14pt;">온라인 신청 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">(</span><span style="font-family: 휴먼명조; font-size: 14pt;">회원가입 및 본인인증 절차 필요</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">)</span></p>
+<p class="0" style="line-height: 168%; text-align: left; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 14pt;">&nbsp;</span></p>
+<p class="0" style="text-indent: 0px; line-height: 168%; text-align: left; word-break: keep-all;"><span style="font-size: 14pt;"></span><span style="font-size: 14pt; text-indent: -26.9333px; font-family: 휴먼명조; letter-spacing: -1.46667px;">&nbsp;</span><span style="font-family: 양재소슬체S; font-size: 14pt; text-indent: -26.9333px;">※</span><span style="font-family: 휴먼명조; font-size: 14pt;">처리절차</span></p>
+<div style='overflow:auto'><div style='overflow:auto'><table style="border-collapse: collapse; table-layout: fixed; border-width: initial; border-style: none; border-color: initial;" class="settedTableHeader" summary="아빠 육아휴직 장려금 지원 신청">
+<caption style="display: none;">아빠 육아휴직 장려금 지원 신청</caption>
+<tbody>
+<tr>
+<th style="width: 135px; height: 53px; padding: 1px; border-width: 1px 1px 3px; border-style: solid solid double; border-color: rgb(0, 0, 0); background: rgb(214, 214, 214); vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 130%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-weight: bold; font-size: 12pt;">대상조건 확인</span></p> 
+<p class="0" style="line-height: 130%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-weight: bold; font-size: 12pt;">(1</span><span style="font-family: 휴먼명조; font-weight: bold; font-size: 12pt;">단계</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-weight: bold; font-size: 12pt;">)</span></p></th>
+<th rowspan="3" style="width: 33px; height: 205px; padding: 1px; border-width: medium 3px medium medium; border-style: none solid none none; border-color: currentcolor rgb(255, 0, 0) currentcolor currentcolor; vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 130%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-weight: bold; font-size: 14pt;"><br></span></p></th>
+<th style="width: 135px; height: 53px; padding: 1px; border-width: 3px; border-style: solid solid double; border-color: rgb(255, 0, 0) rgb(255, 0, 0) rgb(0, 0, 0); background: rgb(214, 214, 214); vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 130%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-weight: bold; font-size: 12pt;">지원 신청</span></p> 
+<p class="0" style="line-height: 130%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-weight: bold; font-size: 12pt;">(2</span><span style="font-family: 휴먼명조; font-weight: bold; font-size: 12pt;">단계</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-weight: bold; font-size: 12pt;">)</span></p></th>
+<th rowspan="3" style="width: 27px; height: 205px; padding: 1px; border-width: medium 1px medium 3px; border-style: none solid; border-color: currentcolor rgb(0, 0, 0) currentcolor rgb(255, 0, 0); vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 130%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-weight: bold; font-size: 14pt;"><br></span></p></th>
+<th style="width: 156px; height: 53px; padding: 1px; border-width: 1px 1px 3px; border-style: solid solid double; border-color: rgb(0, 0, 0); background: rgb(214, 214, 214); vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 130%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-weight: bold; font-size: 12pt;">신청서류 전송</span></p> 
+<p class="0" style="line-height: 130%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-weight: bold; font-size: 12pt;">(3</span><span style="font-family: 휴먼명조; font-weight: bold; font-size: 12pt;">단계</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-weight: bold; font-size: 12pt;">)</span></p></th>
+<th rowspan="3" style="width: 28px; height: 205px; padding: 1px; border-width: medium 1px; border-style: none solid; border-color: currentcolor rgb(0, 0, 0); vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 130%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-weight: bold; font-size: 14pt;"><br></span></p></th>
+<th style="width: 118px; height: 53px; padding: 1px; border-width: 1px 1px 3px; border-style: solid solid double; border-color: rgb(0, 0, 0); background: rgb(214, 214, 214); vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 130%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-weight: bold; font-size: 12pt;">대상자 통보 및 장려금 지원</span></p></th>
+</tr>
+<tr>
+<td style="width: 135px; height: 91px; padding: 1px; border-width: 3px 1px; border-style: double solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 180%;"><span style="font-family: 휴먼명조; letter-spacing: -0.8pt; font-size: 12pt;">&nbsp;시청 홈페이지<br></span></p>
+<p class="0" style="line-height: 180%;"><span style="font-family: 휴먼명조; letter-spacing: -0.1pt; font-size: 12pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -0.1pt; font-size: 12pt;">&nbsp;접</span><span style="font-family: 휴먼명조; letter-spacing: -1.8pt; font-size: 12pt;">속 및 안내문확인</span></p></td>
+<td style="width: 135px; height: 91px; padding: 1px; border-width: 3px; border-style: double solid; border-color: rgb(0, 0, 0) rgb(255, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 150%;"><span style="font-family: 휴먼명조; letter-spacing: -2.2pt; font-size: 12pt;">&nbsp;온라인 신청하기<br></span></p>
+<p class="0" style="line-height: 150%;"><span style="font-family: 휴먼명조; letter-spacing: -2.2pt; font-size: 12pt;">클릭 후 개인정보 입력</span></p></td>
+<td style="width: 156px; height: 91px; padding: 1px; border-width: 3px 1px; border-style: double solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 150%;"><span style="font-family: 휴먼명조; letter-spacing: -0.9pt; font-size: 12pt;">신청서</span><span style="font-family: 휴먼명조; letter-spacing: -1.9pt; font-size: 12pt;">(</span><span style="font-family: 휴먼명조; letter-spacing: -1.9pt; font-size: 12pt;">자필작성</span><span style="font-family: 휴먼명조; letter-spacing: -1.9pt; font-size: 12pt;">),</span></p>
+<p class="0" style="line-height: 150%;"><span style="font-family: 휴먼명조; letter-spacing: -2pt; font-size: 12pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -2pt; font-size: 12pt;">육아휴직급여 지급결정    통지서</span><span style="font-family: 휴먼명조; letter-spacing: -2pt; font-size: 12pt;">, </span><span style="font-family: 휴먼명조; letter-spacing: -1.9pt; font-size: 12pt;">통장사본 및      신분증 사본 메일전송</span></p></td>
+<td rowspan="2" style="width: 118px; height: 152px; padding: 1px; border-width: 3px 1px 1px; border-style: double solid solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 170%;"><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">대상자 통보<br></span></p>
+<p class="0" style="line-height: 170%;"><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">(SMS</span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">전송</span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">)</span></p>
+<p class="0" style="line-height: 170%;"><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">장려금 지원<br></span></p>
+<p class="0" style="line-height: 170%;"><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">(</span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">익월 </span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">25</span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">일 한</span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">)</span></p></td>
+</tr>
+<tr>
+<td style="width: 135px; height: 61px; padding: 1px; border-width: 3px 1px 1px; border-style: double solid solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 120%; text-align: center; word-break: keep-all; letter-spacing: -1.1pt; font-size: 12pt;">&nbsp;</p>
+<p class="0" style="line-height: 120%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">&nbsp;성남시청 홈페이지</span></p>
+<p class="0" style="line-height: 120%; text-align: center; word-break: keep-all; letter-spacing: -1.6pt; font-size: 12pt;">&nbsp;</p></td>
+<td style="width: 135px; height: 61px; padding: 1px; border-width: 3px; border-style: double solid solid; border-color: rgb(0, 0, 0) rgb(255, 0, 0) rgb(255, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 120%; text-align: center; word-break: keep-all; letter-spacing: -1.1pt; font-size: 12pt;">&nbsp;</p>
+<p class="0" style="line-height: 120%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 12pt;">&nbsp;성남시청 홈페이지</span></p>
+<p class="0" style="line-height: 120%; text-align: center; word-break: keep-all; letter-spacing: -1.6pt; font-size: 12pt;">&nbsp;</p></td>
+<td style="width: 156px; height: 61px; padding: 1px; border-width: 3px 1px 1px; border-style: double solid solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 180%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0.1pt; font-size: 12pt;">시 홈페이지 확인</span></p></td>
+</tr>
+</tbody>
+</table></div></div>
+<p><br></p>
+<p class="0" style="line-height: 168%;"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -0.9pt; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -0.9pt; font-size: 14pt;">※ </span><span style="font-family: 휴먼명조; letter-spacing: -0.9pt; font-size: 14pt;">신청서류 전송 메일주소 </span><span style="font-family: 휴먼명조; letter-spacing: -0.9pt; font-size: 14pt;">:</span><span style="font-family: 함초롬돋움; letter-spacing: 0.7pt; font-weight: bold; font-size: 14pt;"> </span><a href="mailto:snwf@korea.kr" title="아빠 육아휴직 장려금 지원 신청"><u><span style="font-family: 함초롬돋움; letter-spacing: 0.7pt; font-weight: bold; font-size: 13pt; color: rgb(128, 0, 128);">snwf@korea.kr</span></u></a><span style="font-family: 함초롬돋움; letter-spacing: 0.7pt; font-weight: bold; font-size: 13pt;">(</span><span style="font-family: 함초롬돋움; letter-spacing: 0.7pt; font-weight: bold; font-size: 13pt;">여성가족과 대표</span><span style="font-family: 함초롬돋움; letter-spacing: 0.2pt; font-weight: bold; font-size: 13pt;">메일</span><span style="font-family: 함초롬돋움; letter-spacing: 0.2pt; font-weight: bold; font-size: 13pt;">)(보안메일로 수신확인이 뜨지 않음)</span></p>
+<p class="0" style="line-height: 168%; margin-left: 43px; text-indent: -32.3pt;"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">&nbsp;&nbsp;&nbsp;</span><span style="font-family: 휴먼명조; font-size: 14pt;">지 급 일</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">: </span><span style="font-family: 휴먼명조; font-size: 14pt;">신청일 익월 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">25</span><span style="font-family: 휴먼명조; font-size: 14pt;">일~31일 내</span></p>
+<p class="0" style="line-height: 168%; margin-left: 43px; text-indent: -32.3pt;"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">&nbsp;&nbsp;&nbsp;</span><span style="font-family: 휴먼명조; font-size: 14pt;">지급방식</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">: </span><span style="font-family: 휴먼명조; font-size: 14pt;">계좌 입금</span></p>
+<p class="0" style="line-height: 168%; text-align: left; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">&nbsp;&nbsp;&nbsp;</span><span style="font-family: 휴먼명조; font-size: 14pt;">문    의</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">: </span><span style="font-family: 휴먼명조; font-size: 14pt;">성남시 여성가족과 가족정책팀 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">(</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">☎</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">031-729-2916)</span></p>
+<p class="0" style="line-height: 168%; text-align: left; word-break: keep-all; font-size: 14pt;">&nbsp;</p>
+<p class="0" style="line-height: 168%; margin-left: 33px; text-indent: -25pt; margin-bottom: 9px; text-align: left; word-break: keep-all;"><span style="font-family: 휴먼명조; font-weight: bold; font-size: 14pt;"></span><span style="font-family: 휴먼명조; font-weight: bold; font-size: 14pt;">&nbsp;3. 신청서류</span></p>
+<div style='overflow:auto'><div style='overflow:auto'><table style="border-collapse: collapse; table-layout: fixed; border-width: initial; border-style: none; border-color: initial;" class="settedTableHeader" summary="아빠 육아휴직 장려금 지원 신청" data-pe_bxd="">
+<caption style="display: none;">아빠 육아휴직 장려금 지원 신청</caption>
+<tbody data-pe_bxd="">
+<tr>
+<th style="width: 54px; height: 24px; padding: 1px 6px; border-width: 1px 1px 3px; border-style: solid solid double; border-color: rgb(0, 0, 0); background: rgb(214, 214, 214); vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 1.5pt; font-weight: bold; font-size: 13pt;">구분</span></p></th>
+<th style="width: 353px; height: 24px; padding: 1px 6px; border-width: 1px 1px 3px; border-style: solid solid double; border-color: rgb(0, 0, 0); background: rgb(214, 214, 214); vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 1.5pt; font-weight: bold; font-size: 13pt;">신청서류</span></p></th>
+<th style="width: 85px; height: 24px; padding: 1px 6px; border-width: 1px 1px 3px; border-style: solid solid double; border-color: rgb(0, 0, 0); background: rgb(214, 214, 214); vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 1.5pt; font-weight: bold; font-size: 13pt;">비고</span></p></th>
+<th style="width: 141px; height: 24px; padding: 1px 6px; border-width: 1px 1px 3px; border-style: solid solid double; border-color: rgb(0, 0, 0); background: rgb(214, 214, 214); vertical-align: middle;" scope="col"> 
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 1.5pt; font-weight: bold; font-size: 13pt;">발급처</span></p></th>
+</tr>
+<tr data-pe_bxd="">
+<td style="width: 54px; height: 23px; padding: 1px 6px; border-width: 3px 1px 1px; border-style: double solid solid; border-color: rgb(0, 0, 0); vertical-align: middle;" data-pe_bxd="">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 12pt;">&#9312;</span></p></td>
+<td style="width: 353px; height: 23px; padding: 1px 6px; border-width: 3px 1px 1px; border-style: double solid solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 12pt;">신청서 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 12pt;">1</span><span style="font-family: 휴먼명조; font-size: 12pt;">부</span></p></td>
+<td style="width: 85px; height: 23px; padding: 1px 6px; border-width: 3px 1px 1px; border-style: double solid solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 12pt;">필수제출</span></p></td>
+<td style="width: 141px; height: 23px; padding: 1px 6px; border-width: 3px 1px 1px; border-style: double solid solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 12pt;">별지 제</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 12pt;">1</span><span style="font-family: 휴먼명조; font-size: 12pt;">호서식</span></p></td>
+</tr>
+<tr>
+<td style="width: 54px; height: 35px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 12pt;">&#9313;</span></p></td>
+<td style="width: 353px; height: 35px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 12pt;">개인정보 수집 및&nbsp;</span><span style="font-family: 휴먼명조; font-size: 12pt;">이용 동의서 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 12pt;">1</span><span style="font-family: 휴먼명조; font-size: 12pt;">부</span></p></td>
+<td style="width: 85px; height: 35px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 12pt;">온라인 입력</span></p></td>
+<td style="width: 141px; height: 35px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 12pt;">별지 제</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 12pt;">2</span><span style="font-family: 휴먼명조; font-size: 12pt;">호서식</span></p></td>
+</tr>
+<tr>
+<td style="width: 54px; height: 23px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 12pt;">&#9314;</span></p></td>
+<td style="width: 353px; height: 23px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 145%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 12pt;">신청인 명의 통장사본 및 신분증 사본</span></p></td>
+<td style="width: 85px; height: 23px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 12pt;">필수제출</span></p></td>
+<td style="width: 141px; height: 23px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all; font-size: 12pt;">&nbsp;</p></td>
+</tr>
+<tr data-pe_bxd="">
+<td style="width: 54px; height: 23px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 12pt;">&#9315;</span></p></td>
+<td style="width: 353px; height: 23px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;" data-pe_bxd="">
+<p class="0" style="line-height: 145%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 12pt; color: rgb(0, 0, 255);">육아휴직급여 지급결정 통지서</span></p></td>
+<td style="width: 85px; height: 23px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all;"><span style="font-family: 휴먼명조; font-size: 12pt;">필수제출</span></p></td>
+<td style="width: 141px; height: 23px; padding: 1px 6px; border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle;">
+<p class="0" style="line-height: 100%; text-align: center; word-break: keep-all; font-size: 12pt;"><a href="https://www.ei.go.kr/" title="아빠 육아휴직 장려금 지원 신청"><u><span style="font-family: 휴먼명조; font-size: 12pt; color: rgb(0, 0, 255);">고용보험 사이트</span></u></a></p></td>
+</tr>
+</tbody>
+</table></div></div>
+<p><br></p>
+<p class="0" style="line-height: 168%; margin-left: 26px; text-indent: -20.2pt; text-align: left; word-break: keep-all;"><span style="font-family: 양재소슬체S; letter-spacing: 0pt; font-size: 14pt;">※</span><span style="font-family: 휴먼명조; font-weight: bold; font-size: 14pt;"> </span><span style="font-family: 휴먼명조; font-weight: bold; font-size: 14pt;">육아휴직급여 지급결정통지서 온라인 발행안내</span></p>
+<p class="0" style="line-height: 168%; margin-left: 33px; text-indent: -25pt; margin-bottom: 9px;"><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt;">&nbsp; -&gt;</span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt;">고용보험 사이트 </span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt;">(www.ei.go.kr) -&gt;</span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt;">모성보호 </span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt;">-&gt;</span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt;">민원처리현황 </span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt;">(</span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt;">본인확인 필요</span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt;">)</span></p>
+<p class="0" style="line-height: 168%; margin-left: 26px; text-indent: -20.2pt; text-align: left; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt; color: rgb(255, 0, 0);">※ </span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 14pt; color: rgb(255, 0, 0);">모든 서류는 시청 홈페이지에 기재된 </span><a href="mailto:snwf@korea.kr" title="아빠 육아휴직 장려금 지원 신청"><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 14pt; color: rgb(128, 0, 128);">여성가족과 대표이메일 </span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 14pt; color: rgb(128, 0, 128);">snwf@korea.kr</span></a><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 14pt; color: rgb(255, 0, 0);"> </span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 14pt; color: rgb(255, 0, 0);">로 제출하여 주시기 바라며</span><span style="font-family: 휴먼명조; letter-spacing: -1.1pt; font-size: 14pt; color: rgb(255, 0, 0);">, </span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt; color: rgb(255, 0, 0);">담당자가 추가로 자료 보완을 요구할 수 있습니다</span><span style="font-family: 휴먼명조; letter-spacing: -0.6pt; font-size: 14pt; color: rgb(255, 0, 0);">.</span></p>
+<p class="0" style="margin-left: 33px; text-indent: -25pt; margin-bottom: 9px; text-align: left; word-break: keep-all; font-weight: bold; font-size: 14pt;">&nbsp;</p>
+<p class="0" style="margin-left: 33px; text-indent: -25pt; margin-bottom: 9px; text-align: left; word-break: keep-all;"><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-weight: bold; font-size: 14pt;">4.&nbsp;</span><span style="font-family: 휴먼명조; font-weight: bold; font-size: 14pt;">기타사항</span></p>
+<p class="0" style="text-align: left; word-break: keep-all; margin-left: 25px; text-indent: -25px;"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style="font-family: 휴먼명조; font-size: 14pt;"><span style="letter-spacing: -1.33333px;">&nbsp;-</span>&nbsp;</span><span style="font-family: 휴먼명조; font-size: 14pt;">장려금 신청은 육아휴직자 본인만 가능</span></p>
+<p class="0"><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: -1pt; font-size: 14pt;">&nbsp;-&nbsp;</span><span style="font-family: 휴먼명조; letter-spacing: -0.8pt; font-size: 14pt;">시 홈페이지 </span><u><span style="font-family: 휴먼명조; letter-spacing: -0.8pt; font-weight: bold; font-size: 14pt; color: rgb(0, 0, 255);">온라인 접수 후 </span></u><u><span style="font-family: 휴먼명조; letter-spacing: -0.8pt; font-weight: bold; font-size: 14pt; color: rgb(0, 0, 255);">15</span></u><u><span style="font-family: 휴먼명조; letter-spacing: -0.8pt; font-weight: bold; font-size: 14pt; color: rgb(0, 0, 255);">일 이내 구비서류 미제출 시 취소 처리</span></u><span style="font-family: 휴먼명조; letter-spacing: -0.8pt; font-size: 14pt;"></span></p>
+<p class="0"><span style="font-family: 휴먼명조; font-weight: bold; font-size: 14pt;"></span><span style="font-family: 휴먼명조; font-size: 14pt;"><span style="letter-spacing: -1.33333px;">&nbsp;-</span>&nbsp;</span><span style="font-family: 휴먼명조; font-size: 14pt;">제출서류는 압축파일 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">1</span><span style="font-family: 휴먼명조; font-size: 14pt;">개로 제출 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">: </span><span style="font-family: 휴먼명조; font-size: 14pt;">파일명은 </span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">[</span><span style="font-family: 휴먼명조; font-size: 14pt;">장려금</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">-</span><span style="font-family: 휴먼명조; font-size: 14pt;">신청자이름</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">]</span></p>
+<p class="0"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">&nbsp; (</span><span style="font-family: 휴먼명조; font-size: 14pt;">예시</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">:</span><span style="font-family: 휴먼명조; font-size: 14pt;">장려금</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">-</span><span style="font-family: 휴먼명조; font-size: 14pt;">성남 이</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">.zip)</span></p>
+<p class="0"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style="font-family: 휴먼명조; font-size: 14pt;"><span style="letter-spacing: -1.33333px;">&nbsp;-</span>&nbsp;</span><span style="font-family: 휴먼명조; font-size: 14pt;">제출된 서류는 반환하지 않음</span></p>
+<p class="0"><span style="font-family: 휴먼명조; font-size: 14pt;"></span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">&nbsp;-&nbsp;</span><span style="font-family: 휴먼명조; font-size: 14pt;">지급중단 사유가 발생</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">(</span><span style="font-family: 휴먼명조; font-size: 14pt;">전출</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">, </span><span style="font-family: 휴먼명조; font-size: 14pt;">복직 등</span><span style="font-family: 휴먼명조; letter-spacing: 0pt; font-size: 14pt;">)</span><span style="font-family: 휴먼명조; font-size: 14pt;">하거나 거짓 또는 그 밖의 부정한      방법으로 장려금을 받은 경우 지원 중단 및 즉시 반환</span></p>
+<p class="0" style="line-height: 155%; margin-left: 33px; text-indent: -25pt; margin-bottom: 9px; text-align: left; word-break: keep-all; font-weight: bold; font-size: 14pt;">&nbsp;</p>
+<p><br></p></div></dd>
+		        								</dl>
+		        							</div>
+		        						<div class="table-line">
+		        								<dl>
+		        									<dt>첨부파일<p>(관련 자료 서식)</p></dt>
+		        									<dd class="table-file">
+		        										<ul>
+		        										<li class="file-row"
+		        											    data-fileno="50902"
+		        											    
+		        											>
+		        												<p>
+		        													<a href="/fnct/apply/file/bmRxWTdaeDRYVmtWanJhS1UxNnA1QT09">
+		        														(2026년)공고문(안)아빠 육아휴직 장려금 지원 .hwp</a>
+		        													
+		        														(61 KB)
+		        													</p>
+		        												<div class="btn-wrap">
+		        													<a class="btn-normal btn-download" href="/fnct/apply/file/bmRxWTdaeDRYVmtWanJhS1UxNnA1QT09"><span>다운로드</span></a>
+		        													<a class="btn-normal btn-view" href="/fnct/apply/fileView?fileIdxEnc=OGJQUGw5UEVWM2hYRWl4aWl5aDRCUT09" target="_blank" title="새창열림"><span>바로보기</span></a>
+		        												</div>
+		        											</li>
+		        										</ul>
+		        									</dd>
+		        								</dl>
+		        							</div>
+		        						</div>
+		        				</div>
+		        			</div>
+		        		</div>
+		        		<div class="legacy-online-foot">
+		        			<div class="reserv-foot">
+		        				<div class="btn-wrap">
+		        					<a class="btn-normal bg-btn-tertiary xlarge" href="#none" onclick="onList(); return false;">목록</a>
+		        					<a class="apply-summary-button apply-summary-button--primary btn-normal primary bg-btn-primary xlarge medium" href="https://www.seongnam.go.kr/pm02020101/107" target="_blank" title="새창열림">신청하기</a>
+														</div>
+		        			</div>
+		        		</div>
+		        	</div>
+		    </div>
+	  	</div>
+	</div>
+</main>
+
+	<div class="layer-popup-wrap location-layer-popup">
+		    <div class="layer-popup">
+		        <p>경기 성남시 중원구 성남대로 997 (여수동, 성남시청)</p>
+		        <a href="#none" class="close"><span class="hd-element">팝업닫기</span></a>
+		        <div class="popup-body">
+		            <div id="location_map" style="height:450px;"></div>
+		        </div>
+		    </div>
+		</div>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			initializeApplyTabs();
+			setTimeout(initializeApplyTabs, 0);
+			$(window).focus(function() {
+				$('#loading').hide();
+			});
+		});
+		$(window).on('load', function () {
+			initializeApplyTabs();
+		});
+
+	    function popup() {
+	      	//$(".pop_notice").show();
+	    	if(confirm("선발 정원 이내에 신청하였더라도 담당자 검토 시, 취소될 수 있습니다.\n신청하시겠습니까?")){
+	    		applySubmit();
+	    	} else {
+	    		return;
+	    	}
+	    }
+
+	    function popup2() {
+	    	
+	    		if (confirm("본인인증 후 서비스 이용이 가능합니다.\n로그인 페이지로 이동하시겠습니까?")) {
+	    			goApplyLogin();
+	    		}
+	    	
+	    }
+
+	    function setProxy(val) {
+	    	$('input[name=appProxyYn]').val(val);
+	    }
+
+
+	    var applyLocationMap = null;
+	    var applyLocationMarker = null;
+	    var applyLocationSdkLoading = false;
+	    var applyLocationSdkCallbacks = [];
+
+	    function openApplyLocationPopup() {
+	    	$('.location-layer-popup').show();
+	    	$('.black-dim').show();
+	    	setTimeout(function () {
+	    		showApplyLocationMap();
+	    	}, 80);
+	    }
+
+	    function closeApplyLocationPopup() {
+	    	$('.location-layer-popup').hide();
+	    	$('.black-dim').hide();
+	    }
+
+	    function renderApplyLocationMessage(message) {
+	    	var mapContainer = document.getElementById('location_map');
+	    	if (!mapContainer) {
+	    		return;
+	    	}
+
+	    	mapContainer.innerHTML =
+	    		'<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#58616a;font-size:16px;font-weight:600;">'
+	    		+ message +
+	    		'</div>';
+	    }
+
+	    function isValidApplyLocationCoord(lat, lng) {
+	    	return !isNaN(lat)
+	    		&& !isNaN(lng)
+	    		&& lat >= -90
+	    		&& lat <= 90
+	    		&& lng >= -180
+	    		&& lng <= 180;
+	    }
+
+	    function ensureApplyLocationMapSdk(callback) {
+	    	if (!callback) {
+	    		return;
+	    	}
+
+	    	if (window.kakao && kakao.maps && typeof kakao.maps.load === 'function') {
+	    		kakao.maps.load(callback);
+	    		return;
+	    	}
+
+	    	if (window.kakao && kakao.maps) {
+	    		callback();
+	    		return;
+	    	}
+
+	    	applyLocationSdkCallbacks.push(callback);
+	    	if (applyLocationSdkLoading) {
+	    		return;
+	    	}
+
+	    	applyLocationSdkLoading = true;
+
+	    	var sdkScriptId = 'applyLocationKakaoMapSdk';
+	    	var sdkScript = document.getElementById(sdkScriptId);
+	    	if (!sdkScript) {
+	    		sdkScript = document.createElement('script');
+	    		sdkScript.id = sdkScriptId;
+	    		sdkScript.type = 'text/javascript';
+	    		sdkScript.src = '//dapi.kakao.com/v2/maps/sdk.js?appkey=b23dfea5a5e5d41dab7edca4289c54f9&libraries=services&autoload=false';
+	    	}
+
+	    	sdkScript.onload = function () {
+	    		applyLocationSdkLoading = false;
+	    		if (!(window.kakao && kakao.maps && typeof kakao.maps.load === 'function')) {
+	    			applyLocationSdkCallbacks = [];
+	    			renderApplyLocationMessage('지도를 불러오지 못했습니다.');
+	    			return;
+	    		}
+
+	    		kakao.maps.load(function () {
+	    			var callbacks = applyLocationSdkCallbacks.slice(0);
+	    			applyLocationSdkCallbacks = [];
+	    			for (var i = 0; i < callbacks.length; i++) {
+	    				callbacks[i]();
+	    			}
+	    		});
+	    	};
+
+	    	sdkScript.onerror = function () {
+	    		applyLocationSdkLoading = false;
+	    		applyLocationSdkCallbacks = [];
+	    		renderApplyLocationMessage('지도를 불러오지 못했습니다.');
+	    	};
+
+	    	if (!sdkScript.parentNode) {
+	    		document.head.appendChild(sdkScript);
+	    	}
+	    }
+
+	    function showApplyLocationMap() {
+	    	if (!true) {
+	    		return;
+	    	}
+	    	var mapContainer = document.getElementById('location_map');
+	    	if (!mapContainer) {
+	    		return;
+	    	}
+
+	    	mapContainer.innerHTML = '';
+	    	ensureApplyLocationMapSdk(function () {
+	    		renderApplyLocationMap(mapContainer);
+	    	});
+	    }
+
+	    function renderApplyLocationMap(mapContainer) {
+	    	if (!window.kakao || !kakao.maps) {
+	    		renderApplyLocationMessage('지도를 불러오지 못했습니다.');
+	    		return;
+	    	}
+
+	    	var renderMap = function (coords) {
+	    		var mapOption = {
+	    			center: coords,
+	    			level: 3
+	    		};
+
+	    		applyLocationMap = new kakao.maps.Map(mapContainer, mapOption);
+	    		applyLocationMarker = new kakao.maps.Marker({
+	    			position: coords
+	    		});
+	    		applyLocationMarker.setMap(applyLocationMap);
+
+	    		setTimeout(function () {
+	    			applyLocationMap.relayout();
+	    			applyLocationMap.setCenter(coords);
+	    			if (applyLocationMarker) {
+	    				applyLocationMarker.setPosition(coords);
+	    			}
+	    		}, 120);
+	    	};
+
+	    	var mapLat = parseFloat('37.4200218720325');
+	    	var mapLng = parseFloat('127.126586301128');
+
+	    	if (isValidApplyLocationCoord(mapLat, mapLng)) {
+	    		renderMap(new kakao.maps.LatLng(mapLat, mapLng));
+	    		return;
+	    	}
+
+	    	if ('경기 성남시 중원구 성남대로 997 (여수동, 성남시청)' == '') {
+	    		renderApplyLocationMessage('위치 정보가 없습니다.');
+	    		return;
+	    	}
+
+	    	var geocoder = new kakao.maps.services.Geocoder();
+	    	geocoder.addressSearch('경기 성남시 중원구 성남대로 997 (여수동, 성남시청)', function(result, status) {
+	    		if (status !== kakao.maps.services.Status.OK || !result || result.length === 0) {
+	    			renderApplyLocationMessage('지도를 찾을 수 없습니다.');
+	    			return;
+	    		}
+
+	    		renderMap(new kakao.maps.LatLng(result[0].y, result[0].x));
+	    	});
+	    }
+
+	    function initializeApplyTabs() {
+	    	var $guideTab = $('#applyGuideTab');
+	    	var $detailTab = $('#applyDetailTab');
+	    	if ($guideTab.length === 0 || $detailTab.length === 0) {
+	    		return;
+	    	}
+
+	    	$guideTab.text('이용안내');
+	    	$detailTab.text('상세정보');
+	    	$guideTab.parent().addClass('active');
+	    	$detailTab.parent().removeClass('active');
+	    	$guideTab.attr('aria-selected', 'true');
+	    	$detailTab.attr('aria-selected', 'false');
+	    }
+
+	    function switchApplyTab(tabType) {
+	    	var isGuide = tabType !== 'detail';
+	    	$('#applyGuideTab').attr('aria-selected', isGuide ? 'true' : 'false').parent().toggleClass('active', isGuide);
+	    	$('#applyDetailTab').attr('aria-selected', isGuide ? 'false' : 'true').parent().toggleClass('active', !isGuide);
+	    	$('#applyGuidePanel').toggleClass('is-active', isGuide);
+	    	$('#applyDetailPanel').toggleClass('is-active', !isGuide);
+	    }
+
+
+	    function switchSelectionTab(tabType) {
+	    	var isGuide = tabType !== 'detail';
+	    	$('#selectionGuideTab').attr('aria-selected', isGuide ? 'true' : 'false').parent().toggleClass('active', isGuide);
+	    	$('#selectionDetailTab').attr('aria-selected', isGuide ? 'false' : 'true').parent().toggleClass('active', !isGuide);
+	    	$('#selectionGuidePanel').toggleClass('is-active', isGuide);
+	    	$('#selectionDetailPanel').toggleClass('is-active', !isGuide);
+	    }
+
+	    function applySubmit() {
+	    	
+	    		if (confirm("본인인증 후 서비스 이용이 가능합니다.\n로그인 페이지로 이동하시겠습니까?")) {
+	    			goApplyLogin();
+	    		}
+	    	
+		}
+
+	    function goApplyLogin() {
+	    	/* if ('www.seongnam.go.kr' === 'new.seongnam.go.kr') {
+	    		top.location.replace('/member/login?auth=true');
+	    		return;
+	    	} */
+
+	    	fnHeaderMberLogin(window.location.pathname + window.location.search);
+			console.log(window.location.pathname + window.location.search);
+	    	top.location.replace('/oidc/auth?endPoint=' + encodeURIComponent('/apply/online/view?appIdx=3609&menuType=welfare') + '&acrValues=3');
+	    }
+
+	    function onList() {
+			$('form[name=frmEventList]').attr('action','/apply/online').submit();
+	    }
+
+	    function imgPopup() {
+	      $(".imgPopup").show();
+	    }
+
+	    function popupClose() {
+	      $(".imgPopup").hide();
+	    }
+
+	    function hideImgPopup() {
+	      $(".more").hide();
+	    }
+
+	    setTimeout(
+	      function () {
+	        $("#sub .sub .text_box img").each(function (index) {
+	          if (300 < $(this).innerWidth()) {
+	            if ($(this).attr("style") == null) {
+	              $(this).attr("style", "width:100%; max-width:" + $(this).innerWidth() + "px");
+	            } else {
+	              $(this).attr("style", $(this).attr("style") + "; height:auto; max-height:none; width:100%; max-width:" + $(this).innerWidth() + "px");
+	            }
+	          }
+	        });
+	      },
+	      500
+	    );
+
+	</script>
+
+	<form name="frmEventList" id="frmEventList" method="post" action="">
+		<input type="hidden" name="currentPage" value="1"/>
+		<input type="hidden" name="menuType" value="welfare"/>
+		<input type="hidden" name="searchTerm" value=""/>
+		<input type="hidden" name="searchView" value="">
+		<input type="hidden" name="searchDiv" value="">
+		<input type="hidden" name="searchTarget" value="">
+		<input type="hidden" name="searchTargetName" value="">
+		<input type="hidden" name="searchName" value="">
+		<input type="hidden" name="searchAnnStrDt" value="">
+		<input type="hidden" name="searchAnnEndDt" value="">
+	</form>
+
+	<form name="frmSubmit" id="frmSubmit" method="post" action="/apply/online/submit">
+		<input type="hidden" name="appIdx" value="3609">
+		<input type="hidden" name="appProxyYn" value="N">
+		<input type="hidden" name="menuType" value="welfare">
+		<input type="hidden" name="step" value="agree">
+			</form>
+
+	<script>
+  function showPrivacyCenter(responseText) {
+    responseText = responseText.replace(
+      "javascript:goBack()",
+      "javascript:goBack2()",
+    );
+    responseText = responseText.replace("◀ 뒤로가기", "닫기");
+    $("#divPrivacyCenter").html(responseText);
+    $(".chart02").show();
+    $("html, body").animate({ scrollTop: 400 }, 100);
+  }
+
+  function goBack2() {
+    $("#divPrivacyCenter").html("");
+    $(".chart02").hide();
+  }
+</script>
+
+<div class="chart-pop chart02" tabindex="0" style="display: none">
+  <div id="divPrivacyCenter" class="layer-content"></div>
+  <div id="loading2"></div>
+</div>
+
+<footer>
+<div class="footer-info">
+  <div class="inner">
+    <div class="footer-logo">
+      <a href="/main" target="_blank" title="새창열림">
+        <img src="/humanframe/theme/apply/assets/images/common/logo_footer.svg" alt="성남시 Seongnam City">
+      </a>
+    </div>
+    <div class="address-wrap">
+      <div class="address">
+        <p><span>13437</span>경기도 성남시 중원구 성남대로 997 (여수동)</p>
+        <p><span>성남콜센터</span> <strong>1577-3100</strong> 평일 09:00 ~ 18:00 (토·일·공휴일 제외)<br> 상담시간 외 당직실 연결</p>
+      </div>
+      <div class="address-map">
+        <ul>
+          <li><a href="http://www.webwatch.or.kr/Situation/WA_Situation.html?MenuCD=110" title="새창에서 열림" target="_blank"><img src="/humanframe/theme/global/assets/images/common/footer_wa.svg" alt="웹접근성인증마크"></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="util">
+      <ul>
+        <li><a href="/city/1000458/10268/contents" target="_blank" title="새창"><strong>개인정보처리방침</strong></a></li>
+        <li><a href="/city/1000490/10376/contents" target="_blank" title="새창">저작권정책</a></li>
+      </ul>
+      <p>Copyright ⓒ Seongnam City. All Rights Reserved.</p>
+    </div>
+  </div>
+</div>
+</footer><style>
+	#loading {position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.8); overflow: hidden; background: rgba(0,0,0,0.8); z-index: 9999;}    
+	.loader {width: 150px; height: 20px; position: absolute; left: calc(50% - 75px); top: calc(50% - 10px);}
+	.loader .balls {filter: url(#goo);}
+	.loader .balls .ball.moving {box-shadow: none;}
+	.loader .ball {width: 20px; height: 20px; background-color: #29acff; position: absolute; border-radius: 30px; animation: 3s ease-in-out infinite;}
+	.loader .ball:nth-child(1) {left: 0px; animation-name: scale1;}
+	.loader .ball:nth-child(2) {left: 40px; animation-name: scale2;}
+	.loader .ball:nth-child(3) {left: 80px; animation-name: scale3;}
+	.loader .ball:nth-child(4) {left: 120px; animation-name: scale4;}
+	.loader .ball.moving {animation: move 3s ease-in-out infinite; left: -30px; background-color: #50F2F5; box-shadow: 0 0 10px #50F2F5, 0 0 30px #50F2F5, 0 0 100px #50F2F5;}
+	
+	@keyframes move {50% {left: 130px;}}
+	@keyframes scale1 {0%, 100% {transform: scale(1.1);} 10%, 90% {transform: scale(1.2);} 20%, 80% { transform: scale(1);}}
+	@keyframes scale2 {20%, 80% {transform: scale(1.2);} 10%, 30%, 70%, 90% {transform: scale(1);}}
+	@keyframes scale3 {30%, 70% {transform: scale(1.2);} 20%, 40%, 60%, 80% {transform: scale(1);}}
+	@keyframes scale4 {50% {transform: scale(1.1);} 40%, 60% { transform: scale(1.2);} 30%, 70% { transform: scale(1);}}
+</style>
+
+<div id="loading" style="display:none;">
+	<div class="loader">
+		<div class="ball moving"></div>
+		<div class="balls">
+			<div class="ball"></div>
+			<div class="ball"></div>
+			<div class="ball"></div>
+			<div class="ball"></div>
+			<div class="ball moving"></div>
+		</div>
+	</div>
+</div>
+
+<script>
+function fileDownload(filePath, saveFileNm, oFileNm) {
+	var filter = "win16|win32|win64|mac";
+	if(navigator.platform){
+		if(0 > filter.indexOf(navigator.platform.toLowerCase())){
+			location.href="/fnct/apply/fileDownload?filePath="+filePath+"&saveFileNm="+saveFileNm+"&oFileNm="+oFileNm;
+		}else{
+			$.fileDownload('/fnct/apply/fileDownload', {
+				httpMethod: "POST",
+				data:{'filePath' : filePath, 'saveFileNm' : saveFileNm, 'oFileNm' : oFileNm}
+			});
+		}
+	}
+}
+
+function fileView(filePath, saveFileNm, oFileNm) {
+	$("body").append("<form name=\"fileForm\" id=\"fileForm\" method=\"post\" target=\"_blank\">");
+	$("#fileForm").append("<input type=\"hidden\" name=\"filePath\" value=\""+filePath+"\"/>");
+	$("#fileForm").append("<input type=\"hidden\" name=\"saveFileNm\" value=\""+saveFileNm+"\"/>");
+	$("#fileForm").append("<input type=\"hidden\" name=\"oFileNm\" value=\""+oFileNm+"\"/>");
+	var win = window.open("", "fileView");
+	$("#fileForm").attr("target", "fileView").attr("action", "/fnct/apply/fileView").submit();
+	$("#fileForm").remove();
+	win.focus();
+}
+</script>
+</div>
+
+</body>
+</html>

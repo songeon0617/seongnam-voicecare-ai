@@ -1,0 +1,76 @@
+{
+  "id": "domain-066",
+  "question": "성남에서 버스 타려면",
+  "at": "2026-09-07T09:57:11.947Z",
+  "ms": 556,
+  "schemaPass": true,
+  "response": {
+    "query": "성남에서 버스 타려면",
+    "kind": "search_unavailable",
+    "results": [],
+    "hasResults": false,
+    "answer": {
+      "userQuestion": "성남에서 버스 타려면",
+      "title": "공식 검색을 완료하지 못했습니다",
+      "plainLanguageSummary": "검색 결과와 원문 근거를 대조하지 못해 상세 안내를 보류했습니다.",
+      "steps": [],
+      "nextAction": null,
+      "sources": [],
+      "verification": {
+        "status": "insufficient_data",
+        "checkedAt": null,
+        "details": "검색 결과와 원문 근거를 대조하지 못해 상세 안내를 보류했습니다."
+      }
+    },
+    "officialSearch": {
+      "status": "source_unverified",
+      "evidence": [],
+      "links": [],
+      "usage": {
+        "model": "gpt-5.6-terra",
+        "inputTokens": 11014,
+        "outputTokens": 334,
+        "toolCalls": 1,
+        "estimatedUsd": 0.0277895,
+        "durationMs": 546
+      },
+      "diagnostics": {
+        "phase": "extraction",
+        "budget": {
+          "aiCalls": 1,
+          "searchCalls": 1,
+          "originalFetches": 6,
+          "maxOriginalFetches": 16
+        },
+        "discovered": 3,
+        "rejected": 15,
+        "findings": 1,
+        "pages": [
+          {
+            "url": "https://www.seongnam.go.kr/city/1000050/10040/contents.do",
+            "status": "failed",
+            "errorCode": "source_http_404"
+          },
+          {
+            "url": "https://www.seongnam.go.kr/sn02030601",
+            "status": "fetched",
+            "textLength": 2208,
+            "sections": 5,
+            "omittedSections": 0
+          },
+          {
+            "url": "https://job.seongnam.go.kr/contents/content.do?cIdx=132",
+            "status": "fetched",
+            "textLength": 667,
+            "sections": 1,
+            "omittedSections": 0
+          }
+        ],
+        "reason": "no_relevant_evidence"
+      },
+      "region": "성남시",
+      "searched": true
+    }
+  },
+  "semanticReview": "PENDING"
+}

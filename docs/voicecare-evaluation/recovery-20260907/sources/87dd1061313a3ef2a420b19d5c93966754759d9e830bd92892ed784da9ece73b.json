@@ -1,0 +1,72 @@
+{
+  "url": "https://www.seongnam.go.kr/apply/online/view?appIdx=3609&menuType=welfare",
+  "title": "행정복지 - 성남시 통합예약",
+  "paragraphs": [],
+  "sections": [],
+  "navigation": [
+    {
+      "url": "https://www.seongnam.go.kr/",
+      "title": "본문 바로가기"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/index",
+      "title": "성남시청 홈"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/apply/index",
+      "title": "성남시 통합예약"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/oidc/auth?acrValues=3",
+      "title": "로그인을 해주세요"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/apply/facility",
+      "title": "공간시설"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/apply/sports",
+      "title": "체육시설"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/apply/goods",
+      "title": "물품대여"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/apply/integration/list?srchFacilityType=INTG_00",
+      "title": "행정복지"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/apply/lecture/list?srchFacilityType=LECT_02",
+      "title": "시민참여"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/apply/myFacility",
+      "title": "마이페이지"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/apply/online?menuType=welfare",
+      "title": "행정복지"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm02020101/107",
+      "title": "신청하기"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/fnct/apply/file/bmRxWTdaeDRYVmtWanJhS1UxNnA1QT09",
+      "title": "(2026년)공고문(안)아빠 육아휴직 장려금 지원 .hwp"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/city/1000458/10268/contents",
+      "title": "개인정보처리방침"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/city/1000490/10376/contents",
+      "title": "저작권정책"
+    }
+  ],
+  "textLength": 84,
+  "omittedSections": 0,
+  "checkedAt": "2026-09-06T16:18:35.938Z",
+  "fromCache": false
+}

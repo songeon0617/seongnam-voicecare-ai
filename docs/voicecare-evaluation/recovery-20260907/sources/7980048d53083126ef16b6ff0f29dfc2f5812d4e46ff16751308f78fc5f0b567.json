@@ -1,0 +1,628 @@
+{
+  "url": "https://www.snlib.go.kr/ct/index.do",
+  "title": "중앙도서관",
+  "paragraphs": [],
+  "sections": [],
+  "navigation": [
+    {
+      "url": "https://www.snlib.go.kr/ct/40008/contents.do",
+      "title": "전자도서관 바로가기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/intro/index.do",
+      "title": "도서관사업소"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/index.do",
+      "title": "중앙도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/gd/index.do",
+      "title": "고등도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/gm/index.do",
+      "title": "구미도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ng/index.do",
+      "title": "논골도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/mjg/index.do",
+      "title": "무지개도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/bj/index.do",
+      "title": "복정도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/bd/index.do",
+      "title": "분당도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/sh/index.do",
+      "title": "서현도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/sn/index.do",
+      "title": "수내도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/sj/index.do",
+      "title": "수정도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/uj/index.do",
+      "title": "운중도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/wr/index.do",
+      "title": "위례도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/jw/index.do",
+      "title": "중원도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/cjw/index.do",
+      "title": "중원어린이도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/bt/index.do",
+      "title": "책테마파크도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/pg/index.do",
+      "title": "판교도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/cpg/index.do",
+      "title": "판교어린이도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/hor/index.do",
+      "title": "해오름도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/small/index.do",
+      "title": "작은도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/40036/contents.do",
+      "title": "온라인정회원신청"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/siteMap.do",
+      "title": "사이트맵"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10138/contents/40007/contents.do",
+      "title": "자료검색 도움말"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10133/program/30006/plusLoanBestList.do",
+      "title": "대출베스트"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10134/program/30007/libraryPopularBookList.do",
+      "title": "공공도서관인기도서"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/12716/program/30128/smartLibraryBookList.do",
+      "title": "스마트도서관 검색"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/207651/contents/40039/contents.do",
+      "title": "어린이책야간대출"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10097/contents/40031/contents.do",
+      "title": "도서관안내"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10098/contents/40032/contents.do",
+      "title": "CCTV설치현황"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10099/contents/40033/contents.do",
+      "title": "층별안내"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10094/program/30003/dataStatus.do",
+      "title": "장서현황"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10100/contents/40034/contents.do",
+      "title": "조직/업무정보"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10096/contents/40030/contents.do",
+      "title": "찾아오시는길"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10102/contents/40035/contents.do",
+      "title": "이용안내"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10103/contents/40036/contents.do",
+      "title": "회원가입"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10104/contents/40037/contents.do",
+      "title": "도서대출/반납/예약"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/12871/contents/40001/contents.do",
+      "title": "상호대차서비스"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/12872/contents/40381/contents.do",
+      "title": "대학상호대차서비스"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10114/contents/40003/contents.do",
+      "title": "책배달서비스"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/4101194/contents/41012/contents.do",
+      "title": "책나래"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10115/contents/40004/contents.do",
+      "title": "내 생애 첫 도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10116/contents/40005/contents.do",
+      "title": "두루두루"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10107/contents/40002/contents.do",
+      "title": "모바일앱서비스"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10117/contents/40041/contents.do",
+      "title": "실별안내"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10118/contents/40042/contents.do",
+      "title": "2층"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10119/contents/40043/contents.do",
+      "title": "3층"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10120/contents/40044/contents.do",
+      "title": "4층"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10109/contents/40038/contents.do",
+      "title": "일반열람실 이용안내"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10110/contents/40039/contents.do",
+      "title": "어린이책야간대출(무인예약)"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10112/contents/40045/contents.do",
+      "title": "자료기증"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10113/contents/40067/contents.do",
+      "title": "무선인터넷 사용안내"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/1548905/contents/40900/contents.do",
+      "title": "북스타트 사업"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10123/contents/40046/contents.do",
+      "title": "편의시설"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10124/contents/40047/contents.do",
+      "title": "사물함"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10125/contents/40048/contents.do",
+      "title": "주차장"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10127/contents/40049/contents.do",
+      "title": "구내식당"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/205569/contents/41302/contents.do",
+      "title": "책이음안내"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10141/program/30035/recommendBookList.do?recommendType=monthly",
+      "title": "도서정보/전자도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/12975/program/30144/aiBookAge.do",
+      "title": "취향분석 추천도서"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/205507/program/30121/publicationList.do",
+      "title": "연속간행물목록"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/205508/program/30121/publicationList.do?searchCategory=146",
+      "title": "일반"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/205509/program/30121/publicationList.do?searchCategory=147",
+      "title": "아동"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/206027/contents/41520/contents.do",
+      "title": "전자도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10150/contents/40008/contents.do",
+      "title": "전자도서관 이용안내"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10151/contents/40009/contents.do",
+      "title": "오디오북"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/206972/contents/41980/contents.do",
+      "title": "경기도사이버도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10152/contents/40010/contents.do",
+      "title": "DBpia"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/206070/contents/41540/contents.do",
+      "title": "KISS"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10153/contents/40011/contents.do",
+      "title": "전자잡지"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/206072/contents/41542/contents.do",
+      "title": "어학강좌"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/206071/contents/41541/contents.do",
+      "title": "뮤직 라이브러리"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/4101181/contents/41000/contents.do",
+      "title": "사서에게 물어보세요"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10154/program/30012/calendar.do",
+      "title": "문화마당"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10161/contents/40051/contents.do",
+      "title": "문화강좌"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10162/contents/40052/contents.do",
+      "title": "독서회"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10163/contents/40053/contents.do",
+      "title": "컴퓨터교실"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10160/program/30013/teacherList.do",
+      "title": "강사소개"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10169/contents/40057/contents.do",
+      "title": "문화행사"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10170/contents/40058/contents.do",
+      "title": "독서의달"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10167/contents/40055/contents.do",
+      "title": "독서교실"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10168/contents/40056/contents.do",
+      "title": "방학특강"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10157/contents/41840/contents.do",
+      "title": "수강신청"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10172/contents/40060/contents.do",
+      "title": "독서치유"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10173/contents/40061/contents.do",
+      "title": "독서치유강좌"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/206148/contents/41600/contents.do",
+      "title": "독서동아리"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/12699/program/30127/readingClubNewList.do",
+      "title": "독서동아리등록및검색"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10183/contents/40063/contents.do",
+      "title": "신청서비스"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10185/contents/40064/contents.do",
+      "title": "견학신청"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10187/contents/40062/contents.do",
+      "title": "동아리방공간신청"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/12081/program/30084/communityCalendar.do",
+      "title": "동아리방 신청하기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/206812/contents/41880/contents.do",
+      "title": "미디어창작실"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/206813/program/30074/communityCalendar.do",
+      "title": "미디어창작실 신청하기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10182/program/30016/surveyList.do",
+      "title": "설문조사"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10139/contents/40022/contents.do",
+      "title": "희망도서 신청"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10140/program/30011/hopeBookApply.do",
+      "title": "신청하기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/intro/41900/contents.do",
+      "title": "지역서점 바로대출 신청"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/12874/contents/40382/contents.do",
+      "title": "학술기관 상호대차 신청"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/12875/program/30140/universityLoanApply.do",
+      "title": "신청하기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10191/program/30017/mypage/myInfo.do",
+      "title": "내서재"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10197/program/30019/mypage/loanStatusList.do",
+      "title": "도서이용정보"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10198/program/30020/mypage/reservationStatusList.do",
+      "title": "예약현황"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10200/program/30022/mypage/bandLillStatusList.do",
+      "title": "상호대차현황"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/12876/program/30140/mypage/universityLoanStatusList.do",
+      "title": "대학상호대차현황"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10193/program/30018/mypage/basketGroupMain.do",
+      "title": "나만의책장(관심도서)"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10202/program/30011/mypage/hopeBookList.do",
+      "title": "나의신청정보"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10203/program/30074/mypage/communityApplyList.do",
+      "title": "미디어창작실신청"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/12082/program/30084/mypage/communityApplyList.do",
+      "title": "동아리방공간신청"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10204/program/30036/mypage/visitApplyList.do",
+      "title": "견학신청"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10201/program/30014/mypage/lectureApplyList.do",
+      "title": "수강신청"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10207/program/30023/mypage/myPopularBookList.do",
+      "title": "도서추천서비스"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10208/program/30024/mypage/plusRecommendBookTopList.do",
+      "title": "유형별 추천도서"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/12976/program/30145/mypage/aiBook.do",
+      "title": "나만의 맞춤도서"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/12977/program/30146/mypage/customMyNewBookMain.do",
+      "title": "나만의 신착도서"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10212/program/30028/siteMap.do",
+      "title": "홈페이지 이용안내"
+    },
+    {
+      "url": "https://www.snlib.go.kr/intro/40026/contents.do",
+      "title": "이용약관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10214/contents/40065/contents.do",
+      "title": "개인정보처리방침"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10215/contents/40066/contents.do",
+      "title": "영상정보처리기기운영방침"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/menu/10216/contents/40029/contents.do",
+      "title": "이메일무단수집거부"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/loanStatusList.do",
+      "title": "대출현황"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/reservationStatusList.do",
+      "title": "예약현황"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/bandLillStatusList.do",
+      "title": "상호대차조회"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/hopeBookList.do",
+      "title": "희망도서신청조회"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/basketGroupMain.do",
+      "title": "관심도서보기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/40022/contents.do",
+      "title": "희망도서 신청"
+    },
+    {
+      "url": "https://www.snlib.go.kr/intro/40001/contents.do",
+      "title": "상호대차"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/aiBookAge.do",
+      "title": "취향분석추천도서"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/contents/roomStatus.do",
+      "title": "열람실좌석현황"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/smartLibraryBookList.do",
+      "title": "스마트도서관"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/41600/contents.do",
+      "title": "독서동아리"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/40055/contents.do",
+      "title": "문화행사"
+    },
+    {
+      "url": "https://www.snlib.go.kr/intro/40010/contents.do",
+      "title": "온라인학술DB"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/40035/contents.do",
+      "title": "더보기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/gm/40106/contents.do",
+      "title": "더보기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ng/40924/contents.do",
+      "title": "더보기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/mjg/40187/contents.do",
+      "title": "더보기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/bj/40784/contents.do",
+      "title": "더보기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/bd/40072/contents.do",
+      "title": "더보기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/sh/40444/contents.do",
+      "title": "더보기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/sj/40327/contents.do",
+      "title": "더보기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/uj/40167/contents.do",
+      "title": "더보기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/wr/41104/contents.do",
+      "title": "더보기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/jw/40243/contents.do",
+      "title": "더보기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/cjw/40292/contents.do",
+      "title": "더보기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/bt/41764/contents.do",
+      "title": "더보기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/pg/40135/contents.do",
+      "title": "더보기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/cpg/40205/contents.do",
+      "title": "더보기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/hor/40264/contents.do",
+      "title": "더보기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/gd/40387/contents.do",
+      "title": "더보기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/sn/42334/contents.do",
+      "title": "더보기"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/40065/contents.do",
+      "title": "개인정보처리방침"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/40066/contents.do",
+      "title": "영상정보처리기기운영·관리방침"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/40029/contents.do",
+      "title": "이메일무단수집거부"
+    },
+    {
+      "url": "https://www.snlib.go.kr/ct/40030/contents.do",
+      "title": "찾아오시는길"
+    }
+  ],
+  "textLength": 3946,
+  "omittedSections": 0,
+  "checkedAt": "2026-09-06T16:25:55.493Z",
+  "fromCache": false
+}

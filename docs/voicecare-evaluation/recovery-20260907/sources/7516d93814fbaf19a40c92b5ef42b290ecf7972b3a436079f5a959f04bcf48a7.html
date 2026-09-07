@@ -1,0 +1,2665 @@
+<!-- fnct -->
+<!DOCTYPE html>
+<html lang="ko" >
+<head>
+	<link rel="shortcut icon" href="/humanframe/theme/global/assets/images/ico/ico_sns_favicon.png" type="image/x-icon"/>
+	<link rel="icon" href="/humanframe/theme/global/assets/images/ico/ico_sns_favicon.png" type="image/x-icon"/>
+	<link rel="canonical" href="https://www.seongnam.go.kr/apply/index">
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-S9V1ZM2H9S"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		  gtag('config', 'G-S9V1ZM2H9S');
+		</script>
+	<title>
+		시민참여
+	            	-
+	            시민참여
+	       - 성남시 통합예약
+	    </title>
+
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="성남시 통합예약">
+    <meta name="keywords" content="">
+    <meta property="og:image" content="https://www.seongnam.go.kr/humanframe/theme/global/assets/images/common/kakaotalk_thum.png">
+    
+ 	<!-- global -->
+    <link rel="stylesheet" href="/humanframe/theme/global/assets/style/style.css">
+    <link rel="stylesheet" href="/humanframe/theme/global/assets/plugin/swiper/swiper-bundle.min.css">
+    <script src="/humanframe/theme/global/assets/script/jquery-1.12.4.min.js"></script>
+    <script src="/humanframe/theme/global/assets/plugin/swiper/swiper-bundle.min.js"></script>
+    
+    <script src="/humanframe/theme/global/assets/script/common.js"></script>
+    
+    <!-- theme -->
+    <link rel="stylesheet" href="/humanframe/theme/apply/assets/style/layout/layout.css">
+    <link rel="stylesheet" href="/humanframe/theme/apply/assets/style/style.css">
+    
+    <link rel="stylesheet" href="/humanframe/theme/apply/assets/plugin/fullpage/fullpage.min.css">
+    <script src="/humanframe/theme/apply/assets/script/common.js"></script>
+    <script src="/humanframe/theme/apply/assets/script/main.js"></script>
+    <script src="/humanframe/theme/apply/assets/plugin/fullpage/jquery.fullpage.js"></script>
+    
+    <style>
+		.paginate a.com2.prev {
+		    width: auto;
+		    background-image: url(/humanframe/theme/global/assets/images/ico/ico_prev.svg);
+		    background-position: center;
+    		padding: 15px;
+    		margin-right: 4px;
+		}
+		.paginate a.com2.next {
+		    width: auto;
+		    background-image: url(/humanframe/theme/global/assets/images/ico/ico_next.svg);
+		    background-position: center;
+    		padding: 15px;
+    		margin-left: 2px;
+		}
+		.paginate a.com {
+		    display: unset !important;
+		}
+		.checkbox-type {
+		    align-items: center !important;
+		}
+		.textcolor-danger {
+		  	color: #BD2C0F !important;
+		}
+		.reserve-time-wrap {
+		    grid-template-columns: repeat(3, 1fr) !important;
+		}
+		@media only screen and (max-width: 47.99em) {
+		    .paginate {
+		        padding-top: 0px;
+		    }
+		}
+		</style>
+	    <link rel="stylesheet" href="/humanframe/theme/global/assets/style/jquery-ui.css">
+	    <script src="/humanframe/theme/global/assets/script/jquery-3.7.1.min.js"></script>
+	    <script src="/humanframe/theme/global/assets/script/jquery-ui.min.js"></script>
+    </head>
+
+
+
+<script>
+	var anyidAdaptor = anyidAdaptor || {};
+
+	/*이용기관 수정 영역 Start*/
+	anyidAdaptor.orgLogin = function(data){
+		//정부 통합인증SDK_연계가이드 4.4.1.3 이용기관 로그인(토글 off) 참조
+		//제공되는 라이브러리 메소드로 인증데이터 decrypt 이후 자체 로그인 로직 개발
+		const params = new URLSearchParams(location.search);
+		var obj ={
+			ssob : data.ssob
+			, tag : params.get("tx")
+		}
+
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", "/fnct/mber/nonmember/anyidProc.do", true);
+		xhr.setRequestHeader("Content-Type", "application/json");
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4) {  // 요청 완료
+				if (xhr.status === 200) {  // 서버 응답 성공
+					try {
+						const response = JSON.parse(xhr.responseText);
+
+						if (response.status === "success") {
+							//console.log("로그인 성공 >>>>> ", JSON.stringify(response));
+							// 성공 시 메인 페이지로 이동
+							window.location.href = "/index"; // 실제 메인 페이지 URL로 수정
+						} else {
+							// 인증 실패 시 메시지 표시
+							alert(response.message || "로그인에 실패했습니다. 다시 시도해주세요.");
+						}
+					} catch (e) {
+						// console.error("응답 파싱 에러:", e);
+						alert("서버 응답 처리 중 오류가 발생했습니다.");
+					}
+				} else {
+					// console.error("서버 오류:", xhr.status, xhr.statusText);
+					alert("서버와 통신 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+				}
+			}
+		};
+		xhr.send(JSON.stringify(obj));
+		
+	}
+	/*이용기관 수정 영역 End*/
+	
+	
+	/*이용기관 문구수정 영역 Start*/
+	anyidAdaptor.JoinConfirm = function(portalJoinUri, memberData){
+		if(confirm('Any-ID 사용자로 등록하시겠습니까?')) {
+			anyidAdaptor.receiveAnyIdJoin(portalJoinUri, memberData);
+		} else {
+			anyidAdaptor.orgLogin(anyidAdaptor.certData);
+			return;
+		}
+	}
+	/*이용기관 문구수정 영역 End*/
+	
+	anyidAdaptor.portalJoinUri = "null";
+	anyidAdaptor.certData = null;
+	
+	anyidAdaptor.ssoByPass = "0";
+	anyidAdaptor.niRegYn = "";
+	anyidAdaptor.agencyContextPath = "";
+	
+	
+	anyidAdaptor.success = function(data){
+		if(anyidAdaptor.ssoByPass != 0 || !data.useSso) {
+			anyidAdaptor.orgLogin(data);
+		} else {
+			anyidAdaptor.certData = data;
+			anyidAdaptor.userCheck();
+		}  
+	}
+	
+	anyidAdaptor.userCheck = function(){
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", anyidAdaptor.agencyContextPath + "/oidc/userCheck", true);
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4 && xhr.status === 200) {
+				var response = JSON.parse(xhr.responseText);
+				if (response.success) {
+					anyidAdaptor.ssoLogin();
+				} else {
+					setTimeout(function() {
+						anyidAdaptor.receiveAnyIdJoin(response.uri, response.data);
+					}, 100);  
+				}
+			}
+		};
+
+		let jsonObject = new Object();
+		jsonObject.txId = anyidAdaptor.certData.txId;
+		jsonObject.ssob = anyidAdaptor.certData.ssob;
+		jsonObject.userSeCd = anyidAdaptor.certData.userSeCd;
+		
+		let jsonStr = JSON.stringify(jsonObject);
+		let encodedString = btoa(jsonStr);
+		
+		var data = "data=" + encodedString + "&txId=" + anyidAdaptor.certData.txId;
+		xhr.send(data);
+		
+	}
+
+	//anyid가입
+	anyidAdaptor.receiveAnyIdJoin = function(portalJoinUri, memberData){
+	
+		var url = portalJoinUri+encodeURIComponent(memberData);
+		anyidAdaptor.popup(url,"openAnyIdRegistUserIdv",700,740);
+
+		window.addEventListener("message", function(event) {
+			var result;
+			try {
+				result = JSON.parse(event.data);
+			} catch (error) {
+				// console.error("Received message is not valid JSON:", error);
+				return;
+			}
+			
+			if(!result.funcName || (result.funcName !== "trmsAgreComplete" && result.funcName !== "registUserComplete")) {
+				return;
+			}
+			if(result.status === "success") {
+				if(result.trmsAgreYn == "Y"){
+					anyidAdaptor.ssoLogin();
+				}else{
+					anyidAdaptor.orgLogin(anyidAdaptor.certData);
+				}
+			}else{
+				
+				anyidAdaptor.orgLogin(anyidAdaptor.certData);
+			}
+
+		}, false);
+	}
+
+	// 팝업 호출
+	anyidAdaptor.popup = function(url, name, width, height){
+		let left = (screen.width) ? (screen.width-width)/2 : 0;
+		let top = (screen.height) ? (screen.height-height)/2 : 0;
+		let popup=window.open(url, name ,"resizable=yes,toolbar=no,scrollbars=yes,location=no,top="+top+"px,left="+left+"px,width="+width+"px,height="+height+"px");
+		if(popup){
+			popup.focus();
+		}
+	}
+
+	anyidAdaptor.ssoLogin = function(){
+		let jsonObject = new Object();
+		jsonObject.txId = anyidAdaptor.certData.txId;
+		jsonObject.ssob = anyidAdaptor.certData.ssob;
+		jsonObject.userSeCd = anyidAdaptor.certData.userSeCd;
+		jsonObject.afData = anyidAdaptor.certData.afData;
+		let jsonStr = JSON.stringify(jsonObject);
+		
+		let encodedString = btoa(jsonStr);
+		var baseUrl = window.location.origin + anyidAdaptor.agencyContextPath + "/oidc/ssoLogin";
+		var urlWithParams = baseUrl + "?data=" + encodedString;
+		window.location.href = urlWithParams;
+		
+	}
+	
+	anyidAdaptor.ssoLoginPageSub = function(baseUrl, endPoint, acrValues){
+		var subUrl = "";
+		
+		if (endPoint && endPoint.trim() !== "") {
+			subUrl = "?endPoint=" + encodeURIComponent(endPoint);
+		}
+		
+		if (!acrValues && acrValues.trim() == "") {
+			acrValues = "3";
+		}
+		
+		if (acrValues && acrValues.trim() !== "") {
+			if(subUrl == ""){
+				subUrl = "?";
+			}else{
+				subUrl = subUrl + "&";
+			}
+			subUrl = subUrl + "acrValues=" + acrValues;
+		}
+		
+		window.location.replace(baseUrl+subUrl);
+	}
+	
+	/**/
+	anyidAdaptor.ssoLogout = function(endPoint) {
+		endPoint = typeof endPoint !== 'undefined' ? endPoint : "/";
+		var baseUrl = window.location.origin + anyidAdaptor.agencyContextPath + "/oidc/ssoLogout";
+		baseUrl = baseUrl + "?endPoint=" + encodeURIComponent(endPoint);
+		window.location.replace(baseUrl);
+	}
+	/**/
+	anyidAdaptor.reAuthLevel = function(endPoint, acrValues){
+		endPoint = typeof endPoint !== 'undefined' ? endPoint : "/";
+		var baseUrl = window.location.origin + anyidAdaptor.agencyContextPath + "/oidc/reAuthLevel";
+		anyidAdaptor.ssoLoginPageSub(baseUrl, endPoint, acrValues);
+
+	}
+	/**/
+	anyidAdaptor.ssoLoginPage = function(endPoint, acrValues){
+		endPoint = typeof endPoint !== 'undefined' ? endPoint : "/";
+		var baseUrl = window.location.origin + anyidAdaptor.agencyContextPath + "/oidc/auth";
+		anyidAdaptor.ssoLoginPageSub(baseUrl, endPoint, acrValues);
+	}
+	
+	/**/
+	anyidAdaptor.ssoSvcToSvc = function(url, endPoint){
+		var baseUrl = url + "/oidc/svcToSvc?endPoint=" + encodeURIComponent(endPoint);
+		window.open(baseUrl, "_blank");
+	}
+</script><body>
+	<div class="wrapper" id="wrapper">
+	    <div id="skipnav">
+	        <a href="#gnb">주메뉴 바로가기</a>
+	        <a href="#contentLoad">본문 바로가기</a>
+	    </div>
+	    <header id="header">
+			<div class="header-top">
+			    <div class="inner">
+			        <span>이 누리집은 대한민국 공식 전자정부 누리집입니다.</span>
+			    </div>
+			</div>   
+			<div class="header-middle">
+			    <style>
+
+.ai-chat-header-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 92px;
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: #0f6ecd;
+    color: #fff !important;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+.ai-chat-header-btn:hover {
+    background: #0b5cad;
+}
+#aiChatLayerWrap {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+}
+#aiChatLayerWrap .ai-chat-dim {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+}
+#aiChatLayerWrap .ai-chat-layer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    right: auto;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    max-width: calc(100vw - 24px);
+    /* height: 690px; */
+    max-height: calc(100vh - 24px);
+    /* background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 18px 48px rgba(0,0,0,0.28); */
+}
+#aiChatLayerWrap .ai-chat-layer-head {
+    height: 56px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #0f6ecd;
+    color: #fff;
+    box-sizing: border-box;
+}
+#aiChatLayerWrap .ai-chat-layer-head strong {
+    font-size: 16px;
+    font-weight: 700;
+}
+#aiChatLayerWrap .ai-chat-layer-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+}
+#aiChatLayerWrap .ai-chat-layer-close:hover {
+    background: rgba(255,255,255,0.15);
+}
+#aiChatLayerWrap .ai-chat-frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    /* background: #fff; */
+}
+body.ai-chat-open {
+    overflow: hidden;
+}
+@media (max-width: 767px) {
+    #aiChatLayerWrap .ai-chat-layer {
+        width: 96%;
+        /* left: 0;
+        top: 0;
+        right: auto;
+        transform: none;
+        max-width: none;
+        height: 100vh;
+        max-height: none;
+        border-radius: 0; */
+    }
+}
+</style>
+
+<div class="inner">
+    <ul class="top-menu">
+		<li>
+			<a href="#none" class="button-bottom">화면크기</a>
+			<div class="drop-menu zoom-btn">
+				<ul>
+					<li><a href="#none" data-zoom="0.9" class="xsm">작게</a></li>
+					<li><a href="#none" data-zoom="1" class="sm active">보통</a></li>
+					<li><a href="#none" data-zoom="1.1" class="md">조금 크게</a></li>
+					<li><a href="#none" data-zoom="1.2" class="lg">크게</a></li>
+					<li><a href="#none" data-zoom="1.3" class="xlg">가장 크게</a></li>
+					<li><a href="#none" class="zoom-reset"><i><img src="/humanframe/theme/global/assets/images/ico/ico_reset.svg" alt=""></i> 리셋</a></li>
+				</ul>
+			</div>
+		</li>	
+        <li><a href="/index" class="button" target="_blank" title="새창">성남시청 홈</a></li>
+        <li>
+            <a href="#none" class="button-bottom">Language</a>
+            <div class="drop-menu">
+                <ul>
+                    <li style="border-bottom: 1px solid #e0e0e0"><a id="nara1TrCur" href="javascript:void(0);" style="cursor: unset;"></a></li>
+					<li id="nara1Tr_ko" style="display:none"><a href="javascript:void(0);" onclick="changeLang('ko');" title="한국어" class="kt">한국어</a></li>
+					<li id="nara1Tr_en"><a href="javascript:void(0);" onclick="changeLang('en');" title="English (영어)" class="ktj">English (영어)</a></li>
+					<li id="nara1Tr_zh-Hans"><a href="javascript:void(0);" onclick="changeLang('zh-Hans');" title="中文 (중국어)" class="ktj">中文 (중국어)</a></li>
+					<li id="nara1Tr_ja"><a href="javascript:void(0);" onclick="changeLang('ja');" title="日本語 (일본어)" class="ktj">日本語 (일본어)</a></li>
+					<li id="nara1Tr_vi"><a href="javascript:void(0);" onclick="changeLang('vi');" title="Tiếng Việt (베트남어)" class="ktj">Tiếng Việt (베트남어)</a></li>
+					<li id="nara1Tr_es"><a href="javascript:void(0);" onclick="changeLang('es');" title="Español (스페인어)" class="ktj">Español (스페인어)</a></li>
+					<li id="nara1Tr_ru"><a href="javascript:void(0);" onclick="changeLang('ru');" title="Русский (러시아어)" class="ktj">Русский (러시아어)</a></li>
+					<li id="nara1Tr_th"><a href="javascript:void(0);" onclick="changeLang('th');" title="แบบไทย (태국어)" class="ktj">แบบไทย (태국어)</a></li>
+					<li id="nara1Tr_mn"><a href="javascript:void(0);" onclick="changeLang('mn');" title="Монгол (몽골어)" class="ktj">Монгол (몽골어)</a></li>
+					</ul>
+            </div>
+        </li>
+    </ul>
+    <div class="bottom-menu">
+        <div class="logo">
+            <h1>
+                <a href="/apply/index">
+                    <span class="hd-element">성남시 통합예약</span>
+                </a>
+            </h1>
+        </div>
+        <ul class="etc-menu">
+            <li>
+                <a href="#none" class="total-search"><i><img src="/humanframe/theme/global/assets/images/ico/ico_search.svg" alt=""></i><span>통합검색</span></a>
+                <div class="header-search">
+                    <p>통합검색</p>
+                    <label for="applyTotalSearchTop" class="hd-element">검색어 입력</label>
+                    <input type="text" id="applyTotalSearchTop" placeholder="검색어를 입력해 주세요." maxlength="150">
+                    <a href="#none" class="header-search-btn" onclick="fn_totalSearch('applyTotalSearchTop', 'wn');"><span class="hd-element">검색</span></a>
+                    <a href="#none" class="ai-search" id="btnOpenAiChatLayer">AI 검색</a>
+                    </div>
+            </li>
+            <style>
+@media only screen and (max-width: 47.99em) {
+    header .etc-menu li > a {
+        display: block !important;
+    }
+}
+
+header .my-profile span {
+    display: flex;
+}
+
+header .my-profile .time {
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    font-size: 15px;
+}
+
+header .my-profile .time span {
+	display: flex;
+    color: #A50082;
+    padding-left: 18px;
+    background: url(/humanframe/theme/global/assets/images/ico/ico_time.svg) no-repeat 0 center;
+}
+</style>
+
+<li class="login">
+			<!-- 내부오픈 기간에는 운영 도메인이 아니라서 애니아이디 사용이 안됨, 비회원로그인이라도 사용하기 위해 수정한 로그인 페이지 url 사용 -->
+			<a href="#none" onclick="return fnHeaderMberLogin(window.location.pathname + window.location.search);">
+			    	    <span><i><img src="/humanframe/theme/global/assets/images/ico/ico_login.svg" alt=""></i>로그인</span>
+					</a>
+			    </li>
+		
+		<script>
+		function fnHeaderMberLogin(returnURL) {
+			if (!returnURL) {
+				returnURL = "";
+			}
+			
+			try { sessionStorage.setItem('niceLoginReturnUrl', returnURL); } catch(e) {}
+			
+			if (window.anyidAdaptor && typeof window.anyidAdaptor.ssoLoginPage === "function") {
+				window.anyidAdaptor.ssoLoginPage(returnURL, "3");
+				return false;
+			}
+			return true;
+		}
+		</script>
+	<li><a href="#none" id="menuAll"><i><img src="/humanframe/theme/global/assets/images/ico/ico_all_menu.svg" alt=""></i><span>전체메뉴</span></a></li>
+        </ul>
+    </div>
+</div>
+<div id="aiChatLayerWrap">
+    <div class="ai-chat-dim"></div>
+    <div class="ai-chat-layer">
+        <!-- <iframe id="aiChatLayerFrame" class="ai-chat-frame" src="/fnct/ps/aiChatFront" title="AI 챗봇"></iframe> -->
+        
+        <iframe
+    id="aiChatLayerFrame"
+    class="ai-chat-frame"
+    src="about:blank"
+    data-src="/fnct/ps/aiChatFront"
+    title="AI 챗봇"></iframe>
+    
+        
+        
+        <!-- /fnct/ps/aiChatFront -->
+        
+    </div>
+</div>
+<script>
+$(function() {
+	weatherZone();
+	airZone();
+});
+
+function weatherZone() {
+    $.ajax({
+        type: "POST",
+        url: "/ajax/weatherAjax",
+        dataType: "json",
+        data: {},
+        success: function(data) {
+            if (data.success) {
+                $("#weatherIcon").attr('src', '/humanframe/theme/portal/assets/images/weather/'+data.weatherCd+'.png');
+                $("#weatherIcon").attr('alt', data.weatherNm);
+                $("#temperature").html(data.weatherTemp + "℃");
+            }
+        },
+        error: function(request, status, error) {
+            // console.log("에러코드: " + request.status + "\r\n메시지: " + request.responseText);
+        }
+    });
+}
+
+function airZone() {
+    $.ajax({
+        type: "POST",
+        url: "/ajax/airAjax",
+        dataType: "json",
+        data: {},
+        success: function(data) {
+            if (data.success) {
+                var airPm25 = data.airPm25;
+				var airPm25Img = data.airPm25Img;
+                
+				$("#airStatus").addClass(airPm25Img);
+                $("#airStatus").html(airPm25);
+            }
+        },
+        error: function(request, status, error) {
+            // console.log("에러코드: " + request.status + "\r\n메시지: " + request.responseText);
+        }
+    });
+}
+
+$(function() {
+    $(document).on('click', '#btnOpenAiChatLayer', function(e) {
+        $aiChatOpenBtn = $(this);
+
+        e.preventDefault();
+        openAiChatLayer();
+
+        const $layer = $("#aiChatLayerWrap");
+
+        $layer.attr("tabindex", "0");
+
+        setTimeout(function() {
+            $layer[0].focus();
+        }, 100);
+    });
+
+    $(document).on('click', '#btnCloseAiChatLayer, #aiChatLayerWrap .ai-chat-dim', function(e) {
+        e.preventDefault();
+        closeAiChatLayer();
+    });
+
+    $(document).on('keydown', function(e) {
+        if (e.key === 'Escape' && $('#aiChatLayerWrap').is(':visible')) {
+            closeAiChatLayer();
+        }
+    });
+
+    function closeAiChatLayer() { 
+        $('#aiChatLayerWrap').hide(); 
+
+        if ($aiChatOpenBtn && $aiChatOpenBtn.length) { 
+            setTimeout(function() {
+                $aiChatOpenBtn[0].focus();
+            }, 0);
+        } 
+    }
+});
+
+function openAiChatLayer() {
+    var $frame = $('#aiChatLayerFrame');
+    var src = $frame.attr('data-src');
+    var sep = src.indexOf('?') > -1 ? '&' : '?';
+
+    $frame.attr('src', src + sep + '_ts=' + new Date().getTime());
+
+    $('#aiChatLayerWrap').show();
+    $('body').addClass('ai-chat-open');
+}
+
+function closeAiChatLayer() {
+    $('#aiChatLayerWrap').hide();
+    $('body').removeClass('ai-chat-open');
+
+    $('#aiChatLayerFrame').attr('src', 'about:blank');
+}
+
+$(function(){
+	//검색키워드 엔터키 처리
+	$("#applyTotalSearchTop").keypress(function(event){
+	    if(event.keyCode==13){
+	    	fn_totalSearch('applyTotalSearchTop', 'wn');
+	    }
+	});		
+});
+</script></div>
+			<div class="header-bottom">
+			    <div class="mobile-top">
+    <div class="mobile-close">
+        <a href="#none"><span class="hd-element">메뉴 닫기</span></a>
+    </div>
+    <!-- <ul class="top-menu">
+        <li><a href="#none" class="button button-bottom">바로가기</a></li>
+        <li><a href="#none" class="button">Language</a></li>
+    </ul> -->
+    <div class="mobile-login">
+        <a href="/oidc/auth?acrValues=3" onclick="return fnHeaderMberLogin(window.location.pathname + window.location.search);">로그인을 해주세요</a>
+        	</div>
+    <div class="mobile-search">
+        <div class="form-wrap">
+            <label for="board-input-text" class="hd-element">메뉴명을 입력해주세요</label>
+            <input type="text" id="board-input-text" name="board-input-text" class="type-medium" placeholder="메뉴명을 입력해주세요">
+            <a href="#none"><span class="hd-element">검색</span></a>
+        </div>            
+    </div>
+</div>
+
+<div class="inner">
+    <nav id="gnb">
+	    <ul>
+	    	
+	    	<li>
+						<a href="/apply/facility"  >공간시설</a>
+<div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        <li>
+						<a href="/apply/sports"  >체육시설</a>
+<div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        <li>
+						<a href="/apply/goods"  >물품대여</a>
+<div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        <li>
+						<a href="/apply/integration/list?srchFacilityType=INTG_00"  >행정복지</a>
+<div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        <li>
+						<a href="/apply/lecture/list?srchFacilityType=LECT_02"  >시민참여</a>
+<div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        <li>
+						<a href="https://learning.seongnam.go.kr/index.do" target="_blank" title="새창" class="other-link link-blank" >배움숲 <i><img src='/humanframe/theme/global/assets/images/ico/ico_link_black.svg' alt='새창열기' style='width: 18px;'></i>
+</a>
+<div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        <li>
+						<a href="/apply/myFacility"  >마이페이지</a>
+<div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        </ul>
+	</nav>
+</div>
+</div>
+	    </header>
+	    
+	    <div class="layer-popup-wrap sitemap-popup">
+	<div class="layer-popup department-popup">
+		<p>전체메뉴</p>
+		<a href="#none" class="close"><span class="hd-element">팝업닫기</span></a>
+		<div class="popup-body">
+			<ul class="portal-sitemap">
+				<li>
+							<a href="#none">공간시설</a>
+							<ul class="normal-type dot">
+								</ul>
+						</li>
+					<li>
+							<a href="#none">체육시설</a>
+							<ul class="normal-type dot">
+								</ul>
+						</li>
+					<li>
+							<a href="#none">물품대여</a>
+							<ul class="normal-type dot">
+								</ul>
+						</li>
+					<li>
+							<a href="#none">행정복지</a>
+							<ul class="normal-type dot">
+								</ul>
+						</li>
+					<li>
+							<a href="#none">시민참여</a>
+							<ul class="normal-type dot">
+								</ul>
+						</li>
+					<li>
+							<a href="#none">배움숲</a>
+							<ul class="normal-type dot">
+								</ul>
+						</li>
+					<li>
+							<a href="#none">마이페이지</a>
+							<ul class="normal-type dot">
+								</ul>
+						</li>
+					</ul>
+		</div>
+	</div>
+</div><main class="container">
+	    	<div class="content-wrap inner">
+	                    <div class="content-head">
+	                        <div class="breadcrumb">
+    <ul>
+    	<li>
+			        <a href="/apply"><span>홈</span></a>
+			    </li>
+			    <li>
+			                <a href="/apply/lecture/list?srchFacilityType=LECT_02">
+			                    <span>시민참여</span>
+			                </a>
+			            </li>
+			        </ul>
+</div>
+<style>
+.qr-img {
+    text-align: -webkit-center !important;
+}
+</style>
+
+<div class="content-title-wrap">
+    <h2>성남물빛정원 9월 19일 공연 신청 ( 환상과 즉흥 피아노 리사이틀  ) </h2>
+    <ul class="content-actions">
+        <li>
+            <a href="#none" class="link">
+                <span class="hd-element">링크복사</span>
+            </a>
+        </li>
+        <li>
+	        <a href="#none" class="share">
+	            <span class="hd-element">공유</span>
+	        </a>
+	        <div class="share-box">
+	            <ul>
+	                <li><a href="#none" id="sns3" title="페이스북에 공유하기(새창열림)" onclick="shareFaceBook('공유하기','https://www.seongnam.go.kr/apply/lecture/step1?facilityId=L0720&instiCode=INST_CITY_01'); return false;"><img src="/humanframe/theme/global/assets/images/ico/ico_share_facebook.svg" alt="페이스북 공유"></a></li>
+	                <li><a href="#none" id="sns1" title="카카오톡에 공유하기(새창열림)"><img src="/humanframe/theme/global/assets/images/ico/ico_share_kakao.svg" alt="카카오톡 공유"></a></li>
+	                <li><a href="#none" id="sns0" title="밴드에 공유하기(새창열림)"><img src="/humanframe/theme/global/assets/images/ico/ico_share_band.svg" alt="네이버밴드 공유"></a></li>
+	                <li><a href="#none" id="sns4" title="트위터에 공유하기(새창열림)" onclick="shareTwitter('성남시청 : 통합예약 : 시민참여 : 시민참여','https://www.seongnam.go.kr/apply/lecture/step1?facilityId=L0720&instiCode=INST_CITY_01'); return false;"><img src="/humanframe/theme/global/assets/images/ico/ico_share_x.svg" alt="트위터X 공유"></a></li>
+	                <li><a href="#none" id="sns6" class="qr-open"><img src="/humanframe/theme/global/assets/images/ico/ico_share_qr.svg" alt="QR코드"></a></li>
+	            </ul>
+	            <div class="share-qr">
+	                <a href="#none" class="close"><span class="hd-element">닫기</span></a>
+	                <p>QR코드</p>
+	                <div class="qr-img"></div>
+	                <dl>
+	                    <dt>저장 방법</dt>
+	                    <dd>QR코드 > 마우스 우측버튼 > 이미지를 다른 이름으로 저장</dd>
+	                </dl>
+	                <dl>
+	                    <dt>단축주소</dt>
+	                    <dd>
+	                    	<a href="#none" class="link" onclick="copyText()" id="shortUrl" title="복사"></a>
+	                    </dd>
+	                </dl>
+	            </div>
+	        </div>
+	    </li>
+        <li>
+            <a href="#none" onclick="onPrint()" onkeyPress="if (event.keyCode==13){onPrint();}" class="print">
+                <span class="hd-element">프린트</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<script src="/humanframe/theme/global/assets/script/jquery.qrcode.min.js"></script>
+<script src="/humanframe/theme/global/assets/script/layout.js"></script>
+<script src="/humanframe/theme/global/assets/script/clipboard.min.js"></script>
+<script src="/humanframe/theme/global/assets/script/resources.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script>
+Kakao.init('b23dfea5a5e5d41dab7edca4289c54f9');
+
+$(document).ready(function () {
+	
+	Kakao.Link.createDefaultButton({
+		container: '#sns1',
+		objectType: 'feed',
+		content: {
+        title: "성남시청 : 통합예약 : 시민참여 : 시민참여",
+        description: '',
+        imageUrl: '/humanframe/theme/global/assets/images/ico/ico_sns_favicon.png',
+        link: {
+			mobileWebUrl: 'https://www.seongnam.go.kr/apply/lecture/step1?facilityId=L0720&instiCode=INST_CITY_01',
+			webUrl: 'https://www.seongnam.go.kr/apply/lecture/step1?facilityId=L0720&instiCode=INST_CITY_01'
+        	}
+		}
+	});
+	
+	$('#sns0').click(function (e) {
+		window.open("http://www.band.us/plugin/share?body=성남시청 : 통합예약 : 시민참여 : 시민참여&route=https://www.seongnam.go.kr/apply/lecture/step1?facilityId=L0720&instiCode=INST_CITY_01", "share_band", "width=600, height=800, resizable=no");
+	});
+	
+	$('#sns6').click(function (e) {
+		$.ajax({
+			type: "POST",
+			url: "/ajax/getShortUrl",
+			dataType: "json",
+			data: { "url" : "https://www.seongnam.go.kr/apply/lecture/step1?facilityId=L0720%26instiCode=INST_CITY_01"},
+			error: function (request, status, error) {
+				//console.log("에러코드: " + request.status + "\r\n메시지: " + request.responseText);
+			},
+			success: function (data) {
+				$(".qr-img").html('');
+				$(".qr-img").qrcode({
+					width : 100,
+					height : 100,
+					text : data.url
+				});
+				$("#shortUrl").html(data.url+'<i><img src="/humanframe/theme/global/assets/images/ico/ico_copy.svg" alt=""></i>');
+				$("#shortUrl").attr('data-clipboard-text', data.url);
+			}
+		});
+	});
+	
+	$(".print").focus(function () {
+		$(".share-box").hide();
+	});
+});
+
+function shareTwitter(msg, url) {
+	var shareUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(msg) + "&url=" + encodeURIComponent(url);
+	var objwin = window.open(shareUrl, 'twitterPopup', 'scrollbars=no,menubar=0,toolbar=0');
+	if (objwin) {
+		objwin.focus();
+	}
+}
+
+function shareFaceBook(msg, url) {
+	var shareUrl = "http://www.facebook.com/sharer/sharer.php?t=" + encodeURIComponent(msg) + "&u=" + encodeURIComponent(url);
+	var objwin = window.open(shareUrl, 'facebookPopup', 'scrollbars=no,menubar=0,toolbar=0');
+	if (objwin) {
+		objwin.focus();
+	}
+}
+
+function copyText() {
+	var clipboard = new ClipboardJS('#shortUrl');
+	alert('단축주소가 복사되었습니다.');
+}
+
+function onPrint() {
+	window.print();
+}
+</script>
+</div>
+	                    <div class="content-body" id="contentLoad">
+	                    	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b23dfea5a5e5d41dab7edca4289c54f9&libraries=services"></script>
+<script type="text/javascript" src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<style>
+/* 예약 마감된 회차 라벨 비활성화 스타일 */
+.reserve-time-wrap li.is-full label {
+    background-color: #aaa !important;
+}
+
+/* 예약 불가 상태 버튼 스타일 */
+.btn-disabled-style {
+    background-color: #CDD1D5 !important;
+    color: #6D7082 !important;
+    border-color: #CDD1D5 !important;
+}
+
+/* 운영 안 하는 날 — 기본 커서 */
+.cal-wrap .cal-table tbody td.is-disabled a { cursor: default; pointer-events: none; }
+
+/* 모든 회차 마감일 — 클릭 가능하되 비활성 색상 */
+.cal-wrap .cal-table tbody td.is-full-day a {
+	cursor: pointer;
+	background-image: url(/humanframe/theme/apply/assets/images/ico/ico_calendar_none.svg);
+}
+
+</style>
+
+<script>
+const operatingList = [
+
+{
+    weekClass : "토요일",
+    inputType : "TI",
+    fromTime  : "19:00",
+    toTime    : "20:10"
+},
+{
+    weekClass : "공휴일",
+    inputType : "TI",
+    fromTime  : "19:00",
+    toTime    : "20:10"
+}
+];
+</script>
+<script>
+    // 추가회차 적용일자 목록
+    var extraRoundDates = [];
+
+    </script>
+
+<script>
+const bookingPenalty = {
+    penaltyNo       : "",
+    facilityId      : "",
+    cancelDt        : "",
+    penaltyStartDt  : "",
+    penaltyEndDt    : "",
+    bookingNo       : "",
+    useYn           : "",
+    regDt           : "",
+    regId           : ""
+};
+</script>
+
+<script>
+/* ============================================================
+ * [SECTION 03] 전역 상태 변수
+ * ------------------------------------------------------------
+ * - currentDate          : 달력에 표시 중인 월 (Date)
+ * - isReservationApplied : 이전 단계 예약 자동 복원 완료 여부
+ * - isLimitLoaded        : 예약 제한 정보 로드 완료 여부
+ * - 시설 기본 정보 (judgeType, instiCode 등)
+ * - 예약기준일 설정값 (bookingBeforeDay/Time, ~Day2/Time2)
+ * - repeatList / holidayList / impossibleList
+ *   : loadRepeatData() AJAX 결과로 채워짐
+ * - limitInfo / bookingLimitInfo : 예약 횟수 제한 관련
+ * ========================================================== */
+let currentDate = new Date();
+let isReservationApplied = false; // 이전 단계 예약 데이터 자동 복원 완료 여부
+let isLimitLoaded = false;        // 예약 제한 정보 로드 완료 여부
+
+/* 시설 기본 정보 ------------------------------------------- */
+const loginAt = "" || "N";
+const judgeType = "심사"; // 선착순/심사
+const judgePersonNo = Number("0") || 0;
+
+const instiCode     = "INST_CITY_01";
+const facilityId    = "L0720";
+const mberId        = "";
+
+const bookingPeriodType = "1";
+
+/* 예약기준일 설정 ------------------------------------------ */
+const bookingBeforeDay   = Number("12")  || 0;  // 시작: N일 전
+const bookingBeforeTime  = Number("10") || 0;  // 시작: HH시
+const bookingBeforeDay2  = "8" !== "" ? Number("8")  : 0;  // 종료: N일 전 (빈값=당일)
+const bookingBeforeTime2 = "18" !== "" ? Number("18") : 0;  // 종료: HH시 (빈값=0시)
+
+var repeatList = [];
+
+/* 운영기간/공휴일 목록 (loadRepeatData 결과로 채워짐) ------ */
+var holidayList = [];
+var impossibleList = [];
+
+/* 예약 횟수 제한 설정 (서버 주입) -------------------------- */
+const limitInfo = {
+    dayLimitYn: "Y".trim(),
+    monthLimitYn: "N".trim(),
+    yearLimitYn: "N".trim(),
+
+    dayMax: 1,
+    monthMax: 0,
+    yearMax: 0
+};
+
+/* 사용자의 이용예정일 기준 현재 예약 사용 횟수 ------------ */
+/* (loadBookingLimit AJAX 결과로 채워짐) ------------------- */
+const bookingLimitInfo = {
+    dayCnt: 0,
+    monthCnt: 0,
+    yearCnt: 0
+};
+
+/* ============================================================
+ * [SECTION 04] 달력 — 초기화 / 렌더링 / 이벤트
+ * ------------------------------------------------------------
+ *  initCalendar()       : 진입점, 운영정보 로드 후 달력 렌더
+ *  renderCalendar()     : 달력 셀 동적 생성
+ *  createDayCell()      : 날짜 셀 1개 생성 + 클릭 이벤트
+ *  updatePrevButton()   : 이전 달 버튼 활성/비활성
+ *  bindCalendarEvent()  : 이전/다음 달 버튼 이벤트
+ *  clickCalendarDate()  : 특정 날짜 자동 클릭 (복원용)
+ * ========================================================== */
+
+/* (4-1) 달력 초기화 진입점 -------------------------------- */
+var disabledDates = []; // 모든 회차 마감인 날짜 목록
+
+function initCalendar(){
+	renderCalendar(); // 초기 달력 즉시 표시 (AJAX 대기 없이)
+	loadRepeatData(function(){
+		loadDisabledDates(function(){
+			renderCalendar();
+			updatePrevButton();
+			bindCalendarEvent();
+
+			// 이전 단계로 돌아온 경우 : 기존 예약일로 이동 후 자동 클릭
+			if(typeof reservationList !== "undefined" && reservationList.length > 0){
+
+	            const firstDate = reservationList[0].bookingDt;
+
+	            const arr = firstDate.split("-");
+	            currentDate = new Date(arr[0], arr[1]-1, 1);
+
+	            loadDisabledDates(function(){
+	            	renderCalendar();
+	            	clickCalendarDate(firstDate);
+	            });
+	        }
+		});
+	});
+}
+
+/* (4-2) 달력 렌더링 ---------------------------------------- */
+/*  - currentDate 기준 해당 월의 날짜 셀을 동적으로 생성
+ *  - is-active   : 운영기간 내 -> 예약 가능
+ *  - is-disabled : 지난 날짜 / 공휴일 / 운영기간 외 -> 예약 불가
+ */
+function renderCalendar(){
+	const tbody = document.querySelector(".cal-table tbody");
+
+	const year = currentDate.getFullYear();
+	const month = currentDate.getMonth();
+
+	// 달력 헤더 연/월 텍스트 갱신
+	document.querySelector(".cal-head > div").innerText = year + "년 " + (month + 1) + "월";
+
+	const firstDay = new Date(year, month, 1).getDay();      // 해당 월 첫째날 요일 (0=일요일)
+	const lastDate = new Date(year, month + 1, 0).getDate(); // 해당 월 마지막 날짜
+
+	tbody.innerHTML = ""; // 기존 달력 행 초기화
+
+	let date = 1;
+
+	// 최대 6주(행)까지 반복 생성
+	for (let row = 0; row < 6; row++) {
+        const tr = document.createElement("tr");
+
+        for (let col = 0; col < 7; col++) {
+            if (row === 0 && col < firstDay) {
+                tr.appendChild(document.createElement("td"));
+            } else if (date > lastDate) {
+                tr.appendChild(document.createElement("td"));
+            } else {
+                tr.appendChild(createDayCell(year, month, date));
+                date++;
+            }
+        }
+
+        tbody.appendChild(tr);
+        if (date > lastDate) break; // 모든 날짜 처리 완료 시 조기 종료
+    }
+}
+
+/* (4-3) 날짜 셀 <td> 생성 + 클릭 이벤트 ------------------- */
+/*  - 날짜 상태(활성/비활성) 클래스 부여
+ *  - 클릭 시 로그인 체크 -> 예약기준일 체크 -> 회차/제한 조회
+ */
+function createDayCell(year, month, date){
+	const td = document.createElement("td");
+	const a = document.createElement("a");
+
+	a.href = "#";
+	a.innerText = date;
+
+	const today = new Date();
+	today.setHours(0,0,0,0);
+
+	const cellDate = new Date(year, month, date);
+
+	// 날짜 상태 분류
+    if (cellDate < today) {
+        td.classList.add("is-disabled");
+		a.setAttribute('tabindex', '-1'); // 지난 날짜
+    } else if (!isOperatingDay(year, month, date)) {
+        td.classList.add("is-disabled");
+		a.setAttribute('tabindex', '-1'); // 운영일 아님
+    } else if (isAvailableDate(year, month, date)) {
+        // 모든 회차 마감 여부 체크
+        var dateStr = year + "-" + String(month + 1).padStart(2, "0") + "-" + String(date).padStart(2, "0");
+        if (disabledDates.indexOf(dateStr) >= 0) {
+            td.classList.add("is-full-day"); // 모든 회차 마감 (클릭 시 안내)
+			a.setAttribute('tabindex', '-1');
+        } else {
+            td.classList.add("is-active");   // 예약 가능
+        }
+    } else {
+        td.classList.add("is-disabled");
+		a.setAttribute('tabindex', '-1'); // 운영기간 외
+    }
+
+	// 날짜 클릭 이벤트 등록
+	a.addEventListener("click", function(e){
+	    e.preventDefault();
+
+	    if(td.classList.contains("is-disabled")) return;
+
+	    if(td.classList.contains("is-full-day")){
+	    	alert("예약안내\n선택하신 날짜의 모든 회차 예약이 마감되었습니다.\n다른 날짜를 선택해 주세요.");
+	    	return;
+	    }
+
+		// 비로그인 차단
+	    if(!mberId){
+	    	if(confirm("본인인증 후 서비스 이용이 가능합니다.\n로그인 페이지로 이동하시겠습니까?")){
+	    		fnHeaderMberLogin(window.location.pathname + window.location.search);
+	    	}
+	    	return;
+	    }
+
+	 	// 선택된 날짜 문자열 생성 (YYYY-MM-DD)
+        const selectedDate = year + "-"
+            + String(month + 1).padStart(2, "0") + "-"
+            + String(date).padStart(2, "0");
+
+        // 예약기준일(N일 전 ~ M일 전) 범위 체크
+        const chk = checkBookingBeforeTime(selectedDate);
+        if(!chk.ok){
+            alert(chk.msg);
+            return;
+        }
+
+		// 기존 선택 해제 후 현재 셀 선택 표시
+		document.querySelectorAll(".cal-table td").forEach(function(cell) {
+            cell.classList.remove("is-selected");
+        });
+
+	    td.classList.add("is-selected");
+
+	    // 후속 처리 : Step3 초기화 + Step2 회차 조회 + 예약 제한 조회
+	    initStep3();
+	    loadRoundData(selectedDate);
+	    loadBookingLimit(selectedDate);
+	});
+
+	td.appendChild(a);
+
+	return td;
+}
+
+/* (4-3-1) 월 단위 비활성 날짜 로드 -------------------------*/
+function loadDisabledDates(callback){
+	var year = currentDate.getFullYear();
+	var month = currentDate.getMonth() + 1;
+	var yearMonth = year + "-" + String(month).padStart(2, "0");
+
+	$.ajax({
+		url: "/apply/lecture/getDisabledDates.json",
+		type: "GET",
+		data: { instiCode: instiCode, facilityId: facilityId, yearMonth: yearMonth },
+		success: function(res){
+			disabledDates = res.disabledDates || [];
+			if(callback) callback();
+		},
+		error: function(){
+			disabledDates = [];
+			if(callback) callback();
+		}
+	});
+}
+
+/* (4-4) 이전 달 버튼 활성/비활성 -------------------------- */
+function updatePrevButton(){
+	const today = new Date();
+    today.setHours(0,0,0,0);
+
+	const isSameMonth = today.getFullYear() === currentDate.getFullYear()
+    				 && today.getMonth()    === currentDate.getMonth();
+
+	if (isSameMonth) {
+		$(".btn-prev").addClass("disabled");
+	} else {
+		$(".btn-prev").removeClass("disabled");
+	}
+}
+
+/* (4-5) 이전/다음 달 버튼 이벤트 -------------------------- */
+function bindCalendarEvent(){
+	// 이전 달 버튼
+	$(".btn-prev").click(function(){
+	    if($(this).hasClass("disabled")) return;
+
+	    currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+	    loadRepeatData(function(){
+	        loadDisabledDates(function(){
+	            renderCalendar();
+	            updatePrevButton();
+	        });
+	    });
+	});
+
+	// 다음 달 버튼
+	$(".btn-next").click(function(){
+	    currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+
+	    loadRepeatData(function(){
+	        loadDisabledDates(function(){
+	            renderCalendar();
+	            updatePrevButton();
+	        });
+	    });
+	});
+}
+
+/* (4-6) 특정 날짜 자동 클릭 (이전 단계 복원용) ------------ */
+function clickCalendarDate(dateStr){
+    const [y, m, d] = dateStr.split("-");
+    document.querySelectorAll(".cal-table td").forEach(td=>{
+        const a = td.querySelector("a");
+        if(!a) return;
+
+        if(parseInt(a.innerText) === parseInt(d)){
+            if(td.classList.contains("is-disabled")){
+                return;
+            }
+            a.click();
+        }
+    });
+}
+
+
+/* ============================================================
+ * [SECTION 05] 운영정보 — AJAX 조회 + 운영일/운영시간 판단
+ * ------------------------------------------------------------
+ *  loadRepeatData()    : 운영기간/공휴일 AJAX 조회
+ *  isAvailableDate()   : 해당 날짜가 운영기간(repeatList)에 포함?
+ *  isHoliday()         : 해당 날짜가 공휴일(holidayList)인지
+ *  isOperatingDay()    : 해당 날짜가 운영일(operatingList)인지
+ *  getOperatingTime()  : 선택 날짜의 운영시간 {fromTime, toTime}
+ *  getWeekClass()      : 요일 인덱스 -> 요일명 매핑
+ *  timeToMinutes()     : "HH:MM" -> 분 단위 변환
+ * ========================================================== */
+
+/* (5-1) 운영기간/공휴일 AJAX 조회 ------------------------- */
+/*  - 결과: repeatList(운영기간), holidayList(공휴일) 갱신
+ *  - 운영기간 없으면 "예약불가" 버튼으로 전환
+ */
+function loadRepeatData(callback){
+
+	const year = currentDate.getFullYear();
+	const month = currentDate.getMonth() + 1;
+
+	$.ajax({
+	    url : "/apply/lecture/getFacilityOperation.json",
+	    type : "GET",
+	    data : {
+	        instiCode : instiCode,
+	        facilityId : facilityId,
+	        resourceType : $("#resourceType").val(),
+	        year : year,
+	        month : month
+	    },
+	    success : function(res){
+	 	    // 이전 데이터 초기화 후 유효한 항목만 필터링
+	   	    repeatList = [];
+	   	    holidayList = [];
+
+	   	    // holidayList 가공 - repeat_at = Y인 경우 현재 년도 붙여주기
+	   	    holidayList = (res.holidayList || []).filter(function(item) {
+	   	        return !!item;
+	   	    }).map(function(item) {
+
+	   	        if(item.holiday && item.holiday.length === 5) {
+	   	            const year = currentDate.getFullYear();
+	   	            const result = Object.assign({}, item, { holiday: year + "-" + item.holiday });
+	   	            return result;
+	   	        }
+	   	        return item;
+	   	    });
+
+	   		// 상시예약(bookingPeriodType=1)이면 repeatList 체크 없이 바로 통과
+	   	    if(res.bookingPeriodType === "1"){
+	   	        setReserveState(true);
+	   	        if (callback) callback();
+	   	        return;
+	   	    }
+
+		   	repeatList = (res.repeatList || []).filter(function(item) {
+		   		return item && (item.startYear || item.endYear);
+		   	});
+
+	   	    if (repeatList.length === 0) {
+	   	        setReserveState(false);
+	   	        renderCalendar();
+
+	   	        if (callback) callback();
+	   	        return;
+	   	    }
+
+	   	    setReserveState(true);
+
+	  	    if (callback) callback();
+	 	},
+
+	    error : function(){
+	        console.log("운영정보 조회 실패");
+	    }
+	});
+}
+
+/* (5-2) 운영기간 포함 여부 판단 ---------------------------- */
+function isAvailableDate(year, month, day){
+    const date = new Date(year, month, day);
+    const dateStr = year + "-"
+        + String(month + 1).padStart(2, "0") + "-"
+        + String(day).padStart(2, "0");
+
+    for(let item of repeatList){
+        const start = new Date(item.startYear, item.startMonth-1, item.startDay);
+        const end   = new Date(item.endYear, item.endMonth-1, item.endDay);
+        if(date >= start && date <= end){
+            return true;
+        }
+    }
+
+    if(typeof extraRoundDates !== "undefined" && extraRoundDates.length > 0){
+        if(extraRoundDates.includes(dateStr)){
+            // 추가회차도 일반회차와 동일한 예약가능 기간 검증
+            for(let item of repeatList){
+                const start = new Date(item.startYear, item.startMonth-1, item.startDay);
+                const end   = new Date(item.endYear, item.endMonth-1, item.endDay);
+                if(date >= start && date <= end){
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    return false;
+}
+
+/* (5-3) 공휴일 여부 판단 ----------------------------------- */
+function isHoliday(year, month, day){
+    const dateStr = year + "-"
+        + String(month + 1).padStart(2, "0") + "-"  // month는 0-based라 +1 필요
+        + String(day).padStart(2, "0");
+    return holidayList.some(function(item) { return item.holiday === dateStr; });
+}
+
+/* (5-4) 요일 인덱스 -> weekClass 매핑 ----------------------- */
+/* operatingList의 키명("월요일", "화요일", ...) 과 맞춤 */
+function getWeekClass(dayIndex) {
+    const map = {
+		0: "일요일",
+		1: "월요일",
+		2: "화요일",
+		3: "수요일",
+		4: "목요일",
+		5: "금요일",
+		6: "토요일"
+    };
+    return map[dayIndex];
+}
+
+/* (5-5) 운영일 여부 판단 (중복 정의 - 추가회차 처리 강화) - 기존 코드 유지 */
+function isOperatingDay(year, month, date) {
+
+    // 추가회차 적용일자면 운영일로 처리
+    if(typeof extraRoundDates !== "undefined" && extraRoundDates.length > 0){
+        const dateStr = year + "-"
+            + String(month + 1).padStart(2, "0") + "-"
+            + String(date).padStart(2, "0");
+
+        if(extraRoundDates.includes(dateStr)){
+            return true;
+        }
+    }
+
+    if (!operatingList || operatingList.length === 0) return false;
+
+    var cellDate = new Date(year, month, date);
+    var dayOfWeek = cellDate.getDay();
+    var dayClass = isHoliday(year, month, date) ? "공휴일" : getWeekClass(dayOfWeek);
+
+    var isHol = (dayClass === "공휴일");
+    var dayName = getWeekClass(dayOfWeek); // 실제 요일명 (공휴일 여부와 무관)
+
+    // 공휴일: 공휴일 설정이 있고 TI일 때만 개방, 없으면 미개방(기본)
+    // 일반일: 개별요일 > 평일/주말 순으로 매칭
+    var matched = null;
+
+    if (isHol) {
+        // 공휴일은 공휴일 설정만 확인 (없으면 미개방)
+        for (var i = 0; i < operatingList.length; i++) {
+            if (operatingList[i].weekClass === "공휴일") { matched = operatingList[i]; break; }
+        }
+        return matched ? matched.inputType === "TI" : false;
+    }
+
+    // 일반일: 개별요일 > 평일/주말
+    for (var i = 0; i < operatingList.length; i++) {
+        var op = operatingList[i];
+        if (op.weekClass === dayName) { matched = op; break; }
+    }
+    if (!matched) {
+        for (var i = 0; i < operatingList.length; i++) {
+            var op = operatingList[i];
+            if (op.weekClass === "평일" && dayOfWeek >= 1 && dayOfWeek <= 5) { matched = op; break; }
+            if (op.weekClass === "주말" && (dayOfWeek === 0 || dayOfWeek === 6)) { matched = op; break; }
+        }
+    }
+
+    if (matched) return matched.inputType === "TI";
+    return false;
+}
+
+/* (5-6) 선택 날짜의 운영시간 반환 -------------------------- */
+function getOperatingTime(date) {
+    if (!operatingList || operatingList.length === 0) return null;
+
+    var d = new Date(date);
+    var dayOfWeek = d.getDay();
+    var dayClass = isHoliday(d.getFullYear(), d.getMonth(), d.getDate()) ? "공휴일" : getWeekClass(dayOfWeek);
+
+    for (var i = 0; i < operatingList.length; i++) {
+        var op = operatingList[i];
+
+        // 직접 매칭
+        if (op.weekClass === dayClass && op.inputType === "TI") {
+            return { fromTime: op.fromTime, toTime: op.toTime };
+        }
+        // 평일 매칭 (월~금)
+        if (op.weekClass === "평일" && op.inputType === "TI" && dayOfWeek >= 1 && dayOfWeek <= 5) {
+            return { fromTime: op.fromTime, toTime: op.toTime };
+        }
+        // 주말 매칭 (토,일)
+        if (op.weekClass === "주말" && op.inputType === "TI" && (dayOfWeek === 0 || dayOfWeek === 6)) {
+            return { fromTime: op.fromTime, toTime: op.toTime };
+        }
+    }
+    return null;
+}
+
+/* (5-7) 시간 문자열 "HH:MM" -> 분(minute) 변환 ------------- */
+function timeToMinutes(timeStr) {
+    if (!timeStr) return 0;
+    var parts = timeStr.split(":");
+    return parseInt(parts[0]) * 60 + parseInt(parts[1]);
+}
+
+/* ============================================================
+ * [SECTION 06] 회차 (Step2) — 목록 조회 + 렌더링 + 이벤트
+ * ------------------------------------------------------------
+ *  loadRoundData()      : 선택 날짜의 회차 목록 AJAX 조회
+ *  renderRoundList()    : 회차 목록 동적 렌더링 + 체크박스 이벤트
+ *  getBookingCount()    : 특정 시간대의 현재 예약 인원 수
+ *  initRoundMessage()   : 날짜 미선택 시 안내 메시지 표시
+ * ========================================================== */
+
+/* (6-1) 회차 목록 AJAX 조회 -------------------------------- */
+function loadRoundData(date){
+
+  $.ajax({
+      url : "/apply/lecture/getFacilityRound.json",
+      type : "GET",
+      data : {
+          instiCode : instiCode,
+          facilityId : facilityId,
+          reserveDate : date
+      },
+      success : function(res){
+          renderRoundList(res.roundNoList, date, res.bookingCountList);
+      },
+      error : function(){
+          console.log("회차 조회 실패");
+      }
+  });
+}
+
+ /* (6-2) 회차 목록 렌더링 ----------------------------------- */
+ /*  - 운영시간 범위 내 회차만 필터링 (추가회차 제외)
+  *  - 추가회차(EXTRA)는 적용일자일 때만 노출
+  *  - 마감 회차(is-full) 처리
+  *  - 심사형(judgeType="심사", tpSetting="Y")일 때 (현재인원/최대인원) 표시
+  *  - 체크박스 change 이벤트 -> 6-2-A ~ 6-2-F 검증
+  */
+function renderRoundList(roundNoList, date, bookingCountList){
+
+  	const ul = document.querySelector(".reserve-time-wrap");
+  	const tip = document.querySelector(".tip-txt");
+
+  	document.querySelector(".time-txt").innerText = date;
+  	document.getElementById("roundDate").value = date;
+
+	// 회차 없을 경우 : Step2 영역 비활성화 후 알림
+  	if(!roundNoList || roundNoList.length === 0){
+  		document.querySelector(".reserve-step-two").classList.remove("is-selected");
+		alert("예약 가능한 회차가 없습니다.");
+
+  		return;
+  	}
+
+  	var opTime = getOperatingTime(date);
+
+ 	// [무료법률상담] 선택한 날짜가 추가회차 적용일자인지 확인
+  	var isExtraRoundDate = (typeof extraRoundDates !== "undefined"
+                     && extraRoundDates.length > 0
+                     && extraRoundDates.includes(date));
+
+ 	// 운영시간 범위에 맞는 회차만 필터링
+	var filteredList = roundNoList.filter(function(item) {
+
+		// 추가회차(EXTRA)는 적용일자일 때만 노출, 일반일에는 숨김
+	    if (item.weekType === "EXTRA") {
+	        return isExtraRoundDate;
+	    }
+
+        if (!opTime) return true; // 운영시간 정보 없으면 전체 노출
+
+        // weekType 매칭 (요일별 회차 필터)
+        var d = new Date(date.replace(/-/g, '/'));
+        var dow = d.getDay();
+        var dayName = getWeekClass(dow);
+        if (item.weekType !== "-1" && item.weekType !== dayName && item.weekType !== "평일" && item.weekType !== "주말") return false;
+        if (item.weekType === "평일" && (dow === 0 || dow === 6)) return false;
+        if (item.weekType === "주말" && dow >= 1 && dow <= 5) return false;
+
+        var roundStart = timeToMinutes(item.roundFtime);
+        var roundEnd   = timeToMinutes(item.roundTtime);
+        var opStart    = timeToMinutes(opTime.fromTime);
+        var opEnd      = timeToMinutes(opTime.toTime);
+
+        // 회차 시작/종료 모두 운영시간 범위 안에 있어야 함
+        return roundStart >= opStart && roundEnd <= opEnd;
+    });
+
+	if(filteredList.length === 0){
+        document.querySelector(".reserve-step-two").classList.remove("is-selected");
+        alert("운영시간 내 예약 가능한 회차가 없습니다.");
+        return;
+    }
+
+ 	// Step2 영역 초기화 후 활성화
+	ul.innerHTML = "";
+	document.querySelector(".reserve-step-two").classList.add("is-selected");
+
+	// 회차별 체크박스 생성
+    filteredList.forEach(function(item, idx){
+      	const li = document.createElement("li");
+      	const id = "cb"+idx;
+
+        // 해당 회차의 현재 예약 인원 및 마감 여부 판단
+      	const currentCnt = getBookingCount(item.roundFtime, item.roundTtime, bookingCountList);
+		const maxCnt = item.maxBookingPerson || 0;
+
+		var bookingCnt = item.bookingCnt || 0;
+
+      	var tpSetting = item.tpSetting; // 사용여부 (Y/N)
+      	var tpType    = item.tpType;    // 인원(P)/팀(T)
+      	var minPerson = item.minBookingPerson || 0;
+      	var maxPerson = item.maxBookingPerson || 0;
+
+        // ============================================================
+        // isFull 계산 로직
+        //   - tpSetting === "Y" : 기존 로직 (maxPerson까지 허용)
+        //   - tpSetting === "N" : 1팀이라도 예약되어 있으면 마감
+        // ============================================================
+     	const isFull =
+     	       (tpSetting === "N" && currentCnt >= 1)
+     	       || (maxCnt > 0 && currentCnt >= maxCnt)
+     	       || (judgeType === "심사" && tpSetting === "Y" && maxPerson > 0 && currentCnt >= maxPerson);
+
+	    // [선착순/심사] tpSetting1이 사용(Y)이고 심사일 때만 명/팀 표시
+	    var judgeSpan = "";
+	    if (judgeType === "심사" && tpSetting === "Y") {
+	        var unit = tpType === "T" ? "팀" : "명";
+	        judgeSpan = '<span>(<strong class="textcolor-information">' + currentCnt + '</strong>' + unit + '/' + maxPerson + unit + ')</span>';
+	    }
+
+
+		// ============================================================
+		// tpSetting=N일 때도 마감 처리되도록 조건 추가
+		//   - 기존 : maxPerson > 0 && bookingCnt >= maxPerson
+		//   - 추가 : tpSetting === "N" && currentCnt >= 1
+		// ============================================================
+		if ((tpSetting === "N" && currentCnt >= 1) || (maxPerson > 0 && bookingCnt >= maxPerson)) {
+		    li.classList.add("is-full");
+		}
+
+		li.innerHTML =
+	        '<input type="checkbox" id="' + id + '"'
+	        + ' data-round-no="'    + item.roundNo     + '"'
+	        + ' data-round-info-no="' + item.roundInfoNo + '"'
+	        + ' data-round="'       + item.round       + '"'
+	        + ' data-start="'       + item.roundFtime  + '"'
+	        + ' data-end="'         + item.roundTtime  + '">'
+	        + '<label for="' + id + '">('
+	        + item.round + ') '
+	        + item.roundFtime + ' ~ ' + item.roundTtime
+	        + judgeSpan
+	        + '</label>';
+
+	  	if (isFull) li.classList.add("is-full");
+
+      	ul.appendChild(li);
+
+        // ============================================================
+   	  	// 체크박스 선택/해제 이벤트
+   	  	//   (6-2-A) 마감 회차 선택 차단
+   	  	//   (6-2-B) 회차 1개만 선택 가능
+   	  	//   (6-2-C) 패널티 체크 (INTG_02 시설)
+   	  	//   (6-2-D) 선착순/심사 인원 제한
+   	  	//   (6-2-E) 일/월/년 예약 횟수 제한
+   	  	//   (6-2-F) 통과 → Step3에 추가, 해제 → Step3에서 제거
+   	  	// ============================================================
+      	li.querySelector("input").addEventListener("change", function() {
+      	    // (6-2-A) 예약 마감 회차 선택 방지
+          	if(isFull){
+              	alert("예약안내\n선택한 회차는 예약이 마감되었습니다.\n다른 회차를 선택해 주세요.");
+              	this.checked = false;
+              	return;
+          	}
+
+            // (6-2-B) 이미 1개 선택된 상태에서 추가 선택 방지
+            if(this.checked){
+                const selectedCnt = document.querySelectorAll(".reserve-turning-list li:not(.no-select-msg)").length;
+                if(selectedCnt >= 1){
+                	alert("예약안내\n\n회차는 한 번에 1회만 선택 가능합니다.");
+                    this.checked = false;
+                    return;
+                }
+            }
+
+            // (6-2-C) 패널티 체크 (INTG_02 시설 유형인 경우에만)
+            if(this.checked){
+                const facilityType = "LECT_02";
+
+                //if(facilityType.startsWith("INTG_02")){
+                    const penaltyStartDt = bookingPenalty.penaltyStartDt; // 전역변수 사용
+                    const penaltyEndDt = bookingPenalty.penaltyEndDt; // 전역변수 사용
+
+                    if(penaltyStartDt && penaltyStartDt.trim() != "" && penaltyEndDt && penaltyEndDt.trim() !== ""){
+                        const penaltyStart = new Date(penaltyStartDt.replace(" ", "T"));
+                        const penaltyEnd = new Date(penaltyEndDt.replace(" ", "T"));
+
+                        const now = new Date();
+
+                        if(now <= penaltyEnd){
+
+                            const y  = penaltyEnd.getFullYear();
+                            const mo = String(penaltyEnd.getMonth() + 1).padStart(2, "0");
+                            const d  = String(penaltyEnd.getDate()).padStart(2, "0");
+                            const h  = String(penaltyEnd.getHours()).padStart(2, "0");
+                            const mi = String(penaltyEnd.getMinutes()).padStart(2, "0");
+                            /*
+                            alert("예약 신청 불가\n\n" + y + "-" + mo + "-" + d + " " + h + ":" + mi + " 까지 예약 신청이 제한됩니다.");
+                            */
+
+                            const diffMs = penaltyEnd.getTime() - penaltyStart.getTime();
+                         	const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+                            alert("예약 제한 안내\n최근 예약 미방문 이력이 확인되어 방문일 기준 "+diffDays+"일간 예약하실 수 없습니다.\n"+y + "-" + mo + "-" + d+"까지 예약이 제한되며, 다음 날부터 예약 신청이 가능합니다.");
+                            this.checked = false;
+                            return;
+                        }
+                    }
+            	//}
+            }
+
+            // (6-2-D) 선착순/심사 선별 방식 기준 초과 방지
+      	  	if(isJudgeLimitExceeded(currentCnt, item)){
+              	this.checked = false;
+              	return;
+          	}
+
+      	    // (6-2-E) 일/월/년 예약 횟수 제한 + (6-2-F) Step3 반영
+          	if(this.checked){
+          	  	if(isLimitExceeded()){
+                  	this.checked = false;
+                  	return;
+              	}
+          	  	addStep3Round(date, this.dataset.start, this.dataset.end, this.dataset.roundNo, this.dataset.round);
+          	}else{
+              	removeStep3Round(this.dataset.roundNo);
+          	}
+          	updateLimitText();
+
+      	});
+  	});
+
+ 	// 이전 단계(back)로 돌아온 경우: 기존 예약 회차 자동 체크
+  	applyReservationToStep2();
+}
+
+/* (6-3) 특정 시간대의 현재 예약 인원 수 ------------------- */
+function getBookingCount(start, end, bookingCountList){
+    if(!bookingCountList) return 0;
+
+    const found = bookingCountList.find(function(item) {
+        return item.from_time === start && item.to_time === end;
+    });
+
+    return found ? found.teamCnt : 0;
+}
+
+/* (6-4) 날짜 미선택 시 안내 메시지 표시 ------------------- */
+function initRoundMessage(){
+
+	const ul = document.querySelector(".reserve-time-wrap");
+	const tip = document.querySelector(".tip-txt");
+
+	tip.style.display = "block";
+
+	ul.innerHTML = '<li class="no-round-msg">원하시는 예약일자를 선택하시면 예약 회차가 표시됩니다.</li>';
+}
+
+/* ============================================================
+ * [SECTION 07] 선택 회차 (Step3) — 추가 / 제거
+ * ------------------------------------------------------------
+ *  initStep3()        : Step3 목록 초기화 + hidden input 제거
+ *  addStep3Round()    : 선택 회차 추가 + hidden input 폼 삽입
+ *  removeStep3Round() : 특정 회차 제거
+ * ========================================================== */
+
+/* (7-1) Step3 초기화 -------------------------------------- */
+function initStep3(){
+	const ul = document.querySelector(".reserve-turning-list");
+  	ul.innerHTML = '<li class="no-select-msg">선택된 회차가 없습니다.</li>';
+
+	// 잔여 hidden input 제거
+  	document.querySelectorAll('input[name="roundNo"]').forEach(function(el) { el.remove(); });
+}
+
+/* (7-2) Step3 회차 추가 + 삭제 버튼 이벤트 ---------------- */
+/*  - 선택한 회차를 Step3 목록에 추가하고 hidden input을 폼에 삽입
+ *  - 삭제(X) 버튼 클릭 시 Step2 체크박스도 함께 해제
+ */
+function addStep3Round(date, start, end, roundNo, round){
+
+	const ul = document.querySelector(".reserve-turning-list");
+
+	// 초기 안내 메시지 제거
+	const msg = ul.querySelector(".no-select-msg");
+	if(msg) msg.remove();
+
+	const li = document.createElement("li");
+
+	li.setAttribute("data-round-no", roundNo);
+
+	li.innerHTML =
+        date + " " + start + " ~ " + end
+        + '<span><a href="#none" class="btn-remove"></a></span>'
+        + '<input type="hidden" name="roundNo"    value="' + roundNo + '">'
+        + '<input type="hidden" name="round"      value="' + round   + '">'
+        + '<input type="hidden" name="roundStart" value="' + start   + '">'
+        + '<input type="hidden" name="roundEnd"   value="' + end     + '">'
+        + '<input type="hidden" name="roundDate"  value="' + date    + '">';
+
+	ul.appendChild(li);
+
+	document.querySelector(".reserve-step-three").classList.add("is-selected");
+
+	// 삭제 버튼 : Step3 항목 제거 + Step2 체크박스 해제
+	li.querySelector(".btn-remove").addEventListener("click", function(e){
+
+	    e.preventDefault();
+	    e.stopPropagation();
+
+	    li.remove();
+
+		// Step2에서 해당 회차 체크박스를 찾아 정상적으로 OFF 처리
+	    const target = document.querySelector(
+          '.reserve-time-wrap input[data-round-no="'+roundNo+'"]'
+      );
+
+	    if(target && target.checked){
+
+	        const label = document.querySelector('label[for="'+target.id+'"]');
+
+	        if (label) label.click();
+	    }
+
+	    if (ul.children.length === 0) initStep3(); // 목록이 비면 초기화
+
+	});
+
+}
+
+/* (7-3) Step3 특정 회차 제거 ------------------------------ */
+function removeStep3Round(roundNo){
+	const ul = document.querySelector(".reserve-turning-list");
+	const li = ul.querySelector('[data-round-no="'+roundNo+'"]');
+
+	if (li) li.remove();
+
+	if (ul.children.length === 0) initStep3();
+}
+
+/* ============================================================
+ * [SECTION 08] 예약 횟수 제한 — 일/월/년 검증
+ * ------------------------------------------------------------
+ *  loadBookingLimit()  : 일/월/년 예약 횟수 AJAX 조회
+ *  updateLimitText()   : 화면의 사용량 텍스트 갱신
+ *  isLimitExceeded()   : 일/월/년 제한 초과 여부 판단
+ * ========================================================== */
+
+/* (8-1) 일/월/년 예약 횟수 AJAX 조회 ---------------------- */
+function loadBookingLimit(date){
+    $.ajax({
+        url : "/apply/lecture/getBookingLimit.json",
+        type : "GET",
+        data : {
+            instiCode : instiCode,
+            facilityId : facilityId,
+            targetDate : date
+        },
+        success : function(res){
+        	if(!res.isLogin){
+        	    alert(res.message || "로그인 후 이용이 가능합니다.");
+        	    location.href="/member";
+        	    return;
+        	}
+
+            bookingLimitInfo.dayCnt = res.dayCnt || 0;
+            bookingLimitInfo.monthCnt = res.monthCnt || 0;
+            bookingLimitInfo.yearCnt = res.yearCnt || 0;
+
+            isLimitLoaded = true;
+
+            // UI 갱신
+            updateLimitText();
+
+        },
+        error : function(){
+            console.log("예약 제한 조회 실패");
+        }
+    });
+}
+
+/* (8-2) 사용량 텍스트 갱신 -------------------------------- */
+/* (기존 예약 횟수 + 현재 선택 회차 수) / 최대 횟수 형식 */
+function updateLimitText(){
+
+  const selectedCnt = document.querySelectorAll(".reserve-turning-list li:not(.no-select-msg)").length;
+
+  if(limitInfo.dayLimitYn === "Y"){
+      const dayEl = document.querySelector(".limit-day");
+
+      if (dayEl) dayEl.innerText = (bookingLimitInfo.dayCnt + selectedCnt) + "/" + limitInfo.dayMax;
+  }
+
+  if(limitInfo.monthLimitYn === "Y"){
+      const monthEl = document.querySelector(".limit-month");
+
+      if (monthEl) monthEl.innerText = (bookingLimitInfo.monthCnt + selectedCnt) + "/" + limitInfo.monthMax;
+  }
+
+  if(limitInfo.yearLimitYn === "Y"){
+      const yearEl = document.querySelector(".limit-year");
+
+      if (yearEl) yearEl.innerText = (bookingLimitInfo.yearCnt + selectedCnt) + "/" + limitInfo.yearMax;
+  }
+}
+
+/* (8-3) 일/월/년 제한 초과 여부 판단 ---------------------- */
+function isLimitExceeded(){
+
+    const selectedCnt = document.querySelectorAll(".reserve-turning-list li:not(.no-select-msg)").length;
+    const nextCnt = selectedCnt + 1;
+
+    const dayCnt = Number(bookingLimitInfo.dayCnt);
+    const monthCnt = Number(bookingLimitInfo.monthCnt);
+    const yearCnt = Number(bookingLimitInfo.yearCnt);
+
+    const dayMax = Number(limitInfo.dayMax);
+    const monthMax = Number(limitInfo.monthMax);
+    const yearMax = Number(limitInfo.yearMax);
+
+    if (limitInfo.dayLimitYn === "Y" && dayCnt + nextCnt > dayMax) {
+        alert("예약안내\n신청일 기준 일별 예약가능 회차 소진으로 예약이 제한됩니다.");
+        return true;
+    }
+
+    if (limitInfo.monthLimitYn === "Y" && monthCnt + nextCnt > monthMax) {
+        alert("예약안내\n신청일 기준 월별 예약가능 회차 소진으로 예약이 제한됩니다.");
+        return true;
+    }
+
+    if (limitInfo.yearLimitYn === "Y" && yearCnt + nextCnt > yearMax) {
+        alert("예약안내\n신청일 기준 년별 예약가능 회차 소진으로 예약이 제한됩니다.");
+        return true;
+    }
+
+    return false;
+}
+
+/* ============================================================
+ * [SECTION 09] 예약 가능 검증 — 선착순/심사 / 예약기준일
+ * ------------------------------------------------------------
+ *  isJudgeLimitExceeded()    : 선착순/심사 인원 제한 검증
+ *  checkBookingBeforeTime()  : 예약기준일(N일 전~M일 전) 검증
+ *  setReserveState()         : 예약신청/예약불가 버튼 상태 전환
+ * ========================================================== */
+
+/* (9-1) 선착순/심사 방식 기준 초과 검증 ------------------- */
+/*  - 선착순: 별도 제한 없음 (false)
+ *  - 심사  : tpSetting=Y이고 maxPerson 도달 시 차단
+ */
+function isJudgeLimitExceeded(currentCnt, item) {
+
+    if (!judgeType) return false;
+
+    // 사용여부 = N이면 1팀이라도 있으면 차단 (선착순/심사 공통)
+    var tpSetting = item.tpSetting;
+    var maxPerson = item.maxBookingPerson || 0;
+    var unit      = item.tpType === "T" ? "팀" : "명";
+
+    if (tpSetting === "N" && currentCnt >= 1) {
+        alert("해당 회차는 이미 예약이 마감되었습니다.");
+        return true;
+    }
+
+    if (judgeType === "선착순") {
+        return false;
+    }
+
+    if (judgeType === "심사") {
+        if (tpSetting === "Y" && maxPerson > 0 && currentCnt >= maxPerson) {
+            alert("해당 회차는 최대 " + maxPerson + unit + "까지 신청 가능합니다.");
+            return true;
+        }
+        return false;
+    }
+
+    return false;
+}
+
+/* (9-2) 예약기준일 체크 ----------------------------------- */
+/*  - 시작: 이용일 bookingBeforeDay일 전 bookingBeforeTime시
+ *  - 종료: 이용일 bookingBeforeDay2일 전 bookingBeforeTime2시
+ *  - 현재 시각이 [시작 ~ 종료] 범위 내여야 예약 가능
+ *  - 범위 벗어나면 alert 메시지 반환
+ */
+function checkBookingBeforeTime(selectedDate){
+    // 예약기준일 설정이 없으면 통과
+    if(!bookingBeforeDay && !bookingBeforeTime && !bookingBeforeDay2 && !bookingBeforeTime2){
+        return { ok: true };
+    }
+
+    // 선택한 날짜 기준으로 Date 객체 생성
+    const parts = selectedDate.split("-");
+    const y = parseInt(parts[0]);
+    const m = parseInt(parts[1]) - 1;
+    const d = parseInt(parts[2]);
+
+    // 예약 시작 시각: 방문일 - bookingBeforeDay일 + bookingBeforeTime시
+    const startDt = new Date(y, m, d - bookingBeforeDay, bookingBeforeTime, 0, 0);
+
+    // 예약 종료 시각: 방문일 - bookingBeforeDay2일 + bookingBeforeTime2시
+    let endDt = new Date(y, m, d - bookingBeforeDay2, bookingBeforeTime2, 0, 0);
+
+    const now = new Date();
+
+    // 현재 시각이 시작 시각 이전이면 "아직 예약 불가"
+    if(now < startDt){
+        const msg = "예약안내\n\n"
+                  + "해당 날짜는 이용일 " + bookingBeforeDay + "일 전 "
+                  + String(bookingBeforeTime).padStart(2,"0") + "시 부터 예약이 가능합니다.";
+        return { ok: false, msg: msg };
+    }
+
+    // 현재 시각이 종료 시각 이후면 "예약 마감"
+    if(endDt && now > endDt){
+        const msg = "예약안내\n\n"
+                  + "해당 날짜의 예약 가능 시간이 지났습니다.\n"
+                  + "예약은 이용일 " + bookingBeforeDay2 + "일 전 "
+                  + String(bookingBeforeTime2).padStart(2,"0") + "시 까지만 가능합니다.";
+        return { ok: false, msg: msg };
+    }
+
+    return { ok: true };
+}
+
+/* (9-3) 예약신청 / 예약불가 버튼 상태 전환 --------------- */
+function setReserveState(isEnable){
+
+    const btn = document.getElementById("btnReserve");
+
+    if(isEnable){
+        btn.innerText = "예약신청";
+        btn.classList.remove("btn-disabled-style");
+        btn.dataset.state = "enable";
+    }else{
+        btn.innerText = "예약불가";
+        btn.classList.add("btn-disabled-style");
+        btn.dataset.state = "disable";
+    }
+}
+
+/* ============================================================
+ * [SECTION 10] 이전 단계 복원 — 자동 회차 체크
+ * ------------------------------------------------------------
+ *  applyReservationToStep2() : reservationList의 시간대와 일치
+ *                              하는 체크박스를 자동 체크
+ * ========================================================== */
+function applyReservationToStep2(){
+
+	if(isReservationApplied) return;
+
+	if (typeof reservationList === "undefined" || reservationList.length === 0) return;
+
+    const checkboxes = document.querySelectorAll(".reserve-time-wrap input");
+
+    let appliedCount = 0;
+
+    reservationList.forEach(function(res) {
+        checkboxes.forEach(function(cb) {
+            if (cb.dataset.start === res.fromTime && cb.dataset.end === res.toTime) {
+                if (cb.checked) return; // 이미 체크된 항목 스킵 (중복 방지)
+                cb.checked = true;
+                cb.dispatchEvent(new Event("change"));
+                appliedCount++;
+            }
+        });
+    });
+
+    if (appliedCount > 0) {
+        isReservationApplied = true; // 중복 실행 방지 플래그
+    }
+}
+
+
+/* ============================================================
+ * [SECTION 11] 폼 제출 / 화면 이동
+ * ------------------------------------------------------------
+ *  submitStep1() : Step1 -> 다음 단계 폼 제출 (회차 미선택 차단)
+ *  goPrevStep()  : 목록 화면으로 이동 전 confirm
+ * ========================================================== */
+
+/* (11-1) Step1 -> 다음 단계 폼 제출 ------------------------ */
+function submitStep1(){
+	const rounds = document.querySelectorAll('input[name="roundNo"]');
+
+    if(rounds.length === 0){
+        alert("예약 회차를 선택해주세요.");
+        return;
+    }
+
+    document.getElementById("reserveFrm").submit();
+}
+
+/* (11-2) 이전(목록)으로 이동 ------------------------------ */
+function goPrevStep(){
+    if(confirm("지금까지 입력하신 내용이 저장되지 않습니다.\n정말 이전으로 이동하시겠습니까?")){
+    	location.href = "/apply/lecture";
+    }
+}
+
+/* ============================================================
+ * [SECTION 12] 페이지 부트스트랩 (DOM Ready)
+ * ------------------------------------------------------------
+ *  - 외부예약 시설은 달력 초기화 스킵
+ *  - 일반 시설: initCalendar() + initStep3() 실행
+ *  - 탭 메뉴(이용안내/상세정보) 전환 이벤트
+ *  - 예약신청 버튼 클릭 이벤트
+ * ========================================================== */
+$(document).ready(function(){
+
+	// 외부예약 또는 예약중지인 경우 달력 초기화 불필요
+    const isExternal  = '통합예약' === '외부예약';
+    const isSuspended = bookingPeriodType === "3"; // 예약중지
+
+    if(isSuspended){
+        // 예약중지: 버튼 예약불가 처리 (달력 HTML이 없으므로 initCalendar 호출 금지)
+        setReserveState(false);
+        document.getElementById("btnReserve").dataset.suspended = "true";
+    } else if(!isExternal){
+		initCalendar();
+		initStep3();
+	}
+
+	// 탭 메뉴 (예약안내 / 상세정보) 전환
+	$(".tab a").on("click", function(e){
+	    e.preventDefault();
+
+	    $(".tab li").removeClass("active");
+	    $(this).parent().addClass("active");
+	});
+
+	// 예약 신청 버튼 클릭 이벤트
+	document.getElementById("btnReserve").addEventListener("click", function(e){
+	    e.preventDefault();
+
+	    if(this.dataset.state === "disable"){
+	    	if(this.dataset.suspended === "true"){
+	    		alert("예약 불가\n예약이 불가합니다.");
+	    	} else {
+	    		alert("예약 불가\n예약이 불가한 일자입니다.");
+	    	}
+	        return;
+	    }
+
+	    submitStep1();
+	});
+});
+
+</script>
+
+<div class="step-wrap">
+    <ul>
+        <li class="check">
+            <dl>
+                <dt>1단계</dt>
+                <dd>예약일자 선택</dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt>2단계</dt>
+                <dd>개인정보수집 동의</dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt>3단계</dt>
+                <dd>예약정보 입력</dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt>4단계</dt>
+                <dd>예약 완료</dd>
+            </dl>
+        </li>
+    </ul>
+</div>
+<form id="reserveFrm" method="post" action="/fnct/reservation/resStep1Save">
+	<input type="hidden" name="instiCode" value="INST_CITY_01">
+    <input type="hidden" name="facilityId" value="L0720">
+    <input type="hidden" name="roundDate" id="roundDate" value="">
+    <input type="hidden" name="resourceType" id="resourceType" value="lecture">
+
+<div class="reserve-content-wrap">
+    <!-- head -->
+    <div class="reserve-content-head">
+        <div class="left-element">
+            <div class="thumb-slide-wrap">
+                <div class="swiper mySwiper1">
+                    <div class="swiper-wrapper">
+                    	<div class="swiper-slide">
+	                            <img src="/comm/getImage?srvcId=FACILITY&amp;upperNo=720&amp;fileTy=IMGSTHUMB&amp;fileNo=1" alt="">
+	                        </div>
+                    	</div>
+                </div>
+            </div>
+            <div class="thumb-list-wrap">
+                <div class="swiper mySwiper2">
+                    <div class="swiper-wrapper">
+                    	<div class="swiper-slide">
+	                            <span></span>
+	                            <a href="javascript:void(0)"><img src="/comm/getImage?srvcId=FACILITY&amp;upperNo=720&amp;fileTy=IMGSTHUMB&amp;fileNo=1" alt=""></a>
+	                        </div>
+                    	</div>
+                </div>
+            </div>
+        </div>
+        <div class="info">
+		            <dl>
+		                <dt>구분</dt>
+		                <dd>
+		                	시민참여
+						    | 공연전시</dd>
+		            </dl>
+		            <div class="table-line">
+	                        <dl>
+	                            <dt>이용대상</dt>
+	                            <dd>
+	                            	<span>개인</span>
+	                            		</dd>
+	                        </dl>
+	                    </div>
+	                <div class="table-line">
+	                        <dl>
+	                            <dt>선별방법</dt>
+	                            <dd>심사 (추첨 후,  공연전 월요일 오후 18:00 에 추첨결과를 문자로 보내드립니다. )</dd>
+	                        </dl>
+	                    </div>
+	                <dl>
+					        <dt>접수기간</dt>
+					        <dd>공연 2주전 월~금</dd>
+					    </dl>
+					<dl>
+					        <dt>운영시간</dt>
+					        <dd>공연일 19:00~20:10 </dd>
+					    </dl>
+					<dl>
+					        <dt>인원</dt>
+					        <dd>150석 명</dd>
+					    </dl>
+					<dl>
+					        <dt>주소</dt>
+					        <dd>
+					            경기 성남시 분당구 탄천상로 102 (구미동)<a href="#none" class="location-link" data-addr="경기 성남시 분당구 탄천상로 102 (구미동)" data-addr-la="37.340485997331" data-addr-lo="127.112756992574" style="margin-left:10px;">위치찾기</a>
+					        </dd>
+					    </dl>
+					<dl>
+					        <dt>찾아오시는길</dt>
+					        <dd>지하철 수인분당선 오리역 1번 출구 ( 도보 5분 거리 ) </dd>
+					    </dl>
+					<dl>
+					        <dt>담당부서</dt>
+					        <dd>교육문화체육국  문화관광과</dd>
+					    </dl>
+					<dl>
+					        <dt>문의</dt>
+					        <dd>031-729-2997</dd>
+					    </dl>
+					<div class="point-txt">※ 신청기간내  신청접수 후 추첨</div>
+				    <div class="point-txt">※ 상세정보에서 일자별 공연 확인 후 신청</div>
+				    </div>
+		    </div><!--// head -->
+
+    <div class="reserve-content-body">
+        <div class="reserve-step is-left"><!-- select addclass is-selected -->
+            <div class="reserve-step-title">
+                <span>Step 1</span>
+                <h2>날짜 선택</h2>
+            </div>
+            <div class="cal-wrap">
+                <div class="cal-head">
+                    <button type="button" class="btn-prev disabled"><span class="hd-element">이전 달</span></button>
+                    <div></div>
+                    <button type="button" class="btn-next"><span class="hd-element">다음 달</span></button>
+                </div>
+                <div class="cal-body">
+                    <table class="cal-table">
+                        <thead>
+                            <tr>
+                                <th class="sun">일</th>
+                                <th>월</th>
+                                <th>화</th>
+                                <th>수</th>
+                                <th>목</th>
+                                <th>금</th>
+                                <th class="sat">토</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="is-disabled"><a href="#none" aria-disabled="true" tabindex="-1">1</a></td>
+                                <td><a href="#none">2</a></td>
+                                <td><a href="#none">3</a></td>
+                                <td><a href="#none">4</a></td>
+                                <td><a href="#none">5</a></td>
+                                <td><a href="#none">6</a></td>
+                                <td><a href="#none">7</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#none">8</a></td>
+                                <td><a href="#none">9</a></td>
+                                <td><a href="#none">10</a></td>
+                                <td><a href="#none">11</a></td>
+                                <td><a href="#none">12</a></td>
+                                <td><a href="#none">13</a></td>
+                                <td><a href="#none">14</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#none">15</a></td>
+                                <td><a href="#none">16</a></td>
+                                <td class="is-active"><a href="#none">17</a></td>
+                                <td><a href="#none">18</a></td>
+                                <td class="is-active"><a href="#none">19</a></td>
+                                <td class="is-active"><a href="#none">20</a></td>
+                                <td class="is-active"><a href="#none">21</a></td>
+                            </tr>
+                            <tr>
+                                <td class="is-active"><a href="#none">22</a></td>
+                                <td class="is-active"><a href="#none">23</a></td>
+                                <td class="is-selected"><a href="#none">24</a></td>
+                                <td class="is-active"><a href="#none">25</a></td>
+                                <td class="is-active"><a href="#none">26</a></td>
+                                <td><a href="#none">27</a></td>
+                                <td><a href="#none">28</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#none">29</a></td>
+                                <td><a href="#none">30</a></td>
+                                <td class="is-disabled"><a href="#none" aria-disabled="true" tabindex="-1">1</a></td>
+                                <td class="is-disabled"><a href="#none" aria-disabled="true" tabindex="-1">2</a></td>
+                                <td class="is-disabled"><a href="#none" aria-disabled="true" tabindex="-1">3</a></td>
+                                <td class="is-disabled"><a href="#none" aria-disabled="true" tabindex="-1">4</a></td>
+                                <td class="is-disabled"><a href="#none" aria-disabled="true" tabindex="-1">5</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="cal-foot">
+                    <span class="legend-badge">
+                        <span class="legend-dot"></span>예약마감
+                    </span>
+                    <span class="legend-badge">
+                        <span class="legend-dot available"></span>
+                        예약
+                    </span>
+                    <span class="legend-badge">
+                        <span class="legend-dot selected"></span>
+                        선택
+                    </span>
+                </div>
+            </div>
+
+        </div>
+        <div class="reserve-step is-right">
+            <div class="reserve-step-two"><!-- select addclass is-selected -->
+                <div class="reserve-step-title">
+                    <span>Step 2</span>
+                    <h2>예약시간 선택</h2>
+                    <p class="tip-txt">
+                        원하시는 예약일자를 선택하시면 예약 회차가 표시됩니다.
+                    </p>
+                    <div class="time-txt">
+                        원하시는 예약일자를 선택하시면 예약 회차가 표시됩니다.
+                    </div>
+                </div>
+                <ul class="reserve-time-wrap">
+                    </ul>
+            </div>
+            <div class="reserve-step-three"><!-- select addclass is-selected -->
+                <div class="reserve-step-title">
+                    <span>Step 3</span>
+                    <h2>선택 회차 확인</h2>
+                </div>
+                <div class="reserve-turning-wrap">
+                	<div class="info-txt">
+	                        <strong>이용예정일 기준</strong>
+	                        일 최대 <span class="limit-day">0/1</span>
+							월 최대 <span class="limit-month">0/0</span>
+							년 최대 <span class="limit-year">0/0</span>
+	                    </div>
+                    <ul class="reserve-turning-list">
+                        <li>
+                            2026-01-24 16:00 ~ 18:00
+                            <span><a href="#none"></a></span>
+                        </li>
+                        <li>
+                            2026-01-24 18:00 ~ 19:00
+                            <span><a href="#none"></a></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="reserve-content-btn">
+   		<div class="btn-wrap flex between">
+            <a href="#none" onclick="goPrevStep()" class="btn-normal bg-btn-tertiary xlarge">목록으로</a>
+            <a href="#none" id="btnReserve" class="btn-normal primary bg-btn-primary xlarge">예약신청</a>
+			    </div>
+    </div>
+    <div class="reserve-content-foot tab-content">
+	    <div class="tab inner">
+	        <ul class="col2">
+	            <li class="active"><a href="#none">이용안내</a></li>
+	            <li><a href="#none">상세정보</a></li>
+	        </ul>
+	    </div>
+	    <div class="">
+	        <div class="tab-panel">
+	            <h4 class="section-title">이용안내</h4>
+	            <div class="board-view-table">
+
+	                <div class="table-line">
+	                        <dl>
+	                            <dt>예약방법</dt>
+	                            <dd>통합예약</dd>
+	                        </dl>
+	                    </div>
+	                <div class="table-line">
+	                        <dl>
+	                            <dt>이용대상</dt>
+	                            <dd>
+									<span>개인</span>
+	                            		</dd>
+	                        </dl>
+	                    </div>
+	                <div class="table-line">
+	                        <dl>
+	                            <dt>선별방법</dt>
+	                            <dd>심사 (추첨 후,  공연전 월요일 오후 18:00 에 추첨결과를 문자로 보내드립니다. )</dd>
+	                        </dl>
+	                    </div>
+	                <div class="table-line">
+		                        <dl>
+		                            <dt>운영기간</dt>
+		                            <dd>
+		                                2026-09-19~2026-09-19</dd>
+		                        </dl>
+		                    </div>
+		                <div class="table-line">
+	                        <dl>
+	                            <dt>운영시간</dt>
+	                            <dd>
+	                                <ul class="normal-type dot">
+	                                    <li>토요일 : 19:00 ~ 20:10</li><li>공휴일 : 19:00 ~ 20:10</li></ul>
+	                            </dd>
+	                        </dl>
+	                    </div>
+	                <div class="table-line">
+	                        <dl>
+	                            <dt>예약기준일</dt>
+	                            <dd>
+								        	이용일 12일 전 10시
+			                                ~ 이용일 8일 전18시 전까지
+			                            </dd>
+								    </dl>
+	                    </div>
+	                <div class="table-line">
+	                        <dl>
+	                            <dt>예약기간</dt>
+	                            <dd>
+	                                상시예약</dd>
+	                        </dl>
+	                    </div>
+	                </div>
+	        </div>
+
+	        <div class="tab-panel">
+	            <h4 class="section-title">상세정보</h4>
+	            <div class="board-view-table">
+
+	                <div class="table-line">
+	                        <dl>
+	                            <dt>상세설명</dt>
+	                            <dd><p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; text-align: center; background: rgb(255, 255, 255);"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 44px; font-family: 함초롬바탕; font-weight: bold; font-size: 22pt;">환상과 즉흥 피아노 리사이틀</span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; text-align: center; background: rgb(255, 255, 255);">&nbsp;</p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; text-align: center; background: rgb(255, 255, 255);"><u style="box-sizing: border-box;"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 36px; font-family: 함초롬바탕; letter-spacing: 0pt; font-weight: bold; font-size: 18pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">9</span></u><u style="box-sizing: border-box;"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 36px; font-family: 함초롬바탕; font-weight: bold; font-size: 18pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">월</span></u><u style="box-sizing: border-box;"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 36px; font-family: 함초롬바탕; letter-spacing: 0pt; font-weight: bold; font-size: 18pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"> 19</span></u><u style="box-sizing: border-box;"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 36px; font-family: 함초롬바탕; font-weight: bold; font-size: 18pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">일</span></u><u style="box-sizing: border-box;"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 36px; font-family: 함초롬바탕; letter-spacing: 0pt; font-weight: bold; font-size: 18pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">(</span></u><u style="box-sizing: border-box;"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 36px; font-family: 함초롬바탕; font-weight: bold; font-size: 18pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">토</span></u><u style="box-sizing: border-box;"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 36px; font-family: 함초롬바탕; letter-spacing: 0pt; font-weight: bold; font-size: 18pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">) 19:00 </span></u><u style="box-sizing: border-box;"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 36px; font-family: 함초롬바탕; font-weight: bold; font-size: 18pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">성남물빛정원 뮤직홀</span></u></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 36px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; background-color: rgb(255, 255, 255); font-weight: bold; font-size: 18pt;">&nbsp;</p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255); text-align: center; word-break: keep-all;"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; font-family: 함초롬바탕; font-weight: bold; font-size: 14pt;">연주</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; font-family: 함초롬바탕; letter-spacing: 0pt; font-weight: bold; font-size: 14pt;">: </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; font-family: 함초롬바탕; font-weight: bold; font-size: 14pt;">찰리 올브라이트 </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; font-family: 함초롬바탕; letter-spacing: 0pt; font-weight: bold; font-size: 14pt;">Charlie Albright (</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; font-family: 함초롬바탕; font-weight: bold; font-size: 14pt;">피아노</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; font-family: 함초롬바탕; letter-spacing: 0pt; font-weight: bold; font-size: 14pt;">)</span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; background-color: rgb(255, 255, 255); text-align: center; word-break: keep-all; font-weight: bold; font-size: 12pt;">&nbsp;</p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255); text-align: center; word-break: keep-all;"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; font-family: 함초롬바탕; font-weight: bold; font-size: 14pt;">진행 및 해설</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; font-family: 함초롬바탕; letter-spacing: 0pt; font-weight: bold; font-size: 14pt;">:</span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255); text-align: center; word-break: keep-all;"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; font-family: 함초롬바탕; font-weight: bold; font-size: 14pt;">금난새</span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255); text-align: center; word-break: keep-all;"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; font-family: 함초롬바탕; font-weight: bold; font-size: 14pt;"><br style="box-sizing: border-box;"></span></p><blockquote class="bq09 ne-quotation-container ne-quotation-section" style="box-sizing: border-box; margin: 0px; padding: 10px; line-height: 25.5px; font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255); border: 2px solid rgb(204, 204, 204); color: rgb(136, 136, 136);">
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; text-align: center; word-break: keep-all;"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; text-align: start; font-family: 함초롬바탕;">악보 없이</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; letter-spacing: 0pt; text-align: start; font-family: 함초롬바탕;">, </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; text-align: start; font-family: 함초롬바탕;">오직 그 순간에만 존재하는 음악</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; letter-spacing: 0pt; text-align: start; font-family: 함초롬바탕;">. </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; text-align: start; font-family: 함초롬바탕;">이번 리사이틀은 처음부터 끝까지 즉흥으로 채워진다</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; letter-spacing: 0pt; text-align: start; font-family: 함초롬바탕;">. </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; text-align: start; font-family: 함초롬바탕;">성남물빛정원의 </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; letter-spacing: 0pt; text-align: start; font-family: 함초롬바탕;">'</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; text-align: start; font-family: 함초롬바탕;">물과 빛</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; letter-spacing: 0pt; text-align: start; font-family: 함초롬바탕;">'</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; text-align: start; font-family: 함초롬바탕;">에서 길어 올린 오프닝으로 문을 연 뒤</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; letter-spacing: 0pt; text-align: start; font-family: 함초롬바탕;">,</span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; text-align: center; word-break: keep-all;"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; letter-spacing: 0pt; text-align: start; font-family: 함초롬바탕;"></span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; text-align: start; font-family: 함초롬바탕;">누구에게나 익숙한 아리랑을 고전의 격조에서 낭만의 열기까지 넘나드는 변주로 다시 들려준다</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; letter-spacing: 0pt; text-align: start; font-family: 함초롬바탕;">.</span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; text-align: center; word-break: keep-all;"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; letter-spacing: 0pt; text-align: start; font-family: 함초롬바탕;"></span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; text-align: start; font-family: 함초롬바탕;">오래 사랑받은 영화와 드라마 선율은 하나의 이야기로 매끄럽게 이어지고</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; letter-spacing: 0pt; text-align: start; font-family: 함초롬바탕;">, </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; text-align: start; font-family: 함초롬바탕;">마지막은 관객이 그 자리에서 건넨 음표와 멜로디를 엮어 한 곡을 완성하는 무대다</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; letter-spacing: 0pt; text-align: start; font-family: 함초롬바탕;">.</span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; text-align: center; word-break: keep-all;"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; letter-spacing: 0pt; text-align: start; font-family: 함초롬바탕;"></span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; text-align: start; font-family: 함초롬바탕;">무대와 객석의 경계가 사라지는 </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; letter-spacing: 0pt; text-align: start; font-family: 함초롬바탕;">40</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; text-align: start; font-family: 함초롬바탕;">여 분</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; letter-spacing: 0pt; text-align: start; font-family: 함초롬바탕;">, </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; text-align: start; font-family: 함초롬바탕;">오늘 이 자리에서만 태어나고 두 번 반복될 수 없는 연주가 펼쳐진다</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; letter-spacing: 0pt; text-align: start; font-family: 함초롬바탕;">.</span></p>
+<div style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px;"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20px; color: rgb(0, 0, 0); font-size: 10pt; letter-spacing: 0pt; font-family: 함초롬바탕;"><br style="box-sizing: border-box;"></span></div></blockquote>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255); text-align: center; word-break: keep-all;"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; font-family: 함초롬바탕; font-weight: bold; font-size: 14pt;"><br style="box-sizing: border-box;"></span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 36px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; background-color: rgb(255, 255, 255); text-align: center; word-break: keep-all; font-weight: bold; font-size: 18pt;">&nbsp;</p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255); text-align: center; word-break: keep-all;"><br style="box-sizing: border-box;"></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 36px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; background-color: rgb(255, 255, 255); text-align: center; word-break: keep-all; font-weight: bold; font-size: 18pt;">&nbsp;</p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; font-family: Aarial; letter-spacing: 0pt; font-weight: bold; font-size: 12pt; color: rgb(51, 51, 51); background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">PROGRAM</span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255); font-weight: bold;">&nbsp;</p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255); word-break: keep-all;"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; font-family: 함초롬바탕; letter-spacing: 0pt; font-weight: bold; font-size: 12pt;">Part 1: </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; font-family: 함초롬바탕; font-weight: bold; font-size: 12pt;">물빛 판타지 즉흥</span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255); word-break: keep-all;"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 12pt;">(Water &amp; Light Fantasy Improvisation)</span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; background-color: rgb(255, 255, 255); font-size: 12pt;">&nbsp;</p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; font-family: 함초롬바탕; letter-spacing: 0pt; font-weight: bold; font-size: 12pt;">Part 2: </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; font-family: 함초롬바탕; font-weight: bold; font-size: 12pt;">시대를 넘나드는 </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; font-family: 함초롬바탕; letter-spacing: 0pt; font-weight: bold; font-size: 12pt;">&ldquo;</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; font-family: 함초롬바탕; font-weight: bold; font-size: 12pt;">아리랑</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; font-family: 함초롬바탕; letter-spacing: 0pt; font-weight: bold; font-size: 12pt;">&rdquo; </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; font-family: 함초롬바탕; font-weight: bold; font-size: 12pt;">변주곡 즉흥</span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 12pt;">(Echoes Across Time: Genre-Crossing Variations Improvisation on &ldquo;Arirang&rdquo;)</span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; background-color: rgb(255, 255, 255); font-size: 12pt;">&nbsp;</p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; font-family: 함초롬바탕; letter-spacing: 0pt; font-weight: bold; font-size: 12pt;">Part 3: </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; font-family: 함초롬바탕; font-weight: bold; font-size: 12pt;">건반 위의 시네마</span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 12pt;">(Cinematic Melodies: Movie &amp; OST Improvisation)</span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; background-color: rgb(255, 255, 255); font-size: 12pt;">&nbsp;</p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; font-family: 함초롬바탕; letter-spacing: 0pt; font-weight: bold; font-size: 12pt;">Part 4: </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; font-family: 함초롬바탕; font-weight: bold; font-size: 12pt;">관객과 함께하는 작곡하기</span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 12pt;">(Live Improvisation with Audience Notes)</span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20.8px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; background-color: rgb(255, 255, 255); font-weight: bold; font-size: 13pt;">&nbsp;</p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255);">&nbsp;</p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; text-align: center; word-break: keep-all; background: rgb(255, 255, 255);"><img src="https://www.seongnam.go.kr/webeditorplus/binary/images/000070/0919%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg" alt="포스터" style="box-sizing: border-box; border: 0px solid rgb(0, 0, 0); vertical-align: baseline; max-width: 100%; width: 905px; height: 1279px;"></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 12pt; background: rgb(255, 255, 255);">&nbsp;</p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 17.6px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; background-color: rgb(255, 255, 255); font-size: 11pt;">&nbsp;</p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 20.8px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; background-color: rgb(255, 255, 255); font-weight: bold; font-size: 13pt;">&nbsp;</p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255);">&nbsp;</p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 12pt; background: rgb(255, 255, 255);">&nbsp;</p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 24px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 22px; font-family: 함초롬바탕; font-weight: bold; font-size: 11pt;">찰리 올브라이트 </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 22px; font-family: 함초롬바탕; letter-spacing: 0pt; font-weight: bold; font-size: 11pt;">| </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 22px; font-family: 함초롬바탕; font-weight: bold; font-size: 11pt;">피아노</span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">피아니스트</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">, </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">작곡가 그리고 즉흥 연주자인 찰리 올브라이트는 미국 태생의 클래식 피아니스트</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">, </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">작곡가 그리고 즉흥 연주자이다</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">. </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">그는 공식 스타인웨이 아티스트이며 </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">2014</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">년 에이버리 피셔 커리어 그랜트 수상자 그리고 </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">2010 </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">길모어 영 아티스트이기도 하다</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">. </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">올브라이트는 하버드 대학</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">(AB)</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">과 뉴잉글랜드 음악원</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">(MM)</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">을 졸업하고 학교의 </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">5</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">년 </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">AB/MM </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">합동 프로그램에서 첫 클래식 피아니스트로 선정되었으며</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">, 2011-2012</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">년 레지던스의 레브렛 하우스 아티스트로 선정</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">, 2011</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">년 하버드 대학 클래스의 가장 흥미로운 </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">15</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">명의 시니어 중 한 명으로 소개된바 있다</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">. 2014</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">년에는 줄리어드 음악 대학원을 졸업했다</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">.</span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">올브라이트는 권위 있는 </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">Avery Fisher Career Grant </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">및 </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">Gilmore Young Artist Award, Ruhr Klavier Festival Young Artist Award (</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">독일</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">) </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">및 </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">Young Concert Artists International Auditions</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">의 수상자이다</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">. 2017</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">년과 </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">2020</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">년에 </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">3</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">부작 슈베르트 시리즈의 첫 두 부분인 비바체라는 녹음을 통해 데뷔한 그는 음악에 생기를 불어넣는 독특한 즉흥 연주를 통해 모든 장르를 넘나들고 또한 그것을 재미있게 만들면서 음악의 일반적인 고정관념을 뛰어 넘는 연주를 자주 선보인다</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">.</span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">그동안 요요 마</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">, </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">조슈아 벨</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">, </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">엠마뉴엘 액스</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">, </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">바비 맥페린을 포함한 유명한 예술가들과도 정기적으로 같이 연주를 하며 샌프란시스코</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">, </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">시애틀</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">, </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">보스턴 팝스</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">, </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">필리 팝스</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">, BBC </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">콘서트 오케스트라</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">, </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">베르겐</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">, NCPA </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">심포니즈를 포함한 오케스트라들과 노르웨이의 그리그 홀</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">, </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">뉴욕 카네기 홀 메인무대 등 세계의 유수의 콘서트홀에서 연주한 바 있다</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">.</span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕;">올브라이트는 고향에서 센트럴리아 칼리지 재단과 공동으로 찰리 올브라이트 장학금과 찰리 올브라이트 피아노를 설립했으며 장학금은 음악 전공 학생들에게 재정적으로 지원하고 악기를 위한 기금을 마련하고 있다</span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; font-family: 함초롬바탕; letter-spacing: 0pt;">.</span></p></dd>
+	                        </dl>
+	                    </div>
+	                <div class="table-line">
+	                        <dl>
+	                            <dt>예약시 유의사항</dt>
+	                            <dd><p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background: rgb(255, 255, 255);"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; font-family: 함초롬바탕; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">&lt;관람안내&gt;</span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background: rgb(255, 255, 255);"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; font-family: 함초롬바탕; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">1. 신청 후 추첨&nbsp;<br style="box-sizing: border-box;"></span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background: rgb(255, 255, 255);"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; font-family: 함초롬바탕; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">&nbsp; &nbsp;성남물빛정원 공연은 신청</span><span lang="EN-US" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"> </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; font-family: 함초롬바탕; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">후 추첨을 통해 관람이 확정됩니다</span><span lang="EN-US" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">.</span><br style="box-sizing: border-box;"></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background: rgb(255, 255, 255);"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; font-family: 함초롬바탕; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">&nbsp; &nbsp;(성남시청 홈페이지 &gt; 통합예약 &gt; 시민참여 )&nbsp;<br style="box-sizing: border-box;"></span></p>
+<p class="0" style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 25.5px; color: rgb(19, 20, 22); font-family: 'Pretendard GOV', 'sans-serif'; font-size: 17px; background: rgb(255, 255, 255);"><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; font-family: 함초롬바탕; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">2. 입장연령 : </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; font-family: 함초롬바탕; font-size: 14pt;">미취학아동 입장불가</span></p>
+<p class="0" style="font-size: 13.3333px; background: rgb(255, 255, 255);"><span style="font-family: 함초롬바탕; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="color: rgb(19, 20, 22); box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">3. 입장인원 : 추첨시, </span><span style="color: rgb(19, 20, 22); box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-size: 14pt;">동반</span><span lang="EN-US" style="color: rgb(19, 20, 22); box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; letter-spacing: 0pt; font-size: 14pt;"> 1</span><span style="color: rgb(19, 20, 22); box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-size: 14pt;">인까지 입장 가능합니다</span><span lang="EN-US" style="color: rgb(19, 20, 22); box-sizing: border-box; margin: 0px; padding: 0px; line-height: 28px; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; letter-spacing: 0pt; font-size: 14pt;">.</span></span></p>
+<p class="0" style="font-size: 13.3333px; background: rgb(255, 255, 255);"><span lang="EN-US" style="font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">&nbsp;</span></p>
+<p class="0" style="font-size: 13.3333px; background: rgb(255, 255, 255);"><span lang="EN-US" style="font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-weight: bold;"><span style="font-size: 14pt; color: rgb(255, 0, 0);">신청시, 관람인원은 2명 또는 1명으로 작성해주십시오.&nbsp;</span><br style="font-size: 18.6667px;">
+ <span style="font-size: 14pt; color: rgb(255, 0, 0);">3명 이상 인원을 기입하더라도, 2명으로 조정 됩니다.</span></span></p>
+<p class="0" style="font-size: 13.3333px; background: rgb(255, 255, 255);"><span lang="EN-US" style="font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-weight: bold;"><span style="font-size: 14pt; color: rgb(255, 0, 0);"><br></span></span></p>
+<p class="0" style="font-size: 13.3333px; background: rgb(255, 255, 255);"><span lang="EN-US" style="font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-weight: bold; color: rgb(255, 0, 0);">추첨 후, 공연관람시 성남시 거주를 증명해야 하니, 주소지 입력시 유의하십시오.&nbsp;<br></span></p>
+<p class="0" style="font-size: 13.3333px; background: rgb(255, 255, 255);"><span style="font-weight: bold; color: rgb(255, 0, 0);">&nbsp;</span></p>
+<p class="0" style="font-size: 13.3333px; background: rgb(255, 255, 255);"><span style="font-family: 함초롬바탕; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">문의</span><span lang="EN-US" style="font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">: 031-729-2997&nbsp;</span></p>
+<p class="0" style="font-size: 13.3333px; background: rgb(255, 255, 255);">&nbsp;</p>
+<p class="0" style="font-size: 13.3333px; background: rgb(255, 255, 255);"><span style="font-weight: bold;"><span style="font-family: 함초롬바탕; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">신청기간</span><span lang="EN-US" style="font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">: 9</span><span style="font-family: 함초롬바탕; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">월 7</span><span style="font-family: 함초롬바탕; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">일</span><span lang="EN-US" style="font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">(</span><span style="font-family: 함초롬바탕; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">월</span><span lang="EN-US" style="font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">) 10:00 ~ 9월 11일&nbsp;</span><span lang="EN-US" style="font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">(</span><span style="font-family: 함초롬바탕; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">금</span><span lang="EN-US" style="font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">) 18:00&nbsp;</span><br></span></p>
+<p class="0" style="font-size: 13.3333px; background: rgb(255, 255, 255);"><span style="font-weight: bold;"><span style="font-family: 함초롬바탕; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">추 첨&nbsp; 일</span><span lang="EN-US" style="font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">: 9</span><span style="font-family: 함초롬바탕; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">월</span><span lang="EN-US" style="font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">&nbsp; 14일(</span><span style="font-family: 함초롬바탕; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">월</span><span lang="EN-US" style="font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">) /&nbsp; 16:00 </span><span style="font-family: 함초롬바탕; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">이후 추첨여부가 개인문자로 발송됩니다</span><span lang="EN-US" style="font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">.&nbsp; &nbsp;</span><br></span></p>
+<p class="0" style="font-size: 13.3333px; background: rgb(255, 255, 255);"><span lang="EN-US" style="font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><br></span></p>
+<p class="0" style="font-size: 13.3333px; background: rgb(255, 255, 255);"><span lang="EN-US" style="font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 14pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><br></span></p></dd>
+	                        </dl>
+	                    </div>
+	                </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+
+<div class="layer-popup-wrap location-layer-popup">
+    <div class="layer-popup">
+        <p>경기 성남시 분당구 탄천상로 102 (구미동)</p>
+        <a href="#none" class="close"><span class="hd-element">팝업닫기</span></a>
+        <div class="popup-body">
+            <div id="location_map" style="height:450px;"></div>
+        </div>
+    </div>
+</div></div>
+	                    <div class="content-foot">
+	                    	<!-- 게시판인 경우에만 실행 -->
+</div>
+	                </div>         
+				<div class="page-top-btn">
+				<button type="button"><span class="hd-element">상단으로 이동</span></button>
+			</div>
+	    </main>
+	
+	    <footer id="footer">
+	    	<div class="footer-info">
+    <div class="inner">
+        <div class="footer-logo">
+            <img src="/humanframe/theme/apply/assets/images/common/logo_footer.svg" alt="성남시 통합예약">
+        </div>
+        <div class="address-wrap">
+            <div class="address">
+                <p><span>13437</span>경기도 성남시 중원구 성남대로 997 (여수동)</p>
+                <p><span>성남콜센터</span> <strong>1577-3100</strong> 평일 09:00 ~ 18:00 (토·일·공휴일 제외)<br> 상담시간 외 당직실 연결</p>
+            </div>
+            <div class="address-map">
+                <ul>
+                    <li><a href="https://www.webwatch.or.kr/Situation/WA_Situation.html?MenuCD=110" target="_blank" title="새창"><img src="/humanframe/theme/global/assets/images/common/footer_wa.svg" alt="웹접근성인증마크"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="util">
+            <ul>
+                <li><a href="/cn05010101" target="_blank" title="새창"><strong>개인정보처리방침</strong></a></li>
+                <li><a href="/cn050401" target="_blank" title="새창">저작권정책</a></li>
+            </ul>
+            <p>Copyright ⓒ Seongnam City. All Rights Reserved.</p>
+        </div>
+    </div>
+</div></footer>
+	
+	    <div class="black-dim"></div>
+	</div>
+	<form name="totalSearchForm" id="totalSearchForm" method="post">
+	    <input type="hidden" name="query" id="totalQuery" value="">
+	</form>
+	
+	<script>
+	window.aiTranslatorConfig = {
+	    chat_bot_id: '00a69c9c-9a6a-44d6-ac3d-fcde4d33b4fe',
+	    currentDomain: 'https://seongnam.han.kr'
+	};
+	</script>
+	<script src="/humanframe/theme/global/assets/plugin/translator/ai-translator.js"></script>
+	
+	<!-- LOGGER(TM) TRACKING SCRIPT V.40 FOR logger.co.kr / 100000 : COMBINE TYPE / DO NOT ALTER THIS SCRIPT. -->
+	<script type="text/javascript">var _TRK_LID = "100007";var _L_TD = "log.seongnam.go.kr";var _TRK_CDMN = ".seongnam.go.kr";</script>
+	<script type="text/javascript">var _CDN_DOMAIN = location.protocol == "https:" ? "https://log.seongnam.go.kr" : "http://log.seongnam.go.kr"; 
+	(function (b, s) { var f = b.getElementsByTagName(s)[0], j = b.createElement(s); j.async = true; j.src = "//log.seongnam.go.kr/fs4/bstrk.sol.js"; f.parentNode.insertBefore(j, f); })(document, "script");
+	</script>
+	<noscript><img alt="Logger Script" width="1" height="1" src="http://log.seongnam.go.kr/tracker.sol.tsp?u=100007&amp;js=N"/></noscript>
+	<!-- END OF LOGGER TRACKING SCRIPT -->
+</body>
+</html>
+<!--homepage-was1-1-->

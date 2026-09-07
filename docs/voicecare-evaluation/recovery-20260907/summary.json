@@ -1,0 +1,528 @@
+{
+  "startingHead": "8f5436dc5582549b0b807e57a964b282169ef50a",
+  "startingBranch": "codex/voicecare-official-search",
+  "checkpoint": "b39df0f",
+  "workingBranch": "codex/voicecare-regression-recovery",
+  "original61ExpectationSha256": "92bb544d87a96bf93a354ff1593a51d8e4a9e30aa0c716af739e191146a273aa",
+  "baseline": {
+    "structured_direct_success": 2,
+    "web_search_grounded_success": 4,
+    "clarification_success": 0,
+    "unsupported_correct": 0,
+    "safe_fallback": 11,
+    "provider_network_failure": 0,
+    "wrong_answer": 0,
+    "wrong_source": 2,
+    "no_answer_despite_official_evidence": 1
+  },
+  "offline": {
+    "structured_answer_success": 2,
+    "grounded_web_answer_success": 15,
+    "valid_clarification": 0,
+    "correct_unsupported": 0,
+    "safe_fallback": 3,
+    "provider_failure": 0,
+    "official_evidence_exists_but_no_answer": 2,
+    "exact_route_evidence_unverified": 1,
+    "wrong_answer": 0,
+    "wrong_source": 0,
+    "completion": 17,
+    "total": 20,
+    "mode": "CAPTURED_PROVIDER_CAPTURED_HTTPS_NO_NETWORK",
+    "rows": [
+      {
+        "id": "domain-009",
+        "question": "장애인 보조기구 지원 신청 방법",
+        "classification": "structured_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": []
+      },
+      {
+        "id": "domain-027",
+        "question": "취업 면접 보러 가는데 정장 빌릴 수 있어요",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://job.seongnam.go.kr/contents/content.do?cIdx=76"
+        ]
+      },
+      {
+        "id": "domain-031",
+        "question": "성남 청년들이 모임하는 공공 공간 찾아줘",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.snspring.or.kr/introduceCenter.do"
+        ]
+      },
+      {
+        "id": "domain-052",
+        "question": "보건증 발급받으려면 성남 어디로 가요",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/health/ht-pm020101/6010?curPage=1&cvlcptBizSn=6010&srchText=%EA%B1%B4%EA%B0%95%EC%A7%84%EB%8B%A8%EA%B2%B0%EA%B3%BC%EC%84%9C"
+        ]
+      },
+      {
+        "id": "domain-053",
+        "question": "담배 끊고 싶은데 무료 상담 있어요",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/health/ht-pm020101/9016"
+        ]
+      },
+      {
+        "id": "domain-066",
+        "question": "성남에서 버스 타려면",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/tr010200"
+        ]
+      },
+      {
+        "id": "domain-068",
+        "question": "특별교통수단 신청 방법",
+        "classification": "structured_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": []
+      },
+      {
+        "id": "domain-071",
+        "question": "판교역에서 성남시청 가는 대중교통 알려줘",
+        "classification": "safe_fallback",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": false,
+        "sourceUrls": []
+      },
+      {
+        "id": "domain-073",
+        "question": "성남 시청에 차 가져가면 주차할 수 있어요",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/cn040503"
+        ]
+      },
+      {
+        "id": "domain-075",
+        "question": "성남 거주자우선주차 신청하는 법",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://park.isdc.co.kr/resident/useinfo.do"
+        ]
+      },
+      {
+        "id": "domain-081",
+        "question": "성남시청에 민원 넣고 싶은데 어디서 시작해요",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/VFVhtEc"
+        ]
+      },
+      {
+        "id": "domain-083",
+        "question": "전입신고 온라인으로 할 수 있나요",
+        "classification": "safe_fallback",
+        "officialEvidenceExistsButNoAnswer": true,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": false,
+        "sourceUrls": []
+      },
+      {
+        "id": "domain-097",
+        "question": "성남시 여권 어디서 만들어",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/cn02040801"
+        ]
+      },
+      {
+        "id": "domain-098",
+        "question": "성남에서 여권 만들 때 준비물",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/cn0204080301"
+        ]
+      },
+      {
+        "id": "domain-113",
+        "question": "성남 음식물쓰레기 버리는 법",
+        "classification": "safe_fallback",
+        "officialEvidenceExistsButNoAnswer": true,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": false,
+        "sourceUrls": []
+      },
+      {
+        "id": "domain-115",
+        "question": "낡은 소파 버릴 때 어떻게 신고해요",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://waste.isdc.co.kr/contents/content.php?cIdx=3"
+        ]
+      },
+      {
+        "id": "domain-130",
+        "question": "시에서 하는 무료 공연 어디서 찾아요",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/tour/tu-pm020101/6228"
+        ]
+      },
+      {
+        "id": "domain-134",
+        "question": "성남문화재단 공연표 신청하는데 공식 사이트 알려줘",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.snart.or.kr/main/content/view.do?sn=90"
+        ]
+      },
+      {
+        "id": "domain-138",
+        "question": "성남 도서관 회원증 처음 만드는 방법",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.snlib.go.kr/intro/menu/10022/contents/40020/contents.do"
+        ]
+      },
+      {
+        "id": "domain-140",
+        "question": "전자책은 집에서 빌릴 수 있나요",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.snlib.go.kr/intro/40008/contents.do",
+          "https://www.snlib.go.kr/intro/menu/206007/contents/41520/contents.do"
+        ]
+      }
+    ]
+  },
+  "liveHttpsReplay": {
+    "structured_answer_success": 2,
+    "grounded_web_answer_success": 15,
+    "valid_clarification": 0,
+    "correct_unsupported": 0,
+    "safe_fallback": 3,
+    "provider_failure": 0,
+    "official_evidence_exists_but_no_answer": 2,
+    "exact_route_evidence_unverified": 1,
+    "wrong_answer": 0,
+    "wrong_source": 0,
+    "completion": 17,
+    "total": 20,
+    "mode": "CAPTURED_PROVIDER_LIVE_HTTPS",
+    "rows": [
+      {
+        "id": "domain-009",
+        "question": "장애인 보조기구 지원 신청 방법",
+        "classification": "structured_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": []
+      },
+      {
+        "id": "domain-027",
+        "question": "취업 면접 보러 가는데 정장 빌릴 수 있어요",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://job.seongnam.go.kr/contents/content.do?cIdx=76"
+        ]
+      },
+      {
+        "id": "domain-031",
+        "question": "성남 청년들이 모임하는 공공 공간 찾아줘",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.snspring.or.kr/introduceCenter.do"
+        ]
+      },
+      {
+        "id": "domain-052",
+        "question": "보건증 발급받으려면 성남 어디로 가요",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/health/ht-pm020101/6010?curPage=1&cvlcptBizSn=6010&srchText=%EA%B1%B4%EA%B0%95%EC%A7%84%EB%8B%A8%EA%B2%B0%EA%B3%BC%EC%84%9C"
+        ]
+      },
+      {
+        "id": "domain-053",
+        "question": "담배 끊고 싶은데 무료 상담 있어요",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/health/ht-pm020101/9016"
+        ]
+      },
+      {
+        "id": "domain-066",
+        "question": "성남에서 버스 타려면",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/tr010200"
+        ]
+      },
+      {
+        "id": "domain-068",
+        "question": "특별교통수단 신청 방법",
+        "classification": "structured_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": []
+      },
+      {
+        "id": "domain-071",
+        "question": "판교역에서 성남시청 가는 대중교통 알려줘",
+        "classification": "safe_fallback",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": false,
+        "sourceUrls": []
+      },
+      {
+        "id": "domain-073",
+        "question": "성남 시청에 차 가져가면 주차할 수 있어요",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/cn040503"
+        ]
+      },
+      {
+        "id": "domain-075",
+        "question": "성남 거주자우선주차 신청하는 법",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://park.isdc.co.kr/resident/useinfo.do"
+        ]
+      },
+      {
+        "id": "domain-081",
+        "question": "성남시청에 민원 넣고 싶은데 어디서 시작해요",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/VFVhtEc"
+        ]
+      },
+      {
+        "id": "domain-083",
+        "question": "전입신고 온라인으로 할 수 있나요",
+        "classification": "safe_fallback",
+        "officialEvidenceExistsButNoAnswer": true,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": false,
+        "sourceUrls": []
+      },
+      {
+        "id": "domain-097",
+        "question": "성남시 여권 어디서 만들어",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/cn02040801"
+        ]
+      },
+      {
+        "id": "domain-098",
+        "question": "성남에서 여권 만들 때 준비물",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/cn0204080301"
+        ]
+      },
+      {
+        "id": "domain-113",
+        "question": "성남 음식물쓰레기 버리는 법",
+        "classification": "safe_fallback",
+        "officialEvidenceExistsButNoAnswer": true,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": false,
+        "sourceUrls": []
+      },
+      {
+        "id": "domain-115",
+        "question": "낡은 소파 버릴 때 어떻게 신고해요",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://waste.isdc.co.kr/contents/content.php?cIdx=3"
+        ]
+      },
+      {
+        "id": "domain-130",
+        "question": "시에서 하는 무료 공연 어디서 찾아요",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.seongnam.go.kr/tour/tu-pm020101/6228"
+        ]
+      },
+      {
+        "id": "domain-134",
+        "question": "성남문화재단 공연표 신청하는데 공식 사이트 알려줘",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.snart.or.kr/main/content/view.do?sn=90"
+        ]
+      },
+      {
+        "id": "domain-138",
+        "question": "성남 도서관 회원증 처음 만드는 방법",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.snlib.go.kr/intro/menu/10022/contents/40020/contents.do"
+        ]
+      },
+      {
+        "id": "domain-140",
+        "question": "전자책은 집에서 빌릴 수 있나요",
+        "classification": "grounded_web_answer_success",
+        "officialEvidenceExistsButNoAnswer": false,
+        "wrongAnswer": false,
+        "wrongSource": false,
+        "actualAnswerSuccess": true,
+        "sourceUrls": [
+          "https://www.snlib.go.kr/intro/40008/contents.do",
+          "https://www.snlib.go.kr/intro/menu/206007/contents/41520/contents.do"
+        ]
+      }
+    ]
+  },
+  "paidEvaluationExecuted": false,
+  "newPaidApiCalls": 0,
+  "existingPaidLedgerAttempts": 20,
+  "push": false,
+  "productionDeployed": false,
+  "remainingP1": [
+    "전입신고 현행 canonical 본문 미확보",
+    "음식물 배출 JavaScript 본문 수집 불가",
+    "실제 공유 Redis 서비스 자격 증명/연결 검증 미완료(코드 경로·mock 통합은 검증)"
+  ],
+  "unresolvedCoverage": [
+    "판교역→시청 전체 공식 이동 경로"
+  ],
+  "confirmedP0": 0
+}

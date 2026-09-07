@@ -1,0 +1,60 @@
+{
+  "url": "https://www.seongnam.go.kr/apply/lecture/step1?instiCode=INST_CITY_01&facilityId=L0720",
+  "title": "시민참여 - 시민참여 - 성남시 통합예약",
+  "paragraphs": [],
+  "sections": [],
+  "navigation": [
+    {
+      "url": "https://www.seongnam.go.kr/",
+      "title": "주메뉴 바로가기"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/index",
+      "title": "성남시청 홈"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/apply/index",
+      "title": "성남시 통합예약"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/oidc/auth?acrValues=3",
+      "title": "로그인을 해주세요"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/apply/facility",
+      "title": "공간시설"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/apply/sports",
+      "title": "체육시설"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/apply/goods",
+      "title": "물품대여"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/apply/integration/list?srchFacilityType=INTG_00",
+      "title": "행정복지"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/apply/lecture/list?srchFacilityType=LECT_02",
+      "title": "시민참여"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/apply/myFacility",
+      "title": "마이페이지"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn05010101",
+      "title": "개인정보처리방침"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn050401",
+      "title": "저작권정책"
+    }
+  ],
+  "textLength": 167,
+  "omittedSections": 0,
+  "checkedAt": "2026-09-06T16:18:44.214Z",
+  "fromCache": false
+}

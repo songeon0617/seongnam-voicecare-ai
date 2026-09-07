@@ -1,0 +1,336 @@
+{
+  "url": "https://www.isdc.co.kr/",
+  "title": "성남도시개발공사",
+  "paragraphs": [],
+  "sections": [],
+  "navigation": [
+    {
+      "url": "https://www.isdc.co.kr/index.asp",
+      "title": "홈으로"
+    },
+    {
+      "url": "https://www.isdc.co.kr/company/organization.asp",
+      "title": "조직도"
+    },
+    {
+      "url": "https://www.isdc.co.kr/guidance/sitemap.asp",
+      "title": "사이트맵"
+    },
+    {
+      "url": "https://www.isdc.co.kr/customer/faqCategory.asp",
+      "title": "자주하는질문"
+    },
+    {
+      "url": "https://www.isdc.co.kr/customer/service.asp",
+      "title": "고객서비스헌장"
+    },
+    {
+      "url": "https://www.isdc.co.kr/customer/serviceStandard.asp",
+      "title": "고객서비스이행표준"
+    },
+    {
+      "url": "https://www.isdc.co.kr/customer/serviceBusiness01.asp",
+      "title": "고객서비스이행기준"
+    },
+    {
+      "url": "https://www.isdc.co.kr/customer/naturalDisaster01.asp",
+      "title": "자연재난"
+    },
+    {
+      "url": "https://www.isdc.co.kr/customer/socialDisaster01.asp",
+      "title": "사회재난"
+    },
+    {
+      "url": "https://www.isdc.co.kr/customer/satisfactionRate.asp",
+      "title": "고객만족도 조사결과"
+    },
+    {
+      "url": "https://www.isdc.co.kr/customer/fulfillResult.asp",
+      "title": "이행실태결과"
+    },
+    {
+      "url": "https://www.isdc.co.kr/customer/phoneMonitoring.asp",
+      "title": "전화모니터링결과"
+    },
+    {
+      "url": "https://www.isdc.co.kr/customer/csMonitoring.asp",
+      "title": "고객접점서비스모니터링"
+    },
+    {
+      "url": "https://www.isdc.co.kr/customer/csCasebook.asp",
+      "title": "고객중심경영우수사례집"
+    },
+    {
+      "url": "https://www.isdc.co.kr/customer/operateManual.asp",
+      "title": "고객중심경영운영매뉴얼"
+    },
+    {
+      "url": "https://www.isdc.co.kr/operBusiness/physicalManage.asp",
+      "title": "시설운영"
+    },
+    {
+      "url": "https://www.isdc.co.kr/operBusiness/sj_history.asp",
+      "title": "연혁"
+    },
+    {
+      "url": "https://www.isdc.co.kr/operBusiness/sj_award.asp",
+      "title": "수상실적 및 공모사업"
+    },
+    {
+      "url": "https://www.isdc.co.kr/operBusiness/sj_strategy.asp",
+      "title": "중장기 발전전략"
+    },
+    {
+      "url": "https://www.isdc.co.kr/operBusiness/jw_history.asp",
+      "title": "연혁"
+    },
+    {
+      "url": "https://www.isdc.co.kr/operBusiness/jw_award.asp",
+      "title": "수상실적 및 공모사업"
+    },
+    {
+      "url": "https://www.isdc.co.kr/operBusiness/jw_strategy.asp",
+      "title": "중장기 발전전략"
+    },
+    {
+      "url": "https://www.isdc.co.kr/operBusiness/roadTraffic.asp",
+      "title": "도로·교통"
+    },
+    {
+      "url": "https://www.isdc.co.kr/operBusiness/dasom.asp",
+      "title": "다솜마을"
+    },
+    {
+      "url": "https://www.isdc.co.kr/operBusiness/dandaedong.asp",
+      "title": "단대동 행복주택"
+    },
+    {
+      "url": "https://park.isdc.co.kr/",
+      "title": "주차장"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/city/1000853/10630/contents.do",
+      "title": "차량등록사업소"
+    },
+    {
+      "url": "https://www.isdc.co.kr/operBusiness/garbagebag.asp",
+      "title": "종량제봉투"
+    },
+    {
+      "url": "https://waste.isdc.co.kr/main/index.php",
+      "title": "대형폐기물"
+    },
+    {
+      "url": "https://www.isdc.co.kr/operBusiness/snus.asp",
+      "title": "상가안내"
+    },
+    {
+      "url": "https://www.isdc.co.kr/operBusiness/snus_bidding_info.asp",
+      "title": "입찰안내"
+    },
+    {
+      "url": "https://www.isdc.co.kr/operBusiness/snus_environment.asp",
+      "title": "환경관리"
+    },
+    {
+      "url": "https://www.isdc.co.kr/operBusiness/snus_safe.asp",
+      "title": "안전관리"
+    },
+    {
+      "url": "https://www.isdc.co.kr/operBusiness/public_market.asp",
+      "title": "중앙공설시장 안내"
+    },
+    {
+      "url": "https://www.isdc.co.kr/operBusiness/park_stage.asp",
+      "title": "야외공연장 안내"
+    },
+    {
+      "url": "https://www.isdc.co.kr/devWork/parcelOut0101.asp",
+      "title": "개발사업"
+    },
+    {
+      "url": "https://www.isdc.co.kr/devWork/parcelOut0301.asp",
+      "title": "분양관련법령"
+    },
+    {
+      "url": "https://www.isdc.co.kr/devWork/rent0101.asp",
+      "title": "임대가이드"
+    },
+    {
+      "url": "https://www.isdc.co.kr/devWork/rent0201.asp",
+      "title": "임대관련법령"
+    },
+    {
+      "url": "https://www.isdc.co.kr/devWork/devWork0101.asp",
+      "title": "사업개요"
+    },
+    {
+      "url": "https://www.isdc.co.kr/devWork/devWork0201.asp",
+      "title": "추진사업"
+    },
+    {
+      "url": "https://www.isdc.co.kr/devWork/devWork0301.asp",
+      "title": "완료사업"
+    },
+    {
+      "url": "https://www.isdc.co.kr/devWork/devWork0401.asp",
+      "title": "보상안내"
+    },
+    {
+      "url": "https://www.isdc.co.kr/openBusiness/inovation01.asp",
+      "title": "혁신경영"
+    },
+    {
+      "url": "https://www.isdc.co.kr/openBusiness/inovation03_2020.asp?tyear=2020",
+      "title": "혁신우수사례"
+    },
+    {
+      "url": "https://www.isdc.co.kr/openBusiness/inovation04.asp",
+      "title": "시민과함께하는씨앗제안"
+    },
+    {
+      "url": "https://www.isdc.co.kr/openBusiness/inovation05.asp",
+      "title": "예산편성제안사업공모"
+    },
+    {
+      "url": "https://www.isdc.co.kr/openBusiness/esgManagement01.asp",
+      "title": "추진체계"
+    },
+    {
+      "url": "https://www.isdc.co.kr/openBusiness/esgManagement02.asp",
+      "title": "노사공동선언문"
+    },
+    {
+      "url": "https://www.isdc.co.kr/openBusiness/esgManagement03.asp",
+      "title": "전략과제"
+    },
+    {
+      "url": "https://www.isdc.co.kr/openBusiness/esgManagement04.asp",
+      "title": "지역기업을 위한 ESG 가이드"
+    },
+    {
+      "url": "https://www.isdc.co.kr/openBusiness/manageNotify0101.asp",
+      "title": "경영공시"
+    },
+    {
+      "url": "https://www.isdc.co.kr/openBusiness/manageNotify.asp",
+      "title": "경영평가"
+    },
+    {
+      "url": "https://www.isdc.co.kr/openBusiness/moral01.asp",
+      "title": "윤리경영"
+    },
+    {
+      "url": "https://www.isdc.co.kr/openBusiness/human01.asp",
+      "title": "인권신고센터"
+    },
+    {
+      "url": "https://www.isdc.co.kr/openBusiness/human02.asp",
+      "title": "인권경영 추진체계"
+    },
+    {
+      "url": "https://www.isdc.co.kr/openBusiness/human03.asp",
+      "title": "인권경영헌장"
+    },
+    {
+      "url": "https://www.isdc.co.kr/openBusiness/contribution01.asp",
+      "title": "사회공헌"
+    },
+    {
+      "url": "https://www.isdc.co.kr/company/greetings.asp",
+      "title": "공사소개"
+    },
+    {
+      "url": "https://www.isdc.co.kr/company/history.asp",
+      "title": "연혁"
+    },
+    {
+      "url": "https://www.isdc.co.kr/company/award.asp",
+      "title": "수상 및 인증"
+    },
+    {
+      "url": "https://www.isdc.co.kr/company/vision.asp",
+      "title": "미션 및 전략"
+    },
+    {
+      "url": "https://www.isdc.co.kr/company/safety.asp",
+      "title": "안전보건경영방침"
+    },
+    {
+      "url": "https://www.isdc.co.kr/company/ci.asp",
+      "title": "CI소개"
+    },
+    {
+      "url": "https://www.isdc.co.kr/company/rule.asp",
+      "title": "사규"
+    },
+    {
+      "url": "https://www.isdc.co.kr/company/location.asp",
+      "title": "찾아오시는 길"
+    },
+    {
+      "url": "https://www.isdc.co.kr/company/hrd.asp",
+      "title": "인재육성 체계도"
+    },
+    {
+      "url": "https://www.isdc.co.kr/gov/infoContract01.asp",
+      "title": "정보공개"
+    },
+    {
+      "url": "https://www.isdc.co.kr/gov/infoContract0301.asp",
+      "title": "입찰정보"
+    },
+    {
+      "url": "https://www.isdc.co.kr/gov/openDataList.asp",
+      "title": "공공데이터 목록"
+    },
+    {
+      "url": "https://www.isdc.co.kr/gov/openData.asp",
+      "title": "공공데이터 안내"
+    },
+    {
+      "url": "https://www.isdc.co.kr/gov/infoOpen01.asp",
+      "title": "정보공개제도 안내"
+    },
+    {
+      "url": "https://www.isdc.co.kr/gov/infoAdvance.asp?tab_num=0",
+      "title": "사전정보공표"
+    },
+    {
+      "url": "https://www.isdc.co.kr/gov/infoClosed.asp",
+      "title": "비공개대상정보세부기준"
+    },
+    {
+      "url": "https://park.isdc.co.kr/qfeeinq.do",
+      "title": "주차미납요금"
+    },
+    {
+      "url": "https://waste.isdc.co.kr/",
+      "title": "대형폐기물"
+    },
+    {
+      "url": "https://www.isdc.co.kr/operbusiness/snus.asp",
+      "title": "성남중앙지하도상가"
+    },
+    {
+      "url": "https://www.isdc.co.kr/guidance/banner.asp",
+      "title": "관련사이트 전체보기"
+    },
+    {
+      "url": "https://www.isdc.co.kr/guidance/pims.asp",
+      "title": "개인정보 처리방침"
+    },
+    {
+      "url": "https://www.isdc.co.kr/guidance/cctv.asp",
+      "title": "영상정보처리기기운영·관리방침"
+    },
+    {
+      "url": "https://www.isdc.co.kr/guidance/email.asp",
+      "title": "이메일추출방지"
+    }
+  ],
+  "textLength": 1161,
+  "omittedSections": 0,
+  "checkedAt": "2026-09-06T16:31:09.602Z",
+  "fromCache": false
+}

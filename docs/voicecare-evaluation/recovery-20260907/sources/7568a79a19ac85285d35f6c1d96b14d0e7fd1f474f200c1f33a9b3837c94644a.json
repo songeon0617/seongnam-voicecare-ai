@@ -1,0 +1,136 @@
+{
+  "url": "https://park.isdc.co.kr/qfeeinq.do",
+  "title": "미납요금안내|성남도시개발공사",
+  "paragraphs": [
+    "미납요금안내 고객님의 거주자전용주차장 미납요금 및 불법 주.정차 미납요금을 조회 하실 수 있습니다. 노상 노외 주차장 미납내역을 조회하실 수 있습니다. - 미납요금 조회는 로그인 후 조회가 가능합니다. 로그인 개인정보처리방침 찾아오시는길 사이트맵 노외 주차처 : 경기도 성남시 중원구 둔촌대로 183번길 20 성남종합운동장 실내체육관(3층) | 전화 : 031-725-9400 노상 주차처 : 경기도 성남시 중원구 제일로 60 성남종합운동장 성남종합스포츠 센터(4층) | 전화 : 031-725-9400 견인.거주자팀 : 경기도 성남시 중원구 둔촌대로 10 (성남동 대형주차장 내) | 전화 : (견인) 031-752-9783~4 , (거주자) 031-725-9441~4 Copyright© 2020 성남도시개발공사 All Rights Reserved. 본 페이지에 게시된 이메일주소 자동 수집을 거부하며, 이를 위반시 정보통신망법에 의해 처벌됨을 유념하시기 바랍니다."
+  ],
+  "sections": [
+    "미납요금안내 고객님의 거주자전용주차장 미납요금 및 불법 주.정차 미납요금을 조회 하실 수 있습니다. 노상 노외 주차장 미납내역을 조회하실 수 있습니다. - 미납요금 조회는 로그인 후 조회가 가능합니다. 로그인 개인정보처리방침 찾아오시는길 사이트맵 노외 주차처 : 경기도 성남시 중원구 둔촌대로 183번길 20 성남종합운동장 실내체육관(3층) | 전화 : 031-725-9400 노상 주차처 : 경기도 성남시 중원구 제일로 60 성남종합운동장 성남종합스포츠 센터(4층) | 전화 : 031-725-9400 견인.거주자팀 : 경기도 성남시 중원구 둔촌대로 10 (성남동 대형주차장 내) | 전화 : (견인) 031-752-9783~4 , (거주자) 031-725-9441~4 Copyright© 2020 성남도시개발공사 All Rights Reserved. 본 페이지에 게시된 이메일주소 자동 수집을 거부하며, 이를 위반시 정보통신망법에 의해 처벌됨을 유념하시기 바랍니다."
+  ],
+  "navigation": [
+    {
+      "url": "https://park.isdc.co.kr/main.do",
+      "title": "홈으로"
+    },
+    {
+      "url": "https://park.isdc.co.kr/roadin/park_info.do",
+      "title": "주차장소개"
+    },
+    {
+      "url": "https://park.isdc.co.kr/roadin/useinfo.do",
+      "title": "이용안내"
+    },
+    {
+      "url": "https://park.isdc.co.kr/roadin/fee_inq.do",
+      "title": "요금납부안내"
+    },
+    {
+      "url": "https://park.isdc.co.kr/roadin/contact.do",
+      "title": "주차장 현황"
+    },
+    {
+      "url": "https://park.isdc.co.kr/resident/park_info.do",
+      "title": "주차장소개"
+    },
+    {
+      "url": "https://park.isdc.co.kr/resident/useinfo.do",
+      "title": "이용안내"
+    },
+    {
+      "url": "https://park.isdc.co.kr/resident/contract.do",
+      "title": "이용신청"
+    },
+    {
+      "url": "https://park.isdc.co.kr/resident/contractOrder.do",
+      "title": "- 주차(대기)신청"
+    },
+    {
+      "url": "https://park.isdc.co.kr/resident/raffleResult.do",
+      "title": "- 추첨 결과 확인"
+    },
+    {
+      "url": "https://park.isdc.co.kr/resident/fee.do",
+      "title": "요금결제"
+    },
+    {
+      "url": "https://park.isdc.co.kr/resident/feeConf.do",
+      "title": "- 결제내역확인"
+    },
+    {
+      "url": "https://park.isdc.co.kr/resident/fee_inq.do",
+      "title": "미납요금조회납부"
+    },
+    {
+      "url": "https://park.isdc.co.kr/tow/repo_now.do",
+      "title": "견인보관소현황"
+    },
+    {
+      "url": "https://park.isdc.co.kr/tow/repo_info.do",
+      "title": "차량인수안내"
+    },
+    {
+      "url": "https://park.isdc.co.kr/tow/repo_map_info.do",
+      "title": "위치안내"
+    },
+    {
+      "url": "https://park.isdc.co.kr/tow/repo_law.do",
+      "title": "관련법규"
+    },
+    {
+      "url": "https://park.isdc.co.kr/mypage/parkContractWaiter.do",
+      "title": "대기현황조회"
+    },
+    {
+      "url": "https://park.isdc.co.kr/mypage/parkContractInfo.do",
+      "title": "주차장정보"
+    },
+    {
+      "url": "https://park.isdc.co.kr/mypage/contractCharge.do",
+      "title": "- 주차장 결제정보"
+    },
+    {
+      "url": "https://park.isdc.co.kr/mypage/userInfo.do",
+      "title": "정보수정"
+    },
+    {
+      "url": "https://park.isdc.co.kr/mypage/parkContractInfoModify.do",
+      "title": "- 계약정보변경"
+    },
+    {
+      "url": "https://park.isdc.co.kr/mypage/uploadFile.do",
+      "title": "- 증빙 서류 제출"
+    },
+    {
+      "url": "https://park.isdc.co.kr/open/notice.do?menutype=roadout",
+      "title": "공지사항"
+    },
+    {
+      "url": "https://park.isdc.co.kr/open/qna.do",
+      "title": "자주묻는질문"
+    },
+    {
+      "url": "https://park.isdc.co.kr/open/tel_info.do",
+      "title": "전화번호안내"
+    },
+    {
+      "url": "https://park.isdc.co.kr/open/find.do",
+      "title": "찾아오시는길"
+    },
+    {
+      "url": "https://park.isdc.co.kr/open/lastPrivate.do",
+      "title": "개인정보보호"
+    },
+    {
+      "url": "https://park.isdc.co.kr/open/contents.do",
+      "title": "- 개인정보 열람 청구절차"
+    },
+    {
+      "url": "https://park.isdc.co.kr/open/imageProcessing.do",
+      "title": "- 영상정보처리기기 운영관리 방침"
+    }
+  ],
+  "textLength": 486,
+  "omittedSections": 0,
+  "checkedAt": "2026-09-06T16:31:47.780Z",
+  "fromCache": false
+}

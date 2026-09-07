@@ -1,0 +1,136 @@
+{
+  "url": "https://www.snspring.or.kr/",
+  "title": "성남시 청년지원센터 :: 청년이 봄",
+  "paragraphs": [],
+  "sections": [],
+  "navigation": [
+    {
+      "url": "https://www.snspring.or.kr/main.do",
+      "title": "홈으로"
+    },
+    {
+      "url": "https://www.snspring.or.kr/introduceCenter.do",
+      "title": "센터소개"
+    },
+    {
+      "url": "https://www.snspring.or.kr/introduceEmployee.do",
+      "title": "함께하는 사람들"
+    },
+    {
+      "url": "https://www.snspring.or.kr/introducePartner.do",
+      "title": "함께하는 기관"
+    },
+    {
+      "url": "https://www.snspring.or.kr/programList.do",
+      "title": "전체"
+    },
+    {
+      "url": "https://www.snspring.or.kr/programList.do?searchCategory=%ED%95%B4%EB%B4%84",
+      "title": "해봄"
+    },
+    {
+      "url": "https://www.snspring.or.kr/programList.do?searchCategory=%EC%A6%90%EA%B2%A8%EB%B4%84",
+      "title": "즐겨봄"
+    },
+    {
+      "url": "https://www.snspring.or.kr/programList.do?searchCategory=%EB%A7%8C%EB%82%98%EB%B4%84",
+      "title": "만나봄"
+    },
+    {
+      "url": "https://www.snspring.or.kr/programList.do?searchCategory=%EB%88%84%EB%A0%A4%EB%B4%84",
+      "title": "누려봄"
+    },
+    {
+      "url": "https://www.snspring.or.kr/spaceSharing.do",
+      "title": "공간공유"
+    },
+    {
+      "url": "https://www.snspring.or.kr/supportList.do",
+      "title": "청년지원 서비스"
+    },
+    {
+      "url": "https://www.snspring.or.kr/noticeList.do",
+      "title": "공지사항"
+    },
+    {
+      "url": "https://www.snspring.or.kr/questionList.do",
+      "title": "물어봄"
+    },
+    {
+      "url": "https://www.snspring.or.kr/storyList.do",
+      "title": "봄이야기"
+    },
+    {
+      "url": "https://www.snspring.or.kr/introduceCounsel.do",
+      "title": "청춘상담소"
+    },
+    {
+      "url": "https://www.snspring.or.kr/letterList.do",
+      "title": "봄편지"
+    },
+    {
+      "url": "https://www.snspring.or.kr/programView.do?idx=909",
+      "title": "접수중 즐겨봄 [청년이봄] 취미제작소 9월 참가자 모집(~9/8)"
+    },
+    {
+      "url": "https://www.snspring.or.kr/programView.do?idx=903",
+      "title": "접수중 만나봄 [청년이봄] 2026년 청춘상담소 9월 '청년 마인드톡톡' 참가자 모집(~9/9)"
+    },
+    {
+      "url": "https://www.snspring.or.kr/programView.do?idx=803",
+      "title": "접수중 즐겨봄 [청년사업실, 청년이봄] 2026. 청년라이프쉐어 러너블리 성남청년 러닝크루(※ 상시모집)"
+    },
+    {
+      "url": "https://www.snspring.or.kr/programView.do?idx=860",
+      "title": "접수중 누려봄 [청년이봄 수정] 2026년 청년이봄 스토리텔러 모여라!"
+    },
+    {
+      "url": "https://www.snspring.or.kr/noticeView.do?idx=1918",
+      "title": "2026년도 8월 취미제작소 선정 결과 발표 2026.08.12"
+    },
+    {
+      "url": "https://www.snspring.or.kr/noticeView.do?idx=876",
+      "title": "[영상촬영 장비 대여 서비스] 이용 안내 2022.07.30"
+    },
+    {
+      "url": "https://www.snspring.or.kr/noticeView.do?idx=736",
+      "title": "[증명서] 발급 안내 2022.03.30"
+    },
+    {
+      "url": "https://www.snspring.or.kr/noticeView.do?idx=1908",
+      "title": "2026년도 7월 취미제작소 선정 결과 발표 2026.07.15"
+    },
+    {
+      "url": "https://www.snspring.or.kr/supportView.do?idx=1900",
+      "title": "지원서비스 경기도, 성남시 지원 직업교육훈련 [ 기업연계 AI 서비스기획자 양성과정 ]의 교육생을 모집 2026.06.25"
+    },
+    {
+      "url": "https://www.snspring.or.kr/supportView.do?idx=1894",
+      "title": "지원서비스 2026 성남시민 마음건강관리 대강좌 신청(선착순) 2026.06.05"
+    },
+    {
+      "url": "https://www.snspring.or.kr/supportView.do?idx=1866",
+      "title": "지원서비스 [청년정책조정실] 청년인재DB 2026.04.06"
+    },
+    {
+      "url": "https://www.snspring.or.kr/supportView.do?idx=1864",
+      "title": "지원서비스 [성남시정신건강복지센터] 성남시 정신건강 설문 이벤트(~7/1) 2026.04.06"
+    },
+    {
+      "url": "https://www.snspring.or.kr/useAgreement.do",
+      "title": "이용약관"
+    },
+    {
+      "url": "https://www.snspring.or.kr/personalInfoPolicy.do",
+      "title": "개인정보처리방침"
+    },
+    {
+      "url": "https://www.snspring.or.kr/emailPolicy.do",
+      "title": "이메일무단수집거부"
+    }
+  ],
+  "textLength": 1003,
+  "omittedSections": 0,
+  "checkedAt": "2026-09-06T16:21:36.467Z",
+  "fromCache": false
+}

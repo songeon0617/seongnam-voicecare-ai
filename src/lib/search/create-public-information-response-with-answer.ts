@@ -27,7 +27,7 @@ function finishSafety(query: string, category: SafetyCategory): PublicInformatio
   } };
 }
 
-function finish(search: PublicInformationSearchResponse, decision: IntentRoute, source: RoutingMetadata["source"], reason?: RoutingMetadata["reason"]): PublicInformationSearchServiceResult {
+export function finishStructuredResponse(search: PublicInformationSearchResponse, decision: IntentRoute, source: RoutingMetadata["source"], reason?: RoutingMetadata["reason"]): PublicInformationSearchServiceResult {
   const documents = decision.route === "DIRECT"
     ? getRoutingDocuments().filter((document) => decision.serviceIds.includes(document.id as ServiceId)) : [];
   const results = documents.map((document) => search.results.find((result) => result.document.id === document.id) ?? { document, score: 0, matchedTerms: [] });
@@ -47,6 +47,8 @@ function finish(search: PublicInformationSearchResponse, decision: IntentRoute, 
     answerGeneration: { status: "skipped", reason: "deterministic" },
   } };
 }
+
+const finish = finishStructuredResponse;
 
 function fallback(search: PublicInformationSearchResponse, reason: RoutingMetadata["reason"]) {
   const confident = confidentKeywordResult(search.query, search.results);

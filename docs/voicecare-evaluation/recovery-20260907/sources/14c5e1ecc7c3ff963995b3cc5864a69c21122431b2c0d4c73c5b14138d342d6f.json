@@ -1,0 +1,160 @@
+{
+  "url": "https://www.seongnam.go.kr/health/index",
+  "title": "성남시 보건소",
+  "paragraphs": [],
+  "sections": [],
+  "navigation": [
+    {
+      "url": "https://www.seongnam.go.kr/",
+      "title": "주메뉴 바로가기"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/index",
+      "title": "성남시청 홈"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/index",
+      "title": "성남시 보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/oidc/auth?acrValues=3",
+      "title": "로그인을 해주세요"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn010101",
+      "title": "보건소 소개"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/hlt01020101",
+      "title": "보건소 소개"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn010102",
+      "title": "연혁"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn010103",
+      "title": "보건의료헌장"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn010201",
+      "title": "수정구 보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht010200",
+      "title": "수정구 보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn01020201",
+      "title": "조직안내"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn010301",
+      "title": "중원구 보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht010300",
+      "title": "중원구 보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn01030201",
+      "title": "조직안내"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn010401",
+      "title": "분당구 보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht010400",
+      "title": "분당구 보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn01040201",
+      "title": "조직안내"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm020101",
+      "title": "보건사업"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/childVaccInfo",
+      "title": "어린이예방접종일정"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/healthCalc",
+      "title": "건강계산기"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm030101",
+      "title": "의료기관 및 시설"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm040201",
+      "title": "채용공고"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht040500",
+      "title": "민원상담·방역요청"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/apply",
+      "title": "신청하기"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&arrHlthBizTypeCd=&arrWlfCrrCyclCd=&arrWlfHshdSttnCd=&srchWlfPvsnTypeCd=&srchType=&srchText=%EC%98%88%EB%B0%A9%EC%A0%91%EC%A2%85&cntPerPage=9",
+      "title": "예방접종"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&arrHlthBizTypeCd=&arrWlfCrrCyclCd=&arrWlfHshdSttnCd=&srchWlfPvsnTypeCd=&srchType=&srchText=%EC%9D%98%EB%A3%8C&cntPerPage=9",
+      "title": "의료비지원"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&arrHlthBizTypeCd=&arrWlfCrrCyclCd=&arrWlfHshdSttnCd=&srchWlfPvsnTypeCd=&srchType=&srchText=%EA%B8%88%EC%97%B0%ED%81%B4%EB%A6%AC%EB%8B%89&cntPerPage=9",
+      "title": "금연클리닉"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&arrWlfCrrCyclCd=WLF_CRR_CYCL_2%2CWLF_CRR_CYCL_3&srchWlfPvsnTypeCd=&srchType=1&srchText=%EC%98%88%EB%B0%A9%EC%A0%91%EC%A2%85",
+      "title": "어린이 국가 예방접종"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&srchWlfPvsnTypeCd=&srchType=1&srchText=%EC%B4%88%EB%93%B1%ED%95%99%EC%83%9D+%EC%B9%98%EA%B3%BC%EC%A3%BC%EC%B9%98%EC%9D%98",
+      "title": "초등학생 치과 주치의"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&srchWlfPvsnTypeCd=&srchType=1&srchText=%EC%9E%84%EC%82%B0%EB%B6%80",
+      "title": "임산부지원"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&srchWlfPvsnTypeCd=&srchType=2&srchText=%EB%82%9C%EC%9E%84",
+      "title": "난임지원"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&srchWlfPvsnTypeCd=&srchType=1&srchText=%EA%B8%88%EC%97%B0%ED%81%B4%EB%A6%AC%EB%8B%89",
+      "title": "금연클리닉"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&arrHlthBizTypeCd=HLTH_BIZ_TYPE_4&srchWlfPvsnTypeCd=&srchType=&srchText=",
+      "title": "정신건강"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&srchWlfPvsnTypeCd=&srchType=2&srchText=%EC%B9%98%EB%A7%A4",
+      "title": "치매관리"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&srchWlfPvsnTypeCd=&srchType=2&srchText=%EB%A7%8C%EC%84%B1%EC%A7%88%ED%99%98",
+      "title": "만성질환관리"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn05010101",
+      "title": "개인정보처리방침"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn050401",
+      "title": "저작권정책"
+    }
+  ],
+  "textLength": 796,
+  "omittedSections": 0,
+  "checkedAt": "2026-09-06T16:18:32.515Z",
+  "fromCache": false
+}

@@ -1,0 +1,448 @@
+{
+  "requestedUrl": "https://www.seongnam.go.kr/wf-pm020101/23010",
+  "url": "https://www.seongnam.go.kr/wf-pm020101/23010",
+  "status": 200,
+  "redirects": 0,
+  "checkedAt": "2026-09-07T09:36:12.408Z",
+  "sha256": "df87ab27bc475cf16d44c2b13cf4b44a2d8c97287ad55943e8ff9ea95be45ff3",
+  "file": "8b27e33fe924da455c6490349805873b6513eebd761f55dc185e00dd00507230",
+  "title": "복지사업 - 복지 - 분야별정보 - 성남시청",
+  "paragraphs": [
+    "장애아동 발달재활서비스 지원 사업개요 사업 개요 장애아동 발달재활서비스 지원 사업 기간 연중 사업 대상 • 18세 미만 뇌병변, 지적, 자폐성, 청각, 언어, 시각장애아동 • 9세 미만의 장애가 예견되어 서비스가 필요한 아동 선정 기준 기준 중위소득 180% 이하(소득별 차등 지원) ※ 소득에 따라 2만원~8만원 본인부담금 발생 사업 내용 지원내용 언어·청능치료, 미술·음악치료, 행동·놀이·심리운동 치료 등 추진방법 • 신청자 : 본인, 친족 및 기타 관계인 • 신청장소 : 서비스 대상 장애인의 주민등록상 거주지 동 행정복지센터 제출서류 신분증, 신청서, 가구원 소득 증명 자료 문의처 장애인복지과 031-729-2885 담당부서 복지국>장애인복지과>장애인복지팀 전화번호 031-729-2885 목록"
+  ],
+  "sections": [
+    "장애아동 발달재활서비스 지원 사업개요 사업 개요 장애아동 발달재활서비스 지원 사업 기간 연중 사업 대상 • 18세 미만 뇌병변, 지적, 자폐성, 청각, 언어, 시각장애아동 • 9세 미만의 장애가 예견되어 서비스가 필요한 아동 선정 기준 기준 중위소득 180% 이하(소득별 차등 지원) ※ 소득에 따라 2만원~8만원 본인부담금 발생 사업 내용 지원내용 언어·청능치료, 미술·음악치료, 행동·놀이·심리운동 치료 등 추진방법 • 신청자 : 본인, 친족 및 기타 관계인 • 신청장소 : 서비스 대상 장애인의 주민등록상 거주지 동 행정복지센터 제출서류 신분증, 신청서, 가구원 소득 증명 자료 문의처 장애인복지과 031-729-2885 담당부서 복지국>장애인복지과>장애인복지팀 전화번호 031-729-2885 목록"
+  ],
+  "navigation": [
+    {
+      "url": "https://www.seongnam.go.kr/tour",
+      "title": "문화관광"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/apply",
+      "title": "통합예약"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health",
+      "title": "보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/mayor",
+      "title": "신상진시장실"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/index",
+      "title": "성남시 Seongnam City"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sitemap",
+      "title": "전체메뉴"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/oidc/auth?acrValues=3",
+      "title": "로그인을 해주세요"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm010201",
+      "title": "행사/강좌/공모"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm010301",
+      "title": "고시 공고"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn01040101",
+      "title": "고시 공고"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm010302",
+      "title": "입찰 공고"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm010303",
+      "title": "입법 예고"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm010305",
+      "title": "일반 공고"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm010306",
+      "title": "개인정보 제3자 제공"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm010307",
+      "title": "개인정보 처리위탁"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm010401",
+      "title": "채용정보"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn01050101",
+      "title": "채용정보"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn01070101",
+      "title": "언론 보도"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn020101",
+      "title": "민원참여"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm02020101",
+      "title": "민원/제안/신고"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn020401",
+      "title": "종합민원안내"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn02030101",
+      "title": "종합민원안내"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn02040201",
+      "title": "편리한 서비스"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn020403",
+      "title": "무인민원발급"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn020404",
+      "title": "수수료"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn020406",
+      "title": "외국어 민원"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn02040701",
+      "title": "민원처리 기준"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn02040801",
+      "title": "여권 민원"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn02032601",
+      "title": "제안·참여안내"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn0205000",
+      "title": "제안·참여안내"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn02050101",
+      "title": "제안제도"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn02050201",
+      "title": "규제개혁"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn02050301",
+      "title": "적극행정"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn02040902",
+      "title": "시민고충처리위원회"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn02032902",
+      "title": "시정모니터"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn02060000",
+      "title": "시정모니터"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm02060104",
+      "title": "시정모니터 소개"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm020701",
+      "title": "교통통신원"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn02033001",
+      "title": "교통통신원"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm020702",
+      "title": "새소식"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm020703",
+      "title": "QnA"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn030101",
+      "title": "정보공개 안내"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn03040101",
+      "title": "정보공개 안내"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn030102",
+      "title": "정보공개 처리방법"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm03010401",
+      "title": "정보공개 목록"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn030105",
+      "title": "공공데이터개방"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn03020101",
+      "title": "시정정보(주요시책)"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn030204",
+      "title": "성남비전 장기종합발전계획"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn26072801",
+      "title": "청렴성남"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm030305",
+      "title": "분야별 감사사례"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm030401",
+      "title": "행정정보"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn030400",
+      "title": "행정정보"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn03040301",
+      "title": "정책실명제"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn030409",
+      "title": "조직정보"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn03050000",
+      "title": "재정정보"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn030500",
+      "title": "재정정보"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm03050101",
+      "title": "재정공시"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn03050201",
+      "title": "예산정보"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm030504",
+      "title": "자금운용현황"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm03050501",
+      "title": "세입/세출현황"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn030507",
+      "title": "지방공공기관 경영정보"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/newStat?lclsfCd=NEW_STAT_1&sclsfCd=NEW_STAT_1_1",
+      "title": "성남통계"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn03060101",
+      "title": "성남통계"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn04020201",
+      "title": "성남시 소개"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn04020101",
+      "title": "성남시 소개"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn04020301",
+      "title": "시의 동식물"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn04020401",
+      "title": "시민의 노래(시가)"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn040104",
+      "title": "행정구역"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn04030201",
+      "title": "성남 역사"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn04030101",
+      "title": "성남 역사"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn04030501",
+      "title": "역대시장"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn04040100",
+      "title": "총괄 조직도"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn04040101",
+      "title": "총괄 조직도"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn0404040101",
+      "title": "조직도"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm04041001",
+      "title": "업무 검색"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn040501",
+      "title": "청사 안내"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn04050101",
+      "title": "청사 안내"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn040502",
+      "title": "청사개방시설 안내"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn040503",
+      "title": "오시는 길"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm04060101",
+      "title": "교류 도시"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn04060100",
+      "title": "교류 도시"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm04060102",
+      "title": "국내"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm04070101",
+      "title": "수상 내역"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/wf000000",
+      "title": "복지"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/ct000000",
+      "title": "도시·주택"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/ec000000",
+      "title": "경제"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/tr000000",
+      "title": "교통"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pe000000",
+      "title": "문화·체육"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sf000000",
+      "title": "안전"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/en000000",
+      "title": "환경·위생"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/wf-pm010301",
+      "title": "관련사이트"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/wf-pm020101",
+      "title": "복지사업"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/wf040101",
+      "title": "장례문화사업소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/sn050000",
+      "title": "분야별정보"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/wf-pm020101?curPage=1&cntPerPage=9&srchWlfCrrCyclCd=&srchWlfHshdSttnCd=&srchWlfItrstTpcCd=&srchWlfPvsnTypeCd=&sortType=&srchType=&srchText=",
+      "title": "목록"
+    },
+    {
+      "url": "https://www.snlib.go.kr/",
+      "title": "도서관사업소"
+    },
+    {
+      "url": "https://recycle.seongnam.go.kr/",
+      "title": "성남시자원순환플랫폼"
+    },
+    {
+      "url": "https://waste.isdc.co.kr/",
+      "title": "대형폐기물인터넷배출신고"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/waterpay",
+      "title": "상하수도요금조회납부사이버창구"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/snursc",
+      "title": "도시재생지원센터"
+    },
+    {
+      "url": "https://job.seongnam.go.kr/",
+      "title": "성남시일자리센터"
+    },
+    {
+      "url": "https://www.snspring.or.kr/",
+      "title": "청년지원센터"
+    },
+    {
+      "url": "https://www.isdc.co.kr/",
+      "title": "성남도시개발공사"
+    },
+    {
+      "url": "https://www.snart.or.kr/",
+      "title": "성남문화재단"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/pm050501",
+      "title": "관련사이트"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn05010101",
+      "title": "개인정보처리방침"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn050401",
+      "title": "저작권정책"
+    }
+  ],
+  "textLength": 394,
+  "omittedSections": 0
+}

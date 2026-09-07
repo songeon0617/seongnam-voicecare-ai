@@ -1,0 +1,59 @@
+{
+  "mode": "NO_PAID_API_ORDERED_CHECKS",
+  "results": [
+    {
+      "name": "lint",
+      "start": "2026-09-07T09:57:59.782Z",
+      "end": "2026-09-07T09:58:03.588Z",
+      "exitCode": 0
+    },
+    {
+      "name": "typecheck",
+      "start": "2026-09-07T09:58:03.590Z",
+      "end": "2026-09-07T09:58:05.777Z",
+      "exitCode": 0
+    },
+    {
+      "name": "server",
+      "start": "2026-09-07T09:58:05.777Z",
+      "end": "2026-09-07T09:58:09.257Z",
+      "exitCode": 0
+    },
+    {
+      "name": "ui",
+      "start": "2026-09-07T09:58:09.257Z",
+      "end": "2026-09-07T09:58:44.930Z",
+      "exitCode": 0
+    },
+    {
+      "name": "build",
+      "start": "2026-09-07T09:58:44.931Z",
+      "end": "2026-09-07T09:58:50.537Z",
+      "exitCode": 0
+    },
+    {
+      "name": "legacy",
+      "start": "2026-09-07T09:58:50.537Z",
+      "end": "2026-09-07T09:58:54.401Z",
+      "exitCode": 0
+    },
+    {
+      "name": "routing",
+      "start": "2026-09-07T09:58:54.402Z",
+      "end": "2026-09-07T09:58:55.294Z",
+      "exitCode": 0
+    },
+    {
+      "name": "replay-offline",
+      "start": "2026-09-07T09:58:55.294Z",
+      "end": "2026-09-07T09:58:58.143Z",
+      "exitCode": 0
+    },
+    {
+      "name": "security",
+      "start": "2026-09-07T09:58:58.144Z",
+      "end": "2026-09-07T09:58:59.049Z",
+      "exitCode": 0
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "id": "domain-071",
+  "question": "판교역에서 성남시청 가는 대중교통 알려줘",
+  "at": "2026-09-07T09:57:14.605Z",
+  "ms": 541,
+  "schemaPass": true,
+  "response": {
+    "query": "판교역에서 성남시청 가는 대중교통 알려줘",
+    "kind": "official_links",
+    "results": [],
+    "hasResults": false,
+    "answer": {
+      "userQuestion": "판교역에서 성남시청 가는 대중교통 알려줘",
+      "title": "공식 페이지에서 확인해 주세요",
+      "plainLanguageSummary": "관련 공식 페이지를 확인했습니다. 질문의 상세 내용은 원문과 충분히 대조하지 못했습니다. 아래 링크에서 확인해 주세요.",
+      "steps": [],
+      "nextAction": null,
+      "sources": [],
+      "verification": {
+        "status": "insufficient_data",
+        "checkedAt": null,
+        "details": "관련 공식 페이지를 확인했습니다. 질문의 상세 내용은 원문과 충분히 대조하지 못했습니다. 아래 링크에서 확인해 주세요."
+      }
+    },
+    "officialSearch": {
+      "status": "links",
+      "evidence": [],
+      "links": [
+        {
+          "url": "https://www.seongnam.go.kr/cn040503",
+          "title": "오시는 길 - 청사 안내 - 성남소개 - 성남시청"
+        }
+      ],
+      "usage": {
+        "model": "gpt-5.6-terra",
+        "inputTokens": 13006,
+        "outputTokens": 459,
+        "toolCalls": 1,
+        "estimatedUsd": 0.0332775,
+        "durationMs": 528
+      },
+      "diagnostics": {
+        "phase": "extraction",
+        "budget": {
+          "aiCalls": 1,
+          "searchCalls": 1,
+          "originalFetches": 8,
+          "maxOriginalFetches": 16
+        },
+        "discovered": 5,
+        "rejected": 10,
+        "findings": 1,
+        "pages": [
+          {
+            "url": "https://www.seongnam.go.kr/city/1000050/10040/contents.do",
+            "status": "failed",
+            "errorCode": "source_http_404"
+          },
+          {
+            "url": "https://seongnam.go.kr/apply/view.do?appIdx=3679",
+            "status": "failed",
+            "errorCode": "source_unavailable"
+          },
+          {
+            "url": "https://seongnam.go.kr/snursc/images/content/b_sansung2.png",
+            "status": "failed",
+            "errorCode": "source_http_200"
+          },
+          {
+            "url": "https://www.seongnam.go.kr/cn040503",
+            "status": "fetched",
+            "textLength": 1039,
+            "sections": 5,
+            "omittedSections": 0
+          }
+        ],
+        "reason": "no_matching_evidence"
+      },
+      "region": "성남시",
+      "searched": true
+    }
+  },
+  "semanticReview": "PENDING"
+}

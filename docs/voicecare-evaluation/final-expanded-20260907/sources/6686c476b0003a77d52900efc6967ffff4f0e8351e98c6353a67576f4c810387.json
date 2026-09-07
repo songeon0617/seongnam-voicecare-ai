@@ -1,0 +1,124 @@
+{
+  "requestedUrl": "https://www.seongnam.go.kr/health/ht-pm020101/12062",
+  "url": "https://www.seongnam.go.kr/health/ht-pm020101/12062",
+  "status": 200,
+  "redirects": 0,
+  "checkedAt": "2026-09-07T09:36:05.805Z",
+  "sha256": "58612ba8397dc9f416dcc7bc6c0c78131198aee868993fcdc8f219152892e705",
+  "file": "6686c476b0003a77d52900efc6967ffff4f0e8351e98c6353a67576f4c810387",
+  "title": "보건사업 - 보건사업 - 성남시 보건소",
+  "paragraphs": [
+    "AI·IoT기반 어르신 건강관리 사업개요 사업 개요 허약, 만성질환, 건강행태개선이 필요한 65세 이상 어르신 대상, 스마트기술에 기반한 비대면 건강관리 서비스 제공 사업 기간 연중 사업 대상 65세 이상 성남시 노인 누구나 사업 내용 사업내용 AI·IoT 기술과 건강측정기기 활용, 어르신 대상 건강관리 서비스제공 추진방법 전화신청 또는 방문 문의처 • 수정구 보건소 031-729-3778 • 중원구 보건소 031-750-1413 • 분당구 보건소 031-729-3669 사업 추진 제공절차 대상자 등록 서비스 참여(1차 대면) 건강관리서비스 수행 (6개월) 사후평가(2차 대면) 담당부서 수정구보건소>건강증진과>의료돌봄팀 전화번호 031-729-2498 목록"
+  ],
+  "sections": [
+    "AI·IoT기반 어르신 건강관리 사업개요 사업 개요 허약, 만성질환, 건강행태개선이 필요한 65세 이상 어르신 대상, 스마트기술에 기반한 비대면 건강관리 서비스 제공 사업 기간 연중 사업 대상 65세 이상 성남시 노인 누구나 사업 내용 사업내용 AI·IoT 기술과 건강측정기기 활용, 어르신 대상 건강관리 서비스제공 추진방법 전화신청 또는 방문 문의처 • 수정구 보건소 031-729-3778 • 중원구 보건소 031-750-1413 • 분당구 보건소 031-729-3669 사업 추진 제공절차 대상자 등록 서비스 참여(1차 대면) 건강관리서비스 수행 (6개월) 사후평가(2차 대면) 담당부서 수정구보건소>건강증진과>의료돌봄팀 전화번호 031-729-2498 목록"
+  ],
+  "navigation": [
+    {
+      "url": "https://www.seongnam.go.kr/index",
+      "title": "성남시청 홈"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/index",
+      "title": "성남시 보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/oidc/auth?acrValues=3",
+      "title": "로그인을 해주세요"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn010101",
+      "title": "보건소 소개"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/hlt01020101",
+      "title": "보건소 소개"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn010102",
+      "title": "연혁"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn010103",
+      "title": "보건의료헌장"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn010201",
+      "title": "수정구 보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht010200",
+      "title": "수정구 보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn01020201",
+      "title": "조직안내"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn010301",
+      "title": "중원구 보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht010300",
+      "title": "중원구 보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn01030201",
+      "title": "조직안내"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn010401",
+      "title": "분당구 보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht010400",
+      "title": "분당구 보건소"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-cn01040201",
+      "title": "조직안내"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm020101",
+      "title": "보건사업"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/childVaccInfo",
+      "title": "어린이예방접종일정"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/healthCalc",
+      "title": "건강계산기"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm030101",
+      "title": "의료기관 및 시설"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm040201",
+      "title": "채용공고"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht040500",
+      "title": "민원상담·방역요청"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht020100",
+      "title": "보건사업"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/health/ht-pm020101?curPage=1&cntPerPage=9&srchWlfCrrCyclCd=&srchWlfHshdSttnCd=&srchHlthBizTypeCd=&srchWlfPvsnTypeCd=&sortType=&srchType=&srchText=",
+      "title": "목록"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn05010101",
+      "title": "개인정보처리방침"
+    },
+    {
+      "url": "https://www.seongnam.go.kr/cn050401",
+      "title": "저작권정책"
+    }
+  ],
+  "textLength": 371,
+  "omittedSections": 0
+}

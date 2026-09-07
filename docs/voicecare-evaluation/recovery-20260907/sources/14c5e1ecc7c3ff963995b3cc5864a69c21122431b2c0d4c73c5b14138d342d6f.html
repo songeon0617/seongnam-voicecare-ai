@@ -1,0 +1,1918 @@
+<!-- index -->
+<!DOCTYPE html>
+<html lang="ko" class="main">
+<head>
+	<link rel="shortcut icon" href="/humanframe/theme/global/assets/images/ico/ico_sns_favicon.png" type="image/x-icon"/>
+	<link rel="icon" href="/humanframe/theme/global/assets/images/ico/ico_sns_favicon.png" type="image/x-icon"/>
+	<link rel="canonical" href="https://www.seongnam.go.kr/health/index">
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-YVSMJ02ZJW"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		  gtag('config', 'G-YVSMJ02ZJW');
+		</script>
+	<title>
+		
+	    	성남시 보건소
+	    </title>
+
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="성남시 보건소">
+    <meta name="keywords" content="">
+    <meta property="og:image" content="https://www.seongnam.go.kr/humanframe/theme/global/assets/images/common/kakaotalk_thum.png">
+    
+ 	<!-- global -->
+    <link rel="stylesheet" href="/humanframe/theme/global/assets/style/style.css">
+    <link rel="stylesheet" href="/humanframe/theme/global/assets/plugin/swiper/swiper-bundle.min.css">
+    <script src="/humanframe/theme/global/assets/script/jquery-1.12.4.min.js"></script>
+    <script src="/humanframe/theme/global/assets/plugin/swiper/swiper-bundle.min.js"></script>
+    
+    <script src="/humanframe/theme/global/assets/plugin/masonry/masonry.pkgd.min.js"></script>
+	    <script src="/humanframe/theme/global/assets/plugin/masonry/imagesloaded.pkgd.js"></script>
+    <script src="/humanframe/theme/global/assets/script/common.js"></script>
+    
+    <!-- theme -->
+    <link rel="stylesheet" href="/humanframe/theme/health/assets/style/layout/layout.css">
+    <link rel="stylesheet" href="/humanframe/theme/health/assets/style/style.css">
+    
+    <link rel="stylesheet" href="/humanframe/theme/health/assets/style/main/main.css">
+    	<script src="/humanframe/theme/health/assets/script/main.js"></script>
+    <script src="/humanframe/theme/health/assets/script/common.js"></script>
+    
+    </head>
+
+
+
+<script>
+	var anyidAdaptor = anyidAdaptor || {};
+
+	/*이용기관 수정 영역 Start*/
+	anyidAdaptor.orgLogin = function(data){
+		//정부 통합인증SDK_연계가이드 4.4.1.3 이용기관 로그인(토글 off) 참조
+		//제공되는 라이브러리 메소드로 인증데이터 decrypt 이후 자체 로그인 로직 개발
+		const params = new URLSearchParams(location.search);
+		var obj ={
+			ssob : data.ssob
+			, tag : params.get("tx")
+		}
+
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", "/fnct/mber/nonmember/anyidProc.do", true);
+		xhr.setRequestHeader("Content-Type", "application/json");
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4) {  // 요청 완료
+				if (xhr.status === 200) {  // 서버 응답 성공
+					try {
+						const response = JSON.parse(xhr.responseText);
+
+						if (response.status === "success") {
+							//console.log("로그인 성공 >>>>> ", JSON.stringify(response));
+							// 성공 시 메인 페이지로 이동
+							window.location.href = "/index"; // 실제 메인 페이지 URL로 수정
+						} else {
+							// 인증 실패 시 메시지 표시
+							alert(response.message || "로그인에 실패했습니다. 다시 시도해주세요.");
+						}
+					} catch (e) {
+						// console.error("응답 파싱 에러:", e);
+						alert("서버 응답 처리 중 오류가 발생했습니다.");
+					}
+				} else {
+					// console.error("서버 오류:", xhr.status, xhr.statusText);
+					alert("서버와 통신 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+				}
+			}
+		};
+		xhr.send(JSON.stringify(obj));
+		
+	}
+	/*이용기관 수정 영역 End*/
+	
+	
+	/*이용기관 문구수정 영역 Start*/
+	anyidAdaptor.JoinConfirm = function(portalJoinUri, memberData){
+		if(confirm('Any-ID 사용자로 등록하시겠습니까?')) {
+			anyidAdaptor.receiveAnyIdJoin(portalJoinUri, memberData);
+		} else {
+			anyidAdaptor.orgLogin(anyidAdaptor.certData);
+			return;
+		}
+	}
+	/*이용기관 문구수정 영역 End*/
+	
+	anyidAdaptor.portalJoinUri = "null";
+	anyidAdaptor.certData = null;
+	
+	anyidAdaptor.ssoByPass = "0";
+	anyidAdaptor.niRegYn = "";
+	anyidAdaptor.agencyContextPath = "";
+	
+	
+	anyidAdaptor.success = function(data){
+		if(anyidAdaptor.ssoByPass != 0 || !data.useSso) {
+			anyidAdaptor.orgLogin(data);
+		} else {
+			anyidAdaptor.certData = data;
+			anyidAdaptor.userCheck();
+		}  
+	}
+	
+	anyidAdaptor.userCheck = function(){
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", anyidAdaptor.agencyContextPath + "/oidc/userCheck", true);
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4 && xhr.status === 200) {
+				var response = JSON.parse(xhr.responseText);
+				if (response.success) {
+					anyidAdaptor.ssoLogin();
+				} else {
+					setTimeout(function() {
+						anyidAdaptor.receiveAnyIdJoin(response.uri, response.data);
+					}, 100);  
+				}
+			}
+		};
+
+		let jsonObject = new Object();
+		jsonObject.txId = anyidAdaptor.certData.txId;
+		jsonObject.ssob = anyidAdaptor.certData.ssob;
+		jsonObject.userSeCd = anyidAdaptor.certData.userSeCd;
+		
+		let jsonStr = JSON.stringify(jsonObject);
+		let encodedString = btoa(jsonStr);
+		
+		var data = "data=" + encodedString + "&txId=" + anyidAdaptor.certData.txId;
+		xhr.send(data);
+		
+	}
+
+	//anyid가입
+	anyidAdaptor.receiveAnyIdJoin = function(portalJoinUri, memberData){
+	
+		var url = portalJoinUri+encodeURIComponent(memberData);
+		anyidAdaptor.popup(url,"openAnyIdRegistUserIdv",700,740);
+
+		window.addEventListener("message", function(event) {
+			var result;
+			try {
+				result = JSON.parse(event.data);
+			} catch (error) {
+				// console.error("Received message is not valid JSON:", error);
+				return;
+			}
+			
+			if(!result.funcName || (result.funcName !== "trmsAgreComplete" && result.funcName !== "registUserComplete")) {
+				return;
+			}
+			if(result.status === "success") {
+				if(result.trmsAgreYn == "Y"){
+					anyidAdaptor.ssoLogin();
+				}else{
+					anyidAdaptor.orgLogin(anyidAdaptor.certData);
+				}
+			}else{
+				
+				anyidAdaptor.orgLogin(anyidAdaptor.certData);
+			}
+
+		}, false);
+	}
+
+	// 팝업 호출
+	anyidAdaptor.popup = function(url, name, width, height){
+		let left = (screen.width) ? (screen.width-width)/2 : 0;
+		let top = (screen.height) ? (screen.height-height)/2 : 0;
+		let popup=window.open(url, name ,"resizable=yes,toolbar=no,scrollbars=yes,location=no,top="+top+"px,left="+left+"px,width="+width+"px,height="+height+"px");
+		if(popup){
+			popup.focus();
+		}
+	}
+
+	anyidAdaptor.ssoLogin = function(){
+		let jsonObject = new Object();
+		jsonObject.txId = anyidAdaptor.certData.txId;
+		jsonObject.ssob = anyidAdaptor.certData.ssob;
+		jsonObject.userSeCd = anyidAdaptor.certData.userSeCd;
+		jsonObject.afData = anyidAdaptor.certData.afData;
+		let jsonStr = JSON.stringify(jsonObject);
+		
+		let encodedString = btoa(jsonStr);
+		var baseUrl = window.location.origin + anyidAdaptor.agencyContextPath + "/oidc/ssoLogin";
+		var urlWithParams = baseUrl + "?data=" + encodedString;
+		window.location.href = urlWithParams;
+		
+	}
+	
+	anyidAdaptor.ssoLoginPageSub = function(baseUrl, endPoint, acrValues){
+		var subUrl = "";
+		
+		if (endPoint && endPoint.trim() !== "") {
+			subUrl = "?endPoint=" + encodeURIComponent(endPoint);
+		}
+		
+		if (!acrValues && acrValues.trim() == "") {
+			acrValues = "3";
+		}
+		
+		if (acrValues && acrValues.trim() !== "") {
+			if(subUrl == ""){
+				subUrl = "?";
+			}else{
+				subUrl = subUrl + "&";
+			}
+			subUrl = subUrl + "acrValues=" + acrValues;
+		}
+		
+		window.location.replace(baseUrl+subUrl);
+	}
+	
+	/**/
+	anyidAdaptor.ssoLogout = function(endPoint) {
+		endPoint = typeof endPoint !== 'undefined' ? endPoint : "/";
+		var baseUrl = window.location.origin + anyidAdaptor.agencyContextPath + "/oidc/ssoLogout";
+		baseUrl = baseUrl + "?endPoint=" + encodeURIComponent(endPoint);
+		window.location.replace(baseUrl);
+	}
+	/**/
+	anyidAdaptor.reAuthLevel = function(endPoint, acrValues){
+		endPoint = typeof endPoint !== 'undefined' ? endPoint : "/";
+		var baseUrl = window.location.origin + anyidAdaptor.agencyContextPath + "/oidc/reAuthLevel";
+		anyidAdaptor.ssoLoginPageSub(baseUrl, endPoint, acrValues);
+
+	}
+	/**/
+	anyidAdaptor.ssoLoginPage = function(endPoint, acrValues){
+		endPoint = typeof endPoint !== 'undefined' ? endPoint : "/";
+		var baseUrl = window.location.origin + anyidAdaptor.agencyContextPath + "/oidc/auth";
+		anyidAdaptor.ssoLoginPageSub(baseUrl, endPoint, acrValues);
+	}
+	
+	/**/
+	anyidAdaptor.ssoSvcToSvc = function(url, endPoint){
+		var baseUrl = url + "/oidc/svcToSvc?endPoint=" + encodeURIComponent(endPoint);
+		window.open(baseUrl, "_blank");
+	}
+</script><body>
+	<div class="wrapper">
+	    <div id="skipnav">
+	        <a href="#gnb">주메뉴 바로가기</a>
+	        <a href="#contentLoad">본문 바로가기</a>
+	    </div>
+	    <header id="header">
+			<div class="header-top">
+			    <div class="inner">
+			        <span>이 누리집은 대한민국 공식 전자정부 누리집입니다.</span>
+			    </div>
+			</div>   
+			<div class="header-middle">
+			    <style>
+
+.ai-chat-header-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 92px;
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: #0f6ecd;
+    color: #fff !important;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+.ai-chat-header-btn:hover {
+    background: #0b5cad;
+}
+#aiChatLayerWrap {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+}
+#aiChatLayerWrap .ai-chat-dim {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+}
+#aiChatLayerWrap .ai-chat-layer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    right: auto;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    max-width: calc(100vw - 24px);
+    /* height: 690px; */
+    max-height: calc(100vh - 24px);
+    /* background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 18px 48px rgba(0,0,0,0.28); */
+}
+#aiChatLayerWrap .ai-chat-layer-head {
+    height: 56px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #0f6ecd;
+    color: #fff;
+    box-sizing: border-box;
+}
+#aiChatLayerWrap .ai-chat-layer-head strong {
+    font-size: 16px;
+    font-weight: 700;
+}
+#aiChatLayerWrap .ai-chat-layer-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+}
+#aiChatLayerWrap .ai-chat-layer-close:hover {
+    background: rgba(255,255,255,0.15);
+}
+#aiChatLayerWrap .ai-chat-frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    /* background: #fff; */
+}
+body.ai-chat-open {
+    overflow: hidden;
+}
+@media (max-width: 767px) {
+    #aiChatLayerWrap .ai-chat-layer {
+        width: 96%;
+        /* left: 0;
+        top: 0;
+        right: auto;
+        transform: none;
+        max-width: none;
+        height: 100vh;
+        max-height: none;
+        border-radius: 0; */
+    }
+}
+</style>
+
+<div class="inner">
+    <ul class="top-menu">
+		<li>
+			<a href="#none" class="button-bottom">화면크기</a>
+			<div class="drop-menu zoom-btn">
+				<ul>
+					<li><a href="#none" data-zoom="0.9" class="xsm">작게</a></li>
+					<li><a href="#none" data-zoom="1" class="sm active">보통</a></li>
+					<li><a href="#none" data-zoom="1.1" class="md">조금 크게</a></li>
+					<li><a href="#none" data-zoom="1.2" class="lg">크게</a></li>
+					<li><a href="#none" data-zoom="1.3" class="xlg">가장 크게</a></li>
+					<li><a href="#none" class="zoom-reset"><i><img src="/humanframe/theme/global/assets/images/ico/ico_reset.svg" alt=""></i> 리셋</a></li>
+				</ul>
+			</div>
+		</li>	
+        <li><a href="/index" class="button" target="_blank" title="새창">성남시청 홈</a></li>
+        <li>
+            <a href="#none" class="button-bottom">Language</a>
+            <div class="drop-menu">
+                <ul>
+                    <li style="border-bottom: 1px solid #e0e0e0"><a id="nara1TrCur" href="javascript:void(0);" style="cursor: unset;"></a></li>
+					<li id="nara1Tr_ko" style="display:none"><a href="javascript:void(0);" onclick="changeLang('ko');" title="한국어" class="kt">한국어</a></li>
+					<li id="nara1Tr_en"><a href="javascript:void(0);" onclick="changeLang('en');" title="English (영어)" class="ktj">English (영어)</a></li>
+					<li id="nara1Tr_zh-Hans"><a href="javascript:void(0);" onclick="changeLang('zh-Hans');" title="中文 (중국어)" class="ktj">中文 (중국어)</a></li>
+					<li id="nara1Tr_ja"><a href="javascript:void(0);" onclick="changeLang('ja');" title="日本語 (일본어)" class="ktj">日本語 (일본어)</a></li>
+					<li id="nara1Tr_vi"><a href="javascript:void(0);" onclick="changeLang('vi');" title="Tiếng Việt (베트남어)" class="ktj">Tiếng Việt (베트남어)</a></li>
+					<li id="nara1Tr_es"><a href="javascript:void(0);" onclick="changeLang('es');" title="Español (스페인어)" class="ktj">Español (스페인어)</a></li>
+					<li id="nara1Tr_ru"><a href="javascript:void(0);" onclick="changeLang('ru');" title="Русский (러시아어)" class="ktj">Русский (러시아어)</a></li>
+					<li id="nara1Tr_th"><a href="javascript:void(0);" onclick="changeLang('th');" title="แบบไทย (태국어)" class="ktj">แบบไทย (태국어)</a></li>
+					<li id="nara1Tr_mn"><a href="javascript:void(0);" onclick="changeLang('mn');" title="Монгол (몽골어)" class="ktj">Монгол (몽골어)</a></li>
+					</ul>
+            </div>
+        </li>
+    </ul>
+    <div class="bottom-menu">
+        <div class="logo">
+            <h1>
+                <a href="/health/index">
+                    <span class="hd-element">성남시 보건소</span>
+                </a>
+            </h1>
+        </div>
+        <ul class="etc-menu">
+            <li>
+                <a href="#none" class="total-search"><i><img src="/humanframe/theme/global/assets/images/ico/ico_search.svg" alt=""></i><span>통합검색</span></a>
+                <div class="header-search">
+                    <p>통합검색</p>
+                    <label for="applyTotalSearchTop" class="hd-element">검색어 입력</label>
+                    <input type="text" id="applyTotalSearchTop" placeholder="검색어를 입력해 주세요." maxlength="150">
+                    <a href="#none" class="header-search-btn" onclick="fn_totalSearch('applyTotalSearchTop', 'wn');"><span class="hd-element">검색</span></a>
+                    <a href="#none" class="ai-search" id="btnOpenAiChatLayer">AI 검색</a>
+                    </div>
+            </li>
+            <style>
+@media only screen and (max-width: 47.99em) {
+    header .etc-menu li > a {
+        display: block !important;
+    }
+}
+
+header .my-profile span {
+    display: flex;
+}
+
+header .my-profile .time {
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    font-size: 15px;
+}
+
+header .my-profile .time span {
+	display: flex;
+    color: #A50082;
+    padding-left: 18px;
+    background: url(/humanframe/theme/global/assets/images/ico/ico_time.svg) no-repeat 0 center;
+}
+</style>
+
+<li class="login">
+			<!-- 내부오픈 기간에는 운영 도메인이 아니라서 애니아이디 사용이 안됨, 비회원로그인이라도 사용하기 위해 수정한 로그인 페이지 url 사용 -->
+			<a href="#none" onclick="return fnHeaderMberLogin(window.location.pathname + window.location.search);">
+			    	    <span><i><img src="/humanframe/theme/global/assets/images/ico/ico_login.svg" alt=""></i>로그인</span>
+					</a>
+			    </li>
+		
+		<script>
+		function fnHeaderMberLogin(returnURL) {
+			if (!returnURL) {
+				returnURL = "";
+			}
+			
+			try { sessionStorage.setItem('niceLoginReturnUrl', returnURL); } catch(e) {}
+			
+			if (window.anyidAdaptor && typeof window.anyidAdaptor.ssoLoginPage === "function") {
+				window.anyidAdaptor.ssoLoginPage(returnURL, "3");
+				return false;
+			}
+			return true;
+		}
+		</script>
+	<li><a href="#none" id="menuAll"><i><img src="/humanframe/theme/global/assets/images/ico/ico_all_menu.svg" alt=""></i><span>전체메뉴</span></a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="aiChatLayerWrap">
+    <div class="ai-chat-dim"></div>
+    <div class="ai-chat-layer">
+        <!-- <iframe id="aiChatLayerFrame" class="ai-chat-frame" src="/fnct/ps/aiChatFront" title="AI 챗봇"></iframe> -->
+        
+        <iframe
+    id="aiChatLayerFrame"
+    class="ai-chat-frame"
+    src="about:blank"
+    data-src="/fnct/ps/aiChatFront"
+    title="AI 챗봇"></iframe>
+    
+        
+        
+        <!-- /fnct/ps/aiChatFront -->
+        
+    </div>
+</div>
+<script>
+$(function() {
+    $(document).on('click', '#btnOpenAiChatLayer', function(e) {
+        e.preventDefault();
+        openAiChatLayer();
+
+        $aiChatOpenBtn = $(this);
+
+        e.preventDefault();
+        openAiChatLayer();
+
+        const $layer = $("#aiChatLayerWrap");
+
+        $layer.attr("tabindex", "0");
+
+        setTimeout(function() {
+            $layer[0].focus();
+        }, 100);
+    });
+
+    $(document).on('click', '#btnCloseAiChatLayer, #aiChatLayerWrap .ai-chat-dim', function(e) {
+        e.preventDefault();
+        closeAiChatLayer();
+    });
+
+    $(document).on('keydown', function(e) {
+        if (e.key === 'Escape' && $('#aiChatLayerWrap').is(':visible')) {
+            closeAiChatLayer();
+        }
+    });
+
+    function closeAiChatLayer() { 
+        $('#aiChatLayerWrap').hide(); 
+
+        if ($aiChatOpenBtn && $aiChatOpenBtn.length) { 
+            setTimeout(function() {
+                $aiChatOpenBtn[0].focus();
+            }, 0);
+        } 
+    }
+});
+
+function openAiChatLayer() {
+    var $frame = $('#aiChatLayerFrame');
+    var src = $frame.attr('data-src');
+    var sep = src.indexOf('?') > -1 ? '&' : '?';
+
+    $frame.attr('src', src + sep + '_ts=' + new Date().getTime());
+
+    $('#aiChatLayerWrap').show();
+    $('body').addClass('ai-chat-open');
+}
+
+function closeAiChatLayer() {
+    $('#aiChatLayerWrap').hide();
+    $('body').removeClass('ai-chat-open');
+
+    $('#aiChatLayerFrame').attr('src', 'about:blank');
+}
+
+$(function(){
+	//검색키워드 엔터키 처리
+	$("#applyTotalSearchTop").keypress(function(event){
+	    if(event.keyCode==13){
+	    	fn_totalSearch('applyTotalSearchTop', 'wn');
+	    }
+	});		
+});
+</script></div>
+			<div class="header-bottom">
+			    <div class="mobile-top">
+    <div class="mobile-close">
+        <a href="#none"><span class="hd-element">메뉴 닫기</span></a>
+    </div>
+    <!-- <ul class="top-menu">
+        <li><a href="#none" class="button-bottom">통합사이트</a></li>
+        <li>
+            <a href="#none" class="button-bottom">Language</a>
+            <div class="drop-menu">
+                <ul>
+                    <li><a href="#none">유틸리티 레이블</a></li>
+                    <li><a href="#none">유틸리티 레이블</a></li>
+                    <li><a href="#none">유틸리티 레이블</a></li>
+                    <li><a href="#none">유틸리티 레이블</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul> -->
+    <div class="mobile-login">
+        <a href="/oidc/auth?acrValues=3" onclick="return fnHeaderMberLogin(window.location.pathname + window.location.search);">로그인을 해주세요</a>
+        	</div>
+</div>
+
+<div class="inner">
+    <nav id="gnb">
+        <ul>
+			<li>
+						<a href="javascript:void();" >보건소 안내</a>
+		                <div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                <li >
+		                                        	<a href="/health/ht-cn010101"  >보건소 소개</a>
+<div class="depth3-wrap">
+		                                            	<div class="tit">
+			                                                	<a href="/health/hlt01020101">보건소 소개</a>
+			                                                </div>
+			                                                <ul>
+			                                                    <li >
+			                                                            	<a href="/health/ht-cn010101"  >인사말</a>
+</li>
+			                                                        <li >
+			                                                            	<a href="/health/ht-cn010102"  >연혁</a>
+</li>
+			                                                        <li >
+			                                                            	<a href="/health/ht-cn010103"  >보건의료헌장</a>
+</li>
+			                                                        </ul>
+														</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht-cn010201"  >수정구 보건소</a>
+<div class="depth3-wrap">
+		                                            	<div class="tit">
+			                                                	<a href="/health/ht010200">수정구 보건소</a>
+			                                                </div>
+			                                                <ul>
+			                                                    <li >
+			                                                            	<a href="/health/ht-cn010201"  >이용안내</a>
+</li>
+			                                                        <li >
+			                                                            	<a href="/health/ht-cn01020201"  >조직안내</a>
+</li>
+			                                                        </ul>
+														</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht-cn010301"  >중원구 보건소</a>
+<div class="depth3-wrap">
+		                                            	<div class="tit">
+			                                                	<a href="/health/ht010300">중원구 보건소</a>
+			                                                </div>
+			                                                <ul>
+			                                                    <li >
+			                                                            	<a href="/health/ht-cn010301"  >이용안내</a>
+</li>
+			                                                        <li >
+			                                                            	<a href="/health/ht-cn01030201"  >조직안내</a>
+</li>
+			                                                        </ul>
+														</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht-cn010401"  >분당구 보건소</a>
+<div class="depth3-wrap">
+		                                            	<div class="tit">
+			                                                	<a href="/health/ht010400">분당구 보건소</a>
+			                                                </div>
+			                                                <ul>
+			                                                    <li >
+			                                                            	<a href="/health/ht-cn010401"  >이용안내</a>
+</li>
+			                                                        <li >
+			                                                            	<a href="/health/ht-cn01040201"  >조직안내</a>
+</li>
+			                                                        </ul>
+														</div>
+		                                        </li>
+		                                    </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        <li>
+						<a href="javascript:void();" >보건사업</a>
+		                <div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                <li >
+		                                        	<a href="/health/ht-pm020101"  >보건사업</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/childVaccInfo"  >어린이예방접종일정</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/healthCalc"  >건강계산기</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        <li>
+						<a href="javascript:void();" >기관/시설정보</a>
+		                <div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                <li >
+		                                        	<a href="/health/ht-pm030101"  >의료기관 및 시설</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht-bbs030201"  >달빛어린이병원</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht-bbs030301"  >심야공공약국</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="https://www.e-gen.or.kr/egen/search_aed.do" target="_blank" title="새창" class="other-link link-blank" >자동심장충격기 <i><img src='/humanframe/theme/global/assets/images/ico/ico_link_black.svg' alt='새창열기' style='width: 18px;'></i>
+</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="https://www.nhis.or.kr/nhis/healthin/retrieveExmdAdminSearch.do" target="_blank" title="새창" class="other-link link-blank" >암검진기관 <i><img src='/humanframe/theme/global/assets/images/ico/ico_link_black.svg' alt='새창열기' style='width: 18px;'></i>
+</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        <li>
+						<a href="javascript:void();" >소식·알림</a>
+		                <div class="gnb-wrap type-depth3">
+		                    <div class="inner">
+		                        <div class="wrap">
+		                            <ul>
+		                                <li >
+		                                        	<a href="/health/ht-bbs040101"  >새소식</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht-bbs040600"  >감염병소식</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht-bbs26070901"  >예방접종소식</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht-pm040201"  >채용공고</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht-bbs040301"  >자료실</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht-bbs040401"  >자주묻는 질문</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    <li >
+		                                        	<a href="/health/ht040500"  >민원상담·방역요청</a>
+<div class="depth3-wrap">
+		                                            	</div>
+		                                        </li>
+		                                    </ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </li>
+		        </ul>
+    </nav>
+</div></div>
+	    </header>
+	    
+	    <div class="layer-popup-wrap sitemap-popup">
+	<div class="layer-popup department-popup">
+		<p>전체메뉴</p>
+		<a href="#none" class="close"><span class="hd-element">팝업닫기</span></a>
+		<div class="popup-body">
+			<ul class="portal-sitemap">
+				<li>
+							<a href="#none">보건소 안내</a>
+							<ul class="normal-type dot">
+								<li>
+											<a href="/health/ht-cn010101"  >보건소 소개</a>
+<ul class="normal-type hyphen">
+													<li>
+																<a href="/health/ht-cn010101"  >인사말</a>
+</li>
+														<li>
+																<a href="/health/ht-cn010102"  >연혁</a>
+</li>
+														<li>
+																<a href="/health/ht-cn010103"  >보건의료헌장</a>
+</li>
+														</ul>
+											</li>
+									<li>
+											<a href="/health/ht-cn010201"  >수정구 보건소</a>
+<ul class="normal-type hyphen">
+													<li>
+																<a href="/health/ht-cn010201"  >이용안내</a>
+</li>
+														<li>
+																<a href="/health/ht-cn01020201"  >조직안내</a>
+</li>
+														</ul>
+											</li>
+									<li>
+											<a href="/health/ht-cn010301"  >중원구 보건소</a>
+<ul class="normal-type hyphen">
+													<li>
+																<a href="/health/ht-cn010301"  >이용안내</a>
+</li>
+														<li>
+																<a href="/health/ht-cn01030201"  >조직안내</a>
+</li>
+														</ul>
+											</li>
+									<li>
+											<a href="/health/ht-cn010401"  >분당구 보건소</a>
+<ul class="normal-type hyphen">
+													<li>
+																<a href="/health/ht-cn010401"  >이용안내</a>
+</li>
+														<li>
+																<a href="/health/ht-cn01040201"  >조직안내</a>
+</li>
+														</ul>
+											</li>
+									</ul>
+						</li>
+					<li>
+							<a href="#none">보건사업</a>
+							<ul class="normal-type dot">
+								<li>
+											<a href="/health/ht-pm020101"  >보건사업</a>
+</li>
+									<li>
+											<a href="/health/childVaccInfo"  >어린이예방접종일정</a>
+</li>
+									<li>
+											<a href="/health/healthCalc"  >건강계산기</a>
+</li>
+									</ul>
+						</li>
+					<li>
+							<a href="#none">기관/시설정보</a>
+							<ul class="normal-type dot">
+								<li>
+											<a href="/health/ht-pm030101"  >의료기관 및 시설</a>
+</li>
+									<li>
+											<a href="/health/ht-bbs030201"  >달빛어린이병원</a>
+</li>
+									<li>
+											<a href="/health/ht-bbs030301"  >심야공공약국</a>
+</li>
+									<li>
+											<a href="https://www.e-gen.or.kr/egen/search_aed.do" target="_blank" title="새창" class="other-link link-blank" >자동심장충격기 <i><img src='/humanframe/theme/global/assets/images/ico/ico_link_black.svg' alt='새창열기' style='width: 18px;'></i>
+</a>
+</li>
+									<li>
+											<a href="https://www.nhis.or.kr/nhis/healthin/retrieveExmdAdminSearch.do" target="_blank" title="새창" class="other-link link-blank" >암검진기관 <i><img src='/humanframe/theme/global/assets/images/ico/ico_link_black.svg' alt='새창열기' style='width: 18px;'></i>
+</a>
+</li>
+									</ul>
+						</li>
+					<li>
+							<a href="#none">소식·알림</a>
+							<ul class="normal-type dot">
+								<li>
+											<a href="/health/ht-bbs040101"  >새소식</a>
+</li>
+									<li>
+											<a href="/health/ht-bbs040600"  >감염병소식</a>
+</li>
+									<li>
+											<a href="/health/ht-bbs26070901"  >예방접종소식</a>
+</li>
+									<li>
+											<a href="/health/ht-pm040201"  >채용공고</a>
+</li>
+									<li>
+											<a href="/health/ht-bbs040301"  >자료실</a>
+</li>
+									<li>
+											<a href="/health/ht-bbs040401"  >자주묻는 질문</a>
+</li>
+									<li>
+											<a href="/health/ht040500"  >민원상담·방역요청</a>
+</li>
+									</ul>
+						</li>
+					</ul>
+		</div>
+	</div>
+</div><main class="container">
+	    	<div class="content-wrap" id="contentLoad">
+						<style>
+.day-form input {
+	max-width: 90px;
+    padding: 0 20px;
+    padding-right: 0;
+}
+
+.body-check {
+    gap: 10px !important;
+}
+
+.body-check input {
+	max-width: 70px;
+    padding: 0 15px;
+    padding-right: 0;
+}
+
+@media only screen and (max-width: 63.99em) {
+    .form-wrap input, .form-wrap select {
+        max-width: 90% !important;
+    }
+}
+</style>
+
+<script>
+$(function() {
+	$('#year, #month, #day').on('input', function() {
+	    this.value = this.value.replace(/[^0-9]/g, '');
+	});
+	
+	$('#heightBmi, #weightBmi, #ageBmi').on('input', function() {
+	    this.value = this.value.replace(/[^0-9]/g, '');
+	});
+	
+	$('li > a[data-url]').on('click', function () {
+
+	    var $li = $(this).closest('li');
+	    var url = $(this).data('url');
+
+	    // 1. 모든 more 버튼 숨김
+	    $('[id^=more_btn_]').hide();
+
+	    // 2. 현재 li의 more 버튼만 표시 + href 변경
+	    var $moreWrap = $li.find('[id^=more_btn_]');
+	    $moreWrap.show();
+	    $moreWrap.find('.more-btn').attr('href', url);
+	});
+});
+
+function f_medicalOrg_list() {
+	var searchCategory = $("#searchCategory").val();
+	var searchGu = $("#searchGu").val();
+	var searchKey = $("#searchKey").val();
+	var searchText = $("#searchText").val();
+	
+	var linkUrl = "?curPage=1&searchCategory=" + searchCategory 
+					+ "&searchGu=" + searchGu 
+					+ "&searchKey=" + searchKey 
+					+ "&searchText=" + searchText;
+		
+	$("#listFrm").attr("action", "/health/ht-pm030101/list" + linkUrl);	
+	$("#listFrm").submit();
+}
+
+function f_medicalOrg_reset() {
+	$('#searchCategory').prop('selectedIndex', 0);
+	$('#searchGu').prop('selectedIndex', 0);
+	$('#searchKey').prop('selectedIndex', 0);
+	$("#searchText").val("");
+}
+
+function f_childVaccInfo_calc() {
+	
+	var validDay = $("#day").val();
+	var validYear = $("#year").val();
+	var validMonth = $("#month").val();
+	
+	if (isValidDay(validDay)) {
+	  	if (isValidMonth(validMonth)){
+		  	if (isValidYear(validYear)){
+				//location.href="/health/index?year="+year+"&month="+monthnum+"&day="+day;
+		  		
+				//$("#childVaccFrm").attr("action", "/health/childVaccInfo");
+		  		$("#childVaccFrm").submit();
+		  	}
+	  	}
+	}
+}
+
+function BMIchk(height, weight, BMI) {
+	
+	height = $("input[id=heightBmi]").val() * 0.01;
+	weight = $("input[id=weightBmi]").val();
+	
+	/* if (height == "" || height == 0) {
+		alert("올바른 신장을 입력해 주시기 바랍니다.");
+		return false;
+	}
+	if (weight == "" || weight == 0) {
+		alert("올바른 체중을 입력해 주시기 바랍니다.");
+		return false;
+	} */
+
+	BMI = (weight / (height * height)).toFixed(1);
+
+	if (BMI >= 35.0) {
+		$("#bmival").val(BMI);
+		$("#resultBmi").val("3단계 비만");			
+	} else if ((30.0 <= BMI) && (BMI < 35.0)) {
+		$("#bmival").val(BMI);
+		$("#resultBmi").val("2단계 비만");
+	} else if ((25.0 <= BMI) && (BMI < 30.0)) {
+		$("#bmival").val(BMI);
+		$("#resultBmi").val("1단계 비만");
+	} else if ((23.0 <= BMI) && (BMI < 25.0)) {
+		$("#bmival").val(BMI);
+		$("#resultBmi").val("비만 전 단계");
+	} else if ((18.5 <= BMI) && (BMI < 23.0)) {
+		$("#bmival").val(BMI);
+		$("#resultBmi").val("정상");
+	} else {
+		$("#bmival").val(BMI);
+		$("#resultBmi").val("저체중");
+	}
+	
+	$("#body-result").show();
+}
+
+function f_bmi_reset() {
+	$('#heightBmi').val("");
+	$('#weightBmi').val("");
+	$('#ageBmi').val("");
+	$('#bmival').val("");
+	$('#resultBmi').val("");
+	
+	$("#body-result").hide();
+}
+
+function isValidYear(inputStr) {
+	if (isEmpty(inputStr)) {
+			swalert("해당 년도를 기록해 주세요.");
+			return false;
+	} else {
+			if (!isNumber(inputStr)) {
+					swalert("데이터를 바르게 넣어 주세요.");
+					return false;
+			} else {
+					if (!inRangeYear(inputStr)) {
+							swalert("해당 년도 범위가 잘못 입력되었습니다.");
+							return false;
+					}
+			}
+	}
+	return true;
+}
+function isValidMonth(inputStr) {
+	if (isEmpty(inputStr)) {
+			swalert("해당 일자를 기록해 주세요.");
+			return false;
+	} else {
+			if (!isNumber(inputStr)) {
+					swalert("데이터를 바르게 넣어 주세요.");
+					return false;
+			} else {
+					if (!inRangeMonth(inputStr)) {
+							swalert("해당 일자의 범위가 잘못 입력되었습니다.");
+							return false;
+					}
+			}
+	}
+	return true;
+}
+function isValidDay(inputStr) {
+	if (isEmpty(inputStr)) {
+		alert("해당 일자를 기록해 주세요.");
+		return false;
+	} else {
+			if (!isNumber(inputStr)) {
+				alert("데이터를 바르게 넣어 주세요.");
+				return false;
+			} else {
+					if (!inRangeDay(inputStr)) {
+						alert("해당 일자의 범위가 잘못 입력되었습니다.");
+						return false;
+					}
+			}
+	}
+	return true;
+}
+function isEmpty(inputStr) {
+	if (inputStr == "" || inputStr == null) {
+			return true;
+	}
+	return false;
+}
+function isNumber(inputStr) {
+	for (var i = 0; i < inputStr.length; i++) {
+			var oneChar = inputStr.charAt(i);
+			if (oneChar < "0" || oneChar > "9") {
+					return false;
+			}
+	}
+	return true;
+}
+function inRangeYear(inputStr) {
+	num = parseInt(inputStr);
+	if (num < 1900 || num > 3000) {
+			return false;
+	}
+	return true;
+}
+function inRangeDay(inputStr) {
+	num = parseInt(inputStr);
+	if (num < 1 || num > 31) {
+			return false;
+	}
+	return true;
+}
+function inRangeMonth(inputStr) {
+	num = parseInt(inputStr);
+	if (num < 1 || num > 12) {
+			return false;
+	}
+	return true;
+}
+
+</script>
+
+<section class="main-visual-wrap">
+    <div class="inner">
+        <!-- 메인슬라이드 -->
+        <div class="main-visual">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+			<a href="https://www.seongnam.go.kr/health/ht-bbs040101/405096" target="_self">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=143&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=143&amp;fileTy=PCIMG&amp;fileNo=1" alt="2026년 정신건강 심리상담 바우처사업- 신규 신청 중단 안내"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="https://shseongnam.nid.or.kr/notice/notice_view.aspx?board_seq=19440" target="_self">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=126&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=126&amp;fileTy=PCIMG&amp;fileNo=1" alt="수정구치매안심센터 제19회 치매극복의 날 기념식 안내"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="https://www.seongnam.go.kr/health/ht-bbs040101/404886" target="_self">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=123&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=123&amp;fileTy=PCIMG&amp;fileNo=1" alt="제19회 성남시민건강박람회 행사 자원봉사자 모집"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="https://www.smhc.or.kr/sub.php?menukey=62&mode=view&idx=86" target="_self">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=116&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=116&amp;fileTy=PCIMG&amp;fileNo=1" alt="2026년 제13회 행복한마음축제 개최"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="https://www.seongnam.go.kr/health/ht-bbs040301/385998" target="_self">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=97&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=97&amp;fileTy=PCIMG&amp;fileNo=1" alt="찾아가는 보육시설 감염병 관리 교육 모집"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="/health/ht-bbs040101/382716" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=80&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=80&amp;fileTy=PCIMG&amp;fileNo=1" alt="진드기 매개 감염병 예방 및 관리 수칙"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="/health/ht-bbs040101/378746" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=22&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=22&amp;fileTy=PCIMG&amp;fileNo=1" alt="2026년 성남시 공공심야약국 운영 현황"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="/health/ht-bbs040101/364627" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=17&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=17&amp;fileTy=PCIMG&amp;fileNo=1" alt="금연구역 흡연자 과태료 감면제도 안내"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="/health/ht-bbs040101/382917" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=79&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=79&amp;fileTy=PCIMG&amp;fileNo=1" alt="[중원구보건소]2026년 구조 및 응급처치(심폐소생술) 교육 신청 안내"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="/health/ht-bbs040101/384524" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=25&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=25&amp;fileTy=PCIMG&amp;fileNo=1" alt="판교보건지소 정신건강 AI 체험관 [마인드피트니스] 운영"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="/health/ht-bbs040101/385802" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=19&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=19&amp;fileTy=PCIMG&amp;fileNo=1" alt="[분당구보건소]구조 및 응급처치(심폐소생술)교육 신청 안내"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="https://www.kdca.go.kr/kdca/2853/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGa2RjYSUyRjQ1JTJGMzExMjkyJTJGYXJ0Y2xWaWV3LmRvJTNGcGFzc3dvcmQlM0QlMjZyZ3NCZ25kZVN0ciUzRCUyNmZpbmRPcG53cmQlM0QlMjZmaW5kV29yZCUzRCUyNnJnc0VuZGRlU3RyJTNEJTI2ZmluZFR5cGUlM0QlMjZmaW5kQ2" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=81&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=81&amp;fileTy=PCIMG&amp;fileNo=1" alt="온열질환 예방 수칙"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="https://www.e-gen.or.kr/egen/notice_view.do?brdctsno=12898&upperfixyn=Y&currentPageNum=1&brdclscd=02&searchTarget=ALL&searchKeyword=&searchDatayear=" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=18&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=18&amp;fileTy=PCIMG&amp;fileNo=1" alt="아e안심Tok"/>
+			</a>
+		</div>
+	</div>
+            </div>
+            <div class="main-visual-control">
+                <button type="button" class="prev"><span class="hd-element">메인슬라이드 이전버튼</span></button>
+                <div class="slide-count">
+                    <div class="swiper-pagination">
+                        <span class="swiper-pagination-current"></span> / <span class="swiper-pagination-total"></span>
+                    </div>
+                </div>
+                <button type="button" class="stop"><span class="hd-element">메인슬라이드 정지버튼</span></button>
+                <button type="button" class="next"><span class="hd-element">메인슬라이드 다음버튼</span></button>
+            </div>
+        </div>
+        <div class="medical-wrap">
+            <div class="medical-head">
+                <h2 class="h2">운영시간</h2>
+                <span>(토, 일, 공휴일 휴무)</span>
+                <dl>
+                    <dt>평일</dt>
+                    <dd>09:00 ~ 18:00</dd>
+                </dl>
+                <dl>
+                    <dt>점심시간</dt>
+                    <dd>12:00 ~ 13:00</dd>
+                </dl>
+            </div>
+            <div class="medical-body">
+                <!-- <div class="info">
+                    <strong>진료(검사) 접수시간</strong>
+                    09:00 ~ 17:30
+                </div> -->
+                <dl>
+                    <dt class="stats-ku sjk">수정구</dt>
+                    <dd>031-729-3870</dd>
+                    <dd><a href="/health/ht-cn010201">세부 이용시간</a></dd>
+                </dl>
+                <dl>
+                    <dt class="stats-ku jwk">중원구</dt>
+                    <dd>031-729-3930</dd>
+                    <dd><a href="/health/ht-cn010301">세부 이용시간</a></dd>
+                </dl>
+                <dl>
+                    <dt class="stats-ku bdk">분당구</dt>
+                    <dd>031-729-3990</dd>
+                    <dd><a href="/health/ht-cn010401">세부 이용시간</a></dd>
+                </dl>
+            </div>
+            <div class="medical-popup" style="display:none">
+                <div class="title">진료시간 변경 안내</div>
+                <dl>
+                    <dt class="stats-ku sjk">수정구</dt>
+                    <dd><strong>10:00 ~ 18:00</strong></dd>
+                    <dd>031-729-3870</dd>
+                </dl>
+                <dl>
+                    <dt class="stats-ku jwk">중원구</dt>
+                    <dd><strong>10:00 ~ 18:00</strong></dd>
+                    <dd>031-729-3930</dd>
+                </dl>
+                <dl>
+                    <dt class="stats-ku bdk">분당구</dt>
+                    <dd><strong>10:00 ~ 18:00</strong></dd>
+                    <dd>031-729-3990</dd>
+                </dl>
+                <div class="close-btn"><a href=""><span class="hd-element">진료시간 안내 팝업 닫기</span></a></div>
+            </div>
+        </div>
+        <!--// 메인슬라이드 -->
+    </div>
+</section>
+
+<section class="main-content-body">
+    <!-- 보건소식/온라인신청 -->
+    <div class="notice-wrap">
+        <div class="news-wrap">
+            <h2>보건소식</h2>
+            <div class="basic-box">
+                <ul>
+                    <li>
+                        <a href="javascript:void();" class="active" data-url="/health/ht-bbs040101">새소식</a>
+                        <div class="list" id="bbs_20001_3"></div>
+                        <div id="more_btn_bbs_20001_3"><a href="/health/ht-bbs040101" class="more-btn"><span class="hd-element">새소식 더보기 버튼</span></a></div>
+                    </li>
+                    <li>
+                        <a href="javascript:void();" data-url="/health/ht-pm040201">채용공고</a>
+                        <div class="list" id="gosi_ht-pm040201" style="display:none"></div>
+                        <div id="more_btn_gosi_ht-pm040201" style="display:none"><a href="/health/ht-pm040201" class="more-btn"><span class="hd-element">채용공고 더보기 버튼</span></a></div>                     
+                    </li>
+                    <li>
+                        <a href="javascript:void();" data-url="/health/ht-bbs040301">자료실</a>
+                        <div class="list" id="bbs_16015_5" style="display:none"></div>
+                        <div id="more_btn_bbs_16015_5" style="display:none"><a href="/health/ht-bbs040301" class="more-btn"><span class="hd-element">자료실 더보기 버튼</span></a></div>
+                    </li>
+                </ul>
+            </div>
+        </div>   
+        <div class="online-send-wrap">
+            <div class="online-send-head">
+                <h2>온라인 신청</h2>
+                <!-- <div class="online-send-slid-control">
+                    <button type="button" class="prev"><span class="hd-element">온라인신청 슬라이드 이전 버튼</span></button>
+                    <button type="button" class="next"><span class="hd-element">온라인신청 슬라이드 이전 버튼</span></button>
+                    <a href="/apply/index" class="more-btn" target="_blank"><span class="hd-element">온라인신청 더보기 버튼</span></a>
+                </div> -->
+            </div>
+            <div class="online-send-slide">
+                <div class="apply-new">
+                    <p>빠르고 간편한 예약,<br> 성남시 <span>통합예약</span></p>
+                    <div class="btn-wrap">
+                        <a href="/apply" class="btn-normal secondary bg-btn-secondary medium">신청하기</a>
+                    </div>
+                </div>
+                <!-- <div class="board-wrap">
+                    <div class="board-body">
+                        <div class="swiper-container mySwiper swiper sw-dots sw-nav board-gallery-body gallery-type type3">
+                            <ul class="swiper-wrapper">
+                                <li class="swiper-slide">
+                                    <div class="text">
+                                        <div class="etc">
+                                            <span class="receipt ing">접수중</span>
+                                            <span class="state d-day">D-1</span>
+                                        </div>
+                                        <dl>
+                                            <dt>222성남물빛정원 2월 20일 앙상불 화담의 구미동 프로젝트 공연신청</dt>
+                                            <dd>교육문화체육국 > 문화관광과</dd>
+                                        </dl>
+                                        <div class="date">
+                                            2026.02.09 ~ 02.13
+                                        </div>
+                                        <div class="btn-wrap">
+                                            <a href="#none" class="btn-normal secondary bg-btn-secondary medium">신청하기</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="swiper-slide">
+                                    <div class="text">
+                                        <div class="etc">
+                                            <span class="receipt ing">접수중</span>
+                                            <span class="state d-day">D-1</span>
+                                        </div>
+                                        <dl>
+                                            <dt>222성남물빛정원 2월 20일 앙상불 화담의 구미동 프로젝트 공연신청</dt>
+                                            <dd>교육문화체육국 > 문화관광과</dd>
+                                        </dl>
+                                        <div class="date">
+                                            2026.02.09 ~ 02.13
+                                        </div>
+                                        <div class="btn-wrap">
+                                            <a href="#none" class="btn-normal secondary bg-btn-secondary medium">신청하기</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="swiper-slide">
+                                    <div class="text">
+                                        <div class="etc">
+                                            <span class="receipt ing">접수중</span>
+                                            <span class="state d-day">D-1</span>
+                                        </div>
+                                        <dl>
+                                            <dt>222성남물빛정원 2월 20일 앙상불 화담의 구미동 프로젝트 공연신청</dt>
+                                            <dd>교육문화체육국 > 문화관광과</dd>
+                                        </dl>
+                                        <div class="date">
+                                            2026.02.09 ~ 02.13
+                                        </div>
+                                        <div class="btn-wrap">
+                                            <a href="#none" class="btn-normal secondary bg-btn-secondary medium">신청하기</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>    -->
+            </div>
+        </div>
+    </div><!--// 보건소식/온라인신청 -->
+
+    <div class="custom-service-banner">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image:url(/humanframe/theme/health/assets/images/main/img_sub_banner.png);">
+                    <a href="/health/ht-bbs030201">
+                        <div class="title">
+                            늦은 밤까지 열려있는 달빛어린이병원
+                            <span>평일 야간이나 휴일에도 소아 경증환자 진료가 가능한<br>달빛어린이병원을 이용해보세요!</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide" style="background-image:url(/humanframe/theme/health/assets/images/main/img_sub_banner.png);">
+                    <a href="/health/ht-bbs030201">
+                        <div class="title">
+                            늦은 밤까지 열려있는 달빛어린이병원
+                            <span>평일 야간이나 휴일에도 소아 경증환자 진료가 가능한<br>달빛어린이병원을 이용해보세요!</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="custom-service-control">
+            <button type="button" class="prev"><span class="hd-element">보건서비스 배너 이전버튼</span></button>
+            <div class="slide-count">
+                <div class="swiper-pagination">
+                    <span class="swiper-pagination-current"></span> / <span class="swiper-pagination-total"></span>
+                </div>
+            </div>
+            <button type="button" class="stop"><span class="hd-element">보건서비스 배너 정지버튼</span></button>
+            <button type="button" class="next"><span class="hd-element">보건서비스 배너 다음버튼</span></button>
+        </div>
+    </div>
+    
+    <!-- 자주찾는 서비스 / 의료기관시설찾기 -->
+    <div class="service-wrap">
+        <div class="quick-wrap">
+            <h2>자주찾는 서비스</h2>
+            <ul>
+            	<div class="swiper mySwiper">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
+				<a href="https://www.e-health.go.kr/gh/caSrvcGud/selectScrtfIssGud.do?prfDocClCd=07&menuId=200024"><span class="ico01"" ></span>예방접종증명서</a>
+			</div>
+			<div class="swiper-slide">
+				<a href="https://www.e-health.go.kr/gh/caSrvcGud/selectScrtfIssGud.do?prfDocClCd=01&menuId=200022"><span class="ico02"" ></span>건강진단결과서<br>(구 보건증)</a>
+			</div>
+			<div class="swiper-slide">
+				<a href="/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&arrHlthBizTypeCd=&arrWlfCrrCyclCd=&arrWlfHshdSttnCd=&srchWlfPvsnTypeCd=&srchType=&srchText=예방접종&cntPerPage=9"><span class="ico03"" ></span>예방접종</a>
+			</div>
+			<div class="swiper-slide">
+				<a href="/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&arrHlthBizTypeCd=&arrWlfCrrCyclCd=&arrWlfHshdSttnCd=&srchWlfPvsnTypeCd=&srchType=&srchText=의료&cntPerPage=9"><span class="ico04"" ></span>의료비지원</a>
+			</div>
+			<div class="swiper-slide">
+				<a href="/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&arrHlthBizTypeCd=&arrWlfCrrCyclCd=&arrWlfHshdSttnCd=&srchWlfPvsnTypeCd=&srchType=&srchText=금연클리닉&cntPerPage=9"><span class="ico05"" ></span>금연클리닉</a>
+			</div>
+			<div class="swiper-slide">
+				<a href="/health/ht040500"><span class="ico06"" ></span>모기신고센터</a>
+			</div>
+			<div class="swiper-slide">
+				<a href="/health/ht-pm020101"><span class="ico01"" ></span>민원상담</a>
+			</div>
+			</div>
+	</div>
+	<button type="button" class="swiper-prev control-btn"></button>
+	<button type="button" class="swiper-next control-btn"></button>
+</ul>
+        </div>
+        <div class="medical-search-wrap">
+            <div class="medical-search-head">
+                <h2>의료기관/시설찾기</h2>
+            </div>
+            
+            <form id="listFrm" name="listFrm" method="get" action="/health/index">
+				<input type="hidden" name="curPage" value="1" />
+            
+            <div class="medical-search-body">
+            	<span>성남시의 의료기관들을 찾아보세요.</span>
+                <div class="search-head">
+                    <div class="left-element">
+                        <label for="">구분</label>
+                        <div class="form-wrap">
+                            <label for="searchCategory" class="hd-element"></label>
+		            		<select id="searchCategory" name="searchCategory" class="select-control type-medium">
+			                    <option value="">-카테고리선택-</option>
+			                    <option value="종합병원" >종합병원</option> 
+			                    <option value="병원" >병원</option> 
+			                    <option value="의원" >의원</option> 
+			                    <option value="한의원" >한의원</option> 
+			                    <option value="치과의원" >치과의원</option> 
+			                    <option value="치과기공소" >치과기공소</option> 
+			                    <option value="산후조리원" >산후조리원</option> 
+			                    <option value="약국" >약국</option> 
+			                    <option value="안경업소" >안경업소</option> 
+			                    <option value="의료기기" >의료기기</option> 
+			                    <option value="의약품도매상" >의약품도매상</option> 
+			                    <option value="안전상비약" >안전상비약</option> 
+			                    <option value="약방한약방" >약방한약방</option> 
+			                    <option value="안마시술소" >안마시술소</option> 
+			                    <option value="요양병원" >요양병원</option> 
+			                    <option value="노인전문병원" >노인전문병원</option> 
+			                    <option value="산모신생아건강관리기관" >산모신생아건강관리기관</option> 
+			                    </select>
+                        </div>
+                    </div>
+                    <div class="right-element">
+                        <label for="">지역</label>
+                        <div class="form-wrap">
+                            <label for="board-select" class="hd-element"></label>
+                            <select id="searchGu" name="searchGu" class="select-control type-medium">
+			                    <option value="">-구선택-</option>	
+			                    <option value="수정구" >수정구</option>
+			                    <option value="중원구" >중원구</option>
+			                    <option value="분당구" >분당구</option>
+			                    <option value="기타" >기타</option>
+			                </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-body">
+                    <label for="">검색어</label>
+                    <div class="form-wrap">
+                        <label for="searchKey" class="hd-element"></label>
+                        <select name="searchKey" id="searchKey" class="select-control type-medium">
+		                    <option value="title" >기관명</option>
+		                    <option value="phcOgdpAddr" >주소</option>
+		                    </select>
+                    </div>
+                    <div class="form-wrap">
+                        <label for="board-input-text" class="hd-element">텍스트입력</label>
+                        <!-- <input type="text" id="board-input-text" name="board-input-text" class="type-medium" placeholder="텍스트입력"> -->
+                        <input type="text" id="searchText" name="searchText" class="type-medium" placeholder="검색어 입력" value="">
+                    </div>
+                    <button type="button" class="btn-normal bg-btn-primary medium" onclick="javascript:f_medicalOrg_list(); return false;">검색</button>                    
+                    <button type="button" class="reset" onclick="javascript:f_medicalOrg_reset(); return false;"><span class="hd-element">초기화</span></button>
+                </div>
+            </div>            
+            </form>
+        </div>
+    </div><!--// 자주찾는 서비스 / 의료기관시설찾기 -->
+    <!-- 대상별 맞춤 보건서비스 -->
+    <div class="custom-service-wrap">
+        <h2>대상별 맞춤 보건서비스</h2>
+        <ul class="custom-service-list">
+            <li class="bg01">
+                <dl>
+                    <dt>영유아&어린이</dt>
+                    <dd>
+                        쑥쑥 자라는 우리 아이,<br>
+                        성장발달 도움
+                    </dd>
+                </dl>
+                <div class="link">
+                    <a href="/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&arrWlfCrrCyclCd=WLF_CRR_CYCL_2%2CWLF_CRR_CYCL_3&srchWlfPvsnTypeCd=&srchType=1&srchText=예방접종">어린이 국가 예방접종</a>
+                    <a href="/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&srchWlfPvsnTypeCd=&srchType=1&srchText=초등학생+치과주치의">초등학생 치과 주치의</a>
+                </div>
+            </li>
+            <li class="bg02">
+                <dl>
+                    <dt>임산부&가임기여성</dt>
+                    <dd>
+                        예비엄마의<br>
+                        설레는 만남 준비
+                    </dd>
+                </dl>
+                <div class="link">
+                	<a href="/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&srchWlfPvsnTypeCd=&srchType=1&srchText=임산부">임산부지원</a>
+                    <a href="/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&srchWlfPvsnTypeCd=&srchType=2&srchText=난임">난임지원</a>
+                </div>
+            </li>
+            <li class="bg03">
+                <dl>
+                    <dt>직장인&일반성인</dt>
+                    <dd>
+                        기운나는 매일을 위한<br>
+                        필수건강체크
+                    </dd>
+                </dl>
+                <div class="link">
+                    <a href="/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&srchWlfPvsnTypeCd=&srchType=1&srchText=금연클리닉">금연클리닉</a>
+                    <a href="/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&arrHlthBizTypeCd=HLTH_BIZ_TYPE_4&srchWlfPvsnTypeCd=&srchType=&srchText=">정신건강</a>
+                </div>
+            </li>
+            <li class="bg04">
+                <dl>
+                    <dt>어르신</dt>
+                    <dd>
+                        활기찬 노년을 위한<br>
+                        든든 지원
+                    </dd>
+                </dl>
+                <div class="link">
+                    <a href="/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&srchWlfPvsnTypeCd=&srchType=2&srchText=치매">치매관리</a>
+                    <a href="/health/ht-pm020101?curPage=1&sortType=&cvlcptBizSn=0&srchWlfPvsnTypeCd=&srchType=2&srchText=만성질환">만성질환관리</a>
+                </div>
+            </li>
+        </ul>
+        <div class="custom-service-day">
+            <div class="left-element">
+                <div class="title">
+                    <h3>우리 아이 예방접종 일정 체크</h3>
+                    <span>* 아이의 양력 생일을 입력해주세요.</span>
+                </div>
+                
+                <form id="childVaccFrm" name="childVaccFrm" method="get" action="/health/childVaccInfo">
+                <div class="day-form">
+                    <div class="form-wrap">
+                        <input type="text" class="type-medium" id="year" name="year" placeholder="YYYY" value="" maxlength="4" inputmode="numeric" >
+            			<label for="year">년</label>
+                    </div>
+                    <div class="form-wrap">
+                        <input type="text" class="type-medium" id="month" name="month" placeholder="MM" value="" maxlength="2" inputmode="numeric">
+            			<label for="month">월</label>
+                    </div>
+                    <div class="form-wrap">
+                        <input type="text" class="type-medium" id="day" name="day" placeholder="DD" value="" maxlength="2" inputmode="numeric">
+            			<label for="day">일</label>
+                    </div>
+                    <button type="button" class="btn-normal bg-btn-primary medium" onclick="f_childVaccInfo_calc(); return false;">확인</button>
+                </div>
+                </form>
+                <a href="/health/childVaccInfo" class="more-btn"><span class="hd-element">우리 아이 예방접종 일정 체크 더보기</span></a>
+            </div>
+            <div class="right-element">
+                <div class="title">
+                    <h3>비만도 간단 체크</h3>
+                    <span>* 키, 몸무게, 나이 입력 후 확인 버튼을 눌러주세요</span>
+                </div>
+                <form id="childVaccFrm" name="childVaccFrm" method="get" action="/health/childVaccInfo">
+                <div class="body-check">
+                    <div>
+                        <div class="form-wrap">
+                            <label for="heightBmi">신장 (cm)</label>
+                            <input type="text" id="heightBmi" name="heightBmi" class="type-medium" placeholder="신장" maxlength="3" >
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-wrap">
+                            <label for="weightBmi">체중 (kg)</label>
+                            <input type="text" id="weightBmi" name="weightBmi" class="type-medium" placeholder="체중" maxlength="3" >
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-wrap">
+                            <label for="ageBmi">나이(만)</label>
+                            <input type="text" id="ageBmi" name="ageBmi" class="type-medium" placeholder="나이" maxlength="3" >
+                        </div>
+                    </div>
+                    <button type="button" class="btn-normal bg-btn-primary medium" onclick="BMIchk(); return false;">확인</button>
+                </div>
+                </form>
+                <!-- 키/몸무게 데이터 후 실행화면 시작 -->
+                <div class="body-check" id="body-result" style="display:none">
+                    <div class="bmi">
+                        <div class="form-wrap">
+                            <label for="board-input-text">체질량지수 (BMI)</label>
+                            <input type="text" id="bmival" name="bmival" class="type-medium" >
+                        </div>
+                    </div>
+                    <div class="state">
+                        <div class="form-wrap">
+                            <label for="board-input-text">현재상태</label>
+                            <input type="text" id="resultBmi" name="resultBmi" class="type-medium" style="max-width: 127px">
+                        </div>
+                        <button type="button" class="btn-normal bg-btn-primary medium" onclick="location.href='/health/healthCalc?tab=3'">자세히보기</button>
+                    </div>
+                </div>
+                <!--// 키/몸무게 데이터 후 실행화면 끝 -->
+                <div class="refresh"><a href="javascript:void();" onclick="javascript:f_bmi_reset(); return false;">초기화<span></span></a></div> 
+            </div>
+        </div>                
+    </div><!--// 대상별 맞춤 보건서비스 -->
+    <!-- 배너모음 -->
+    <div class="banner-wrap">
+        <div class="left-element">
+            <h2>배너 모음</h2>
+            <div class="banner-slide-control">
+                <button type="button" class="prev"><span class="hd-element">배너 이전버튼</span></button>              
+                <button type="button" class="stop"><span class="hd-element">배너 정지버튼</span></button>
+                <button type="button" class="next"><span class="hd-element">배너 다음버튼</span></button>
+            </div>
+        </div>
+        <div class="banner-slide">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                	<div class="swiper-slide">
+			<a href="http://www.mohw.go.kr" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=33&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=33&amp;fileTy=PCIMG&amp;fileNo=1" alt="보건복지가족부"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="http://www.cdc.go.kr/" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=34&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=34&amp;fileTy=PCIMG&amp;fileNo=1" alt="질병관리본부"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="http://www.kacpr.org" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=52&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=52&amp;fileTy=PCIMG&amp;fileNo=1" alt="대한심폐소생협회"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="http://hi.nhic.or.kr/" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=51&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=51&amp;fileTy=PCIMG&amp;fileNo=1" alt="건강iN"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="http://minwon.nhis.or.kr/menu/retriveMenuSet.xx?menuId=MENU_WBMDG" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=50&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=50&amp;fileTy=PCIMG&amp;fileNo=1" alt="1회용주사기등 재사용 의심의료기관신고"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="http://www.hurb.or.kr/index.jsp" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=49&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=49&amp;fileTy=PCIMG&amp;fileNo=1" alt="보건의료지원통합신고포털"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="http://www.e-allergy.org/" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=48&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=48&amp;fileTy=PCIMG&amp;fileNo=1" alt="경기도 아토피 천식 교육정보센터"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="http://www.childcare.go.kr/" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=47&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=47&amp;fileTy=PCIMG&amp;fileNo=1" alt="임신육아종합포털 아이사랑"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="http://www.pharm114.or.kr/" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=46&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=46&amp;fileTy=PCIMG&amp;fileNo=1" alt="휴일지킴이 약국"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="http://www.e-gen.or.kr/" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=45&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=45&amp;fileTy=PCIMG&amp;fileNo=1" alt="E-GEN 생명에 대한 깊은 사랑"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="http://www.ppfk.or.kr/" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=44&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=44&amp;fileTy=PCIMG&amp;fileNo=1" alt="인구보건복지협회"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="http://www.withchild.or.kr/" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=43&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=43&amp;fileTy=PCIMG&amp;fileNo=1" alt="성남시소아청소년정신건강복지센터"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="http://www.snac.or.kr/" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=42&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=42&amp;fileTy=PCIMG&amp;fileNo=1" alt="성남시중독관리통합지원센터"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="http://www.smhc.or.kr/" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=41&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=41&amp;fileTy=PCIMG&amp;fileNo=1" alt="성남시정신건강증진센터 성남시자살예방센터"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="https://bdseongnam.nid.or.kr" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=39&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=39&amp;fileTy=PCIMG&amp;fileNo=1" alt="분당구 치매안심센터"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="https://jhseongnam.nid.or.kr" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=38&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=38&amp;fileTy=PCIMG&amp;fileNo=1" alt="중원구 치매안심센터"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="https://shseongnam.nid.or.kr" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=37&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=37&amp;fileTy=PCIMG&amp;fileNo=1" alt="수정구 치매안심센터"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="http://nip.cdc.go.kr/" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=36&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=36&amp;fileTy=PCIMG&amp;fileNo=1" alt="예방접종도우미"/>
+			</a>
+		</div>
+	<div class="swiper-slide">
+			<a href="http://www.nhic.or.kr/" target="_blank">
+				<img src="/comm/getImage?srvcId=BANNER&amp;upperNo=35&amp;fileTy=PCIMG&amp;fileNo=1" data-thumb="/comm/getImage?srvcId=BANNER&amp;upperNo=35&amp;fileTy=PCIMG&amp;fileNo=1" alt="국민건강보험공단"/>
+			</a>
+		</div>
+	</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+$( document ).ready(function() {
+	loadBBS();
+	loadGosi();
+});
+
+function loadBBS() {
+	var url = '/ajax/getMiniBBS';
+	const params = [['20001', '3'], ['16015', '5']];
+	for(var idx in params){
+		var vBbsNo = params[idx][0];
+		var vBbsListId = params[idx][1];
+		
+		$.ajax({
+			  url : url
+			, data : {bbsNo : vBbsNo, bbsListId : vBbsListId}
+		   	, type : "GET"
+		   	, dataType : "json"
+		   	, async : false
+			, success : function(data){
+				var arr = data.list;
+				var bList = "";
+				for(var i in arr){
+					bList += '<div class="cont">';
+					bList += '<div class="subject"><a href="'+arr[i].linkUrl+'"><span>'+arr[i].sj+'</span></a>';
+					bList += '</div>';
+					bList += '<div class="date">';
+					bList += '<span class="date"><span class="hd-element">등록일</span>'+arr[i].creatDttm+'</span>';
+					bList += '</div>';
+					bList += '</div>';
+			   	}
+				
+				$('#bbs_'+vBbsNo+'_'+vBbsListId).html(bList);
+				
+			}
+		   	, error: function(data, status, err) {
+			}
+		});
+	}
+}
+
+function loadGosi() {
+	const params = [['채용공고', 'ht-pm040201']];
+	for(var idx in params){
+		$.ajax({
+			  url : '/health/'+params[idx][1]+'/json'
+			, data : {maxLength : 5}
+		   	, type : "GET"
+		   	, dataType : "json"
+		   	, async : false
+			, success : function(data){
+				var arr = data.list;
+				var bList = "";
+				for(var i in arr){
+					bList += '<div class="cont">';
+					bList += '<div class="subject"><a href="/health/'+params[idx][1]+'/'+arr[i].notAncmtMgtNo+'"><span>'+arr[i].notAncmtSj+'</span></a>';
+					bList += '</div>';
+					bList += '<div class="date">';
+					bList += '<span class="date"><span class="hd-element">등록일</span>'+formatYYYYMMDD(arr[i].frstRegTs)+'</span>';
+					bList += '</div>';
+					bList += '</div>';
+			   	}
+				
+				$('#gosi_'+params[idx][1]).html(bList);
+			}
+			, error: function(data, status, err) {
+			}
+		});
+	}
+}
+
+function formatYYYYMMDD(str) {
+	const year = str.slice(0, 4);
+	const month = str.slice(4, 6);
+	const day = str.slice(6, 8);
+	return year+'-'+month+'-'+day;
+}
+</script>
+</div> 
+				<div class="page-top-btn">
+				<button type="button"><span class="hd-element">상단으로 이동</span></button>
+			</div>
+	    </main>
+	
+	    <footer id="footer" class="section">
+	    	<style>
+footer .footer-site .site-open {
+    z-index: 1000;
+}
+</style>
+
+<div class="footer-info">
+    <div class="inner">
+        <div class="footer-logo">
+            <img src="/humanframe/theme/health/assets/images/common/footer_logo.svg" alt="성남시 보건소 수정,중원,분당">
+        </div>
+        <div class="address-wrap">
+            <div class="address">
+                <p><span>수정구보건소</span>경기도 성남시 수정구 수정로 218(신흥동)<br>TEL 031-729-3870 | FAX 031-729-3839</p>
+                <p><span>중원구보건소</span>경기도 성남시 중원구 금상로 137(상대원동)<br>TEL 031-729-3930 | FAX 031-729-3899</p>
+                <p><span>분당구보건소</span>경기도 성남시 분당구 정자일로 159(정자동)<br>TEL 031-729-3990 | FAX 031-729-3959</p>
+            </div>
+            <div class="address-map">
+                <ul>
+                    <li><a href="https://www.webwatch.or.kr/Situation/WA_Situation.html?MenuCD=110" target="_blank" title="새창"><img src="/humanframe/theme/global/assets/images/common/footer_wa.svg" alt="웹접근성인증마크"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="util">
+            <ul>
+                <li><a href="/cn05010101"><strong>개인정보처리방침</strong></a></li>
+                <li><a href="/cn050401">저작권정책</a></li>
+            </ul>
+            <p>Copyright ⓒ Seongnam City. All Rights Reserved.</p>
+        </div>
+    </div>
+</div></footer>
+	
+	    <div class="black-dim"></div>
+	</div>
+	<form name="totalSearchForm" id="totalSearchForm" method="post">
+	    <input type="hidden" name="query" id="totalQuery" value="">
+	</form>
+	
+	<script>
+	window.aiTranslatorConfig = {
+	    chat_bot_id: '00a69c9c-9a6a-44d6-ac3d-fcde4d33b4fe',
+	    currentDomain: 'https://seongnam.han.kr'
+	};
+	</script>
+	<script src="/humanframe/theme/global/assets/plugin/translator/ai-translator.js"></script>
+	
+	<!-- LOGGER(TM) TRACKING SCRIPT V.40 FOR logger.co.kr / 100000 : COMBINE TYPE / DO NOT ALTER THIS SCRIPT. -->
+	<script type="text/javascript">var _TRK_LID = "100008";var _L_TD = "log.seongnam.go.kr";var _TRK_CDMN = ".seongnam.go.kr";</script>
+	<script type="text/javascript">var _CDN_DOMAIN = location.protocol == "https:" ? "https://log.seongnam.go.kr" : "http://log.seongnam.go.kr"; 
+	(function (b, s) { var f = b.getElementsByTagName(s)[0], j = b.createElement(s); j.async = true; j.src = "//log.seongnam.go.kr/fs4/bstrk.sol.js"; f.parentNode.insertBefore(j, f); })(document, "script");
+	</script>
+	<noscript><img alt="Logger Script" width="1" height="1" src="http://log.seongnam.go.kr/tracker.sol.tsp?u=100008&amp;js=N"/></noscript>
+	<!-- END OF LOGGER TRACKING SCRIPT -->
+</body>
+</html>
+<!--homepage-was1-1-->

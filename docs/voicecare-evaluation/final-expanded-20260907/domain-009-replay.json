@@ -1,0 +1,106 @@
+{
+  "id": "domain-009",
+  "question": "장애인 보조기구 지원 신청 방법",
+  "at": "2026-09-07T09:56:43.491Z",
+  "ms": 15,
+  "schemaPass": true,
+  "response": {
+    "query": "장애인 보조기구 지원 신청 방법",
+    "results": [
+      {
+        "document": {
+          "id": "seongnam-disabled-assistive-devices",
+          "title": "장애인 보조기구·보장구 지원",
+          "content": "장애인 보조기구 지원대상은 국민기초생활수급자 및 차상위계층 중 등록장애인이다. 지원품목은 장애유형에 따라 욕창예방방석·매트리스, 음성유도장치, 음성시계, 영상확대시스템, 신호장치, 진동시계, 보행차 등으로 구분되며 각 동 행정복지센터에 신청한다. 보조기구 문의는 성남시 장애인복지과 031-729-2884다. 별도 보장구 지원은 해당 유형의 등록장애인을 대상으로 하며 건강보험·의료급여 등 구분에 따라 지원기준과 절차가 다르므로 추가 근거의 보장구 안내를 확인해야 한다. 보장구 페이지의 사업 본문 문의는 031-729-2885이며 하단 전화번호는 031-729-2884로 서로 다르게 표시되어 있어 담당 부서 확인이 필요하다.",
+          "category": "disability_welfare",
+          "sourceId": "seongnam-city",
+          "sourceOrganizationName": "성남시청",
+          "originalUrl": "https://www.seongnam.go.kr/wf-pm020101/23003",
+          "supportingSources": [
+            {
+              "title": "장애인 보장구 지원",
+              "url": "https://www.seongnam.go.kr/wf-pm020101/23004"
+            }
+          ],
+          "publishedAt": null,
+          "updatedAt": null,
+          "fetchedAt": "2026-09-07T18:37:00+09:00",
+          "lastVerifiedAt": "2026-09-07T18:37:00+09:00",
+          "status": "active",
+          "freshness": {
+            "status": "unknown",
+            "evaluatedAt": "2026-09-07T18:37:00+09:00",
+            "reason": "현재 성남시청 공식 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다."
+          },
+          "relatedRegions": [
+            "성남시"
+          ],
+          "targetAudiences": [
+            "보조기구: 국민기초생활수급자 및 차상위계층 중 등록장애인",
+            "보장구: 해당 보장구 유형의 등록장애인(건강보험·의료급여별 기준 확인 필요)"
+          ],
+          "searchTags": [
+            "장애인 보조기구",
+            "장애인 보장구",
+            "보행차",
+            "행정복지센터 신청"
+          ]
+        },
+        "score": 0,
+        "matchedTerms": []
+      }
+    ],
+    "hasResults": true,
+    "answer": {
+      "userQuestion": "장애인 보조기구 지원 신청 방법",
+      "title": "장애인 보조기구·보장구 지원",
+      "plainLanguageSummary": "장애인 보조기구 지원대상은 국민기초생활수급자 및 차상위계층 중 등록장애인이다. 지원품목은 장애유형에 따라 욕창예방방석·매트리스, 음성유도장치, 음성시계, 영상확대시스템, 신호장치, 진동시계, 보행차 등으로 구분되며 각 동 행정복지센터에 신청한다. 보조기구 문의는 성남시 장애인복지과 031-729-2884다. 별도 보장구 지원은 해당 유형의 등록장애인을 대상으로 하며 건강보험·의료급여 등 구분에 따라 지원기준과 절차가 다르므로 추가 근거의 보장구 안내를 확인해야 한다. 보장구 페이지의 사업 본문 문의는 031-729-2885이며 하단 전화번호는 031-729-2884로 서로 다르게 표시되어 있어 담당 부서 확인이 필요하다.",
+      "eligibility": [
+        "보조기구: 국민기초생활수급자 및 차상위계층 중 등록장애인",
+        "보장구: 해당 보장구 유형의 등록장애인(건강보험·의료급여별 기준 확인 필요)"
+      ],
+      "steps": [],
+      "nextAction": null,
+      "sources": [
+        {
+          "id": "seongnam-disabled-assistive-devices",
+          "sourceId": "seongnam-city",
+          "organizationName": "성남시청",
+          "title": "장애인 보조기구·보장구 지원",
+          "url": "https://www.seongnam.go.kr/wf-pm020101/23003",
+          "supportingSources": [
+            {
+              "title": "장애인 보장구 지원",
+              "url": "https://www.seongnam.go.kr/wf-pm020101/23004"
+            }
+          ],
+          "checkedAt": "2026-09-07T18:37:00+09:00",
+          "documentStatus": "active",
+          "freshnessStatus": "unknown"
+        }
+      ],
+      "verification": {
+        "status": "partially_verified",
+        "checkedAt": "2026-09-07",
+        "details": "공식 문서를 확인했지만 일부 문서가 최신 자료인지 확인되지 않았습니다."
+      }
+    },
+    "kind": "answer",
+    "routing": {
+      "source": "keyword",
+      "decision": {
+        "route": "DIRECT",
+        "serviceIds": [
+          "seongnam-disabled-assistive-devices"
+        ],
+        "intent": "application",
+        "clarificationId": null
+      }
+    },
+    "answerGeneration": {
+      "status": "skipped",
+      "reason": "deterministic"
+    }
+  },
+  "semanticReview": "PENDING"
+}
