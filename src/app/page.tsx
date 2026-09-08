@@ -24,7 +24,7 @@ export default function Home() {
           <p className={styles.eyebrow}>복지 · 돌봄 · 이동 · 건강 · 행정</p>
           <h1 id="page-title">성남 생활정보, 무엇이 궁금하세요?</h1>
           <p className={styles.description}>
-            제도명을 몰라도 괜찮아요. 말하거나 글로 물어보세요.
+            성남 시민을 위한 생활정보를 제도명을 몰라도 말이나 글로 편하게 찾아보세요.
           </p>
         </section>
 

@@ -21,11 +21,58 @@ const SEARCH_ERROR_MESSAGE =
   "검색 중 문제가 생겼습니다. 잠시 후 다시 시도해 주세요.";
 const SEARCHING_MESSAGE = "공식 자료를 찾고 안내를 준비하고 있습니다.";
 
+const CURATED_QUESTION_CATEGORIES = [
+  {
+    id: "senior-welfare",
+    label: "노인복지",
+    questions: [
+      "노인맞춤돌봄서비스는 어디서 신청하나요?",
+      "분당노인종합복지관 주소와 연락처 알려주세요.",
+    ],
+  },
+  {
+    id: "disability-welfare",
+    label: "장애인복지",
+    questions: [
+      "장애인 택시바우처 신청하려면 어떻게 해요?",
+      "장애인 보조기구·보장구 지원은 어디서 신청해요?",
+      "발달장애인 지원 서비스 신청 방법을 알려주세요.",
+    ],
+  },
+  {
+    id: "transportation",
+    label: "교통·이동지원",
+    questions: [
+      "특별교통수단 운영 신청에 필요한 서류가 뭐예요?",
+      "장애인 버스비 환급받을 수 있어요?",
+    ],
+  },
+  {
+    id: "health",
+    label: "보건·건강",
+    questions: [
+      "중원구보건소 치매안심센터 연락처가 어떻게 되나요?",
+      "맞춤형 방문건강관리 대상과 비용을 알려주세요.",
+    ],
+  },
+  {
+    id: "daily-life",
+    label: "생활지원·민원",
+    questions: [
+      "무인민원발급기 이용 안내와 설치 장소를 알려주세요.",
+      "긴급복지지원 사업은 어디서 신청하나요?",
+    ],
+  },
+] as const;
+
+type CuratedCategoryId = (typeof CURATED_QUESTION_CATEGORIES)[number]["id"];
+
 export function QuestionPanel() {
   const [question, setQuestion] = useState("");
   const [notice, setNotice] = useState("");
   const [search, setSearch] = useState<ReturnType<typeof readSearchAnswer>>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<CuratedCategoryId>();
   const [clarificationContext, setClarificationContext] = useState<ClarificationContext>();
   const activeRequest = useRef<AbortController | null>(null);
   const requestTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
@@ -147,6 +194,15 @@ export function QuestionPanel() {
     if (!preserveContext) setClarificationContext(undefined);
   }
 
+  function runCuratedQuestion(curatedQuestion: string) {
+    selectExample(curatedQuestion);
+    void submitQuestion(curatedQuestion, true);
+  }
+
+  const selectedCategory = CURATED_QUESTION_CATEGORIES.find(
+    (category) => category.id === selectedCategoryId,
+  );
+
   return (
     <section className={styles.panel} aria-label="질문하기">
       <div className={styles.panelHeading}>
@@ -253,7 +309,48 @@ export function QuestionPanel() {
           <p>이렇게 물어보세요</p>
           <details className={styles.scopeDetails}>
             <summary>지원 분야 확인하기</summary>
-            <p>어르신 돌봄 · 장애인복지 · 교통약자 이동 · 방문건강관리 · 긴급복지 · 무인민원발급기</p>
+            <div className={styles.categoryExplorer}>
+              <p>분야를 고르면 현재 공식 자료로 확인 가능한 추천 질문을 볼 수 있어요.</p>
+              <div className={styles.categoryList} aria-label="지원 분야">
+                {CURATED_QUESTION_CATEGORIES.map((category) => (
+                  <button
+                    key={category.id}
+                    type="button"
+                    aria-pressed={selectedCategoryId === category.id}
+                    aria-controls="curated-question-list"
+                    onClick={() => setSelectedCategoryId(category.id)}
+                  >
+                    <strong>{category.label}</strong>
+                    <span>{category.questions.length}개 질문</span>
+                  </button>
+                ))}
+              </div>
+              {selectedCategory && (
+                <section
+                  id="curated-question-list"
+                  className={styles.curatedQuestions}
+                  aria-labelledby="curated-question-title"
+                >
+                  <div>
+                    <h3 id="curated-question-title">{selectedCategory.label} 분야별 질문</h3>
+                    <p>질문을 누르면 바로 공식 자료를 찾아요.</p>
+                  </div>
+                  <div className={styles.curatedQuestionList}>
+                    {selectedCategory.questions.map((curatedQuestion) => (
+                      <button
+                        key={curatedQuestion}
+                        type="button"
+                        disabled={isLoading}
+                        onClick={() => runCuratedQuestion(curatedQuestion)}
+                      >
+                        <span>{curatedQuestion}</span>
+                        <span aria-hidden="true">→</span>
+                      </button>
+                    ))}
+                  </div>
+                </section>
+              )}
+            </div>
           </details>
         </div>
         <div className={styles.exampleList}>

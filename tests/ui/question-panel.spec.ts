@@ -6,6 +6,28 @@ import { CLARIFICATIONS, type ClarificationId } from "../../src/types/public-inf
 import { SAFETY_GUIDANCE } from "../../src/types/public-information-safety";
 
 const QUERY = "장애인 콜택시 이용하려면 어떻게 해야 해?";
+test("지원 분야에서 검증 질문을 고르면 기존 검색 흐름으로 바로 실행한다", async ({ page }) => {
+  const query = "중원구보건소 치매안심센터 연락처가 어떻게 되나요?";
+  let payload: unknown;
+  await page.route("**/api/public-information/search", async (route) => {
+    payload = route.request().postDataJSON();
+    await route.fulfill({ json: fixture(query) });
+  });
+  await page.goto("/");
+  await page.getByText("지원 분야 확인하기", { exact: true }).click();
+
+  const healthCategory = page.getByRole("button", { name: "보건·건강 2개 질문", exact: true });
+  await expect(healthCategory).toHaveAttribute("aria-pressed", "false");
+  await healthCategory.click();
+  await expect(healthCategory).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByRole("heading", { name: "보건·건강 분야별 질문" })).toBeVisible();
+
+  await page.getByRole("button", { name: query, exact: true }).click();
+  await expect(page.getByRole("textbox", { name: "글자로 질문하기" })).toHaveValue(query);
+  await expect(page.getByRole("status")).toContainText("안내가 준비되었습니다");
+  expect(payload).toEqual({ query });
+});
+
 test("종합 안내의 분리된 공식 근거도 실제 API에서 링크로 표시한다", async ({ page }) => {
   await page.goto("/");
   await submit(page, "장애인 보조기구·보장구 지원");
