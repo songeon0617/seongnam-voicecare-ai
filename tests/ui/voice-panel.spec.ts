@@ -51,12 +51,15 @@ test("한국어 STT 확정 결과를 입력란과 기존 API에 한 번 전달�
     window.voiceTest.end();
   }, QUERY);
   await expect(page.getByRole("textbox")).toHaveValue(QUERY);
-  if (await page.getByText("자세한 내용 보기", { exact: true }).count()) await page.getByText("자세한 내용 보기", { exact: true }).click();
-  await expect(page.getByText(search.answer.plainLanguageSummary, { exact: true })).toBeVisible();
+  const answerRegion = page.getByRole("region", { name: "공식 자료 안내" });
+  await expect(answerRegion.getByRole("status")).toContainText("안내가 준비되었습니다");
+  const details = answerRegion.locator("details");
+  await details.locator("summary").click();
+  await expect(details.getByText(search.answer.plainLanguageSummary, { exact: true })).toBeVisible();
   expect(requests).toBe(1);
   expect(await page.evaluate(() => window.voiceTest.spoken.length)).toBe(0);
   for (const source of search.answer.sources) {
-    const link = page.getByRole("link", { name: `${source.title} (새 창)`, exact: true });
+    const link = answerRegion.getByRole("link", { name: `${source.title} (새 창)`, exact: true });
     await expect(link).toHaveAttribute("href", source.url);
     await expect(link.locator("..")).toContainText(source.checkedAt!.slice(0, 10));
     await expect(link.locator("..")).toContainText("최신성 미확인");
