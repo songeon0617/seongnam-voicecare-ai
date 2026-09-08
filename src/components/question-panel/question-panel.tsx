@@ -25,6 +25,7 @@ const CURATED_QUESTION_CATEGORIES = [
   {
     id: "senior-welfare",
     label: "노인복지",
+    description: "어르신 생활·돌봄 지원",
     questions: [
       "노인맞춤돌봄서비스는 어디서 신청하나요?",
       "분당노인종합복지관 주소와 연락처 알려주세요.",
@@ -33,6 +34,7 @@ const CURATED_QUESTION_CATEGORIES = [
   {
     id: "disability-welfare",
     label: "장애인복지",
+    description: "이동·보조·생활 지원",
     questions: [
       "장애인 택시바우처 신청하려면 어떻게 해요?",
       "장애인 보조기구·보장구 지원은 어디서 신청해요?",
@@ -42,6 +44,7 @@ const CURATED_QUESTION_CATEGORIES = [
   {
     id: "transportation",
     label: "교통·이동지원",
+    description: "이동지원 및 교통 정보",
     questions: [
       "특별교통수단 운영 신청에 필요한 서류가 뭐예요?",
       "장애인 버스비 환급받을 수 있어요?",
@@ -50,6 +53,7 @@ const CURATED_QUESTION_CATEGORIES = [
   {
     id: "health",
     label: "보건·건강",
+    description: "건강관리 및 보건 서비스",
     questions: [
       "중원구보건소 치매안심센터 연락처가 어떻게 되나요?",
       "맞춤형 방문건강관리 대상과 비용을 알려주세요.",
@@ -58,6 +62,7 @@ const CURATED_QUESTION_CATEGORIES = [
   {
     id: "daily-life",
     label: "생활지원·민원",
+    description: "일상생활 및 민원 안내",
     questions: [
       "무인민원발급기 이용 안내와 설치 장소를 알려주세요.",
       "긴급복지지원 사업은 어디서 신청하나요?",
@@ -66,6 +71,27 @@ const CURATED_QUESTION_CATEGORIES = [
 ] as const;
 
 type CuratedCategoryId = (typeof CURATED_QUESTION_CATEGORIES)[number]["id"];
+
+function CategoryIcon({ category }: { category: CuratedCategoryId }) {
+  const commonProps = {
+    viewBox: "0 0 24 24",
+    "aria-hidden": true,
+  } as const;
+
+  if (category === "senior-welfare") {
+    return <svg {...commonProps}><path d="M8 21v-5a4 4 0 0 1 8 0v5M12 3a3 3 0 1 1 0 6M5 21h14" /></svg>;
+  }
+  if (category === "disability-welfare") {
+    return <svg {...commonProps}><circle cx="12" cy="5" r="2" /><path d="m11 8-1 6h6l2 5M10 11a5 5 0 1 0 4 8" /></svg>;
+  }
+  if (category === "transportation") {
+    return <svg {...commonProps}><path d="M5 17V7a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v10M5 13h14M8 17h8M7 20h2m6 0h2" /></svg>;
+  }
+  if (category === "health") {
+    return <svg {...commonProps}><path d="M12 21S4 16.5 4 9.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8 2.5C20 16.5 12 21 12 21Z" /><path d="M9 12h6m-3-3v6" /></svg>;
+  }
+  return <svg {...commonProps}><path d="M4 6h16v13H4zM8 3v6m8-6v6M8 13h3m2 0h3m-8 3h3" /></svg>;
+}
 
 export function QuestionPanel() {
   const [question, setQuestion] = useState("");
@@ -306,22 +332,33 @@ export function QuestionPanel() {
 
       <div className={styles.examples}>
         <div className={styles.examplesHeading}>
-          <p>이렇게 물어보세요</p>
+          <p>자주 찾는 생활정보</p>
           <details className={styles.scopeDetails}>
             <summary>지원 분야 확인하기</summary>
             <div className={styles.categoryExplorer}>
-              <p>분야를 고르면 현재 공식 자료로 확인 가능한 추천 질문을 볼 수 있어요.</p>
+              <div className={styles.categoryHeading}>
+                <p className={styles.categoryEyebrow}>분야별 생활정보</p>
+                <h3>필요한 분야를 선택해 주세요</h3>
+                <p>분야를 고르면 공식 자료로 확인할 수 있는 생활정보가 표시됩니다.</p>
+              </div>
               <div className={styles.categoryList} aria-label="지원 분야">
                 {CURATED_QUESTION_CATEGORIES.map((category) => (
                   <button
                     key={category.id}
                     type="button"
+                    aria-label={`${category.label} ${category.questions.length}개 질문`}
                     aria-pressed={selectedCategoryId === category.id}
                     aria-controls="curated-question-list"
                     onClick={() => setSelectedCategoryId(category.id)}
                   >
-                    <strong>{category.label}</strong>
-                    <span>{category.questions.length}개 질문</span>
+                    <span className={styles.categoryIcon} aria-hidden="true">
+                      <CategoryIcon category={category.id} />
+                    </span>
+                    <span className={styles.categoryCopy}>
+                      <strong>{category.label}</strong>
+                      <span>{category.description}</span>
+                    </span>
+                    <span className={styles.categoryArrow} aria-hidden="true">›</span>
                   </button>
                 ))}
               </div>
@@ -332,8 +369,9 @@ export function QuestionPanel() {
                   aria-labelledby="curated-question-title"
                 >
                   <div>
+                    <p className={styles.categoryEyebrow}>이런 정보를 확인할 수 있어요</p>
                     <h3 id="curated-question-title">{selectedCategory.label} 분야별 질문</h3>
-                    <p>질문을 누르면 바로 공식 자료를 찾아요.</p>
+                    <p>항목을 누르면 관련 공식 자료를 바로 확인합니다.</p>
                   </div>
                   <div className={styles.curatedQuestionList}>
                     {selectedCategory.questions.map((curatedQuestion) => (
