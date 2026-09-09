@@ -1,7 +1,9 @@
 "use client";
 
 import { type FormEvent, useEffect, useRef, useState } from "react";
-import { EXAMPLE_QUESTIONS } from "@/lib/example-questions";
+import { LIFE_CATEGORIES, type LifeCategoryId } from "@/lib/life-navigation";
+import { LifeMenu } from "./life-menu";
+import { officialHandoff } from "@/lib/public-information/official-handoff";
 import { readSearchAnswer } from "@/lib/search/read-search-answer";
 import { conciseAnswer, completeAnswerSpeech } from "@/lib/public-information/concise-answer";
 import { questionScope, JOURNEY_LIMIT } from "@/lib/search/question-scope";
@@ -21,58 +23,9 @@ const SEARCH_ERROR_MESSAGE =
   "검색 중 문제가 생겼습니다. 잠시 후 다시 시도해 주세요.";
 const SEARCHING_MESSAGE = "공식 자료를 찾고 안내를 준비하고 있습니다.";
 
-const CURATED_QUESTION_CATEGORIES = [
-  {
-    id: "senior-welfare",
-    label: "노인복지",
-    description: "어르신 생활·돌봄 지원",
-    questions: [
-      "노인맞춤돌봄서비스는 어디서 신청하나요?",
-      "분당노인종합복지관 주소와 연락처 알려주세요.",
-    ],
-  },
-  {
-    id: "disability-welfare",
-    label: "장애인복지",
-    description: "이동·보조·생활 지원",
-    questions: [
-      "장애인 택시바우처 신청하려면 어떻게 해요?",
-      "장애인 보조기구·보장구 지원은 어디서 신청해요?",
-      "발달장애인 지원 서비스 신청 방법을 알려주세요.",
-    ],
-  },
-  {
-    id: "transportation",
-    label: "교통·이동지원",
-    description: "이동지원 및 교통 정보",
-    questions: [
-      "특별교통수단 운영 신청에 필요한 서류가 뭐예요?",
-      "장애인 버스비 환급받을 수 있어요?",
-    ],
-  },
-  {
-    id: "health",
-    label: "보건·건강",
-    description: "건강관리 및 보건 서비스",
-    questions: [
-      "중원구보건소 치매안심센터 연락처가 어떻게 되나요?",
-      "맞춤형 방문건강관리 대상과 비용을 알려주세요.",
-    ],
-  },
-  {
-    id: "daily-life",
-    label: "생활지원·민원",
-    description: "일상생활 및 민원 안내",
-    questions: [
-      "무인민원발급기 이용 안내와 설치 장소를 알려주세요.",
-      "긴급복지지원 사업은 어디서 신청하나요?",
-    ],
-  },
-] as const;
-
-type CuratedCategoryId = (typeof CURATED_QUESTION_CATEGORIES)[number]["id"];
-
 export function QuestionPanel() {
+  const [askingAgain, setAskingAgain] = useState(false);
+  const workspaceRef = useRef<HTMLDivElement>(null);
   const [question, setQuestion] = useState("");
   const [voiceReview, setVoiceReview] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -81,11 +34,14 @@ export function QuestionPanel() {
   const [notice, setNotice] = useState("");
   const [search, setSearch] = useState<ReturnType<typeof readSearchAnswer>>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedCategoryId, setSelectedCategoryId] = useState<CuratedCategoryId>();
+  const [selectedCategoryId, setSelectedCategoryId] = useState<LifeCategoryId>();
   const [clarificationContext, setClarificationContext] = useState<ClarificationContext>();
   const activeRequest = useRef<AbortController | null>(null);
   const requestTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const speech = useAnswerSpeech(setNotice);
+  useEffect(() => {
+    if (askingAgain) { workspaceRef.current?.scrollIntoView({block:"start",behavior:"instant"}); inputRef.current?.focus({preventScroll:true}); }
+  }, [askingAgain]);
   useEffect(() => {
     if (!search) return;
     resultRef.current?.focus({ preventScroll: true });
@@ -157,6 +113,7 @@ export function QuestionPanel() {
         throw new Error("Public information search request failed");
       }
 
+      setAskingAgain(body.kind === "clarification");
       setSearch(body);
       setServiceContext(body.kind === "answer" && body.answer.sources.length === 1 ? body.answer.sources[0].id : undefined);
       setClarificationContext(body.clarification ? { question: normalizedQuestion, clarificationId: body.clarification.id } : undefined);
@@ -203,16 +160,17 @@ export function QuestionPanel() {
     await submitQuestion(submittedQuestion);
   }
 
-  function selectExample(example: string, preserveContext = false) {
+  function selectExample(example: string, preserveContext = false, preserveAnswer = false) {
     voice.cancel();
     speech.stop();
     activeRequest.current?.abort();
     activeRequest.current = null;
+    clearTimeout(requestTimeout.current);
     setQuestion(example);
     setNotice("");
-    setSearch(null);
+    if (!preserveAnswer) setSearch(null);
     setIsLoading(false);
-    if (!preserveContext) { setClarificationContext(undefined); setServiceContext(undefined); }
+    if (!preserveContext) { setClarificationContext(undefined); setServiceContext(undefined); setAskingAgain(false); }
   }
 
   function runCuratedQuestion(curatedQuestion: string) {
@@ -220,16 +178,15 @@ export function QuestionPanel() {
     void submitQuestion(curatedQuestion, true);
   }
 
-  const selectedCategory = CURATED_QUESTION_CATEGORIES.find(
+  const handoff = search && ["guidance","unsupported","search_unavailable"].includes(search.kind ?? "") ? officialHandoff(search.answer.userQuestion) : undefined;
+  const selectedCategory = LIFE_CATEGORIES.find(
     (category) => category.id === selectedCategoryId,
   );
 
   return (
-    <section className={styles.panel} aria-label="질문하기">
-      <div className={styles.panelHeading}>
-        <h2>어떤 도움이 필요하세요?</h2>
-      </div>
-      <div className={styles.questionWorkspace}>
+    <section className={`${styles.panel} ${askingAgain ? styles.askingAgain : ""}`} aria-label="질문하기">
+      <LifeMenu onQuestion={runCuratedQuestion} />
+      <div ref={workspaceRef} className={styles.questionWorkspace} hidden={Boolean(search) && !askingAgain}>
         <div className={styles.inputChoices}>
           <button className={styles.voiceButton} type="button"
             onClick={() => {
@@ -241,7 +198,7 @@ export function QuestionPanel() {
             }} aria-label={isRecognizing ? "음성 입력 취소" : "마이크로 질문하기"}
             aria-pressed={isRecognizing} aria-describedby="voice-help">
             <span aria-hidden="true">●</span>
-            <strong>{isRecognizing ? "음성 입력 취소" : voiceReview ? "다시 말하기" : "눌러서 말하기"}</strong>
+            <strong>{isRecognizing ? "음성 입력 취소" : voiceReview ? "다시 말하기" : "음성으로 질문하기"}</strong>
           </button>
         </div>
         <p id="voice-help" className={styles.voiceHelp}>{isRecognizing ? "듣고 있습니다. 끝나면 인식한 내용을 확인해 주세요." : "말한 내용을 확인한 뒤 질문을 보냅니다."}</p>
@@ -250,7 +207,7 @@ export function QuestionPanel() {
           <label htmlFor="question">{voiceReview ? "인식한 질문 · 글자로 고치기" : "글자로 질문하기"}</label>
           <div className={styles.inputRow}>
             <input ref={inputRef} id="question" name="question" type="text" value={question}
-              onChange={(event) => { selectExample(event.target.value, true); }}
+              onChange={(event) => { selectExample(event.target.value, true, askingAgain); }}
               placeholder={serviceContext ? "예: 준비물은?" : "질문을 적어 주세요"}
               autoComplete="off" maxLength={PUBLIC_INFORMATION_SEARCH_MAX_QUERY_LENGTH} />
             <button type="submit" aria-label={isLoading ? "공식 자료 검색 중" : "질문 보내기"} disabled={isLoading}>
@@ -259,36 +216,37 @@ export function QuestionPanel() {
           </div>
           {voiceReview && <button className={styles.textChoice} type="button" onClick={() => { setVoiceReview(false); setQuestion(""); setNotice("인식한 질문을 취소했습니다."); }}>인식한 질문 취소</button>}
         </form>}
-        <p className={notice ? styles.notice : styles.answerPlaceholder} role="status" aria-live={speech.isSpeaking ? "off" : "polite"} aria-atomic="true">
-          {notice}
-        </p>
         <p className={styles.privacyNotice}>이름·주민등록번호 등 개인정보는 입력하지 마세요.</p>
         {isLoading && <button className={styles.textChoice} type="button" onClick={() => {
           activeRequest.current?.abort(); activeRequest.current = null; clearTimeout(requestTimeout.current);
           setIsLoading(false); setNotice("검색을 취소했습니다. 다른 질문을 입력할 수 있습니다.");
         }}>검색 취소</button>}
       </div>
+        <p className={search ? styles.resultStatus : notice ? styles.notice : styles.answerPlaceholder} role="status" aria-live={speech.isSpeaking ? "off" : "polite"} aria-atomic="true">
+          {notice}
+        </p>
       {!search && !isLoading && !clarificationContext && <div className={styles.examples}>
         <h3>지원 분야</h3>
         <div className={styles.categoryList} aria-label="지원 분야">
-          {CURATED_QUESTION_CATEGORIES.map(category => <button key={category.id} type="button"
-            aria-label={`${category.label} ${category.questions.length}개 질문`} aria-pressed={selectedCategoryId === category.id}
+          {LIFE_CATEGORIES.map(category => <button key={category.id} type="button"
+            aria-label={category.label} aria-pressed={selectedCategoryId === category.id}
             onClick={() => { setSelectedCategoryId(category.id); setServiceContext(undefined); setClarificationContext(undefined); }}>
             {selectedCategoryId === category.id && <span aria-hidden="true">✓ </span>}{category.label}
           </button>)}
         </div>
-        <h3 className={styles.exampleHeading}>{selectedCategory ? `${selectedCategory.label} 예시 질문` : "이렇게 물어보세요"}</h3>
-        <div className={styles.exampleList}>
-          {(selectedCategory?.questions ?? EXAMPLE_QUESTIONS).map(example => <button key={example} type="button" onClick={() => runCuratedQuestion(example)}>{example}</button>)}
-        </div>
+        {selectedCategory && <>
+          <h3 className={styles.exampleHeading}>{selectedCategory.label}에서 찾기</h3>
+          <div className={styles.exampleList}>{selectedCategory.items.map(item => <button key={item.label} type="button" onClick={() => runCuratedQuestion(item.query)}>{item.label}</button>)}</div>
+        </>}
       </div>}
       <section
+        hidden={!search && !isLoading}
         className={`${styles.answer} ${search?.kind === "safety" ? styles.safetyAnswer : ""}`}
         data-state={isLoading ? "loading" : search?.kind ?? (notice ? "notice" : "empty")}
         aria-labelledby="answer-title"
       >
         <div className={styles.answerHeading}>
-          <h2 id="answer-title" ref={resultRef} tabIndex={-1}>{search?.kind === "safety" ? "긴급 안전 안내" : "공식 자료 안내"}</h2>
+          <h2 id="answer-title" ref={resultRef} tabIndex={-1}>{search?.kind === "safety" ? "긴급 안전 안내" : "핵심 안내"}</h2>
         </div>
         {(isLoading || search) && <p className={styles.currentQuestion}>질문: {search?.answer.userQuestion ?? question}</p>}
         {clarificationContext && <div className={styles.clarification}>
@@ -320,7 +278,18 @@ export function QuestionPanel() {
             : "답변 본문만 읽습니다."}</span>
         </div>}
         <div aria-busy={isLoading}>
-          {scope && <div className={`${styles.searchResults} ${styles.detailSection}`}>
+          {handoff && <div className={styles.searchResults}>
+            <h3>{handoff.title}</h3>
+            {search?.kind !== "guidance" && <p>{handoff.summary}</p>}
+            {scope && <button className={styles.textChoice} type="button" onClick={()=>{voice.cancel();speech.play(scope.message);}}>지원 범위 안내 듣기</button>}
+            <div className={styles.actionLinks} aria-label="지금 할 수 있는 일">
+              {handoff.phone && <a href={`tel:${handoff.phone}`}>{handoff.phone} 전화하기</a>}
+              {handoff.links.map(link=><a key={link.url} href={link.url} target="_blank" rel="noreferrer">{link.title} (새 창)</a>)}
+            </div>
+            <p className={styles.sourcesIntro}>공식 연결 경로 확인: {handoff.checkedAt} · 개인별 자격·접수 가능 여부의 확인을 뜻하지 않습니다.</p>
+          </div>}
+
+          {scope && !handoff && <div className={`${styles.searchResults} ${styles.detailSection}`}>
             <h3>이 질문의 지원 범위와 확인 방법</h3>
             <p>{scope.message}</p>
             <div className={styles.speechControls}><button type="button" onClick={() => { voice.cancel(); speech.play(scope.message); }}>지원 범위 안내 듣기</button></div>
@@ -370,15 +339,13 @@ export function QuestionPanel() {
           />}
         </div>
         {search && <div className={styles.followupActions}>
+          {!askingAgain && <button className={styles.textChoice} type="button" onClick={() => {
+            speech.stop(); voice.cancel(); setQuestion(""); setVoiceReview(false); setNotice(""); setAskingAgain(true);
+          }}>다시 질문</button>}
           <button className={styles.textChoice} type="button" onClick={() => {
-            speech.stop(); inputRef.current?.scrollIntoView({block:"center",behavior:"instant"});
-            document.querySelector<HTMLButtonElement>('[aria-label="마이크로 질문하기"]')?.focus();
-          }}>말이나 글로 이어서 질문</button>
-          {serviceContext && <p><a href="#followup-questions">준비물·요금 등 후속 질문 선택</a></p>}
-          <button className={styles.textChoice} type="button" onClick={() => {
-            selectExample(""); setVoiceReview(false);
-            requestAnimationFrame(() => inputRef.current?.focus());
-          }}>다른 질문·분야 선택</button>
+            selectExample(""); setVoiceReview(false); setSelectedCategoryId(undefined); setAskingAgain(false);
+            requestAnimationFrame(() => {inputRef.current?.focus(); window.scrollTo({top:0,behavior:"instant"});});
+          }}>처음으로</button>
         </div>}
       </section>
       <details className={styles.infoDetails}>

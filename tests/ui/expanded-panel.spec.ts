@@ -15,6 +15,7 @@ test("structured policy shows the answer first and speech preserves limitations"
   expect(body.answer.plainLanguageSummary).toContain("1666-0420");
   const concise=page.getByTestId("answer-summary");
   await expect(concise).toBeVisible();
+  await page.getByText('자세히 보기 · 대상·준비물·이용 방법',{exact:true}).click();
   await expect(page.getByRole("heading",{name:"준비할 서류·물품"})).toBeVisible();
   await expect(page.getByText(/진단서 발급일/)).toHaveCount(0);
   await expect(page.getByText(/기간 미기재 시 발급일부터 6개월/)).toBeVisible();

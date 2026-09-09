@@ -17,6 +17,7 @@ import { redactQuestion } from "./official-source-policy";
 import { mapDocumentsToPublicInformationAnswer } from "@/lib/public-information/map-documents-to-answer";
 import type { PublicInformationDocument } from "@/types/public-data";
 import { isJourneyRequest, JOURNEY_LIMIT } from "./question-scope";
+import { freeOfficialNavigation } from "@/lib/public-information/official-handoff";
 
 function state(query:string,kind:PublicInformationSearchResponse["kind"],title:string,message:string):PublicInformationSearchServiceResult {
   return {status:200,body:{query,kind,results:[],hasResults:false,...(kind==="unsupported"?{routing:{source:"guard" as const,decision:{route:"UNSUPPORTED" as const,serviceIds:[] as [],intent:"other" as const,clarificationId:null}}}:{}),answer:{userQuestion:query,title,plainLanguageSummary:message,steps:[],nextAction:null,sources:[],verification:{status:"insufficient_data",checkedAt:null,details:message}}}};
@@ -129,6 +130,9 @@ export async function createExpandedPublicInformationResponse(payload:unknown,pr
     /(혼자.{0,8}(어머니|아버지|어르신)|어르신).{0,12}안부/.test(query)?"seongnam-senior-tailored-care":
     /등본.{0,10}기계|기계.{0,10}등본/.test(query)?"seongnam-unmanned-civil-service-kiosk":null);
   if(named){const doc=getRoutingDocuments().find(d=>d.id===named)!;return curatedResponse(original,doc);}
+  // Use reviewed free official navigation before a paid discovery search.
+  const handoff=freeOfficialNavigation(query);
+  if(handoff)return state(original,"guidance",handoff.title,handoff.summary);
   const redacted=redactQuestion(query);
   const result=await provider.search(redacted.text,AbortSignal.timeout(27_000));
   const hasEvidence=result.evidence.length>0;

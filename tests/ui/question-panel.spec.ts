@@ -16,14 +16,14 @@ test("지원 분야에서 검증 질문을 고르면 기존 검색 흐름으로 
   await page.goto("/");
   await expect(page.getByRole("heading", {name:"지원 분야",exact:true})).toBeVisible();
 
-  const healthCategory = page.getByRole("button", { name: "보건·건강 2개 질문", exact: true });
+  const healthCategory = page.getByRole("button", { name: "건강", exact: true });
   await expect(healthCategory).toHaveAttribute("aria-pressed", "false");
   await healthCategory.click();
   await expect(healthCategory).toHaveAttribute("aria-pressed", "true");
-  await expect(page.getByRole("heading", { name: "보건·건강 예시 질문" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "건강에서 찾기" })).toBeVisible();
 
-  await page.getByRole("button", { name: query, exact: true }).click();
-  await expect(page.getByRole("textbox", { name: "글자로 질문하기" })).toHaveValue(query);
+  await page.getByRole("button", { name: "치매", exact: true }).click();
+  await expect(page.locator("#question")).toHaveValue(query);
   await expect(page.getByRole("status")).toContainText("안내가 준비되었습니다");
   expect(payload).toEqual({ query });
 });
@@ -63,7 +63,7 @@ test("확인 질문은 사실 없이 표시하고 짧은 후속 답에 직전 �
   await expect(page.getByText(CLARIFICATIONS.mobility_vehicle_or_fare.question, { exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "특별교통수단 운영 안내", exact: true })).toBeVisible();
   await expect(page.getByRole("textbox")).toHaveValue("");
-  const clarification = page.getByRole("region", { name: "공식 자료 안내", exact: true });
+  const clarification = page.getByRole("region", { name: "핵심 안내", exact: true });
   await expect(clarification.getByRole("button", { name: "답변 듣기" })).toHaveCount(0);
   await expect(clarification.getByRole("link")).toHaveCount(0);
   await expect(clarification.getByText(/출처/)).toHaveCount(0);
@@ -82,7 +82,7 @@ test("자유입력 확인 질문은 모름·새 질문 선택과 사실 없는 �
   await expect(question).toBeVisible();
   await expect(question.locator("..").getByRole("button")).toHaveCount(2);
   await expect(question.locator("..").getByRole("button", {name:"잘 모르겠어요"})).toBeVisible();
-  const clarification = page.getByRole("region", { name: "공식 자료 안내", exact: true });
+  const clarification = page.getByRole("region", { name: "핵심 안내", exact: true });
   await expect(clarification.getByRole("button", { name: "답변 듣기" })).toHaveCount(0);
   await expect(clarification.getByRole("link")).toHaveCount(0);
   await expect(clarification.getByText(/출처/)).toHaveCount(0);
@@ -114,7 +114,7 @@ test("미지원 안내는 사실·출처 없이 표시하고 다시 질문할 �
   await page.goto("/");
   await submit(page, "오늘 점심 메뉴 추천해줘");
   await expect(page.getByRole("status")).toHaveText(message);
-  const unsupported = page.getByRole("region", { name: "공식 자료 안내", exact: true });
+  const unsupported = page.getByRole("region", { name: "핵심 안내", exact: true });
   await expect(unsupported.getByText(message, { exact: true })).toHaveCount(1);
   await expect(unsupported.getByRole("button", { name: "답변 듣기" })).toHaveCount(0);
   await expect(unsupported.getByRole("link")).toHaveCount(0);
@@ -145,6 +145,7 @@ test("safety 응답은 일반 카드와 구분하고 직접 전화 링크를 표
   await expect(answer.getByRole("button", { name: "답변 듣기" })).toBeVisible();
 });
 async function submit(page: Page, query = QUERY) {
+  if(await page.getByRole("button", {name:"다시 질문",exact:true}).isVisible()) await page.getByRole("button", {name:"다시 질문",exact:true}).click();
   await page.getByRole("textbox", { name: "글자로 질문하기" }).fill(query);
   await page.getByRole("textbox", { name: "글자로 질문하기" }).press("Enter");
 }
@@ -158,7 +159,7 @@ test("생성 답변을 키보드로 요청하고 원문·출처·확인일·상�
   });
   await page.goto("/");
   await submit(page);
-  const answer = page.getByRole("region", { name: "공식 자료 안내", exact: true });
+  const answer = page.getByRole("region", { name: "핵심 안내", exact: true });
   await expect(page.getByRole("status")).toContainText("안내가 준비되었습니다");
   const answerDetails = page.getByText("자세한 내용 보기", { exact: true });
   if (await answerDetails.count()) await answerDetails.click();
@@ -203,7 +204,7 @@ test("AI 실패 fallback을 정상 안내로 표시하며 내부 오류를 노�
   await expect(page.getByRole("status")).toContainText("안내가 준비되었습니다");
   if (await page.getByText("자세한 내용 보기", { exact: true }).count()) await page.getByText("자세한 내용 보기", { exact: true }).click();
   await expect(page.getByText(search.answer.plainLanguageSummary, { exact: true })).toBeVisible();
-  await expect(page.getByRole("region", { name: "공식 자료 안내", exact: true })).not.toContainText(/provider_error|private-provider-error|fallback/);
+  await expect(page.getByRole("region", { name: "핵심 안내", exact: true })).not.toContainText(/provider_error|private-provider-error|fallback/);
 });
 
 test("빈 결과, 확인일 null 및 알 수 없는 최신성을 분명히 안내한다", async ({ page }) => {
@@ -213,7 +214,7 @@ test("빈 결과, 확인일 null 및 알 수 없는 최신성을 분명히 안�
   await submit(page, "프로야구 경기 일정");
   await expect(page.getByRole("status")).toContainText("관련 정보를 찾지 못했습니다");
   await expect(page.getByText("확인일: 미확인", { exact: true })).toBeVisible();
-  await expect(page.getByRole("region", { name: "공식 자료 안내", exact: true }).getByRole("link")).toHaveCount(0);
+  await expect(page.getByRole("region", { name: "핵심 안내", exact: true }).getByRole("link")).toHaveCount(0);
 });
 
 test("로딩·서버 오류·429 안내를 상태 영역으로 전달하며 다시 질문할 수 있다", async ({ page }) => {
@@ -249,7 +250,7 @@ test("입력 변경으로 취소된 요청의 결과를 표시하지 않는다",
   await page.getByRole("textbox").fill("새 질문");
   release();
   await expect(page.getByRole("status")).toHaveText("");
-  await expect(page.getByRole("region", { name: "공식 자료 안내", exact: true }).getByRole("link")).toHaveCount(0);
+  await expect(page.getByRole("region", { name: "핵심 안내", exact: true }).getByRole("link")).toHaveCount(0);
 });
 
 test("본문의 HTML을 실행하지 않고 텍스트로 표시한다", async ({ page }) => {
@@ -260,7 +261,7 @@ test("본문의 HTML을 실행하지 않고 텍스트로 표시한다", async ({
   await submit(page);
   if (await page.getByText("자세한 내용 보기", { exact: true }).count()) await page.getByText("자세한 내용 보기", { exact: true }).click();
   await expect(page.getByText(search.answer.plainLanguageSummary, { exact: true })).toBeVisible();
-  await expect(page.getByRole("region", { name: "공식 자료 안내", exact: true }).locator("img")).toHaveCount(0);
+  await expect(page.getByRole("region", { name: "핵심 안내", exact: true }).locator("img")).toHaveCount(0);
 });
 
 test("생성 상태라도 미확인 날짜와 재검토·변경 가능성 표시를 유지한다", async ({ page }) => {
@@ -278,7 +279,7 @@ test("생성 상태라도 미확인 날짜와 재검토·변경 가능성 표시
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   await submit(page);
-  const answer = page.getByRole("region", { name: "공식 자료 안내", exact: true });
+  const answer = page.getByRole("region", { name: "핵심 안내", exact: true });
   await expect(answer.getByText("확인일: 미확인", { exact: true })).toHaveCount(2);
   await expect(answer).toContainText("재검토 필요");
   await expect(answer).toContainText("변경 가능성 있음");
@@ -378,6 +379,7 @@ test("대표 돌봄 질문의 실제 API·출처 바로가기·모바일 표시�
   await expect(page.locator("#answer-sources")).toBeInViewport();
   await expect(page.getByRole("link", { name: "노인맞춤돌봄서비스 (새 창)", exact: true })).toHaveAttribute("href", "https://www.seongnam.go.kr/wf-pm020101/22001");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  await page.getByRole("button", {name:"다시 질문",exact:true}).click();
   for (const width of [390, 320]) {
     await page.setViewportSize({ width, height: 844 });
     const bounds = await page.getByRole("textbox").boundingBox();

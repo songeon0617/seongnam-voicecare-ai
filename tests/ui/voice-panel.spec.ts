@@ -54,7 +54,7 @@ test("한국어 STT 확정 결과를 입력란과 기존 API에 한 번 전달�
   await expect(page.getByRole("textbox")).toHaveValue(QUERY);
   expect(requests).toBe(0);
   await page.getByRole("button", { name:"질문 보내기" }).click();
-  const answerRegion = page.getByRole("region", { name: "공식 자료 안내" });
+  const answerRegion = page.getByRole("region", { name: "핵심 안내" });
   await expect(page.getByRole("status")).toContainText("안내가 준비되었습니다");
   await expect(answerRegion.getByText(search.answer.plainLanguageSummary, { exact: true })).toBeVisible();
   expect(requests).toBe(1);
@@ -207,10 +207,11 @@ for (const action of ["stop", "type", "microphone", "example", "submit"] as cons
     await textQuestion(page);
     await page.getByRole("button", { name: "답변 듣기" }).click();
     const oldEnd = await page.evaluateHandle(() => window.voiceTest.spoken[0].onend);
+    if (["type","microphone","submit"].includes(action)) await page.getByRole("button", {name:"다시 질문",exact:true}).click();
     if (action === "stop") await page.getByRole("button", { name: "답변 읽기 중지" }).press("Space");
     if (action === "type") await page.getByRole("textbox").fill("다음 질문");
     if (action === "microphone") await page.getByRole("button", { name: "마이크로 질문하기" }).click();
-    if (action === "example") { await page.getByRole("button", {name:"다른 질문·분야 선택"}).click(); await page.getByRole("button", { name: /이동수단 알려줘/ }).click(); }
+    if (action === "example") { await page.getByRole("button", {name:"처음으로"}).click(); await page.getByRole("button", { name: "이동·교통",exact:true }).click(); await page.getByRole("button", { name:"교통약자 이동",exact:true }).click(); }
     if (action === "submit") await page.getByRole("button", { name: "질문 보내기" }).click();
     await oldEnd.evaluate((callback) => callback?.call(new SpeechSynthesisUtterance(), new Event("end") as SpeechSynthesisEvent));
     expect(await page.evaluate(() => window.voiceTest.cancels)).toBe(1);

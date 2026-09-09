@@ -33,6 +33,7 @@ test("shared quota explains continued structured use without a misleading retry 
   await page.goto("/");await page.getByRole("textbox").fill("여권");await page.getByRole("textbox").press("Enter");
   await expect(page.getByRole("status")).toContainText("하루 20회");await expect(page.getByRole("status")).toContainText("계속 이용");
   await expect(page.getByRole("button",{name:"다시 시도",exact:true})).toHaveCount(0);
+  await page.getByRole("button",{name:"다시 질문",exact:true}).click();
   await page.getByRole("textbox").fill("노인맞춤돌봄서비스");await page.getByRole("textbox").press("Enter");
   await expect(page.getByRole("heading",{name:"노인맞춤돌봄서비스",exact:true})).toBeVisible();
 });
@@ -40,7 +41,7 @@ test("journey refusal can be heard and opens only a reviewed official navigation
   await installSpeechMock(page);await page.goto("/");
   await page.getByRole("textbox").fill("판교역에서 성남시청 가는 대중교통 알려줘");await page.getByRole("textbox").press("Enter");
   await expect(page.getByRole("status")).toContainText("정확한 경로");
-  await expect(page.getByRole("link",{name:"성남시 공식 버스 안내 (새 창)"})).toHaveAttribute("href","https://www.seongnam.go.kr/tr-cn010201");
+  await expect(page.getByRole("link",{name:"성남시 버스 안내 (새 창)"})).toHaveAttribute("href","https://www.seongnam.go.kr/tr-cn010201");
   await page.getByRole("button",{name:"지원 범위 안내 듣기"}).click();
   expect(await page.evaluate(()=>window.voiceTest.spoken.map(s=>s.text).join(""))).toContain("정확한 경로");
 });

@@ -42,7 +42,6 @@ export function PublicInformationAnswerView({
   return (
     <div className={styles.searchResults}>
       <h3 className={styles.serviceTitle}>{answer.title}</h3>
-      {answer.sources.length > 0 && <p className={styles.evidenceLabel}>공식 성남시 자료를 바탕으로 안내합니다.</p>}
       <p className={styles.summary} data-testid="answer-summary">{concise}</p>
       {onReadConcise && <div className={styles.speechControls}>
         <button type="button" onClick={onReadConcise} aria-label={isSpeaking ? "답변 읽기 중지" : "답변 듣기"} aria-pressed={isSpeaking}>
@@ -51,7 +50,6 @@ export function PublicInformationAnswerView({
         {onReadFull && <button type="button" onClick={onReadFull}>상세 안내 전체 듣기</button>}
         <span>화면의 핵심 안내를 읽습니다. 출처와 확인 상태도 확인해 주세요.</span>
       </div>}
-      {followupQuestions}
       {expanded && <details className={styles.detailSection}>
         <summary>자세한 내용 보기</summary>
         <p className={styles.summary}>
@@ -62,6 +60,13 @@ export function PublicInformationAnswerView({
         {onReadFull && <div className={styles.speechControls}><button type="button" onClick={onReadFull}>상세 안내 전체 듣기</button></div>}
       </details>}
 
+      <div className={styles.actionLinks} aria-label="지금 할 수 있는 일">
+        {answer.contacts?.filter(c=>c.phone && /^0[0-9-]{8,13}$|^1[0-9-]{7,9}$/.test(c.phone)).map(c=><a key={`${c.label}-${c.phone}`} href={`tel:${c.phone}`}>{c.label} · {c.phone} 전화하기</a>)}
+        {answer.nextAction?.url && <a href={answer.nextAction.url} target="_blank" rel="noreferrer">공식 안내 보기 (새 창)</a>}
+      </div>
+      {followupQuestions}
+      {Boolean(answer.eligibility?.length || answer.requiredItems?.length || answer.steps.length) && <details className={styles.detailSection}>
+      <summary>자세히 보기 · 대상·준비물·이용 방법</summary>
       {answer.eligibility && answer.eligibility.length > 0 && <div className={styles.detailSection}>
         <h3>자료에 안내된 대상</h3>
         <ul>{answer.eligibility.map((item) => <li key={item}>{item}</li>)}</ul>
@@ -76,6 +81,7 @@ export function PublicInformationAnswerView({
           <strong>{step.title}</strong><p>{step.description}</p>
         </li>)}</ol>
       </div>}
+      </details>}
       {answer.contacts && answer.contacts.length > 0 && <div className={styles.detailSection}>
         <h3>문의</h3>
         <ul>{answer.contacts.map((contact, index) => <li key={index}>
