@@ -33,7 +33,7 @@ test("shared quota explains continued structured use without a misleading retry 
   await page.goto("/");await page.getByRole("textbox").fill("여권");await page.getByRole("textbox").press("Enter");
   await expect(page.getByRole("status")).toContainText("하루 20회");await expect(page.getByRole("status")).toContainText("계속 이용");
   await expect(page.getByRole("button",{name:"다시 시도",exact:true})).toHaveCount(0);
-  await page.getByRole("button",{name:"다시 질문",exact:true}).click();
+  await page.getByRole("button",{name:"글자로 다시 질문",exact:true}).click();
   await page.getByRole("textbox").fill("노인맞춤돌봄서비스");await page.getByRole("textbox").press("Enter");
   await expect(page.getByRole("heading",{name:"노인맞춤돌봄서비스",exact:true})).toBeVisible();
 });

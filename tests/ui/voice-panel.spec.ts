@@ -33,11 +33,11 @@ test("한국어 STT 확정 결과를 입력란과 기존 API에 한 번 전달�
     return route.fulfill({ json: search });
   });
   await page.goto("/");
-  const microphone = page.getByRole("button", { name: "마이크로 질문하기" });
+  const microphone = page.getByRole("button", { name: /음성으로 질문하기|다시 말하기/ });
   await microphone.focus();
   await page.keyboard.press("Enter");
-  await expect(page.getByRole("button", { name: "음성 입력 취소" })).toHaveAttribute("aria-pressed", "true");
-  await expect(page.getByRole("status")).toContainText("듣고 있습니다");
+  await expect(page.getByRole("button", { name: /음성 입력 취소/ })).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByRole("status")).toContainText("듣고 있어요");
   expect(await page.evaluate(() => {
     const recognition = window.voiceTest.sessions[0];
     return { lang: recognition.lang, continuous: recognition.continuous, interim: recognition.interimResults };
@@ -53,7 +53,7 @@ test("한국어 STT 확정 결과를 입력란과 기존 API에 한 번 전달�
   }, QUERY);
   await expect(page.getByRole("textbox")).toHaveValue(QUERY);
   expect(requests).toBe(0);
-  await page.getByRole("button", { name:"질문 보내기" }).click();
+  await page.getByRole("button", { name:"이대로 질문하기" }).click();
   const answerRegion = page.getByRole("region", { name: "핵심 안내" });
   await expect(page.getByRole("status")).toContainText("안내가 준비되었습니다");
   await expect(answerRegion.getByText(search.answer.plainLanguageSummary, { exact: true })).toBeVisible();
@@ -70,23 +70,23 @@ test("한국어 STT 확정 결과를 입력란과 기존 API에 한 번 전달�
 test("webkit 접두사 STT도 기존 실제 검색 API에 전달된다", async ({ page }) => {
   await installSpeechMock(page, { recognition: "prefixed" });
   await page.goto("/");
-  await page.getByRole("button", { name: "마이크로 질문하기" }).click();
+  await page.getByRole("button", { name: /음성으로 질문하기|다시 말하기/ }).click();
   const response = page.waitForResponse("**/api/public-information/search");
   await page.evaluate((text) => { window.voiceTest.final(text); window.voiceTest.end(); }, QUERY);
-  await page.getByRole("button", {name:"질문 보내기"}).click();
+  await page.getByRole("button", {name:"이대로 질문하기"}).click();
   expect((await (await response).json()).query).toBe(QUERY);
   await expect(page.getByRole("status")).toContainText("안내가 준비되었습니다");
 });
 
 for (const scenario of [
   { name: "STT 미지원", options: { recognition: "none" as const }, message: "음성 입력을 지원하지 않습니다" },
-  { name: "보안 연결 아님", options: { insecure: true }, message: "HTTPS 또는 localhost" },
+  { name: "보안 연결 아님", options: { insecure: true }, message: "안전한 연결" },
   { name: "STT 시작 예외", options: { throwStart: true }, message: "음성 입력을 시작하지 못했습니다" },
 ]) {
   test(`${scenario.name}에서도 텍스트 질문이 정상 동작한다`, async ({ page }) => {
     await installSpeechMock(page, scenario.options);
     await page.goto("/");
-    await page.getByRole("button", { name: "마이크로 질문하기" }).click();
+    await page.getByRole("button", { name: /음성으로 질문하기|다시 말하기/ }).click();
     await expect(page.getByRole("status")).toContainText(scenario.message);
     await textQuestion(page);
   });
@@ -101,10 +101,10 @@ for (const [code, message] of [
   test(`인식 오류 ${code} 처리 후 텍스트 질문이 가능하다`, async ({ page }) => {
     await installSpeechMock(page);
     await page.goto("/");
-    await page.getByRole("button", { name: "마이크로 질문하기" }).click();
+    await page.getByRole("button", { name: /음성으로 질문하기|다시 말하기/ }).click();
     await page.evaluate((code) => { window.voiceTest.error(code); window.voiceTest.end(); }, code);
     await expect(page.getByRole("status")).toContainText(message);
-    await expect(page.getByRole("button", { name: "마이크로 질문하기" })).toHaveAttribute("aria-pressed", "false");
+    await expect(page.getByRole("button", { name: /음성으로 질문하기|다시 말하기/ })).toHaveAttribute("aria-pressed", "false");
     await textQuestion(page);
   });
 }
@@ -115,17 +115,17 @@ test("사용자 취소·텍스트 수정 후 늦은 인식 콜백이 질문을 �
   page.on("request", (request) => { if (request.url().includes("/api/public-information/search")) requests++; });
   await page.goto("/");
   await page.getByRole("textbox").fill("기존 입력");
-  await page.getByRole("button", { name: "마이크로 질문하기" }).click();
+  await page.getByRole("button", { name: /음성으로 질문하기|다시 말하기/ }).click();
   // 브라우저에 이미 큐잉된 콜백도 세션 식별 검사로 무시하는지 확인한다.
   const stale = await page.evaluateHandle(() => ({ result: window.voiceTest.sessions[0].onresult, end: window.voiceTest.sessions[0].onend }));
-  await page.getByRole("button", { name: "음성 입력 취소" }).press("Space");
+  await page.getByRole("button", { name: /음성 입력 취소/ }).press("Space");
   await stale.evaluate((callbacks) => {
     callbacks.result?.({ results: [{ isFinal: true, 0: { transcript: "늦은 결과" } }] });
     callbacks.end?.();
   });
   await expect(page.getByRole("status")).toContainText("취소했습니다");
   await expect(page.getByRole("textbox")).toHaveValue("기존 입력");
-  await page.getByRole("button", { name: "마이크로 질문하기" }).click();
+  await page.getByRole("button", { name: /음성으로 질문하기|다시 말하기/ }).click();
   await page.getByRole("textbox").fill("수정한 질문");
   await page.evaluate(() => { window.voiceTest.final("덮어쓰기 시도"); window.voiceTest.end(); });
   await expect(page.getByRole("textbox")).toHaveValue("수정한 질문");
@@ -136,10 +136,10 @@ test("최종 결과 없는 종료와 30초 인식 제한을 처리한다", async
   await installSpeechMock(page);
   await page.goto("/");
   await page.clock.install();
-  await page.getByRole("button", { name: "마이크로 질문하기" }).click();
+  await page.getByRole("button", { name: /음성으로 질문하기|다시 말하기/ }).click();
   await page.evaluate(() => { window.voiceTest.interim("미확정 질문"); window.voiceTest.end(); });
   await expect(page.getByRole("status")).toContainText("말씀을 인식하지 못했습니다");
-  await page.getByRole("button", { name: "마이크로 질문하기" }).click();
+  await page.getByRole("button", { name: /음성으로 질문하기|다시 말하기/ }).click();
   await page.clock.fastForward(30_000);
   await expect(page.getByRole("status")).toContainText("대기 시간이 지났습니다");
   expect(await page.evaluate(() => window.voiceTest.aborts)).toBe(2);
@@ -150,7 +150,7 @@ test("300자 초과 인식은 자르거나 전송하지 않고 수정할 수 있
   let requests = 0;
   page.on("request", (request) => { if (request.url().includes("/api/public-information/search")) requests++; });
   await page.goto("/");
-  await page.getByRole("button", { name: "마이크로 질문하기" }).click();
+  await page.getByRole("button", { name: /음성으로 질문하기|다시 말하기/ }).click();
   await page.evaluate((text) => { window.voiceTest.final(text); window.voiceTest.end(); }, "가".repeat(301));
   await expect(page.getByRole("status")).toContainText("300자 이하로 수정");
   await expect(page.getByRole("textbox")).toHaveValue("가".repeat(301));
@@ -207,12 +207,12 @@ for (const action of ["stop", "type", "microphone", "example", "submit"] as cons
     await textQuestion(page);
     await page.getByRole("button", { name: "답변 듣기" }).click();
     const oldEnd = await page.evaluateHandle(() => window.voiceTest.spoken[0].onend);
-    if (["type","microphone","submit"].includes(action)) await page.getByRole("button", {name:"다시 질문",exact:true}).click();
+    if (["type","microphone","submit"].includes(action)) await page.getByRole("button", {name:"글자로 다시 질문",exact:true}).click();
     if (action === "stop") await page.getByRole("button", { name: "답변 읽기 중지" }).press("Space");
     if (action === "type") await page.getByRole("textbox").fill("다음 질문");
-    if (action === "microphone") await page.getByRole("button", { name: "마이크로 질문하기" }).click();
-    if (action === "example") { await page.getByRole("button", {name:"처음으로"}).click(); await page.getByRole("button", { name: "이동·교통",exact:true }).click(); await page.getByRole("button", { name:"교통약자 이동",exact:true }).click(); }
-    if (action === "submit") await page.getByRole("button", { name: "질문 보내기" }).click();
+    if (action === "microphone") await page.getByRole("button", { name: /음성으로 질문하기|다시 말하기/ }).click();
+    if (action === "example") { await page.getByRole("button", {name:"처음으로"}).click(); await page.getByRole("button", { name: "생활정보 찾기",exact:true }).click(); await page.getByRole("button", { name: "이동·교통",exact:true }).click(); await page.getByRole("button", { name:"교통약자 이동",exact:true }).click(); }
+    if (action === "submit") await page.getByRole("button", { name: "질문하기", exact: true }).click();
     await oldEnd.evaluate((callback) => callback?.call(new SpeechSynthesisUtterance(), new Event("end") as SpeechSynthesisEvent));
     expect(await page.evaluate(() => window.voiceTest.cancels)).toBe(1);
     expect(await page.evaluate(() => window.voiceTest.spoken.length)).toBe(1);

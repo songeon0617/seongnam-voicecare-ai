@@ -6,7 +6,7 @@ import { CLARIFICATIONS, type ClarificationId } from "../../src/types/public-inf
 import { SAFETY_GUIDANCE } from "../../src/types/public-information-safety";
 
 const QUERY = "장애인 콜택시 이용하려면 어떻게 해야 해?";
-test("지원 분야에서 검증 질문을 고르면 기존 검색 흐름으로 바로 실행한다", async ({ page }) => {
+test("생활정보 메뉴에서 검증 질문을 고르면 기존 검색 흐름으로 바로 실행한다", async ({ page }) => {
   const query = "중원구보건소 치매안심센터 연락처가 어떻게 되나요?";
   let payload: unknown;
   await page.route("**/api/public-information/search", async (route) => {
@@ -14,13 +14,10 @@ test("지원 분야에서 검증 질문을 고르면 기존 검색 흐름으로 
     await route.fulfill({ json: fixture(query) });
   });
   await page.goto("/");
-  await expect(page.getByRole("heading", {name:"지원 분야",exact:true})).toBeVisible();
-
-  const healthCategory = page.getByRole("button", { name: "건강", exact: true });
-  await expect(healthCategory).toHaveAttribute("aria-pressed", "false");
-  await healthCategory.click();
-  await expect(healthCategory).toHaveAttribute("aria-pressed", "true");
-  await expect(page.getByRole("heading", { name: "건강에서 찾기" })).toBeVisible();
+  await expect(page.getByRole("heading", {name:"지원 분야",exact:true})).toHaveCount(0);
+  await page.getByRole("button", {name:"생활정보 찾기",exact:true}).click();
+  await page.getByRole("dialog").getByRole("button", {name:"건강",exact:true}).click();
+  await expect(page.getByRole("dialog").getByRole("heading", {name:"건강",exact:true})).toBeVisible();
 
   await page.getByRole("button", { name: "치매", exact: true }).click();
   await expect(page.locator("#question")).toHaveValue(query);
@@ -145,7 +142,7 @@ test("safety 응답은 일반 카드와 구분하고 직접 전화 링크를 표
   await expect(answer.getByRole("button", { name: "답변 듣기" })).toBeVisible();
 });
 async function submit(page: Page, query = QUERY) {
-  if(await page.getByRole("button", {name:"다시 질문",exact:true}).isVisible()) await page.getByRole("button", {name:"다시 질문",exact:true}).click();
+  if(await page.getByRole("button", {name:"글자로 다시 질문",exact:true}).isVisible()) await page.getByRole("button", {name:"글자로 다시 질문",exact:true}).click();
   await page.getByRole("textbox", { name: "글자로 질문하기" }).fill(query);
   await page.getByRole("textbox", { name: "글자로 질문하기" }).press("Enter");
 }
@@ -234,7 +231,7 @@ test("로딩·서버 오류·429 안내를 상태 영역으로 전달하며 다�
   await page.route("**/api/public-information/search", (route) => route.fulfill({ status: 429, headers: { "Retry-After": "12" }, json: {} }));
   await submit(page);
   await expect(page.getByRole("status")).toContainText("약 12초 후");
-  await expect(page.getByRole("button", { name: "질문 보내기" })).toBeEnabled();
+  await expect(page.getByRole("button", { name: "질문하기", exact: true })).toBeEnabled();
 });
 
 test("입력 변경으로 취소된 요청의 결과를 표시하지 않는다", async ({ page }) => {
@@ -296,7 +293,7 @@ test("30초 네트워크 지연 후 로딩을 해제하고 재시도를 안내�
   await expect(page.getByRole("status")).toContainText("안내를 준비하고 있습니다");
   await page.clock.fastForward(30_000);
   await expect(page.getByRole("status")).toContainText("응답이 지연되고 있습니다");
-  await expect(page.getByRole("button", { name: "질문 보내기" })).toBeEnabled();
+  await expect(page.getByRole("button", { name: "질문하기", exact: true })).toBeEnabled();
 });
 
 test("손상된 성공 응답은 화면을 깨뜨리지 않고 텍스트 재시도로 복구한다", async ({ page }) => {
@@ -332,7 +329,7 @@ test("네트워크 실패 후 동일 텍스트 질문을 다시 보낼 수 있�
   await submit(page);
   await expect(page.getByRole("status")).toContainText("검색 중 문제가 생겼습니다");
   await page.unroute("**/api/public-information/search");
-  await page.getByRole("button", { name: "질문 보내기" }).click();
+  await page.getByRole("button", { name: "질문하기", exact: true }).click();
   await expect(page.getByRole("status")).toContainText("안내가 준비되었습니다");
 });
 
@@ -356,7 +353,7 @@ test("응답 헤더 뒤 본문이 멈춰도 30초 후 텍스트 재시도가 가
   await submit(page);
   await page.clock.fastForward(30_000);
   await expect(page.getByRole("status")).toContainText("응답이 지연되고 있습니다");
-  await page.getByRole("button", { name: "질문 보내기" }).click();
+  await page.getByRole("button", { name: "질문하기", exact: true }).click();
   await expect(page.getByRole("status")).toContainText("안내가 준비되었습니다");
 });
 
@@ -379,7 +376,7 @@ test("대표 돌봄 질문의 실제 API·출처 바로가기·모바일 표시�
   await expect(page.locator("#answer-sources")).toBeInViewport();
   await expect(page.getByRole("link", { name: "노인맞춤돌봄서비스 (새 창)", exact: true })).toHaveAttribute("href", "https://www.seongnam.go.kr/wf-pm020101/22001");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-  await page.getByRole("button", {name:"다시 질문",exact:true}).click();
+  await page.getByRole("button", {name:"글자로 다시 질문",exact:true}).click();
   for (const width of [390, 320]) {
     await page.setViewportSize({ width, height: 844 });
     const bounds = await page.getByRole("textbox").boundingBox();

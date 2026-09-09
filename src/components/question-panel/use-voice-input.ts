@@ -6,6 +6,7 @@ import { getVoiceRecognition, recognitionErrorMessage } from "@/lib/speech/brows
 export function useVoiceInput(onTranscript: (text: string) => void, onNotice: (message: string) => void) {
   const [state, setState] = useState<"idle" | "starting" | "listening" | "processing">("idle");
   const [preview, setPreview] = useState("");
+  const [failed, setFailed] = useState(false);
   const session = useRef<{ dispose: () => void } | null>(null);
   const effectGeneration = useRef(0);
 
@@ -29,17 +30,24 @@ export function useVoiceInput(onTranscript: (text: string) => void, onNotice: (m
     session.current?.dispose();
     setState("idle");
     setPreview("");
+    setFailed(false);
+  }
+
+  function fail(message: string) {
+    cancel();
+    setFailed(true);
+    onNotice(message);
   }
 
   function start() {
     cancel();
     if (!window.isSecureContext) {
-      onNotice("음성 입력은 HTTPS 또는 localhost에서 사용할 수 있습니다. 지금은 글자로 질문해 주세요.");
+      fail("안전한 연결에서만 음성을 사용할 수 있어요. 지금은 글자로 질문해 주세요.");
       return;
     }
     const Recognition = getVoiceRecognition();
     if (!Recognition) {
-      onNotice("이 브라우저는 음성 입력을 지원하지 않습니다. 글자로 질문해 주세요.");
+      fail("이 브라우저는 음성 입력을 지원하지 않습니다. 글자로 질문해 주세요.");
       return;
     }
 
@@ -58,8 +66,7 @@ export function useVoiceInput(onTranscript: (text: string) => void, onNotice: (m
       session.current = current;
       const timeout = setTimeout(() => {
         if (session.current !== current) return;
-        cancel();
-        onNotice("음성 입력 대기 시간이 지났습니다. 다시 시도하거나 글자로 질문해 주세요.");
+        fail("음성 입력 대기 시간이 지났습니다. 다시 말하거나 글자로 질문해 주세요.");
       }, 30_000);
       recognition.lang = "ko-KR";
       recognition.continuous = false;
@@ -68,12 +75,12 @@ export function useVoiceInput(onTranscript: (text: string) => void, onNotice: (m
       recognition.onstart = () => {
         if (session.current !== current) return;
         setState("listening");
-        onNotice("듣고 있습니다. 질문을 말씀해 주세요. 취소하려면 마이크 버튼을 다시 누르세요.");
+        onNotice("듣고 있어요. 질문을 말씀해 주세요.");
       };
       recognition.onaudioend = () => {
         if (session.current !== current) return;
         setState("processing");
-        onNotice("음성을 글자로 바꾸고 있습니다.");
+        onNotice("말씀하신 내용을 확인하고 있어요.");
       };
       recognition.onresult = (event) => {
         if (session.current !== current) return;
@@ -84,24 +91,24 @@ export function useVoiceInput(onTranscript: (text: string) => void, onNotice: (m
       };
       recognition.onerror = (event) => {
         if (session.current !== current) return;
-        cancel();
-        onNotice(recognitionErrorMessage(event.error));
+        fail(recognitionErrorMessage(event.error));
       };
       recognition.onend = () => {
         if (session.current !== current) return;
         const finalText = transcript.trim();
         cancel();
-        if (finalText) onTranscript(finalText);
-        else onNotice(recognitionErrorMessage("no-speech"));
+        if (!finalText) fail(recognitionErrorMessage("no-speech"));
+        else if ((finalText.match(/[가-힣a-z0-9]/gi)?.length ?? 0) < 2) {
+          fail("음성을 잘 듣지 못했어요. 질문을 조금 더 길게 말하거나 글자로 적어 주세요.");
+        } else onTranscript(finalText);
       };
       setState("starting");
       onNotice("마이크 연결을 준비하고 있습니다. 권한 요청이 나타나면 확인해 주세요.");
       recognition.start();
     } catch {
-      cancel();
-      onNotice("음성 입력을 시작하지 못했습니다. 마이크 권한을 확인하거나 글자로 질문해 주세요.");
+      fail("음성 입력을 시작하지 못했습니다. 마이크 권한을 확인하거나 글자로 질문해 주세요.");
     }
   }
 
-  return { state, preview, start, cancel };
+  return { state, preview, failed, start, cancel };
 }

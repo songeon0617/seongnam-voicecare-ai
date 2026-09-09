@@ -2,8 +2,25 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { createPublicInformationResponseWithAnswer } from "./create-public-information-response-with-answer";
 import { SAFETY_GUIDANCE, type SafetyCategory } from "@/types/public-information-safety";
+import { matchSafetyBoundary } from "@/lib/safety/safety-boundary";
+import { createExpandedPublicInformationResponse } from "./expanded-public-information";
 
 const UNSUPPORTED = { route: "UNSUPPORTED", serviceIds: [], intent: "other", clarificationId: null } as const;
+
+test("현재 실행 의사는 공식 검색 전에 고정 안전 안내로 처리하고 부정·과거·인용과 구분한다", async () => {
+  const response = await createExpandedPublicInformationResponse({ query: "지금 자살하려고 해요" }, {
+    search: async () => { assert.fail("직접적인 현재 위험은 공식 검색으로 보내지 않는다"); },
+  });
+  assert.equal(response.status, 200);
+  assert.ok("answer" in response.body);
+  assert.equal(response.body.kind, "safety");
+  assert.equal(response.body.safety?.category, "self_harm_immediate");
+  assert.equal(response.body.answer.plainLanguageSummary, SAFETY_GUIDANCE.self_harm_immediate.summary);
+  assert.equal(response.body.officialSearch, undefined);
+  for (const query of ["지금 자살하려고 하는 건 아니에요", "작년에 자살하려고 했어요", "예시: 지금 자살하려고 해요", "지금 자살하려고 해요라는 말을 들었어요"]) {
+    assert.equal(matchSafetyBoundary(query), null, query);
+  }
+});
 
 function body(response: Awaited<ReturnType<typeof createPublicInformationResponseWithAnswer>>) {
   assert.equal(response.status, 200);

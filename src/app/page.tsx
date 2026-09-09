@@ -21,7 +21,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <section className={styles.intro} aria-labelledby="page-title">
-          <h1 id="page-title">성남 생활정보를 쉽게 찾아보세요</h1>
+          <h1 id="page-title">성남 생활정보를 쉽게 물어보세요</h1>
           <p className={styles.description}>제도명을 몰라도 필요한 도움을 물어보세요.</p>
         </section>
 

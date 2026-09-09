@@ -10,7 +10,7 @@ test("structured policy shows the answer first and speech preserves limitations"
   await page.goto("/");
   await page.getByRole("textbox").fill("특별교통수단 신청 방법");
   const response=page.waitForResponse("**/api/public-information/search");
-  await page.getByRole("button",{name:"질문 보내기"}).click();
+  await page.getByRole("button",{name: "질문하기", exact: true }).click();
   const body=await (await response).json();
   expect(body.answer.plainLanguageSummary).toContain("1666-0420");
   const concise=page.getByTestId("answer-summary");
@@ -33,16 +33,16 @@ test("structured policy shows the answer first and speech preserves limitations"
 });
 
 test("real offline API: broad mobility, numbered reply and recovery are distinct from no official data",async({page})=>{
-  await page.goto("/");await page.getByRole("textbox").fill("이동수단 알려줘");await page.getByRole("button",{name:"질문 보내기"}).click();
+  await page.goto("/");await page.getByRole("textbox").fill("이동수단 알려줘");await page.getByRole("button",{name: "질문하기", exact: true }).click();
   await expect(page.getByRole("button",{name:"일반 버스·지하철 이용",exact:true})).toBeVisible();
   await expect(page.getByRole("button",{name:"잘 모르겠어요",exact:true})).toBeVisible();
-  await page.getByRole("textbox").fill("1번");await page.getByRole("button",{name:"질문 보내기"}).click();
+  await page.getByRole("textbox").fill("1번");await page.getByRole("button",{name: "질문하기", exact: true }).click();
   await expect(page.getByRole("status")).toContainText(SEARCH_MESSAGES.disabled);
   await expect(page.getByRole("button",{name:"다시 시도",exact:true})).toBeVisible();
   await expect(page.getByText("현재 등록된 공식 자료에서 관련 정보를 찾지 못했습니다.",{exact:true})).toHaveCount(0);
 });
 test("real offline API: wheelchair purpose selection preserves question and reaches curated service",async({page})=>{
-  await page.goto("/");await page.getByRole("textbox").fill("휠체어 타고 병원 가야 해");await page.getByRole("button",{name:"질문 보내기"}).click();
+  await page.goto("/");await page.getByRole("textbox").fill("휠체어 타고 병원 가야 해");await page.getByRole("button",{name: "질문하기", exact: true }).click();
   await page.getByRole("button",{name:"휠체어로 탈 차량",exact:true}).click();
   await expect(page.getByRole("heading",{name:"특별교통수단 운영",exact:true})).toBeVisible();
 });
@@ -53,7 +53,7 @@ test("search evidence is shown only after a complete validated response with sou
   await page.route("**/api/public-information/search",route=>route.fulfill({json:{query:"시설",kind:"partial_answer",results:[],hasResults:false,
     answer:{userQuestion:"시설",title:"확인한 공식 원문과 남은 확인 사항",plainLanguageSummary:"원문 일부를 확인했습니다.",steps:[],sources:[],nextAction:null,verification:{status:"insufficient_data",checkedAt:null}},
     officialSearch:{region:"성남시",status:"partial",searched:true,links:[{url,title:"시설 안내"}],evidence:[{id:"web-1",url,title:"시설 안내",publisher:"성남시청",region:"성남시",checkedAt:"2026-09-06T12:00:00.000Z",publishedAt:null,updatedAt:null,applicationPeriod:null,effectivePeriod:null,excerpt:quote,collection:"openai_web_search+https_original",freshness:"unknown",fromCache:false}]}}}));
-  await page.goto("/");await page.getByRole("textbox").fill("시설");await page.getByRole("button",{name:"질문 보내기"}).click();
+  await page.goto("/");await page.getByRole("textbox").fill("시설");await page.getByRole("button",{name: "질문하기", exact: true }).click();
   await expect(page.getByRole("blockquote")).toHaveText(quote);
   await expect(page.getByRole("link",{name:"시설 안내 (공식 원문)"})).toHaveAttribute("href",url);
   await expect(page.getByText(/게시·수정일: 미확인/)).toBeVisible();
@@ -74,10 +74,10 @@ for(const width of [320,360,390,768,1440])test(`layout ${width}px, focus, clarif
   });
   await page.setViewportSize({width,height:900});await page.goto("/");
   await page.getByRole("textbox").focus();await expect(page.getByRole("textbox")).toBeFocused();
-  await page.getByRole("textbox").fill("이동수단 알려줘");await page.getByRole("button",{name:"질문 보내기"}).click();
+  await page.getByRole("textbox").fill("이동수단 알려줘");await page.getByRole("button",{name: "질문하기", exact: true }).click();
   await expect(page.getByRole("button",{name:"일반 버스·지하철 이용",exact:true})).toBeVisible();
   if(width===320||width===390){
-    for(const name of ["질문 보내기","마이크로 질문하기","일반 버스·지하철 이용"]){
+    for(const name of ["질문하기","다시 음성으로 질문하기","일반 버스·지하철 이용"]){
       const button=page.getByRole("button",{name,exact:true});await expect(button).toBeVisible();
       const box=await button.boundingBox();expect(box!.height).toBeGreaterThanOrEqual(44);expect(box!.width).toBeGreaterThanOrEqual(44);
     }
