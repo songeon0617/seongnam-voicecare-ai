@@ -1,0 +1,30 @@
+import {test,expect} from '@playwright/test';
+import {mkdirSync} from 'node:fs';
+
+for (const width of [360,390,430]) test(`mobile ${width}: category → example → follow-up without finding a separate submit button`,async({page})=>{
+  await page.setViewportSize({width,height:844});
+  const sent:Record<string,unknown>[]=[];
+  page.on('request',r=>{if(r.url().endsWith('/api/public-information/search'))sent.push(r.postDataJSON());});
+  await page.goto('/');
+  await expect(page.getByRole('textbox')).toBeVisible();
+  await expect(page.getByRole('button',{name:'마이크로 질문하기'})).toBeInViewport();
+  await expect(page.getByRole('button',{name:'생활지원·민원 2개 질문'})).toBeInViewport();
+  await page.getByRole('button',{name:'생활지원·민원 2개 질문'}).click();
+  await page.getByRole('button',{name:'무인민원발급기 이용 안내와 설치 장소를 알려주세요.',exact:true}).click();
+  await expect(page.getByTestId('answer-summary')).toContainText('증명 종류');
+  await expect(page.getByRole('heading',{name:'공식 자료 안내',exact:true})).toBeFocused();
+  expect(sent).toHaveLength(1);
+  await page.getByRole('button',{name:'요금은?',exact:true}).click();
+  await expect(page.getByTestId('answer-summary')).toContainText('등·초본은 무료');
+  await expect(page.getByTestId('answer-summary')).toContainText('500원');
+  expect(sent).toHaveLength(2);
+  expect(sent[1]).toEqual({query:'요금은?',serviceContext:{serviceId:'seongnam-unmanned-civil-service-kiosk'}});
+  await expect(page.getByTestId('answer-summary')).toBeInViewport();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  mkdirSync('test-results/competition-flow',{recursive:true});
+  await page.screenshot({path:`test-results/competition-flow/followup-${width}.png`,fullPage:true});
+  await page.getByRole('button',{name:'다른 질문·분야 선택',exact:true}).click();
+  await expect(page.getByRole('textbox')).toBeFocused();
+  await expect(page.getByRole('textbox')).toHaveValue('');
+  await expect(page.getByRole('heading',{name:'지원 분야',exact:true})).toBeVisible();
+});

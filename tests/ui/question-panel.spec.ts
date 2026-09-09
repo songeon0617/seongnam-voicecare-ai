@@ -14,13 +14,13 @@ test("지원 분야에서 검증 질문을 고르면 기존 검색 흐름으로 
     await route.fulfill({ json: fixture(query) });
   });
   await page.goto("/");
-  await page.getByText("지원 분야 확인하기", { exact: true }).click();
+  await expect(page.getByRole("heading", {name:"지원 분야",exact:true})).toBeVisible();
 
   const healthCategory = page.getByRole("button", { name: "보건·건강 2개 질문", exact: true });
   await expect(healthCategory).toHaveAttribute("aria-pressed", "false");
   await healthCategory.click();
   await expect(healthCategory).toHaveAttribute("aria-pressed", "true");
-  await expect(page.getByRole("heading", { name: "보건·건강 분야별 질문" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "보건·건강 예시 질문" })).toBeVisible();
 
   await page.getByRole("button", { name: query, exact: true }).click();
   await expect(page.getByRole("textbox", { name: "글자로 질문하기" })).toHaveValue(query);
@@ -159,11 +159,11 @@ test("생성 답변을 키보드로 요청하고 원문·출처·확인일·상�
   await page.goto("/");
   await submit(page);
   const answer = page.getByRole("region", { name: "공식 자료 안내", exact: true });
-  await expect(answer.getByRole("status")).toContainText("안내가 준비되었습니다");
+  await expect(page.getByRole("status")).toContainText("안내가 준비되었습니다");
   const answerDetails = page.getByText("자세한 내용 보기", { exact: true });
   if (await answerDetails.count()) await answerDetails.click();
   await expect(answer.getByText(generated.answer.plainLanguageSummary, { exact: true })).toBeVisible();
-  await expect(answer.getByRole("status")).toContainText("안내가 준비되었습니다");
+  await expect(page.getByRole("status")).toContainText("안내가 준비되었습니다");
   await expect(answer.getByRole("button", { name: "답변 듣기" })).toBeVisible();
   await expect(answer).toContainText("출처와 확인 상태도 확인해 주세요");
   await expect(answer).not.toContainText("constrained_presentation");
@@ -191,7 +191,7 @@ test("명확한 keyword의 실제 API는 AI 호출 없이 UI에 표시한다", a
   expect(body.answerGeneration).toEqual({ status: "skipped", reason: "deterministic" });
   expect(body.routing.source).toBe("keyword");
   if (await page.getByText("자세한 내용 보기", { exact: true }).count()) await page.getByText("자세한 내용 보기", { exact: true }).click();
-  await expect(page.getByText(body.answer.plainLanguageSummary, { exact: true })).toBeVisible();
+  await expect(page.getByTestId("answer-summary")).toBeVisible();
 });
 
 test("AI 실패 fallback을 정상 안내로 표시하며 내부 오류를 노출하지 않는다", async ({ page }) => {
@@ -248,7 +248,7 @@ test("입력 변경으로 취소된 요청의 결과를 표시하지 않는다",
   await expect(page.getByRole("status")).toContainText("안내를 준비하고 있습니다");
   await page.getByRole("textbox").fill("새 질문");
   release();
-  await expect(page.getByRole("status")).toContainText("질문하면 관련 공식 자료와 출처");
+  await expect(page.getByRole("status")).toHaveText("");
   await expect(page.getByRole("region", { name: "공식 자료 안내", exact: true }).getByRole("link")).toHaveCount(0);
 });
 
@@ -373,7 +373,7 @@ test("대표 돌봄 질문의 실제 API·출처 바로가기·모바일 표시�
   const body = await (await response).json();
   expect(body.results[0].document.id).toBe("seongnam-senior-tailored-care");
   if (await page.getByText("자세한 내용 보기", { exact: true }).count()) await page.getByText("자세한 내용 보기", { exact: true }).click();
-  await expect(page.getByText(body.answer.plainLanguageSummary, { exact: true })).toBeVisible();
+  await expect(page.getByTestId("answer-summary")).toBeVisible();
   await page.getByRole("link", { name: /출처 .*건과 확인 상태 보기/ }).click();
   await expect(page.locator("#answer-sources")).toBeInViewport();
   await expect(page.getByRole("link", { name: "노인맞춤돌봄서비스 (새 창)", exact: true })).toHaveAttribute("href", "https://www.seongnam.go.kr/wf-pm020101/22001");
@@ -392,10 +392,10 @@ test("1265px 제목 줄바꿈과 첫 화면 프로토타입·AI 개인정보 안
   await page.setViewportSize({ width: 1265, height: 900 });
   await page.goto("/");
   await expect(page.getByText("Astra 팀", { exact: true })).toBeVisible();
-  await page.getByText("질문 처리 방식 확인하기", { exact: true }).click();
+  await page.getByText("개인정보·음성·질문 처리 방식", { exact: true }).click();
   await expect(page.getByText(/OpenAI의 공식 웹 검색으로 처리될 수 있습니다/)).toBeVisible();
   await expect(page.getByText(/개인정보는 입력하지 마세요/)).toBeVisible();
-  await expect(page.getByText(/이름, 주민등록번호, 연락처/)).toBeVisible();
+  await expect(page.getByText(/이름·주민등록번호/)).toBeVisible();
   await expect(page.getByText(/성남시가 운영하는 공식 서비스가 아닙니다/)).toBeVisible();
   const title = page.locator("#page-title");
   expect(await title.evaluate((element) => {

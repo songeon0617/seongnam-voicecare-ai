@@ -7,7 +7,7 @@ for(const width of [360,390,430])test(`submission ${width}px: full answer, sourc
   await installSpeechMock(page);await page.setViewportSize({width,height:900});await page.goto("/");
   const input=page.getByRole("textbox");await input.fill("특별교통수단 신청 방법");await input.press("Enter");
   await expect(page.getByRole("heading",{name:"특별교통수단 운영",exact:true})).toBeVisible();
-  const summary=page.getByText("자세한 내용 보기",{exact:true});await summary.focus();await summary.press("Space");
+  const summary=page.getByRole("button",{name:"상세 안내 전체 듣기",exact:true});await summary.focus();
   await expect(page.getByRole("button",{name:"상세 안내 전체 듣기",exact:true})).toBeVisible();
   expect((await page.getByRole("button",{name:"상세 안내 전체 듣기",exact:true}).boundingBox())!.height).toBeGreaterThanOrEqual(44);
   expect((await summary.boundingBox())!.height).toBeGreaterThanOrEqual(44);

@@ -294,18 +294,14 @@ test("최신성이 current가 아닌 확인 문서는 partially_verified로 매�
   assert.equal(answer.verification.checkedAt, PUBLIC_INFORMATION_DOCUMENTS[0].lastVerifiedAt.slice(0, 10));
 });
 
-test("답변 매핑은 문서에 구조화되지 않은 값을 생성하지 않는다", () => {
+test("검토된 서비스 안내는 질문별 사실과 근거를 구조화한다", () => {
   const document = PUBLIC_INFORMATION_DOCUMENTS[0];
-  const answer = mapDocumentsToPublicInformationAnswer("이동지원 알려줘", [
-    document,
-  ]);
-
-  assert.equal(answer.plainLanguageSummary, document.content);
-  assert.equal(answer.requiredItems, undefined);
-  assert.equal(answer.contacts, undefined);
-  assert.equal(answer.locations, undefined);
+  const answer = mapDocumentsToPublicInformationAnswer("특별교통수단 서류는?", [document]);
+  assert.match(answer.plainLanguageSummary, /진단서/);
+  assert.match(answer.plainLanguageSummary, /6개월/);
+  assert.equal(answer.contacts?.[0].phone, "1666-0420");
+  assert.equal(answer.nextAction?.url, document.originalUrl);
   assert.deepEqual(answer.steps, []);
-  assert.equal(answer.nextAction, null);
 });
 
 test("여러 문서의 대상을 한 서비스 자격으로 합치지 않고 본문마다 문서명을 붙인다", () => {

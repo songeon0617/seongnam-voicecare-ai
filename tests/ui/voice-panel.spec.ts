@@ -2,6 +2,7 @@ import { expect, test, type Page } from "@playwright/test";
 import { createPublicInformationSearchResponse } from "../../src/lib/search/create-public-information-search-response";
 import { mapDocumentsToPublicInformationAnswer } from "../../src/lib/public-information/map-documents-to-answer";
 import { installSpeechMock } from "./speech-mock";
+import { completeAnswerSpeech } from "../../src/lib/public-information/concise-answer";
 import { SAFETY_GUIDANCE } from "../../src/types/public-information-safety";
 
 const QUERY = "장애인 콜택시 이용하려면 어떻게 해야 해?";
@@ -51,11 +52,11 @@ test("한국어 STT 확정 결과를 입력란과 기존 API에 한 번 전달�
     window.voiceTest.end();
   }, QUERY);
   await expect(page.getByRole("textbox")).toHaveValue(QUERY);
+  expect(requests).toBe(0);
+  await page.getByRole("button", { name:"질문 보내기" }).click();
   const answerRegion = page.getByRole("region", { name: "공식 자료 안내" });
-  await expect(answerRegion.getByRole("status")).toContainText("안내가 준비되었습니다");
-  const details = answerRegion.locator("details");
-  await details.locator("summary").click();
-  await expect(details.getByText(search.answer.plainLanguageSummary, { exact: true })).toBeVisible();
+  await expect(page.getByRole("status")).toContainText("안내가 준비되었습니다");
+  await expect(answerRegion.getByText(search.answer.plainLanguageSummary, { exact: true })).toBeVisible();
   expect(requests).toBe(1);
   expect(await page.evaluate(() => window.voiceTest.spoken.length)).toBe(0);
   for (const source of search.answer.sources) {
@@ -72,6 +73,7 @@ test("webkit 접두사 STT도 기존 실제 검색 API에 전달된다", async (
   await page.getByRole("button", { name: "마이크로 질문하기" }).click();
   const response = page.waitForResponse("**/api/public-information/search");
   await page.evaluate((text) => { window.voiceTest.final(text); window.voiceTest.end(); }, QUERY);
+  await page.getByRole("button", {name:"질문 보내기"}).click();
   expect((await (await response).json()).query).toBe(QUERY);
   await expect(page.getByRole("status")).toContainText("안내가 준비되었습니다");
 });
@@ -160,7 +162,6 @@ test("상세 듣기는 한국어로 원문 전체를 순서대로 읽고 자동 
   await page.goto("/");
   await textQuestion(page);
   expect(await page.evaluate(() => window.voiceTest.spoken.length)).toBe(0);
-  await page.getByText("자세한 내용 보기", { exact: true }).click();
   await page.getByRole("button", { name: "상세 안내 전체 듣기" }).press("Enter");
   await expect(page.getByRole("button", { name: "답변 읽기 중지" })).toBeVisible();
   await expect(page.getByRole("status")).toHaveAttribute("aria-live", "off");
@@ -173,7 +174,7 @@ test("상세 듣기는 한국어로 원문 전체를 순서대로 읽고 자동 
     return window.voiceTest.spoken.map((item) => ({ text: item.text, lang: item.lang, voice: item.voice?.lang }));
   });
   expect(spoken.length).toBeGreaterThan(1);
-  expect(spoken.map((item) => item.text).join("")).toBe(keywordAnswer().plainLanguageSummary);
+  expect(spoken.map((item) => item.text).join("")).toBe(completeAnswerSpeech(keywordAnswer()));
   expect(spoken.every((item) => item.lang === "ko-KR" && item.voice === "ko-KR")).toBe(true);
   await expect(page.getByRole("status")).toContainText("읽기를 마쳤습니다");
   await expect(page.getByRole("status")).toHaveAttribute("aria-live", "polite");
@@ -209,7 +210,7 @@ for (const action of ["stop", "type", "microphone", "example", "submit"] as cons
     if (action === "stop") await page.getByRole("button", { name: "답변 읽기 중지" }).press("Space");
     if (action === "type") await page.getByRole("textbox").fill("다음 질문");
     if (action === "microphone") await page.getByRole("button", { name: "마이크로 질문하기" }).click();
-    if (action === "example") await page.getByRole("button", { name: /이동수단 알려줘/ }).click();
+    if (action === "example") { await page.getByRole("button", {name:"다른 질문·분야 선택"}).click(); await page.getByRole("button", { name: /이동수단 알려줘/ }).click(); }
     if (action === "submit") await page.getByRole("button", { name: "질문 보내기" }).click();
     await oldEnd.evaluate((callback) => callback?.call(new SpeechSynthesisUtterance(), new Event("end") as SpeechSynthesisEvent));
     expect(await page.evaluate(() => window.voiceTest.cancels)).toBe(1);
@@ -237,7 +238,7 @@ test("TTS 미지원에도 본문과 텍스트 기능을 유지한다", async ({ 
   await page.getByRole("button", { name: "답변 듣기" }).click();
   await expect(page.getByRole("status")).toContainText("답변 듣기를 지원하지 않습니다");
   if (await page.getByText("자세한 내용 보기", { exact: true }).count()) await page.getByText("자세한 내용 보기", { exact: true }).click();
-  await expect(page.getByText(keywordAnswer().plainLanguageSummary, { exact: true })).toBeVisible();
+  await expect(page.getByTestId("answer-summary")).toBeVisible();
 });
 
 test("TTS 재생 오류와 엔진 무응답에서 중지 상태를 복구한다", async ({ page }) => {
@@ -259,7 +260,6 @@ test("이전 TTS 조각의 중복 종료·오류는 다음 조각과 제한 시�
   await page.goto("/");
   await textQuestion(page);
   await page.clock.install();
-  await page.getByText("자세한 내용 보기", { exact: true }).click();
   await page.getByRole("button", { name: "상세 안내 전체 듣기" }).click();
   await page.evaluate(() => {
     const first = window.voiceTest.spoken[0];

@@ -324,3 +324,14 @@
     text-align: left;
   }
 }
+
+/* Keep the useful controls near the first screen, including narrow and zoomed views. */
+.page { overflow: visible; }
+.page::before, .page::after { display:none; }
+.header,.main,.footer { width:min(880px, calc(100% - 32px)); }
+.main { margin-top:20px; }
+.intro { margin-bottom:18px; }
+.intro h1 { margin-top:0; font-size:clamp(1.4rem,4vw,1.8rem); line-height:1.4; }
+.description { margin-top:6px; font-size:1rem; }
+.prototype { font-size:.85rem; }
+@media(max-width:420px) { .header { flex-wrap:wrap; padding-block:12px; gap:6px; } .prototype { border:0; padding:0; min-height:0; } }

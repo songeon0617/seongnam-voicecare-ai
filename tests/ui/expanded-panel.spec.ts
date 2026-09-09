@@ -4,7 +4,7 @@ import {SEARCH_MESSAGES} from "../../src/types/search-messages";
 import {CLARIFICATIONS} from "../../src/types/public-information-router";
 import {installSpeechMock} from "./speech-mock";
 
-test("long policy stays intact behind details and default speech matches visible concise guidance",async({page})=>{
+test("structured policy shows the answer first and speech preserves limitations",async({page})=>{
   await installSpeechMock(page);
   await page.setViewportSize({width:390,height:844});
   await page.goto("/");
@@ -12,18 +12,20 @@ test("long policy stays intact behind details and default speech matches visible
   const response=page.waitForResponse("**/api/public-information/search");
   await page.getByRole("button",{name:"질문 보내기"}).click();
   const body=await (await response).json();
-  expect(body.answer.plainLanguageSummary.length).toBeGreaterThan(240);
-  await expect(page.getByText(body.answer.plainLanguageSummary,{exact:true})).toBeHidden();
-  const concise=page.getByText("특별교통수단 운영 관련 공식 자료를 찾았습니다. 대상과 이용 방법은 상세 안내에서 확인해 주세요. 현재 운영 여부와 개인별 자격은 추가 확인이 필요합니다.",{exact:true});
+  expect(body.answer.plainLanguageSummary).toContain("1666-0420");
+  const concise=page.getByTestId("answer-summary");
   await expect(concise).toBeVisible();
+  await expect(page.getByRole("heading",{name:"준비할 서류·물품"})).toBeVisible();
+  await expect(page.getByText(/진단서 발급일/)).toHaveCount(0);
+  await expect(page.getByText(/기간 미기재 시 발급일부터 6개월/)).toBeVisible();
   await page.getByRole("button",{name:"답변 듣기",exact:true}).click();
   const spoken=await page.evaluate(()=>{
     for(let i=0;i<20&&window.voiceTest.spoken.at(-1)?.onend;i++)window.voiceTest.finishSpeech();
     return window.voiceTest.spoken.map(s=>s.text).join("");
   });
-  expect(spoken).toBe(await concise.textContent());
-  await page.getByText("자세한 내용 보기",{exact:true}).press("Enter");
-  await expect(page.getByText(body.answer.plainLanguageSummary,{exact:true})).toBeVisible();
+  expect(spoken).toContain(await concise.textContent());
+  expect(spoken).toContain("개인별 이용 자격");
+  await expect(page.getByTestId("answer-summary")).toBeVisible();
   await expect(page.getByRole("button",{name:"상세 안내 전체 듣기",exact:true})).toBeVisible();
   mkdirSync("test-results/voicecare-visual",{recursive:true});
   await page.screenshot({path:"test-results/voicecare-visual/details-390.png",fullPage:true});

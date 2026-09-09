@@ -1,4 +1,5 @@
 import { mapDocumentsToPublicInformationAnswer } from "@/lib/public-information/map-documents-to-answer";
+import { PUBLIC_INFORMATION_DOCUMENTS } from '@/data/public-data/documents';
 import { searchPublicInformation } from "@/lib/search/search-public-information";
 import { isClarificationId, type ClarificationId } from "@/types/public-information-router";
 import {
@@ -17,6 +18,7 @@ export interface PublicInformationSearchServiceResult {
 export type ValidatedPublicInformationSearchRequest = {
   query: string;
   context?: { question: string; clarificationId: ClarificationId };
+  serviceContext?: { serviceId: string };
 };
 
 export function createPublicInformationSearchError(
@@ -47,7 +49,13 @@ export function validatePublicInformationSearchRequest(payload: unknown):
     return { valid: false, response: { status: 400, body: createPublicInformationSearchError("invalid_request", "확인 질문의 문맥이 올바르지 않습니다.") } };
   }
   const context = payload.context as { question: string; clarificationId: ClarificationId } | undefined;
-  return { valid: true, request: { query, ...(context ? { context: { question: context.question, clarificationId: context.clarificationId } } : {}) } };
+  const service = payload.serviceContext;
+  if (service !== undefined && (context !== undefined || !isRecord(service) || Object.keys(service).length !== 1 ||
+    typeof service.serviceId !== 'string' || !PUBLIC_INFORMATION_DOCUMENTS.some(d=>d.id===service.serviceId))) {
+    return {valid:false,response:{status:400,body:createPublicInformationSearchError('invalid_request','이전 서비스의 문맥이 올바르지 않습니다.')}};
+  }
+  return { valid: true, request: { query, ...(context ? { context: { question: context.question, clarificationId: context.clarificationId } } : {}),
+    ...(service ? {serviceContext:{serviceId:(service as {serviceId:string}).serviceId}} : {}) } };
 }
 
 /** Route Handler와 분리해 입력 검증과 응답 구성을 단위 테스트할 수 있게 한다. */

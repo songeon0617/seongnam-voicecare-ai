@@ -3,7 +3,7 @@
 import { type FormEvent, useEffect, useRef, useState } from "react";
 import { EXAMPLE_QUESTIONS } from "@/lib/example-questions";
 import { readSearchAnswer } from "@/lib/search/read-search-answer";
-import { conciseAnswer } from "@/lib/public-information/concise-answer";
+import { conciseAnswer, completeAnswerSpeech } from "@/lib/public-information/concise-answer";
 import { questionScope, JOURNEY_LIMIT } from "@/lib/search/question-scope";
 import { CLARIFICATIONS, type ClarificationContext } from "@/types/public-information-router";
 import {
@@ -72,29 +72,12 @@ const CURATED_QUESTION_CATEGORIES = [
 
 type CuratedCategoryId = (typeof CURATED_QUESTION_CATEGORIES)[number]["id"];
 
-function CategoryIcon({ category }: { category: CuratedCategoryId }) {
-  const commonProps = {
-    viewBox: "0 0 24 24",
-    "aria-hidden": true,
-  } as const;
-
-  if (category === "senior-welfare") {
-    return <svg {...commonProps}><path d="M8 21v-5a4 4 0 0 1 8 0v5M12 3a3 3 0 1 1 0 6M5 21h14" /></svg>;
-  }
-  if (category === "disability-welfare") {
-    return <svg {...commonProps}><circle cx="12" cy="5" r="2" /><path d="m11 8-1 6h6l2 5M10 11a5 5 0 1 0 4 8" /></svg>;
-  }
-  if (category === "transportation") {
-    return <svg {...commonProps}><path d="M5 17V7a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v10M5 13h14M8 17h8M7 20h2m6 0h2" /></svg>;
-  }
-  if (category === "health") {
-    return <svg {...commonProps}><path d="M12 21S4 16.5 4 9.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8 2.5C20 16.5 12 21 12 21Z" /><path d="M9 12h6m-3-3v6" /></svg>;
-  }
-  return <svg {...commonProps}><path d="M4 6h16v13H4zM8 3v6m8-6v6M8 13h3m2 0h3m-8 3h3" /></svg>;
-}
-
 export function QuestionPanel() {
   const [question, setQuestion] = useState("");
+  const [voiceReview, setVoiceReview] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const resultRef = useRef<HTMLHeadingElement>(null);
+  const [serviceContext, setServiceContext] = useState<string>();
   const [notice, setNotice] = useState("");
   const [search, setSearch] = useState<ReturnType<typeof readSearchAnswer>>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -103,6 +86,11 @@ export function QuestionPanel() {
   const activeRequest = useRef<AbortController | null>(null);
   const requestTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const speech = useAnswerSpeech(setNotice);
+  useEffect(() => {
+    if (!search) return;
+    resultRef.current?.focus({ preventScroll: true });
+    resultRef.current?.scrollIntoView({ block: "start", behavior: "instant" });
+  }, [search]);
   useEffect(() => () => {
     activeRequest.current?.abort();
     activeRequest.current = null;
@@ -130,6 +118,7 @@ export function QuestionPanel() {
 
     const controller = new AbortController();
     activeRequest.current = controller;
+    setVoiceReview(false);
     setIsLoading(true);
     setSearch(null);
     setNotice(SEARCHING_MESSAGE);
@@ -146,6 +135,7 @@ export function QuestionPanel() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           query: normalizedQuestion,
+          ...(!fresh && serviceContext && !clarificationContext ? { serviceContext: { serviceId: serviceContext } } : {}),
           ...(!fresh && clarificationContext ? { context: clarificationContext } : {}),
         } satisfies PublicInformationSearchRequest),
         cache: "no-store",
@@ -168,6 +158,7 @@ export function QuestionPanel() {
       }
 
       setSearch(body);
+      setServiceContext(body.kind === "answer" && body.answer.sources.length === 1 ? body.answer.sources[0].id : undefined);
       setClarificationContext(body.clarification ? { question: normalizedQuestion, clarificationId: body.clarification.id } : undefined);
       setNotice(body.kind === "clarification" ? (body.clarification && CLARIFICATIONS[body.clarification.id].options.length > 0
         ? "도움의 종류를 확인해 주세요. 아래 선택지를 고르거나 입력란에 답해 주세요."
@@ -193,8 +184,12 @@ export function QuestionPanel() {
 
   const voice = useVoiceInput((text) => {
     setQuestion(text);
-    void submitQuestion(text);
-  }, setNotice);
+    setVoiceReview(true);
+
+    setNotice(text.length > PUBLIC_INFORMATION_SEARCH_MAX_QUERY_LENGTH
+      ? `인식한 질문이 너무 깁니다. ${PUBLIC_INFORMATION_SEARCH_MAX_QUERY_LENGTH}자 이하로 수정한 뒤 질문해 주세요.`
+      : "인식한 내용을 확인한 뒤 ‘이 내용으로 찾기’를 눌러 주세요.");
+  }, (message) => { setNotice(message);  });
   const isRecognizing = voice.state !== "idle";
   const scope = search && search.kind !== "safety" && search.kind !== "clarification" && (search.kind !== "unsupported" || search.answer.plainLanguageSummary === JOURNEY_LIMIT) ? questionScope(search.answer.userQuestion) : null;
 
@@ -217,7 +212,7 @@ export function QuestionPanel() {
     setNotice("");
     setSearch(null);
     setIsLoading(false);
-    if (!preserveContext) setClarificationContext(undefined);
+    if (!preserveContext) { setClarificationContext(undefined); setServiceContext(undefined); }
   }
 
   function runCuratedQuestion(curatedQuestion: string) {
@@ -232,191 +227,82 @@ export function QuestionPanel() {
   return (
     <section className={styles.panel} aria-label="질문하기">
       <div className={styles.panelHeading}>
-        <div>
-          <p className={styles.panelEyebrow}>질문하기</p>
-          <h2>글이나 음성으로 편하게 물어보세요</h2>
-        </div>
+        <h2>어떤 도움이 필요하세요?</h2>
       </div>
       <div className={styles.questionWorkspace}>
-        <form
-          className={styles.form}
-          onSubmit={handleSubmit}
-          aria-busy={isLoading}
-        >
-          <label htmlFor="question">글자로 질문하기</label>
-          <div className={styles.inputRow}>
-            <input
-              id="question"
-              name="question"
-              type="text"
-              value={question}
-              onChange={(event) => selectExample(event.target.value, true)}
-              placeholder="궁금한 내용을 입력해 주세요"
-              autoComplete="off"
-              maxLength={PUBLIC_INFORMATION_SEARCH_MAX_QUERY_LENGTH}
-            />
-            <button
-              type="submit"
-              aria-label={isLoading ? "공식 자료 검색 중" : "질문 보내기"}
-              disabled={isLoading}
-            >
-              <span>{isLoading ? "검색 중..." : "질문하기"}</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="m8 5 7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-          <p className={styles.privacyNotice}>
-            <strong>개인정보는 입력하지 마세요.</strong> 이름, 주민등록번호, 연락처 등은 자동으로 완전히 가려지지 않을 수 있습니다.
-          </p>
-          <details className={styles.infoDetails}>
-            <summary>질문 처리 방식 확인하기</summary>
-            <p>
-              질문과 직전 확인 답변은 OpenAI의 공식 웹 검색으로 처리될 수 있습니다. 번호·이메일 자동 가림에는 한계가 있습니다. 앱은 질문·음성 원본을 DB에 저장하지 않습니다.
-            </p>
-          </details>
-        </form>
-        <div className={styles.voiceArea}>
-          <button
-            className={styles.voiceButton}
-            type="button"
+        <div className={styles.inputChoices}>
+          <button className={styles.voiceButton} type="button"
             onClick={() => {
               speech.stop();
-              if (isRecognizing) {
-                voice.cancel();
-                setNotice("음성 입력을 취소했습니다. 글자로도 질문할 수 있습니다.");
-                return;
-              }
-              activeRequest.current?.abort();
-              activeRequest.current = null;
-              setSearch(null);
-              setIsLoading(false);
-              voice.start();
-            }}
-            aria-label={isRecognizing ? "음성 입력 취소" : "마이크로 질문하기"}
-            aria-pressed={isRecognizing}
-            aria-describedby="voice-help"
-          >
-            <span className={styles.micIcon} aria-hidden="true">
-              <svg viewBox="0 0 40 40" role="img">
-                <rect x="14" y="6" width="12" height="20" rx="6" />
-                <path d="M9.5 20.5a10.5 10.5 0 0 0 21 0M20 31v5m-6 0h12" />
-              </svg>
-            </span>
-            <strong>{isRecognizing ? "음성 입력 취소" : "말로 질문하기"}</strong>
-            <small>{voice.state === "starting" ? "마이크 연결 중" : voice.state === "listening" ? "듣고 있습니다" : voice.state === "processing" ? "음성 인식 중" : "누르고 질문을 말씀하세요"}</small>
+              if (isRecognizing) { voice.cancel(); setNotice("음성 입력을 취소했습니다. 글자로도 질문할 수 있습니다."); return; }
+              activeRequest.current?.abort(); activeRequest.current = null;
+              clearTimeout(requestTimeout.current);
+              setIsLoading(false); setVoiceReview(false);  voice.start();
+            }} aria-label={isRecognizing ? "음성 입력 취소" : "마이크로 질문하기"}
+            aria-pressed={isRecognizing} aria-describedby="voice-help">
+            <span aria-hidden="true">●</span>
+            <strong>{isRecognizing ? "음성 입력 취소" : voiceReview ? "다시 말하기" : "눌러서 말하기"}</strong>
           </button>
-          <span className={styles.status}>{isRecognizing ? "다시 누르면 취소합니다" : "한국어 음성 질문"}</span>
-          <p id="voice-help" className={styles.voiceHelp}>
-            말씀이 끝나면 인식한 질문을 자동으로 보냅니다. 마이크를 사용할 수 없다면 글자로 질문하세요.
-          </p>
-          <details className={styles.infoDetails}>
-            <summary>음성 입력 방식 확인하기</summary>
-            <p>
-              인식 결과는 질문 입력란에서 수정할 수 있습니다. 브라우저에 따라 음성이 음성 인식 서비스로 전송될 수 있습니다. 휴대폰 키보드의 음성 입력도 이용할 수 있습니다.
-            </p>
-          </details>
-          {voice.preview && <p className={styles.voicePreview} aria-live="off">인식 중: {voice.preview}</p>}
         </div>
+        <p id="voice-help" className={styles.voiceHelp}>{isRecognizing ? "듣고 있습니다. 끝나면 인식한 내용을 확인해 주세요." : "말한 내용을 확인한 뒤 질문을 보냅니다."}</p>
+        {voice.preview && <p className={styles.voicePreview} aria-live="off">인식 중: {voice.preview}</p>}
+        {<form className={styles.form} onSubmit={handleSubmit} aria-busy={isLoading}>
+          <label htmlFor="question">{voiceReview ? "인식한 질문 · 글자로 고치기" : "글자로 질문하기"}</label>
+          <div className={styles.inputRow}>
+            <input ref={inputRef} id="question" name="question" type="text" value={question}
+              onChange={(event) => { selectExample(event.target.value, true); }}
+              placeholder={serviceContext ? "예: 준비물은?" : "질문을 적어 주세요"}
+              autoComplete="off" maxLength={PUBLIC_INFORMATION_SEARCH_MAX_QUERY_LENGTH} />
+            <button type="submit" aria-label={isLoading ? "공식 자료 검색 중" : "질문 보내기"} disabled={isLoading}>
+              {isLoading ? "검색 중…" : voiceReview ? "이 내용으로 찾기" : "질문하기"}
+            </button>
+          </div>
+          {voiceReview && <button className={styles.textChoice} type="button" onClick={() => { setVoiceReview(false); setQuestion(""); setNotice("인식한 질문을 취소했습니다."); }}>인식한 질문 취소</button>}
+        </form>}
+        <p className={notice ? styles.notice : styles.answerPlaceholder} role="status" aria-live={speech.isSpeaking ? "off" : "polite"} aria-atomic="true">
+          {notice}
+        </p>
+        <p className={styles.privacyNotice}>이름·주민등록번호 등 개인정보는 입력하지 마세요.</p>
+        {isLoading && <button className={styles.textChoice} type="button" onClick={() => {
+          activeRequest.current?.abort(); activeRequest.current = null; clearTimeout(requestTimeout.current);
+          setIsLoading(false); setNotice("검색을 취소했습니다. 다른 질문을 입력할 수 있습니다.");
+        }}>검색 취소</button>}
       </div>
-      {clarificationContext && <div className={styles.clarification}>
-        <h3>알맞은 안내를 위해 하나만 더 확인할게요</h3>
-        <p>{CLARIFICATIONS[clarificationContext.clarificationId].question}</p>
+      {!search && !isLoading && !clarificationContext && <div className={styles.examples}>
+        <h3>지원 분야</h3>
+        <div className={styles.categoryList} aria-label="지원 분야">
+          {CURATED_QUESTION_CATEGORIES.map(category => <button key={category.id} type="button"
+            aria-label={`${category.label} ${category.questions.length}개 질문`} aria-pressed={selectedCategoryId === category.id}
+            onClick={() => { setSelectedCategoryId(category.id); setServiceContext(undefined); setClarificationContext(undefined); }}>
+            {selectedCategoryId === category.id && <span aria-hidden="true">✓ </span>}{category.label}
+          </button>)}
+        </div>
+        <h3 className={styles.exampleHeading}>{selectedCategory ? `${selectedCategory.label} 예시 질문` : "이렇게 물어보세요"}</h3>
         <div className={styles.exampleList}>
-          {CLARIFICATIONS[clarificationContext.clarificationId].options.map((option) => <button key={option} type="button" disabled={isLoading}
-            onClick={() => { voice.cancel(); setQuestion(option); void submitQuestion(option); }}>{option}</button>)}
-          {!CLARIFICATIONS[clarificationContext.clarificationId].options.some(option => option === "잘 모르겠어요") && <button type="button" disabled={isLoading} onClick={() => { setQuestion("잘 모르겠어요"); void submitQuestion("잘 모르겠어요"); }}>잘 모르겠어요</button>}
-          <button type="button" onClick={() => selectExample("")}>새 질문하기</button>
+          {(selectedCategory?.questions ?? EXAMPLE_QUESTIONS).map(example => <button key={example} type="button" onClick={() => runCuratedQuestion(example)}>{example}</button>)}
         </div>
       </div>}
-
-      <div className={styles.examples}>
-        <div className={styles.examplesHeading}>
-          <p>자주 찾는 생활정보</p>
-          <details className={styles.scopeDetails}>
-            <summary>지원 분야 확인하기</summary>
-            <div className={styles.categoryExplorer}>
-              <div className={styles.categoryHeading}>
-                <p className={styles.categoryEyebrow}>분야별 생활정보</p>
-                <h3>필요한 분야를 선택해 주세요</h3>
-                <p>분야를 고르면 공식 자료로 확인할 수 있는 생활정보가 표시됩니다.</p>
-              </div>
-              <div className={styles.categoryList} aria-label="지원 분야">
-                {CURATED_QUESTION_CATEGORIES.map((category) => (
-                  <button
-                    key={category.id}
-                    type="button"
-                    aria-label={`${category.label} ${category.questions.length}개 질문`}
-                    aria-pressed={selectedCategoryId === category.id}
-                    aria-controls="curated-question-list"
-                    onClick={() => setSelectedCategoryId(category.id)}
-                  >
-                    <span className={styles.categoryIcon} aria-hidden="true">
-                      <CategoryIcon category={category.id} />
-                    </span>
-                    <span className={styles.categoryCopy}>
-                      <strong>{category.label}</strong>
-                      <span>{category.description}</span>
-                    </span>
-                    <span className={styles.categoryArrow} aria-hidden="true">›</span>
-                  </button>
-                ))}
-              </div>
-              {selectedCategory && (
-                <section
-                  id="curated-question-list"
-                  className={styles.curatedQuestions}
-                  aria-labelledby="curated-question-title"
-                >
-                  <div>
-                    <p className={styles.categoryEyebrow}>이런 정보를 확인할 수 있어요</p>
-                    <h3 id="curated-question-title">{selectedCategory.label} 분야별 질문</h3>
-                    <p>항목을 누르면 관련 공식 자료를 바로 확인합니다.</p>
-                  </div>
-                  <div className={styles.curatedQuestionList}>
-                    {selectedCategory.questions.map((curatedQuestion) => (
-                      <button
-                        key={curatedQuestion}
-                        type="button"
-                        disabled={isLoading}
-                        onClick={() => runCuratedQuestion(curatedQuestion)}
-                      >
-                        <span>{curatedQuestion}</span>
-                        <span aria-hidden="true">→</span>
-                      </button>
-                    ))}
-                  </div>
-                </section>
-              )}
-            </div>
-          </details>
-        </div>
-        <div className={styles.exampleList}>
-          {EXAMPLE_QUESTIONS.map((example) => (
-            <button
-              key={example}
-              type="button"
-              onClick={() => selectExample(example)}
-            >
-              <span aria-hidden="true">“</span>
-              {example}
-            </button>
-          ))}
-        </div>
-      </div>
-
       <section
         className={`${styles.answer} ${search?.kind === "safety" ? styles.safetyAnswer : ""}`}
         data-state={isLoading ? "loading" : search?.kind ?? (notice ? "notice" : "empty")}
         aria-labelledby="answer-title"
       >
         <div className={styles.answerHeading}>
-          <h2 id="answer-title">{search?.kind === "safety" ? "긴급 안전 안내" : "공식 자료 안내"}</h2>
+          <h2 id="answer-title" ref={resultRef} tabIndex={-1}>{search?.kind === "safety" ? "긴급 안전 안내" : "공식 자료 안내"}</h2>
         </div>
+        {(isLoading || search) && <p className={styles.currentQuestion}>질문: {search?.answer.userQuestion ?? question}</p>}
+        {clarificationContext && <div className={styles.clarification}>
+          <h3>알맞은 안내를 위해 하나만 더 확인할게요</h3>
+          <p>{CLARIFICATIONS[clarificationContext.clarificationId].question}</p>
+          <div className={styles.exampleList}>
+            {CLARIFICATIONS[clarificationContext.clarificationId].options.map(option => <button key={option} type="button" disabled={isLoading}
+              onClick={() => { voice.cancel(); setQuestion(option); void submitQuestion(option); }}>{option}</button>)}
+            {!CLARIFICATIONS[clarificationContext.clarificationId].options.some(o=>o === "잘 모르겠어요") && <button type="button" disabled={isLoading} onClick={() => {setQuestion("잘 모르겠어요"); void submitQuestion("잘 모르겠어요");}}>잘 모르겠어요</button>}
+            <button type="button" onClick={() => {selectExample(""); inputRef.current?.focus();}}>새 질문하기</button>
+          </div>
+        </div>}
         {search?.kind === "unsupported" && <h3 className={styles.stateHeading}>지금 안내할 수 있는 범위를 확인해 주세요</h3>}
-        <p className={notice ? styles.notice : styles.answerPlaceholder} role="status" aria-live={speech.isSpeaking ? "off" : "polite"} aria-atomic="true">
-          {notice || "질문하면 관련 공식 자료와 출처가 여기에 표시됩니다."}
-        </p>
+        {search && (search.kind === "unsupported" || search.kind === "guidance" || search.officialSearch) && <p className={styles.notice}>{search.answer.plainLanguageSummary}</p>}
         {search && (search.officialSearch || search.kind === "safety" || search.kind === "guidance") && search.kind !== "clarification" && search.kind !== "unsupported" && Boolean(search.answer.plainLanguageSummary.trim()) && <div className={styles.speechControls}>
           <button type="button" onClick={() => {
             if (speech.isSpeaking) {
@@ -473,13 +359,33 @@ export function QuestionPanel() {
                 setNotice("답변 읽기를 중지했습니다.");
               } else {
                 voice.cancel();
-                speech.play(conciseAnswer(search.answer));
+                speech.play([conciseAnswer(search.answer), search.answer.nextAction?.description, search.answer.verification.details].filter(Boolean).join(" "));
               }
             }}
-            onReadFull={() => { voice.cancel(); speech.play(search.answer.plainLanguageSummary); }}
+            onReadFull={() => { voice.cancel(); speech.play(completeAnswerSpeech(search.answer)); }}
+            followupQuestions={serviceContext && <div className={styles.followupActions} id="followup-questions">
+              <h3>궁금한 내용을 바로 선택하세요</h3>
+              <div className={styles.exampleList}>{["어떻게 이용해요?", "누가 이용할 수 있어요?", "준비물은?", "요금은?", "전화번호는?"].map(q => <button key={q} type="button" disabled={isLoading} onClick={() => { setQuestion(q); void submitQuestion(q); }}>{q}</button>)}</div>
+            </div>}
           />}
         </div>
+        {search && <div className={styles.followupActions}>
+          <button className={styles.textChoice} type="button" onClick={() => {
+            speech.stop(); inputRef.current?.scrollIntoView({block:"center",behavior:"instant"});
+            document.querySelector<HTMLButtonElement>('[aria-label="마이크로 질문하기"]')?.focus();
+          }}>말이나 글로 이어서 질문</button>
+          {serviceContext && <p><a href="#followup-questions">준비물·요금 등 후속 질문 선택</a></p>}
+          <button className={styles.textChoice} type="button" onClick={() => {
+            selectExample(""); setVoiceReview(false);
+            requestAnimationFrame(() => inputRef.current?.focus());
+          }}>다른 질문·분야 선택</button>
+        </div>}
       </section>
+      <details className={styles.infoDetails}>
+        <summary>개인정보·음성·질문 처리 방식</summary>
+        <p>질문과 직전 확인 답변은 OpenAI의 공식 웹 검색으로 처리될 수 있습니다. 자동 개인정보 가림에는 한계가 있습니다. 앱은 질문·음성 원본을 DB에 저장하지 않습니다. 브라우저에 따라 음성이 음성 인식 서비스로 전송될 수 있습니다.</p>
+      </details>
+
     </section>
   );
 }

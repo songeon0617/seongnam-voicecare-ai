@@ -1,7 +1,5 @@
 import type { PublicInformationDocument } from "@/types/public-data";
 
-const VERIFIED_AT = "2026-09-07T18:37:00+09:00";
-const EXPANSION_VERIFIED_AT = VERIFIED_AT;
 
 /**
  * MVP 질문 범위에 맞춰 성남시청 공식 페이지에서 직접 확인한 원자료다.
@@ -19,12 +17,12 @@ export const PUBLIC_INFORMATION_DOCUMENTS = [
     originalUrl: "https://www.seongnam.go.kr/wf-pm020101/23018",
     publishedAt: null,
     updatedAt: null,
-    fetchedAt: VERIFIED_AT,
-    lastVerifiedAt: VERIFIED_AT,
+    fetchedAt: "2026-09-09T09:47:40.518Z",
+    lastVerifiedAt: "2026-09-09T09:47:40.518Z",
     status: "active",
     freshness: {
       status: "unknown",
-      evaluatedAt: VERIFIED_AT,
+      evaluatedAt: "2026-09-09T09:47:40.518Z",
       reason:
         "현재 성남시청 복지사업 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다.",
     },
@@ -52,12 +50,12 @@ export const PUBLIC_INFORMATION_DOCUMENTS = [
     originalUrl: "https://www.seongnam.go.kr/wf-pm020101/23019",
     publishedAt: null,
     updatedAt: null,
-    fetchedAt: VERIFIED_AT,
-    lastVerifiedAt: VERIFIED_AT,
+    fetchedAt: "2026-09-09T09:47:41.694Z",
+    lastVerifiedAt: "2026-09-09T09:47:41.694Z",
     status: "active",
     freshness: {
       status: "unknown",
-      evaluatedAt: VERIFIED_AT,
+      evaluatedAt: "2026-09-09T09:47:41.694Z",
       reason:
         "현재 성남시청 복지사업 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다.",
     },
@@ -81,12 +79,12 @@ export const PUBLIC_INFORMATION_DOCUMENTS = [
     originalUrl: "https://www.seongnam.go.kr/wf-pm020101/22001",
     publishedAt: null,
     updatedAt: null,
-    fetchedAt: VERIFIED_AT,
-    lastVerifiedAt: VERIFIED_AT,
+    fetchedAt: "2026-09-09T09:47:42.807Z",
+    lastVerifiedAt: "2026-09-09T09:47:42.807Z",
     status: "active",
     freshness: {
       status: "unknown",
-      evaluatedAt: VERIFIED_AT,
+      evaluatedAt: "2026-09-09T09:47:42.807Z",
       reason:
         "현재 성남시청 복지사업 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다.",
     },
@@ -114,12 +112,12 @@ export const PUBLIC_INFORMATION_DOCUMENTS = [
     originalUrl: "https://www.seongnam.go.kr/wf-bbs05010303/403121",
     publishedAt: "2026-06-18",
     updatedAt: "2026-06-18",
-    fetchedAt: VERIFIED_AT,
-    lastVerifiedAt: VERIFIED_AT,
+    fetchedAt: "2026-09-09T09:58:59.870Z",
+    lastVerifiedAt: "2026-09-09T09:58:59.870Z",
     status: "active",
     freshness: {
       status: "current",
-      evaluatedAt: VERIFIED_AT,
+      evaluatedAt: "2026-09-09T09:58:59.870Z",
       reason:
         "성남시청 시설정보 페이지의 등록일과 수정일이 2026-06-18로 표시되고 현재 페이지에서 직접 확인했다.",
     },
@@ -146,12 +144,12 @@ export const PUBLIC_INFORMATION_DOCUMENTS = [
       "https://www.seongnam.go.kr/health/ht-pm020101/12062",
     publishedAt: null,
     updatedAt: null,
-    fetchedAt: EXPANSION_VERIFIED_AT,
-    lastVerifiedAt: EXPANSION_VERIFIED_AT,
+    fetchedAt: "2026-09-09T09:47:43.845Z",
+    lastVerifiedAt: "2026-09-09T09:47:43.845Z",
     status: "active",
     freshness: {
       status: "unknown",
-      evaluatedAt: EXPANSION_VERIFIED_AT,
+      evaluatedAt: "2026-09-09T09:47:43.845Z",
       reason:
         "현재 성남시 보건소 공식 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다.",
     },
@@ -172,12 +170,12 @@ export const PUBLIC_INFORMATION_DOCUMENTS = [
     supportingSources: [{ title: "장애인 보장구 지원", url: "https://www.seongnam.go.kr/wf-pm020101/23004" }],
     publishedAt: null,
     updatedAt: null,
-    fetchedAt: EXPANSION_VERIFIED_AT,
-    lastVerifiedAt: EXPANSION_VERIFIED_AT,
+    fetchedAt: "2026-09-09T09:47:45.004Z",
+    lastVerifiedAt: "2026-09-09T09:47:45.004Z",
     status: "active",
     freshness: {
       status: "unknown",
-      evaluatedAt: EXPANSION_VERIFIED_AT,
+      evaluatedAt: "2026-09-09T09:47:45.004Z",
       reason:
         "현재 성남시청 공식 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다.",
     },
@@ -204,12 +202,12 @@ export const PUBLIC_INFORMATION_DOCUMENTS = [
     ],
     publishedAt: null,
     updatedAt: null,
-    fetchedAt: EXPANSION_VERIFIED_AT,
-    lastVerifiedAt: EXPANSION_VERIFIED_AT,
+    fetchedAt: "2026-09-09T09:47:47.242Z",
+    lastVerifiedAt: "2026-09-09T09:47:47.242Z",
     status: "active",
     freshness: {
       status: "unknown",
-      evaluatedAt: EXPANSION_VERIFIED_AT,
+      evaluatedAt: "2026-09-09T09:47:47.242Z",
       reason:
         "현재 성남시청 공식 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다.",
     },
@@ -236,12 +234,12 @@ export const PUBLIC_INFORMATION_DOCUMENTS = [
     ],
     publishedAt: null,
     updatedAt: null,
-    fetchedAt: EXPANSION_VERIFIED_AT,
-    lastVerifiedAt: EXPANSION_VERIFIED_AT,
+    fetchedAt: "2026-09-09T09:47:54.041Z",
+    lastVerifiedAt: "2026-09-09T09:47:54.041Z",
     status: "active",
     freshness: {
       status: "unknown",
-      evaluatedAt: EXPANSION_VERIFIED_AT,
+      evaluatedAt: "2026-09-09T09:47:54.041Z",
       reason:
         "현재 성남시청 공식 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다.",
     },
@@ -262,12 +260,12 @@ export const PUBLIC_INFORMATION_DOCUMENTS = [
     supportingSources: [{ title: "치매 조기검진 사업", url: "https://www.seongnam.go.kr/health/ht-pm020101/7027" }],
     publishedAt: null,
     updatedAt: null,
-    fetchedAt: EXPANSION_VERIFIED_AT,
-    lastVerifiedAt: EXPANSION_VERIFIED_AT,
+    fetchedAt: "2026-09-09T09:48:00.653Z",
+    lastVerifiedAt: "2026-09-09T09:48:00.653Z",
     status: "active",
     freshness: {
       status: "unknown",
-      evaluatedAt: EXPANSION_VERIFIED_AT,
+      evaluatedAt: "2026-09-09T09:48:00.653Z",
       reason:
         "현재 성남시 보건소 공식 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다.",
     },
@@ -287,12 +285,12 @@ export const PUBLIC_INFORMATION_DOCUMENTS = [
       "https://www.seongnam.go.kr/health/ht-pm020101/12058",
     publishedAt: null,
     updatedAt: null,
-    fetchedAt: EXPANSION_VERIFIED_AT,
-    lastVerifiedAt: EXPANSION_VERIFIED_AT,
+    fetchedAt: "2026-09-09T09:48:02.804Z",
+    lastVerifiedAt: "2026-09-09T09:48:02.804Z",
     status: "active",
     freshness: {
       status: "unknown",
-      evaluatedAt: EXPANSION_VERIFIED_AT,
+      evaluatedAt: "2026-09-09T09:48:02.804Z",
       reason:
         "현재 성남시 보건소 공식 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다.",
     },
@@ -311,12 +309,12 @@ export const PUBLIC_INFORMATION_DOCUMENTS = [
     originalUrl: "https://www.seongnam.go.kr/cn020403",
     publishedAt: null,
     updatedAt: null,
-    fetchedAt: EXPANSION_VERIFIED_AT,
-    lastVerifiedAt: EXPANSION_VERIFIED_AT,
+    fetchedAt: "2026-09-09T09:48:03.045Z",
+    lastVerifiedAt: "2026-09-09T09:48:03.045Z",
     status: "active",
     freshness: {
       status: "unknown",
-      evaluatedAt: EXPANSION_VERIFIED_AT,
+      evaluatedAt: "2026-09-09T09:48:03.045Z",
       reason:
         "현재 성남시청 공식 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다.",
     },
@@ -336,12 +334,12 @@ export const PUBLIC_INFORMATION_DOCUMENTS = [
       "https://www.seongnam.go.kr/wf-pm020101/24011",
     publishedAt: null,
     updatedAt: null,
-    fetchedAt: EXPANSION_VERIFIED_AT,
-    lastVerifiedAt: EXPANSION_VERIFIED_AT,
+    fetchedAt: "2026-09-09T09:48:04.155Z",
+    lastVerifiedAt: "2026-09-09T09:48:04.155Z",
     status: "active",
     freshness: {
       status: "unknown",
-      evaluatedAt: EXPANSION_VERIFIED_AT,
+      evaluatedAt: "2026-09-09T09:48:04.155Z",
       reason:
         "현재 성남시청 공식 안내 페이지에서 내용을 확인했으나 게시일과 수정일이 표시되지 않는다.",
     },
@@ -361,12 +359,12 @@ export const PUBLIC_INFORMATION_DOCUMENTS = [
       "https://www.seongnam.go.kr/wf-pm020101/23020",
     publishedAt: null,
     updatedAt: null,
-    fetchedAt: EXPANSION_VERIFIED_AT,
-    lastVerifiedAt: EXPANSION_VERIFIED_AT,
+    fetchedAt: "2026-09-09T09:48:05.324Z",
+    lastVerifiedAt: "2026-09-09T09:48:05.324Z",
     status: "active",
     freshness: {
       status: "unknown",
-      evaluatedAt: EXPANSION_VERIFIED_AT,
+      evaluatedAt: "2026-09-09T09:48:05.324Z",
       reason:
         "공약 이행 PDF 대신 현재 성남시청 장애인 버스요금 지원 안내에서 내용을 확인했다. 게시일과 수정일은 표시되지 않아 정책 최신성을 확정하지 않는다.",
     },

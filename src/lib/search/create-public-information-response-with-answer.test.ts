@@ -62,8 +62,8 @@ test("keyword 실패 + AI DIRECT는 공식 문서만 재조회하고 입력 주�
   assert.equal(calls, 1);
   assert.equal(body.kind, "answer");
   assert.deepEqual(body.answer, map(QUERY, getRoutingDocuments().filter((doc) => doc.id === DIRECT.serviceIds[0])));
-  assert.equal(body.answer.contacts, undefined);
-  assert.equal(body.answer.requiredItems, undefined);
+  assert.ok(body.answer.contacts?.every(contact => !contact.phone?.startsWith("010")));
+  assert.doesNotMatch(JSON.stringify(body.answer.requiredItems), /가짜 정책/);
   assert.equal(body.answer.locations, undefined);
   assert.doesNotMatch(JSON.stringify(body), /가짜 정책|주입된 제목/);
 });

@@ -992,3 +992,50 @@
   overflow-wrap: anywhere;
   line-height: 1.8;
 }
+
+/* One interaction column. No fixed controls that can cover a keyboard or zoomed text. */
+.panel { padding:24px; }
+.panelHeading { margin-bottom:14px; }
+.panelHeading h2 { font-size:1.3rem; }
+.questionWorkspace { display:block; }
+.inputChoices { display:grid; grid-template-columns:1fr; gap:10px; }
+.inputChoices .voiceButton { display:flex; justify-content:center; min-height:64px; background:var(--primary); color:white; border:2px solid var(--primary); }
+.inputChoices .voiceButton:hover { background:var(--primary-strong); }
+.voiceButton strong { font-size:1.15rem; }
+.textChoice { min-height:48px; padding:10px 14px; font-size:1rem; background:white; color:var(--primary-strong); border:2px solid #8792aa; border-radius:10px; cursor:pointer; }
+.form { margin-top:14px; }
+.form .textChoice { margin-top:10px; }
+.inputRow input,.inputRow button { font-size:1rem; }
+.privacyNotice,.voiceHelp { font-size:1rem; line-height:1.6; margin-top:10px; }
+.examples { margin-top:20px; padding-top:16px; }
+.examples h3 { font-size:1rem; }
+.categoryList { grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:10px; gap:8px; }
+.categoryList button { display:block; min-height:52px; padding:10px 8px; font-size:1rem; text-align:center; border-color:#8792aa; }
+.exampleHeading { margin-block:18px 10px; }
+.exampleList { grid-template-columns:1fr; gap:8px; }
+.exampleList button { font-size:1rem; min-height:48px; padding:10px 14px; border-color:#8792aa; }
+.answer { scroll-margin-top:16px; }
+.answerHeading h2 { font-size:1.15rem; scroll-margin-top:20px; }
+.currentQuestion { margin-top:10px; color:var(--muted); }
+.searchResults p.summary { font-size:1.2rem; line-height:1.65; }
+.searchResults p,.searchResults ul,.searchResults ol { line-height:1.65; }
+.infoDetails,.verification p,.sourceList p,.speechControls span,.sourcesIntro { font-size:1rem; }
+.followupActions { margin-top:24px; padding-top:18px; border-top:2px solid var(--border); }
+.followupActions h3 { font-size:1rem; margin-bottom:10px; }
+.followupActions .exampleList { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.followupActions>.textChoice { margin-top:16px; width:100%; }
+.detailSection { margin-top:18px; padding-top:16px; }
+@media(max-width:640px) {
+ .panel { padding:18px 14px; }
+ .categoryList { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .categoryList button { min-height:52px; }
+ .answer,.clarification { padding:18px 0 0; }
+ .inputChoices { grid-template-columns:1fr; }
+ .inputChoices .textChoice { min-height:48px; }
+}
+@media(prefers-reduced-motion:reduce) { .panel * { scroll-behavior:auto; transition:none; animation:none; } }
+@media(min-width:360px) and (max-width:640px) {
+ .inputRow { flex-direction:row; align-items:stretch; }
+ .inputRow input { width:0; min-width:0; flex:1; }
+ .inputRow button { width:auto; flex:0 1 auto; min-width:96px; padding-inline:12px; }
+}

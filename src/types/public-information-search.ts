@@ -9,6 +9,7 @@ export const PUBLIC_INFORMATION_SEARCH_MAX_QUERY_LENGTH = 300;
 export interface PublicInformationSearchRequest {
   query: string;
   context?: ClarificationContext;
+  serviceContext?: { serviceId: string };
 }
 
 export interface PublicInformationSearchResult {

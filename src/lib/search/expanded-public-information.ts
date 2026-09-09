@@ -78,6 +78,14 @@ export async function createExpandedPublicInformationResponse(payload:unknown,pr
   const validation=validatePublicInformationSearchRequest(payload);if(!validation.valid)return validation.response;
   const original=validation.request.query;
   if(matchSafetyBoundary(original))return legacy({query:original},()=>({status:"disabled"}));
+  // Only a short, subject-free follow-up can reuse an allowlisted service ID.
+  // All facts are reloaded on the server; new topics and region/safety requests pass through their guards.
+  const serviceId=validation.request.serviceContext?.serviceId;
+  const shortFollowup=/^(?:그럼|그러면|그런데)?(?:어떻게(?:이용|신청)(?:해|하나요|하면돼)|누가이용할수있어|누가대상|어디서신청(?:해|하나요)?|준비물(?:은)?|서류(?:는)?|요금(?:은)?|비용(?:은)?|전화번호(?:는)?|연락처(?:는)?|대상(?:은)?|운영시간(?:은)?|다음에뭘하면돼)(?:요)?[?!.]*$/.test(compact(original));
+  if(serviceId&&shortFollowup){
+    const document=getRoutingDocuments().find(d=>d.id===serviceId);
+    if(document)return curatedResponse(original,document);
+  }
   const context=validation.request.context;
   const follow=resolveFollowup(original,context);
   if(follow.continued&&context&&regionBoundaryGuard(context.question)&&!/(?:말고|아니고)\s*성남/.test(context.question))return state(original,"unsupported","성남 지역 안내 서비스입니다","직전 질문은 다른 지역에 관한 내용입니다. 해당 지역의 공식 홈페이지에서 확인하거나 성남에 관한 새 질문을 적어 주세요.");

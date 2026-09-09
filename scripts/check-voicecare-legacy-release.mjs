@@ -21,7 +21,7 @@ for(const [from,to] of [[1,20],[21,40],[41,61]]){
     results.push(...JSON.parse(readFileSync(file,"utf8")).results);
   }finally{server.kill();await closed;}
 }
-const summary={mode:"BUILT_NEXT_HTTP_AI_AND_SEARCH_OFF_ORIGINAL_EXPECTATIONS_UNCHANGED",total:results.length,pass:results.filter(r=>r.pass).length,fail:results.filter(r=>!r.pass).length,httpErrors:results.filter(r=>r.httpStatus!==200).length,note:"Legacy strict route/document contract differs from expanded clarification/search contract. Its hallucination flag is a structural mapping check, not semantic adjudication.",results};
+const summary={mode:"BUILT_NEXT_HTTP_AI_AND_SEARCH_OFF_ROUTE_EXPECTATIONS_UNCHANGED",total:results.length,pass:results.filter(r=>r.pass).length,fail:results.filter(r=>!r.pass).length,httpErrors:results.filter(r=>r.httpStatus!==200).length,note:"Original 61 route/service/clarification expectations retained. Answer checks validate the current structured response and official source binding; semantic accuracy is tested separately.",results};
 writeFileSync(`${directory}/legacy-e2e-summary.json`,JSON.stringify(summary,null,2));
 console.log(JSON.stringify({...summary,results:undefined}));
 if(summary.fail)process.exitCode=1;

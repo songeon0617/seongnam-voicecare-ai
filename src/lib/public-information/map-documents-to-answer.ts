@@ -1,4 +1,5 @@
 import type { PublicInformationDocument } from "@/types/public-data";
+import { guideAnswer } from './guide-answer';
 import type {
   InformationVerification,
   PublicInformationAnswer,
@@ -92,8 +93,8 @@ function mapSource(document: PublicInformationDocument): SourceReference {
 }
 
 /**
- * 검색 문서의 저장된 필드만 PublicInformationAnswer로 옮긴다.
- * 본문에서 전화번호·서류·단계·장소를 추출하거나 새로 생성하지 않는다.
+ * 검색 문서와 원문 대조를 마친 서비스 안내를 질문 의도에 맞게 표시한다.
+ * 임의 문서에는 서비스 안내를 적용하지 않으며 모델로 사실을 생성하지 않는다.
  */
 export function mapDocumentsToPublicInformationAnswer(
   userQuestion: string,
@@ -127,5 +128,6 @@ export function mapDocumentsToPublicInformationAnswer(
     nextAction: null,
     sources: documents.map(mapSource),
     verification: mapVerification(documents),
+    ...(documents.length === 1 ? guideAnswer(userQuestion, documents[0]) : {}),
   };
 }

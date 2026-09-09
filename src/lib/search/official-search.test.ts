@@ -47,7 +47,7 @@ test("required acceptance examples route without paid calls",async()=>{
 });
 test("curated thirteen remain exactly mapped under expanded handler",async()=>{
   for(const doc of getRoutingDocuments()){
-    const result=await body({query:`${doc.title} 안내`});assert.equal(result.kind,"answer",doc.title);assert.equal(result.results[0].document.id,doc.id);assert.equal(result.answer.plainLanguageSummary,doc.content);assert.ok(readSearchAnswer(result));
+    const result=await body({query:`${doc.title} 안내`});assert.equal(result.kind,"answer",doc.title);assert.equal(result.results[0].document.id,doc.id);assert.ok(result.answer.plainLanguageSummary.length > 20);assert.equal(result.answer.nextAction?.url,doc.originalUrl);assert.ok(result.answer.steps.length > 0);assert.ok(readSearchAnswer(result));
   }
 });
 test("changed/future services bypass curated shortcuts and preserve the original question",async()=>{

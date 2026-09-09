@@ -10,8 +10,8 @@ const unsupported = (): IntentRoute => ({ route: "UNSUPPORTED", serviceIds: [], 
 
 // Purpose combinations for the existing catalog only. Never infer eligibility or new facts.
 const purposes: [ServiceId, (q: string) => boolean][] = [
-  ["seongnam-special-transportation", q => /휠체어|교통약자/.test(q) && /차량|탈.{0,8}차|부를.{0,10}차|차.{0,4}부르/.test(q)],
-  ["seongnam-disabled-taxi-voucher", q => /택시바우[처쳐]/.test(q) || /장애/.test(q) && /택시/.test(q) && /요금|택시비|비용|할인|지원/.test(q)],
+  ["seongnam-special-transportation", q => /장애인콜택시/.test(q) || /휠체어|교통약자/.test(q) && /차량|탈.{0,8}차|부를.{0,10}차|차.{0,4}부르/.test(q)],
+  ["seongnam-disabled-taxi-voucher", q => /택시바우[처쳐]/.test(q) || !/콜택시|특별교통/.test(q) && /장애/.test(q) && /택시/.test(q) && /요금|택시비|비용|할인|지원/.test(q)],
   ["seongnam-senior-tailored-care", q => /어르신|노인|어머니|아버지|부모|기초연금/.test(q) && /안부|동행|돌봄|생활지원/.test(q)],
   ["seongnam-bundang-senior-welfare-center", q => /복지관|노인복지시설/.test(q) && /분당|정자동/.test(q)],
   ["seongnam-senior-ai-iot-health-care", q => /스마트폰|스마트기기|앱|IoT/i.test(q) && /건강/.test(q) && /어르신|노인|\d{2}세/.test(q)],

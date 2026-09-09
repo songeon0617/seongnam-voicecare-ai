@@ -1,4 +1,6 @@
 import { writeFile } from "node:fs/promises";
+import { readSearchAnswer } from "../src/lib/search/read-search-answer";
+import { PUBLIC_INFORMATION_DOCUMENTS } from "../src/data/public-data/documents";
 
 type Route = "DIRECT" | "CLARIFY" | "UNSUPPORTED";
 
@@ -126,30 +128,21 @@ function sameMembers(actual: string[], expected: string[]) {
   return actual.length === expected.length && [...actual].sort().every((value, index) => value === [...expected].sort()[index]);
 }
 
-function factsAreDocumentBacked(body: ApiBody, actualRoute: Route | undefined) {
-  const answer = body?.answer;
-  if (!answer || typeof answer !== "object") return false;
-  if (actualRoute !== "DIRECT") {
-    return Array.isArray(answer.sources) && answer.sources.length === 0 && Array.isArray(answer.steps) && answer.steps.length === 0 && answer.nextAction === null;
-  }
+/** Transport/source contract only. Content accuracy is reviewed separately in competition-quality.test.ts. */
+function answerContractMatches(body: ApiBody, actualRoute: Route | undefined) {
+  const parsed = readSearchAnswer(body);
+  if (!parsed) return false;
+  const answer = parsed.answer;
+  if (actualRoute !== "DIRECT") return answer.sources.length === 0 && answer.steps.length === 0 && answer.nextAction === null;
   if (!Array.isArray(body.results) || body.results.length !== 1) return false;
   const document = body.results[0]?.document;
-  if (!document) return false;
-  const sourceIds = Array.isArray(answer.sources)
-    ? answer.sources.flatMap((source) => typeof source === "object" && source !== null && "id" in source && typeof source.id === "string" ? [source.id] : [])
-    : [];
-  const eligibility = Array.isArray(answer.eligibility) ? answer.eligibility.filter((value): value is string => typeof value === "string") : [];
-  const targetAudiences = Array.isArray(document.targetAudiences) ? document.targetAudiences.filter((value): value is string => typeof value === "string") : [];
-  return answer.title === document.title
-    && answer.plainLanguageSummary === document.content
-    && typeof document.id === "string"
-    && sameMembers(sourceIds, [document.id])
-    && sameMembers(eligibility, targetAudiences)
-    && Array.isArray(answer.steps) && answer.steps.length === 0
-    && answer.nextAction === null
-    && answer.requiredItems === undefined
-    && answer.contacts === undefined
-    && answer.locations === undefined;
+  const reviewed = PUBLIC_INFORMATION_DOCUMENTS.find(d=>d.id===document?.id);
+  if (!reviewed || document?.content !== reviewed.content || document?.title !== reviewed.title) return false;
+  return answer.title === reviewed.title && answer.plainLanguageSummary.trim().length > 0
+    && answer.sources.length === 1 && answer.sources[0].id === reviewed.id
+    && answer.sources[0].url === reviewed.originalUrl
+    && answer.steps.every(step=>step.sourceIds?.every(id=>id===reviewed.id))
+    && answer.nextAction?.url === reviewed.originalUrl;
 }
 
 async function main() {
@@ -176,16 +169,13 @@ async function main() {
     const wrongClarification = testCase.expectedRoute === "CLARIFY"
       ? actualClarificationId !== testCase.expectedClarificationId
       : actualRoute === "CLARIFY";
-    const documentBacked = response.status === 200 && factsAreDocumentBacked(body, actualRoute);
-    const hallucination = !documentBacked;
-    const unsupportedInformation = Boolean(testCase.asksForUnregisteredInformation && !documentBacked);
-    const pass = !wrongRoute && !wrongService && !wrongClarification && !hallucination && !unsupportedInformation;
+    const answerContractFailure = response.status !== 200 || !answerContractMatches(body, actualRoute);
+    const pass = !wrongRoute && !wrongService && !wrongClarification && !answerContractFailure;
     const failureReasons = [
       wrongRoute ? `wrong_route: expected ${testCase.expectedRoute}, got ${actualRoute ?? `HTTP ${response.status}`}` : null,
       wrongService ? `wrong_service: expected [${testCase.expectedServiceIds.join(", ")}], got [${actualServiceIds.join(", ")}]` : null,
       wrongClarification ? `wrong_clarification: expected ${testCase.expectedClarificationId ?? "none"}, got ${actualClarificationId ?? "none"}` : null,
-      hallucination ? "hallucination: answer fields were not an exact deterministic mapping of the returned official document" : null,
-      unsupportedInformation ? "unsupported_information: generated information absent from the registered document" : null,
+      answerContractFailure ? "answer_contract: invalid response or source/document mismatch" : null,
     ].filter(Boolean);
     results.push({
       ...testCase,
@@ -196,8 +186,7 @@ async function main() {
       routingSource: body?.routing?.source ?? null,
       routingReason: body?.routing?.reason ?? null,
       answerTitle: body?.answer?.title ?? null,
-      hallucination,
-      unsupportedInformation,
+      answerContractFailure,
       wrongRoute,
       wrongService,
       wrongClarification,

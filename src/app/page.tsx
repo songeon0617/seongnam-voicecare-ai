@@ -21,22 +21,8 @@ export default function Home() {
 
       <main className={styles.main}>
         <section className={styles.intro} aria-labelledby="page-title">
-          <p className={styles.eyebrow}>
-            <span aria-hidden="true">성남</span>
-            복지 · 교통 · 건강 · 민원
-          </p>
-          <h1 id="page-title">성남 생활정보, 더 쉽게 찾아보세요</h1>
-          <p className={styles.description}>
-            복지·교통·건강·민원 정보를 제도명을 몰라도 음성이나 질문으로 쉽게 확인하세요.
-          </p>
-          <p className={styles.localMessage}>
-            <span aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M4 20V9l5-4 3 3 3-3 5 4v11M8 20v-4h8v4M4 12h4m8 0h4" />
-              </svg>
-            </span>
-            성남 시민의 일상에 필요한 정보를 한곳에서
-          </p>
+          <h1 id="page-title">성남 생활정보, 쉽게 물어보세요</h1>
+          <p className={styles.description}>제도명을 몰라도 필요한 도움을 물어보세요.</p>
         </section>
 
         <QuestionPanel />
