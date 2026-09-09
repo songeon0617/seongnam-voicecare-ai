@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { mkdirSync } from "node:fs";
 import { installSpeechMock } from "./speech-mock";
 import { SEARCH_MESSAGES } from "../../src/types/search-messages";
-const dir="docs/voicecare-evaluation/submission-final-20260907";
+const dir="test-results/submission-panel";
 for(const width of [360,390,430])test(`submission ${width}px: full answer, source, speech and keyboard details`,async({page})=>{
   await installSpeechMock(page);await page.setViewportSize({width,height:900});await page.goto("/");
   const input=page.getByRole("textbox");await input.fill("특별교통수단 신청 방법");await input.press("Enter");

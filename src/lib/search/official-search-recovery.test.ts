@@ -10,8 +10,8 @@ import {readSearchAnswer} from "./read-search-answer";
 import {officialPublisher,officialUrl} from "./official-source-policy";
 import {relevantOriginalSection} from "./official-navigation";
 
-const prior="docs/voicecare-evaluation/release-20260907";
-const directory="docs/voicecare-evaluation/recovery-20260907/sources";
+const prior="tests/fixtures/voicecare/release";
+const directory="tests/fixtures/voicecare/recovery-sources";
 const index=JSON.parse(readFileSync(`${directory}/index.json`,"utf8"));
 const rows=JSON.parse(readFileSync(`${prior}/summary.json`,"utf8")).stage1.rows;
 const ledger=JSON.parse(readFileSync(`${prior}/paid-ledger.json`,"utf8"));
@@ -36,7 +36,7 @@ for(const row of rows)test(`captured Stage 1 replay: ${row.id} (${row.classifica
  let missing=0,paid=0,store=0;const missingUrls:string[]=[];
  const original=async(url:string):Promise<OriginalPage>=>{
   // Add newly visited official pages without overwriting the historical snapshots.
-  const additional=`docs/voicecare-evaluation/submission-final-20260907/sources/${createHash("sha256").update(url).digest("hex")}`;
+  const additional=`tests/fixtures/voicecare/submission-sources/${createHash("sha256").update(url).digest("hex")}`;
   if(!index[url]&&existsSync(`${additional}.json`)){
    const saved=JSON.parse(readFileSync(`${additional}.json`,"utf8"));
    return {...saved,...extractOfficialDocument(readFileSync(`${additional}.html`,"utf8"),url)};

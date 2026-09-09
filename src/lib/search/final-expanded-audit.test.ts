@@ -46,7 +46,7 @@ test("provider searches the same reviewed institutional hosts enforced at retrie
 });
 
 for(const id of ["066","138","130"])test(`real provider counterexample cannot become answer evidence: ${id}`,()=>{
-  const row=JSON.parse(readFileSync(`docs/voicecare-evaluation/final-expanded-20260907/domain-${id}-live.json`,"utf8"));
+  const row=JSON.parse(readFileSync(`tests/fixtures/voicecare/counterexamples/domain-${id}-live.json`,"utf8"));
   assert.ok(row.response.officialSearch.evidence.length>0);
   for(const evidence of row.response.officialSearch.evidence){
     assert.equal(matchesRequestedSubject(evidence.excerpt,row.question),false);

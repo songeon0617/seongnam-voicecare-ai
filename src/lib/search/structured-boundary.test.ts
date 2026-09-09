@@ -6,7 +6,7 @@ import {readSearchAnswer} from "./read-search-answer";
 
 // Expectations come from the frozen historical report; the original HTTP evaluator
 // remains untouched and separately validates every document field on next start.
-const golden=JSON.parse(readFileSync("docs/voicecare-evaluation/release-20260907/legacy-e2e-summary.json","utf8"));
+const golden=JSON.parse(readFileSync("tests/fixtures/voicecare/release/legacy-e2e-summary.json","utf8"));
 for(const row of golden.results) test(`legacy boundary: ${row.id}; web provider cannot override the result`,async()=>{
   const result=await createExpandedPublicInformationResponse({query:row.question,...(row.context?{context:row.context}:{})},
     {search:async()=>{assert.fail(`legacy question escaped to web search: ${row.id}`);}});

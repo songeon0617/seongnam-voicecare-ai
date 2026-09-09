@@ -8,7 +8,7 @@ import { createExpandedPublicInformationResponse } from "./expanded-public-infor
 import { readSearchAnswer } from "./read-search-answer";
 import { isJourneyRequest, questionScope } from "./question-scope";
 
-const dir="docs/voicecare-evaluation/submission-final-20260907/sources";
+const dir="tests/fixtures/voicecare/submission-sources";
 function original(url:string) {
   const file=createHash("sha256").update(url).digest("hex");
   return {...JSON.parse(readFileSync(`${dir}/${file}.json`,"utf8")),...extractOfficialDocument(readFileSync(`${dir}/${file}.html`,"utf8"),url)};

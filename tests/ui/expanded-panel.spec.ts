@@ -25,8 +25,8 @@ test("long policy stays intact behind details and default speech matches visible
   await page.getByText("자세한 내용 보기",{exact:true}).press("Enter");
   await expect(page.getByText(body.answer.plainLanguageSummary,{exact:true})).toBeVisible();
   await expect(page.getByRole("button",{name:"상세 안내 전체 듣기",exact:true})).toBeVisible();
-  mkdirSync("docs/voicecare-visual",{recursive:true});
-  await page.screenshot({path:"docs/voicecare-visual/details-390.png",fullPage:true});
+  mkdirSync("test-results/voicecare-visual",{recursive:true});
+  await page.screenshot({path:"test-results/voicecare-visual/details-390.png",fullPage:true});
 });
 
 test("real offline API: broad mobility, numbered reply and recovery are distinct from no official data",async({page})=>{
@@ -80,7 +80,7 @@ for(const width of [320,360,390,768,1440])test(`layout ${width}px, focus, clarif
     }
   }
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
-  mkdirSync("docs/voicecare-visual",{recursive:true});await page.screenshot({path:`docs/voicecare-visual/clarify-${width}.png`,fullPage:true});
+  mkdirSync("test-results/voicecare-visual",{recursive:true});await page.screenshot({path:`test-results/voicecare-visual/clarify-${width}.png`,fullPage:true});
   await page.getByRole("button",{name:"일반 버스·지하철 이용",exact:true}).click();await expect(page.getByRole("status")).toContainText("검색이 현재 꺼져");
   if(width===320||width===390){
     const listen=page.getByRole("button",{name:"답변 듣기",exact:true});await expect(listen).toBeVisible();
@@ -88,5 +88,5 @@ for(const width of [320,360,390,768,1440])test(`layout ${width}px, focus, clarif
   }
   await page.addStyleTag({content:"html{font-size:200% !important}"});
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
-  await page.screenshot({path:`docs/voicecare-visual/recovery-text200-${width}.png`,fullPage:true});
+  await page.screenshot({path:`test-results/voicecare-visual/recovery-text200-${width}.png`,fullPage:true});
 });
