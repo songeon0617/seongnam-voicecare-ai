@@ -1,9 +1,10 @@
-name: Offline regression
-on: [push, pull_request]
+name: Archive verification
+on: workflow_dispatch
 jobs:
   verify:
     runs-on: ubuntu-latest
     env:
+      NEXT_TELEMETRY_DISABLED: "1"
       PUBLIC_INFORMATION_AI_ENABLED: "false"
       PUBLIC_INFORMATION_WEB_SEARCH_ENABLED: "false"
       OPENAI_API_KEY: ""
@@ -14,5 +15,9 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
-      - run: npm run verify
+      # Historical functional suites remain in the repository. The archived
+      # application intentionally rejects requests those suites expected to serve.
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run test:archive
+      - run: npm run build

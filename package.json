@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test": "npm run test:server && npm run test:ui",
+    "test:archive": "tsx --conditions=react-server --test tests/archive.test.ts",
     "test:server": "tsx --conditions=react-server --test src/lib/search/*.test.ts src/lib/ai/*.test.ts",
     "test:ui": "node scripts/test-ui.mjs",
     "smoke:openai": "tsx --conditions=react-server scripts/smoke-openai.ts",

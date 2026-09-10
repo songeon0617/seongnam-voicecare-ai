@@ -1,8 +1,10 @@
 import { writeFileSync } from "node:fs";
+import { assertVoiceCareActive } from "../src/lib/archive";
 import { readSearchAnswer } from "../src/lib/search/read-search-answer";
 
 const base="https://seongnam-voicecare-ai.vercel.app";
 async function main(){
+ assertVoiceCareActive();
  const queries=["성남시에서 처음 여권 만들 때 준비물 알려줘","성남시 도서관 회원증 처음 만들려면 어떻게 해요?"];
  const startedAt=new Date().toISOString();
  const results=await Promise.all(queries.map(async query=>{

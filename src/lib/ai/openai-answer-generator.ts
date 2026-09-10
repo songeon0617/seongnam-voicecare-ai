@@ -1,4 +1,5 @@
 import "server-only";
+import { VOICECARE_ARCHIVED } from "../archive";
 import {
   ANSWER_INTRODUCTIONS,
   ANSWER_LAYOUTS,
@@ -46,6 +47,7 @@ export function createOpenAIAnswerGenerator(
   env: Readonly<Record<string, string | undefined>> = process.env,
   fetcher: typeof fetch = fetch,
 ): AnswerGeneratorConfiguration {
+  if (VOICECARE_ARCHIVED) return { status: "disabled" };
   if (env.PUBLIC_INFORMATION_AI_ENABLED !== "true") {
     return { status: "disabled" };
   }

@@ -1,9 +1,11 @@
 import { writeFileSync } from "node:fs";
+import { assertVoiceCareActive } from "../src/lib/archive";
 import { readSearchAnswer } from "../src/lib/search/read-search-answer";
 const base=process.env.VOICECARE_AUDIT_URL??"http://127.0.0.1:3102";
 const directory=process.env.VOICECARE_RESULT_DIRECTORY??"docs/voicecare-evaluation/final-expanded-20260907";
 const production=!['127.0.0.1','localhost'].includes(new URL(base).hostname);
 async function main(){
+ assertVoiceCareActive();
  const cases=[
   {name:"empty",body:JSON.stringify({query:" "}),status:400,code:"empty_query"},
   {name:"long",body:JSON.stringify({query:"가".repeat(601)}),status:413,code:"query_too_long"},

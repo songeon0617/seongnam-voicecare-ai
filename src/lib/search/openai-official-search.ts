@@ -1,4 +1,5 @@
 import "server-only";
+import { VOICECARE_ARCHIVED } from "../archive";
 import type { OfficialEvidence, OfficialSearchProvider, OfficialSearchResult, SearchFailure, SearchUsage } from "@/types/official-search";
 import { fetchOfficialSource, normalizeEvidence, type OriginalPage } from "./fetch-official-source";
 import { OFFICIAL_HOSTS, officialUrl, officialPublisher, redactQuestion } from "./official-source-policy";
@@ -24,6 +25,7 @@ export function createOfficialSearchProvider(
   original:(url:string,signal:AbortSignal)=>Promise<OriginalPage>=fetchOfficialSource,
   acquire?:BudgetAcquirer,
 ):OfficialSearchProvider {
+  if(VOICECARE_ARCHIVED)return {async search(){return failure("disabled");}};
   const reserve=acquire??createRuntimeSearchBudget(env,fetcher);
   const cache=new Map<string,{expires:number;result:OfficialSearchResult}>();
   return {async search(raw,signal) {

@@ -3,6 +3,9 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {createHash} from 'node:crypto';
 import {execFileSync,spawnSync} from 'node:child_process';
+// Preserve this historical network audit, but do not run it for the archive.
+const archived = true;
+if (archived) throw new Error('VOICECARE_ARCHIVED: external audit requests are disabled');
 // Use the project's declared npm version in a temporary directory. No install or
 // package/lockfile mutation in the project; verify the registry archive integrity.
 const version='12.0.2';

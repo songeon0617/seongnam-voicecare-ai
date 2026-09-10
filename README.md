@@ -1,5 +1,7 @@
 # Seongnam VoiceCare AI
 
+> **Archived — no longer actively operated.** 2026 성남×KAIST AI 경진대회 출품작으로 더 이상 사용하지 않습니다. 코드·Git 이력·제출자료를 보존하며, 서비스와 AI/Redis/공식 사이트 요청은 코드에서 차단합니다. 아래 설명과 검증자료는 운영 당시의 기록입니다. 배포 보호 및 수동 확인 사항: [Archive 운영 기록](docs/archive-status.md).
+
 **팀 Astra · 성남×KAIST AI 경진대회 출품작**
 
 **과제명:** Seongnam VoiceCare AI - 일상어·음성으로 성남 공공정보의 공식 안내 연결

@@ -1,4 +1,7 @@
 import { defineConfig } from "@playwright/test";
+import { assertVoiceCareActive } from "./src/lib/archive";
+
+assertVoiceCareActive();
 
 const baseURL = process.env.VOICECARE_AUDIT_URL ?? "http://127.0.0.1:3102";
 export default defineConfig({

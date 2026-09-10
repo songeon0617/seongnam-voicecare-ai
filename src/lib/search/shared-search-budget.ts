@@ -1,4 +1,5 @@
 import "server-only";
+import { VOICECARE_ARCHIVED } from "../archive";
 import { randomUUID } from "node:crypto";
 import { abortable, boundedResponseText } from "./bounded-io";
 import { acquireSearchBudget } from "./search-budget";
@@ -25,6 +26,7 @@ return 1`;
 const RELEASE_SEARCH_LUA = `if redis.call('GET',KEYS[1]) == ARGV[1] then return redis.call('DEL',KEYS[1]) end return 0`;
 
 export function createRuntimeSearchBudget(env:Readonly<Record<string,string|undefined>>,fetcher:typeof fetch=fetch,report:(issue:StoreIssue)=>void=issue=>console.warn("voicecare_search_budget",issue)):BudgetAcquirer {
+  if(VOICECARE_ARCHIVED)return ()=>({allowed:false,reason:"budget_limited"});
   // Log only fixed codes, never endpoint, token, response body or user query.
   // This distinguishes a broken store from a real quota limit in private runtime logs.
   let lastReport=-Infinity;

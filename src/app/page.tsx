@@ -1,7 +1,9 @@
 import { QuestionPanel } from "@/components/question-panel/question-panel";
 import styles from "./page.module.css";
+import { VOICECARE_ARCHIVED } from "@/lib/archive";
 
 export default function Home() {
+  if (VOICECARE_ARCHIVED) return <main><h1>Seongnam VoiceCare AI — Archived</h1><p>서비스 운영과 AI 요청이 중단되었습니다.</p></main>;
   return (
     <div className={styles.page}>
       <header className={styles.header}>

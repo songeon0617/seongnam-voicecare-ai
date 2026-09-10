@@ -1,4 +1,5 @@
 import "server-only";
+import { assertVoiceCareActive } from "../archive";
 import { lookup } from "node:dns/promises";
 import { request } from "node:https";
 import { isIP } from "node:net";
@@ -36,6 +37,7 @@ export interface OriginalPage {url:string;title:string;paragraphs:string[];secti
 const cache=new Map<string,{expires:number;page:OriginalPage}>();
 /** DNS is checked and pinned into the HTTPS socket; every redirect is revalidated. */
 export async function fetchOfficialSource(input:string, signal:AbortSignal, capture?: (url:string,html:string)=>void, chargeRedirect?:()=>void):Promise<OriginalPage> {
+  assertVoiceCareActive();
   let current=officialUrl(input);
   if (!current) throw new Error("source_unverified");
   const cached=cache.get(current);

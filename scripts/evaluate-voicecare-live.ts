@@ -1,4 +1,5 @@
 import { loadEnvConfig } from "@next/env";
+import { assertVoiceCareActive } from "../src/lib/archive";
 import { mkdirSync,readFileSync,writeFileSync,existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { VOICECARE_EVALUATION_CASES } from "./voicecare-evaluation-cases";
@@ -9,6 +10,7 @@ import { fetchOfficialSource } from "../src/lib/search/fetch-official-source";
 import type { BudgetAcquirer } from "../src/lib/search/shared-search-budget";
 
 loadEnvConfig(process.cwd());
+assertVoiceCareActive();
 const directory="docs/voicecare-evaluation/release-20260907";
 mkdirSync(directory,{recursive:true});
 // Frozen Stage 1 selection before real search; two per requested category.

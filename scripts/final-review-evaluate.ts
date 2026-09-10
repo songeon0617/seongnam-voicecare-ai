@@ -1,4 +1,5 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+import { assertVoiceCareActive } from "../src/lib/archive";
 import { createExpandedPublicInformationResponse } from "../src/lib/search/expanded-public-information";
 import { createOfficialSearchProvider } from "../src/lib/search/openai-official-search";
 import { fetchOfficialSource } from "../src/lib/search/fetch-official-source";
@@ -11,6 +12,7 @@ const mode=live?(postFix?"production-post-fix":"production-live"):process.argv.i
 // Failures first; the selected 20 questions are unchanged.
 const ids=live&&postFix?[97,130,134]:[113,83,66,71,81,53,138,130,97,98,9,68,115,52,27,31,140,73,75,134];
 async function main(){
+  if(live)assertVoiceCareActive();
   mkdirSync(dir,{recursive:true});const rows=[];
   for(const number of ids){
     const id=`domain-${String(number).padStart(3,"0")}`;

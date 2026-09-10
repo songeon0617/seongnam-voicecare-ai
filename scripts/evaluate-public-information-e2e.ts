@@ -1,4 +1,5 @@
 import { writeFile } from "node:fs/promises";
+import { assertVoiceCareActive } from "../src/lib/archive";
 import { readSearchAnswer } from "../src/lib/search/read-search-answer";
 import { PUBLIC_INFORMATION_DOCUMENTS } from "../src/data/public-data/documents";
 
@@ -146,6 +147,7 @@ function answerContractMatches(body: ApiBody, actualRoute: Route | undefined) {
 }
 
 async function main() {
+  assertVoiceCareActive();
   const baseUrl = argument("--base-url") ?? "http://127.0.0.1:3100";
   const from = Math.max(1, Number(argument("--from") ?? "1"));
   const to = Math.min(cases.length, Number(argument("--to") ?? String(cases.length)));

@@ -1,9 +1,11 @@
 import { writeFileSync } from "node:fs";
+import { assertVoiceCareActive } from "../src/lib/archive";
 import { loadEnvConfig } from "@next/env";
 import { createPublicInformationResponseWithAnswer } from "../src/lib/search/create-public-information-response-with-answer";
 
 loadEnvConfig(process.cwd());
 async function main() {
+  assertVoiceCareActive();
   if(!process.argv.includes("--allow-paid-preflight")){console.error("Paid preflight requires explicit --allow-paid-preflight. Do not run under the current offline-only instruction.");process.exitCode=1;return;}
   const query = "이동수단 알려줘";
   const local = await createPublicInformationResponseWithAnswer({query});

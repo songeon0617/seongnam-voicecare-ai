@@ -1,4 +1,5 @@
 import "server-only";
+import { VOICECARE_ARCHIVED } from "../archive";
 import { isRecord } from "./generate-public-information-answer";
 import { InvalidRouterOutputError, RouterTimeoutError, type IntentRouterConfiguration } from "./intent-router";
 import { CLARIFICATIONS, ROUTER_INTENTS } from "@/types/public-information-router";
@@ -43,6 +44,7 @@ export function createOpenAIIntentRouter(
   env: Readonly<Record<string, string | undefined>> = process.env,
   fetcher: typeof fetch = fetch,
 ): IntentRouterConfiguration {
+  if (VOICECARE_ARCHIVED) return { status: "disabled" };
   if (env.PUBLIC_INFORMATION_AI_ENABLED !== "true") return { status: "disabled" };
   const apiKey = env.OPENAI_API_KEY?.trim();
   const model = env.OPENAI_MODEL?.trim();

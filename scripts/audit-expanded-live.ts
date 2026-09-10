@@ -1,4 +1,5 @@
 import { loadEnvConfig } from "@next/env";
+import { assertVoiceCareActive } from "../src/lib/archive";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { createOfficialSearchProvider } from "../src/lib/search/openai-official-search";
 import { createExpandedPublicInformationResponse } from "../src/lib/search/expanded-public-information";
@@ -8,6 +9,7 @@ import { VOICECARE_EVALUATION_CASES } from "./voicecare-evaluation-cases";
 import type { BudgetAcquirer } from "../src/lib/search/shared-search-budget";
 
 loadEnvConfig(process.cwd());
+assertVoiceCareActive();
 const directory="docs/voicecare-evaluation/final-expanded-20260907";
 const probe=process.argv.includes("--probe-final");
 const ids=(probe?[66,138]:[97,98,9,68,113,115,81,83,52,53,66,71,27,31,138,140,73,75,130,134]).map(n=>`domain-${String(n).padStart(3,"0")}`);
